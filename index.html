@@ -371,7 +371,20 @@ $('completeBtn').onclick=toggleComplete; $('bottomComplete').onclick=toggleCompl
 $('pinyinBtn').onclick=()=>{document.body.classList.toggle('hidden-pinyin'); const hidden=document.body.classList.contains('hidden-pinyin'); $('pinyinBtn').textContent=hidden?'拼音を表示':'拼音を隠す'; $('pinyinBtn').className='toggle '+(hidden?'on':'off');}
 $('jaBtn').onclick=()=>{document.body.classList.toggle('hidden-ja'); const hidden=document.body.classList.contains('hidden-ja'); $('jaBtn').textContent=hidden?'日本語訳を表示':'日本語訳を隠す'; $('jaBtn').className='toggle '+(hidden?'on':'off');}
 $('answerBtn').onclick=()=>{showAnswers=!showAnswers;$('answerBtn').textContent=showAnswers?'解答を隠す':'解答を表示';$('answerBtn').className='toggle '+(showAnswers?'on':'off');$('content').className=showAnswers?'show-answers':''}
-$('bookmarkViewBtn').onclick=()=>{bookmarkView=!bookmarkView;render();window.scrollTo({top:0,behavior:'smooth'});}
+// ブックマークボタン: homeView状態を保存・復元して正しく動作させる
+let _prevHomeView=false;
+$('bookmarkViewBtn').onclick=()=>{
+  if(!bookmarkView){
+    _prevHomeView=homeView;
+    homeView=false;
+    bookmarkView=true;
+  } else {
+    homeView=_prevHomeView;
+    bookmarkView=false;
+  }
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+};
 
 // Expose module-scoped functions for inline handlers.
 // This is necessary because this file uses <script type="module"> for Firebase imports.
@@ -396,16 +409,16 @@ Object.assign(window, {
 
 render();
 
-// Event delegation for dynamically generated buttons (iOS-safe)
+// イベント委譲: data-action属性ボタンのクリックをまとめて処理(iOS対応)
 document.addEventListener('click', function(e){
-  const btn = e.target.closest('button[data-action], button[data-id]');
+  const btn = e.target.closest('[data-action]');
   if(!btn) return;
   const action = btn.dataset.action;
   const id = btn.dataset.id;
-  if(action === 'showHome') { showHome(); }
-  else if(action === 'showBookmarks') { showBookmarks(); }
-  else if(action === 'toggleBookmarkHint') { toggleBookmarkHint(); }
-  else if(action === 'removeBookmark' && id) { toggleBookmark(id); }
+  if(action === 'showHome') showHome();
+  else if(action === 'showBookmarks') showBookmarks();
+  else if(action === 'toggleBookmarkHint') toggleBookmarkHint();
+  else if(action === 'removeBookmark' && id) toggleBookmark(id);
 });
 </script>
 </body></html>
