@@ -1,8 +1,18 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>HSK4 90日ミニアプリ v4</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>HSK4 90日ミニアプリ</title>
+
+<!-- PWA: ホーム画面追加 & フルスクリーン -->
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="HSK4">
+<meta name="theme-color" content="#111827">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <style>
 :root{--bg:#f7f8fb;--card:#fff;--ink:#111827;--muted:#667085;--line:#e5e7eb;--accent:#111827;--good:#16a34a;--goodbg:#ecfdf3;--goodline:#abefc6;--bad:#dc2626;--gray:#f2f4f7}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#f8fafc,#fff);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Segoe UI,sans-serif}
@@ -371,7 +381,6 @@ $('completeBtn').onclick=toggleComplete; $('bottomComplete').onclick=toggleCompl
 $('pinyinBtn').onclick=()=>{document.body.classList.toggle('hidden-pinyin'); const hidden=document.body.classList.contains('hidden-pinyin'); $('pinyinBtn').textContent=hidden?'拼音を表示':'拼音を隠す'; $('pinyinBtn').className='toggle '+(hidden?'on':'off');}
 $('jaBtn').onclick=()=>{document.body.classList.toggle('hidden-ja'); const hidden=document.body.classList.contains('hidden-ja'); $('jaBtn').textContent=hidden?'日本語訳を表示':'日本語訳を隠す'; $('jaBtn').className='toggle '+(hidden?'on':'off');}
 $('answerBtn').onclick=()=>{showAnswers=!showAnswers;$('answerBtn').textContent=showAnswers?'解答を隠す':'解答を表示';$('answerBtn').className='toggle '+(showAnswers?'on':'off');$('content').className=showAnswers?'show-answers':''}
-// ブックマークボタン: homeView状態を保存・復元して正しく動作させる
 let _prevHomeView=false;
 $('bookmarkViewBtn').onclick=()=>{
   if(!bookmarkView){
@@ -409,13 +418,21 @@ Object.assign(window, {
 
 render();
 
-// イベント委譲: data-action属性ボタンのクリックをまとめて処理(iOS対応)
+// ---- Service Worker 登録 (PWA オフライン対応) ----
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .catch(err => console.warn('SW registration failed:', err));
+  });
+}
+
+// ---- イベント委譲: data-action ボタンをまとめて処理 (iOS 対応) ----
 document.addEventListener('click', function(e){
   const btn = e.target.closest('[data-action]');
   if(!btn) return;
   const action = btn.dataset.action;
   const id = btn.dataset.id;
-  if(action === 'showHome') showHome();
+  if(action === 'showHome')           showHome();
   else if(action === 'showBookmarks') showBookmarks();
   else if(action === 'toggleBookmarkHint') toggleBookmarkHint();
   else if(action === 'removeBookmark' && id) toggleBookmark(id);
