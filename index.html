@@ -63,6 +63,15 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
    <button id="completeBtn" class="complete">このDayを完了にする</button>
   </div>
 
+  <div class="syncbar" id="syncBar">
+    <span class="syncdot warn" id="syncDot"></span>
+    <span class="sync-status" id="syncStatus">未ログイン：この端末内に保存中</span>
+    <span class="sync-user" id="syncUser"></span>
+    <button class="login" id="loginBtn" type="button">Googleでログイン</button>
+    <button class="logout" id="logoutBtn" type="button" style="display:none">ログアウト</button>
+  </div>
+  <div class="cloud-note" id="cloudNote">ログインすると、同じGoogleアカウントのiPhone/Mac間で進捗・回答・ブックマークを同期します。</div>
+
  </div>
 </div>
 
