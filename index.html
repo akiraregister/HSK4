@@ -4,8 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>HSK4 90日ミニアプリ</title>
-
-<!-- PWA: ホーム画面追加 & フルスクリーン -->
 <link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -50,7 +48,8 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .syncbar button{padding:8px 10px;font-size:12px}
 .syncbar .login{background:#111827;color:white;border-color:#111827}
 .syncbar .logout{background:white;color:#344054}
-.syncbar .force-upload{background:#fffbeb;color:#b45309;border-color:#fde68a;font-size:12px;padding:8px 10px}
+.syncbar .force-btn{background:#fffbeb;color:#b45309;border-color:#fde68a;font-size:11px;padding:6px 8px}
+.syncbar .force-dl{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}
 .syncdot{width:8px;height:8px;border-radius:999px;background:#98a2b3;display:inline-block}
 .syncdot.on{background:#12b76a}.syncdot.warn{background:#f79009}.syncdot.err{background:#f04438}
 .cloud-note{font-size:11px;color:#667085;text-align:center;margin-top:4px}
@@ -80,7 +79,8 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
     <span class="sync-user" id="syncUser"></span>
     <button class="login" id="loginBtn" type="button">Googleでログイン</button>
     <button class="logout" id="logoutBtn" type="button" style="display:none">ログアウト</button>
-    <button class="force-upload" id="forceUploadBtn" type="button" style="display:none" title="ローカルのデータをクラウドへ強制アップロード">↑ 強制同期</button>
+    <button class="force-btn" id="forceUploadBtn" type="button" style="display:none">↑ 端末→クラウド</button>
+    <button class="force-btn force-dl" id="forceDownloadBtn" type="button" style="display:none">↓ クラウド→端末</button>
   </div>
   <div class="cloud-note" id="cloudNote">ログインすると、同じGoogleアカウントのiPhone/Mac間で進捗・回答・ブックマークを同期します。</div>
 
@@ -128,8 +128,10 @@ function setSyncStatus(kind, text, userText=''){
   if(user) user.textContent=userText||'';
   if(login) login.style.display=cloudUser?'none':'';
   if(logout) logout.style.display=cloudUser?'':'none';
-  const forceBtn=document.getElementById('forceUploadBtn');
-  if(forceBtn) forceBtn.style.display=cloudUser?'':'none';
+  const _fu=document.getElementById('forceUploadBtn');
+  const _fd=document.getElementById('forceDownloadBtn');
+  if(_fu) _fu.style.display=cloudUser?'':'none';
+  if(_fd) _fd.style.display=cloudUser?'':'none';
 }
 function cloudDocRef(){ return cloudUser ? doc(db,'users',cloudUser.uid,'hsk4','state') : null; }
 function localUpdatedAt(){ const n=Number(localStorage.getItem(storageKey+'-updatedAtMs')||0); return Number.isFinite(n)?n:0; }
@@ -142,39 +144,90 @@ async function saveCloudState(force=false){
 }
 function scheduleCloudSave(){ if(!cloudUser || suppressCloudSave) return; setSyncStatus('warn','クラウドへ保存中...',cloudUser.email||''); clearTimeout(cloudSaveTimer); cloudSaveTimer=setTimeout(()=>saveCloudState(false),700); }
 async function loadCloudState(){
-  if(!cloudUser) return; cloudLoading=true; setSyncStatus('warn','クラウド同期を確認中...',cloudUser.email||'');
+  if(!cloudUser) return;
+  cloudLoading=true;
+  setSyncStatus('warn','クラウド同期を確認中...',cloudUser.email||'');
   try{
-    const snap=await getDoc(cloudDocRef()); const localTs=localUpdatedAt();
-    if(snap.exists()){ const cloud=snap.data()||{}; const cloudTs=Number(cloud.updatedAtMs||0);
-      // データの有無で判断（タイムスタンプだけに頼らない）
-      const localIsEmpty=!Object.keys(state.completed||{}).length&&!Object.keys(state.bookmarks||{}).length&&!Object.keys(state.answers||{}).length;
-      const cloudIsEmpty=!Object.keys(cloud.completed||{}).length&&!Object.keys(cloud.bookmarks||{}).length&&!Object.keys(cloud.answers||{}).length;
-      // クラウドが新しい かつ クラウドにデータあり → クラウドから読む
-      // ローカルが空 → クラウドから読む
-      // クラウドが空 かつ ローカルにデータあり → ローカルをアップロード（復旧）
-      if((cloudTs>localTs&&!cloudIsEmpty)||localIsEmpty){ suppressCloudSave=true; state.completed=cloud.completed||{}; state.answers=cloud.answers||{}; state.scores=cloud.scores||{}; state.bookmarks=cloud.bookmarks||{}; state.dragOrders=cloud.dragOrders||{}; if(cloud.currentDay) current=Number(cloud.currentDay)||current; localStorage.setItem(storageKey,JSON.stringify(state)); localStorage.setItem(storageKey+'-updatedAtMs',String(cloudTs)); localStorage.setItem('hsk4-current-day',String(current)); suppressCloudSave=false; setSyncStatus('on','クラウドから同期済み',cloudUser.email||''); if(typeof render==='function') render(); }
-      else { cloudReady=true; await saveCloudState(true); setSyncStatus('on','この端末のデータをクラウドへ同期済み',cloudUser.email||''); }
-    } else { cloudReady=true; await saveCloudState(true); setSyncStatus('on','初回同期完了',cloudUser.email||''); }
+    const snap=await getDoc(cloudDocRef());
+    if(!snap.exists()){
+      // クラウドにデータなし → ローカルをアップロード
+      cloudReady=true; await saveCloudState(true);
+      const lbm=Object.keys(state.bookmarks||{}).length;
+      setSyncStatus('on',`初回同期完了(BM:${lbm}件)`,cloudUser.email||'');
+      cloudLoading=false; return;
+    }
+    const cloud=snap.data()||{};
+    const cloudTs=Number(cloud.updatedAtMs||0);
+    const localTs=localUpdatedAt();
+    const lbm=Object.keys(state.bookmarks||{}).length;
+    const cbm=Object.keys(cloud.bookmarks||{}).length;
+    console.log(`[Sync] localBM:${lbm} cloudBM:${cbm} localTs:${localTs} cloudTs:${cloudTs}`);
+    // 判断: ブックマーク件数 + タイムスタンプで総合判断
+    // クラウドが優先 = (クラウドBM > ローカルBM) または (同数以上かつ新しい) または (ローカルが空)
+    const loadFromCloud = cbm > lbm || (lbm===0 && cbm>0) || (cbm>=lbm && cloudTs>localTs && cbm>0);
+    if(loadFromCloud){
+      suppressCloudSave=true;
+      state.completed=cloud.completed||{};
+      state.answers=cloud.answers||{};
+      state.scores=cloud.scores||{};
+      state.bookmarks=cloud.bookmarks||{};
+      state.dragOrders=cloud.dragOrders||{};
+      if(cloud.currentDay) current=Number(cloud.currentDay)||current;
+      localStorage.setItem(storageKey,JSON.stringify(state));
+      localStorage.setItem(storageKey+'-updatedAtMs',String(cloudTs));
+      localStorage.setItem('hsk4-current-day',String(current));
+      suppressCloudSave=false;
+      setSyncStatus('on',`クラウドから同期(BM:${cbm}件)`,cloudUser.email||'');
+      if(typeof render==='function') render();
+    } else {
+      cloudReady=true; await saveCloudState(true);
+      setSyncStatus('on',`端末→クラウド同期(BM:${lbm}件)`,cloudUser.email||'');
+    }
     cloudReady=true;
-  } catch(e){ console.error(e); setSyncStatus('err','同期エラー：Firebase設定/Rulesを確認',cloudUser?.email||''); } finally { cloudLoading=false; }
+  } catch(e){
+    console.error('[Sync Error]',e);
+    setSyncStatus('err',`同期エラー: ${e.message||'不明'}`,cloudUser?.email||'');
+  } finally { cloudLoading=false; }
 }
 window.hsk4GoogleLogin=async function(){ try{ setSyncStatus('warn','Googleログイン中...'); try{ await signInWithPopup(auth,provider); } catch(e){ console.warn('popup failed; redirect',e); await signInWithRedirect(auth,provider); } } catch(e){ console.error(e); setSyncStatus('err','ログインできませんでした'); } };
-window.hsk4ForceUpload=async function(){
-  if(!cloudUser){ alert('先にログインしてください'); return; }
-  if(!confirm('ローカルのデータをクラウドへ強制アップロードします。クラウドのデータは上書きされます。よろしいですか？')) return;
-  setSyncStatus('warn','強制アップロード中...',cloudUser.email||'');
-  cloudReady=true;
-  markLocalUpdated();
-  await saveCloudState(true);
-  setSyncStatus('on','強制アップロード完了',cloudUser.email||'');
-};
 window.hsk4Logout=async function(){ await saveCloudState(true); await signOut(auth); };
+window.hsk4ForceUpload=async function(){
+  if(!cloudUser){alert('先にログインしてください');return;}
+  if(!confirm('この端末のデータをクラウドへ強制アップロードします\n（クラウドのデータは上書きされます）')) return;
+  cloudReady=true; markLocalUpdated(); await saveCloudState(true);
+  const lbm=Object.keys(state.bookmarks||{}).length;
+  setSyncStatus('on',`強制アップロード完了(BM:${lbm}件)`,cloudUser.email||'');
+};
+window.hsk4ForceDownload=async function(){
+  if(!cloudUser){alert('先にログインしてください');return;}
+  setSyncStatus('warn','クラウドから強制取得中...',cloudUser.email||'');
+  try{
+    const snap=await getDoc(cloudDocRef());
+    if(!snap.exists()){alert('クラウドにデータがありません');return;}
+    const cloud=snap.data()||{};
+    const cbm=Object.keys(cloud.bookmarks||{}).length;
+    if(!confirm(`クラウドのデータを取得します\nブックマーク: ${cbm}件\n（端末のデータは上書きされます）`)) return;
+    suppressCloudSave=true;
+    state.completed=cloud.completed||{}; state.answers=cloud.answers||{};
+    state.scores=cloud.scores||{}; state.bookmarks=cloud.bookmarks||{};
+    state.dragOrders=cloud.dragOrders||{};
+    if(cloud.currentDay) current=Number(cloud.currentDay)||current;
+    const cloudTs=Number(cloud.updatedAtMs||0);
+    localStorage.setItem(storageKey,JSON.stringify(state));
+    localStorage.setItem(storageKey+'-updatedAtMs',String(cloudTs));
+    localStorage.setItem('hsk4-current-day',String(current));
+    suppressCloudSave=false;
+    setSyncStatus('on',`クラウドから強制取得(BM:${cbm}件)`,cloudUser.email||'');
+    if(typeof render==='function') render();
+  }catch(e){ setSyncStatus('err',`取得エラー: ${e.message}`,cloudUser?.email||''); }
+};
 getRedirectResult(auth).catch(e=>console.warn('Redirect result error',e));
 onAuthStateChanged(auth, async (user)=>{ cloudUser=user; cloudReady=false; if(user){ setSyncStatus('warn','ログイン済み：同期準備中...',user.email||''); await loadCloudState(); } else { setSyncStatus('warn','未ログイン：この端末内に保存中'); } });
 document.addEventListener('click', (e)=>{
   if(e.target&&e.target.id==='loginBtn') window.hsk4GoogleLogin();
   if(e.target&&e.target.id==='logoutBtn') window.hsk4Logout();
   if(e.target&&e.target.id==='forceUploadBtn') window.hsk4ForceUpload();
+  if(e.target&&e.target.id==='forceDownloadBtn') window.hsk4ForceDownload();
 });
 
 
@@ -185,10 +238,8 @@ let homeView=true;
 let showAnswers=false, bookmarkView=false, selectedChip=null;
 const storageKey='hsk4-90-v4-state';
 let state=JSON.parse(localStorage.getItem(storageKey)||'{"completed":{},"answers":{},"scores":{},"bookmarks":{},"dragOrders":{}}');
-// タイムスタンプは実データがある場合のみセット（PWA初回起動で空データがクラウドを上書きするバグを防ぐ）
-if(!localStorage.getItem(storageKey+'-updatedAtMs') && localStorage.getItem(storageKey)) {
-  localStorage.setItem(storageKey+'-updatedAtMs', String(Date.now()));
-}
+// データが存在する場合のみタイムスタンプを設定（空データでクラウドを上書きするバグ防止）
+if(!localStorage.getItem(storageKey+'-updatedAtMs') && localStorage.getItem(storageKey)) localStorage.setItem(storageKey+'-updatedAtMs', String(Date.now()));
 // v10 migration: older versions stored order answers as plain strings.
 // The tap-order UI expects objects like {idx, word}. Remove old incompatible entries.
 if(state.dragOrders){
@@ -409,16 +460,9 @@ $('jaBtn').onclick=()=>{document.body.classList.toggle('hidden-ja'); const hidde
 $('answerBtn').onclick=()=>{showAnswers=!showAnswers;$('answerBtn').textContent=showAnswers?'解答を隠す':'解答を表示';$('answerBtn').className='toggle '+(showAnswers?'on':'off');$('content').className=showAnswers?'show-answers':''}
 let _prevHomeView=false;
 $('bookmarkViewBtn').onclick=()=>{
-  if(!bookmarkView){
-    _prevHomeView=homeView;
-    homeView=false;
-    bookmarkView=true;
-  } else {
-    homeView=_prevHomeView;
-    bookmarkView=false;
-  }
-  render();
-  window.scrollTo({top:0,behavior:'smooth'});
+  if(!bookmarkView){_prevHomeView=homeView;homeView=false;bookmarkView=true;}
+  else{homeView=_prevHomeView;bookmarkView=false;}
+  render();window.scrollTo({top:0,behavior:'smooth'});
 };
 
 // Expose module-scoped functions for inline handlers.
@@ -443,25 +487,17 @@ Object.assign(window, {
 });
 
 render();
-
-// ---- Service Worker 登録 (PWA オフライン対応) ----
 if('serviceWorker' in navigator){
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js')
-      .catch(err => console.warn('SW registration failed:', err));
-  });
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 }
-
-// ---- イベント委譲: data-action ボタンをまとめて処理 (iOS 対応) ----
-document.addEventListener('click', function(e){
-  const btn = e.target.closest('[data-action]');
+document.addEventListener('click',function(e){
+  const btn=e.target.closest('[data-action]');
   if(!btn) return;
-  const action = btn.dataset.action;
-  const id = btn.dataset.id;
-  if(action === 'showHome')           showHome();
-  else if(action === 'showBookmarks') showBookmarks();
-  else if(action === 'toggleBookmarkHint') toggleBookmarkHint();
-  else if(action === 'removeBookmark' && id) toggleBookmark(id);
+  const a=btn.dataset.action, id=btn.dataset.id;
+  if(a==='showHome') showHome();
+  else if(a==='showBookmarks') showBookmarks();
+  else if(a==='toggleBookmarkHint') toggleBookmarkHint();
+  else if(a==='removeBookmark'&&id) toggleBookmark(id);
 });
 </script>
 </body></html>
