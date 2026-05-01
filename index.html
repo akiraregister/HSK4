@@ -5,7 +5,7 @@
 <title>HSK4 90日ミニアプリ v4</title>
 <style>
 :root{--bg:#f7f8fb;--card:#fff;--ink:#111827;--muted:#667085;--line:#e5e7eb;--accent:#111827;--good:#16a34a;--goodbg:#ecfdf3;--goodline:#abefc6;--bad:#dc2626;--gray:#f2f4f7}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:var(--top-h,180px)}body{margin:0;background:linear-gradient(180deg,#f8fafc,#fff);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Segoe UI,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#f8fafc,#fff);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Segoe UI,sans-serif}
 .app{max-width:980px;margin:0 auto;padding:18px 12px 90px}.top{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border-bottom:1px solid #bfdbfe;padding:calc(18px + env(safe-area-inset-top)) 16px 14px}.top-inner{max-width:980px;margin:0 auto}
 h1{font-size:20px;margin:0 0 14px;letter-spacing:-.03em;line-height:1.2;text-align:center}.small{font-size:12px;color:var(--muted);line-height:1.45}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 select,button,input,textarea{font:inherit}select{flex:1;min-width:180px;border:1px solid var(--line);border-radius:14px;padding:10px;background:#fff}
@@ -177,8 +177,8 @@ function renderBookmarkPanel(){
  $('bookmarkViewBtn').className='toggle '+(bookmarkView?'on':'off');
  $('bookmarkPanel').innerHTML=`<div class="section-title"><h2>ブックマークだけ表示</h2><span class="badge">${items.length}件</span></div>
  <div class="small" style="margin-bottom:10px">☆を付けた単語・文法だけを表示しています。</div>
- <button class="primary" onclick="showHome()">通常の学習画面に戻る</button>`+
- (items.length?items.map(b=>`<div class="vitem"><div class="item-head"><div><span class="badge">${esc(b.type)}</span><span class="badge">Day ${b.day}</span><div class="zh">${esc(b.title)}</div><div class="small">${esc(b.sub||'')}</div></div><button class="bookmark active" onclick="toggleBookmark('${b.id}')">★</button></div></div>`).join(''):`<div class="empty">まだブックマークがありません。単語・文法の右上の ☆ を押すとここに集まります。</div>`);
+ <button class="primary" data-action="showHome">通常の学習画面に戻る</button>`+
+ (items.length?items.map(b=>`<div class="vitem"><div class="item-head"><div><span class="badge">${esc(b.type)}</span><span class="badge">Day ${b.day}</span><div class="zh">${esc(b.title)}</div><div class="small">${esc(b.sub||'')}</div></div><button class="bookmark active" data-action="removeBookmark" data-id="${b.id}">★</button></div></div>`).join(''):`<div class="empty">まだブックマークがありません。単語・文法の右上の ☆ を押すとここに集まります。</div>`);
 }
 
 function renderHome(){
@@ -212,8 +212,8 @@ function renderHome(){
       <h3>ブックマーク復習</h3>
       <div class="small">☆を付けた単語・文法だけを見返します。</div>
       <div class="home-actions">
-        <button onclick="showBookmarks()">ブックマークを見る</button>
-        <button onclick="toggleBookmarkHint()">使い方</button>
+        <button data-action="showBookmarks">ブックマークを見る</button>
+        <button data-action="toggleBookmarkHint">使い方</button>
       </div>
       <div id="bookmarkHint" class="small" style="display:none;margin-top:8px">各単語・文法の右上の ☆ を押すと、ブックマークに追加されます。</div>
     </div>
@@ -396,27 +396,16 @@ Object.assign(window, {
 
 render();
 
-function updateAppPadding(){
-  const topEl=document.querySelector('.top');
-  const appEl=document.querySelector('.app');
-  if(topEl&&appEl){
-    const h=topEl.offsetHeight;
-    appEl.style.paddingTop=h+'px';
-    document.documentElement.style.setProperty('--top-h', h+'px');
-  }
-}
-updateAppPadding();
-if(window.ResizeObserver){
-  const ro=new ResizeObserver(()=>updateAppPadding());
-  const topEl=document.querySelector('.top');
-  if(topEl) ro.observe(topEl);
-}
-window.addEventListener('resize',updateAppPadding);
-
-// Use MutationObserver to re-apply padding whenever DOM changes
-if(window.MutationObserver){
-  const mo=new MutationObserver(()=>requestAnimationFrame(updateAppPadding));
-  mo.observe(document.querySelector('.app'),{childList:true,subtree:true,attributes:true,attributeFilter:['style','class']});
-}
+// Event delegation for dynamically generated buttons (iOS-safe)
+document.addEventListener('click', function(e){
+  const btn = e.target.closest('button[data-action], button[data-id]');
+  if(!btn) return;
+  const action = btn.dataset.action;
+  const id = btn.dataset.id;
+  if(action === 'showHome') { showHome(); }
+  else if(action === 'showBookmarks') { showBookmarks(); }
+  else if(action === 'toggleBookmarkHint') { toggleBookmarkHint(); }
+  else if(action === 'removeBookmark' && id) { toggleBookmark(id); }
+});
 </script>
 </body></html>
