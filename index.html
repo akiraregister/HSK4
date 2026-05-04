@@ -256,16 +256,58 @@ function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt
 function lesson(){return LESSONS[current-1]}
 function initSelect(){ $('daySelect').innerHTML=LESSONS.map(l=>`<option value="${l.day}">Day ${l.day}${state.completed[l.day]?' ✓':''}｜${l.title.replace(/^Day \d+｜/,'')}</option>`).join(''); $('daySelect').value=current}
 function isBookmarked(id){return !!state.bookmarks[id]}
-function toggleBookmark(id,type,title,sub){state.bookmarks[id]?delete state.bookmarks[id]:state.bookmarks[id]={id,type,title,sub,day:current};save();render();}
+function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){
+  if(state.bookmarks[id]){
+    delete state.bookmarks[id];
+  } else {
+    state.bookmarks[id]={id,type,title,sub,day:current,pinyin:pinyin||'',example:example||'',exPinyin:exPinyin||'',exJa:exJa||''};
+  }
+  save();render();
+}
 function renderBookmarkPanel(){
  const items=Object.values(state.bookmarks||{});
  $('bookmarkPanel').className='bookmark-panel card'+(bookmarkView?' active':'');
  $('bookmarkViewBtn').textContent=bookmarkView?'学習に戻る':'ブックマーク';
  $('bookmarkViewBtn').className='toggle '+(bookmarkView?'on':'off');
- $('bookmarkPanel').innerHTML=`<div class="section-title"><h2>ブックマークだけ表示</h2><span class="badge">${items.length}件</span></div>
+ // ブックマークパネル描画（例文・拼音付き）
+function fmtBmItem(b){
+  // 既存ブックマークにexampleがない場合はLESSSONSから補完
+  let ex=b.example||'', exP=b.exPinyin||'', exJ=b.exJa||'', pin=b.pinyin||'';
+  if(!ex){
+    const m=b.id.match(/^d(\d+)-([vg])(\d+)$/);
+    if(m){
+      const lesson=LESSONS.find(l=>l.day===Number(m[1]));
+      if(lesson){
+        const arr=m[2]==='v'?lesson.vocab:lesson.grammar;
+        const item=arr[Number(m[3])];
+        if(item){
+          ex=item.example||''; exP=item.exPinyin||''; exJ=item.exJa||'';
+          pin=m[2]==='v'?(item.pinyin||''):(item.pinyin||'');
+        }
+      }
+    }
+  }
+  return `<div class="vitem">
+    <div class="item-head">
+      <div>
+        <span class="badge">${esc(b.type)}</span><span class="badge">Day ${b.day}</span>
+        <div class="zh">${esc(b.title)}</div>
+        ${pin?`<div class="pinyin">${esc(pin)}</div>`:''}
+        <div class="small">${esc(b.sub||'')}</div>
+      </div>
+      <button class="bookmark active" data-action="removeBookmark" data-id="${b.id}">★</button>
+    </div>
+    ${ex?`<div class="ex">
+      <div style="color:#1a3c5e;font-weight:600">${esc(ex)}</div>
+      ${exP?`<div class="small" style="color:#475467">${esc(exP)}</div>`:''}
+      ${exJ?`<div class="small" style="color:#344054">${esc(exJ)}</div>`:''}
+    </div>`:''}
+  </div>`;
+}
+$('bookmarkPanel').innerHTML=`<div class="section-title"><h2>ブックマークだけ表示</h2><span class="badge">${items.length}件</span></div>
  <div class="small" style="margin-bottom:10px">☆を付けた単語・文法だけを表示しています。</div>
  <button class="primary" data-action="showHome">通常の学習画面に戻る</button>`+
- (items.length?items.map(b=>`<div class="vitem"><div class="item-head"><div><span class="badge">${esc(b.type)}</span><span class="badge">Day ${b.day}</span><div class="zh">${esc(b.title)}</div><div class="small">${esc(b.sub||'')}</div></div><button class="bookmark active" data-action="removeBookmark" data-id="${b.id}">★</button></div></div>`).join(''):`<div class="empty">まだブックマークがありません。単語・文法の右上の ☆ を押すとここに集まります。</div>`);
+ (items.length?items.map(b=>fmtBmItem(b)).join(''):`<div class="empty">まだブックマークがありません。単語・文法の右上の ☆ を押すとここに集まります。</div>`);
 }
 
 function renderHome(){
