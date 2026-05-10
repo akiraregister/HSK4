@@ -571,63 +571,88 @@ Object.assign(window, {
 render();
 
 // ===== AIチャレンジ問題 =====
+let _aiQ=null, _aiAnswered=null;
+
+function _renderAiQ(){
+  const area=$('aiChallengeArea');
+  if(!area||!_aiQ) return;
+  const q=_aiQ, sel=_aiAnswered;
+  let html='<div class="ai-challenge-box"><h3>🎯 AIチャレンジ問題</h3>';
+  html+='<div class="ai-q">'+esc(q.q)+'</div><div class="ai-opts">';
+  q.opts.forEach(function(o){
+    const isCorrect=o===q.ans;
+    const isSel=o===sel;
+    let st='';
+    if(sel!==null){
+      if(isCorrect) st='background:#f0fdf4;border-color:#4ade80;font-weight:700';
+      else if(isSel) st='background:#fef2f2;border-color:#f87171';
+    }
+    const mark=sel!==null?(isCorrect?' ✓':(isSel?' ✗':'')):'';
+    if(sel===null){
+      html+='<label style="'+st+'" onclick="_aiPick(\''+o.replace(/\/g,'\\').replace(/'/g,"\'")+'\')">';
+    } else {
+      html+='<label style="'+st+'">';
+    }
+    html+='<input type="radio" style="display:none"> '+esc(o)+mark+'</label>';
+  });
+  html+='</div>';
+  if(sel!==null){
+    html+='<div class="ai-ans-box"><b>'+(sel===q.ans?'🎉 正解！':'❌ 不正解')+'</b> '+esc(q.exp)+'</div>';
+  }
+  html+='<div style="margin-top:8px;display:flex;gap:8px">';
+  if(sel!==null){
+    html+='<button class="primary" style="background:#0369a1;border-color:#0369a1;flex:1" onclick="startAiChallenge()">もう1問</button>';
+  }
+  html+='<button class="primary" style="flex:1" onclick="_aiClose()">閉じる</button>';
+  html+='</div></div>';
+  area.innerHTML=html;
+}
+
+function _aiPick(chosen){
+  _aiAnswered=chosen;
+  _renderAiQ();
+}
+
+function _aiClose(){
+  _aiQ=null; _aiAnswered=null;
+  var area=$('aiChallengeArea');
+  if(area) area.innerHTML='<button class="primary" style="width:100%;margin-top:8px;background:#0369a1;border-color:#0369a1" onclick="startAiChallenge()">🎯 AIチャレンジ問題（応用）</button>';
+}
+
 async function startAiChallenge(){
+  _aiQ=null; _aiAnswered=null;
   const area=$('aiChallengeArea');
   if(!area) return;
   area.innerHTML='<div class="ai-challenge-box"><div class="small muted">AIが応用問題を生成中...</div></div>';
   const l=lesson();
-  const vocabList=l.vocab.slice(0,5).map(v=>`${v.zh}（${v.ja}）`).join('、');
-  const grammarList=l.grammar.slice(0,3).map(g=>`${g.name}（${g.meaning}）`).join('、');
-  const prompt=`あなたはHSK4級の中国語テスト問題作成者です。
+  const vocabList=l.vocab.slice(0,5).map(function(v){return v.zh+'（'+v.ja+'）';}).join('、');
+  const grammarList=l.grammar.slice(0,3).map(function(g){return g.name+'（'+g.meaning+'）';}).join('、');
+  const prompt='あなたはHSK4級の中国語テスト問題作成者です。
 以下の単語・文法を使った応用問題を1問作成してください。
-単語：${vocabList}
-文法：${grammarList}
+単語：'+vocabList+'
+文法：'+grammarList+'
 条件：
 - 問題文は日本語で
 - 上記の単語や文法の例文をそのまま使わず、新しい場面・文脈で出題する
 - 選択肢4つ（正解1つ、不正解3つ）の4択問題
 - 正解の中国語文は自然で実用的なもの
-- 回答はJSON形式のみで返す（マークダウン不要）：{"q":"問題文","opts":["選択肢1","選択肢2","選択肢3","選択肢4"],"ans":"正解の選択肢","exp":"解説（日本語、2文以内）"}`;
+- 回答はJSONのみで返す（マークダウン・コードブロック不要）：{"q":"問題文","opts":["選択肢1","選択肢2","選択肢3","選択肢4"],"ans":"正解の選択肢","exp":"解説（日本語、2文以内）"}';
   try{
     const resp=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:600,
-        messages:[{role:'user',content:prompt}]
-      })
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,messages:[{role:'user',content:prompt}]})
     });
     const data=await resp.json();
-    const raw=data.content?.find(c=>c.type==='text')?.text||'';
+    const raw=(data.content||[]).filter(function(c){return c.type==='text';}).map(function(c){return c.text;}).join('');
     const clean=raw.replace(/```json|```/g,'').trim();
-    const q=JSON.parse(clean);
-    let answered=null;
-    function renderQ(sel){
-      area.innerHTML=`<div class="ai-challenge-box">
-        <h3>🎯 AIチャレンジ問題</h3>
-        <div class="ai-q">${esc(q.q)}</div>
-        <div class="ai-opts">${q.opts.map(o=>{
-          const isCorrect=o===q.ans;
-          const isSel=o===sel;
-          let style='';
-          if(sel!==null){style=isCorrect?'background:#f0fdf4;border-color:#4ade80;font-weight:700':isSel?'background:#fef2f2;border-color:#f87171':'';}
-          return `<label style="${style}" ${sel===null?`onclick="window._aiAnswer('${o.replace(/'/g,"\\'")}')"`:''}><input type="radio" style="display:none"> ${esc(o)}${isCorrect&&sel!==null?' ✓':isSel&&sel!==q.ans?' ✗':''}</label>`;
-        }).join('')}</div>
-        ${sel!==null?`<div class="ai-ans-box"><b>${sel===q.ans?'🎉 正解！':'❌ 不正解'}</b> ${esc(q.exp)}</div>`:''}
-        <div style="margin-top:8px;display:flex;gap:8px">
-          ${sel!==null?`<button class="primary" style="background:#0369a1;border-color:#0369a1;flex:1" onclick="startAiChallenge()">もう1問</button>`:''}
-          <button style="flex:1" class="primary" onclick="$('aiChallengeArea').innerHTML='<button class=\'primary\' style=\'width:100%;margin-top:8px;background:#0369a1;border-color:#0369a1\' onclick=\'startAiChallenge()\'>🎯 AIチャレンジ問題（応用）</button>'">閉じる</button>
-        </div>
-      </div>`;
-    }
-    window._aiAnswer=function(chosen){answered=chosen;renderQ(chosen);};
-    renderQ(null);
+    _aiQ=JSON.parse(clean);
+    _aiAnswered=null;
+    _renderAiQ();
   } catch(e){
-    area.innerHTML=`<div class="ai-challenge-box"><div class="small bad">問題生成に失敗しました。ネット接続を確認してください。</div><button class="primary" onclick="startAiChallenge()" style="margin-top:8px">再試行</button></div>`;
+    area.innerHTML='<div class="ai-challenge-box"><div class="small bad">問題生成に失敗しました。ネット接続を確認してください。</div><button class="primary" onclick="startAiChallenge()" style="margin-top:8px">再試行</button></div>';
   }
 }
-
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 }
