@@ -485,71 +485,163 @@ Object.assign(window, {
 
 render();
 
-var _aiQ=null,_aiAns=null;
+// ===== ローカルチャレンジ問題生成 =====
+var _aiQ=null, _aiAns=null;
+
 function _renderAiQ(){
-  var area=$('aiChallengeArea');if(!area||!_aiQ)return;
-  var q=_aiQ,sel=_aiAns,h='<div class="ai-challenge-box"><h3>🎯 AIチャレンジ問題</h3>';
+  var area=$('aiChallengeArea');
+  if(!area||!_aiQ) return;
+  var q=_aiQ, sel=_aiAns;
+  var h='<div class="ai-challenge-box"><h3>🎯 チャレンジ問題</h3>';
   h+='<div class="ai-q">'+esc(q.q)+'</div><div class="ai-opts">';
-  q.opts.forEach(function(o){
-    var ic=o===q.ans,is=o===sel,st='';
-    if(sel!==null){if(ic)st='background:#f0fdf4;border-color:#4ade80;font-weight:700';else if(is)st='background:#fef2f2;border-color:#f87171';}
-    var mk=sel!==null?(ic?' ✓':(is?' ✗':'')):'';
-    var so=o.split("'").join("\'");
-    h+='<label style="'+st+'"'+(sel===null?' onclick="_aiPick(\'' +so+ '\')"':'')+'>'+esc(o)+mk+'</label>';
+  q.opts.forEach(function(o, i){
+    var ic=o===q.ans, is=o===sel, st='';
+    if(sel!==null){
+      if(ic) st='background:#f0fdf4;border-color:#4ade80;font-weight:700';
+      else if(is) st='background:#fef2f2;border-color:#f87171';
+    }
+    var mk = sel!==null ? (ic?' ✓':(is?' ✗':'')) : '';
+    var sid = 'chopt'+i;
+    if(sel===null){
+      h+='<label style="'+st+'" onclick="_aiPickIdx('+i+')">'+esc(o)+mk+'</label>';
+    } else {
+      h+='<label style="'+st+'">'+esc(o)+mk+'</label>';
+    }
   });
   h+='</div>';
-  if(sel!==null) h+='<div class="ai-ans-box"><b>'+(sel===q.ans?'🎉 正解！':'❌ 不正解')+'</b> '+esc(q.exp)+'</div>';
+  if(sel!==null){
+    h+='<div class="ai-ans-box"><b>'+(sel===q.ans?'🎉 正解！':'❌ 不正解')+'</b> '+esc(q.exp)+'</div>';
+  }
   h+='<div style="margin-top:8px;display:flex;gap:8px">';
   if(sel!==null) h+='<button class="primary" style="background:#0369a1;border-color:#0369a1;flex:1" onclick="startAiChallenge()">もう1問</button>';
-  h+='<button class="primary" style="flex:1" onclick="_aiClose()">閉じる</button></div></div>';
+  h+='<button class="primary" style="flex:1" onclick="_aiClose()">閉じる</button>';
+  h+='</div></div>';
   area.innerHTML=h;
 }
-function _aiPick(v){_aiAns=v;_renderAiQ();}
-function _aiClose(){_aiQ=null;_aiAns=null;var a=$('aiChallengeArea');if(a)a.innerHTML='<button class="primary" style="width:100%;margin-top:8px;background:#0369a1;border-color:#0369a1" onclick="startAiChallenge()">🎯 AIチャレンジ問題（応用）</button>';}
-async function startAiChallenge(){
-  _aiQ=null;_aiAns=null;
-  var area=$('aiChallengeArea');if(!area)return;
-  area.innerHTML='<div class="ai-challenge-box"><div class="small muted">AIが応用問題を生成中...</div></div>';
-  var l2=lesson();
-  var vl=l2.vocab.slice(0,5).map(function(v){return v.zh+'（'+v.ja+'）';}).join('、');
-  var gl=l2.grammar.slice(0,3).map(function(g){return g.name+'（'+g.meaning+'）';}).join('、');
-  var p=[
-    'あなたはHSK4級の中国語テスト問題作成者です。',
-    '以下の単語・文法を使った応用問題を1問作成してください。',
-    '単語：'+vl,
-    '文法：'+gl,
-    '条件：',
-    '- 問題文は日本語で',
-    '- 上記の例文をそのまま使わず新しい場面で出題',
-    '- 選択肢4つ（正解1つ）の4択問題',
-    '- 回答はJSONのみ（マークダウン不要）：{"q":"問題文","opts":["A","B","C","D"],"ans":"正解","exp":"解説（2文以内）"}'
-  ].join('\n');
-  try{
-    var r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,messages:[{role:'user',content:p}]})});
-    var d=await r.json();
-    var raw=(d.content||[]).filter(function(x){return x.type==='text';}).map(function(x){return x.text;}).join('');
-    _aiQ=JSON.parse(raw.replace(/```json|```/g,'').trim());
-    _aiAns=null;_renderAiQ();
-  }catch(e){if(area)area.innerHTML='<div class="ai-challenge-box"><div class="small bad">問題生成に失敗しました。</div><button class="primary" onclick="startAiChallenge()" style="margin-top:8px">再試行</button></div>';}
+
+function _aiPickIdx(i){
+  if(!_aiQ) return;
+  _aiAns=_aiQ.opts[i];
+  _renderAiQ();
 }
 
-if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js').catch(function(){});});}
+function _aiClose(){
+  _aiQ=null; _aiAns=null;
+  var a=$('aiChallengeArea');
+  if(a) a.innerHTML='<button class="primary" style="width:100%;margin-top:8px;background:#0369a1;border-color:#0369a1" onclick="startAiChallenge()">🎯 チャレンジ問題（応用）</button>';
+}
 
-document.addEventListener('click',function(e){
-  var btn=e.target.closest('[data-action]');if(!btn)return;
-  var a=btn.dataset.action,id=btn.dataset.id;
-  if(a==='showHome')showHome();
-  else if(a==='showBookmarks')showBookmarks();
-  else if(a==='toggleBookmarkHint')toggleBookmarkHint();
-  else if(a==='removeBookmark'&&id)toggleBookmark(id);
-  else if(a==='hl'&&id)cycleHighlight(id);
-});
-document.addEventListener('click',function(e){
-  if(e.target&&e.target.id==='loginBtn')window.hsk4GoogleLogin();
-  if(e.target&&e.target.id==='logoutBtn')window.hsk4Logout();
-  if(e.target&&e.target.id==='forceUploadBtn')window.hsk4ForceUpload();
-  if(e.target&&e.target.id==='forceDownloadBtn')window.hsk4ForceDownload();
-});
+function _shuffle(arr){
+  var a=arr.slice();
+  for(var i=a.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var t=a[i];a[i]=a[j];a[j]=t;
+  }
+  return a;
+}
+
+// 問題タイプ1: 単語の意味を選ぶ（4択）
+function _genVocabMeaningQ(l){
+  var v=l.vocab;
+  var correct=v[Math.floor(Math.random()*v.length)];
+  var others=_shuffle(v.filter(function(x){return x.id!==correct.id;})).slice(0,3);
+  var opts=_shuffle([correct.ja].concat(others.map(function(x){return x.ja;})));
+  return {
+    q:'次の中国語の意味として正しいものは？\n「'+correct.zh+'」（'+correct.pinyin+'）',
+    opts:opts,
+    ans:correct.ja,
+    exp:correct.zh+'='+correct.ja+'。例：'+correct.example+' '+correct.exJa
+  };
+}
+
+// 問題タイプ2: 日本語→中国語（例文とは異なる文脈で意味から選ぶ）
+function _genZhFromJaQ(l){
+  var v=l.vocab;
+  var correct=v[Math.floor(Math.random()*v.length)];
+  var others=_shuffle(v.filter(function(x){return x.id!==correct.id;})).slice(0,3);
+  var opts=_shuffle([correct.zh].concat(others.map(function(x){return x.zh;})));
+  return {
+    q:'「'+correct.ja+'」を中国語で表現するとどれ？\nピンイン：'+correct.pinyin,
+    opts:opts,
+    ans:correct.zh,
+    exp:correct.zh+'（'+correct.pinyin+'）='+correct.ja+'。例：'+correct.exJa
+  };
+}
+
+// 問題タイプ3: 文法の意味と使い方を選ぶ
+function _genGrammarMeaningQ(l){
+  var g=l.grammar;
+  var correct=g[Math.floor(Math.random()*g.length)];
+  var others=_shuffle(g.filter(function(x){return x.id!==correct.id;})).slice(0,2);
+  var correctAns=correct.name+'：'+correct.meaning;
+  var wrongOpts=others.map(function(x){return x.name+'：'+x.meaning;});
+  // ダミー選択肢（正解の意味を少し変えたもの）
+  var dummy=correct.name+'：'+( correct.meaning.length>4 ? correct.meaning.slice(0,-2)+'する' : correct.meaning+'こと' );
+  var opts=_shuffle([correctAns].concat(wrongOpts).concat([dummy])).slice(0,4);
+  if(opts.indexOf(correctAns)<0){ opts[0]=correctAns; }
+  return {
+    q:'文法ポイントの正しい説明はどれ？（'+correct.pinyin+'）',
+    opts:opts,
+    ans:correctAns,
+    exp:correct.name+'の正しい使い方：'+correct.meaning+'。例：'+correct.example+' '+correct.exJa
+  };
+}
+
+// 問題タイプ4: よくある誤りを選ぶ
+function _genMistakeQ(l){
+  var g=l.grammar.filter(function(x){return x.mistake&&x.mistake.length>4;});
+  if(!g.length) return _genVocabMeaningQ(l);
+  var correct=g[Math.floor(Math.random()*g.length)];
+  var qText=correct.name+'を使う時に気をつけるべき点はどれ？';
+  var correctAns=correct.mistake;
+  var others=l.grammar.filter(function(x){return x.id!==correct.id&&x.mistake&&x.mistake.length>4;}).slice(0,2).map(function(x){return x.mistake;});
+  var dummy=correct.meaning+'なら必ず'+correct.pinyin+'を使う';
+  var opts=_shuffle([correctAns].concat(others).concat([dummy])).slice(0,4);
+  if(opts.indexOf(correctAns)<0){ opts[0]=correctAns; }
+  return {
+    q:qText,
+    opts:opts,
+    ans:correctAns,
+    exp:'注意点：'+correctAns+' 正しい例：'+correct.example+' '+correct.exJa
+  };
+}
+
+// 問題タイプ5: 対比問題（contrastフィールド活用）
+function _genContrastQ(l){
+  var g=l.grammar.filter(function(x){return x.contrast&&x.contrast.length>5;});
+  if(!g.length) return _genZhFromJaQ(l);
+  var correct=g[Math.floor(Math.random()*g.length)];
+  var qText=correct.name+'と他の表現の違いとして正しいものは？';
+  var correctAns=correct.contrast;
+  var others=l.grammar.filter(function(x){return x.id!==correct.id&&x.contrast&&x.contrast.length>5;}).slice(0,2).map(function(x){return x.contrast;});
+  var dummy=correct.meaning+'で、'+( l.grammar[0]&&l.grammar[0].id!==correct.id ? l.grammar[0].meaning : '強調する' )+'とも使える';
+  var opts=_shuffle([correctAns].concat(others).concat([dummy])).slice(0,4);
+  if(opts.indexOf(correctAns)<0){ opts[0]=correctAns; }
+  return {
+    q:qText,
+    opts:opts,
+    ans:correctAns,
+    exp:'対比ポイント：'+correctAns+' 例：'+correct.example+' （'+correct.exJa+'）'
+  };
+}
+
+function startAiChallenge(){
+  _aiQ=null; _aiAns=null;
+  var area=$('aiChallengeArea');
+  if(!area) return;
+  var l2=lesson();
+  var gens=[_genVocabMeaningQ, _genZhFromJaQ, _genGrammarMeaningQ, _genMistakeQ, _genContrastQ];
+  try{
+    var gen=gens[Math.floor(Math.random()*gens.length)];
+    _aiQ=gen(l2);
+    if(!_aiQ||!_aiQ.opts||_aiQ.opts.length<2) throw new Error('invalid q');
+    _aiAns=null;
+    _renderAiQ();
+  }catch(e){
+    try{ _aiQ=_genVocabMeaningQ(l2); _aiAns=null; _renderAiQ(); }
+    catch(e2){ area.innerHTML='<div class="ai-challenge-box"><div class="small muted">問題を生成できませんでした。<button class="primary" onclick="startAiChallenge()" style="margin-top:8px">再試行</button></div></div>'; }
+  }
+}
 
 window.hsk4ForceUpload=async function(){
   if(!cloudUser){alert('先にログインしてください');return;}
