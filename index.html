@@ -357,7 +357,7 @@ function render(){
   <div class="card" id="testCard">
    <div class="section-title"><h2>今日のミニテスト</h2><button onclick="gradeTest()" class="primary">採点する</button></div>
    <div id="testArea">${renderTest(l)}</div><div id="scoreArea"></div>
-   <div id="aiChallengeArea"><button class="primary" style="width:100%;margin-top:8px;background:#0369a1;border-color:#0369a1" onclick="startAiChallenge()">🎯 AIチャレンジ問題（応用）</button></div>
+   <div id="aiChallengeArea"><button class="primary" style="width:100%;margin-top:8px;background:#0369a1;border-color:#0369a1" onclick="startAiChallenge()">📝 チャレンジ問題（応用）</button></div>
   </div>`;
  setupDrag();
  updateCompleteButtons();
@@ -528,7 +528,7 @@ function _aiPickIdx(i){
 function _aiClose(){
   _aiQ=null; _aiAns=null;
   var a=$('aiChallengeArea');
-  if(a) a.innerHTML='<button class="primary" style="width:100%;margin-top:8px;background:#0369a1;border-color:#0369a1" onclick="startAiChallenge()">🎯 チャレンジ問題（応用）</button>';
+  if(a) a.innerHTML='<button class="primary" style="width:100%;margin-top:8px;background:#0369a1;border-color:#0369a1" onclick="startAiChallenge()">📝 チャレンジ問題（応用）</button>';
 }
 
 function _shuffle(arr){
@@ -642,6 +642,12 @@ function startAiChallenge(){
     catch(e2){ area.innerHTML='<div class="ai-challenge-box"><div class="small muted">問題を生成できませんでした。<button class="primary" onclick="startAiChallenge()" style="margin-top:8px">再試行</button></div></div>'; }
   }
 }
+
+// モジュールスコープの関数をグローバルに公開（onclick属性から呼び出せるように）
+window.startAiChallenge = startAiChallenge;
+window._aiPickIdx = _aiPickIdx;
+window._aiClose = _aiClose;
+window.cycleHighlight = cycleHighlight;
 
 window.hsk4ForceUpload=async function(){
   if(!cloudUser){alert('先にログインしてください');return;}
