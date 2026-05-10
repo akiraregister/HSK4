@@ -142,6 +142,9 @@ function setSyncStatus(kind, text, userText=''){
   if(user) user.textContent=userText||'';
   if(login) login.style.display=cloudUser?'none':'';
   if(logout) logout.style.display=cloudUser?'':'none';
+  var fu=document.getElementById('forceUploadBtn'),fd=document.getElementById('forceDownloadBtn');
+  if(fu) fu.style.display=cloudUser?'':'none';
+  if(fd) fd.style.display=cloudUser?'':'none';
 }
 function cloudDocRef(){ return cloudUser ? doc(db,'users',cloudUser.uid,'hsk4','state') : null; }
 function localUpdatedAt(){ const n=Number(localStorage.getItem(storageKey+'-updatedAtMs')||0); return Number.isFinite(n)?n:0; }
@@ -158,22 +161,15 @@ async function loadCloudState(){
   cloudLoading=true; setSyncStatus('warn','クラウド同期を確認中...',cloudUser.email||'');
   try{
     const snap=await getDoc(cloudDocRef());
-    if(!snap.exists()){
-      cloudReady=true; await saveCloudState(true);
-      const lbm=Object.keys(state.bookmarks||{}).length;
-      setSyncStatus('on','初回同期完了(BM:'+lbm+'件)',cloudUser.email||'');
-      cloudLoading=false; return;
-    }
-    const cloud=snap.data()||{};
-    const cloudTs=Number(cloud.updatedAtMs||0), localTs=localUpdatedAt();
-    const lbm=Object.keys(state.bookmarks||{}).length, cbm=Object.keys(cloud.bookmarks||{}).length;
-    const localIsEmpty=!lbm&&!Object.keys(state.completed||{}).length;
-    const cloudIsEmpty=!cbm&&!Object.keys(cloud.completed||{}).length;
-    const loadFromCloud=(cbm>lbm)||(localIsEmpty&&!cloudIsEmpty)||(!cloudIsEmpty&&cloudTs>localTs);
+    if(!snap.exists()){cloudReady=true;await saveCloudState(true);setSyncStatus('on','初回同期完了',cloudUser.email||'');cloudLoading=false;return;}
+    const cloud=snap.data()||{},cloudTs=Number(cloud.updatedAtMs||0),localTs=localUpdatedAt();
+    const lbm=Object.keys(state.bookmarks||{}).length,cbm=Object.keys(cloud.bookmarks||{}).length;
+    const localEmpty=!lbm&&!Object.keys(state.completed||{}).length;
+    const loadFromCloud=cbm>lbm||(localEmpty&&cbm>0)||(!localEmpty&&cloudTs>localTs&&cbm>=lbm);
     if(loadFromCloud){
       suppressCloudSave=true;
-      state.completed=cloud.completed||{}; state.answers=cloud.answers||{};
-      state.scores=cloud.scores||{}; state.bookmarks=cloud.bookmarks||{};
+      state.completed=cloud.completed||{};state.answers=cloud.answers||{};
+      state.scores=cloud.scores||{};state.bookmarks=cloud.bookmarks||{};
       state.dragOrders=cloud.dragOrders||{};
       if(cloud.currentDay) current=Number(cloud.currentDay)||current;
       localStorage.setItem(storageKey,JSON.stringify(state));
@@ -183,12 +179,12 @@ async function loadCloudState(){
       setSyncStatus('on','クラウドから同期(BM:'+cbm+'件)',cloudUser.email||'');
       if(typeof render==='function') render();
     } else {
-      cloudReady=true; await saveCloudState(true);
+      cloudReady=true;await saveCloudState(true);
       setSyncStatus('on','端末→クラウド同期(BM:'+lbm+'件)',cloudUser.email||'');
     }
     cloudReady=true;
-  } catch(e){ console.error('[Sync Error]',e); setSyncStatus('err','同期エラー: '+(e.message||'不明'),cloudUser?.email||''); }
-  finally { cloudLoading=false; }
+  } catch(e){console.error(e);setSyncStatus('err','同期エラー:'+(e.message||'不明'),cloudUser?.email||'');}
+  finally{cloudLoading=false;}
 }
 window.hsk4GoogleLogin=async function(){ try{ setSyncStatus('warn','Googleログイン中...'); try{ await signInWithPopup(auth,provider); } catch(e){ console.warn('popup failed; redirect',e); await signInWithRedirect(auth,provider); } } catch(e){ console.error(e); setSyncStatus('err','ログインできませんでした'); } };
 window.hsk4Logout=async function(){ await saveCloudState(true); await signOut(auth); };
@@ -221,13 +217,51 @@ function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt
 function lesson(){return LESSONS[current-1]}
 function initSelect(){ $('daySelect').innerHTML=LESSONS.map(l=>`<option value="${l.day}">Day ${l.day}${state.completed[l.day]?' ✓':''}｜${l.title.replace(/^Day \d+｜/,'')}</option>`).join(''); $('daySelect').value=current}
 function isBookmarked(id){return !!state.bookmarks[id]}
-function toggleBookmark(id,type,title,sub){state.bookmarks[id]?delete state.bookmarks[id]:state.bookmarks[id]={id,type,title,sub,day:current};save();render();}
+function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){if(state.bookmarks[id]){delete state.bookmarks[id];}else{state.bookmarks[id]={id,type,title,sub,day:current,pinyin:pinyin||'',example:example||'',exPinyin:exPinyin||'',exJa:exJa||'',hl:0};}save();render();}
+function fmtBmItem(b){
+  var ex=b.example||'',exP=b.exPinyin||'',exJ=b.exJa||'',pin=b.pinyin||'';
+  if(!ex){
+    var m2=b.id.match(/^d(\d+)-([vg])(\d+)$/);
+    if(m2){var l2=LESSONS.find(function(l){return l.day===Number(m2[1]);});
+      if(l2){var arr=m2[2]==='v'?l2.vocab:l2.grammar,item2=arr[Number(m2[3])];
+        if(item2){ex=item2.example||'';exP=item2.exPinyin||'';exJ=item2.exJa||'';pin=item2.pinyin||'';}}}
+  }
+  var hl=b.hl||0,hlL=['','⭐難','🔶苦手','🔴覚えられない'];
+  var h='<div class="vitem hl-'+hl+'"><div class="vitem-inner" style="padding:12px;border-radius:12px">';
+  h+='<div class="item-head"><div>';
+  h+='<span class="badge">'+esc(b.type)+'</span><span class="badge">Day '+b.day+'</span>';
+  if(hl>0) h+='<span class="hl-badge hl-badge-'+hl+'">'+hlL[hl]+'</span>';
+  h+='<div class="zh">'+esc(b.title)+'</div>';
+  if(pin) h+='<div class="pinyin">'+esc(pin)+'</div>';
+  h+='<div class="small">'+esc(b.sub||'')+'</div>';
+  h+='</div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">';
+  h+='<button class="bookmark active" data-action="removeBookmark" data-id="'+b.id+'">★</button>';
+  h+='<button class="hl-btn" data-action="hl" data-id="'+b.id+'">'+(hl===0?'🏷️':hlL[hl])+'</button>';
+  h+='</div></div>';
+  if(ex){h+='<div class="ex"><div style="color:#1a3c5e;font-weight:600">'+esc(ex)+'</div>';
+    if(exP) h+='<div class="small" style="color:#475467">'+esc(exP)+'</div>';
+    if(exJ) h+='<div class="small" style="color:#344054">'+esc(exJ)+'</div>';
+    h+='</div>';}
+  h+='</div></div>';
+  return h;
+}
+
+function cycleHighlight(id){
+  if(!state.bookmarks[id]) return;
+  state.bookmarks[id].hl=((state.bookmarks[id].hl||0)+1)%4;
+  save(); renderBookmarkPanel();
+}
+
 function renderBookmarkPanel(){
- const items=Object.values(state.bookmarks||{});
- $('bookmarkPanel').className='bookmark-panel card'+(bookmarkView?' active':'');
- $('bookmarkViewBtn').textContent=bookmarkView?'学習に戻る':'ブックマーク';
- $('bookmarkViewBtn').className='toggle '+(bookmarkView?'on':'off');
- if(typeof renderBookmarkPanel==='function') renderBookmarkPanel();
+  var items=Object.values(state.bookmarks||{}).sort(function(a,b){return (b.hl||0)-(a.hl||0)||(a.day-b.day);});
+  $('bookmarkPanel').className='bookmark-panel card'+(bookmarkView?' active':'');
+  $('bookmarkViewBtn').textContent=bookmarkView?'学習に戻る':'ブックマーク';
+  $('bookmarkViewBtn').className='toggle '+(bookmarkView?'on':'off');
+  var inner='<div class="section-title"><h2>ブックマークだけ表示</h2><span class="badge">'+items.length+'件</span></div>';
+  inner+='<div class="small" style="margin-bottom:10px">🏷️ タップでハイライト（⭐→🔶→🔴→解除）</div>';
+  inner+='<button class="primary" data-action="showHome">通常の学習画面に戻る</button>';
+  inner+=items.length?items.map(fmtBmItem).join(''):'<div class="empty">まだブックマークがありません。単語・文法の右上の ☆ を押すとここに集まります。</div>';
+  $('bookmarkPanel').innerHTML=inner;
 }
 
 function renderHome(){
@@ -421,7 +455,12 @@ $('completeBtn').onclick=toggleComplete; $('bottomComplete').onclick=toggleCompl
 $('pinyinBtn').onclick=()=>{document.body.classList.toggle('hidden-pinyin'); const hidden=document.body.classList.contains('hidden-pinyin'); $('pinyinBtn').textContent=hidden?'拼音を表示':'拼音を隠す'; $('pinyinBtn').className='toggle '+(hidden?'on':'off');}
 $('jaBtn').onclick=()=>{document.body.classList.toggle('hidden-ja'); const hidden=document.body.classList.contains('hidden-ja'); $('jaBtn').textContent=hidden?'日本語訳を表示':'日本語訳を隠す'; $('jaBtn').className='toggle '+(hidden?'on':'off');}
 $('answerBtn').onclick=()=>{showAnswers=!showAnswers;$('answerBtn').textContent=showAnswers?'解答を隠す':'解答を表示';$('answerBtn').className='toggle '+(showAnswers?'on':'off');$('content').className=showAnswers?'show-answers':''}
-// bookmarkViewBtn handled below after render()
+var _prevHV=false;
+$('bookmarkViewBtn').onclick=function(){
+  if(!bookmarkView){_prevHV=homeView;homeView=false;bookmarkView=true;}
+  else{homeView=_prevHV;bookmarkView=false;}
+  render();window.scrollTo({top:0,behavior:'smooth'});
+};
 
 // Expose module-scoped functions for inline handlers.
 // This is necessary because this file uses <script type="module"> for Firebase imports.
@@ -446,242 +485,96 @@ Object.assign(window, {
 
 render();
 
-// ===== bookmark view fix =====
-let _prevHomeView=false;
-let renderBookmarkPanel=null;
-$('bookmarkViewBtn').onclick=function(){
-  if(!bookmarkView){_prevHomeView=homeView;homeView=false;bookmarkView=true;}
-  else{homeView=_prevHomeView;bookmarkView=false;}
-  render();window.scrollTo({top:0,behavior:'smooth'});
-};
-
-// ===== toggleBookmark: save extra fields =====
-function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){
-  if(state.bookmarks[id]){
-    delete state.bookmarks[id];
-  } else {
-    state.bookmarks[id]={id,type,title,sub,day:current,pinyin:pinyin||'',example:example||'',exPinyin:exPinyin||'',exJa:exJa||'',hl:0};
-  }
-  save();render();
+var _aiQ=null,_aiAns=null;
+function _renderAiQ(){
+  var area=$('aiChallengeArea');if(!area||!_aiQ)return;
+  var q=_aiQ,sel=_aiAns,h='<div class="ai-challenge-box"><h3>🎯 AIチャレンジ問題</h3>';
+  h+='<div class="ai-q">'+esc(q.q)+'</div><div class="ai-opts">';
+  q.opts.forEach(function(o){
+    var ic=o===q.ans,is=o===sel,st='';
+    if(sel!==null){if(ic)st='background:#f0fdf4;border-color:#4ade80;font-weight:700';else if(is)st='background:#fef2f2;border-color:#f87171';}
+    var mk=sel!==null?(ic?' ✓':(is?' ✗':'')):'';
+    var so=o.split("'").join("\'");
+    h+='<label style="'+st+'"'+(sel===null?' onclick="_aiPick(\'' +so+ '\')"':'')+'>'+esc(o)+mk+'</label>';
+  });
+  h+='</div>';
+  if(sel!==null) h+='<div class="ai-ans-box"><b>'+(sel===q.ans?'🎉 正解！':'❌ 不正解')+'</b> '+esc(q.exp)+'</div>';
+  h+='<div style="margin-top:8px;display:flex;gap:8px">';
+  if(sel!==null) h+='<button class="primary" style="background:#0369a1;border-color:#0369a1;flex:1" onclick="startAiChallenge()">もう1問</button>';
+  h+='<button class="primary" style="flex:1" onclick="_aiClose()">閉じる</button></div></div>';
+  area.innerHTML=h;
+}
+function _aiPick(v){_aiAns=v;_renderAiQ();}
+function _aiClose(){_aiQ=null;_aiAns=null;var a=$('aiChallengeArea');if(a)a.innerHTML='<button class="primary" style="width:100%;margin-top:8px;background:#0369a1;border-color:#0369a1" onclick="startAiChallenge()">🎯 AIチャレンジ問題（応用）</button>';}
+async function startAiChallenge(){
+  _aiQ=null;_aiAns=null;
+  var area=$('aiChallengeArea');if(!area)return;
+  area.innerHTML='<div class="ai-challenge-box"><div class="small muted">AIが応用問題を生成中...</div></div>';
+  var l2=lesson();
+  var vl=l2.vocab.slice(0,5).map(function(v){return v.zh+'（'+v.ja+'）';}).join('、');
+  var gl=l2.grammar.slice(0,3).map(function(g){return g.name+'（'+g.meaning+'）';}).join('、');
+  var p=[
+    'あなたはHSK4級の中国語テスト問題作成者です。',
+    '以下の単語・文法を使った応用問題を1問作成してください。',
+    '単語：'+vl,
+    '文法：'+gl,
+    '条件：',
+    '- 問題文は日本語で',
+    '- 上記の例文をそのまま使わず新しい場面で出題',
+    '- 選択肢4つ（正解1つ）の4択問題',
+    '- 回答はJSONのみ（マークダウン不要）：{"q":"問題文","opts":["A","B","C","D"],"ans":"正解","exp":"解説（2文以内）"}'
+  ].join('\n');
+  try{
+    var r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,messages:[{role:'user',content:p}]})});
+    var d=await r.json();
+    var raw=(d.content||[]).filter(function(x){return x.type==='text';}).map(function(x){return x.text;}).join('');
+    _aiQ=JSON.parse(raw.replace(/```json|```/g,'').trim());
+    _aiAns=null;_renderAiQ();
+  }catch(e){if(area)area.innerHTML='<div class="ai-challenge-box"><div class="small bad">問題生成に失敗しました。</div><button class="primary" onclick="startAiChallenge()" style="margin-top:8px">再試行</button></div>';}
 }
 
-// ===== Highlight cycle =====
-function cycleHighlight(id){
-  if(!state.bookmarks[id]) return;
-  const cur=state.bookmarks[id].hl||0;
-  state.bookmarks[id].hl=(cur+1)%4;
-  save();
-  if(typeof renderBookmarkPanel==='function') renderBookmarkPanel();
-}
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js').catch(function(){});});}
 
-// ===== Bookmark panel renderer =====
-function fmtBmItem(b){
-  var ex=b.example||'', exP=b.exPinyin||'', exJ=b.exJa||'', pin=b.pinyin||'';
-  if(!ex){
-    var m=b.id.match(/^d(\d+)-([vg])(\d+)$/);
-    if(m){
-      var lesson2=LESSONS.find(function(l){return l.day===Number(m[1]);});
-      if(lesson2){
-        var arr=m[2]==='v'?lesson2.vocab:lesson2.grammar;
-        var item2=arr[Number(m[3])];
-        if(item2){ex=item2.example||'';exP=item2.exPinyin||'';exJ=item2.exJa||'';pin=m[2]==='v'?(item2.pinyin||''):(item2.pinyin||'');}
-      }
-    }
-  }
-  var hl=b.hl||0;
-  var hlLabels=['','⭐難','🔶苦手','🔴覚えられない'];
-  var hlTip=hl===0?'難しさをマーク':hlLabels[hl]+' (タップで変更)';
-  var html='<div class="vitem hl-'+hl+'">';
-  html+='<div class="vitem-inner" style="padding:12px;border-radius:12px">';
-  html+='<div class="item-head"><div>';
-  html+='<span class="badge">'+esc(b.type)+'</span><span class="badge">Day '+b.day+'</span>';
-  if(hl>0) html+='<span class="hl-badge hl-badge-'+hl+'">'+hlLabels[hl]+'</span>';
-  html+='<div class="zh">'+esc(b.title)+'</div>';
-  if(pin) html+='<div class="pinyin">'+esc(pin)+'</div>';
-  html+='<div class="small">'+esc(b.sub||'')+'</div>';
-  html+='</div>';
-  html+='<div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">';
-  html+='<button class="bookmark active" data-action="removeBookmark" data-id="'+b.id+'" title="ブックマーク解除">★</button>';
-  html+='<button class="hl-btn" onclick="cycleHighlight(''+b.id+'')" title="'+hlTip+'">'+(hl===0?'🏷️':hlLabels[hl])+'</button>';
-  html+='</div></div>';
-  if(ex){
-    html+='<div class="ex">';
-    html+='<div style="color:#1a3c5e;font-weight:600">'+esc(ex)+'</div>';
-    if(exP) html+='<div class="small" style="color:#475467">'+esc(exP)+'</div>';
-    if(exJ) html+='<div class="small" style="color:#344054">'+esc(exJ)+'</div>';
-    html+='</div>';
-  }
-  html+='</div></div>';
-  return html;
-}
-
-renderBookmarkPanel=function(){
-  var items2=Object.values(state.bookmarks).sort(function(a,b){return (b.hl||0)-(a.hl||0)||(a.day-b.day);});
-  var inner='<div class="section-title"><h2>ブックマークだけ表示</h2><span class="badge">'+items2.length+'件</span></div>';
-  inner+='<div class="small" style="margin-bottom:10px">🏷️ タップでハイライトをつけられます（⭐→🔶→🔴→解除）。</div>';
-  inner+='<button class="primary" data-action="showHome">通常の学習画面に戻る</button>';
-  if(items2.length){
-    inner+=items2.map(function(b){return fmtBmItem(b);}).join('');
-  } else {
-    inner+='<div class="empty">まだブックマークがありません。単語・文法の右上の ☆ を押すとここに集まります。</div>';
-  }
-  $('bookmarkPanel').innerHTML=inner;
-};
-
-// ===== bookmark panel items with extra data =====
-// (patched via event delegation below)
-
-// ===== bookmarkViewBtn already overridden above =====
-// (original $('bookmarkViewBtn').onclick replaced)
-
-// ==================================================
-// Sync: setSyncStatus force buttons visibility
-// ==================================================
-var _origSetSyncStatus=setSyncStatus;
-setSyncStatus=function(s,msg,email){
-  _origSetSyncStatus(s,msg,email);
-  var fu=document.getElementById('forceUploadBtn');
-  var fd=document.getElementById('forceDownloadBtn');
-  if(fu) fu.style.display=cloudUser?'':'none';
-  if(fd) fd.style.display=cloudUser?'':'none';
-};
+document.addEventListener('click',function(e){
+  var btn=e.target.closest('[data-action]');if(!btn)return;
+  var a=btn.dataset.action,id=btn.dataset.id;
+  if(a==='showHome')showHome();
+  else if(a==='showBookmarks')showBookmarks();
+  else if(a==='toggleBookmarkHint')toggleBookmarkHint();
+  else if(a==='removeBookmark'&&id)toggleBookmark(id);
+  else if(a==='hl'&&id)cycleHighlight(id);
+});
+document.addEventListener('click',function(e){
+  if(e.target&&e.target.id==='loginBtn')window.hsk4GoogleLogin();
+  if(e.target&&e.target.id==='logoutBtn')window.hsk4Logout();
+  if(e.target&&e.target.id==='forceUploadBtn')window.hsk4ForceUpload();
+  if(e.target&&e.target.id==='forceDownloadBtn')window.hsk4ForceDownload();
+});
 
 window.hsk4ForceUpload=async function(){
   if(!cloudUser){alert('先にログインしてください');return;}
   if(!confirm('この端末のデータをクラウドへ強制アップロードします')) return;
-  cloudReady=true; markLocalUpdated(); await saveCloudState(true);
-  var lbm=Object.keys(state.bookmarks||{}).length;
-  setSyncStatus('on','強制アップロード完了(BM:'+lbm+'件)',cloudUser.email||'');
+  cloudReady=true;markLocalUpdated();await saveCloudState(true);
+  setSyncStatus('on','強制アップロード完了(BM:'+Object.keys(state.bookmarks||{}).length+'件)',cloudUser.email||'');
 };
-
 window.hsk4ForceDownload=async function(){
   if(!cloudUser){alert('先にログインしてください');return;}
   setSyncStatus('warn','クラウドから強制取得中...',cloudUser.email||'');
   try{
-    var snap=await getDoc(cloudDocRef());
-    if(!snap.exists()){alert('クラウドにデータがありません');return;}
-    var cloud2=snap.data()||{};
-    var cbm=Object.keys(cloud2.bookmarks||{}).length;
-    if(!confirm('クラウドのデータを取得します\nブックマーク: '+cbm+'件\n（端末のデータは上書きされます）')) return;
+    var snap=await getDoc(cloudDocRef());if(!snap.exists()){alert('クラウドにデータがありません');return;}
+    var cl=snap.data()||{},cbm=Object.keys(cl.bookmarks||{}).length;
+    if(!confirm('クラウドのデータを取得します（BM:'+cbm+'件）\n端末のデータは上書きされます'))return;
     suppressCloudSave=true;
-    state.completed=cloud2.completed||{};state.answers=cloud2.answers||{};
-    state.scores=cloud2.scores||{};state.bookmarks=cloud2.bookmarks||{};
-    state.dragOrders=cloud2.dragOrders||{};
-    if(cloud2.currentDay) current=Number(cloud2.currentDay)||current;
-    var cloudTs2=Number(cloud2.updatedAtMs||0);
+    state.completed=cl.completed||{};state.answers=cl.answers||{};
+    state.scores=cl.scores||{};state.bookmarks=cl.bookmarks||{};state.dragOrders=cl.dragOrders||{};
+    if(cl.currentDay)current=Number(cl.currentDay)||current;
     localStorage.setItem(storageKey,JSON.stringify(state));
-    localStorage.setItem(storageKey+'-updatedAtMs',String(cloudTs2));
+    localStorage.setItem(storageKey+'-updatedAtMs',String(Number(cl.updatedAtMs||0)));
     localStorage.setItem('hsk4-current-day',String(current));
     suppressCloudSave=false;
     setSyncStatus('on','クラウドから強制取得(BM:'+cbm+'件)',cloudUser.email||'');
-    if(typeof render==='function') render();
-  }catch(e){setSyncStatus('err','取得エラー: '+(e.message||'不明'),cloudUser&&cloudUser.email?cloudUser.email:'');}
+    if(typeof render==='function')render();
+  }catch(e){setSyncStatus('err','取得エラー:'+(e.message||'不明'),cloudUser&&cloudUser.email?cloudUser.email:'');}
 };
-
-// ==================================================
-// AI Challenge
-// ==================================================
-var _aiQ=null, _aiAnswered=null;
-
-function _renderAiQ(){
-  var area=$('aiChallengeArea');
-  if(!area||!_aiQ) return;
-  var q=_aiQ, sel=_aiAnswered;
-  var html='<div class="ai-challenge-box"><h3>🎯 AIチャレンジ問題</h3>';
-  html+='<div class="ai-q">'+esc(q.q)+'</div><div class="ai-opts">';
-  q.opts.forEach(function(o){
-    var isCorrect=o===q.ans, isSel=o===sel, st='';
-    if(sel!==null){
-      if(isCorrect) st='background:#f0fdf4;border-color:#4ade80;font-weight:700';
-      else if(isSel) st='background:#fef2f2;border-color:#f87171';
-    }
-    var mark=sel!==null?(isCorrect?' ✓':(isSel?' ✗':'')):'';
-    var safeO=o.replace(/\/g,'\\').replace(/'/g,"\'");
-    if(sel===null){
-      html+='<label style="'+st+'" onclick="_aiPick(''+safeO+'')">';
-    } else {
-      html+='<label style="'+st+'">';
-    }
-    html+='<input type="radio" style="display:none"> '+esc(o)+mark+'</label>';
-  });
-  html+='</div>';
-  if(sel!==null){
-    html+='<div class="ai-ans-box"><b>'+(sel===q.ans?'🎉 正解！':'❌ 不正解')+'</b> '+esc(q.exp)+'</div>';
-  }
-  html+='<div style="margin-top:8px;display:flex;gap:8px">';
-  if(sel!==null){
-    html+='<button class="primary" style="background:#0369a1;border-color:#0369a1;flex:1" onclick="startAiChallenge()">もう1問</button>';
-  }
-  html+='<button class="primary" style="flex:1" onclick="_aiClose()">閉じる</button>';
-  html+='</div></div>';
-  area.innerHTML=html;
-}
-
-function _aiPick(chosen){_aiAnswered=chosen;_renderAiQ();}
-
-function _aiClose(){
-  _aiQ=null;_aiAnswered=null;
-  var area=$('aiChallengeArea');
-  if(area) area.innerHTML='<button class="primary" style="width:100%;margin-top:8px;background:#0369a1;border-color:#0369a1" onclick="startAiChallenge()">🎯 AIチャレンジ問題（応用）</button>';
-}
-
-async function startAiChallenge(){
-  _aiQ=null;_aiAnswered=null;
-  var area=$('aiChallengeArea');
-  if(!area) return;
-  area.innerHTML='<div class="ai-challenge-box"><div class="small muted">AIが応用問題を生成中...</div></div>';
-  var l2=lesson();
-  var vocabList=l2.vocab.slice(0,5).map(function(v){return v.zh+'（'+v.ja+'）';}).join('、');
-  var grammarList=l2.grammar.slice(0,3).map(function(g){return g.name+'（'+g.meaning+'）';}).join('、');
-  var prompt='あなたはHSK4級の中国語テスト問題作成者です。
-以下の単語・文法を使った応用問題を1問作成してください。
-単語：'+vocabList+'
-文法：'+grammarList+'
-条件：
-- 問題文は日本語で
-- 上記の単語や文法の例文をそのまま使わず、新しい場面・文脈で出題する
-- 選択肢4つ（正解1つ、不正解3つ）の4択問題
-- 正解の中国語文は自然で実用的なもの
-- 回答はJSONのみで返す（マークダウン不要）：{"q":"問題文","opts":["選択肢1","選択肢2","選択肢3","選択肢4"],"ans":"正解の選択肢","exp":"解説（日本語、2文以内）"}';
-  try{
-    var resp=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,messages:[{role:'user',content:prompt}]})
-    });
-    var data=await resp.json();
-    var raw=(data.content||[]).filter(function(x){return x.type==='text';}).map(function(x){return x.text;}).join('');
-    var clean=raw.replace(/```json|```/g,'').trim();
-    _aiQ=JSON.parse(clean);
-    _aiAnswered=null;
-    _renderAiQ();
-  }catch(e){
-    if(area) area.innerHTML='<div class="ai-challenge-box"><div class="small bad">問題生成に失敗しました。</div><button class="primary" onclick="startAiChallenge()" style="margin-top:8px">再試行</button></div>';
-  }
-}
-
-// ==================================================
-// Service Worker + Event delegation
-// ==================================================
-if('serviceWorker' in navigator){
-  window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js').catch(function(){});});
-}
-
-document.addEventListener('click',function(e){
-  var btn=e.target.closest('[data-action]');
-  if(!btn) return;
-  var a=btn.dataset.action, id=btn.dataset.id;
-  if(a==='showHome') showHome();
-  else if(a==='showBookmarks') showBookmarks();
-  else if(a==='toggleBookmarkHint') toggleBookmarkHint();
-  else if(a==='removeBookmark'&&id) toggleBookmark(id);
-});
-
-document.addEventListener('click',function(e){
-  if(e.target&&e.target.id==='loginBtn') window.hsk4GoogleLogin();
-  if(e.target&&e.target.id==='logoutBtn') window.hsk4Logout();
-  if(e.target&&e.target.id==='forceUploadBtn') window.hsk4ForceUpload();
-  if(e.target&&e.target.id==='forceDownloadBtn') window.hsk4ForceDownload();
-});
 </script>
 </body></html>
