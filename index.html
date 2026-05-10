@@ -254,7 +254,7 @@ function fmtBmItem(b){
   h+='<div class="small">'+esc(b.sub||'')+'</div>';
   h+='</div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">';
   h+='<button class="bookmark active" data-action="removeBookmark" data-id="'+b.id+'">★</button>';
-  h+='<button class="hl-btn" data-action="hl" data-id="'+b.id+'">'+(hl===0?'🏷️':hlL[hl])+'</button>';
+  h+='<button class="hl-btn" onclick="window.cycleHighlight(\''+b.id+'\')">'+( hl===0?'🏷️':hlL[hl] )+'</button>';
   h+='</div></div>';
   if(ex){h+='<div class="ex"><div style="color:#1a3c5e;font-weight:600">'+esc(ex)+'</div>';
     if(exP) h+='<div class="small" style="color:#475467">'+esc(exP)+'</div>';
