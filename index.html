@@ -20,7 +20,7 @@ select,button,input,textarea{font:inherit}select{flex:1;min-width:180px;border:1
 button{border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;font-weight:700;color:var(--ink);touch-action:manipulation;cursor:pointer}
 .top .row button{border:0.5px solid #85B7EB;background:#fff;color:#0C447C}
 .nav-tabs{display:flex;border-bottom:1.5px solid #85B7EB;margin-top:8px}
-.nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px 7px;font-size:10px;font-weight:700;color:#185FA5;border-bottom:2.5px solid transparent;cursor:pointer;margin-bottom:-1.5px;touch-action:manipulation;user-select:none}
+.nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px 7px;font-size:12px;font-weight:700;color:#185FA5;border-bottom:2.5px solid transparent;cursor:pointer;margin-bottom:-1.5px;touch-action:manipulation;user-select:none}
 .nav-tab i{font-size:17px}
 .nav-tab span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .nav-tab.active{color:#633806;border-bottom:2.5px solid #EF9F27}
@@ -49,13 +49,13 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .bottomnav{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:8px 12px;display:flex;gap:8px;z-index:20}.bottomnav button{flex:1}
 @media(max-width:430px){.top{padding:calc(20px + env(safe-area-inset-top)) 14px 14px}h1{font-size:21px;margin-bottom:16px;text-align:center}button{padding:10px 11px}.app{padding-top:20px}}@media(min-width:800px){.vocab{grid-template-columns:1fr 1fr}.top h1{font-size:28px}.app{padding-bottom:40px}.bottomnav{display:none}}
 
-.syncbar{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:10px;padding:9px;border:1px solid #dbeafe;background:#eff6ff;border-radius:16px}
+.syncbar{display:flex;gap:6px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:6px;padding:6px 10px;border:1px solid #dbeafe;background:#eff6ff;border-radius:16px}
 .syncbar .sync-status{font-size:12px;color:#344054;font-weight:700}
 .syncbar .sync-user{font-size:12px;color:#475467;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.syncbar button{padding:8px 10px;font-size:12px}
+.syncbar button{padding:5px 8px;font-size:11px}
 .syncbar .login{background:#111827;color:white;border-color:#111827}
 .syncbar .logout{background:white;color:#344054}
-.syncbar .force-btn{background:#fffbeb;color:#b45309;border-color:#fde68a;font-size:11px;padding:6px 8px}
+.syncbar .force-btn{background:#fffbeb;color:#b45309;border-color:#fde68a;font-size:10px;padding:4px 7px}
 .syncbar .force-dl{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}
 .hl-btn{border:none!important;background:transparent!important;font-size:18px;padding:2px 4px!important;cursor:pointer;touch-action:manipulation;line-height:1}
 .hl-0 .vitem-inner{border-left:4px solid transparent}
@@ -90,8 +90,8 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
   </div>
   <div class="nav-tabs">
    <div class="nav-tab" id="homeBtn"><i class="ti ti-home" aria-hidden="true"></i><span>ホーム</span></div>
-   <div class="nav-tab" id="pinyinTab"><i class="ti ti-language" aria-hidden="true"></i><span>拼音</span></div>
-   <div class="nav-tab" id="jaTab"><i class="ti ti-text-size" aria-hidden="true"></i><span>日本語訳</span></div>
+   <div class="nav-tab" id="pinyinTab"><i class="ti ti-language" aria-hidden="true"></i><span>拼音非表示</span></div>
+   <div class="nav-tab active" id="jaTab"><i class="ti ti-text-size" aria-hidden="true"></i><span>日本語訳表示</span></div>
    <div class="nav-tab" id="bookmarkViewBtn"><i class="ti ti-bookmark" aria-hidden="true"></i><span>ブックマーク</span></div>
    <div class="nav-tab" id="completeTab"><i class="ti ti-circle-check" aria-hidden="true"></i><span>このDayを完了</span></div>
   </div>
@@ -105,7 +105,7 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
     <button class="force-btn" id="forceUploadBtn" type="button" style="display:none">↑ 端末→クラウド</button>
     <button class="force-btn force-dl" id="forceDownloadBtn" type="button" style="display:none">↓ クラウド→端末</button>
   </div>
-  <div class="cloud-note" id="cloudNote">ログインすると、同じGoogleアカウントのiPhone/Mac間で進捗・回答・ブックマークを同期します。</div>
+  
 
  </div>
 </div>
@@ -472,19 +472,28 @@ function gradeTest(){
 function setDay(d){homeView=false;current=Math.max(1,Math.min(LESSONS.length,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
 function updateCompleteButtons(){
  const done=!!state.completed[current];
- $('completeBtn').textContent=done?'完了済み：未完了に戻す':'このDayを完了にする';
- $('completeBtn').className='complete'+(done?' active':'');
- $('bottomComplete').textContent=done?'完了済み':'完了';
- $('bottomComplete').className='complete'+(done?' active':'');
+ // completeTab (nav-tab)
+ const ct=$('completeTab');
+ if(ct){
+   ct.classList.toggle('tab-done',done);
+   const sp=ct.querySelector('span');
+   if(sp) sp.textContent=done?'完了済み':'このDayを完了';
+ }
+ // bottomComplete ボタン
+ const bc=$('bottomComplete');
+ if(bc){bc.textContent=done?'完了済み':'完了';bc.className='complete'+(done?' active':'');}
 }
 function toggleComplete(){state.completed[current]=!state.completed[current];save();render();}
-$('homeBtn').onclick=()=>{homeView=true;bookmarkView=false;render();window.scrollTo({top:0,behavior:'smooth'});};
+// homeBtn handled by setupNavTabs;
 $('daySelect').onchange=e=>setDay(Number(e.target.value));
 $('prevBtn').onclick=()=>setDay(current-1); $('nextBtn').onclick=()=>setDay(current+1);
 $('bottomPrev').onclick=()=>setDay(current-1); $('bottomNext').onclick=()=>setDay(current+1);
-$('completeBtn').onclick=toggleComplete; $('bottomComplete').onclick=toggleComplete;
-if($('pinyinBtn'))$('pinyinBtn').onclick=()=>{document.body.classList.toggle('hidden-pinyin'); const hidden=document.body.classList.contains('hidden-pinyin'); $('pinyinBtn').textContent=hidden?'拼音を表示':'拼音を隠す'; $('pinyinBtn').className='toggle '+(hidden?'on':'off');}
-if($('jaBtn'))$('jaBtn').onclick=()=>{document.body.classList.toggle('hidden-ja'); const hidden=document.body.classList.contains('hidden-ja'); $('jaBtn').textContent=hidden?'日本語訳を表示':'日本語訳を隠す'; $('jaBtn').className='toggle '+(hidden?'on':'off');}
+// completeBtn handled by setupNavTabs; bottomComplete stays
+if($('bottomComplete')) $('bottomComplete').onclick=toggleComplete;
+// pinyinBtn handled by setupNavTabs
+if(false && $('pinyinBtn'))$('pinyinBtn').onclick=()=>{document.body.classList.toggle('hidden-pinyin'); const hidden=document.body.classList.contains('hidden-pinyin'); $('pinyinBtn').textContent=hidden?'拼音を表示':'拼音を隠す'; $('pinyinBtn').className='toggle '+(hidden?'on':'off');}
+// jaBtn handled by setupNavTabs
+if(false && $('jaBtn'))$('jaBtn').onclick=()=>{document.body.classList.toggle('hidden-ja'); const hidden=document.body.classList.contains('hidden-ja'); $('jaBtn').textContent=hidden?'日本語訳を表示':'日本語訳を隠す'; $('jaBtn').className='toggle '+(hidden?'on':'off');}
 var _ansBtn=$('answerBtn');if(_ansBtn)_ansBtn.onclick=()=>{showAnswers=!showAnswers;_ansBtn.textContent=showAnswers?'解答を隠す':'解答を表示';_ansBtn.className='toggle '+(showAnswers?'on':'off');$('content').className=showAnswers?'show-answers':''}
 var _prevHV=false;
 document.getElementById('bookmarkViewBtn').addEventListener('click', function(){
@@ -527,12 +536,18 @@ render();
   var pt=document.getElementById('pinyinTab');
   if(pt) pt.addEventListener('click',function(){
     document.body.classList.toggle('hidden-pinyin');
-    pt.classList.toggle('active',!document.body.classList.contains('hidden-pinyin'));
+    var hidden=document.body.classList.contains('hidden-pinyin');
+    pt.classList.toggle('active',!hidden);
+    var sp=pt.querySelector('span');
+    if(sp) sp.textContent=hidden?'拼音表示':'拼音非表示';
   });
   var jt=document.getElementById('jaTab');
   if(jt) jt.addEventListener('click',function(){
     document.body.classList.toggle('hidden-ja');
-    jt.classList.toggle('active',!document.body.classList.contains('hidden-ja'));
+    var hiddenJ=document.body.classList.contains('hidden-ja');
+    jt.classList.toggle('active',!hiddenJ);
+    var spj=jt.querySelector('span');
+    if(spj) spj.textContent=hiddenJ?'日本語訳表示':'日本語訳非表示';
   });
   var ct=document.getElementById('completeTab');
   if(ct) ct.addEventListener('click',function(){
@@ -733,18 +748,3 @@ window.hsk4ForceDownload=async function(){
   try{
     var snap=await getDoc(cloudDocRef());if(!snap.exists()){alert('クラウドにデータがありません');return;}
     var cl=snap.data()||{},cbm=Object.keys(cl.bookmarks||{}).length;
-    if(!confirm('クラウドのデータを取得します（BM:'+cbm+'件）\n端末のデータは上書きされます'))return;
-    suppressCloudSave=true;
-    state.completed=cl.completed||{};state.answers=cl.answers||{};
-    state.scores=cl.scores||{};state.bookmarks=cl.bookmarks||{};state.dragOrders=cl.dragOrders||{};
-    if(cl.currentDay)current=Number(cl.currentDay)||current;
-    localStorage.setItem(storageKey,JSON.stringify(state));
-    localStorage.setItem(storageKey+'-updatedAtMs',String(Number(cl.updatedAtMs||0)));
-    localStorage.setItem('hsk4-current-day',String(current));
-    suppressCloudSave=false;
-    setSyncStatus('on','クラウドから強制取得(BM:'+cbm+'件)',cloudUser.email||'');
-    if(typeof render==='function')render();
-  }catch(e){setSyncStatus('err','取得エラー:'+(e.message||'不明'),cloudUser&&cloudUser.email?cloudUser.email:'');}
-};
-</script>
-</body></html>
