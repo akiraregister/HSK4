@@ -715,6 +715,17 @@ function startAiChallenge(){
 
 // モジュールスコープの関数をグローバルに公開（onclick属性から呼び出せるように）
 window.startAiChallenge = startAiChallenge;
+window.gradeTest = gradeTest;
+window.resetOrderChips = resetOrderChips;
+window.selectOrderChip = selectOrderChip;
+window.showBookmarks = showBookmarks;
+window.showDay = showDay;
+window.toggleBookmark = toggleBookmark;
+window.toggleBookmarkHint = toggleBookmarkHint;
+window.undoOrderChip = undoOrderChip;
+window.showHome = showHome;
+window.toggleComplete = toggleComplete;
+window.setDay = setDay;
 
 // 音声読み上げ
 window.speakZh = function(text){
@@ -748,3 +759,18 @@ window.hsk4ForceDownload=async function(){
   try{
     var snap=await getDoc(cloudDocRef());if(!snap.exists()){alert('クラウドにデータがありません');return;}
     var cl=snap.data()||{},cbm=Object.keys(cl.bookmarks||{}).length;
+    if(!confirm('クラウドのデータを取得します（BM:'+cbm+'件）\n端末のデータは上書きされます'))return;
+    suppressCloudSave=true;
+    state.completed=cl.completed||{};state.answers=cl.answers||{};
+    state.scores=cl.scores||{};state.bookmarks=cl.bookmarks||{};state.dragOrders=cl.dragOrders||{};
+    if(cl.currentDay)current=Number(cl.currentDay)||current;
+    localStorage.setItem(storageKey,JSON.stringify(state));
+    localStorage.setItem(storageKey+'-updatedAtMs',String(Number(cl.updatedAtMs||0)));
+    localStorage.setItem('hsk4-current-day',String(current));
+    suppressCloudSave=false;
+    setSyncStatus('on','クラウドから強制取得(BM:'+cbm+'件)',cloudUser.email||'');
+    if(typeof render==='function')render();
+  }catch(e){setSyncStatus('err','取得エラー:'+(e.message||'不明'),cloudUser&&cloudUser.email?cloudUser.email:'');}
+};
+</script>
+</body></html>
