@@ -14,10 +14,17 @@
 <style>
 :root{--bg:#f7f8fb;--card:#fff;--ink:#111827;--muted:#667085;--line:#e5e7eb;--accent:#111827;--good:#16a34a;--goodbg:#ecfdf3;--goodline:#abefc6;--bad:#dc2626;--gray:#f2f4f7}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#f8fafc,#fff);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Segoe UI,sans-serif}
-.app{max-width:980px;margin:0 auto;padding:18px 12px 90px}.top{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border-bottom:1px solid #bfdbfe;padding:calc(18px + env(safe-area-inset-top)) 16px 14px}.top-inner{max-width:980px;margin:0 auto}
+.app{max-width:980px;margin:0 auto;padding:18px 12px 90px}.top{position:sticky;top:0;z-index:10;background:#E6F1FB;backdrop-filter:blur(14px);border-bottom:1px solid #bfdbfe;padding:calc(18px + env(safe-area-inset-top)) 16px 14px}.top-inner{max-width:980px;margin:0 auto}
 h1{font-size:20px;margin:0 0 14px;letter-spacing:-.03em;line-height:1.2;text-align:center}.small{font-size:12px;color:var(--muted);line-height:1.45}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-select,button,input,textarea{font:inherit}select{flex:1;min-width:0;max-width:160px;border:1px solid var(--line);border-radius:14px;padding:10px 6px;background:#fff}
-button{border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;font-weight:700;color:var(--ink);touch-action:manipulation;cursor:pointer}button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+select,button,input,textarea{font:inherit}select{flex:1;min-width:180px;border:1px solid var(--line);border-radius:14px;padding:10px;background:#fff}
+button{border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;font-weight:700;color:var(--ink);touch-action:manipulation;cursor:pointer}
+.top .row button{border:0.5px solid #85B7EB;background:#fff;color:#0C447C}
+.nav-tabs{display:flex;border-bottom:1.5px solid #85B7EB;margin-top:8px}
+.nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px 7px;font-size:10px;font-weight:700;color:#185FA5;border-bottom:2.5px solid transparent;cursor:pointer;margin-bottom:-1.5px;touch-action:manipulation;user-select:none}
+.nav-tab i{font-size:17px}
+.nav-tab span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.nav-tab.active{color:#633806;border-bottom:2.5px solid #EF9F27}
+.nav-tab.tab-done{color:#067647}button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
 button.complete.active{background:var(--goodbg);color:#067647;border-color:var(--goodline)}button.toggle.off{background:#fff;color:var(--ink)}button.toggle.on{background:var(--gray);color:#475467}
 button.bookmark{padding:7px 9px;border-radius:999px;background:#fff;color:#98a2b3}button.bookmark.active{background:#fffbeb;border-color:#fedf89;color:#b54708}
 .card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 8px 24px rgba(16,24,40,.05);padding:16px;margin:12px 0}.section-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.section-title h2{font-size:18px;margin:0}.badge{display:inline-flex;border-radius:999px;background:#f2f4f7;color:#344054;padding:4px 8px;font-size:12px;font-weight:700}
@@ -77,15 +84,16 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
  <div class="top-inner">
   <h1>HSK4 90日ミニアプリ</h1>
   <div class="row">
-   <button id="homeBtn">🏠 ホーム</button><button id="prevBtn">前の日</button>
+   <button id="prevBtn">前の日</button>
    <select id="daySelect"></select>
    <button id="nextBtn">次の日</button>
   </div>
-  <div class="row" style="margin-top:8px">
-   <button id="pinyinBtn" class="toggle on">拼音を表示</button>
-   <button id="jaBtn" class="toggle off">日本語訳を隠す</button>
-   <button id="bookmarkViewBtn" data-label-off="🔖 ブックマーク" data-label-on="学習に戻る" class="toggle off">🔖 ブックマーク</button>
-   <button id="completeBtn" class="complete">このDayを完了にする</button>
+  <div class="nav-tabs">
+   <div class="nav-tab" id="homeBtn"><i class="ti ti-home" aria-hidden="true"></i><span>ホーム</span></div>
+   <div class="nav-tab" id="pinyinTab"><i class="ti ti-language" aria-hidden="true"></i><span>拼音</span></div>
+   <div class="nav-tab" id="jaTab"><i class="ti ti-text-size" aria-hidden="true"></i><span>日本語訳</span></div>
+   <div class="nav-tab" id="bookmarkViewBtn"><i class="ti ti-bookmark" aria-hidden="true"></i><span>ブックマーク</span></div>
+   <div class="nav-tab" id="completeTab"><i class="ti ti-circle-check" aria-hidden="true"></i><span>このDayを完了</span></div>
   </div>
 
   <div class="syncbar" id="syncBar">
@@ -274,8 +282,12 @@ function cycleHighlight(id){
 function renderBookmarkPanel(){
   var items=Object.values(state.bookmarks||{}).sort(function(a,b){return (b.hl||0)-(a.hl||0)||(a.day-b.day);});
   $('bookmarkPanel').className='bookmark-panel card'+(bookmarkView?' active':'');
-  $('bookmarkViewBtn').textContent=bookmarkView?'学習に戻る':'🔖 ブックマーク';
-  $('bookmarkViewBtn').className='toggle '+(bookmarkView?'on':'off');
+  var bvb=$('bookmarkViewBtn');
+  if(bvb){
+    var sp=bvb.querySelector('span');
+    if(sp) sp.textContent=bookmarkView?'学習に戻る':'ブックマーク';
+    bvb.classList.toggle('active', bookmarkView);
+  }
   var inner='<div class="section-title"><h2>ブックマークだけ表示</h2><span class="badge">'+items.length+'件</span></div>';
   inner+='<div class="small" style="margin-bottom:10px">🏷️ タップでハイライト（⭐→🔶→🔴→解除）</div>';
   inner+='<button class="primary" data-action="showHome">通常の学習画面に戻る</button>';
@@ -471,15 +483,15 @@ $('daySelect').onchange=e=>setDay(Number(e.target.value));
 $('prevBtn').onclick=()=>setDay(current-1); $('nextBtn').onclick=()=>setDay(current+1);
 $('bottomPrev').onclick=()=>setDay(current-1); $('bottomNext').onclick=()=>setDay(current+1);
 $('completeBtn').onclick=toggleComplete; $('bottomComplete').onclick=toggleComplete;
-$('pinyinBtn').onclick=()=>{document.body.classList.toggle('hidden-pinyin'); const hidden=document.body.classList.contains('hidden-pinyin'); $('pinyinBtn').textContent=hidden?'拼音を表示':'拼音を隠す'; $('pinyinBtn').className='toggle '+(hidden?'on':'off');}
-$('jaBtn').onclick=()=>{document.body.classList.toggle('hidden-ja'); const hidden=document.body.classList.contains('hidden-ja'); $('jaBtn').textContent=hidden?'日本語訳を表示':'日本語訳を隠す'; $('jaBtn').className='toggle '+(hidden?'on':'off');}
+if($('pinyinBtn'))$('pinyinBtn').onclick=()=>{document.body.classList.toggle('hidden-pinyin'); const hidden=document.body.classList.contains('hidden-pinyin'); $('pinyinBtn').textContent=hidden?'拼音を表示':'拼音を隠す'; $('pinyinBtn').className='toggle '+(hidden?'on':'off');}
+if($('jaBtn'))$('jaBtn').onclick=()=>{document.body.classList.toggle('hidden-ja'); const hidden=document.body.classList.contains('hidden-ja'); $('jaBtn').textContent=hidden?'日本語訳を表示':'日本語訳を隠す'; $('jaBtn').className='toggle '+(hidden?'on':'off');}
 var _ansBtn=$('answerBtn');if(_ansBtn)_ansBtn.onclick=()=>{showAnswers=!showAnswers;_ansBtn.textContent=showAnswers?'解答を隠す':'解答を表示';_ansBtn.className='toggle '+(showAnswers?'on':'off');$('content').className=showAnswers?'show-answers':''}
 var _prevHV=false;
-$('bookmarkViewBtn').onclick=function(){
+document.getElementById('bookmarkViewBtn').addEventListener('click', function(){
   if(!bookmarkView){_prevHV=homeView;homeView=false;bookmarkView=true;}
   else{homeView=_prevHV;bookmarkView=false;}
   render();window.scrollTo({top:0,behavior:'smooth'});
-};
+});
 
 // Expose module-scoped functions for inline handlers.
 // This is necessary because this file uses <script type="module"> for Firebase imports.
@@ -503,6 +515,30 @@ Object.assign(window, {
 });
 
 render();
+
+// nav-tab クリックハンドラ
+(function setupNavTabs(){
+  var ht=document.getElementById('homeBtn');
+  if(ht) ht.addEventListener('click',function(){
+    showHome();
+    document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active');});
+    ht.classList.add('active');
+  });
+  var pt=document.getElementById('pinyinTab');
+  if(pt) pt.addEventListener('click',function(){
+    document.body.classList.toggle('hidden-pinyin');
+    pt.classList.toggle('active',!document.body.classList.contains('hidden-pinyin'));
+  });
+  var jt=document.getElementById('jaTab');
+  if(jt) jt.addEventListener('click',function(){
+    document.body.classList.toggle('hidden-ja');
+    jt.classList.toggle('active',!document.body.classList.contains('hidden-ja'));
+  });
+  var ct=document.getElementById('completeTab');
+  if(ct) ct.addEventListener('click',function(){
+    if(typeof toggleComplete==='function') toggleComplete();
+  });
+})();
 
 // ===== ローカルチャレンジ問題生成 =====
 var _aiQ=null, _aiAns=null;
