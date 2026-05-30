@@ -64,6 +64,8 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .ai-q{font-weight:700;margin-bottom:8px;line-height:1.5}
 .ai-opts label{display:block;padding:8px 10px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:6px;cursor:pointer;touch-action:manipulation}
 .ai-ans-box{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:10px;margin-top:8px}
+.speak-btn{border:none!important;background:transparent!important;font-size:20px;padding:2px 6px!important;cursor:pointer;touch-action:manipulation;line-height:1;vertical-align:middle;opacity:0.7}
+.speak-btn:active{opacity:1;transform:scale(1.2)}
 .syncdot{width:8px;height:8px;border-radius:999px;background:#98a2b3;display:inline-block}
 .syncdot.on{background:#12b76a}.syncdot.warn{background:#f79009}.syncdot.err{background:#f04438}
 .cloud-note{font-size:11px;color:#667085;text-align:center;margin-top:4px}
@@ -75,14 +77,13 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
  <div class="top-inner">
   <h1>HSK4 90日ミニアプリ</h1>
   <div class="row">
-   <button id="homeBtn">ホーム</button><button id="prevBtn">前</button>
+   <button id="homeBtn">ホーム</button><button id="prevBtn">前の日</button>
    <select id="daySelect"></select>
-   <button id="nextBtn">次</button>
+   <button id="nextBtn">次の日</button>
   </div>
   <div class="row" style="margin-top:8px">
    <button id="pinyinBtn" class="toggle on">拼音を表示</button>
    <button id="jaBtn" class="toggle off">日本語訳を隠す</button>
-   <button id="answerBtn" class="toggle off">解答を表示</button>
    <button id="bookmarkViewBtn" class="toggle off">ブックマーク</button>
    <button id="completeBtn" class="complete">このDayを完了にする</button>
   </div>
@@ -233,7 +234,7 @@ if(state.dragOrders){
 function save(){localStorage.setItem(storageKey,JSON.stringify(state));localStorage.setItem('hsk4-current-day',current);markLocalUpdated();scheduleCloudSave()}
 function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function lesson(){return LESSONS[current-1]}
-function initSelect(){ $('daySelect').innerHTML=LESSONS.map(l=>`<option value="${l.day}">Day ${l.day}${state.completed[l.day]?' ✓':''}｜${l.title.replace(/^Day \d+｜/,'')}</option>`).join(''); $('daySelect').value=current}
+function initSelect(){ $('daySelect').innerHTML=LESSONS.map(l=>`<option value="${l.day}">Day ${l.day}${state.completed[l.day]?' ✓':''}</option>`).join(''); $('daySelect').value=current}
 function isBookmarked(id){return !!state.bookmarks[id]}
 function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){if(state.bookmarks[id]){delete state.bookmarks[id];}else{state.bookmarks[id]={id,type,title,sub,day:current,pinyin:pinyin||'',example:example||'',exPinyin:exPinyin||'',exJa:exJa||'',hl:0};}save();render();}
 function fmtBmItem(b){
@@ -249,7 +250,7 @@ function fmtBmItem(b){
   h+='<div class="item-head"><div>';
   h+='<span class="badge">'+esc(b.type)+'</span><span class="badge">Day '+b.day+'</span>';
   if(hl>0) h+='<span class="hl-badge hl-badge-'+hl+'">'+hlL[hl]+'</span>';
-  h+='<div class="zh">'+esc(b.title)+'</div>';
+  h+='<div class="zh">'+esc(b.title)+' <button class="speak-btn" onclick="speakZh(\''+b.title.replace(/\'/g,"\'")+'\')">🔊</button></div>';
   if(pin) h+='<div class="pinyin">'+esc(pin)+'</div>';
   h+='<div class="small">'+esc(b.sub||'')+'</div>';
   h+='</div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">';
@@ -355,9 +356,9 @@ function render(){
    <div class="section-title"><h2>単語5個</h2><span class="badge">重複なし</span></div>
    <div class="vocab">${l.vocab.map((v,i)=>`
     <div class="vitem">
-     <div class="item-head"><div><div class="zh">${i+1}. ${esc(v.zh)}</div><div class="pinyin">${esc(v.pinyin)}</div><div class="ja">${esc(v.ja)}</div></div>
+     <div class="item-head"><div><div class="zh">${i+1}. ${esc(v.zh)} <button class="speak-btn" onclick="speakZh('${esc(v.zh)}')" title="発音">🔊</button></div><div class="pinyin">${esc(v.pinyin)}</div><div class="ja">${esc(v.ja)}</div></div>
      <button class="bookmark ${isBookmarked(v.id)?'active':''}" onclick="toggleBookmark('${v.id}','単語','${esc(v.zh)}','${esc(v.pinyin)}｜${esc(v.ja)}')">${isBookmarked(v.id)?'★':'☆'}</button></div>
-     <div class="ex">${esc(v.example)}</div><div class="pinyin expinyin">${esc(v.exPinyin)}</div><div class="ja exja">${esc(v.exJa)}</div>
+     <div class="ex">${esc(v.example)} <button class="speak-btn" onclick="speakZh('${esc(v.example)}')" title="例文を聞く">🔊</button></div><div class="pinyin expinyin">${esc(v.exPinyin)}</div><div class="ja exja">${esc(v.exJa)}</div>
     </div>`).join('')}</div>
   </div>
   <div class="card">
@@ -369,7 +370,7 @@ function render(){
      <div class="note"><span class="label">解説：</span>${esc(g.explain)}</div>
      <div class="note"><span class="label">違い・注意：</span>${esc(g.contrast)}</div>
      <div class="note"><span class="label">日本人が間違えやすい点：</span>${esc(g.mistake)}</div>
-     <div class="ex"><span class="label">例文：</span>${esc(g.example)}</div><div class="pinyin expinyin">${esc(g.exPinyin)}</div><div class="ja exja">${esc(g.exJa)}</div>
+     <div class="ex"><span class="label">例文：</span>${esc(g.example)} <button class="speak-btn" onclick="speakZh('${esc(g.example)}')" title="例文を聞く">🔊</button></div><div class="pinyin expinyin">${esc(g.exPinyin)}</div><div class="ja exja">${esc(g.exJa)}</div>
     </div>`).join('')}
   </div>
   <div class="card" id="testCard">
@@ -454,9 +455,9 @@ function gradeTest(){
  state.scores[l.day]=score; save();
  const msg=score===4?'很好！自動採点部分は満点です。':score===3?'不错。1問だけ復習しましょう。':score===2?'もう一歩。文法解説を読み直すと伸びます。':'復習優先。今日は単語と文法例文を音読しましょう。';
  $('scoreArea').innerHTML=`<div class="scorebox">ミニテスト：<b>自動採点 ${score}/${total}</b> ＋ 作文1問<br>${msg}<br><span class="small muted">全5問中、Q1〜Q4は自動採点、Q5作文は参考解答と見比べて自己採点してください。</span></div>`;
- showAnswers=true; $('answerBtn').textContent='解答を隠す'; $('answerBtn').className='toggle on'; $('content').className='show-answers';
+ showAnswers=true; var ab=$('answerBtn'); if(ab){ab.textContent='解答を隠す'; ab.className='toggle on';} $('content').className='show-answers';
 }
-function setDay(d){homeView=false;current=Math.max(1,Math.min(LESSONS.length,d));showAnswers=false;$('answerBtn').textContent='解答を表示';$('answerBtn').className='toggle off';render();window.scrollTo({top:0,behavior:'smooth'})}
+function setDay(d){homeView=false;current=Math.max(1,Math.min(LESSONS.length,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
 function updateCompleteButtons(){
  const done=!!state.completed[current];
  $('completeBtn').textContent=done?'完了済み：未完了に戻す':'このDayを完了にする';
@@ -472,7 +473,7 @@ $('bottomPrev').onclick=()=>setDay(current-1); $('bottomNext').onclick=()=>setDa
 $('completeBtn').onclick=toggleComplete; $('bottomComplete').onclick=toggleComplete;
 $('pinyinBtn').onclick=()=>{document.body.classList.toggle('hidden-pinyin'); const hidden=document.body.classList.contains('hidden-pinyin'); $('pinyinBtn').textContent=hidden?'拼音を表示':'拼音を隠す'; $('pinyinBtn').className='toggle '+(hidden?'on':'off');}
 $('jaBtn').onclick=()=>{document.body.classList.toggle('hidden-ja'); const hidden=document.body.classList.contains('hidden-ja'); $('jaBtn').textContent=hidden?'日本語訳を表示':'日本語訳を隠す'; $('jaBtn').className='toggle '+(hidden?'on':'off');}
-$('answerBtn').onclick=()=>{showAnswers=!showAnswers;$('answerBtn').textContent=showAnswers?'解答を隠す':'解答を表示';$('answerBtn').className='toggle '+(showAnswers?'on':'off');$('content').className=showAnswers?'show-answers':''}
+var _ansBtn=$('answerBtn');if(_ansBtn)_ansBtn.onclick=()=>{showAnswers=!showAnswers;_ansBtn.textContent=showAnswers?'解答を隠す':'解答を表示';_ansBtn.className='toggle '+(showAnswers?'on':'off');$('content').className=showAnswers?'show-answers':''}
 var _prevHV=false;
 $('bookmarkViewBtn').onclick=function(){
   if(!bookmarkView){_prevHV=homeView;homeView=false;bookmarkView=true;}
@@ -663,9 +664,26 @@ function startAiChallenge(){
 
 // モジュールスコープの関数をグローバルに公開（onclick属性から呼び出せるように）
 window.startAiChallenge = startAiChallenge;
+
+// 音声読み上げ
+window.speakZh = function(text){
+  if(!text) return;
+  window.speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = 'zh-CN';
+  u.rate = 0.9;
+  window.speechSynthesis.speak(u);
+};
 window._aiPickIdx = _aiPickIdx;
 window._aiClose = _aiClose;
 window.cycleHighlight = cycleHighlight;
+
+// Service Worker登録（PWA用）
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('./sw.js').catch(function(){});
+  });
+}
 
 window.hsk4ForceUpload=async function(){
   if(!cloudUser){alert('先にログインしてください');return;}
