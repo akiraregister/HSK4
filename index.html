@@ -20,7 +20,8 @@ select,button,input,textarea{font:inherit}select{flex:1;min-width:180px;border:1
 button{border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;font-weight:700;color:var(--ink);touch-action:manipulation;cursor:pointer}
 .top .row button{border:0.5px solid #85B7EB;background:#fff;color:#0C447C}
 .nav-tabs{display:flex;border-bottom:1.5px solid #85B7EB;margin-top:8px}
-.nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px 7px;font-size:12px;font-weight:700;color:#185FA5;border-bottom:2.5px solid transparent;cursor:pointer;margin-bottom:-1.5px;touch-action:manipulation;user-select:none}
+.nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:9px 2px 8px;font-size:14px;font-weight:700;color:#185FA5;border-bottom:2.5px solid transparent;cursor:pointer;margin-bottom:-1.5px;touch-action:manipulation;user-select:none}
+.nav-tab svg{width:23px;height:23px;display:block}
 .nav-tab i{font-size:17px}
 .nav-tab span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .nav-tab.active{color:#633806;border-bottom:2.5px solid #EF9F27}
@@ -41,6 +42,7 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .chip.answer-chip{background:#111827;color:white;border-color:#111827}
 .chip.dragging{opacity:.45}.chip.selected{outline:3px solid #c7d2fe}
 .bookmark-panel{display:none}.bookmark-panel.active{display:block}.empty{padding:14px;border:1px dashed #cbd5e1;border-radius:16px;background:#f8fafc;color:var(--muted)}
+.bm-stickybar{position:sticky;top:var(--top-h,64px);z-index:8;background:var(--card);padding:8px 0;margin:0 0 8px;box-shadow:0 6px 10px -6px rgba(16,24,40,.18)}
 .home-grid{display:grid;gap:12px}.home-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:14px;box-shadow:0 4px 14px rgba(16,24,40,.04)}
 .home-card h3{margin:0 0 6px;font-size:17px}.home-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
 .day-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}.daybtn{padding:10px 0;border-radius:12px;background:#fff}.daybtn.done{background:var(--goodbg);border-color:var(--goodline);color:#067647}
@@ -80,10 +82,10 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 /* ===== 改善案（フィードバック②③④⑤⑥＋）追加スタイル ===== */
 :root{--blue:#2f6bf0;--amber:#f59e0b;--amberbg:#fffbeb;--red2:#dc2626;--redbg:#fef2f2}
 /* ④ 下部ボタン配色：前=淡色 / 完了=グリーン / 次=ブルー */
-#bottomPrev{background:#f2f4f7;color:#475467;border-color:#e5e7eb}
-#bottomComplete{background:var(--good);color:#fff;border-color:var(--good)}
-#bottomComplete.active{background:#ecfdf3;color:#067647;border-color:#abefc6}
-#bottomNext{background:var(--blue);color:#fff;border-color:var(--blue)}
+#bottomPrev,#bottomNext{background:#dbeafe;color:#1d4ed8;border-color:#bfdbfe;display:inline-flex;align-items:center;justify-content:center;gap:5px}
+#bottomPrev svg,#bottomNext svg{width:18px;height:18px}
+#bottomComplete{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
+#bottomComplete.active{background:#bfdbfe;color:#1e3a8a;border-color:#93c5fd}
 /* ②③ 学習画面内ツールバー（拼音/和訳トグル・密度・Day選択） */
 .daytools{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
 .modebar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;position:sticky;top:var(--top-h,64px);z-index:9;background:rgba(248,250,252,.97);backdrop-filter:blur(8px);padding:8px;border-radius:12px;box-shadow:0 4px 12px rgba(16,24,40,.07)}
@@ -132,10 +134,11 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .flashcard .fc-answer{margin-top:14px;padding-top:14px;border-top:1px dashed #cbd5e1}
 .flashcard .fc-answer .a-main{font-size:24px;font-weight:800;color:#0c447c}
 .fc-actions{display:flex;gap:8px;margin-top:14px}
-.fc-actions button{flex:1}
+.fc-actions button{flex:1;padding:11px 6px;font-size:13px}
 .fc-progress{text-align:center;color:#667085;font-size:13px;margin-top:10px}
 .btn-vague{background:var(--amberbg);color:#b45309;border-color:#fde68a}
 .btn-known{background:#ecfdf3;color:#067647;border-color:#abefc6}
+.btn-master{background:#dbeafe;color:#1d4ed8;border-color:#bfdbfe}
 
 </style>
 </head>
@@ -144,10 +147,10 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
  <div class="top-inner">
   <h1>HSK4 90日ミニアプリ</h1>
   <div class="nav-tabs">
-   <div class="nav-tab" id="homeBtn"><i class="ti ti-home" aria-hidden="true"></i><span>ホーム</span></div>
-   <div class="nav-tab" id="studyTab"><i class="ti ti-book-2" aria-hidden="true"></i><span>学習</span></div>
-   <div class="nav-tab" id="bookmarkViewBtn"><i class="ti ti-bookmark" aria-hidden="true"></i><span>ブックマーク</span></div>
-   <div class="nav-tab" id="testTab"><i class="ti ti-checkbox" aria-hidden="true"></i><span>テスト</span></div>
+   <div class="nav-tab" id="homeBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>ホーム</span></div>
+   <div class="nav-tab" id="studyTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5.5-1.5-7.5 0v12c2-1.5 5.5-1.5 7.5 0 2-1.5 5.5-1.5 7.5 0V6c-2-1.5-5.5-1.5-7.5 0z"/><path d="M12 6v12"/></svg><span>学習</span></div>
+   <div class="nav-tab" id="bookmarkViewBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>ブックマーク</span></div>
+   <div class="nav-tab" id="testTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5h6V5H9z"/><path d="M8.5 13l2.2 2.2L15 11"/></svg><span>テスト</span></div>
   </div>
 
   <div class="syncbar" id="syncBar">
@@ -169,9 +172,9 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
  <div id="content"></div>
 </div>
 <div class="bottomnav" id="bottomNav">
- <button id="bottomPrev">前</button>
+ <button id="bottomPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg>前</button>
  <button id="bottomComplete" class="complete">完了</button>
- <button id="bottomNext">次</button>
+ <button id="bottomNext">次<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
 </div>
 
 <script type="module">
@@ -375,7 +378,7 @@ function renderBookmarkPanel(){
   }
   var inner='<div class="section-title"><h2>ブックマークだけ表示</h2><span class="badge">'+items.length+'件</span></div>';
   inner+='<div class="small" style="margin-bottom:10px">難易度（普通／曖昧／苦手）をタップで切替。苦手が上に並びます。</div>';
-  inner+='<div class="row" style="margin:4px 0 8px;gap:8px">';
+  inner+='<div class="row bm-stickybar" style="gap:8px">';
   inner+='<button class="primary" data-action="showHome">通常の学習画面に戻る</button>';
   inner+='<button type="button" class="chip-toggle '+(state.density==='compact'?'on':'')+'" onclick="toggleDensity()">'+(state.density==='compact'?'表示：コンパクト（一覧）':'表示：標準（詳細）')+'</button>';
   inner+='</div>';
@@ -457,8 +460,8 @@ function render(){
    <button type="button" onclick="setDay(${current+1})">次の日 ›</button>
   </div>
   <div class="modebar">
-   <button type="button" class="chip-toggle ${document.body.classList.contains('hidden-pinyin')?'':'on'}" id="pinyinChip" onclick="togglePinyin()">拼音</button>
-   <button type="button" class="chip-toggle ${document.body.classList.contains('hidden-ja')?'':'on'}" id="jaChip" onclick="toggleJa()">和訳</button>
+   <button type="button" class="chip-toggle ${document.body.classList.contains('hidden-pinyin')?'':'on'}" id="pinyinChip" onclick="togglePinyin()">拼音を${document.body.classList.contains('hidden-pinyin')?'非表示':'表示'}</button>
+   <button type="button" class="chip-toggle ${document.body.classList.contains('hidden-ja')?'':'on'}" id="jaChip" onclick="toggleJa()">和訳を${document.body.classList.contains('hidden-ja')?'非表示':'表示'}</button>
   </div>
   <div class="card">
    <div class="section-title"><h2>${esc(l.title)}</h2><span class="badge">${state.completed[l.day]?'完了済み':'未完了'}</span></div>
@@ -596,13 +599,13 @@ function lvControl(id){
 function setLevel(id,n){ state.levels[id]=n; save(); render(); }
 function togglePinyin(){
   document.body.classList.toggle('hidden-pinyin');
-  var on=!document.body.classList.contains('hidden-pinyin'), c=$('pinyinChip');
-  if(c) c.classList.toggle('on',on);
+  var shown=!document.body.classList.contains('hidden-pinyin'), c=$('pinyinChip');
+  if(c){ c.classList.toggle('on',shown); c.textContent='拼音を'+(shown?'表示':'非表示'); }
 }
 function toggleJa(){
   document.body.classList.toggle('hidden-ja');
-  var on=!document.body.classList.contains('hidden-ja'), c=$('jaChip');
-  if(c) c.classList.toggle('on',on);
+  var shown=!document.body.classList.contains('hidden-ja'), c=$('jaChip');
+  if(c){ c.classList.toggle('on',shown); c.textContent='和訳を'+(shown?'表示':'非表示'); }
 }
 function applyDensity(){ /* 密度はブックマークパネル内だけに適用（renderBookmarkPanelでクラス付与）。学習セクションには適用しない。 */ }
 function setTopOffset(){ var t=document.querySelector('.top'); if(t) document.documentElement.style.setProperty('--top-h', t.offsetHeight+'px'); }
@@ -677,14 +680,18 @@ function btSet(group,val){ _btCfg[group]=val; renderTestScreen(); }
 function btStart(){
   var pool=_btBuildPool();
   if(!pool.length){ alert('条件に合うブックマークがありません。範囲・種類を見直すか、学習画面で☆を付けてください。'); return; }
-  _bt={pool:pool, idx:0, revealed:false, vague:0};
+  _bt={pool:pool, idx:0, revealed:false, vague:0, mastered:0};
   renderTestScreen();
 }
 function btReveal(){ if(_bt){ _bt.revealed=true; renderTestScreen(); } }
-function btNext(markVague){
+function btNext(action){
   if(!_bt) return;
   var b=_bt.pool[_bt.idx];
-  if(markVague && b){ state.levels[b.id]=2; _bt.vague++; save(); } // あやふや→苦手(2)に登録
+  if(b){
+    if(action==='vague'){ var cur=state.levels[b.id]||0; state.levels[b.id]=Math.min(cur+1,2); _bt.vague++; save(); } // あやふや→難易度を1段階上げる（普通→曖昧→苦手、苦手は据え置き）
+    else if(action==='master'){ if(state.bookmarks) delete state.bookmarks[b.id]; _bt.mastered++; save(); } // 覚えた→ブックマークから外す
+    // 'known' は変更なし（そのまま残す）
+  }
   _bt.idx++; _bt.revealed=false;
   renderTestScreen();
 }
@@ -712,19 +719,19 @@ function renderTestScreen(){
       if(backSub) h+='<div class="fc-sub">'+esc(backSub)+'</div>';
       if(ex.ex) h+='<div class="ex" style="text-align:left;margin-top:10px"><div style="color:#1a3c5e;font-weight:600">'+esc(ex.ex)+' <button class="speak-btn" onclick="speakZh(\''+esc(ex.ex)+'\')">🔊</button></div>'+(ex.exP?'<div class="small">'+esc(ex.exP)+'</div>':'')+(ex.exJ?'<div class="small">'+esc(ex.exJ)+'</div>':'')+'</div>';
       h+='</div>';
-      h+='<div class="fc-actions"><button class="btn-known" onclick="btNext(false)">✓ わかった</button><button class="btn-vague" onclick="btNext(true)">△ あやふや（苦手に登録）</button></div>';
+      h+='<div class="fc-actions"><button class="btn-vague" onclick="btNext(\'vague\')">△ あやふや</button><button class="btn-known" onclick="btNext(\'known\')">○ わかった</button><button class="btn-master" onclick="btNext(\'master\')">★ 覚えた</button></div>';
     }
     h+='</div>';
-    h+='<div class="fc-progress">「あやふや」を選ぶと、その項目は自動で「苦手」に印が付きます。</div>';
+    h+='<div class="fc-progress">あやふや＝難易度を1段階上げる（普通→曖昧→苦手）／わかった＝そのまま残す／覚えた＝ブックマークから外して卒業</div>';
     h+='<div class="row" style="margin-top:10px"><button onclick="btRestart()">テストを終了</button></div>';
     h+='</div>';
     c.innerHTML=h; return;
   }
   // 終了画面
   if(_bt && _bt.idx>=_bt.pool.length){
-    var n=_bt.pool.length, vg=_bt.vague;
+    var n=_bt.pool.length, vg=_bt.vague, ms=_bt.mastered;
     c.innerHTML='<div class="card testwrap"><div class="section-title"><h2>テスト終了</h2><span class="badge">'+n+'問</span></div>'+
-      '<div class="scorebox">お疲れさまでした。<b>'+n+'問</b>を確認しました。<br>「あやふや（苦手）」に登録：<b>'+vg+'件</b><br><span class="small muted">苦手に付けた項目は範囲「苦手のみ」で重点復習できます。</span></div>'+
+      '<div class="scorebox">お疲れさまでした。<b>'+n+'問</b>を確認しました。<br>あやふや（難易度を1段階上げた）：<b>'+vg+'件</b><br>覚えた（ブックマーク解除）：<b>'+ms+'件</b><br><span class="small muted">苦手に付けた項目は範囲「苦手のみ」で重点復習できます。</span></div>'+
       '<div class="row" style="margin-top:12px"><button class="primary" onclick="btRestart()">もう一度設定する</button><button onclick="showBookmarks()">ブックマークを見る</button></div></div>';
     _bt=null; return;
   }
