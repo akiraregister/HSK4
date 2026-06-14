@@ -141,6 +141,25 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .btn-known{background:#ecfdf3;color:#067647;border-color:#abefc6}
 .btn-master{background:#dbeafe;color:#1d4ed8;border-color:#bfdbfe}
 
+.lc-progress{height:10px;border-radius:999px;background:#eef2f6;overflow:hidden;margin:4px 0 14px}.lc-progress span{display:block;height:100%;background:#EF9F27;transition:width .25s}
+.lc-q{font-size:18px;font-weight:700;line-height:1.5;white-space:pre-wrap}
+.lc-qpin{color:#475467;font-size:13px;margin-top:4px}
+.lc-opts{display:grid;gap:10px;margin-top:14px}
+.lc-opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px 14px;font:inherit;font-weight:600;color:var(--ink);cursor:pointer;touch-action:manipulation}
+.lc-opt.sel{border-color:#EF9F27;background:#fffbeb;color:#633806}
+.lc-nav{display:flex;gap:10px;margin-top:16px}
+.lc-result-lv{font-size:32px;font-weight:800;color:#0C447C;text-align:center;margin:6px 0}
+.lc-result-sub{text-align:center;color:var(--muted);font-size:14px;margin-bottom:8px}
+.lc-bands{display:grid;gap:8px;margin:14px 0}
+.lc-band{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.lc-band .lcbar{flex:1;height:8px;border-radius:999px;background:#eef2f6;margin:0 10px;overflow:hidden}.lc-band .lcbar span{display:block;height:100%;background:#185FA5}
+.lc-band .lcsc{font-size:13px;font-weight:700;color:#344054;min-width:38px;text-align:right}
+.lc-pick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.lc-btn{border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px;font:inherit;font-weight:700;color:var(--ink);cursor:pointer;touch-action:manipulation}
+.lc-btn.primary{background:#0C447C;color:#fff;border-color:#0C447C}.lc-btn.primary:disabled{opacity:.4;cursor:not-allowed}
+.lc-btn.rec{border-color:#EF9F27;background:#fffbeb;color:#633806}
+.lc-btn.flex{flex:1}
+.lc-startlist{margin:14px 0 0;padding:0;list-style:none;color:#344054;line-height:1.7;font-size:14px}.lc-startlist li{padding-left:18px;position:relative}.lc-startlist li:before{content:"・";position:absolute;left:2px}
 </style>
 </head>
 <body class="hidden-pinyin">
@@ -152,6 +171,7 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
    <div class="nav-tab" id="studyTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5.5-1.5-7.5 0v12c2-1.5 5.5-1.5 7.5 0 2-1.5 5.5-1.5 7.5 0V6c-2-1.5-5.5-1.5-7.5 0z"/><path d="M12 6v12"/></svg><span>学習</span></div>
    <div class="nav-tab" id="bookmarkViewBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>ブックマーク</span></div>
    <div class="nav-tab" id="testTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5h6V5H9z"/><path d="M8.5 13l2.2 2.2L15 11"/></svg><span>テスト</span></div>
+   <div class="nav-tab" id="levelCheckBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg><span>級診断</span></div>
   </div>
 
   <div class="syncbar" id="syncBar">
@@ -240,7 +260,7 @@ function localUpdatedAt(){ const n=Number(localStorage.getItem(storageKey+'-upda
 function markLocalUpdated(){ localStorage.setItem(storageKey+'-updatedAtMs', String(nowMs())); }
 function normalizeStateForCloud(s){ return {completed:s.completed||{}, answers:s.answers||{}, scores:s.scores||{}, bookmarks:s.bookmarks||{}, dragOrders:s.dragOrders||{}, levels:s.levels||{}, density:s.density||'standard', currentDay:current||1, updatedAtMs:nowMs(), appVersion:'firebase-sync-v1', storageKey:storageKey}; }
 async function saveCloudState(force=false){
-  if(!cloudUser || ((!cloudReady)&&!force) || cloudLoading) return;
+  if(!cloudUser || ((!cloudReady)&&!force) || (cloudLoading && !force)) return;
   try{ const payload=normalizeStateForCloud(state); payload.updatedAt=serverTimestamp(); await setDoc(cloudDocRef(), payload, {merge:true}); setSyncStatus('on','クラウド同期済み',cloudUser.email||''); }
   catch(e){ console.error(e); setSyncStatus('err','クラウド保存エラー：Rulesを確認',cloudUser?.email||''); }
 }
@@ -253,8 +273,13 @@ async function loadCloudState(){
     if(!snap.exists()){cloudReady=true;await saveCloudState(true);setSyncStatus('on','初回同期完了',cloudUser.email||'');cloudLoading=false;return;}
     const cloud=snap.data()||{},cloudTs=Number(cloud.updatedAtMs||0),localTs=localUpdatedAt();
     const lbm=Object.keys(state.bookmarks||{}).length,cbm=Object.keys(cloud.bookmarks||{}).length;
-    const localEmpty=!lbm&&!Object.keys(state.completed||{}).length;
-    const loadFromCloud=cbm>lbm||(localEmpty&&cbm>0)||(!localEmpty&&cloudTs>localTs&&cbm>=lbm);
+    // ローカルが「完全に空」かどうか（新規端末/初回起動の判定。完了・回答・ブックマークいずれも無い）
+    const localEmpty=!lbm && !Object.keys(state.completed||{}).length && !Object.keys(state.answers||{}).length;
+    // クラウドに何らかの学習データがあるか
+    const cloudHasData=cbm>0 || Object.keys(cloud.completed||{}).length>0 || Object.keys(cloud.answers||{}).length>0;
+    // 判定：①空ローカルでクラウドにデータあり→クラウド採用（空で上書きしない） ②それ以外は「最終更新が新しい方」を採用（last-write-wins）
+    //   → ローカルが新しい/同時刻ならローカルをアップロード。オフライン編集（ブックマーク削除含む）も保持される。
+    const loadFromCloud=(localEmpty && cloudHasData) || (!localEmpty && cloudTs>localTs);
     if(loadFromCloud){
       suppressCloudSave=true;
       state.completed=cloud.completed||{};state.answers=cloud.answers||{};
@@ -306,6 +331,7 @@ const $=id=>document.getElementById(id);
 let current=Number(localStorage.getItem('hsk4-current-day')||1);
 let homeView=true;
 let showAnswers=false, bookmarkView=false, testView=false, selectedChip=null;
+let levelCheckView=false, lcStage='start', lcIndex=0, lcAnswers={}, lcSoonLevel=null;
 const storageKey='hsk4-90-v4-state';
 let state=JSON.parse(localStorage.getItem(storageKey)||'{"completed":{},"answers":{},"scores":{},"bookmarks":{},"dragOrders":{}}');
 if(!state.levels) state.levels={};            // ⑤ 難易度（0=普通/1=曖昧/2=苦手）。既存データには非破壊で追加
@@ -441,7 +467,8 @@ function toggleBookmarkHint(){
 function render(){
  applyDensity();
  setTopOffset();
- setActiveTab(testView?'testTab':homeView?'homeBtn':bookmarkView?'bookmarkViewBtn':'studyTab');
+ setActiveTab(levelCheckView?'levelCheckBtn':testView?'testTab':homeView?'homeBtn':bookmarkView?'bookmarkViewBtn':'studyTab');
+ if(levelCheckView){ if($('bottomNav')) $('bottomNav').style.display='none'; renderLevelCheckScreen(); return; }
  if(testView){ if($('bottomNav')) $('bottomNav').style.display='none'; renderTestScreen(); return; }
  if(homeView){ renderHome(); return; }
  save(); initSelect(); renderBookmarkPanel();
@@ -574,7 +601,7 @@ function gradeTest(){
  $('scoreArea').innerHTML=`<div class="scorebox">ミニテスト：<b>自動採点 ${score}/${total}</b> ＋ 作文1問<br>${msg}<br><span class="small muted">全5問中、Q1〜Q4は自動採点、Q5作文は参考解答と見比べて自己採点してください。</span></div>`;
  showAnswers=true; var ab=$('answerBtn'); if(ab){ab.textContent='解答を隠す'; ab.className='toggle on';} $('content').className='show-answers';
 }
-function setDay(d){homeView=false;current=Math.max(1,Math.min(LESSONS.length,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
+function setDay(d){homeView=false;levelCheckView=false;current=Math.max(1,Math.min(LESSONS.length,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
 function updateCompleteButtons(){
  const done=!!state.completed[current];
  // completeTab (nav-tab)
@@ -626,18 +653,19 @@ if(false && $('jaBtn'))$('jaBtn').onclick=()=>{document.body.classList.toggle('h
 var _ansBtn=$('answerBtn');if(_ansBtn)_ansBtn.onclick=()=>{showAnswers=!showAnswers;_ansBtn.textContent=showAnswers?'解答を隠す':'解答を表示';_ansBtn.className='toggle '+(showAnswers?'on':'off');$('content').className=showAnswers?'show-answers':''}
 var _prevHV=false;
 document.getElementById('bookmarkViewBtn').addEventListener('click', function(){
-  if(!bookmarkView){_prevHV=homeView;homeView=false;testView=false;bookmarkView=true;}
+  levelCheckView=false;if(!bookmarkView){_prevHV=homeView;homeView=false;testView=false;bookmarkView=true;}
   else{homeView=_prevHV;bookmarkView=false;}
   render();window.scrollTo({top:0,behavior:'smooth'});
 });
 
 // Expose module-scoped functions for inline handlers.
 // This is necessary because this file uses <script type="module"> for Firebase imports.
-function showDay(d){ bookmarkView=false; testView=false; homeView=false; setDay(Number(d)); }
-function showBookmarks(){ bookmarkView=true; testView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
-function showHome(){ bookmarkView=false; testView=false; homeView=true; render(); window.scrollTo({top:0,behavior:'smooth'}); }
-function showStudy(){ bookmarkView=false; testView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
-function showTest(){ bookmarkView=false; testView=true; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showDay(d){ bookmarkView=false; testView=false; levelCheckView=false; homeView=false; setDay(Number(d)); }
+function showBookmarks(){ bookmarkView=true; testView=false; levelCheckView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showHome(){ bookmarkView=false; testView=false; levelCheckView=false; homeView=true; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showStudy(){ bookmarkView=false; testView=false; levelCheckView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showTest(){ bookmarkView=false; testView=true; levelCheckView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showLevelCheck(){ bookmarkView=false; testView=false; homeView=false; levelCheckView=true; render(); window.scrollTo({top:0,behavior:'smooth'}); }
 function setActiveTab(id){ document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.toggle('active', t.id===id);}); }
 
 // ===== ＋ ブックマークだけのミニテスト（フラッシュカード） =====
@@ -793,6 +821,7 @@ setTimeout(setTopOffset, 300); // Webフォント/アイコン読込後のズレ
   var ht=document.getElementById('homeBtn');  if(ht) ht.addEventListener('click', showHome);
   var st=document.getElementById('studyTab'); if(st) st.addEventListener('click', showStudy);
   var tt=document.getElementById('testTab');  if(tt) tt.addEventListener('click', showTest);
+  var lct=document.getElementById('levelCheckBtn'); if(lct) lct.addEventListener('click', showLevelCheck);
   // ブックマークタブは別途 bookmarkViewBtn のハンドラで処理
 })();
 
@@ -1029,5 +1058,174 @@ window.hsk4ForceDownload=async function(){
 };
 // アプリ本体の描画が完了した後に Firebase を遅延起動（失敗してもアプリは動作）
 initFirebase();
+/* =========================================================================
+   レベル診断（査定テスト） — 既存データ/進捗/同期に非干渉な追加モジュール
+   - 操作は data-lc-action 専用リスナーで処理（既存onclick/data-actionに非干渉）
+   - 診断の状態は同期stateに入れずモジュール変数で保持
+   - 級ごとのコンテンツ器（中身はHSK4のみ。他は準備中）
+   ========================================================================= */
+const LESSONS_BY_LEVEL = { hsk3:[], hsk4: LESSONS, hsk5:[], hsk6:[] };
+const SELECTED_LEVEL_KEY = 'hsk-selected-level';
+
+const PLACEMENT_LEVEL_INFO = {
+  3:{ name:"HSK3級", desc:"基礎固め。日常の基本会話・文法を固める段階です。" },
+  4:{ name:"HSK4級", desc:"今アプリで提供中の90日プログラムが利用できます。" },
+  5:{ name:"HSK5級", desc:"やや高度な語彙・成語・複雑な構文の段階です。" },
+  6:{ name:"HSK6級", desc:"上級。書き言葉・四字熟語・抽象的表現の段階です。" }
+};
+
+const PLACEMENT_QUESTIONS = [
+  // --- HSK3 ---
+  { level:3, q:"「便宜」の意味は？", pinyin:"piányi", options:["高い","安い","速い","遅い"], answer:"安い" },
+  { level:3, q:"空欄に入る語は？\n现在几____了？", pinyin:"Xiànzài jǐ ___ le?", options:["点","本","张","条"], answer:"点" },
+  { level:3, q:"空欄に入る語は？\n____今天下雨，所以我没出去。", pinyin:"___ jīntiān xiàyǔ, suǒyǐ wǒ méi chūqù.", options:["因为","但是","虽然","如果"], answer:"因为" },
+  { level:3, q:"「打算」の意味は？", pinyin:"dǎsuàn", options:["終わる","〜するつもり","楽しい","急ぐ"], answer:"〜するつもり" },
+  // --- HSK4 ---
+  { level:4, q:"「估计」の意味は？", pinyin:"gūjì", options:["諦める","見積もる・推測する","招待する","比較する"], answer:"見積もる・推測する" },
+  { level:4, q:"空欄に入る語は？（把構文）\n请____窗户关上。", pinyin:"Qǐng ___ chuānghu guānshàng.", options:["把","被","给","对"], answer:"把" },
+  { level:4, q:"「随着」の意味は？", pinyin:"suízhe", options:["〜について","〜につれて","〜のために","〜以外に"], answer:"〜につれて" },
+  { level:4, q:"自然な語順はどれ？（程度補語）\n他汉语说____。", pinyin:"Tā Hànyǔ shuō ___.", options:["很流利","得很流利","的很流利","流利得"], answer:"得很流利" },
+  // --- HSK5 ---
+  { level:5, q:"「陆续」の意味は？", pinyin:"lùxù", options:["突然","次々と","わざと","かろうじて"], answer:"次々と" },
+  { level:5, q:"空欄に入る語は？\n他工作非常认真，从不____。", pinyin:"Tā gōngzuò fēicháng rènzhēn, cóng bù ___.", options:["马虎","仔细","努力","主动"], answer:"马虎" },
+  { level:5, q:"空欄に入る語は？\n这件事我____妈妈都没告诉。", pinyin:"Zhè jiàn shì wǒ ___ māma dōu méi gàosu.", options:["连","把","被","对"], answer:"连" },
+  { level:5, q:"「不得不」の意味は？", pinyin:"bùdébù", options:["してはいけない","せざるを得ない","する必要がない","できない"], answer:"せざるを得ない" },
+  // --- HSK6 ---
+  { level:6, q:"「络绎不绝」の意味は？", pinyin:"luòyì bùjué", options:["静かで人がいない","（人や車が）絶え間なく続く","突然終わる","ばらばらだ"], answer:"（人や車が）絶え間なく続く" },
+  { level:6, q:"「鉴于」の意味は？（書き言葉）", pinyin:"jiànyú", options:["〜に鑑みて","〜のついでに","〜にもかかわらず","〜のような"], answer:"〜に鑑みて" },
+  { level:6, q:"「一丝不苟」の意味は？", pinyin:"yīsī bùgǒu", options:["いい加減だ","きわめて几帳面だ","中途半端だ","気まぐれだ"], answer:"きわめて几帳面だ" },
+  { level:6, q:"空欄に入る語は？\n____在家等，不如主动联系他。", pinyin:"___ zài jiā děng, bùrú zhǔdòng liánxì tā.", options:["与其","即使","无论","尽管"], answer:"与其" }
+];
+
+// マスター(75%以上)できた最高級の「ひとつ上」を学習目標に。何も届かなければHSK3。
+function lcRecommend(correct,total){
+  var mastered=0, bands=[3,4,5,6];
+  for(var i=0;i<bands.length;i++){ var lv=bands[i]; if(correct[lv]/total[lv]>=0.75) mastered=lv; else break; }
+  if(mastered===0) return 3;
+  return Math.min(6, mastered+1);
+}
+
+function renderLevelCheckScreen(){
+  if($('bottomNav')) $('bottomNav').style.display='none';
+  bookmarkView=false;
+  if($('bookmarkPanel')) $('bookmarkPanel').className='bookmark-panel card';
+  var c=$('content'); if(!c) return;
+  c.style.display=''; c.className='';
+  c.innerHTML = lcBuildHtml();
+}
+
+function lcBuildHtml(){
+  if(lcStage==='quiz')   return lcQuizHtml();
+  if(lcStage==='result') return lcResultHtml();
+  if(lcStage==='soon')   return lcSoonHtml();
+  return lcStartHtml();
+}
+
+function lcStartHtml(){
+  return '<div class="card">'
+    + '<span class="badge">全'+PLACEMENT_QUESTIONS.length+'問・約5分</span>'
+    + '<h2 style="margin:12px 0 6px;font-size:19px">あなたに合う級を見つけましょう</h2>'
+    + '<div class="small">HSK3〜6級の難易度を混ぜた選択式テストです。結果から学習をおすすめする級を判定します。</div>'
+    + '<ul class="lc-startlist">'
+    + '<li>各級4問ずつ、やさしい順に出題されます</li>'
+    + '<li>わからなければ推測でも構いません</li>'
+    + '<li>判定後、級は自分で選び直すこともできます</li>'
+    + '</ul>'
+    + '<div class="lc-nav">'
+    + '<button class="lc-btn" data-lc-action="back">ホームへ戻る</button>'
+    + '<button class="lc-btn primary" data-lc-action="start">テストを始める</button>'
+    + '</div></div>';
+}
+
+function lcQuizHtml(){
+  var total=PLACEMENT_QUESTIONS.length, item=PLACEMENT_QUESTIONS[lcIndex];
+  var pct=Math.round(lcIndex/total*100), sel=lcAnswers[lcIndex];
+  var opts=item.options.map(function(o,i){
+    return '<button class="lc-opt'+(sel===o?' sel':'')+'" data-lc-action="answer" data-opt="'+i+'">'+esc(o)+'</button>';
+  }).join('');
+  return '<div class="card">'
+    + '<div class="lc-progress"><span style="width:'+pct+'%"></span></div>'
+    + '<div class="small muted" style="font-weight:700">第 '+(lcIndex+1)+' / '+total+' 問</div>'
+    + '<div class="lc-q" style="margin-top:6px">'+esc(item.q)+'</div>'
+    + (item.pinyin?'<div class="lc-qpin">'+esc(item.pinyin)+'</div>':'')
+    + '<div class="lc-opts">'+opts+'</div>'
+    + '<div class="lc-nav">'
+    + '<button class="lc-btn"'+(lcIndex===0?' style="visibility:hidden"':'')+' data-lc-action="prev">前へ</button>'
+    + '<button class="lc-btn primary"'+(sel?'':' disabled')+' data-lc-action="next">'+(lcIndex===total-1?'結果を見る':'次へ')+'</button>'
+    + '</div></div>';
+}
+
+function lcResultHtml(){
+  var correct={3:0,4:0,5:0,6:0}, total={3:0,4:0,5:0,6:0};
+  PLACEMENT_QUESTIONS.forEach(function(item,i){
+    total[item.level]++;
+    if(lcAnswers[i]===item.answer) correct[item.level]++;
+  });
+  var rec=lcRecommend(correct,total);
+  var bands=[3,4,5,6].map(function(lv){
+    var c=correct[lv], t=total[lv], w=Math.round(c/t*100);
+    return '<div class="lc-band"><span class="badge">HSK'+lv+'</span>'
+      + '<span class="lcbar"><span style="width:'+w+'%"></span></span>'
+      + '<span class="lcsc">'+c+'/'+t+'</span></div>';
+  }).join('');
+  var picks=[3,4,5,6].map(function(lv){
+    var isRec=(lv===rec), ready=(LESSONS_BY_LEVEL['hsk'+lv].length>0);
+    return '<button class="lc-btn'+(isRec?' rec':'')+'" data-lc-action="pick" data-lv="'+lv+'">'
+      + 'HSK'+lv+(isRec?'（おすすめ）':'')+(ready?'':' ・準備中')+'</button>';
+  }).join('');
+  return '<div class="card">'
+    + '<span class="badge">査定結果</span>'
+    + '<div class="lc-result-lv">'+esc(PLACEMENT_LEVEL_INFO[rec].name)+'</div>'
+    + '<div class="lc-result-sub">学習をおすすめする級</div>'
+    + '<div class="lc-bands">'+bands+'</div>'
+    + '<div class="note">'+esc(PLACEMENT_LEVEL_INFO[rec].desc)+'</div>'
+    + '<h3 style="margin:18px 0 6px;font-size:15px">学習する級を選ぶ</h3>'
+    + '<div class="small muted">判定と違う級を選んでも構いません。</div>'
+    + '<div class="lc-pick">'+picks+'</div>'
+    + '<div class="lc-nav"><button class="lc-btn" data-lc-action="retry">もう一度テストする</button></div>'
+    + '</div>';
+}
+
+function lcSoonHtml(){
+  var info=PLACEMENT_LEVEL_INFO[lcSoonLevel]||{name:'HSK'+lcSoonLevel+'級',desc:''};
+  return '<div class="card">'
+    + '<span class="badge">'+esc(info.name)+'</span>'
+    + '<h2 style="margin:12px 0 6px;font-size:19px">このプログラムは準備中です</h2>'
+    + '<div class="small">'+esc(info.desc)+'</div>'
+    + '<div class="note">'+esc(info.name)+'の学習コンテンツ（単語・文法・テスト）は現在準備中です。追加され次第、ここから学習できるようになります。</div>'
+    + '<div class="lc-nav">'
+    + '<button class="lc-btn flex" data-lc-action="backToResult">判定結果へ戻る</button>'
+    + '<button class="lc-btn primary flex" data-lc-action="back">ホームへ</button>'
+    + '</div></div>';
+}
+
+function lcPick(lv){
+  try{ localStorage.setItem(SELECTED_LEVEL_KEY,'hsk'+lv); }catch(e){}
+  if(lv===4 && LESSONS_BY_LEVEL.hsk4.length>0){
+    showHome();
+  } else {
+    lcSoonLevel=lv; lcStage='soon'; render();
+  }
+}
+
+// 診断専用のクリックリスナー（既存ハンドラと完全に独立）
+document.addEventListener('click', function(e){
+  var b=e.target.closest && e.target.closest('[data-lc-action]');
+  if(!b) return;
+  var a=b.dataset.lcAction;
+  if(a==='start'){ lcStage='quiz'; lcIndex=0; lcAnswers={}; render(); }
+  else if(a==='answer'){ lcAnswers[lcIndex]=PLACEMENT_QUESTIONS[lcIndex].options[Number(b.dataset.opt)]; render(); }
+  else if(a==='prev'){ if(lcIndex>0){ lcIndex--; render(); } }
+  else if(a==='next'){
+    if(lcAnswers[lcIndex]==null) return;
+    if(lcIndex<PLACEMENT_QUESTIONS.length-1){ lcIndex++; render(); }
+    else { lcStage='result'; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+  }
+  else if(a==='retry'){ lcStage='start'; lcIndex=0; lcAnswers={}; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+  else if(a==='pick'){ lcPick(Number(b.dataset.lv)); }
+  else if(a==='backToResult'){ lcStage='result'; render(); }
+  else if(a==='back'){ showHome(); }
+});
+
 </script>
 </body></html>
