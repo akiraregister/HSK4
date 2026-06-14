@@ -77,23 +77,77 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .syncdot.on{background:#12b76a}.syncdot.warn{background:#f79009}.syncdot.err{background:#f04438}
 .cloud-note{font-size:11px;color:#667085;text-align:center;margin-top:4px}
 
+/* ===== 改善案（フィードバック②③④⑤⑥＋）追加スタイル ===== */
+:root{--blue:#2f6bf0;--amber:#f59e0b;--amberbg:#fffbeb;--red2:#dc2626;--redbg:#fef2f2}
+/* ④ 下部ボタン配色：前=淡色 / 完了=グリーン / 次=ブルー */
+#bottomPrev{background:#f2f4f7;color:#475467;border-color:#e5e7eb}
+#bottomComplete{background:var(--good);color:#fff;border-color:var(--good)}
+#bottomComplete.active{background:#ecfdf3;color:#067647;border-color:#abefc6}
+#bottomNext{background:var(--blue);color:#fff;border-color:var(--blue)}
+/* ②③ 学習画面内ツールバー（拼音/和訳トグル・密度・Day選択） */
+.daytools{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.modebar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;position:sticky;top:var(--top-h,64px);z-index:9;background:rgba(248,250,252,.97);backdrop-filter:blur(8px);padding:8px;border-radius:12px;box-shadow:0 4px 12px rgba(16,24,40,.07)}
+.chip-toggle{border:1px solid var(--line);background:#fff;color:#475467;border-radius:999px;padding:7px 14px;font-weight:700;font-size:13px;cursor:pointer;touch-action:manipulation}
+.chip-toggle.on{background:#eef2ff;border-color:#c7d2fe;color:#1d4ed8}
+.daybar{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.daybar select{flex:1;min-width:120px}
+.daybar button{flex:0 0 auto;background:#fff}
+/* ⑤ 難易度コントロール（普通/曖昧/苦手）＋カード左の色バー */
+.lvc{display:inline-flex;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:6px}
+.lvc button{border:0;border-radius:0;padding:4px 9px;font-size:11px;font-weight:800;background:#fff;color:#98a2b3}
+.lvc button+button{border-left:1px solid var(--line)}
+.lvc button.lvc-on-0{background:#f2f4f7;color:#475467}
+.lvc button.lvc-on-1{background:var(--amberbg);color:#b45309}
+.lvc button.lvc-on-2{background:var(--redbg);color:#b91c1c}
+.vitem.lv-1,.gitem.lv-1{border-left:5px solid var(--amber)}
+.vitem.lv-2,.gitem.lv-2{border-left:5px solid var(--red2)}
+/* ⑥ 密度（標準 / コンパクト） */
+/* ⑥ コンパクト＝「一覧／復習モード」：ブックマーク画面でのみ有効。
+   各項目を 中文＋拼音＋語義 に圧縮し、例文・文法詳細を畳んで件数を最大化する。
+   学習セクション(#content)には一切影響しない（常に標準＝詳細）。 */
+#bookmarkPanel.compact .card{padding:10px;margin:8px 0}
+#bookmarkPanel.compact .section-title{margin-bottom:6px}
+#bookmarkPanel.compact .section-title h2{font-size:16px}
+#bookmarkPanel.compact .vocab{gap:6px}
+#bookmarkPanel.compact .vitem,#bookmarkPanel.compact .gitem{padding:8px 10px}
+#bookmarkPanel.compact .gitem{margin:6px 0}
+#bookmarkPanel.compact .gitem h3{font-size:15px;margin:0}
+#bookmarkPanel.compact .zh{font-size:17px}
+#bookmarkPanel.compact .ja{margin-top:2px}
+/* 例文・文法の詳細解説は非表示（標準モードで読む） */
+#bookmarkPanel.compact .ex,
+#bookmarkPanel.compact .expinyin,
+#bookmarkPanel.compact .exja,
+#bookmarkPanel.compact .note{display:none}
+/* 難易度コントロールも小型化 */
+#bookmarkPanel.compact .lvc{margin-top:4px}
+#bookmarkPanel.compact .lvc button{padding:3px 8px;font-size:10px}
+#bookmarkPanel.compact .gitem .pinyin,#bookmarkPanel.compact .vitem .pinyin{margin-top:1px}
+/* ＋ ブックマークだけのミニテスト（フラッシュカード） */
+.testwrap .seg{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.testwrap .seg .chip-toggle.on{background:#eef2ff;border-color:#c7d2fe;color:#1d4ed8}
+.flashcard{border:1px solid var(--line);border-radius:18px;padding:22px 16px;background:#fff;text-align:center;box-shadow:0 6px 18px rgba(16,24,40,.05);margin-top:12px}
+.flashcard .fc-prompt{font-size:26px;font-weight:800;margin:6px 0}
+.flashcard .fc-sub{color:#475467;margin-top:4px}
+.flashcard .fc-answer{margin-top:14px;padding-top:14px;border-top:1px dashed #cbd5e1}
+.flashcard .fc-answer .a-main{font-size:24px;font-weight:800;color:#0c447c}
+.fc-actions{display:flex;gap:8px;margin-top:14px}
+.fc-actions button{flex:1}
+.fc-progress{text-align:center;color:#667085;font-size:13px;margin-top:10px}
+.btn-vague{background:var(--amberbg);color:#b45309;border-color:#fde68a}
+.btn-known{background:#ecfdf3;color:#067647;border-color:#abefc6}
+
 </style>
 </head>
 <body class="hidden-pinyin">
 <div class="top">
  <div class="top-inner">
   <h1>HSK4 90日ミニアプリ</h1>
-  <div class="row">
-   <button id="prevBtn">前の日</button>
-   <select id="daySelect"></select>
-   <button id="nextBtn">次の日</button>
-  </div>
   <div class="nav-tabs">
    <div class="nav-tab" id="homeBtn"><i class="ti ti-home" aria-hidden="true"></i><span>ホーム</span></div>
-   <div class="nav-tab" id="pinyinTab"><i class="ti ti-language" aria-hidden="true"></i><span>拼音非表示</span></div>
-   <div class="nav-tab active" id="jaTab"><i class="ti ti-text-size" aria-hidden="true"></i><span>日本語訳表示</span></div>
+   <div class="nav-tab" id="studyTab"><i class="ti ti-book-2" aria-hidden="true"></i><span>学習</span></div>
    <div class="nav-tab" id="bookmarkViewBtn"><i class="ti ti-bookmark" aria-hidden="true"></i><span>ブックマーク</span></div>
-   <div class="nav-tab" id="completeTab"><i class="ti ti-circle-check" aria-hidden="true"></i><span>このDayを完了</span></div>
+   <div class="nav-tab" id="testTab"><i class="ti ti-checkbox" aria-hidden="true"></i><span>テスト</span></div>
   </div>
 
   <div class="syncbar" id="syncBar">
@@ -122,9 +176,10 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 
 <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+// Firebaseは遅延読み込み（dynamic import）。読み込めなくてもアプリ本体は必ず動作し、
+// クラウド同期のみ無効化する。これにより外部CDN遮断やネットワーク不調で全画面が
+// ブランクになるのを防ぐ。
+let initializeApp, getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, onAuthStateChanged, signOut, getFirestore, doc, getDoc, setDoc, serverTimestamp;
 
 const firebaseConfig = {
   apiKey: "AIzaSyCXGj_exdeYVpfxePgo6HHShSQ-ArM4uDQ",
@@ -134,10 +189,31 @@ const firebaseConfig = {
   messagingSenderId: "1088820844889",
   appId: "1:1088820844889:web:2aebed464271c02f359448"
 };
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
-const db = getFirestore(firebaseApp);
-const provider = new GoogleAuthProvider();
+let firebaseApp=null, auth=null, db=null, provider=null;
+let firebaseReady=false;
+async function initFirebase(){
+  try{
+    const appMod  = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js");
+    const authMod = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js");
+    const fsMod   = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js");
+    initializeApp=appMod.initializeApp;
+    getAuth=authMod.getAuth; GoogleAuthProvider=authMod.GoogleAuthProvider;
+    signInWithPopup=authMod.signInWithPopup; signInWithRedirect=authMod.signInWithRedirect;
+    getRedirectResult=authMod.getRedirectResult; onAuthStateChanged=authMod.onAuthStateChanged; signOut=authMod.signOut;
+    getFirestore=fsMod.getFirestore; doc=fsMod.doc; getDoc=fsMod.getDoc; setDoc=fsMod.setDoc; serverTimestamp=fsMod.serverTimestamp;
+    firebaseApp=initializeApp(firebaseConfig);
+    auth=getAuth(firebaseApp);
+    db=getFirestore(firebaseApp);
+    provider=new GoogleAuthProvider();
+    firebaseReady=true;
+    getRedirectResult(auth).catch(e=>console.warn('Redirect result error',e));
+    onAuthStateChanged(auth, async (user)=>{ cloudUser=user; cloudReady=false; if(user){ setSyncStatus('warn','ログイン済み：同期準備中...',user.email||''); await loadCloudState(); } else { setSyncStatus('warn','未ログイン：この端末内に保存中'); } });
+  }catch(e){
+    console.warn('Firebase init failed; running local-only', e);
+    setSyncStatus('warn','オフライン：この端末内に保存中');
+    var lb=document.getElementById('loginBtn'); if(lb){ lb.disabled=true; lb.style.opacity='0.5'; lb.title='クラウド同期は現在利用できません'; }
+  }
+}
 let cloudUser = null;
 let cloudReady = false;
 let cloudLoading = false;
@@ -158,7 +234,7 @@ function setSyncStatus(kind, text, userText=''){
 function cloudDocRef(){ return cloudUser ? doc(db,'users',cloudUser.uid,'hsk4','state') : null; }
 function localUpdatedAt(){ const n=Number(localStorage.getItem(storageKey+'-updatedAtMs')||0); return Number.isFinite(n)?n:0; }
 function markLocalUpdated(){ localStorage.setItem(storageKey+'-updatedAtMs', String(nowMs())); }
-function normalizeStateForCloud(s){ return {completed:s.completed||{}, answers:s.answers||{}, scores:s.scores||{}, bookmarks:s.bookmarks||{}, dragOrders:s.dragOrders||{}, currentDay:current||1, updatedAtMs:nowMs(), appVersion:'firebase-sync-v1', storageKey:storageKey}; }
+function normalizeStateForCloud(s){ return {completed:s.completed||{}, answers:s.answers||{}, scores:s.scores||{}, bookmarks:s.bookmarks||{}, dragOrders:s.dragOrders||{}, levels:s.levels||{}, density:s.density||'standard', currentDay:current||1, updatedAtMs:nowMs(), appVersion:'firebase-sync-v1', storageKey:storageKey}; }
 async function saveCloudState(force=false){
   if(!cloudUser || ((!cloudReady)&&!force) || cloudLoading) return;
   try{ const payload=normalizeStateForCloud(state); payload.updatedAt=serverTimestamp(); await setDoc(cloudDocRef(), payload, {merge:true}); setSyncStatus('on','クラウド同期済み',cloudUser.email||''); }
@@ -180,6 +256,8 @@ async function loadCloudState(){
       state.completed=cloud.completed||{};state.answers=cloud.answers||{};
       state.scores=cloud.scores||{};state.bookmarks=cloud.bookmarks||{};
       state.dragOrders=cloud.dragOrders||{};
+      state.levels=cloud.levels||state.levels||{};
+      if(cloud.density) state.density=cloud.density;
       if(cloud.currentDay) current=Number(cloud.currentDay)||current;
       localStorage.setItem(storageKey,JSON.stringify(state));
       localStorage.setItem(storageKey+'-updatedAtMs',String(cloudTs));
@@ -195,10 +273,9 @@ async function loadCloudState(){
   } catch(e){console.error(e);setSyncStatus('err','同期エラー:'+(e.message||'不明'),cloudUser?.email||'');}
   finally{cloudLoading=false;}
 }
-window.hsk4GoogleLogin=async function(){ try{ setSyncStatus('warn','Googleログイン中...'); try{ await signInWithPopup(auth,provider); } catch(e){ console.warn('popup failed; redirect',e); await signInWithRedirect(auth,provider); } } catch(e){ console.error(e); setSyncStatus('err','ログインできませんでした'); } };
-window.hsk4Logout=async function(){ await saveCloudState(true); await signOut(auth); };
-getRedirectResult(auth).catch(e=>console.warn('Redirect result error',e));
-onAuthStateChanged(auth, async (user)=>{ cloudUser=user; cloudReady=false; if(user){ setSyncStatus('warn','ログイン済み：同期準備中...',user.email||''); await loadCloudState(); } else { setSyncStatus('warn','未ログイン：この端末内に保存中'); } });
+window.hsk4GoogleLogin=async function(){ if(!firebaseReady){ setSyncStatus('warn','クラウド同期は現在利用できません'); return; } try{ setSyncStatus('warn','Googleログイン中...'); try{ await signInWithPopup(auth,provider); } catch(e){ console.warn('popup failed; redirect',e); await signInWithRedirect(auth,provider); } } catch(e){ console.error(e); setSyncStatus('err','ログインできませんでした'); } };
+window.hsk4Logout=async function(){ if(!firebaseReady){ return; } await saveCloudState(true); await signOut(auth); };
+// 認証監視・リダイレクト結果の処理は initFirebase() 内（遅延読み込み後）で実行する。
 document.addEventListener('click', (e)=>{
   if(e.target&&e.target.id==='loginBtn') window.hsk4GoogleLogin();
   if(e.target&&e.target.id==='logoutBtn') window.hsk4Logout();
@@ -224,9 +301,18 @@ const LESSONS=[{"day": 1, "title": "Day 1｜HSK4 基礎強化", "vocab": [{"id":
 const $=id=>document.getElementById(id);
 let current=Number(localStorage.getItem('hsk4-current-day')||1);
 let homeView=true;
-let showAnswers=false, bookmarkView=false, selectedChip=null;
+let showAnswers=false, bookmarkView=false, testView=false, selectedChip=null;
 const storageKey='hsk4-90-v4-state';
 let state=JSON.parse(localStorage.getItem(storageKey)||'{"completed":{},"answers":{},"scores":{},"bookmarks":{},"dragOrders":{}}');
+if(!state.levels) state.levels={};            // ⑤ 難易度（0=普通/1=曖昧/2=苦手）。既存データには非破壊で追加
+// 旧ハイライト(hl: 難/苦手/覚えられない)を新3段階(levels)へ一度だけ移行（既存マークを保持）
+if(!localStorage.getItem('hsk4-hl-migrated-v1')){
+  Object.values(state.bookmarks||{}).forEach(function(b){
+    if(b && b.hl && !(b.id in state.levels)){ state.levels[b.id] = b.hl>=2 ? 2 : 1; }
+  });
+  localStorage.setItem('hsk4-hl-migrated-v1','1');
+}
+if(typeof state.density!=='string') state.density='standard'; // ⑥ 密度（standard/compact）
 if(!localStorage.getItem(storageKey+'-updatedAtMs')&&localStorage.getItem(storageKey)) localStorage.setItem(storageKey+'-updatedAtMs', String(Date.now()));
 // v10 migration: older versions stored order answers as plain strings.
 // The tap-order UI expects objects like {idx, word}. Remove old incompatible entries.
@@ -242,7 +328,7 @@ if(state.dragOrders){
 function save(){localStorage.setItem(storageKey,JSON.stringify(state));localStorage.setItem('hsk4-current-day',current);markLocalUpdated();scheduleCloudSave()}
 function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function lesson(){return LESSONS[current-1]}
-function initSelect(){ $('daySelect').innerHTML=LESSONS.map(l=>`<option value="${l.day}">Day ${l.day}${state.completed[l.day]?' ✓':''}</option>`).join(''); $('daySelect').value=current}
+function initSelect(){ const s=$('daySelect'); if(!s)return; s.innerHTML=LESSONS.map(l=>`<option value="${l.day}">Day ${l.day}${state.completed[l.day]?' ✓':''}</option>`).join(''); s.value=current}
 function isBookmarked(id){return !!state.bookmarks[id]}
 function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){if(state.bookmarks[id]){delete state.bookmarks[id];}else{state.bookmarks[id]={id,type,title,sub,day:current,pinyin:pinyin||'',example:example||'',exPinyin:exPinyin||'',exJa:exJa||'',hl:0};}save();render();}
 function fmtBmItem(b){
@@ -253,17 +339,16 @@ function fmtBmItem(b){
       if(l2){var arr=m2[2]==='v'?l2.vocab:l2.grammar,item2=arr[Number(m2[3])];
         if(item2){ex=item2.example||'';exP=item2.exPinyin||'';exJ=item2.exJa||'';pin=item2.pinyin||'';}}}
   }
-  var hl=b.hl||0,hlL=['','⭐難','🔶苦手','🔴覚えられない'];
-  var h='<div class="vitem hl-'+hl+'"><div class="vitem-inner" style="padding:12px;border-radius:12px">';
+  var lv=state.levels[b.id]||0;
+  var h='<div class="vitem lv-'+lv+'"><div class="vitem-inner" style="padding:12px;border-radius:12px">';
   h+='<div class="item-head"><div>';
   h+='<span class="badge">'+esc(b.type)+'</span><span class="badge">Day '+b.day+'</span>';
-  if(hl>0) h+='<span class="hl-badge hl-badge-'+hl+'">'+hlL[hl]+'</span>';
-  h+='<div class="zh">'+esc(b.title)+' <button class="speak-btn" onclick="speakZh(\''+b.title.replace(/\'/g,"\'")+'\')">🔊</button></div>';
+  h+='<div class="zh">'+esc(b.title)+' <button class="speak-btn" onclick="speakZh(\''+esc(b.title)+'\')">🔊</button></div>';
   if(pin) h+='<div class="pinyin">'+esc(pin)+'</div>';
   h+='<div class="small">'+esc(b.sub||'')+'</div>';
+  h+=lvControl(b.id);
   h+='</div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">';
   h+='<button class="bookmark active" data-action="removeBookmark" data-id="'+b.id+'">★</button>';
-  h+='<button class="hl-btn" onclick="window.cycleHighlight(\''+b.id+'\')">'+( hl===0?'🏷️':hlL[hl] )+'</button>';
   h+='</div></div>';
   if(ex){h+='<div class="ex"><div style="color:#1a3c5e;font-weight:600">'+esc(ex)+'</div>';
     if(exP) h+='<div class="small" style="color:#475467">'+esc(exP)+'</div>';
@@ -280,8 +365,8 @@ function cycleHighlight(id){
 }
 
 function renderBookmarkPanel(){
-  var items=Object.values(state.bookmarks||{}).sort(function(a,b){return (b.hl||0)-(a.hl||0)||(a.day-b.day);});
-  $('bookmarkPanel').className='bookmark-panel card'+(bookmarkView?' active':'');
+  var items=Object.values(state.bookmarks||{}).sort(function(a,b){return ((state.levels[b.id]||0)-(state.levels[a.id]||0))||(a.day-b.day);});
+  $('bookmarkPanel').className='bookmark-panel card'+(bookmarkView?' active':'')+(state.density==='compact'?' compact':'');
   var bvb=$('bookmarkViewBtn');
   if(bvb){
     var sp=bvb.querySelector('span');
@@ -289,8 +374,11 @@ function renderBookmarkPanel(){
     bvb.classList.toggle('active', bookmarkView);
   }
   var inner='<div class="section-title"><h2>ブックマークだけ表示</h2><span class="badge">'+items.length+'件</span></div>';
-  inner+='<div class="small" style="margin-bottom:10px">🏷️ タップでハイライト（⭐→🔶→🔴→解除）</div>';
+  inner+='<div class="small" style="margin-bottom:10px">難易度（普通／曖昧／苦手）をタップで切替。苦手が上に並びます。</div>';
+  inner+='<div class="row" style="margin:4px 0 8px;gap:8px">';
   inner+='<button class="primary" data-action="showHome">通常の学習画面に戻る</button>';
+  inner+='<button type="button" class="chip-toggle '+(state.density==='compact'?'on':'')+'" onclick="toggleDensity()">'+(state.density==='compact'?'表示：コンパクト（一覧）':'表示：標準（詳細）')+'</button>';
+  inner+='</div>';
   inner+=items.length?items.map(fmtBmItem).join(''):'<div class="empty">まだブックマークがありません。単語・文法の右上の ☆ を押すとここに集まります。</div>';
   $('bookmarkPanel').innerHTML=inner;
 }
@@ -347,6 +435,10 @@ function toggleBookmarkHint(){
 }
 
 function render(){
+ applyDensity();
+ setTopOffset();
+ setActiveTab(testView?'testTab':homeView?'homeBtn':bookmarkView?'bookmarkViewBtn':'studyTab');
+ if(testView){ if($('bottomNav')) $('bottomNav').style.display='none'; renderTestScreen(); return; }
  if(homeView){ renderHome(); return; }
  save(); initSelect(); renderBookmarkPanel();
  if($('bottomNav')) $('bottomNav').style.display='flex';
@@ -359,16 +451,25 @@ function render(){
  c.style.display='';
  c.className=showAnswers?'show-answers':'';
  c.innerHTML=`
+  <div class="daybar">
+   <button type="button" onclick="setDay(${current-1})">‹ 前の日</button>
+   <select id="daySelect" onchange="setDay(Number(this.value))">${LESSONS.map(d=>`<option value="${d.day}"${d.day===current?' selected':''}>Day ${d.day}${state.completed[d.day]?' ✓':''}</option>`).join('')}</select>
+   <button type="button" onclick="setDay(${current+1})">次の日 ›</button>
+  </div>
+  <div class="modebar">
+   <button type="button" class="chip-toggle ${document.body.classList.contains('hidden-pinyin')?'':'on'}" id="pinyinChip" onclick="togglePinyin()">拼音</button>
+   <button type="button" class="chip-toggle ${document.body.classList.contains('hidden-ja')?'':'on'}" id="jaChip" onclick="toggleJa()">和訳</button>
+  </div>
   <div class="card">
    <div class="section-title"><h2>${esc(l.title)}</h2><span class="badge">${state.completed[l.day]?'完了済み':'未完了'}</span></div>
    <div class="small">今日の内容：単語5個・文法3つ・ミニテスト5問</div>
    ${state.scores[l.day]!=null?`<div class="scorebox">前回のミニテスト：<b>自動採点 ${state.scores[l.day]}/4</b> ＋ 作文1問</div>`:''}
   </div>
   <div class="card">
-   <div class="section-title"><h2>単語5個</h2><span class="badge">重複なし</span></div>
+   <div class="section-title"><h2>単語5個</h2></div>
    <div class="vocab">${l.vocab.map((v,i)=>`
-    <div class="vitem">
-     <div class="item-head"><div><div class="zh">${i+1}. ${esc(v.zh)} <button class="speak-btn" onclick="speakZh('${esc(v.zh)}')" title="発音">🔊</button></div><div class="pinyin">${esc(v.pinyin)}</div><div class="ja">${esc(v.ja)}</div></div>
+    <div class="vitem lv-${state.levels[v.id]||0}">
+     <div class="item-head"><div><div class="zh">${i+1}. ${esc(v.zh)} <button class="speak-btn" onclick="speakZh('${esc(v.zh)}')" title="発音">🔊</button></div><div class="pinyin">${esc(v.pinyin)}</div><div class="ja">${esc(v.ja)}</div>${lvControl(v.id)}</div>
      <button class="bookmark ${isBookmarked(v.id)?'active':''}" onclick="toggleBookmark('${v.id}','単語','${esc(v.zh)}','${esc(v.pinyin)}｜${esc(v.ja)}')">${isBookmarked(v.id)?'★':'☆'}</button></div>
      <div class="ex">${esc(v.example)} <button class="speak-btn" onclick="speakZh('${esc(v.example)}')" title="例文を聞く">🔊</button></div><div class="pinyin expinyin">${esc(v.exPinyin)}</div><div class="ja exja">${esc(v.exJa)}</div>
     </div>`).join('')}</div>
@@ -376,8 +477,8 @@ function render(){
   <div class="card">
    <div class="section-title"><h2>文法3つ</h2><span class="badge">解説強化</span></div>
    ${l.grammar.map((g,i)=>`
-    <div class="gitem">
-     <div class="item-head"><div><h3>${i+1}. ${esc(g.name)}</h3><div class="pinyin">${esc(g.pinyin)}</div><div class="ja"><span class="label">意味：</span>${esc(g.meaning)}</div></div>
+    <div class="gitem lv-${state.levels[g.id]||0}">
+     <div class="item-head"><div><h3>${i+1}. ${esc(g.name)}</h3><div class="pinyin">${esc(g.pinyin)}</div><div class="ja"><span class="label">意味：</span>${esc(g.meaning)}</div>${lvControl(g.id)}</div>
      <button class="bookmark ${isBookmarked(g.id)?'active':''}" onclick="toggleBookmark('${g.id}','文法','${esc(g.name)}','${esc(g.meaning)}')">${isBookmarked(g.id)?'★':'☆'}</button></div>
      <div class="note"><span class="label">解説：</span>${esc(g.explain)}</div>
      <div class="note"><span class="label">違い・注意：</span>${esc(g.contrast)}</div>
@@ -484,9 +585,33 @@ function updateCompleteButtons(){
  if(bc){bc.textContent=done?'完了済み':'完了';bc.className='complete'+(done?' active':'');}
 }
 function toggleComplete(){state.completed[current]=!state.completed[current];save();render();}
+
+// ===== 改善案：難易度コントロール（⑤）・拼音/和訳・密度（②⑥） =====
+function lvControl(id){
+  var lv=state.levels[id]||0, labels=['普通','曖昧','苦手'];
+  return '<div class="lvc">'+labels.map(function(t,n){
+    return '<button type="button" class="'+(lv===n?'lvc-on-'+n:'')+'" onclick="setLevel(\''+id+'\','+n+')">'+t+'</button>';
+  }).join('')+'</div>';
+}
+function setLevel(id,n){ state.levels[id]=n; save(); render(); }
+function togglePinyin(){
+  document.body.classList.toggle('hidden-pinyin');
+  var on=!document.body.classList.contains('hidden-pinyin'), c=$('pinyinChip');
+  if(c) c.classList.toggle('on',on);
+}
+function toggleJa(){
+  document.body.classList.toggle('hidden-ja');
+  var on=!document.body.classList.contains('hidden-ja'), c=$('jaChip');
+  if(c) c.classList.toggle('on',on);
+}
+function applyDensity(){ /* 密度はブックマークパネル内だけに適用（renderBookmarkPanelでクラス付与）。学習セクションには適用しない。 */ }
+function setTopOffset(){ var t=document.querySelector('.top'); if(t) document.documentElement.style.setProperty('--top-h', t.offsetHeight+'px'); }
+function toggleDensity(){
+  state.density = state.density==='compact' ? 'standard' : 'compact';
+  save(); render();
+}
 // homeBtn handled by setupNavTabs;
-$('daySelect').onchange=e=>setDay(Number(e.target.value));
-$('prevBtn').onclick=()=>setDay(current-1); $('nextBtn').onclick=()=>setDay(current+1);
+// Day選択・前/次は学習画面内に移動し inline onclick/onchange で処理（②③）
 $('bottomPrev').onclick=()=>setDay(current-1); $('bottomNext').onclick=()=>setDay(current+1);
 // completeBtn handled by setupNavTabs; bottomComplete stays
 if($('bottomComplete')) $('bottomComplete').onclick=toggleComplete;
@@ -497,16 +622,131 @@ if(false && $('jaBtn'))$('jaBtn').onclick=()=>{document.body.classList.toggle('h
 var _ansBtn=$('answerBtn');if(_ansBtn)_ansBtn.onclick=()=>{showAnswers=!showAnswers;_ansBtn.textContent=showAnswers?'解答を隠す':'解答を表示';_ansBtn.className='toggle '+(showAnswers?'on':'off');$('content').className=showAnswers?'show-answers':''}
 var _prevHV=false;
 document.getElementById('bookmarkViewBtn').addEventListener('click', function(){
-  if(!bookmarkView){_prevHV=homeView;homeView=false;bookmarkView=true;}
+  if(!bookmarkView){_prevHV=homeView;homeView=false;testView=false;bookmarkView=true;}
   else{homeView=_prevHV;bookmarkView=false;}
   render();window.scrollTo({top:0,behavior:'smooth'});
 });
 
 // Expose module-scoped functions for inline handlers.
 // This is necessary because this file uses <script type="module"> for Firebase imports.
-function showDay(d){ bookmarkView=false; homeView=false; setDay(Number(d)); }
-function showBookmarks(){ bookmarkView=true; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
-function showHome(){ bookmarkView=false; homeView=true; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showDay(d){ bookmarkView=false; testView=false; homeView=false; setDay(Number(d)); }
+function showBookmarks(){ bookmarkView=true; testView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showHome(){ bookmarkView=false; testView=false; homeView=true; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showStudy(){ bookmarkView=false; testView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showTest(){ bookmarkView=false; testView=true; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function setActiveTab(id){ document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.toggle('active', t.id===id);}); }
+
+// ===== ＋ ブックマークだけのミニテスト（フラッシュカード） =====
+var _btCfg={range:'all',type:'both',dir:'ja2zh',count:'5'};
+var _bt=null; // 実行中セッション
+function _btEx(b){
+  var ex=b.example||'',exP=b.exPinyin||'',exJ=b.exJa||'',pin=b.pinyin||'';
+  if(!ex){
+    var m=String(b.id||'').match(/^d(\d+)-([vg])(\d+)$/);
+    if(m){var l2=LESSONS.find(function(l){return l.day===Number(m[1]);});
+      if(l2){var arr=m[2]==='v'?l2.vocab:l2.grammar,it=arr[Number(m[3])];
+        if(it){ex=it.example||'';exP=it.exPinyin||'';exJ=it.exJa||'';pin=pin||it.pinyin||'';}}}
+  }
+  return {ex:ex,exP:exP,exJ:exJ,pin:pin};
+}
+// ブックマーク1件から 中文(zh)・拼音(pin)・日本語語義(ja) を分離して取り出す。
+// 単語の sub は「拼音｜和訳」形式なので、拼音と和訳を分けて拼音が表に漏れないようにする。
+function _btParts(b){
+  var ex=_btEx(b);
+  var zh=b.title||'', pin=b.pinyin||ex.pin||'', ja=b.sub||'';
+  if(b.type==='単語'){
+    var sp=String(b.sub||'').split('｜');
+    if(sp.length>1){ if(!pin) pin=sp[0]; ja=sp.slice(1).join('｜'); }
+  }
+  return {zh:zh, pin:pin, ja:ja, ex:ex};
+}
+function _btBuildPool(){
+  var items=Object.values(state.bookmarks||{});
+  var pool=_shuffle(items.filter(function(b){
+    if(_btCfg.type==='word'    && b.type!=='単語') return false;
+    if(_btCfg.type==='grammar' && b.type!=='文法') return false;
+    var lv=state.levels[b.id]||0;
+    if(_btCfg.range==='hard'  && lv<2) return false;
+    if(_btCfg.range==='vague' && lv<1) return false;
+    return true;
+  }));
+  if(_btCfg.count!=='all') pool=pool.slice(0, Number(_btCfg.count));
+  return pool;
+}
+function btSet(group,val){ _btCfg[group]=val; renderTestScreen(); }
+function btStart(){
+  var pool=_btBuildPool();
+  if(!pool.length){ alert('条件に合うブックマークがありません。範囲・種類を見直すか、学習画面で☆を付けてください。'); return; }
+  _bt={pool:pool, idx:0, revealed:false, vague:0};
+  renderTestScreen();
+}
+function btReveal(){ if(_bt){ _bt.revealed=true; renderTestScreen(); } }
+function btNext(markVague){
+  if(!_bt) return;
+  var b=_bt.pool[_bt.idx];
+  if(markVague && b){ state.levels[b.id]=2; _bt.vague++; save(); } // あやふや→苦手(2)に登録
+  _bt.idx++; _bt.revealed=false;
+  renderTestScreen();
+}
+function btRestart(){ _bt=null; renderTestScreen(); }
+function renderTestScreen(){
+  var c=$('content'); c.style.display=''; c.className='';
+  $('bookmarkPanel').className='bookmark-panel card';
+  var total=Object.keys(state.bookmarks||{}).length;
+  // 実行中のフラッシュカード
+  if(_bt && _bt.idx<_bt.pool.length){
+    var b=_bt.pool[_bt.idx], p=_btParts(b), ex=p.ex;
+    var dir=_btCfg.dir; // 'ja2zh'=日本語→中文・拼音 / 'zh2ja'=中文→日本語
+    var front, backMain, backSub, frontIsZh;
+    if(dir==='ja2zh'){ front=p.ja; backMain=p.zh; backSub=p.pin; frontIsZh=false; }
+    else            { front=p.zh; backMain=p.ja; backSub=p.pin; frontIsZh=true; }
+    var spk='<button class="speak-btn" onclick="speakZh(\''+esc(p.zh)+'\')">🔊</button>';
+    var h='<div class="card testwrap"><div class="section-title"><h2>ブックマークテスト</h2><span class="badge">'+(_bt.idx+1)+' / '+_bt.pool.length+'</span></div>';
+    h+='<div class="flashcard"><span class="badge">'+esc(b.type)+'</span><span class="badge">Day '+b.day+'</span>';
+    h+='<div class="fc-prompt">'+esc(front)+(frontIsZh?' '+spk:'')+'</div>';
+    if(!_bt.revealed){
+      h+='<div class="fc-sub">'+(dir==='ja2zh'?'→ 中国語と拼音を思い出そう':'→ 拼音と意味を思い出そう')+'</div>';
+      h+='<div class="fc-actions"><button class="primary" onclick="btReveal()">答えを見る</button></div>';
+    } else {
+      h+='<div class="fc-answer"><div class="a-main">'+esc(backMain)+(!frontIsZh?' '+spk:'')+'</div>';
+      if(backSub) h+='<div class="fc-sub">'+esc(backSub)+'</div>';
+      if(ex.ex) h+='<div class="ex" style="text-align:left;margin-top:10px"><div style="color:#1a3c5e;font-weight:600">'+esc(ex.ex)+' <button class="speak-btn" onclick="speakZh(\''+esc(ex.ex)+'\')">🔊</button></div>'+(ex.exP?'<div class="small">'+esc(ex.exP)+'</div>':'')+(ex.exJ?'<div class="small">'+esc(ex.exJ)+'</div>':'')+'</div>';
+      h+='</div>';
+      h+='<div class="fc-actions"><button class="btn-known" onclick="btNext(false)">✓ わかった</button><button class="btn-vague" onclick="btNext(true)">△ あやふや（苦手に登録）</button></div>';
+    }
+    h+='</div>';
+    h+='<div class="fc-progress">「あやふや」を選ぶと、その項目は自動で「苦手」に印が付きます。</div>';
+    h+='<div class="row" style="margin-top:10px"><button onclick="btRestart()">テストを終了</button></div>';
+    h+='</div>';
+    c.innerHTML=h; return;
+  }
+  // 終了画面
+  if(_bt && _bt.idx>=_bt.pool.length){
+    var n=_bt.pool.length, vg=_bt.vague;
+    c.innerHTML='<div class="card testwrap"><div class="section-title"><h2>テスト終了</h2><span class="badge">'+n+'問</span></div>'+
+      '<div class="scorebox">お疲れさまでした。<b>'+n+'問</b>を確認しました。<br>「あやふや（苦手）」に登録：<b>'+vg+'件</b><br><span class="small muted">苦手に付けた項目は範囲「苦手のみ」で重点復習できます。</span></div>'+
+      '<div class="row" style="margin-top:12px"><button class="primary" onclick="btRestart()">もう一度設定する</button><button onclick="showBookmarks()">ブックマークを見る</button></div></div>';
+    _bt=null; return;
+  }
+  // 設定画面
+  function seg(group,opts){
+    return '<div class="seg">'+opts.map(function(o){
+      return '<button type="button" class="chip-toggle '+(_btCfg[group]===o.v?'on':'')+'" onclick="btSet(\''+group+'\',\''+o.v+'\')">'+o.t+'</button>';
+    }).join('')+'</div>';
+  }
+  var avail=_btBuildPool().length;
+  var html='<div class="card testwrap"><div class="section-title"><h2>ブックマークテスト</h2><span class="badge">★ '+total+'件</span></div>'+
+    '<div class="small">☆を付けた単語・文法だけで出題します。範囲・種類・方向・問題数を選んで開始してください。</div>'+
+    '<div class="label" style="margin-top:12px">範囲</div>'+seg('range',[{v:'all',t:'すべて'},{v:'vague',t:'曖昧＋苦手'},{v:'hard',t:'苦手のみ'}])+
+    '<div class="label">種類</div>'+seg('type',[{v:'both',t:'単語＋文法'},{v:'word',t:'単語'},{v:'grammar',t:'文法'}])+
+    '<div class="label">方向</div>'+seg('dir',[{v:'ja2zh',t:'日本語 → 中文・拼音'},{v:'zh2ja',t:'中文 → 日本語'}])+
+    '<div class="label">問題数</div>'+seg('count',[{v:'5',t:'5問'},{v:'10',t:'10問'},{v:'all',t:'全部'}])+
+    '<div class="small muted" style="margin-top:10px">この条件で出題できる件数：<b>'+avail+'件</b></div>'+
+    '<button class="primary" style="width:100%;margin-top:12px" onclick="btStart()">テスト開始</button>'+
+    (total===0?'<div class="empty" style="margin-top:10px">まだブックマークがありません。学習画面で単語・文法の ☆ を押すと、ここでテストできます。</div>':'')+
+    '</div>';
+  c.innerHTML=html;
+}
 Object.assign(window, {
   state,
   save,
@@ -514,45 +754,38 @@ Object.assign(window, {
   setDay,
   showDay,
   showHome,
+  showStudy,
+  showTest,
   showBookmarks,
   toggleBookmark,
   toggleBookmarkHint,
   gradeTest,
   selectOrderChip,
   undoOrderChip,
-  resetOrderChips
+  resetOrderChips,
+  setLevel,
+  togglePinyin,
+  toggleJa,
+  toggleDensity,
+  btSet,
+  btStart,
+  btReveal,
+  btNext,
+  btRestart
 });
 
 render();
+// モードバー固定位置（ヘッダー高さ）をリサイズ・初期描画後に追従
+window.addEventListener('resize', setTopOffset);
+setTopOffset();
+setTimeout(setTopOffset, 300); // Webフォント/アイコン読込後のズレを補正
 
-// nav-tab クリックハンドラ
+
 (function setupNavTabs(){
-  var ht=document.getElementById('homeBtn');
-  if(ht) ht.addEventListener('click',function(){
-    showHome();
-    document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active');});
-    ht.classList.add('active');
-  });
-  var pt=document.getElementById('pinyinTab');
-  if(pt) pt.addEventListener('click',function(){
-    document.body.classList.toggle('hidden-pinyin');
-    var hidden=document.body.classList.contains('hidden-pinyin');
-    pt.classList.toggle('active',!hidden);
-    var sp=pt.querySelector('span');
-    if(sp) sp.textContent=hidden?'拼音表示':'拼音非表示';
-  });
-  var jt=document.getElementById('jaTab');
-  if(jt) jt.addEventListener('click',function(){
-    document.body.classList.toggle('hidden-ja');
-    var hiddenJ=document.body.classList.contains('hidden-ja');
-    jt.classList.toggle('active',!hiddenJ);
-    var spj=jt.querySelector('span');
-    if(spj) spj.textContent=hiddenJ?'日本語訳表示':'日本語訳非表示';
-  });
-  var ct=document.getElementById('completeTab');
-  if(ct) ct.addEventListener('click',function(){
-    if(typeof toggleComplete==='function') toggleComplete();
-  });
+  var ht=document.getElementById('homeBtn');  if(ht) ht.addEventListener('click', showHome);
+  var st=document.getElementById('studyTab'); if(st) st.addEventListener('click', showStudy);
+  var tt=document.getElementById('testTab');  if(tt) tt.addEventListener('click', showTest);
+  // ブックマークタブは別途 bookmarkViewBtn のハンドラで処理
 })();
 
 // ===== ローカルチャレンジ問題生成 =====
@@ -739,6 +972,18 @@ window.speakZh = function(text){
 window._aiPickIdx = _aiPickIdx;
 window._aiClose = _aiClose;
 window.cycleHighlight = cycleHighlight;
+// 改善案（②⑤⑥＋）で追加した関数も明示公開
+window.setLevel = setLevel;
+window.togglePinyin = togglePinyin;
+window.toggleJa = toggleJa;
+window.toggleDensity = toggleDensity;
+window.showStudy = showStudy;
+window.showTest = showTest;
+window.btSet = btSet;
+window.btStart = btStart;
+window.btReveal = btReveal;
+window.btNext = btNext;
+window.btRestart = btRestart;
 
 // Service Worker登録（PWA用）
 if('serviceWorker' in navigator){
@@ -763,6 +1008,8 @@ window.hsk4ForceDownload=async function(){
     suppressCloudSave=true;
     state.completed=cl.completed||{};state.answers=cl.answers||{};
     state.scores=cl.scores||{};state.bookmarks=cl.bookmarks||{};state.dragOrders=cl.dragOrders||{};
+    state.levels=cl.levels||state.levels||{};
+    if(cl.density) state.density=cl.density;
     if(cl.currentDay)current=Number(cl.currentDay)||current;
     localStorage.setItem(storageKey,JSON.stringify(state));
     localStorage.setItem(storageKey+'-updatedAtMs',String(Number(cl.updatedAtMs||0)));
@@ -772,5 +1019,7 @@ window.hsk4ForceDownload=async function(){
     if(typeof render==='function')render();
   }catch(e){setSyncStatus('err','取得エラー:'+(e.message||'不明'),cloudUser&&cloudUser.email?cloudUser.email:'');}
 };
+// アプリ本体の描画が完了した後に Firebase を遅延起動（失敗してもアプリは動作）
+initFirebase();
 </script>
 </body></html>
