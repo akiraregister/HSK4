@@ -1,33 +1,24 @@
 {
   "name": "HSK4 90日ミニアプリ",
   "short_name": "HSK4",
-  "description": "HSK4級 90日学習アプリ — 単語・文法・ミニテスト",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#111827",
-  "theme_color": "#111827",
-  "lang": "ja",
+  "background_color": "#ffffff",
+  "theme_color": "#E6F1FB",
   "icons": [
     {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "apple-touch-icon.png",
+      "src": "icons/HSK4-icon-A-180.png",
       "sizes": "180x180",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/HSK4-icon-A-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
     }
-  ],
-  "categories": ["education"],
-  "screenshots": []
+  ]
 }
