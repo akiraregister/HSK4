@@ -169,7 +169,7 @@ mark.cw-hl{background:#fff3cd;color:inherit;border-radius:3px;padding:0 1px}
 .cw-item-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
 .cw-item .zh{font-size:17px;font-weight:700}
 .cw-del{border:none;background:transparent;font-size:16px;cursor:pointer;line-height:1}
-#cw-fab{position:absolute;z-index:9998;transform:translateX(-50%);background:#0C447C;color:#fff;border:none;border-radius:999px;padding:8px 14px;font:inherit;font-weight:700;font-size:13px;box-shadow:0 6px 16px rgba(12,68,124,.35);cursor:pointer;display:none}
+#cw-fab{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:9998;background:#0C447C;color:#fff;border:none;border-radius:999px;padding:13px 22px;font:inherit;font-weight:700;font-size:14px;box-shadow:0 10px 28px rgba(12,68,124,.45);cursor:pointer;display:none;max-width:90vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #cw-modal{position:fixed;inset:0;z-index:9999;background:rgba(16,24,40,.45);display:none;align-items:center;justify-content:center;padding:16px}
 .cw-modal-card{background:#fff;border-radius:18px;padding:18px;width:100%;max-width:440px;max-height:88vh;overflow:auto;box-shadow:0 20px 50px rgba(16,24,40,.3)}
 .cw-modal-h{font-size:18px;font-weight:800;margin-bottom:10px;color:#0C447C}
@@ -1320,25 +1320,24 @@ function cwOnSelectEnd(){
   if(!text || text.length>20){ cwHideFab(); return; }
   var exEl=cwGetExEl(sel.anchorNode)||cwGetExEl(sel.focusNode);
   if(!exEl){ cwHideFab(); return; }
-  var r=sel.getRangeAt(0).getBoundingClientRect();
   cwSel={ text:text, ex:exEl.getAttribute('data-ex')||exEl.textContent||'', exp:exEl.getAttribute('data-exp')||'', exj:exEl.getAttribute('data-exj')||'' };
-  cwShowFab(r);
+  cwShowFab(text);
 }
-function cwShowFab(r){
+function cwShowFab(text){
   if(!cwFab){
-    cwFab=document.createElement('button'); cwFab.id='cw-fab'; cwFab.textContent='＋単語を追加';
+    cwFab=document.createElement('button'); cwFab.id='cw-fab';
     cwFab.addEventListener('mousedown',function(e){e.preventDefault();});
     cwFab.addEventListener('click',function(e){e.preventDefault();e.stopPropagation(); if(cwSel) cwOpenModal(cwSel);});
     document.body.appendChild(cwFab);
   }
-  var top=(window.scrollY||window.pageYOffset)+r.top-44;
-  var left=(window.scrollX||window.pageXOffset)+r.left+(r.width/2);
-  cwFab.style.top=Math.max(8,top)+'px'; cwFab.style.left=left+'px'; cwFab.style.display='block';
+  var disp=text.length>8?text.slice(0,8)+'…':text;
+  cwFab.textContent='＋「'+disp+'」をマイ単語に追加';
+  cwFab.style.display='block';
 }
 function cwHideFab(){ if(cwFab) cwFab.style.display='none'; }
-document.addEventListener('mouseup', function(){ setTimeout(cwOnSelectEnd,10); });
+document.addEventListener('selectionchange', function(){ setTimeout(cwOnSelectEnd,0); });
 document.addEventListener('touchend', function(){ setTimeout(cwOnSelectEnd,10); });
-document.addEventListener('scroll', cwHideFab, true);
+document.addEventListener('mouseup', function(){ setTimeout(cwOnSelectEnd,10); });
 
 /* ---- 追加フォーム（モーダル） ---- */
 function cwOpenModal(selObj){
