@@ -845,6 +845,7 @@ render();
 window.addEventListener('resize', setTopOffset);
 setTopOffset();
 setTimeout(setTopOffset, 300); // Webフォント/アイコン読込後のズレを補正
+(function(){ var t=document.querySelector('.top'); if(t && window.ResizeObserver){ new ResizeObserver(function(){ setTopOffset(); }).observe(t); } })(); // 同期バーの行数変化などでヘッダー高さが変わっても追従
 
 
 (function setupNavTabs(){
