@@ -160,6 +160,23 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .lc-btn.rec{border-color:#EF9F27;background:#fffbeb;color:#633806}
 .lc-btn.flex{flex:1}
 .lc-startlist{margin:14px 0 0;padding:0;list-style:none;color:#344054;line-height:1.7;font-size:14px}.lc-startlist li{padding-left:18px;position:relative}.lc-startlist li:before{content:"・";position:absolute;left:2px}
+.cw-ex{cursor:text}
+mark.cw-hl{background:#fff3cd;color:inherit;border-radius:3px;padding:0 1px}
+.cw-subtabs{display:flex;gap:8px;margin-bottom:12px}
+.cw-subtab{flex:1;border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px;font:inherit;font-weight:700;color:#475467;cursor:pointer}
+.cw-subtab.active{border-color:#EF9F27;background:#fffbeb;color:#633806}
+.cw-item{border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+.cw-item-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.cw-item .zh{font-size:17px;font-weight:700}
+.cw-del{border:none;background:transparent;font-size:16px;cursor:pointer;line-height:1}
+#cw-fab{position:absolute;z-index:9998;transform:translateX(-50%);background:#0C447C;color:#fff;border:none;border-radius:999px;padding:8px 14px;font:inherit;font-weight:700;font-size:13px;box-shadow:0 6px 16px rgba(12,68,124,.35);cursor:pointer;display:none}
+#cw-modal{position:fixed;inset:0;z-index:9999;background:rgba(16,24,40,.45);display:none;align-items:center;justify-content:center;padding:16px}
+.cw-modal-card{background:#fff;border-radius:18px;padding:18px;width:100%;max-width:440px;max-height:88vh;overflow:auto;box-shadow:0 20px 50px rgba(16,24,40,.3)}
+.cw-modal-h{font-size:18px;font-weight:800;margin-bottom:10px;color:#0C447C}
+.cw-l{display:block;font-size:12px;font-weight:700;color:#667085;margin:10px 0 4px}
+.cw-in{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;font:inherit;box-sizing:border-box}
+.cw-row{display:flex;gap:8px;align-items:center}.cw-row .cw-in{flex:1}
+.cw-modal-actions{display:flex;gap:10px;margin-top:16px}.cw-modal-actions .lc-btn{flex:1}
 </style>
 </head>
 <body class="hidden-pinyin">
@@ -258,7 +275,7 @@ function setSyncStatus(kind, text, userText=''){
 function cloudDocRef(){ return cloudUser ? doc(db,'users',cloudUser.uid,'hsk4','state') : null; }
 function localUpdatedAt(){ const n=Number(localStorage.getItem(storageKey+'-updatedAtMs')||0); return Number.isFinite(n)?n:0; }
 function markLocalUpdated(){ localStorage.setItem(storageKey+'-updatedAtMs', String(nowMs())); }
-function normalizeStateForCloud(s){ return {completed:s.completed||{}, answers:s.answers||{}, scores:s.scores||{}, bookmarks:s.bookmarks||{}, dragOrders:s.dragOrders||{}, levels:s.levels||{}, density:s.density||'standard', currentDay:current||1, updatedAtMs:nowMs(), appVersion:'firebase-sync-v1', storageKey:storageKey}; }
+function normalizeStateForCloud(s){ return {completed:s.completed||{}, answers:s.answers||{}, scores:s.scores||{}, bookmarks:s.bookmarks||{}, dragOrders:s.dragOrders||{}, levels:s.levels||{}, customWords:Array.isArray(s.customWords)?s.customWords:[], density:s.density||'standard', currentDay:current||1, updatedAtMs:nowMs(), appVersion:'firebase-sync-v1', storageKey:storageKey}; }
 async function saveCloudState(force=false){
   if(!cloudUser || ((!cloudReady)&&!force) || (cloudLoading && !force)) return;
   try{ const payload=normalizeStateForCloud(state); payload.updatedAt=serverTimestamp(); await setDoc(cloudDocRef(), payload, {merge:true}); setSyncStatus('on','クラウド同期済み',cloudUser.email||''); }
@@ -332,6 +349,7 @@ let current=Number(localStorage.getItem('hsk4-current-day')||1);
 let homeView=true;
 let showAnswers=false, bookmarkView=false, testView=false, selectedChip=null;
 let levelCheckView=false, lcStage='start', lcIndex=0, lcAnswers={}, lcSoonLevel=null;
+let cwSubTab='bm';
 const storageKey='hsk4-90-v4-state';
 let state=JSON.parse(localStorage.getItem(storageKey)||'{"completed":{},"answers":{},"scores":{},"bookmarks":{},"dragOrders":{}}');
 if(!state.levels) state.levels={};            // ⑤ 難易度（0=普通/1=曖昧/2=苦手）。既存データには非破壊で追加
@@ -403,7 +421,10 @@ function renderBookmarkPanel(){
     if(sp) sp.textContent=bookmarkView?'学習に戻る':'ブックマーク';
     bvb.classList.toggle('active', bookmarkView);
   }
-  var inner='<div class="section-title"><h2>ブックマークだけ表示</h2><span class="badge">'+items.length+'件</span></div>';
+  var cwCount=(state.customWords||[]).length;
+  var subbar='<div class="cw-subtabs"><button class="cw-subtab'+(cwSubTab!=='custom'?' active':'')+'" data-cw-action="tab-bm">ブックマーク</button><button class="cw-subtab'+(cwSubTab==='custom'?' active':'')+'" data-cw-action="tab-custom">マイ単語'+(cwCount?(' '+cwCount):'')+'</button></div>';
+  if(cwSubTab==='custom'){ $('bookmarkPanel').innerHTML=subbar+cwRenderListHtml(); return; }
+  var inner=subbar+'<div class="section-title"><h2>ブックマークだけ表示</h2><span class="badge">'+items.length+'件</span></div>';
   inner+='<div class="small" style="margin-bottom:10px">難易度（普通／曖昧／苦手）をタップで切替。苦手が上に並びます。</div>';
   inner+='<div class="row bm-stickybar" style="gap:8px">';
   inner+='<button class="primary" data-action="showHome">通常の学習画面に戻る</button>';
@@ -502,7 +523,7 @@ function render(){
     <div class="vitem lv-${state.levels[v.id]||0}">
      <div class="item-head"><div><div class="zh">${i+1}. ${esc(v.zh)} <button class="speak-btn" onclick="speakZh('${esc(v.zh)}')" title="発音">🔊</button></div><div class="pinyin">${esc(v.pinyin)}</div><div class="ja">${esc(v.ja)}</div>${lvControl(v.id)}</div>
      <button class="bookmark ${isBookmarked(v.id)?'active':''}" onclick="toggleBookmark('${v.id}','単語','${esc(v.zh)}','${esc(v.pinyin)}｜${esc(v.ja)}')">${isBookmarked(v.id)?'★':'☆'}</button></div>
-     <div class="ex">${esc(v.example)} <button class="speak-btn" onclick="speakZh('${esc(v.example)}')" title="例文を聞く">🔊</button></div><div class="pinyin expinyin">${esc(v.exPinyin)}</div><div class="ja exja">${esc(v.exJa)}</div>
+     <div class="ex"><span class="cw-ex" data-ex="${esc(v.example)}" data-exp="${esc(v.exPinyin)}" data-exj="${esc(v.exJa)}">${esc(v.example)}</span> <button class="speak-btn" onclick="speakZh('${esc(v.example)}')" title="例文を聞く">🔊</button></div><div class="pinyin expinyin">${esc(v.exPinyin)}</div><div class="ja exja">${esc(v.exJa)}</div>
     </div>`).join('')}</div>
   </div>
   <div class="card">
@@ -514,7 +535,7 @@ function render(){
      <div class="note"><span class="label">解説：</span>${esc(g.explain)}</div>
      <div class="note"><span class="label">違い・注意：</span>${esc(g.contrast)}</div>
      <div class="note"><span class="label">日本人が間違えやすい点：</span>${esc(g.mistake)}</div>
-     <div class="ex"><span class="label">例文：</span>${esc(g.example)} <button class="speak-btn" onclick="speakZh('${esc(g.example)}')" title="例文を聞く">🔊</button></div><div class="pinyin expinyin">${esc(g.exPinyin)}</div><div class="ja exja">${esc(g.exJa)}</div>
+     <div class="ex"><span class="label">例文：</span><span class="cw-ex" data-ex="${esc(g.example)}" data-exp="${esc(g.exPinyin)}" data-exj="${esc(g.exJa)}">${esc(g.example)}</span> <button class="speak-btn" onclick="speakZh('${esc(g.example)}')" title="例文を聞く">🔊</button></div><div class="pinyin expinyin">${esc(g.exPinyin)}</div><div class="ja exja">${esc(g.exJa)}</div>
     </div>`).join('')}
   </div>
   <div class="card" id="testCard">
@@ -669,7 +690,7 @@ function showLevelCheck(){ bookmarkView=false; testView=false; homeView=false; l
 function setActiveTab(id){ document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.toggle('active', t.id===id);}); }
 
 // ===== ＋ ブックマークだけのミニテスト（フラッシュカード） =====
-var _btCfg={range:'all',type:'both',dir:'ja2zh',count:'5'};
+var _btCfg={range:'all',type:'both',dir:'ja2zh',count:'5',src:'bm'};
 var _bt=null; // 実行中セッション
 function _btEx(b){
   var ex=b.example||'',exP=b.exPinyin||'',exJ=b.exJa||'',pin=b.pinyin||'';
@@ -693,15 +714,23 @@ function _btParts(b){
   return {zh:zh, pin:pin, ja:ja, ex:ex};
 }
 function _btBuildPool(){
-  var items=Object.values(state.bookmarks||{});
-  var pool=_shuffle(items.filter(function(b){
-    if(_btCfg.type==='word'    && b.type!=='単語') return false;
-    if(_btCfg.type==='grammar' && b.type!=='文法') return false;
-    var lv=state.levels[b.id]||0;
-    if(_btCfg.range==='hard'  && lv<2) return false;
-    if(_btCfg.range==='vague' && lv<1) return false;
-    return true;
-  }));
+  var src=_btCfg.src||'bm', items=[];
+  if(src==='bm'||src==='both'){
+    items=items.concat(Object.values(state.bookmarks||{}).filter(function(b){
+      if(_btCfg.type==='word'    && b.type!=='単語') return false;
+      if(_btCfg.type==='grammar' && b.type!=='文法') return false;
+      var lv=state.levels[b.id]||0;
+      if(_btCfg.range==='hard'  && lv<2) return false;
+      if(_btCfg.range==='vague' && lv<1) return false;
+      return true;
+    }));
+  }
+  if((src==='custom'||src==='both') && _btCfg.type!=='grammar'){
+    items=items.concat((state.customWords||[]).map(function(w,i){
+      return {id:'cw-'+i, type:'単語', title:w.zh||'', sub:w.ja||'', pinyin:w.pinyin||'', example:w.example||'', exPinyin:w.exPinyin||'', exJa:w.exJa||'', day:0, _cw:1};
+    }));
+  }
+  var pool=_shuffle(items);
   if(_btCfg.count!=='all') pool=pool.slice(0, Number(_btCfg.count));
   return pool;
 }
@@ -717,8 +746,8 @@ function btNext(action){
   if(!_bt) return;
   var b=_bt.pool[_bt.idx];
   if(b){
-    if(action==='vague'){ var cur=state.levels[b.id]||0; state.levels[b.id]=Math.min(cur+1,2); _bt.vague++; save(); } // あやふや→難易度を1段階上げる（普通→曖昧→苦手、苦手は据え置き）
-    else if(action==='master'){ if(state.bookmarks) delete state.bookmarks[b.id]; _bt.mastered++; save(); } // 覚えた→ブックマークから外す
+    if(action==='vague'){ if(!b._cw){ var cur=state.levels[b.id]||0; state.levels[b.id]=Math.min(cur+1,2); save(); } _bt.vague++; } // あやふや→難易度を1段階上げる（マイ単語は変更なし）
+    else if(action==='master'){ if(!b._cw && state.bookmarks){ delete state.bookmarks[b.id]; save(); } _bt.mastered++; } // 覚えた→ブックマークから外す（マイ単語は残す）
     // 'known' は変更なし（そのまま残す）
   }
   _bt.idx++; _bt.revealed=false;
@@ -773,7 +802,8 @@ function renderTestScreen(){
   var avail=_btBuildPool().length;
   var html='<div class="card testwrap"><div class="section-title"><h2>ブックマークテスト</h2><span class="badge">★ '+total+'件</span></div>'+
     '<div class="small">☆を付けた単語・文法だけで出題します。範囲・種類・方向・問題数を選んで開始してください。</div>'+
-    '<div class="label" style="margin-top:12px">範囲</div>'+seg('range',[{v:'all',t:'すべて'},{v:'vague',t:'曖昧＋苦手'},{v:'hard',t:'苦手のみ'}])+
+    '<div class="label" style="margin-top:12px">出題元</div>'+seg('src',[{v:'bm',t:'ブックマーク'},{v:'custom',t:'マイ単語'},{v:'both',t:'両方'}])+
+    '<div class="label">範囲</div>'+seg('range',[{v:'all',t:'すべて'},{v:'vague',t:'曖昧＋苦手'},{v:'hard',t:'苦手のみ'}])+
     '<div class="label">種類</div>'+seg('type',[{v:'both',t:'単語＋文法'},{v:'word',t:'単語'},{v:'grammar',t:'文法'}])+
     '<div class="label">方向</div>'+seg('dir',[{v:'ja2zh',t:'日本語 → 中文・拼音'},{v:'zh2ja',t:'中文 → 日本語'}])+
     '<div class="label">問題数</div>'+seg('count',[{v:'5',t:'5問'},{v:'10',t:'10問'},{v:'all',t:'全部'}])+
@@ -1225,6 +1255,177 @@ document.addEventListener('click', function(e){
   else if(a==='pick'){ lcPick(Number(b.dataset.lv)); }
   else if(a==='backToResult'){ lcStage='result'; render(); }
   else if(a==='back'){ showHome(); }
+});
+
+/* =========================================================================
+   新規単語（例文から選択して登録） — 既存データ/同期に非干渉な追加モジュール
+   - 操作は data-cw-action 専用リスナー＋選択検知で処理
+   - state.customWords に保存（normalizeStateForCloud に追加済みで同期対象）
+   - 例文(中文/ピンイン/和訳)は選択元からコピー。ピンイン/意味は best-effort 自動＋編集可
+   ========================================================================= */
+if(!Array.isArray(state.customWords)) state.customWords=[];
+
+function cwEsc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+/* ---- 一覧（ブックマーク画面の「新規単語」サブタブ） ---- */
+function cwRenderListHtml(){
+  var arr=state.customWords||[];
+  var head='<div class="section-title"><h2>マイ単語</h2><span class="badge">'+arr.length+'件</span></div>'
+    +'<div class="small" style="margin-bottom:10px">学習画面の例文で、わからない語を選択すると「＋単語を追加」が出ます。保存した語は例文中で色が付きます。</div>'
+    +'<div class="row bm-stickybar" style="gap:8px"><button class="primary" data-action="showHome">通常の学習画面に戻る</button></div>';
+  if(!arr.length) return head+'<div class="empty">まだありません。例文の中の語を選択して追加してください。</div>';
+  var body=arr.map(function(w,i){
+    return '<div class="cw-item">'
+      +'<div class="cw-item-head"><div class="zh">'+cwEsc(w.zh)+' <button class="speak-btn" data-cw-action="speak" data-i="'+i+'">🔊</button></div>'
+      +'<button class="cw-del" data-cw-action="del" data-i="'+i+'" title="削除">🗑</button></div>'
+      +(w.pinyin?'<div class="pinyin">'+cwEsc(w.pinyin)+'</div>':'')
+      +(w.ja?'<div class="ja">'+cwEsc(w.ja)+'</div>':'')
+      +(w.example?'<div class="ex"><span class="cw-ex" data-ex="'+cwEsc(w.example)+'">'+cwEsc(w.example)+'</span> <button class="speak-btn" data-cw-action="speak-ex" data-i="'+i+'">🔊</button></div>':'')
+      +(w.exJa?'<div class="ja exja">'+cwEsc(w.exJa)+'</div>':'')
+      +'</div>';
+  }).join('');
+  return head+body;
+}
+
+/* ---- 保存語を例文中で自動ハイライト ---- */
+var cwApplying=false;
+function cwApplyHighlights(){
+  if(cwApplying) return; cwApplying=true;
+  try{
+    var words=(state.customWords||[]).map(function(w){return w.zh;}).filter(Boolean);
+    var n=String(words.length);
+    document.querySelectorAll('.cw-ex').forEach(function(el){
+      if(el.getAttribute('data-cw-n')===n) return;
+      var raw=el.getAttribute('data-ex')||el.textContent||'';
+      var html=cwEsc(raw);
+      words.forEach(function(w){ if(w && raw.indexOf(w)>=0){ html=html.split(cwEsc(w)).join('<mark class="cw-hl">'+cwEsc(w)+'</mark>'); } });
+      el.innerHTML=html;
+      el.setAttribute('data-cw-n',n);
+    });
+  } finally { cwApplying=false; }
+}
+(function(){
+  var c=document.getElementById('content');
+  if(c && window.MutationObserver){ new MutationObserver(function(){ cwApplyHighlights(); }).observe(c,{childList:true,subtree:true}); }
+  setTimeout(cwApplyHighlights,400);
+})();
+
+/* ---- 例文内の選択 → フローティング「＋単語を追加」 ---- */
+var cwFab=null, cwSel=null;
+function cwGetExEl(node){ while(node && node!==document){ if(node.classList && node.classList.contains('cw-ex')) return node; node=node.parentNode; } return null; }
+function cwOnSelectEnd(){
+  var sel=window.getSelection && window.getSelection();
+  if(!sel || sel.isCollapsed || !sel.rangeCount){ cwHideFab(); return; }
+  var text=String(sel.toString()).trim();
+  if(!text || text.length>20){ cwHideFab(); return; }
+  var exEl=cwGetExEl(sel.anchorNode)||cwGetExEl(sel.focusNode);
+  if(!exEl){ cwHideFab(); return; }
+  var r=sel.getRangeAt(0).getBoundingClientRect();
+  cwSel={ text:text, ex:exEl.getAttribute('data-ex')||exEl.textContent||'', exp:exEl.getAttribute('data-exp')||'', exj:exEl.getAttribute('data-exj')||'' };
+  cwShowFab(r);
+}
+function cwShowFab(r){
+  if(!cwFab){
+    cwFab=document.createElement('button'); cwFab.id='cw-fab'; cwFab.textContent='＋単語を追加';
+    cwFab.addEventListener('mousedown',function(e){e.preventDefault();});
+    cwFab.addEventListener('click',function(e){e.preventDefault();e.stopPropagation(); if(cwSel) cwOpenModal(cwSel);});
+    document.body.appendChild(cwFab);
+  }
+  var top=(window.scrollY||window.pageYOffset)+r.top-44;
+  var left=(window.scrollX||window.pageXOffset)+r.left+(r.width/2);
+  cwFab.style.top=Math.max(8,top)+'px'; cwFab.style.left=left+'px'; cwFab.style.display='block';
+}
+function cwHideFab(){ if(cwFab) cwFab.style.display='none'; }
+document.addEventListener('mouseup', function(){ setTimeout(cwOnSelectEnd,10); });
+document.addEventListener('touchend', function(){ setTimeout(cwOnSelectEnd,10); });
+document.addEventListener('scroll', cwHideFab, true);
+
+/* ---- 追加フォーム（モーダル） ---- */
+function cwOpenModal(selObj){
+  cwHideFab();
+  var ov=document.getElementById('cw-modal');
+  if(!ov){ ov=document.createElement('div'); ov.id='cw-modal'; document.body.appendChild(ov); }
+  ov.innerHTML='<div class="cw-modal-card">'
+    +'<div class="cw-modal-h">マイ単語に追加</div>'
+    +'<label class="cw-l">単語</label><div class="cw-row"><input id="cw-zh" class="cw-in" value="'+cwEsc(selObj.text)+'"><button class="speak-btn" data-cw-action="speak-input">🔊</button></div>'
+    +'<label class="cw-l">ピンイン</label><input id="cw-pin" class="cw-in" placeholder="自動取得中…">'
+    +'<label class="cw-l">意味</label><input id="cw-ja" class="cw-in" placeholder="自動取得中…">'
+    +'<label class="cw-l">例文</label><textarea id="cw-ex" class="cw-in" rows="2">'+cwEsc(selObj.ex)+'</textarea>'
+    +'<input id="cw-exp" type="hidden" value="'+cwEsc(selObj.exp)+'"><input id="cw-exj" type="hidden" value="'+cwEsc(selObj.exj)+'">'
+    +(selObj.exj?'<div class="small" style="margin-top:6px">例文訳：'+cwEsc(selObj.exj)+'</div>':'')
+    +'<div class="cw-modal-actions"><button class="lc-btn" data-cw-action="modal-cancel">キャンセル</button><button class="lc-btn primary" data-cw-action="modal-save">保存</button></div>'
+    +'<div class="small" id="cw-msg" style="margin-top:8px;min-height:1em">発音🔊はいつでも使えます。ピンイン・意味は自動取得を試みます（編集可）。</div>'
+    +'</div>';
+  ov.style.display='flex';
+  ov.onclick=function(e){ if(e.target===ov) cwCloseModal(); };
+  var hit=cwLookupApp(selObj.text);
+  if(hit){
+    var pe=document.getElementById('cw-pin'); if(pe && !pe.value && hit.pinyin) pe.value=hit.pinyin;
+    var je=document.getElementById('cw-ja'); if(je && !je.value && hit.ja) je.value=hit.ja;
+    var mg=document.getElementById('cw-msg'); if(mg) mg.textContent='アプリ内の単語データから取得しました（編集可）。';
+  }
+  cwFillPinyin(selObj.text);
+  cwFillMeaning(selObj.text);
+}
+function cwLookupApp(zh){
+  if(!zh) return null;
+  for(var d=0; d<LESSONS.length; d++){
+    var v=LESSONS[d].vocab||[];
+    for(var i=0;i<v.length;i++){ if(v[i].zh===zh) return {ja:v[i].ja||'', pinyin:v[i].pinyin||''}; }
+  }
+  return null;
+}
+function cwCloseModal(){ var ov=document.getElementById('cw-modal'); if(ov) ov.style.display='none'; }
+
+async function cwFillPinyin(zh){
+  var el=document.getElementById('cw-pin'); if(!el || el.value) return;
+  try{
+    var m=await import('https://cdn.jsdelivr.net/npm/pinyin-pro@3.26.0/+esm');
+    if(el && !el.value && m && m.pinyin){ el.value=m.pinyin(zh); }
+    else if(el && !el.value){ el.placeholder='手入力してください'; }
+  }catch(e){ if(el && !el.value){ el.placeholder='手入力してください'; } }
+}
+async function cwFillMeaning(zh){
+  var el=document.getElementById('cw-ja'); if(!el || el.value) return;
+  var msg=document.getElementById('cw-msg');
+  try{
+    var res=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(zh)+'&langpair=zh-CN|ja');
+    var data=await res.json();
+    var t=data && data.responseData && data.responseData.translatedText;
+    if(el && !el.value && data.responseStatus===200 && t){ el.value=t; if(msg) msg.textContent='オンライン辞書から取得しました（要確認・編集可）。'; }
+    else if(el && !el.value){ el.placeholder='手入力してください'; if(msg) msg.textContent='意味は自動取得できませんでした。手入力してください。'; }
+  }catch(e){ if(el && !el.value){ el.placeholder='手入力してください'; if(msg) msg.textContent='オンライン取得に失敗しました。手入力してください。'; } }
+}
+
+function cwModalSave(){
+  var zhEl=document.getElementById('cw-zh');
+  var zh=(zhEl?zhEl.value:'').trim();
+  var msg=document.getElementById('cw-msg');
+  if(!zh){ if(msg) msg.textContent='単語を入力してください。'; return; }
+  var g=function(id){ var e=document.getElementById(id); return e?e.value:''; };
+  var w={ zh:zh, pinyin:g('cw-pin'), ja:g('cw-ja'), example:g('cw-ex'), exPinyin:g('cw-exp'), exJa:g('cw-exj'), ts:Date.now() };
+  if(!Array.isArray(state.customWords)) state.customWords=[];
+  state.customWords.unshift(w);
+  save();
+  cwCloseModal();
+  document.querySelectorAll('.cw-ex').forEach(function(el){ el.removeAttribute('data-cw-n'); });
+  cwApplyHighlights();
+  if(bookmarkView && cwSubTab==='custom'){ renderBookmarkPanel(); }
+}
+
+/* ---- 専用クリックリスナー（既存ハンドラと独立） ---- */
+document.addEventListener('click', function(e){
+  var b=e.target.closest && e.target.closest('[data-cw-action]');
+  if(!b) return;
+  var a=b.dataset.cwAction, i=Number(b.dataset.i);
+  if(a==='tab-bm'){ cwSubTab='bm'; renderBookmarkPanel(); }
+  else if(a==='tab-custom'){ cwSubTab='custom'; renderBookmarkPanel(); }
+  else if(a==='del'){ if(state.customWords[i]){ state.customWords.splice(i,1); save(); renderBookmarkPanel(); document.querySelectorAll('.cw-ex').forEach(function(el){ el.removeAttribute('data-cw-n'); }); cwApplyHighlights(); } }
+  else if(a==='speak'){ var w=state.customWords[i]; if(w&&window.speakZh) window.speakZh(w.zh); }
+  else if(a==='speak-ex'){ var w2=state.customWords[i]; if(w2&&window.speakZh) window.speakZh(w2.example); }
+  else if(a==='speak-input'){ var z=(document.getElementById('cw-zh')||{}).value; if(z&&window.speakZh) window.speakZh(z); }
+  else if(a==='modal-cancel'){ cwCloseModal(); }
+  else if(a==='modal-save'){ cwModalSave(); }
 });
 
 </script>
