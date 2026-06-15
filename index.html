@@ -1385,16 +1385,41 @@ async function cwFillPinyin(zh){
     else if(el && !el.value){ el.placeholder='手入力してください'; }
   }catch(e){ if(el && !el.value){ el.placeholder='手入力してください'; } }
 }
+function cwExtract(d){
+  function dig(x){
+    if(typeof x==='string'){ var t=x.trim(); if(t && !/^[a-z]{2}(-[a-zA-Z]{2,4})?$/.test(t)) return t; return ''; }
+    if(Array.isArray(x)){ for(var k=0;k<x.length;k++){ var s=dig(x[k]); if(s) return s; } }
+    return '';
+  }
+  return dig(d);
+}
+async function cwTranslateZhJa(zh){
+  // ① Google 辞書系（dict-chrome-ex）— 中→日の品質が高い
+  try{
+    var r=await fetch('https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=zh-CN&tl=ja&q='+encodeURIComponent(zh));
+    if(r.ok){ var d=await r.json(); var t=cwExtract(d); if(t && t!==zh) return {t:t, src:'Google辞書'}; }
+  }catch(e){}
+  // ② Google 翻訳（gtx）
+  try{
+    var r2=await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=ja&dt=t&q='+encodeURIComponent(zh));
+    if(r2.ok){ var d2=await r2.json(); var t2=cwExtract(d2); if(t2 && t2!==zh) return {t:t2, src:'Google翻訳'}; }
+  }catch(e){}
+  // ③ MyMemory（最終手段）
+  try{
+    var r3=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(zh)+'&langpair=zh-CN|ja');
+    if(r3.ok){ var d3=await r3.json(); if(d3 && d3.responseStatus===200){ var t3=d3.responseData && d3.responseData.translatedText; if(t3 && t3!==zh && !/MYMEMORY|QUOTA|LIMIT|INVALID/i.test(t3)) return {t:t3, src:'MyMemory'}; } }
+  }catch(e){}
+  return null;
+}
 async function cwFillMeaning(zh){
   var el=document.getElementById('cw-ja'); if(!el || el.value) return;
   var msg=document.getElementById('cw-msg');
-  try{
-    var res=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(zh)+'&langpair=zh-CN|ja');
-    var data=await res.json();
-    var t=data && data.responseData && data.responseData.translatedText;
-    if(el && !el.value && data.responseStatus===200 && t){ el.value=t; if(msg) msg.textContent='オンライン辞書から取得しました（要確認・編集可）。'; }
-    else if(el && !el.value){ el.placeholder='手入力してください'; if(msg) msg.textContent='意味は自動取得できませんでした。手入力してください。'; }
-  }catch(e){ if(el && !el.value){ el.placeholder='手入力してください'; if(msg) msg.textContent='オンライン取得に失敗しました。手入力してください。'; } }
+  if(msg) msg.textContent='意味を取得中…';
+  var res=await cwTranslateZhJa(zh);
+  if(el && !el.value){
+    if(res && res.t){ el.value=res.t; if(msg) msg.textContent=res.src+'の訳を入れました（要確認・編集可）。'; }
+    else { el.placeholder='自動取得できませんでした。手入力してください'; if(msg) msg.textContent='意味は自動取得できませんでした。手入力してください。'; }
+  }
 }
 
 function cwModalSave(){
