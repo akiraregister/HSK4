@@ -1272,9 +1272,9 @@ function cwEsc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&a
 function cwRenderListHtml(){
   var arr=state.customWords||[];
   var head='<div class="section-title"><h2>マイ単語</h2><span class="badge">'+arr.length+'件</span></div>'
-    +'<div class="small" style="margin-bottom:10px">学習画面の例文で、わからない語を選択すると「＋単語を追加」が出ます。保存した語は例文中で色が付きます。</div>'
-    +'<div class="row bm-stickybar" style="gap:8px"><button class="primary" data-action="showHome">通常の学習画面に戻る</button></div>';
-  if(!arr.length) return head+'<div class="empty">まだありません。例文の中の語を選択して追加してください。</div>';
+    +'<div class="small" style="margin-bottom:10px">例文の語を選択して追加するほか、「＋新規追加」で中国語を入力して自分で登録できます（ピンイン・意味は自動取得）。</div>'
+    +'<div class="row bm-stickybar" style="gap:8px"><button class="primary" data-cw-action="new">＋ 新規追加</button><button data-action="showHome">学習画面に戻る</button></div>';
+  if(!arr.length) return head+'<div class="empty">まだありません。例文の語を選択するか、上の「＋新規追加」で登録してください。</div>';
   var body=arr.map(function(w,i){
     return '<div class="cw-item">'
       +'<div class="cw-item-head"><div class="zh">'+cwEsc(w.zh)+' <button class="speak-btn" data-cw-action="speak" data-i="'+i+'">🔊</button></div>'
@@ -1343,29 +1343,39 @@ document.addEventListener('mouseup', function(){ setTimeout(cwOnSelectEnd,10); }
 /* ---- 追加フォーム（モーダル） ---- */
 function cwOpenModal(selObj){
   cwHideFab();
+  selObj=selObj||{text:'',ex:'',exp:'',exj:''};
   var ov=document.getElementById('cw-modal');
   if(!ov){ ov=document.createElement('div'); ov.id='cw-modal'; document.body.appendChild(ov); }
   ov.innerHTML='<div class="cw-modal-card">'
     +'<div class="cw-modal-h">マイ単語に追加</div>'
-    +'<label class="cw-l">単語</label><div class="cw-row"><input id="cw-zh" class="cw-in" value="'+cwEsc(selObj.text)+'"><button class="speak-btn" data-cw-action="speak-input">🔊</button></div>'
-    +'<label class="cw-l">ピンイン</label><input id="cw-pin" class="cw-in" placeholder="自動取得中…">'
-    +'<label class="cw-l">意味</label><input id="cw-ja" class="cw-in" placeholder="自動取得中…">'
-    +'<label class="cw-l">例文</label><textarea id="cw-ex" class="cw-in" rows="2">'+cwEsc(selObj.ex)+'</textarea>'
+    +'<label class="cw-l">単語（中国語）</label><div class="cw-row"><input id="cw-zh" class="cw-in" value="'+cwEsc(selObj.text)+'" placeholder="例：填写"><button class="speak-btn" data-cw-action="speak-input" title="発音">🔊</button><button class="lc-btn" data-cw-action="autofill" style="flex:0 0 auto;padding:9px 12px">自動取得</button></div>'
+    +'<div class="small" style="margin:4px 0 0;color:#667085">中国語を入れて「自動取得」を押すと、ピンインと意味が入ります。</div>'
+    +'<label class="cw-l">ピンイン</label><input id="cw-pin" class="cw-in" placeholder="自動取得 or 手入力">'
+    +'<label class="cw-l">意味</label><input id="cw-ja" class="cw-in" placeholder="自動取得 or 手入力">'
+    +'<label class="cw-l">例文（任意・手入力）</label><textarea id="cw-ex" class="cw-in" rows="2">'+cwEsc(selObj.ex)+'</textarea>'
     +'<input id="cw-exp" type="hidden" value="'+cwEsc(selObj.exp)+'"><input id="cw-exj" type="hidden" value="'+cwEsc(selObj.exj)+'">'
     +(selObj.exj?'<div class="small" style="margin-top:6px">例文訳：'+cwEsc(selObj.exj)+'</div>':'')
     +'<div class="cw-modal-actions"><button class="lc-btn" data-cw-action="modal-cancel">キャンセル</button><button class="lc-btn primary" data-cw-action="modal-save">保存</button></div>'
-    +'<div class="small" id="cw-msg" style="margin-top:8px;min-height:1em">発音🔊はいつでも使えます。ピンイン・意味は自動取得を試みます（編集可）。</div>'
+    +'<div class="small" id="cw-msg" style="margin-top:8px;min-height:1em">発音🔊はいつでも使えます。ピンイン・意味は自動取得（編集可）。</div>'
     +'</div>';
   ov.style.display='flex';
   ov.onclick=function(e){ if(e.target===ov) cwCloseModal(); };
-  var hit=cwLookupApp(selObj.text);
+  var zhEl=document.getElementById('cw-zh');
+  if(zhEl){ zhEl.addEventListener('blur', function(){ cwRunAutofill(zhEl.value,false); }); }
+  if((selObj.text||'').trim()){ cwRunAutofill(selObj.text,false); }
+  else if(zhEl){ try{ zhEl.focus(); }catch(e){} }
+}
+function cwRunAutofill(zh, force){
+  zh=(zh||'').trim(); if(!zh) return;
+  if(force){ var p=document.getElementById('cw-pin'); if(p)p.value=''; var j=document.getElementById('cw-ja'); if(j)j.value=''; }
+  var hit=cwLookupApp(zh);
   if(hit){
     var pe=document.getElementById('cw-pin'); if(pe && !pe.value && hit.pinyin) pe.value=hit.pinyin;
     var je=document.getElementById('cw-ja'); if(je && !je.value && hit.ja) je.value=hit.ja;
     var mg=document.getElementById('cw-msg'); if(mg) mg.textContent='アプリ内の単語データから取得しました（編集可）。';
   }
-  cwFillPinyin(selObj.text);
-  cwFillMeaning(selObj.text);
+  cwFillPinyin(zh);
+  cwFillMeaning(zh);
 }
 function cwLookupApp(zh){
   if(!zh) return null;
@@ -1449,6 +1459,8 @@ document.addEventListener('click', function(e){
   else if(a==='speak'){ var w=state.customWords[i]; if(w&&window.speakZh) window.speakZh(w.zh); }
   else if(a==='speak-ex'){ var w2=state.customWords[i]; if(w2&&window.speakZh) window.speakZh(w2.example); }
   else if(a==='speak-input'){ var z=(document.getElementById('cw-zh')||{}).value; if(z&&window.speakZh) window.speakZh(z); }
+  else if(a==='new'){ cwOpenModal({text:'',ex:'',exp:'',exj:''}); }
+  else if(a==='autofill'){ var zz=(document.getElementById('cw-zh')||{}).value||''; cwRunAutofill(zz,true); }
   else if(a==='modal-cancel'){ cwCloseModal(); }
   else if(a==='modal-save'){ cwModalSave(); }
 });
