@@ -188,6 +188,7 @@ z{font-family:var(--zh-font);font-style:normal}
 .mt-prog{height:6px;background:#e5e9f0;border-radius:999px;overflow:hidden;margin:8px 0 14px}.mt-prog>i{display:block;height:100%;background:var(--blue2,#185FA5);transition:width .25s}
 .mt-qtype{display:inline-block;font-size:11px;font-weight:700;color:#185FA5;background:#eaf2fb;border-radius:6px;padding:3px 8px;margin-bottom:10px}
 .mt-q{font-size:18px;line-height:1.55;font-weight:600;margin:2px 0 14px;white-space:pre-wrap}
+.mt-blank{display:inline-block;min-width:56px;height:1.05em;margin:0 4px;vertical-align:-0.18em;border:1.5px dashed #9bb7d4;border-radius:7px;background:#eef4fb}
 .mt-opts{display:flex;flex-direction:column;gap:10px}
 .mt-opt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:13px 14px;font-size:16px;cursor:pointer;line-height:1.4}
 .mt-opt:active{transform:scale(.99)}.mt-opt[disabled]{cursor:default}
@@ -5982,6 +5983,7 @@ function gradeTest(){
 var _mt=null;
 function mtEsc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function mtRich(s){return mtEsc(s).replace(/&lt;z&gt;/g,'<z>').replace(/&lt;\/z&gt;/g,'</z>').replace(/&lt;b&gt;/g,'<b>').replace(/&lt;\/b&gt;/g,'</b>');}
+function mtBlank(s){return String(s).replace(/[_＿]{2,}/g,'<span class="mt-blank"></span>');}
 function mtShuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function mtRand(a){return a[Math.floor(Math.random()*a.length)];}
 function mtGraderUrl(){ return localStorage.getItem('hsk4-grader-url')||'https://hsk4-grader.hsk4test.workers.dev'; }
@@ -6011,7 +6013,7 @@ function mtRender(){
   else if(q.__t==='writing'){ root.innerHTML=head+mtWriting(q); mtBindWriting(q); }
 }
 function mtMC(q){
-  var h='<span class="mt-qtype">'+mtEsc(q.tag)+'</span><div class="mt-q">'+mtRich(q.q)+'</div><div class="mt-opts">';
+  var h='<span class="mt-qtype">'+mtEsc(q.tag)+'</span><div class="mt-q">'+mtBlank(mtRich(q.q))+'</div><div class="mt-opts">';
   q.opts.forEach(function(o,i){ h+='<button class="mt-opt" data-i="'+i+'"><span>'+mtRich(o.t)+'</span><span class="mk"></span></button>'; });
   h+='</div><div id="mtExp"></div><div id="mtNx"></div>';
   return h;
