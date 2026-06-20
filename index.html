@@ -147,6 +147,8 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .lc-opts{display:grid;gap:10px;margin-top:14px}
 .lc-opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px 14px;font:inherit;font-weight:600;color:var(--ink);cursor:pointer;touch-action:manipulation}
 .lc-opt.sel{border-color:#EF9F27;background:#fffbeb;color:#633806}
+.lc-opt.unknown{border-style:dashed;color:var(--muted);font-weight:600;text-align:center}
+.lc-opt.unknown.sel{border-color:#9aa0a6;background:#f3f4f6;color:#5f6368;border-style:dashed}
 .lc-nav{display:flex;gap:10px;margin-top:16px}
 .lc-result-lv{font-size:32px;font-weight:800;color:#0C447C;text-align:center;margin:6px 0}
 .lc-result-sub{text-align:center;color:var(--muted);font-size:14px;margin-bottom:8px}
@@ -179,7 +181,7 @@ mark.cw-hl{background:#fff3cd;color:inherit;border-radius:3px;padding:0 1px}
 .cw-modal-actions{display:flex;gap:10px;margin-top:16px}.cw-modal-actions .lc-btn{flex:1}
 </style>
 </head>
-<body class="hidden-pinyin">
+<body>
 <div class="top">
  <div class="top-inner">
   <h1>HSK4 90日ミニアプリ</h1>
@@ -539,9 +541,9 @@ function render(){
     </div>`).join('')}
   </div>
   <div class="card" id="testCard">
-   <div class="section-title"><h2>今日のミニテスト</h2><button onclick="gradeTest()" class="primary">採点する</button></div>
+   <div class="section-title"><h2>今日のミニテスト</h2></div>
    <div id="testArea">${renderTest(l)}</div><div id="scoreArea"></div>
-   <div id="aiChallengeArea"><button class="primary" style="width:100%;margin-top:8px;background:#0369a1;border-color:#0369a1" onclick="startAiChallenge()">📝 チャレンジ問題（応用）</button></div>
+   <button onclick="gradeTest()" class="primary" style="width:100%;margin-top:10px">採点する</button>
   </div>`;
  setupDrag();
  updateCompleteButtons();
@@ -1174,6 +1176,7 @@ function lcQuizHtml(){
   var opts=item.options.map(function(o,i){
     return '<button class="lc-opt'+(sel===o?' sel':'')+'" data-lc-action="answer" data-opt="'+i+'">'+esc(o)+'</button>';
   }).join('');
+  opts += '<button class="lc-opt unknown'+(sel==='__unknown__'?' sel':'')+'" data-lc-action="unknown">分からない</button>';
   return '<div class="card">'
     + '<div class="lc-progress"><span style="width:'+pct+'%"></span></div>'
     + '<div class="small muted" style="font-weight:700">第 '+(lcIndex+1)+' / '+total+' 問</div>'
@@ -1246,6 +1249,7 @@ document.addEventListener('click', function(e){
   var a=b.dataset.lcAction;
   if(a==='start'){ lcStage='quiz'; lcIndex=0; lcAnswers={}; render(); }
   else if(a==='answer'){ lcAnswers[lcIndex]=PLACEMENT_QUESTIONS[lcIndex].options[Number(b.dataset.opt)]; render(); }
+  else if(a==='unknown'){ lcAnswers[lcIndex]='__unknown__'; render(); }
   else if(a==='prev'){ if(lcIndex>0){ lcIndex--; render(); } }
   else if(a==='next'){
     if(lcAnswers[lcIndex]==null) return;
