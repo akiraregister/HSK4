@@ -137,6 +137,9 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .fc-actions{display:flex;gap:8px;margin-top:14px}
 .fc-actions button{flex:1;padding:11px 6px;font-size:13px}
 .fc-progress{text-align:center;color:#667085;font-size:13px;margin-top:10px}
+.badge-leech{background:#fde7cf;color:#b54708}
+.leech-tip{background:#fff7ed;border:1px solid #fed7aa;color:#9a4a06;border-radius:10px;padding:8px 10px;font-size:12.5px;margin:10px 0 0;text-align:left;line-height:1.55}
+.ex-leech{border:1px solid #fed7aa;background:#fffaf3;border-radius:10px;padding:8px 10px}
 .btn-vague{background:var(--amberbg);color:#b45309;border-color:#fde68a}
 .btn-known{background:#ecfdf3;color:#067647;border-color:#abefc6}
 .btn-master{background:#dbeafe;color:#1d4ed8;border-color:#bfdbfe}
@@ -189,6 +192,27 @@ z{font-family:var(--zh-font);font-style:normal}
 .mt-qtype{display:inline-block;font-size:11px;font-weight:700;color:#185FA5;background:#eaf2fb;border-radius:6px;padding:3px 8px;margin-bottom:10px}
 .mt-q{font-size:18px;line-height:1.55;font-weight:600;margin:2px 0 14px;white-space:pre-wrap}
 .mt-blank{display:inline-block;min-width:56px;height:1.05em;margin:0 4px;vertical-align:-0.18em;border:1.5px dashed #9bb7d4;border-radius:7px;background:#eef4fb}
+.vsearch{display:flex;align-items:center;gap:8px;background:#eaf2fb;border-radius:12px;padding:10px 12px;margin:10px 0 0}
+.vsearch-ic{color:#185FA5;font-size:15px}
+.vsearch input{flex:1;border:none;background:transparent;outline:none;font-size:15px;color:inherit;min-width:0}
+.vsearch input::-webkit-search-cancel-button,.vsearch input::-webkit-search-decoration{-webkit-appearance:none;appearance:none}
+.vsearch-clear{border:none;background:transparent;color:var(--muted);font-size:20px;line-height:1;cursor:pointer;padding:0 2px}
+.vsearch-count{margin:8px 2px 0}
+.vlist{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.vrow{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 12px;cursor:pointer}
+.vrow:active{transform:scale(.99)}
+.vrow-main{flex:1;min-width:0}
+.vrow-top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.vrow-zh{font-size:19px;font-weight:700}
+.vrow-py{font-size:13px;color:var(--muted)}
+.vrow-ja{display:block;font-size:13.5px;color:#3a4654;margin-top:2px}
+.vrow-day{flex-shrink:0;font-size:11px;font-weight:700;color:#185FA5;background:#eaf2fb;border-radius:8px;padding:4px 9px;white-space:nowrap}
+.vempty{text-align:center;color:var(--muted);font-size:14px;padding:36px 0}
+body.fs-sm .vrow-zh{font-size:17px}body.fs-sm .vrow-py{font-size:12px}body.fs-sm .vrow-ja{font-size:12.5px}
+body.fs-lg .vrow-zh{font-size:23px}body.fs-lg .vrow-py{font-size:15px}body.fs-lg .vrow-ja{font-size:16px}
+
+.bm-sort{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 2px}
+.bm-sort .chip-toggle{padding:5px 11px;font-size:12.5px}
 .mt-opts{display:flex;flex-direction:column;gap:10px}
 .mt-opt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:13px 14px;font-size:16px;cursor:pointer;line-height:1.4}
 .mt-opt:active{transform:scale(.99)}.mt-opt[disabled]{cursor:default}
@@ -246,6 +270,7 @@ body.fs-lg .zh{font-size:24px}body.fs-lg .pinyin{font-size:17px}body.fs-lg .ja{f
    <div class="nav-tab" id="bookmarkViewBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>ブックマーク</span></div>
    <div class="nav-tab" id="testTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5h6V5H9z"/><path d="M8.5 13l2.2 2.2L15 11"/></svg><span>復習</span></div>
    <div class="nav-tab" id="levelCheckBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg><span>級診断</span></div>
+   <div class="nav-tab" id="vocabTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10"/><path d="M8 9h6"/><path d="M8 13h8"/></svg><span>単語</span></div>
   </div>
 
   <div class="fs-global" role="group" aria-label="文字サイズの調整">
@@ -339,7 +364,7 @@ function setSyncStatus(kind, text, userText=''){
 function cloudDocRef(){ return cloudUser ? doc(db,'users',cloudUser.uid,'hsk4','state') : null; }
 function localUpdatedAt(){ const n=Number(localStorage.getItem(storageKey+'-updatedAtMs')||0); return Number.isFinite(n)?n:0; }
 function markLocalUpdated(){ localStorage.setItem(storageKey+'-updatedAtMs', String(nowMs())); }
-function normalizeStateForCloud(s){ return {completed:s.completed||{}, answers:s.answers||{}, scores:s.scores||{}, bookmarks:s.bookmarks||{}, dragOrders:s.dragOrders||{}, levels:s.levels||{}, customWords:Array.isArray(s.customWords)?s.customWords:[], density:s.density||'standard', fontScale:(s.fontScale==='sm'||s.fontScale==='lg')?s.fontScale:'md', srs:(s.srs&&typeof s.srs==='object')?s.srs:{}, srsNewLimit:(typeof s.srsNewLimit==='number')?s.srsNewLimit:8, srsDir:(s.srsDir==='ja2zh')?'ja2zh':'zh2ja', currentDay:current||1, updatedAtMs:nowMs(), appVersion:'firebase-sync-v1', storageKey:storageKey}; }
+function normalizeStateForCloud(s){ return {completed:s.completed||{}, answers:s.answers||{}, scores:s.scores||{}, bookmarks:s.bookmarks||{}, dragOrders:s.dragOrders||{}, levels:s.levels||{}, customWords:Array.isArray(s.customWords)?s.customWords:[], density:s.density||'standard', fontScale:(s.fontScale==='sm'||s.fontScale==='lg')?s.fontScale:'md', srs:(s.srs&&typeof s.srs==='object')?s.srs:{}, srsNewLimit:(typeof s.srsNewLimit==='number')?s.srsNewLimit:8, srsDir:(s.srsDir==='ja2zh')?'ja2zh':'zh2ja', bmSort:(['recommend','hard','added','random'].indexOf(s.bmSort)>=0)?s.bmSort:'recommend', revScope:(s.revScope==='bm')?'bm':'all', currentDay:current||1, updatedAtMs:nowMs(), appVersion:'firebase-sync-v1', storageKey:storageKey}; }
 async function saveCloudState(force=false){
   if(!cloudUser || ((!cloudReady)&&!force) || (cloudLoading && !force)) return;
   try{ const payload=normalizeStateForCloud(state); payload.updatedAt=serverTimestamp(); await setDoc(cloudDocRef(), payload, {merge:true}); setSyncStatus('on','クラウド同期済み',cloudUser.email||''); }
@@ -367,12 +392,21 @@ async function loadCloudState(){
       state.scores=cloud.scores||{};state.bookmarks=cloud.bookmarks||{};
       state.dragOrders=cloud.dragOrders||{};
       state.levels=cloud.levels||state.levels||{};
+      if(cloud.srs&&typeof cloud.srs==='object') state.srs=cloud.srs;             // 復習スケジュール（SM-2）
+      if(Array.isArray(cloud.customWords)) state.customWords=cloud.customWords;    // マイ単語
+      if(typeof cloud.srsNewLimit==='number') state.srsNewLimit=cloud.srsNewLimit;
+      if(cloud.srsDir==='ja2zh'||cloud.srsDir==='zh2ja') state.srsDir=cloud.srsDir;
+      if(['recommend','hard','added','random'].indexOf(cloud.bmSort)>=0) state.bmSort=cloud.bmSort;
+      if(cloud.revScope==='bm'||cloud.revScope==='all') state.revScope=cloud.revScope;
+      if(cloud.fontScale==='sm'||cloud.fontScale==='lg'||cloud.fontScale==='md') state.fontScale=cloud.fontScale;
+      cwEnsureIds();
       if(cloud.density) state.density=cloud.density;
       if(cloud.currentDay) current=Number(cloud.currentDay)||current;
       localStorage.setItem(storageKey,JSON.stringify(state));
       localStorage.setItem(storageKey+'-updatedAtMs',String(cloudTs));
       localStorage.setItem('hsk4-current-day',String(current));
       suppressCloudSave=false;
+      if(typeof applyFontScale==='function') applyFontScale();
       setSyncStatus('on','クラウドから同期(BM:'+cbm+'件)',cloudUser.email||'');
       if(typeof render==='function') render();
     } else {
@@ -404,6 +438,7 @@ document.addEventListener('click', function(e){
   else if(a==='toggleBookmarkHint') toggleBookmarkHint();
   else if(a==='removeBookmark' && id) toggleBookmark(id);
   else if(a==='hl' && id) cycleHighlight(id);
+  else if(a==='bmSort' && id) bmSetSort(id);
 });
 
 
@@ -5682,6 +5717,7 @@ const $=id=>document.getElementById(id);
 let current=Number(localStorage.getItem('hsk4-current-day')||1);
 let homeView=true;
 let showAnswers=false, bookmarkView=false, testView=false, selectedChip=null;
+let vocabView=false, _vocabQuery='', _vocabIndex=null;
 let levelCheckView=false, lcStage='start', lcIndex=0, lcAnswers={}, lcSoonLevel=null;
 let cwSubTab='bm';
 const storageKey='hsk4-90-v4-state';
@@ -5690,6 +5726,8 @@ if(state.fontScale!=='sm'&&state.fontScale!=='lg') state.fontScale='md';
 if(!state.srs || typeof state.srs!=='object') state.srs={};
 if(typeof state.srsNewLimit!=='number') state.srsNewLimit=8;
 if(state.srsDir!=='ja2zh' && state.srsDir!=='zh2ja') state.srsDir='zh2ja';
+if(['recommend','hard','added','random'].indexOf(state.bmSort)<0) state.bmSort='recommend';
+if(state.revScope!=='bm' && state.revScope!=='all') state.revScope='all'; // 復習の範囲（all=完了Day∪ブックマーク / bm=ブックマークのみ）
 if(!state.levels) state.levels={};            // ⑤ 難易度（0=普通/1=曖昧/2=苦手）。既存データには非破壊で追加
 // 旧ハイライト(hl: 難/苦手/覚えられない)を新3段階(levels)へ一度だけ移行（既存マークを保持）
 if(!localStorage.getItem('hsk4-hl-migrated-v1')){
@@ -5751,7 +5789,6 @@ function cycleHighlight(id){
 }
 
 function renderBookmarkPanel(){
-  var items=Object.values(state.bookmarks||{}).sort(function(a,b){return ((state.levels[b.id]||0)-(state.levels[a.id]||0))||(a.day-b.day);});
   $('bookmarkPanel').className='bookmark-panel card'+(bookmarkView?' active':'')+(state.density==='compact'?' compact':'');
   var bvb=$('bookmarkViewBtn');
   if(bvb){
@@ -5762,14 +5799,48 @@ function renderBookmarkPanel(){
   var cwCount=(state.customWords||[]).length;
   var subbar='<div class="cw-subtabs"><button class="cw-subtab'+(cwSubTab!=='custom'?' active':'')+'" data-cw-action="tab-bm">ブックマーク</button><button class="cw-subtab'+(cwSubTab==='custom'?' active':'')+'" data-cw-action="tab-custom">マイ単語'+(cwCount?(' '+cwCount):'')+'</button></div>';
   if(cwSubTab==='custom'){ $('bookmarkPanel').innerHTML=subbar+cwRenderListHtml(); return; }
-  var inner=subbar+'<div class="section-title"><h2>ブックマークだけ表示</h2><span class="badge">'+items.length+'件</span></div>';
-  inner+='<div class="small" style="margin-bottom:10px">難易度（普通／曖昧／苦手）をタップで切替。苦手が上に並びます。</div>';
+  var items=bmSortedItems();
+  var inner=subbar;
+  inner+='<div class="section-title"><h2>ブックマーク</h2><span class="badge">'+items.length+'件</span></div>';
   inner+='<div class="row bm-stickybar" style="gap:8px">';
-  inner+='<button class="primary" data-action="showHome">通常の学習画面に戻る</button>';
   inner+='<button type="button" class="chip-toggle '+(state.density==='compact'?'on':'')+'" onclick="toggleDensity()">'+(state.density==='compact'?'表示：コンパクト（一覧）':'表示：標準（詳細）')+'</button>';
   inner+='</div>';
+  inner+='<div class="bm-sort"><span class="small muted" style="margin-right:2px">並び替え</span>'+bmSortChips()+'</div>';
+  inner+='<div class="small" style="margin:6px 0 10px;color:var(--muted)">難易度（普通／曖昧／苦手）は各カードのボタンで切替できます。</div>';
   inner+=items.length?items.map(fmtBmItem).join(''):'<div class="empty">まだブックマークがありません。単語・文法の右上の ☆ を押すとここに集まります。</div>';
   $('bookmarkPanel').innerHTML=inner;
+}
+
+// ===== ブックマーク：並び替え（「おすすめ」順は統合復習スケジュール state.srs を参照、bookmarks本体は非破壊） =====
+var _bmRandom=null; // ランダム並びのキャッシュ（id配列）。再描画で並びが変わらないように保持
+function bmSortedItems(){
+  var arr=Object.values(state.bookmarks||{});
+  var mode=state.bmSort||'recommend';
+  if(mode==='hard'){ return arr.sort(function(a,b){return ((state.levels[b.id]||0)-(state.levels[a.id]||0))||(a.day-b.day);}); }
+  if(mode==='added'){ return arr.reverse(); } // 追加が新しい順
+  if(mode==='random'){
+    var map={}; arr.forEach(function(b){ map[b.id]=b; });
+    if(!_bmRandom){ _bmRandom=_shuffle(arr.map(function(b){return b.id;})); }
+    var out=[];
+    _bmRandom.forEach(function(id){ if(map[id]){ out.push(map[id]); delete map[id]; } });
+    Object.keys(map).forEach(function(id){ out.push(map[id]); }); // 後から追加された語は末尾へ
+    return out;
+  }
+  // recommend（おすすめ）：今日が期限の語を上に→未学習→先の予定。期限は復習で変わるので毎日入れ替わる
+  var now=nowMs();
+  function rank(b){ var s=state.srs[b.id]; if(!s) return [1,0]; var d=s.due||0; return (d<=now)?[0,d]:[2,d]; }
+  return arr.sort(function(a,b){ var ra=rank(a), rb=rank(b); return (ra[0]-rb[0])||(ra[1]-rb[1])||(a.day-b.day); });
+}
+function bmSortChips(){
+  var cur=state.bmSort||'recommend';
+  var opts=[['recommend','おすすめ'],['hard','苦手順'],['added','追加順'],['random','ランダム']];
+  return opts.map(function(o){ return '<button type="button" class="chip-toggle'+(cur===o[0]?' on':'')+'" data-action="bmSort" data-id="'+o[0]+'">'+o[1]+'</button>'; }).join('');
+}
+function bmSetSort(s){
+  if(['recommend','hard','added','random'].indexOf(s)<0) s='recommend';
+  if(s==='random' && state.bmSort==='random') _bmRandom=null; // ランダム再タップで再シャッフル
+  if(s!=='random') _bmRandom=null;                           // 他へ切替えたらキャッシュ破棄
+  state.bmSort=s; save(); renderBookmarkPanel();
 }
 
 function renderHome(){
@@ -5838,7 +5909,8 @@ function render(){
  requestAnimationFrame(applyA11yLabels);
  applyDensity();
  setTopOffset();
- setActiveTab(levelCheckView?'levelCheckBtn':testView?'testTab':homeView?'homeBtn':bookmarkView?'bookmarkViewBtn':'studyTab');
+ setActiveTab(vocabView?'vocabTab':levelCheckView?'levelCheckBtn':testView?'testTab':homeView?'homeBtn':bookmarkView?'bookmarkViewBtn':'studyTab');
+ if(vocabView){ if(document.querySelector('.vlist') && document.activeElement && document.activeElement.id==='vocabSearch'){ vocabFilterOnly(); } else { renderVocabScreen(); } return; }
  if(levelCheckView){ if($('bottomNav')) $('bottomNav').style.display='none'; renderLevelCheckScreen(); return; }
  if(testView){ if($('bottomNav')) $('bottomNav').style.display='none'; renderTestScreen(); return; }
  if(homeView){ renderHome(); return; }
@@ -6129,7 +6201,7 @@ function mtSaveGraderUrl(){
   if(v) localStorage.setItem('hsk4-grader-url', v); else localStorage.removeItem('hsk4-grader-url');
   if(msg){ msg.textContent='保存しました。'; msg.style.color='var(--good)'; }
 }
-function setDay(d){homeView=false;levelCheckView=false;current=Math.max(1,Math.min(LESSONS.length,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
+function setDay(d){vocabView=false;homeView=false;levelCheckView=false;current=Math.max(1,Math.min(LESSONS.length,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
 function updateCompleteButtons(){
  const done=!!state.completed[current];
  // completeTab (nav-tab)
@@ -6204,89 +6276,90 @@ if(false && $('jaBtn'))$('jaBtn').onclick=()=>{document.body.classList.toggle('h
 var _ansBtn=$('answerBtn');if(_ansBtn)_ansBtn.onclick=()=>{showAnswers=!showAnswers;_ansBtn.textContent=showAnswers?'解答を隠す':'解答を表示';_ansBtn.className='toggle '+(showAnswers?'on':'off');$('content').className=showAnswers?'show-answers':''}
 var _prevHV=false;
 document.getElementById('bookmarkViewBtn').addEventListener('click', function(){
-  levelCheckView=false;if(!bookmarkView){_prevHV=homeView;homeView=false;testView=false;bookmarkView=true;}
+  vocabView=false;levelCheckView=false;if(!bookmarkView){_prevHV=homeView;homeView=false;testView=false;bookmarkView=true;}
   else{homeView=_prevHV;bookmarkView=false;}
   render();window.scrollTo({top:0,behavior:'smooth'});
 });
 
 // Expose module-scoped functions for inline handlers.
 // This is necessary because this file uses <script type="module"> for Firebase imports.
-function showDay(d){ bookmarkView=false; testView=false; levelCheckView=false; homeView=false; setDay(Number(d)); }
-function showBookmarks(){ bookmarkView=true; testView=false; levelCheckView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
-function showHome(){ bookmarkView=false; testView=false; levelCheckView=false; homeView=true; render(); window.scrollTo({top:0,behavior:'smooth'}); }
-function showStudy(){ bookmarkView=false; testView=false; levelCheckView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
-function showTest(){ bookmarkView=false; testView=true; levelCheckView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
-function showLevelCheck(){ bookmarkView=false; testView=false; homeView=false; levelCheckView=true; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showDay(d){ vocabView=false; bookmarkView=false; testView=false; levelCheckView=false; homeView=false; setDay(Number(d)); }
+function showBookmarks(){ vocabView=false; bookmarkView=true; testView=false; levelCheckView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showHome(){ vocabView=false; bookmarkView=false; testView=false; levelCheckView=false; homeView=true; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showStudy(){ vocabView=false; bookmarkView=false; testView=false; levelCheckView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showTest(){ vocabView=false; bookmarkView=false; testView=true; levelCheckView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showLevelCheck(){ vocabView=false; bookmarkView=false; testView=false; homeView=false; levelCheckView=true; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showVocab(){ vocabView=true; bookmarkView=false; testView=false; levelCheckView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function vocabGoToDay(d){ vocabView=false; showDay(d); }
+function vocabBuildIndex(){
+  if(_vocabIndex) return _vocabIndex;
+  var arr=[];
+  LESSONS.forEach(function(l){ (l.vocab||[]).forEach(function(v){ arr.push({zh:v.zh,pinyin:v.pinyin,ja:v.ja,day:l.day}); }); });
+  _vocabIndex=arr; return arr;
+}
+function vocabStripTone(s){
+  var map={'ā':'a','á':'a','ǎ':'a','à':'a','ē':'e','é':'e','ě':'e','è':'e','ī':'i','í':'i','ǐ':'i','ì':'i','ō':'o','ó':'o','ǒ':'o','ò':'o','ū':'u','ú':'u','ǔ':'u','ù':'u','ǖ':'u','ǘ':'u','ǚ':'u','ǜ':'u','ü':'u'};
+  return String(s||'').toLowerCase().replace(/[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜü]/g,function(m){return map[m]||m;});
+}
+function vocabComputeList(){
+  var all=vocabBuildIndex();
+  var k=_vocabQuery.trim().toLowerCase();
+  if(!k) return all;
+  var kt=vocabStripTone(k);
+  return all.filter(function(v){
+    return v.zh.indexOf(k)>=0 || v.pinyin.toLowerCase().indexOf(k)>=0 || vocabStripTone(v.pinyin).indexOf(kt)>=0 || v.ja.toLowerCase().indexOf(k)>=0;
+  });
+}
+function vocabRowHTML(v){
+  return '<button type="button" class="vrow" onclick="vocabGoToDay('+v.day+')">'
+    +'<span class="vrow-main"><span class="vrow-top"><b class="vrow-zh">'+esc(v.zh)+'</b> <span class="vrow-py">'+esc(v.pinyin)+'</span></span>'
+    +'<span class="vrow-ja">'+esc(v.ja)+'</span></span>'
+    +'<span class="vrow-day">Day '+v.day+' \u203a</span></button>';
+}
+function vocabListHTML(list){
+  if(!list.length) return '<div class="vempty">\u300c'+esc(_vocabQuery)+'\u300d\u306b\u4e00\u81f4\u3059\u308b\u5358\u8a9e\u306f\u3042\u308a\u307e\u305b\u3093</div>';
+  return list.map(vocabRowHTML).join('');
+}
+function vocabFilterOnly(){
+  var list=vocabComputeList();
+  var vl=document.querySelector('.vlist'); if(vl) vl.innerHTML=vocabListHTML(list);
+  var cnt=document.querySelector('.vsearch-count'); if(cnt) cnt.textContent=list.length+'件';
+  var cl=$('vocabClear'); if(cl) cl.style.visibility=_vocabQuery.trim()?'visible':'hidden';
+}
+function renderVocabScreen(){
+  if($('bottomNav')) $('bottomNav').style.display='none';
+  bookmarkView=false;
+  if($('bookmarkPanel')) $('bookmarkPanel').className='bookmark-panel card';
+  var c=$('content'); if(!c) return;
+  c.style.display=''; c.className='';
+  var all=vocabBuildIndex();
+  var list=vocabComputeList();
+  var hasQ=!!_vocabQuery.trim();
+  var h='<div class="card">'
+    +'<div class="section-title"><h2>単語</h2><span class="badge">全'+all.length+'語</span></div>'
+    +'<div class="small muted">中国語・ピンイン・日本語で検索（タップでそのDayへ）</div>'
+    +'<div class="vsearch"><span class="vsearch-ic">🔍</span>'
+    +'<input id="vocabSearch" type="search" placeholder="例: 提高 / tigao / 高める" value="'+esc(_vocabQuery)+'" autocomplete="off" autocapitalize="off">'
+    +'<button type="button" class="vsearch-clear" id="vocabClear"'+(hasQ?'':' style="visibility:hidden"')+'>×</button></div>'
+    +'<div class="small muted vsearch-count">'+list.length+'件</div>'
+    +'<div class="vlist">'+vocabListHTML(list)+'</div></div>';
+  c.innerHTML=h;
+  var si=$('vocabSearch');
+  if(si){ si.oninput=function(){ _vocabQuery=si.value; vocabFilterOnly(); }; }
+  var cl=$('vocabClear');
+  if(cl){ cl.onclick=function(){ _vocabQuery=''; vocabFilterOnly(); var s=$('vocabSearch'); if(s){ s.value=''; s.focus(); } }; }
+}
 function setActiveTab(id){ document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.toggle('active', t.id===id);}); }
 
-// ===== ＋ ブックマークだけのミニテスト（フラッシュカード） =====
-var _btCfg={range:'all',type:'both',dir:'ja2zh',count:'5',src:'bm'};
-var _bt=null; // 実行中セッション
-function _btEx(b){
-  var ex=b.example||'',exP=b.exPinyin||'',exJ=b.exJa||'',pin=b.pinyin||'';
-  if(!ex){
-    var m=String(b.id||'').match(/^d(\d+)-([vg])(\d+)$/);
-    if(m){var l2=LESSONS.find(function(l){return l.day===Number(m[1]);});
-      if(l2){var arr=m[2]==='v'?l2.vocab:l2.grammar,it=arr[Number(m[3])];
-        if(it){ex=it.example||'';exP=it.exPinyin||'';exJ=it.exJa||'';pin=pin||it.pinyin||'';}}}
-  }
-  return {ex:ex,exP:exP,exJ:exJ,pin:pin};
-}
-// ブックマーク1件から 中文(zh)・拼音(pin)・日本語語義(ja) を分離して取り出す。
-// 単語の sub は「拼音｜和訳」形式なので、拼音と和訳を分けて拼音が表に漏れないようにする。
-function _btParts(b){
-  var ex=_btEx(b);
-  var zh=b.title||'', pin=b.pinyin||ex.pin||'', ja=b.sub||'';
-  if(b.type==='単語'){
-    var sp=String(b.sub||'').split('｜');
-    if(sp.length>1){ if(!pin) pin=sp[0]; ja=sp.slice(1).join('｜'); }
-  }
-  return {zh:zh, pin:pin, ja:ja, ex:ex};
-}
-function _btBuildPool(){
-  var src=_btCfg.src||'bm', items=[];
-  if(src==='bm'||src==='both'){
-    items=items.concat(Object.values(state.bookmarks||{}).filter(function(b){
-      if(_btCfg.type==='word'    && b.type!=='単語') return false;
-      if(_btCfg.type==='grammar' && b.type!=='文法') return false;
-      var lv=state.levels[b.id]||0;
-      if(_btCfg.range==='hard'  && lv<2) return false;
-      if(_btCfg.range==='vague' && lv<1) return false;
-      return true;
-    }));
-  }
-  if((src==='custom'||src==='both') && _btCfg.type!=='grammar'){
-    items=items.concat((state.customWords||[]).map(function(w,i){
-      return {id:'cw-'+i, type:'単語', title:w.zh||'', sub:w.ja||'', pinyin:w.pinyin||'', example:w.example||'', exPinyin:w.exPinyin||'', exJa:w.exJa||'', day:0, _cw:1};
-    }));
-  }
-  var pool=_shuffle(items);
-  if(_btCfg.count!=='all') pool=pool.slice(0, Number(_btCfg.count));
-  return pool;
-}
-function btSet(group,val){ _btCfg[group]=val; renderTestScreen(); }
-function btStart(){
-  var pool=_btBuildPool();
-  if(!pool.length){ alert('条件に合うブックマークがありません。範囲・種類を見直すか、学習画面で☆を付けてください。'); return; }
-  _bt={pool:pool, idx:0, revealed:false, vague:0, mastered:0};
-  renderTestScreen();
-}
-function btReveal(){ if(_bt){ _bt.revealed=true; renderTestScreen(); } }
-function btNext(action){
-  if(!_bt) return;
-  var b=_bt.pool[_bt.idx];
-  if(b){
-    if(action==='vague'){ if(!b._cw){ var cur=state.levels[b.id]||0; state.levels[b.id]=Math.min(cur+1,2); save(); } _bt.vague++; } // あやふや→難易度を1段階上げる（マイ単語は変更なし）
-    else if(action==='master'){ if(!b._cw && state.bookmarks){ delete state.bookmarks[b.id]; save(); } _bt.mastered++; } // 覚えた→ブックマークから外す（マイ単語は残す）
-    // 'known' は変更なし（そのまま残す）
-  }
-  _bt.idx++; _bt.revealed=false;
-  renderTestScreen();
-}
-function btRestart(){ _bt=null; renderTestScreen(); }
 // ===== SM-2 復習エンジン（state.srs に保存。LESSONS/進捗/ブックマークは読み取りのみ） =====
 function srsCard(id){
-  var m=String(id||'').match(/^d(\d+)-([vg])(\d+)$/);
+  var sid=String(id||'');
+  if(sid.indexOf('cw-')===0){
+    var w=(state.customWords||[]).find(function(x){ return x && x.id===sid; });
+    if(!w) return null;
+    return {id:sid, type:'単語', day:0, custom:true, zh:w.zh, pin:w.pinyin, ja:w.ja, ex:w.example, exP:w.exPinyin, exJ:w.exJa};
+  }
+  var m=sid.match(/^d(\d+)-([vg])(\d+)$/);
   if(!m) return null;
   var l=LESSONS.find(function(x){return x.day===Number(m[1]);});
   if(!l) return null;
@@ -6295,31 +6368,40 @@ function srsCard(id){
   var g=l.grammar[Number(m[3])]; if(!g) return null;
   return {id:id, type:'文法', day:l.day, zh:g.name, pin:g.pinyin, ja:g.meaning, ex:g.example, exP:g.exPinyin, exJ:g.exJa};
 }
-function srsEligibleIds(){
-  var ids=[];
+function cwNewId(){ return 'cw-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8); }
+function cwEnsureIds(){ var ch=false; (state.customWords||[]).forEach(function(w){ if(w && !w.id){ w.id=cwNewId(); ch=true; } }); if(ch){ try{ localStorage.setItem(storageKey, JSON.stringify(state)); }catch(e){} } return ch; }
+function srsEligibleIds(scope){
+  scope=scope||state.revScope||'all';
+  var set={};
   LESSONS.forEach(function(l){
     if(state.completed[l.day]){
-      l.vocab.forEach(function(v){ ids.push(v.id); });
-      l.grammar.forEach(function(g){ ids.push(g.id); });
+      l.vocab.forEach(function(v){ set[v.id]=true; });
+      l.grammar.forEach(function(g){ set[g.id]=true; });
     }
   });
+  Object.keys(state.bookmarks||{}).forEach(function(id){ if(/^d\d+-[vg]\d+$/.test(id)) set[id]=true; });
+  (state.customWords||[]).forEach(function(w){ if(w && w.id) set[w.id]=true; }); // マイ単語も復習対象（bm絞り込み時は下で除外）
+  var ids=Object.keys(set);
+  if(scope==='bm'){ ids=ids.filter(function(id){ return state.bookmarks && state.bookmarks[id]; }); }
   return ids;
 }
-function srsCounts(){
-  var elig=srsEligibleIds(), now=nowMs(), due=0, fresh=0;
+function srsCounts(scope){
+  var elig=srsEligibleIds(scope), now=nowMs(), due=0, fresh=0;
   elig.forEach(function(id){ var s=state.srs[id]; if(!s) fresh++; else if((s.due||0)<=now) due++; });
   return {elig:elig.length, due:due, fresh:fresh};
 }
-function srsBuildDue(newLimit){
-  var elig=srsEligibleIds(), now=nowMs(), due=[], fresh=[];
+function srsBuildDue(newLimit, scope){
+  var elig=srsEligibleIds(scope), now=nowMs(), due=[], fresh=[];
   elig.forEach(function(id){ var s=state.srs[id]; if(!s) fresh.push(id); else if((s.due||0)<=now) due.push(id); });
   due=_shuffle(due); fresh=_shuffle(fresh);
   if(newLimit>=0) fresh=fresh.slice(0, newLimit);
   return due.concat(fresh);
 }
+var LEECH_LAPSES=4; // 「もう一度」がこの回数以上で「つまずき語（リーチ）」
+function srsIsLeech(id){ var s=state.srs[id]; return !!(s && (s.lapses||0)>=LEECH_LAPSES); }
 function srsGrade(id, q){
-  var s=state.srs[id]||{ef:2.5, interval:0, reps:0, due:0, last:0};
-  if(q<3){ s.reps=0; s.interval=1; }
+  var s=state.srs[id]||{ef:2.5, interval:0, reps:0, due:0, last:0, lapses:0};
+  if(q<3){ s.reps=0; s.interval=1; s.lapses=(s.lapses||0)+1; } // もう一度＝つまずき（lapse）を加算
   else{
     s.reps=(s.reps||0)+1;
     if(s.reps===1) s.interval=1;
@@ -6338,9 +6420,11 @@ function srsSetDir(d){ state.srsDir=(d==='ja2zh')?'ja2zh':'zh2ja'; save(); rende
 
 // ===== 復習セッション =====
 var _rev=null; // {queue:[ids], idx, revealed, again, hard, good, easy, reviewed}
-function revStart(){
+function revSetScope(s){ state.revScope=(s==='bm')?'bm':'all'; save(); renderTestScreen(); }
+function revStart(scope){
+  if(scope==='bm'||scope==='all') state.revScope=scope;
   var nl=(typeof state.srsNewLimit==='number')?state.srsNewLimit:8;
-  var pool=srsBuildDue(nl);
+  var pool=srsBuildDue(nl, state.revScope);
   if(!pool.length){ _rev=null; renderTestScreen(); window.scrollTo({top:0,behavior:'smooth'}); return; }
   _rev={queue:pool, idx:0, revealed:false, again:0, hard:0, good:0, easy:0, reviewed:0};
   renderTestScreen(); window.scrollTo({top:0,behavior:'smooth'});
@@ -6362,10 +6446,16 @@ function _revRender(c){
   if(_rev.idx<_rev.queue.length){
     var card=srsCard(_rev.queue[_rev.idx]);
     var remain=_rev.queue.length-_rev.idx;
+    var leech=srsIsLeech(card.id);
+    function exBlock(){
+      if(!card.ex){ return leech?'<div class="leech-tip">🔁 つまずき中：例文がない語です。短い例文を自作する／出題の向きを変えると覚えやすくなります。</div>':''; }
+      var tip=leech?'<div class="leech-tip">🔁 つまずき中：例文ごと声に出して、文脈で覚えてみましょう（向きを変えるのも有効）。</div>':'';
+      return tip+'<div class="ex'+(leech?' ex-leech':'')+'" style="text-align:left;margin-top:10px"><div style="color:#1a3c5e;font-weight:600">'+esc(card.ex)+' <button class="speak-btn" onclick="speakZh(\''+esc(card.ex)+'\')" aria-label="例文を再生">🔊</button></div>'+(card.exP?'<div class="small">'+esc(card.exP)+'</div>':'')+(card.exJ?'<div class="small">'+esc(card.exJ)+'</div>':'')+'</div>';
+    }
     var spk='<button class="speak-btn" onclick="speakZh(\''+esc(card.zh)+'\')" aria-label="発音を再生">🔊</button>';
     var dir=(state.srsDir==='ja2zh')?'ja2zh':'zh2ja';
-    var h='<div class="card testwrap"><div class="section-title"><h2>今日の復習</h2><span class="badge">残り '+remain+'問</span></div>';
-    h+='<div class="flashcard"><span class="badge">'+esc(card.type)+'</span><span class="badge">Day '+card.day+'</span>';
+    var h='<div class="card testwrap"><div class="section-title"><h2>今日の復習'+(state.revScope==='bm'?'（ブックマーク）':'')+'</h2><span class="badge">残り '+remain+'問</span></div>';
+    h+='<div class="flashcard"><span class="badge">'+esc(card.type)+'</span><span class="badge">'+(card.custom?'マイ単語':'Day '+card.day)+'</span>'+(leech?'<span class="badge badge-leech">🔁 つまずき中</span>':'');
     if(dir==='zh2ja'){
       h+='<div class="fc-prompt">'+esc(card.zh)+' '+spk+'</div>';
       if(!_rev.revealed){
@@ -6374,7 +6464,7 @@ function _revRender(c){
       } else {
         h+='<div class="fc-answer"><div class="a-main">'+esc(card.ja)+'</div>';
         if(card.pin) h+='<div class="fc-sub">'+esc(card.pin)+'</div>';
-        if(card.ex) h+='<div class="ex" style="text-align:left;margin-top:10px"><div style="color:#1a3c5e;font-weight:600">'+esc(card.ex)+' <button class="speak-btn" onclick="speakZh(\''+esc(card.ex)+'\')" aria-label="例文を再生">🔊</button></div>'+(card.exP?'<div class="small">'+esc(card.exP)+'</div>':'')+(card.exJ?'<div class="small">'+esc(card.exJ)+'</div>':'')+'</div>';
+        h+=exBlock();
         h+='</div>';
         h+='<div class="fc-actions g4"><button class="g4-again" onclick="revGrade(2)">もう一度</button><button class="g4-hard" onclick="revGrade(3)">難しい</button><button class="g4-good" onclick="revGrade(4)">普通</button><button class="g4-easy" onclick="revGrade(5)">簡単</button></div>';
       }
@@ -6386,7 +6476,7 @@ function _revRender(c){
       } else {
         h+='<div class="fc-answer"><div class="a-main">'+esc(card.zh)+' '+spk+'</div>';
         if(card.pin) h+='<div class="fc-sub">'+esc(card.pin)+'</div>';
-        if(card.ex) h+='<div class="ex" style="text-align:left;margin-top:10px"><div style="color:#1a3c5e;font-weight:600">'+esc(card.ex)+' <button class="speak-btn" onclick="speakZh(\''+esc(card.ex)+'\')" aria-label="例文を再生">🔊</button></div>'+(card.exP?'<div class="small">'+esc(card.exP)+'</div>':'')+(card.exJ?'<div class="small">'+esc(card.exJ)+'</div>':'')+'</div>';
+        h+=exBlock();
         h+='</div>';
         h+='<div class="fc-actions g4"><button class="g4-again" onclick="revGrade(2)">もう一度</button><button class="g4-hard" onclick="revGrade(3)">難しい</button><button class="g4-good" onclick="revGrade(4)">普通</button><button class="g4-easy" onclick="revGrade(5)">簡単</button></div>';
       }
@@ -6416,78 +6506,30 @@ function renderTestScreen(){
   var c=$('content'); c.style.display=''; c.className='';
   $('bookmarkPanel').className='bookmark-panel card';
   if(_rev){ _revRender(c); return; }
-  var total=Object.keys(state.bookmarks||{}).length;
-  // 実行中のフラッシュカード
-  if(_bt && _bt.idx<_bt.pool.length){
-    var b=_bt.pool[_bt.idx], p=_btParts(b), ex=p.ex;
-    var dir=_btCfg.dir; // 'ja2zh'=日本語→中文・拼音 / 'zh2ja'=中文→日本語
-    var front, backMain, backSub, frontIsZh;
-    if(dir==='ja2zh'){ front=p.ja; backMain=p.zh; backSub=p.pin; frontIsZh=false; }
-    else            { front=p.zh; backMain=p.ja; backSub=p.pin; frontIsZh=true; }
-    var spk='<button class="speak-btn" onclick="speakZh(\''+esc(p.zh)+'\')">🔊</button>';
-    var h='<div class="card testwrap"><div class="section-title"><h2>ブックマークテスト</h2><span class="badge">'+(_bt.idx+1)+' / '+_bt.pool.length+'</span></div>';
-    h+='<div class="flashcard"><span class="badge">'+esc(b.type)+'</span><span class="badge">Day '+b.day+'</span>';
-    h+='<div class="fc-prompt">'+esc(front)+(frontIsZh?' '+spk:'')+'</div>';
-    if(!_bt.revealed){
-      h+='<div class="fc-sub">'+(dir==='ja2zh'?'→ 中国語と拼音を思い出そう':'→ 拼音と意味を思い出そう')+'</div>';
-      h+='<div class="fc-actions"><button class="primary" onclick="btReveal()">答えを見る</button></div>';
-    } else {
-      h+='<div class="fc-answer"><div class="a-main">'+esc(backMain)+(!frontIsZh?' '+spk:'')+'</div>';
-      if(backSub) h+='<div class="fc-sub">'+esc(backSub)+'</div>';
-      if(ex.ex) h+='<div class="ex" style="text-align:left;margin-top:10px"><div style="color:#1a3c5e;font-weight:600">'+esc(ex.ex)+' <button class="speak-btn" onclick="speakZh(\''+esc(ex.ex)+'\')">🔊</button></div>'+(ex.exP?'<div class="small">'+esc(ex.exP)+'</div>':'')+(ex.exJ?'<div class="small">'+esc(ex.exJ)+'</div>':'')+'</div>';
-      h+='</div>';
-      h+='<div class="fc-actions"><button class="btn-vague" onclick="btNext(\'vague\')">△ あやふや</button><button class="btn-known" onclick="btNext(\'known\')">○ わかった</button><button class="btn-master" onclick="btNext(\'master\')">★ 覚えた</button></div>';
-    }
-    h+='</div>';
-    h+='<div class="fc-progress">あやふや＝難易度を1段階上げる（普通→曖昧→苦手）／わかった＝そのまま残す／覚えた＝ブックマークから外して卒業</div>';
-    h+='<div class="row" style="margin-top:10px"><button onclick="btRestart()">テストを終了</button></div>';
-    h+='</div>';
-    c.innerHTML=h; return;
-  }
-  // 終了画面
-  if(_bt && _bt.idx>=_bt.pool.length){
-    var n=_bt.pool.length, vg=_bt.vague, ms=_bt.mastered;
-    c.innerHTML='<div class="card testwrap"><div class="section-title"><h2>テスト終了</h2><span class="badge">'+n+'問</span></div>'+
-      '<div class="scorebox">お疲れさまでした。<b>'+n+'問</b>を確認しました。<br>あやふや（難易度を1段階上げた）：<b>'+vg+'件</b><br>覚えた（ブックマーク解除）：<b>'+ms+'件</b><br><span class="small muted">苦手に付けた項目は範囲「苦手のみ」で重点復習できます。</span></div>'+
-      '<div class="row" style="margin-top:12px"><button class="primary" onclick="btRestart()">もう一度設定する</button><button onclick="showBookmarks()">ブックマークを見る</button></div></div>';
-    _bt=null; return;
-  }
   // 設定画面
-  function seg(group,opts){
-    return '<div class="seg">'+opts.map(function(o){
-      return '<button type="button" class="chip-toggle '+(_btCfg[group]===o.v?'on':'')+'" onclick="btSet(\''+group+'\',\''+o.v+'\')">'+o.t+'</button>';
-    }).join('')+'</div>';
-  }
-  var avail=_btBuildPool().length;
+  var scope=(state.revScope==='bm')?'bm':'all';
   var nl=(typeof state.srsNewLimit==='number')?state.srsNewLimit:8;
-  var cnt=srsCounts();
+  var cnt=srsCounts(scope);
   var shownNew=(nl<0)?cnt.fresh:Math.min(nl,cnt.fresh);
   var todayTotal=cnt.due+shownNew;
+  var scopeOpts=[{v:'all',t:'すべて'},{v:'bm',t:'ブックマークのみ'}];
+  var scopeseg='<div class="seg">'+scopeOpts.map(function(o){ return '<button type="button" class="chip-toggle '+(scope===o.v?'on':'')+'" onclick="revSetScope(\''+o.v+'\')">'+o.t+'</button>'; }).join('')+'</div>';
   var nlOpts=[{v:0,t:'なし'},{v:8,t:'8'},{v:16,t:'16'},{v:-1,t:'制限なし'}];
   var nlseg='<div class="seg">'+nlOpts.map(function(o){ return '<button type="button" class="chip-toggle '+(nl===o.v?'on':'')+'" onclick="srsSetNewLimit('+o.v+')">'+o.t+'</button>'; }).join('')+'</div>';
   var dir=(state.srsDir==='ja2zh')?'ja2zh':'zh2ja';
   var dirOpts=[{v:'zh2ja',t:'中文 → 日本語'},{v:'ja2zh',t:'日本語 → 中文'}];
   var dirseg='<div class="seg">'+dirOpts.map(function(o){ return '<button type="button" class="chip-toggle '+(dir===o.v?'on':'')+'" onclick="srsSetDir(\''+o.v+'\')">'+o.t+'</button>'; }).join('')+'</div>';
   var html='<div class="card testwrap"><div class="section-title"><h2>今日の復習</h2><span class="badge">'+todayTotal+'問</span></div>';
+  html+='<div class="label">範囲</div>'+scopeseg+'<div class="small muted" style="margin-top:6px">「すべて」＝完了したDayの単語・文法＋ブックマーク＋マイ単語。「ブックマークのみ」＝☆を付けた語だけに絞り込みます。出題予定はどちらでも共通の1本です。</div>';
   if(cnt.elig===0){
-    html+='<div class="empty">まだ完了したDayがありません。学習画面で各Dayを「完了」にすると、その日の単語・文法が自動で復習対象に入ります。</div>';
+    html+='<div class="empty" style="margin-top:12px">'+(scope==='bm'?'ブックマークがまだありません。学習画面で単語・文法の ☆ を押すと、ここで復習できます。':'まだ復習対象がありません。学習画面で各Dayを「完了」にするか、☆ブックマークを付けると自動で対象に入ります。')+'</div>';
   } else {
-    html+='<div class="small">忘れる頃に自動で出題します。</div>';
     html+='<button class="primary" style="width:100%;margin-top:12px"'+(todayTotal===0?' disabled':'')+' onclick="revStart()">'+(todayTotal===0?'今日の復習は完了！':'復習を始める（'+todayTotal+'問）')+'</button>';
-    html+='<div class="label" style="margin-top:14px">1日の新規問数</div>'+nlseg+'<div class="small muted" style="margin-top:6px">新しく覚え始める語の上限です。多いほど将来の復習が増えます。学習を進めた分（完了Day）が自動で新規に入ります。</div>';
-    html+='<div class="label" style="margin-top:14px">出題の向き</div>'+dirseg+'<div class="small muted" style="margin-top:6px">中文→日本語は意味を答える練習、日本語→中文は中文を思い出す練習です。出題スケジュールはどちらの向きでも共通です。</div>';
+    html+='<div class="small muted" style="margin-top:8px">忘れる頃に自動で出題します（間隔反復）。</div>';
+    html+='<div class="label" style="margin-top:14px">1日の新規問数</div>'+nlseg+'<div class="small muted" style="margin-top:6px">新しく覚え始める語の上限です。多いほど将来の復習が増えます。</div>';
+    html+='<div class="label" style="margin-top:14px">出題の向き</div>'+dirseg+'<div class="small muted" style="margin-top:6px">中文→日本語は意味を答える練習、日本語→中文は中文を思い出す練習です。スケジュールはどちらの向きでも共通です。</div>';
   }
-  html+='<details class="g-details" style="margin-top:16px"><summary>自由に出題（ブックマーク・範囲・方向を指定）</summary><div style="padding:2px 12px 12px">'+
-    '<div class="small" style="margin:8px 0">期日に関係なく、☆ブックマークやマイ単語を好きな条件で練習できます。</div>'+
-    '<div class="label">出題元</div>'+seg('src',[{v:'bm',t:'ブックマーク'},{v:'custom',t:'マイ単語'},{v:'both',t:'両方'}])+
-    '<div class="label">範囲</div>'+seg('range',[{v:'all',t:'すべて'},{v:'vague',t:'曖昧＋苦手'},{v:'hard',t:'苦手のみ'}])+
-    '<div class="label">種類</div>'+seg('type',[{v:'both',t:'単語＋文法'},{v:'word',t:'単語'},{v:'grammar',t:'文法'}])+
-    '<div class="label">方向</div>'+seg('dir',[{v:'ja2zh',t:'日本語 → 中文・拼音'},{v:'zh2ja',t:'中文 → 日本語'}])+
-    '<div class="label">問題数</div>'+seg('count',[{v:'5',t:'5問'},{v:'10',t:'10問'},{v:'all',t:'全部'}])+
-    '<div class="small muted" style="margin-top:10px">この条件で出題できる件数：<b>'+avail+'件</b></div>'+
-    '<button class="primary" style="width:100%;margin-top:12px" onclick="btStart()">自由出題を開始</button>'+
-    '</div></details>';
-  html+='<details class="g-details" style="margin-top:12px"><summary>作文採点サーバー設定</summary><div style="padding:2px 12px 12px">'+
+  html+='<details class="g-details" style="margin-top:16px"><summary>作文採点サーバー設定</summary><div style="padding:2px 12px 12px">'+
     '<div class="small" style="margin:8px 0">ミニテストの作文をAI採点するサーバーのURLです。端末ごとに保存され、クラウド同期はされません。</div>'+
     '<input id="graderUrlInput" type="text" value="'+esc(mtGraderUrl())+'" placeholder="https://...workers.dev" style="width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px" spellcheck="false">'+
     '<button class="primary" style="width:100%;margin-top:10px" onclick="mtSaveGraderUrl()">保存</button>'+
@@ -6515,12 +6557,7 @@ Object.assign(window, {
   setLevel,
   togglePinyin,
   toggleJa,
-  toggleDensity,
-  btSet,
-  btStart,
-  btReveal,
-  btNext,
-  btRestart
+  toggleDensity
 });
 
 render();
@@ -6536,6 +6573,7 @@ setTimeout(setTopOffset, 300); // Webフォント/アイコン読込後のズレ
   var st=document.getElementById('studyTab'); if(st) st.addEventListener('click', showStudy);
   var tt=document.getElementById('testTab');  if(tt) tt.addEventListener('click', showTest);
   var lct=document.getElementById('levelCheckBtn'); if(lct) lct.addEventListener('click', showLevelCheck);
+  var vt=document.getElementById('vocabTab'); if(vt) vt.addEventListener('click', showVocab);
   // ブックマークタブは別途 bookmarkViewBtn のハンドラで処理
 })();
 
@@ -6733,17 +6771,15 @@ window.revStart = revStart;
 window.revReveal = revReveal;
 window.revGrade = revGrade;
 window.revEnd = revEnd;
+window.revSetScope = revSetScope;
 window.srsSetNewLimit = srsSetNewLimit;
 window.srsSetDir = srsSetDir;
 window.toggleJa = toggleJa;
 window.toggleDensity = toggleDensity;
 window.showStudy = showStudy;
 window.showTest = showTest;
-window.btSet = btSet;
-window.btStart = btStart;
-window.btReveal = btReveal;
-window.btNext = btNext;
-window.btRestart = btRestart;
+window.showVocab = showVocab;
+window.vocabGoToDay = vocabGoToDay;
 
 // Service Worker登録（PWA用）
 if('serviceWorker' in navigator){
@@ -6769,12 +6805,21 @@ window.hsk4ForceDownload=async function(){
     state.completed=cl.completed||{};state.answers=cl.answers||{};
     state.scores=cl.scores||{};state.bookmarks=cl.bookmarks||{};state.dragOrders=cl.dragOrders||{};
     state.levels=cl.levels||state.levels||{};
+    if(cl.srs&&typeof cl.srs==='object') state.srs=cl.srs;
+    if(Array.isArray(cl.customWords)) state.customWords=cl.customWords;
+    if(typeof cl.srsNewLimit==='number') state.srsNewLimit=cl.srsNewLimit;
+    if(cl.srsDir==='ja2zh'||cl.srsDir==='zh2ja') state.srsDir=cl.srsDir;
+    if(['recommend','hard','added','random'].indexOf(cl.bmSort)>=0) state.bmSort=cl.bmSort;
+    if(cl.revScope==='bm'||cl.revScope==='all') state.revScope=cl.revScope;
+    if(cl.fontScale==='sm'||cl.fontScale==='lg'||cl.fontScale==='md') state.fontScale=cl.fontScale;
+    cwEnsureIds();
     if(cl.density) state.density=cl.density;
     if(cl.currentDay)current=Number(cl.currentDay)||current;
     localStorage.setItem(storageKey,JSON.stringify(state));
     localStorage.setItem(storageKey+'-updatedAtMs',String(Number(cl.updatedAtMs||0)));
     localStorage.setItem('hsk4-current-day',String(current));
     suppressCloudSave=false;
+    if(typeof applyFontScale==='function') applyFontScale();
     setSyncStatus('on','クラウドから強制取得(BM:'+cbm+'件)',cloudUser.email||'');
     if(typeof render==='function')render();
   }catch(e){setSyncStatus('err','取得エラー:'+(e.message||'不明'),cloudUser&&cloudUser.email?cloudUser.email:'');}
@@ -6959,6 +7004,7 @@ document.addEventListener('click', function(e){
    - 例文(中文/ピンイン/和訳)は選択元からコピー。ピンイン/意味は best-effort 自動＋編集可
    ========================================================================= */
 if(!Array.isArray(state.customWords)) state.customWords=[];
+cwEnsureIds(); // 既存のマイ単語に安定IDを付与（SRSスケジュールの取り違え防止）
 
 function cwEsc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
@@ -7132,7 +7178,7 @@ function cwModalSave(){
   var msg=document.getElementById('cw-msg');
   if(!zh){ if(msg) msg.textContent='単語を入力してください。'; return; }
   var g=function(id){ var e=document.getElementById(id); return e?e.value:''; };
-  var w={ zh:zh, pinyin:g('cw-pin'), ja:g('cw-ja'), example:g('cw-ex'), exPinyin:g('cw-exp'), exJa:g('cw-exj'), ts:Date.now() };
+  var w={ id:cwNewId(), zh:zh, pinyin:g('cw-pin'), ja:g('cw-ja'), example:g('cw-ex'), exPinyin:g('cw-exp'), exJa:g('cw-exj'), ts:Date.now() };
   if(!Array.isArray(state.customWords)) state.customWords=[];
   state.customWords.unshift(w);
   save();
