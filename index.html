@@ -242,8 +242,31 @@ body.fs-lg .zh{font-size:24px}body.fs-lg .pinyin{font-size:17px}body.fs-lg .ja{f
 .hsk-pop{animation:hsk-pop .45s ease}.hsk-checkpulse{animation:hsk-checkpulse .5s ease}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media (prefers-reduced-motion: reduce){.hsk-pop,.hsk-checkpulse{animation:none}.ring-prog{transition:none}}
-.fs-global{display:flex;align-items:center;justify-content:flex-end;gap:5px;margin-top:8px}
+.fs-global{display:flex;align-items:center;gap:6px;margin-top:2px}
 .fs-global .fs-label{font-size:11px;color:#1E3A4C;font-weight:700;margin-right:2px}
+/* 設定パネル（ブックマークパネルと同じく #content とは別枠。設定タブでのみ表示） */
+.settings-panel{display:none}
+.settings-panel.active{display:block}
+.set-label{font-size:12px;font-weight:800;color:#8C8074;letter-spacing:.04em;margin:18px 0 7px}
+.set-label:first-of-type{margin-top:10px}
+.set-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+/* 「今日」画面：新規／復習の2カード */
+.today-actions{display:grid;gap:12px;margin-top:12px}
+@media(min-width:640px){.today-actions{grid-template-columns:1fr 1fr}}
+.tcard{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px;display:flex;flex-direction:column;gap:4px;box-shadow:0 4px 14px rgba(16,24,40,.04)}
+.tcard.accent{border-color:#C9D5DE;background:#F7FAFC}
+.tcard .tc-eyebrow{font-size:11px;font-weight:800;letter-spacing:.1em;color:#8C8074}
+.tcard .tc-title{font-size:19px;font-weight:800;color:#173A52;line-height:1.35}
+.tcard .tc-meta{font-size:13px;color:#5C5249;line-height:1.6}
+.tcard button{margin-top:10px;width:100%}
+.tcard .tc-count{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:30px;font-weight:700;color:#1E3A4C;line-height:1.1;font-variant-numeric:tabular-nums}
+.tcard.done .tc-count{color:#2E8B62}
+.day-list-details{margin-top:12px;border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}
+.day-list-details>summary{list-style:none;cursor:pointer;padding:13px 16px;font-weight:700;font-size:15px;color:#1E3A4C;display:flex;align-items:center;justify-content:space-between;touch-action:manipulation}
+.day-list-details>summary::-webkit-details-marker{display:none}
+.day-list-details>summary::after{content:"＋";font-size:16px;color:#1E3A4C}
+.day-list-details[open]>summary::after{content:"−"}
+.day-list-details .dl-body{padding:0 14px 14px}
 .fs-btn{padding:3px 11px;font-size:12px;font-weight:700;border:0.5px solid #9DB0BE;background:#fff;color:#173A52;border-radius:10px;line-height:1.4;touch-action:manipulation;cursor:pointer}
 .fs-btn.on{background:#1E3A4C;color:#fff;border-color:#1E3A4C}
 .g-details{margin-top:8px;border:1px dashed #DCD3C6;border-radius:14px;background:#FBF7F0;overflow:hidden}
@@ -271,21 +294,26 @@ h1.brand{display:flex;align-items:center;justify-content:center;gap:9px}.brand .
  <div class="top-inner">
   <h1 class="brand" aria-label="加油 90日でHSK4合格"><svg class="brand-flame" viewBox="0 0 100 100" aria-hidden="true"><path d="M52 6 C 62 30, 80 42, 80 64 A 30 30 0 1 1 20 64 C 20 46, 33 41, 41 28 C 44 41, 50 45, 50 37 C 50 26, 47 16, 52 6 Z" fill="#F2A227"/><path d="M50 52 C 56 62, 63 66, 63 74 A 13 13 0 1 1 37 74 C 37 65, 45 62, 50 52 Z" fill="#FBD27A"/></svg><span class="brand-word">加油</span><span class="brand-sub">90日でHSK4合格</span></h1>
   <div class="nav-tabs">
-   <div class="nav-tab" id="homeBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>ホーム</span></div>
-   <div class="nav-tab" id="studyTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5.5-1.5-7.5 0v12c2-1.5 5.5-1.5 7.5 0 2-1.5 5.5-1.5 7.5 0V6c-2-1.5-5.5-1.5-7.5 0z"/><path d="M12 6v12"/></svg><span>学習</span></div>
+   <div class="nav-tab" id="homeBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v2.5"/><circle cx="12" cy="13.5" r="7.5"/><path d="M12 10v3.5l2.5 1.5"/></svg><span>今日</span></div>
    <div class="nav-tab" id="bookmarkViewBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>ブックマーク</span></div>
-   <div class="nav-tab" id="testTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5h6V5H9z"/><path d="M8.5 13l2.2 2.2L15 11"/></svg><span>復習</span></div>
-   <div class="nav-tab" id="levelCheckBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg><span>級診断</span></div>
    <div class="nav-tab" id="vocabTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10"/><path d="M8 9h6"/><path d="M8 13h8"/></svg><span>単語</span></div>
+   <div class="nav-tab" id="settingsTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v2.2M12 19.3v2.2M21.5 12h-2.2M4.7 12H2.5M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6M18.7 18.7l-1.6-1.6M6.9 6.9L5.3 5.3"/></svg><span>設定</span></div>
   </div>
 
-  <div class="fs-global" role="group" aria-label="文字サイズの調整">
-    <span class="fs-label">文字サイズ</span>
-    <button type="button" class="fs-btn" data-fs="sm" onclick="setFontScale('sm')" aria-label="文字サイズ 小">小</button>
-    <button type="button" class="fs-btn" data-fs="md" onclick="setFontScale('md')" aria-label="文字サイズ 中">中</button>
-    <button type="button" class="fs-btn" data-fs="lg" onclick="setFontScale('lg')" aria-label="文字サイズ 大">大</button>
-  </div>
+  
 
+ </div>
+</div>
+
+<div class="app">
+ <div id="bookmarkPanel" class="bookmark-panel card"></div>
+
+ <!-- 設定パネル：同期バーは Firebase 側が ID を直接参照するため、再描画で作り直さず
+      常時 DOM に置いたまま、設定タブのときだけ表示する。 -->
+ <div id="settingsPanel" class="settings-panel card">
+  <div class="section-title"><h2>設定</h2></div>
+
+  <div class="set-label">クラウド同期</div>
   <div class="syncbar" id="syncBar">
     <span class="syncdot warn" id="syncDot"></span>
     <span class="sync-status" id="syncStatus">未ログイン：この端末内に保存中</span>
@@ -295,13 +323,18 @@ h1.brand{display:flex;align-items:center;justify-content:center;gap:9px}.brand .
     <button class="force-btn" id="forceUploadBtn" type="button" style="display:none">↑ 端末→クラウド</button>
     <button class="force-btn force-dl" id="forceDownloadBtn" type="button" style="display:none">↓ クラウド→端末</button>
   </div>
-  
+  <div class="small muted" style="margin-top:6px">ログインすると、進捗・ブックマーク・復習スケジュールが端末間で同期されます。</div>
 
+  <div class="set-label">文字サイズ</div>
+  <div class="fs-global" role="group" aria-label="文字サイズの調整">
+    <button type="button" class="fs-btn" data-fs="sm" onclick="setFontScale('sm')" aria-label="文字サイズ 小">小</button>
+    <button type="button" class="fs-btn" data-fs="md" onclick="setFontScale('md')" aria-label="文字サイズ 中">中</button>
+    <button type="button" class="fs-btn" data-fs="lg" onclick="setFontScale('lg')" aria-label="文字サイズ 大">大</button>
+  </div>
+
+  <div id="settingsBody"></div>
  </div>
-</div>
 
-<div class="app">
- <div id="bookmarkPanel" class="bookmark-panel card"></div>
  <div id="content"></div>
 </div>
 <div class="bottomnav" id="bottomNav">
@@ -5721,10 +5754,14 @@ const BANK = {
 
 const $=id=>document.getElementById(id);
 let current=Number(localStorage.getItem('hsk4-current-day')||1);
-let homeView=true;
-let showAnswers=false, bookmarkView=false, testView=false, selectedChip=null;
-let vocabView=false, _vocabQuery='', _vocabIndex=null;
-let levelCheckView=false, lcStage='start', lcIndex=0, lcAnswers={}, lcSoonLevel=null;
+// 画面状態は単一の文字列で持つ。以前は homeView/bookmarkView/testView/vocabView/
+// levelCheckView の5つの真偽値を各遷移関数が毎回すべて書き換えており、1つ書き忘れると
+// 画面が二重表示になる作りだった。タブでない画面（day/review/levelcheck）もここに含む。
+// 値: 'today' | 'day' | 'bookmark' | 'vocab' | 'settings' | 'review' | 'levelcheck'
+let currentView='today';
+let showAnswers=false, selectedChip=null;
+let _vocabQuery='', _vocabIndex=null;
+let lcStage='start', lcIndex=0, lcAnswers={}, lcSoonLevel=null;
 let cwSubTab='bm';
 const storageKey='hsk4-90-v4-state';
 let state=JSON.parse(localStorage.getItem(storageKey)||'{"completed":{},"answers":{},"scores":{},"bookmarks":{},"dragOrders":{}}');
@@ -5795,12 +5832,12 @@ function cycleHighlight(id){
 }
 
 function renderBookmarkPanel(){
-  $('bookmarkPanel').className='bookmark-panel card'+(bookmarkView?' active':'')+(state.density==='compact'?' compact':'');
+  $('bookmarkPanel').className='bookmark-panel card'+(currentView==='bookmark'?' active':'')+(state.density==='compact'?' compact':'');
   var bvb=$('bookmarkViewBtn');
   if(bvb){
     var sp=bvb.querySelector('span');
     if(sp) sp.textContent='ブックマーク';
-    bvb.classList.toggle('active', bookmarkView);
+    bvb.classList.toggle('active', currentView==='bookmark');
   }
   var cwCount=(state.customWords||[]).length;
   var subbar='<div class="cw-subtabs"><button class="cw-subtab'+(cwSubTab!=='custom'?' active':'')+'" data-cw-action="tab-bm">ブックマーク</button><button class="cw-subtab'+(cwSubTab==='custom'?' active':'')+'" data-cw-action="tab-custom">マイ単語'+(cwCount?(' '+cwCount):'')+'</button></div>';
@@ -5852,7 +5889,6 @@ function bmSetSort(s){
 function renderHome(){
  if($('bottomNav')) $('bottomNav').style.display='none';
  save(); initSelect(); renderBookmarkPanel();
- bookmarkView=false;
  $('bookmarkPanel').className='bookmark-panel card';
  const c=$('content');
  c.style.display='';
@@ -5860,11 +5896,49 @@ function renderHome(){
  const doneCount=Object.keys(state.completed||{}).filter(k=>state.completed[k]).length;
  const percent=Math.round(doneCount/LESSONS.length*100);
  const ringC=213.6, ringOff=(ringC*(1-percent/100)).toFixed(1);
- const fsv=(state.fontScale==='sm'||state.fontScale==='lg')?state.fontScale:'md';
  const nextDay=Math.min(LESSONS.length, Math.max(1, doneCount+1));
+ const nextLesson=LESSONS[nextDay-1];
+ const allDone=doneCount>=LESSONS.length;
+
+ // 復習の枚数は「今日やること」を判断する材料なので、新規と必ず同じ画面に並べる。
+ // 別タブに分かれていると復習の溜まりが見えず、気づいたときには手遅れになるため。
+ const scope=(state.revScope==='bm')?'bm':'all';
+ const nl=(typeof state.srsNewLimit==='number')?state.srsNewLimit:8;
+ const cnt=srsCounts(scope);
+ const shownNew=(nl<0)?cnt.fresh:Math.min(nl,cnt.fresh);
+ const revTotal=cnt.due+shownNew;
+
+ const newCard=allDone
+  ? `<div class="tcard done">
+      <span class="tc-eyebrow">新規</span>
+      <span class="tc-title">90日ぶん完走しました</span>
+      <span class="tc-meta">あとは復習を続けて定着させましょう。</span>
+      <button onclick="showDay(${current})">Day ${current} を見返す</button>
+     </div>`
+  : `<div class="tcard accent">
+      <span class="tc-eyebrow">新規</span>
+      <span class="tc-title">Day ${nextDay}</span>
+      <span class="tc-meta">${esc(nextLesson.title.replace(/^Day\s*\d+｜/,''))}<br>単語${nextLesson.vocab.length}個・文法${nextLesson.grammar.length}つ・ミニテスト</span>
+      <button class="primary" onclick="showDay(${nextDay})">学習を始める</button>
+     </div>`;
+
+ const revCard = cnt.elig===0
+  ? `<div class="tcard">
+      <span class="tc-eyebrow">復習</span>
+      <span class="tc-title">まだありません</span>
+      <span class="tc-meta">Dayを1つ完了すると、その単語・文法がここに入り、忘れる頃に出題されます。</span>
+      <button disabled>復習する</button>
+     </div>`
+  : `<div class="tcard${revTotal===0?' done':''}">
+      <span class="tc-eyebrow">復習</span>
+      <span class="tc-count">${revTotal}<span style="font-size:14px;font-weight:700"> 枚</span></span>
+      <span class="tc-meta">${revTotal===0?'今日のぶんは終わっています。':`期限 ${cnt.due} ＋ 新しく覚える ${shownNew}`}</span>
+      <button class="${revTotal>0?'primary':''}" ${revTotal===0?'disabled':''} onclick="showTest()">${revTotal===0?'今日の復習は完了':'復習する'}</button>
+     </div>`;
+
  c.innerHTML=`
   <div class="card">
-   <div class="section-title"><h2>ホーム</h2><span class="badge">${doneCount}/${LESSONS.length} 完了</span></div>
+   <div class="section-title"><h2>今日やること</h2><span class="badge">${doneCount}/${LESSONS.length} 完了</span></div>
    <div class="home-ring">
      <svg width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="完了 ${doneCount} / ${LESSONS.length} 日、${percent}パーセント">
        <circle class="ring-track" cx="40" cy="40" r="34" fill="none" stroke-width="8"/>
@@ -5873,36 +5947,21 @@ function renderHome(){
      </svg>
      <div class="ring-text">
        <div class="small">90日のうち <b>${doneCount}日</b> 完了</div>
-       <div class="small" style="margin-top:2px">ここから今日の学習・続き・各Dayに移動できます。</div>
+       <div class="small" style="margin-top:2px">新しく覚えるぶんと、思い出すぶん。両方そろって1日ぶんです。</div>
      </div>
    </div>
+   <div class="today-actions">${newCard}${revCard}</div>
   </div>
-  <div class="home-grid">
-    <div class="home-card">
-      <h3>前回からの続き</h3>
-      <div class="small">まだ完了していない最初のDayへ移動します。</div>
-      <div class="home-actions">
-        <button class="primary" onclick="showDay(${nextDay})">Day ${nextDay} を開く</button>
-        <button onclick="showDay(${current})">前回のDay</button>
+
+  <details class="day-list-details">
+    <summary>全90日から選ぶ</summary>
+    <div class="dl-body">
+      <div class="small" style="margin-bottom:6px">完了済みのDayは緑で表示されます。</div>
+      <div class="day-grid">
+        ${LESSONS.map(l=>`<button class="daybtn ${state.completed[l.day]?'done':''}" onclick="showDay(${l.day})">${l.day}${state.completed[l.day]?'✓':''}</button>`).join('')}
       </div>
     </div>
-    <div class="home-card">
-      <h3>ブックマーク復習</h3>
-      <div class="small">☆を付けた単語・文法だけを見返します。</div>
-      <div class="home-actions">
-        <button onclick="showBookmarks()">ブックマークを見る</button>
-        <button onclick="toggleBookmarkHint()">使い方</button>
-      </div>
-      <div id="bookmarkHint" class="small" style="display:none;margin-top:8px">各単語・文法の右上の ☆ を押すと、ブックマークに追加されます。</div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="section-title"><h2>Day一覧</h2><span class="badge">1〜90</span></div>
-    <div class="small">完了済みのDayは緑で表示されます。</div>
-    <div class="day-grid">
-      ${LESSONS.map(l=>`<button class="daybtn ${state.completed[l.day]?'done':''}" onclick="showDay(${l.day})">${l.day}${state.completed[l.day]?'✓':''}</button>`).join('')}
-    </div>
-  </div>`;
+  </details>`;
  updateCompleteButtons();
 }
 function toggleBookmarkHint(){
@@ -5915,15 +5974,22 @@ function render(){
  requestAnimationFrame(applyA11yLabels);
  applyDensity();
  setTopOffset();
- setActiveTab(vocabView?'vocabTab':levelCheckView?'levelCheckBtn':testView?'testTab':homeView?'homeBtn':bookmarkView?'bookmarkViewBtn':'studyTab');
- if(vocabView){ if(document.querySelector('.vlist') && document.activeElement && document.activeElement.id==='vocabSearch'){ vocabFilterOnly(); } else { renderVocabScreen(); } return; }
- if(levelCheckView){ if($('bottomNav')) $('bottomNav').style.display='none'; renderLevelCheckScreen(); return; }
- if(testView){ if($('bottomNav')) $('bottomNav').style.display='none'; renderTestScreen(); return; }
- if(homeView){ renderHome(); return; }
+ // 「今日」「復習」「級診断」はタブ上では同じ『今日』を選択状態にする（復習と級診断は
+ // 今日／設定から入る下位画面で、タブそのものは持たない）。
+ setActiveTab(currentView==='vocab'?'vocabTab'
+   :currentView==='bookmark'?'bookmarkViewBtn'
+   :(currentView==='settings'||currentView==='levelcheck')?'settingsTab'
+   :'homeBtn');
+ setSettingsPanel(currentView==='settings');
+ if(currentView==='settings'){ if($('bottomNav')) $('bottomNav').style.display='none'; renderSettings(); return; }
+ if(currentView==='vocab'){ if(document.querySelector('.vlist') && document.activeElement && document.activeElement.id==='vocabSearch'){ vocabFilterOnly(); } else { renderVocabScreen(); } return; }
+ if(currentView==='levelcheck'){ if($('bottomNav')) $('bottomNav').style.display='none'; renderLevelCheckScreen(); return; }
+ if(currentView==='review'){ if($('bottomNav')) $('bottomNav').style.display='none'; renderTestScreen(); return; }
+ if(currentView==='today'){ renderHome(); return; }
  save(); initSelect(); renderBookmarkPanel();
  if($('bottomNav')) $('bottomNav').style.display='flex';
  const l=lesson(); const c=$('content');
- if(bookmarkView){
+ if(currentView==='bookmark'){
    c.style.display='none';
    updateCompleteButtons();
    return;
@@ -6207,7 +6273,7 @@ function mtSaveGraderUrl(){
   if(v) localStorage.setItem('hsk4-grader-url', v); else localStorage.removeItem('hsk4-grader-url');
   if(msg){ msg.textContent='保存しました。'; msg.style.color='var(--good)'; }
 }
-function setDay(d){vocabView=false;homeView=false;levelCheckView=false;current=Math.max(1,Math.min(LESSONS.length,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
+function setDay(d){currentView='day';current=Math.max(1,Math.min(LESSONS.length,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
 function updateCompleteButtons(){
  const done=!!state.completed[current];
  // completeTab (nav-tab)
@@ -6234,7 +6300,7 @@ function applyFontScale(){
   document.body.classList.add('fs-'+s);
   document.querySelectorAll('.fs-btn').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-fs')===s); });
 }
-function setFontScale(s){ if(s!=='sm'&&s!=='lg') s='md'; state.fontScale=s; save(); applyFontScale(); if(homeView) renderHome(); }
+function setFontScale(s){ if(s!=='sm'&&s!=='lg') s='md'; state.fontScale=s; save(); applyFontScale(); if(currentView==='today') renderHome(); }
 function applyA11yLabels(){
   try{
     document.querySelectorAll('.speak-btn:not([aria-label])').forEach(function(b){
@@ -6280,23 +6346,25 @@ if(false && $('pinyinBtn'))$('pinyinBtn').onclick=()=>{document.body.classList.t
 // jaBtn handled by setupNavTabs
 if(false && $('jaBtn'))$('jaBtn').onclick=()=>{document.body.classList.toggle('hidden-ja'); const hidden=document.body.classList.contains('hidden-ja'); $('jaBtn').textContent=hidden?'日本語訳を表示':'日本語訳を隠す'; $('jaBtn').className='toggle '+(hidden?'on':'off');}
 var _ansBtn=$('answerBtn');if(_ansBtn)_ansBtn.onclick=()=>{showAnswers=!showAnswers;_ansBtn.textContent=showAnswers?'解答を隠す':'解答を表示';_ansBtn.className='toggle '+(showAnswers?'on':'off');$('content').className=showAnswers?'show-answers':''}
-var _prevHV=false;
-document.getElementById('bookmarkViewBtn').addEventListener('click', function(){
-  vocabView=false;levelCheckView=false;if(!bookmarkView){_prevHV=homeView;homeView=false;testView=false;bookmarkView=true;}
-  else{homeView=_prevHV;bookmarkView=false;}
-  render();window.scrollTo({top:0,behavior:'smooth'});
-});
+// ブックマークタブは以前トグル動作（再度押すと直前の画面に戻る）だったが、
+// 4タブ構成では他のタブと同じく単純な切替に揃える。
+document.getElementById('bookmarkViewBtn').addEventListener('click', showBookmarks);
 
 // Expose module-scoped functions for inline handlers.
 // This is necessary because this file uses <script type="module"> for Firebase imports.
-function showDay(d){ vocabView=false; bookmarkView=false; testView=false; levelCheckView=false; homeView=false; setDay(Number(d)); }
-function showBookmarks(){ vocabView=false; bookmarkView=true; testView=false; levelCheckView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
-function showHome(){ vocabView=false; bookmarkView=false; testView=false; levelCheckView=false; homeView=true; render(); window.scrollTo({top:0,behavior:'smooth'}); }
-function showStudy(){ vocabView=false; bookmarkView=false; testView=false; levelCheckView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
-function showTest(){ vocabView=false; bookmarkView=false; testView=true; levelCheckView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
-function showLevelCheck(){ vocabView=false; bookmarkView=false; testView=false; homeView=false; levelCheckView=true; render(); window.scrollTo({top:0,behavior:'smooth'}); }
-function showVocab(){ vocabView=true; bookmarkView=false; testView=false; levelCheckView=false; homeView=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
-function vocabGoToDay(d){ vocabView=false; showDay(d); }
+// 画面遷移はすべてこの1本を通す。currentView を書き換えて再描画するだけなので、
+// 遷移先が増えてもフラグの消し忘れが起きない。
+function goView(v){ currentView=v; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showDay(d){ currentView='day'; setDay(Number(d)); }
+function showBookmarks(){ goView('bookmark'); }
+function showToday(){ goView('today'); }
+function showHome(){ showToday(); }   // 旧名。級診断など既存の呼び出し元が使う
+function showStudy(){ goView('day'); }
+function showTest(){ goView('review'); }
+function showLevelCheck(){ goView('levelcheck'); }
+function showVocab(){ goView('vocab'); }
+function showSettings(){ goView('settings'); }
+function vocabGoToDay(d){ showDay(d); }
 function vocabBuildIndex(){
   if(_vocabIndex) return _vocabIndex;
   var arr=[];
@@ -6334,7 +6402,6 @@ function vocabFilterOnly(){
 }
 function renderVocabScreen(){
   if($('bottomNav')) $('bottomNav').style.display='none';
-  bookmarkView=false;
   if($('bookmarkPanel')) $('bookmarkPanel').className='bookmark-panel card';
   var c=$('content'); if(!c) return;
   c.style.display=''; c.className='';
@@ -6421,12 +6488,14 @@ function srsGrade(id, q){
   state.srs[id]=s; save();
   return s;
 }
-function srsSetNewLimit(n){ state.srsNewLimit=Number(n); save(); renderTestScreen(); }
-function srsSetDir(d){ state.srsDir=(d==='ja2zh')?'ja2zh':'zh2ja'; save(); renderTestScreen(); }
+function srsSetNewLimit(n){ state.srsNewLimit=Number(n); save(); rerenderSrsHost(); }
+function srsSetDir(d){ state.srsDir=(d==='ja2zh')?'ja2zh':'zh2ja'; save(); rerenderSrsHost(); }
 
 // ===== 復習セッション =====
 var _rev=null; // {queue:[ids], idx, revealed, again, hard, good, easy, reviewed}
-function revSetScope(s){ state.revScope=(s==='bm')?'bm':'all'; save(); renderTestScreen(); }
+// SRS設定は設定タブと復習画面の両方から変わりうるので、今いる画面を描き直す。
+function rerenderSrsHost(){ if(currentView==='settings') renderSettings(); else renderTestScreen(); }
+function revSetScope(s){ state.revScope=(s==='bm')?'bm':'all'; save(); rerenderSrsHost(); }
 function revStart(scope){
   if(scope==='bm'||scope==='all') state.revScope=scope;
   var nl=(typeof state.srsNewLimit==='number')?state.srsNewLimit:8;
@@ -6512,37 +6581,70 @@ function renderTestScreen(){
   var c=$('content'); c.style.display=''; c.className='';
   $('bookmarkPanel').className='bookmark-panel card';
   if(_rev){ _revRender(c); return; }
-  // 設定画面
+  // 復習は「開いたら始める」画面。出題範囲・新規問数・出題の向きは一度決めたら
+  // ほぼ変えない設定なので、毎日通る導線から外して設定タブへ移した。
   var scope=(state.revScope==='bm')?'bm':'all';
   var nl=(typeof state.srsNewLimit==='number')?state.srsNewLimit:8;
   var cnt=srsCounts(scope);
   var shownNew=(nl<0)?cnt.fresh:Math.min(nl,cnt.fresh);
   var todayTotal=cnt.due+shownNew;
-  var scopeOpts=[{v:'all',t:'すべて'},{v:'bm',t:'ブックマークのみ'}];
-  var scopeseg='<div class="seg">'+scopeOpts.map(function(o){ return '<button type="button" class="chip-toggle '+(scope===o.v?'on':'')+'" onclick="revSetScope(\''+o.v+'\')">'+o.t+'</button>'; }).join('')+'</div>';
-  var nlOpts=[{v:0,t:'なし'},{v:8,t:'8'},{v:16,t:'16'},{v:-1,t:'制限なし'}];
-  var nlseg='<div class="seg">'+nlOpts.map(function(o){ return '<button type="button" class="chip-toggle '+(nl===o.v?'on':'')+'" onclick="srsSetNewLimit('+o.v+')">'+o.t+'</button>'; }).join('')+'</div>';
-  var dir=(state.srsDir==='ja2zh')?'ja2zh':'zh2ja';
-  var dirOpts=[{v:'zh2ja',t:'中文 → 日本語'},{v:'ja2zh',t:'日本語 → 中文'}];
-  var dirseg='<div class="seg">'+dirOpts.map(function(o){ return '<button type="button" class="chip-toggle '+(dir===o.v?'on':'')+'" onclick="srsSetDir(\''+o.v+'\')">'+o.t+'</button>'; }).join('')+'</div>';
   var html='<div class="card testwrap"><div class="section-title"><h2>今日の復習</h2><span class="badge">'+todayTotal+'問</span></div>';
-  html+='<div class="label">範囲</div>'+scopeseg+'<div class="small muted" style="margin-top:6px">「すべて」＝完了したDayの単語・文法＋ブックマーク＋マイ単語。「ブックマークのみ」＝☆を付けた語だけに絞り込みます。出題予定はどちらでも共通の1本です。</div>';
   if(cnt.elig===0){
-    html+='<div class="empty" style="margin-top:12px">'+(scope==='bm'?'ブックマークがまだありません。学習画面で単語・文法の ☆ を押すと、ここで復習できます。':'まだ復習対象がありません。学習画面で各Dayを「完了」にするか、☆ブックマークを付けると自動で対象に入ります。')+'</div>';
+    html+='<div class="empty" style="margin-top:4px">'+(scope==='bm'?'ブックマークがまだありません。学習画面で単語・文法の ☆ を押すと、ここで復習できます。':'まだ復習対象がありません。学習画面で各Dayを完了すると、その単語・文法が復習に入ります。')+'</div>';
+    html+='<button style="width:100%;margin-top:12px" onclick="showToday()">今日やることへ戻る</button>';
+  } else if(todayTotal===0){
+    html+='<div class="empty" style="margin-top:4px">今日ぶんの復習は終わっています。おつかれさまでした。</div>';
+    html+='<button style="width:100%;margin-top:12px" onclick="showToday()">今日やることへ戻る</button>';
   } else {
-    html+='<button class="primary" style="width:100%;margin-top:12px"'+(todayTotal===0?' disabled':'')+' onclick="revStart()">'+(todayTotal===0?'今日の復習は完了！':'復習を始める（'+todayTotal+'問）')+'</button>';
-    html+='<div class="small muted" style="margin-top:8px">忘れる頃に自動で出題します（間隔反復）。</div>';
-    html+='<div class="label" style="margin-top:14px">1日の新規問数</div>'+nlseg+'<div class="small muted" style="margin-top:6px">新しく覚え始める語の上限です。多いほど将来の復習が増えます。</div>';
-    html+='<div class="label" style="margin-top:14px">出題の向き</div>'+dirseg+'<div class="small muted" style="margin-top:6px">中文→日本語は意味を答える練習、日本語→中文は中文を思い出す練習です。スケジュールはどちらの向きでも共通です。</div>';
+    html+='<div class="small muted" style="margin-top:2px">期限 '+cnt.due+' 枚 ＋ 新しく覚える '+shownNew+' 枚。忘れる頃に自動で出題します（間隔反復）。</div>';
+    html+='<button class="primary" style="width:100%;margin-top:12px" onclick="revStart()">復習を始める（'+todayTotal+'問）</button>';
+    html+='<button style="width:100%;margin-top:8px" onclick="showToday()">あとにする</button>';
   }
-  html+='<details class="g-details" style="margin-top:16px"><summary>作文採点サーバー設定</summary><div style="padding:2px 12px 12px">'+
-    '<div class="small" style="margin:8px 0">ミニテストの作文をAI採点するサーバーのURLです。端末ごとに保存され、クラウド同期はされません。</div>'+
-    '<input id="graderUrlInput" type="text" value="'+esc(mtGraderUrl())+'" placeholder="https://...workers.dev" style="width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px" spellcheck="false">'+
-    '<button class="primary" style="width:100%;margin-top:10px" onclick="mtSaveGraderUrl()">保存</button>'+
-    '<div id="graderUrlMsg" class="small muted" style="margin-top:6px"></div>'+
-    '</div></details>';
+  html+='<div class="small muted" style="margin-top:14px">出題範囲や1日の新規問数は<a href="#" onclick="showSettings();return false">設定</a>で変更できます。</div>';
   html+='</div>';
   c.innerHTML=html;
+}
+
+// 設定パネルの表示切替。#settingsPanel は同期バーの ID を保つため常時 DOM に残す。
+function setSettingsPanel(on){
+  var p=$('settingsPanel'); if(!p) return;
+  p.className='settings-panel card'+(on?' active':'');
+}
+
+// 設定タブの本文（同期バーと文字サイズは静的markupなので #settingsBody の中身だけ描く）
+function renderSettings(){
+  var c=$('content'); if(c){ c.innerHTML=''; c.style.display='none'; c.className=''; }
+  $('bookmarkPanel').className='bookmark-panel card';
+  var body=$('settingsBody'); if(!body) return;
+  var scope=(state.revScope==='bm')?'bm':'all';
+  var nl=(typeof state.srsNewLimit==='number')?state.srsNewLimit:8;
+  var dir=(state.srsDir==='ja2zh')?'ja2zh':'zh2ja';
+  function seg(opts, cur, fn){
+    return '<div class="set-row">'+opts.map(function(o){
+      return '<button type="button" class="chip-toggle '+(cur===o.v?'on':'')+'" onclick="'+fn(o.v)+'">'+o.t+'</button>';
+    }).join('')+'</div>';
+  }
+  var h='';
+  h+='<div class="set-label">復習の出題範囲</div>'
+   + seg([{v:'all',t:'すべて'},{v:'bm',t:'ブックマークのみ'}], scope, function(v){ return "revSetScope('"+v+"')"; })
+   + '<div class="small muted" style="margin-top:6px">「すべて」＝完了したDayの単語・文法＋ブックマーク＋マイ単語。</div>';
+  h+='<div class="set-label">1日の新規問数</div>'
+   + seg([{v:0,t:'なし'},{v:8,t:'8'},{v:16,t:'16'},{v:-1,t:'制限なし'}], nl, function(v){ return 'srsSetNewLimit('+v+')'; })
+   + '<div class="small muted" style="margin-top:6px">新しく覚え始める語の上限です。多いほど将来の復習が増えます。</div>';
+  h+='<div class="set-label">出題の向き</div>'
+   + seg([{v:'zh2ja',t:'中文 → 日本語'},{v:'ja2zh',t:'日本語 → 中文'}], dir, function(v){ return "srsSetDir('"+v+"')"; })
+   + '<div class="small muted" style="margin-top:6px">中文→日本語は意味を答える練習、日本語→中文は中文を思い出す練習です。スケジュールは共通です。</div>';
+
+  h+='<div class="set-label">レベル診断</div>'
+   + '<div class="small muted" style="margin-bottom:8px">HSK3〜6級の問題からいまの級を判定します。学習を始める前に一度どうぞ。</div>'
+   + '<button style="width:100%" onclick="showLevelCheck()">級診断を受ける</button>';
+
+  h+='<div class="set-label">作文の採点サーバー</div>'
+   + '<div class="small muted" style="margin-bottom:8px">ミニテストの作文をAI採点するサーバーのURLです。端末ごとに保存され、クラウド同期はされません。</div>'
+   + '<input id="graderUrlInput" type="text" value="'+esc(mtGraderUrl())+'" placeholder="https://...workers.dev" style="width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px" spellcheck="false">'
+   + '<button class="primary" style="width:100%;margin-top:10px" onclick="mtSaveGraderUrl()">保存</button>'
+   + '<div id="graderUrlMsg" class="small muted" style="margin-top:6px"></div>';
+  body.innerHTML=h;
 }
 Object.assign(window, {
   state,
@@ -6551,6 +6653,9 @@ Object.assign(window, {
   setDay,
   showDay,
   showHome,
+  showToday,
+  showSettings,
+  showLevelCheck,
   showStudy,
   showTest,
   showBookmarks,
@@ -6575,11 +6680,9 @@ setTimeout(setTopOffset, 300); // Webフォント/アイコン読込後のズレ
 
 
 (function setupNavTabs(){
-  var ht=document.getElementById('homeBtn');  if(ht) ht.addEventListener('click', showHome);
-  var st=document.getElementById('studyTab'); if(st) st.addEventListener('click', showStudy);
-  var tt=document.getElementById('testTab');  if(tt) tt.addEventListener('click', showTest);
-  var lct=document.getElementById('levelCheckBtn'); if(lct) lct.addEventListener('click', showLevelCheck);
-  var vt=document.getElementById('vocabTab'); if(vt) vt.addEventListener('click', showVocab);
+  var ht=document.getElementById('homeBtn');     if(ht) ht.addEventListener('click', showToday);
+  var vt=document.getElementById('vocabTab');    if(vt) vt.addEventListener('click', showVocab);
+  var gt=document.getElementById('settingsTab'); if(gt) gt.addEventListener('click', showSettings);
   // ブックマークタブは別途 bookmarkViewBtn のハンドラで処理
 })();
 
@@ -6784,6 +6887,9 @@ window.toggleJa = toggleJa;
 window.toggleDensity = toggleDensity;
 window.showStudy = showStudy;
 window.showTest = showTest;
+window.showToday = showToday;
+window.showSettings = showSettings;
+window.showLevelCheck = showLevelCheck;
 window.showVocab = showVocab;
 window.vocabGoToDay = vocabGoToDay;
 
@@ -6881,7 +6987,6 @@ function lcRecommend(correct,total){
 
 function renderLevelCheckScreen(){
   if($('bottomNav')) $('bottomNav').style.display='none';
-  bookmarkView=false;
   if($('bookmarkPanel')) $('bookmarkPanel').className='bookmark-panel card';
   var c=$('content'); if(!c) return;
   c.style.display=''; c.className='';
@@ -7191,7 +7296,7 @@ function cwModalSave(){
   cwCloseModal();
   document.querySelectorAll('.cw-ex').forEach(function(el){ el.removeAttribute('data-cw-n'); });
   cwApplyHighlights();
-  if(bookmarkView && cwSubTab==='custom'){ renderBookmarkPanel(); }
+  if(currentView==='bookmark' && cwSubTab==='custom'){ renderBookmarkPanel(); }
 }
 
 /* ---- 専用クリックリスナー（既存ハンドラと独立） ---- */
