@@ -5776,7 +5776,7 @@ let current=Number(localStorage.getItem('hsk4-current-day')||1);
 let currentView='today';
 let showAnswers=false, selectedChip=null;
 let _vocabQuery='', _vocabIndex=null;
-let lcStage='start', lcIndex=0, lcAnswers={}, lcSoonLevel=null;
+let lcStage='start', lcIndex=0, lcAnswers={}, lcSoonLevel=null, lcLastRec=null;
 let cwSubTab='bm';
 const storageKey='hsk4-90-v4-state';
 let state=JSON.parse(localStorage.getItem(storageKey)||'{"completed":{},"answers":{},"scores":{},"bookmarks":{},"dragOrders":{}}');
@@ -6620,6 +6620,36 @@ function renderTestScreen(){
   c.innerHTML=html;
 }
 
+const ONBOARDED_KEY = 'hsk4-onboarded';
+// 級診断は、いちばん必要な人（自分の級が分かっていない人）に届かないと意味がない。
+// 設定の奥ではなく初回起動で出す。ただし必ずスキップできるようにする。
+function hasOnboarded(){ try{ return !!localStorage.getItem(ONBOARDED_KEY); }catch(e){ return true; } }
+function markOnboarded(how){ try{ localStorage.setItem(ONBOARDED_KEY, how||'done'); }catch(e){} }
+
+// ===== 計測 =====
+// track(name, props) を呼ぶだけ。送信先(HSK_SINK)が未設定なら端末内に貯める。
+// 利用者が増えて送信先を決めたら、設定画面でURLを入れるだけで飛び始める。
+var TRACK_KEY='hsk4-events', TRACK_MAX=500;
+function trackSinkUrl(){ try{ return localStorage.getItem('hsk4-sink-url')||''; }catch(e){ return ''; } }
+function trackRead(){ try{ return JSON.parse(localStorage.getItem(TRACK_KEY)||'[]'); }catch(e){ return []; } }
+function track(name, props){
+  var ev={ t:Date.now(), n:name };
+  if(props) for(var k in props) if(props.hasOwnProperty(k)) ev[k]=props[k];
+  try{
+    var log=trackRead(); log.push(ev);
+    if(log.length>TRACK_MAX) log=log.slice(-TRACK_MAX);
+    localStorage.setItem(TRACK_KEY, JSON.stringify(log));
+  }catch(e){}
+  var url=trackSinkUrl();
+  if(url){
+    try{
+      var body=JSON.stringify(ev);
+      if(navigator.sendBeacon) navigator.sendBeacon(url, new Blob([body],{type:'application/json'}));
+      else fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:body,keepalive:true}).catch(function(){});
+    }catch(e){}
+  }
+}
+
 // 背面シェイプ。色はカードではなく地が持つので、画面ごとに配置と色を変える。
 // 3色（セージ / アプリコット / ブラッシュ）だけを使い回し、新しい色は増やさない。
 var BG_SHAPES = {
@@ -7034,8 +7064,64 @@ function renderLevelCheckScreen(){
 function lcBuildHtml(){
   if(lcStage==='quiz')   return lcQuizHtml();
   if(lcStage==='result') return lcResultHtml();
-  if(lcStage==='soon')   return lcSoonHtml();
+  if(lcStage==='below')  return lcBelowHtml();
+  if(lcStage==='above')  return lcAboveHtml();
+  if(lcStage==='thanks') return lcThanksHtml();
+  if(lcStage==='soon')   return lcAboveHtml();
   return lcStartHtml();
+}
+
+// HSK3以下：突き放さない。HSK4の1200語にはHSK1〜3の600語が含まれるので、
+// この教材は「対象外」ではなく「少し背伸び」。90日で届く範囲だと伝える。
+function lcBelowHtml(){
+  return '<div class="card">'
+    + '<span class="badge">HSK'+lcSoonLevel+'相当</span>'
+    + '<h2 style="margin:12px 0 8px;font-size:19px">この90日、少し背伸びですが届きます</h2>'
+    + '<div class="note">HSK4の出題範囲1200語には、HSK1〜3の語彙がそのまま含まれます。'
+    + 'いまHSK'+lcSoonLevel+'相当なら、この教材は<b>少し難しめですが、90日で届く範囲</b>です。</div>'
+    + '<ul class="lc-startlist">'
+    + '<li>わからない語は ☆ を付けて、復習に多めに回してください</li>'
+    + '<li>1日の新規問数を「なし」にすると、復習だけに絞れます（設定）</li>'
+    + '</ul>'
+    + '<div class="lc-nav">'
+    + '<button class="lc-btn flex" data-lc-action="backToResult">判定結果へ戻る</button>'
+    + '<button class="lc-btn primary flex" data-lc-action="startProgram">Day 1 から始める</button>'
+    + '</div></div>';
+}
+
+// HSK5以上：正直に「易しすぎる」と言う。行き止まりにせず、関心だけ受け取る。
+function lcAboveHtml(){
+  var lv=lcSoonLevel||5;
+  var info=PLACEMENT_LEVEL_INFO[lv]||{name:'HSK'+lv+'級',desc:''};
+  return '<div class="card">'
+    + '<span class="badge">'+esc(info.name)+'</span>'
+    + '<h2 style="margin:12px 0 8px;font-size:19px">この教材は、あなたには易しすぎます</h2>'
+    + '<div class="small">'+esc(info.desc)+'</div>'
+    + '<div class="note">いまのこのアプリはHSK4級の90日プログラムだけです。'
+    + esc(info.name)+'を目指す方には物足りない内容なので、'
+    + '<b>おすすめしません</b>。</div>'
+    + '<h3 style="margin:18px 0 6px;font-size:15px">'+esc(info.name)+'版がほしい方へ</h3>'
+    + '<div class="small muted">作るかどうかは、ほしい方の人数で決めます。下のボタンを押すだけで届きます（メールアドレスなどは取りません）。</div>'
+    + '<div class="lc-nav" style="margin-top:12px">'
+    + '<button class="lc-btn primary flex" data-lc-action="interest" data-lv="'+lv+'">'+esc(info.name)+'版がほしい</button>'
+    + '</div>'
+    + '<div class="lc-nav">'
+    + '<button class="lc-btn flex" data-lc-action="backToResult">判定結果へ戻る</button>'
+    + '<button class="lc-btn flex" data-lc-action="startProgram">それでもHSK4をやる</button>'
+    + '</div></div>';
+}
+
+function lcThanksHtml(){
+  var lv=lcSoonLevel||5;
+  var info=PLACEMENT_LEVEL_INFO[lv]||{name:'HSK'+lv+'級'};
+  return '<div class="card">'
+    + '<h2 style="margin:4px 0 8px;font-size:19px">ありがとうございます</h2>'
+    + '<div class="note">'+esc(info.name)+'版がほしい、として記録しました。'
+    + '十分な人数が集まったら制作します。</div>'
+    + '<div class="lc-nav">'
+    + '<button class="lc-btn flex" data-lc-action="backToResult">判定結果へ戻る</button>'
+    + '<button class="lc-btn primary flex" data-lc-action="startProgram">HSK4を見てみる</button>'
+    + '</div></div>';
 }
 
 function lcStartHtml(){
@@ -7049,8 +7135,10 @@ function lcStartHtml(){
     + '<li>判定後、級は自分で選び直すこともできます</li>'
     + '</ul>'
     + '<div class="lc-nav">'
-    + '<button class="lc-btn" data-lc-action="back">ホームへ戻る</button>'
-    + '<button class="lc-btn primary" data-lc-action="start">テストを始める</button>'
+    + (hasOnboarded()
+        ? '<button class="lc-btn flex" data-lc-action="back">ホームへ戻る</button>'
+        : '<button class="lc-btn flex" data-lc-action="skip">スキップして始める</button>')
+    + '<button class="lc-btn primary flex" data-lc-action="start">テストを始める</button>'
     + '</div></div>';
 }
 
@@ -7080,6 +7168,7 @@ function lcResultHtml(){
     if(lcAnswers[i]===item.answer) correct[item.level]++;
   });
   var rec=lcRecommend(correct,total);
+  lcLastRec=rec;
   var bands=[3,4,5,6].map(function(lv){
     var c=correct[lv], t=total[lv], w=Math.round(c/t*100);
     return '<div class="lc-band"><span class="badge">HSK'+lv+'</span>'
@@ -7104,26 +7193,28 @@ function lcResultHtml(){
     + '</div>';
 }
 
-function lcSoonHtml(){
-  var info=PLACEMENT_LEVEL_INFO[lcSoonLevel]||{name:'HSK'+lcSoonLevel+'級',desc:''};
-  return '<div class="card">'
-    + '<span class="badge">'+esc(info.name)+'</span>'
-    + '<h2 style="margin:12px 0 6px;font-size:19px">このプログラムは準備中です</h2>'
-    + '<div class="small">'+esc(info.desc)+'</div>'
-    + '<div class="note">'+esc(info.name)+'の学習コンテンツ（単語・文法・テスト）は現在準備中です。追加され次第、ここから学習できるようになります。</div>'
-    + '<div class="lc-nav">'
-    + '<button class="lc-btn flex" data-lc-action="backToResult">判定結果へ戻る</button>'
-    + '<button class="lc-btn primary flex" data-lc-action="back">ホームへ</button>'
-    + '</div></div>';
-}
 
 function lcPick(lv){
   try{ localStorage.setItem(SELECTED_LEVEL_KEY,'hsk'+lv); }catch(e){}
-  if(lv===4 && LESSONS_BY_LEVEL.hsk4.length>0){
-    showHome();
+  track('level_pick',{lv:lv});
+  if(lv>=5){
+    // 上の級：この教材は本当に易しすぎる。正直に伝えて、需要だけ受け取る。
+    lcSoonLevel=lv; lcStage='above'; render(); window.scrollTo({top:0,behavior:'smooth'});
+  } else if(lv<=3){
+    // 下の級：同じ道の少し手前にいるだけ。HSK4教材のまま受け止められる。
+    lcSoonLevel=lv; lcStage='below'; render(); window.scrollTo({top:0,behavior:'smooth'});
   } else {
-    lcSoonLevel=lv; lcStage='soon'; render();
+    markOnboarded('level4'); showHome();
   }
+}
+
+// HSK5以上の関心を数える。メールはまだ取らない——人数さえ分かれば
+// 「HSK5版を作るか」は判断できるし、メールを預かるならプライバシーポリシーが先。
+function lcInterest(lv){
+  var k='hsk4-interest-hsk'+lv, n=0;
+  try{ n=Number(localStorage.getItem(k)||0)+1; localStorage.setItem(k,String(n)); }catch(e){}
+  track('waitlist_interest',{lv:lv});
+  lcStage='thanks'; render(); window.scrollTo({top:0,behavior:'smooth'});
 }
 
 // 診断専用のクリックリスナー（既存ハンドラと完全に独立）
@@ -7138,12 +7229,17 @@ document.addEventListener('click', function(e){
   else if(a==='next'){
     if(lcAnswers[lcIndex]==null) return;
     if(lcIndex<PLACEMENT_QUESTIONS.length-1){ lcIndex++; render(); }
-    else { lcStage='result'; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+    else { lcStage='result'; markOnboarded('done');
+           try{ track('level_check_done',{rec:lcLastRec}); }catch(e){}
+           render(); window.scrollTo({top:0,behavior:'smooth'}); }
   }
   else if(a==='retry'){ lcStage='start'; lcIndex=0; lcAnswers={}; render(); window.scrollTo({top:0,behavior:'smooth'}); }
   else if(a==='pick'){ lcPick(Number(b.dataset.lv)); }
   else if(a==='backToResult'){ lcStage='result'; render(); }
-  else if(a==='back'){ showHome(); }
+  else if(a==='interest'){ lcInterest(Number(b.dataset.lv)); }
+  else if(a==='startProgram'){ markOnboarded('done'); showHome(); }
+  else if(a==='skip'){ markOnboarded('skipped'); track('onboard_skip'); showHome(); }
+  else if(a==='back'){ markOnboarded('done'); showHome(); }
 });
 
 /* =========================================================================
@@ -7353,6 +7449,15 @@ document.addEventListener('click', function(e){
   else if(a==='modal-cancel'){ cwCloseModal(); }
   else if(a==='modal-save'){ cwModalSave(); }
 });
+
+// 初回起動時だけ級診断から始める。進捗がある人はそのまま。
+// PLACEMENT_QUESTIONS など級診断側の定義がすべて済んだ後でないと描画できないため、
+// モジュールの最後で判定する（render() は同じタスク内なので画面のちらつきは起きない）。
+(function firstRun(){
+  var started=Object.keys(state.completed||{}).some(function(k){ return state.completed[k]; });
+  if(!hasOnboarded() && !started){ track('first_visit'); showLevelCheck(); }
+  else track('app_open');
+})();
 
 </script>
 </body></html>
