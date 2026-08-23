@@ -419,7 +419,7 @@ function setSyncStatus(kind, text, userText=''){
 function cloudDocRef(){ return cloudUser ? doc(db,'users',cloudUser.uid,'hsk4','state') : null; }
 function localUpdatedAt(){ const n=Number(localStorage.getItem(storageKey+'-updatedAtMs')||0); return Number.isFinite(n)?n:0; }
 function markLocalUpdated(){ localStorage.setItem(storageKey+'-updatedAtMs', String(nowMs())); }
-function normalizeStateForCloud(s){ return {completed:s.completed||{}, answers:s.answers||{}, scores:s.scores||{}, bookmarks:s.bookmarks||{}, dragOrders:s.dragOrders||{}, levels:s.levels||{}, customWords:Array.isArray(s.customWords)?s.customWords:[], density:s.density||'standard', fontScale:(s.fontScale==='sm'||s.fontScale==='lg')?s.fontScale:'md', srs:(s.srs&&typeof s.srs==='object')?s.srs:{}, srsNewLimit:(typeof s.srsNewLimit==='number')?s.srsNewLimit:8, srsDir:(s.srsDir==='ja2zh')?'ja2zh':'zh2ja', bmSort:(['recommend','hard','added','random'].indexOf(s.bmSort)>=0)?s.bmSort:'recommend', revScope:(s.revScope==='bm')?'bm':'all', currentDay:current||1, updatedAtMs:nowMs(), appVersion:'firebase-sync-v1', storageKey:storageKey}; }
+function normalizeStateForCloud(s){ return {completed:s.completed||{}, answers:s.answers||{}, scores:s.scores||{}, bookmarks:s.bookmarks||{}, dragOrders:s.dragOrders||{}, levels:s.levels||{}, customWords:Array.isArray(s.customWords)?s.customWords:[], density:s.density||'standard', fontScale:(s.fontScale==='sm'||s.fontScale==='lg')?s.fontScale:'md', srs:(s.srs&&typeof s.srs==='object')?s.srs:{}, srsNewLimit:(typeof s.srsNewLimit==='number')?s.srsNewLimit:8, srsDir:(s.srsDir==='ja2zh')?'ja2zh':'zh2ja', examDate:(typeof s.examDate==='string')?s.examDate:'', mockHistory:Array.isArray(s.mockHistory)?s.mockHistory:[], bmSort:(['recommend','hard','added','random'].indexOf(s.bmSort)>=0)?s.bmSort:'recommend', revScope:(s.revScope==='bm')?'bm':'all', currentDay:current||1, updatedAtMs:nowMs(), appVersion:'firebase-sync-v1', storageKey:storageKey}; }
 async function saveCloudState(force=false){
   if(!cloudUser || ((!cloudReady)&&!force) || (cloudLoading && !force)) return;
   try{ const payload=normalizeStateForCloud(state); payload.updatedAt=serverTimestamp(); await setDoc(cloudDocRef(), payload, {merge:true}); setSyncStatus('on','クラウド同期済み',cloudUser.email||''); }
@@ -5814,9 +5814,10 @@ function initSelect(){ const s=$('daySelect'); if(!s)return; s.innerHTML=LESSONS
 function isBookmarked(id){return !!state.bookmarks[id]}
 function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){if(state.bookmarks[id]){delete state.bookmarks[id];}else{state.bookmarks[id]={id,type,title,sub,day:current,pinyin:pinyin||'',example:example||'',exPinyin:exPinyin||'',exJa:exJa||'',hl:0};}save();render();}
 function fmtBmItem(b){
+  if(!b || typeof b!=='object') return '';
   var ex=b.example||'',exP=b.exPinyin||'',exJ=b.exJa||'',pin=b.pinyin||'';
   if(!ex){
-    var m2=b.id.match(/^d(\d+)-([vg])(\d+)$/);
+    var m2=String(b.id||'').match(/^d(\d+)-([vg])(\d+)$/);
     if(m2){var l2=LESSONS.find(function(l){return l.day===Number(m2[1]);});
       if(l2){var arr=m2[2]==='v'?l2.vocab:l2.grammar,item2=arr[Number(m2[3])];
         if(item2){ex=item2.example||'';exP=item2.exPinyin||'';exJ=item2.exJa||'';pin=item2.pinyin||'';}}}
@@ -5925,10 +5926,10 @@ function renderHome(){
 
  const newCard=allDone
   ? `<div class="tcard done">
-      <span class="tc-eyebrow">あたらしく覚える</span>
-      <span class="tc-title">90日ぶん完走しました</span>
-      <span class="tc-meta">あとは復習を続けて定着させましょう。</span>
-      <button onclick="showDay(${current})">Day ${current} を見返す</button>
+      <span class="tc-eyebrow">仕上げ</span>
+      <span class="tc-title">90日ぶん完走</span>
+      <span class="tc-meta">新しく覚えるぶんは終わりです。ここからは復習と模試で仕上げます。</span>
+      <button class="primary" onclick="showMock()">模擬試験を受ける</button>
      </div>`
   : `<div class="tcard accent">
       <span class="tc-eyebrow">あたらしく覚える</span>
@@ -5955,7 +5956,13 @@ function renderHome(){
   <div style="margin:2px 0 14px">
    <div style="display:flex;align-items:baseline;gap:9px;flex-wrap:wrap">
      <span style="font-size:21px;font-weight:900">今日やること</span>
-     <span class="hand" style="font-size:13px;color:var(--bad)">${allDone?'90日ぶん完走！':`あと${LESSONS.length-doneCount}日！`}</span>
+     <span class="hand" style="font-size:13px;color:var(--bad)">${(()=>{
+       const dl=examDaysLeft();
+       if(dl!==null && dl>0) return `試験まであと${dl}日！`;
+       if(dl===0) return '試験は今日です！';
+       if(dl!==null) return '受験おつかれさま！';
+       return allDone?'90日ぶん完走！':`あと${LESSONS.length-doneCount}日！`;
+     })()}</span>
    </div>
    <svg class="squiggle" width="168" viewBox="0 0 168 9" aria-hidden="true"><path d="M2 6 Q 22 1 42 5 T 82 5 T 122 5 T 158 4"/></svg>
   </div>
@@ -5970,6 +5977,16 @@ function renderHome(){
   </div>
 
   <div class="today-actions">${newCard}${revCard}</div>
+
+  ${(!allDone && mockAvailable()) ? `
+  <div class="tcard" style="margin-top:12px;flex-direction:row;align-items:center;gap:12px">
+    <div style="flex:1">
+      <span class="tc-eyebrow">腕試し</span>
+      <div style="font-size:15px;font-weight:900;margin-top:2px">模擬試験</div>
+      <div class="tc-meta">ここまでの範囲から40問・30分</div>
+    </div>
+    <button style="width:auto;margin:0;padding:12px 18px" onclick="showMock()">受ける</button>
+  </div>` : ''}
 
   <details class="day-list-details">
     <summary>全90日から選ぶ</summary>
@@ -5999,6 +6016,7 @@ function render(){
  if(currentView==='settings'){ if($('bottomNav')) $('bottomNav').style.display='none'; renderSettings(); return; }
  if(currentView==='vocab'){ if(document.querySelector('.vlist') && document.activeElement && document.activeElement.id==='vocabSearch'){ vocabFilterOnly(); } else { renderVocabScreen(); } return; }
  if(currentView==='levelcheck'){ if($('bottomNav')) $('bottomNav').style.display='none'; renderLevelCheckScreen(); return; }
+ if(currentView==='mock'){ renderMockScreen(); return; }
  if(currentView==='review'){ if($('bottomNav')) $('bottomNav').style.display='none'; renderTestScreen(); return; }
  if(currentView==='today'){ renderHome(); return; }
  save(); initSelect(); renderBookmarkPanel();
@@ -6379,6 +6397,7 @@ function showTest(){ goView('review'); }
 function showLevelCheck(){ goView('levelcheck'); }
 function showVocab(){ goView('vocab'); }
 function showSettings(){ goView('settings'); }
+function showMock(){ _mock=null; goView('mock'); }
 function vocabGoToDay(d){ showDay(d); }
 function vocabBuildIndex(){
   if(_vocabIndex) return _vocabIndex;
@@ -6633,8 +6652,10 @@ var TRACK_KEY='hsk4-events', TRACK_MAX=500;
 function trackSinkUrl(){ try{ return localStorage.getItem('hsk4-sink-url')||''; }catch(e){ return ''; } }
 function trackRead(){ try{ return JSON.parse(localStorage.getItem(TRACK_KEY)||'[]'); }catch(e){ return []; } }
 function track(name, props){
-  var ev={ t:Date.now(), n:name };
-  if(props) for(var k in props) if(props.hasOwnProperty(k)) ev[k]=props[k];
+  // 名前とプロパティは別の入れ物に置く。同じ階層に混ぜると props のキーが
+  // 名前を上書きしうる（実際 {n:...} が名前を潰していた）。
+  var ev={ t:Date.now(), e:name };
+  if(props) ev.p=props;
   try{
     var log=trackRead(); log.push(ev);
     if(log.length>TRACK_MAX) log=log.slice(-TRACK_MAX);
@@ -6664,6 +6685,8 @@ var BG_SHAPES = {
              ['#D5E4C8', 'M-30 560 C 84 528, 180 562, 272 540 C 348 522, 396 540, 430 526 L 430 844 L -30 844 Z']],
   vocab:    [['#D5E4C8', 'M-40 76 C 70 38, 166 68, 256 46 C 330 28, 388 50, 430 28 L 430 236 C 348 272, 240 236, 150 256 C 74 272, 12 250, -40 266 Z'],
              ['#F6D9D2', 'M-30 706 C 84 674, 180 708, 272 686 C 348 668, 396 686, 430 672 L 430 844 L -30 844 Z']],
+  mock:     [['#F6D9D2', 'M-40 100 C 76 58, 172 90, 262 66 C 336 46, 390 68, 430 46 L 430 402 C 344 440, 236 402, 146 424 C 70 442, 10 420, -40 436 Z'],
+             ['#D5E4C8', 'M-30 620 C 84 588, 180 622, 272 600 C 348 582, 396 600, 430 586 L 430 844 L -30 844 Z']],
   settings: [['#EDE6D8', 'M-40 82 C 70 44, 166 74, 256 52 C 330 34, 388 56, 430 34 L 430 214 C 348 250, 240 214, 150 234 C 74 250, 12 228, -40 244 Z'],
              ['#D5E4C8', 'M240 760 C 300 738, 372 754, 430 730 L 430 844 L 190 844 C 198 812, 212 772, 240 760 Z']]
 };
@@ -6673,6 +6696,224 @@ function renderBgShapes(view){
   host.innerHTML='<svg viewBox="0 0 390 844" preserveAspectRatio="xMidYMin slice">'
     + set.map(function(sh){ return '<path d="'+sh[1]+'" fill="'+sh[0]+'"></path>'; }).join('')
     + '</svg>';
+}
+
+// ===== 受験日 =====
+function examDate(){ var d=state.examDate; return (typeof d==='string' && /^\d{4}-\d{2}-\d{2}$/.test(d)) ? d : ''; }
+function examDaysLeft(){
+  var d=examDate(); if(!d) return null;
+  var t=new Date(d+'T00:00:00'); if(isNaN(t)) return null;
+  var today=new Date(); today.setHours(0,0,0,0);
+  return Math.round((t-today)/86400000);
+}
+function setExamDate(v){
+  state.examDate=(typeof v==='string' && /^\d{4}-\d{2}-\d{2}$/.test(v)) ? v : '';
+  save(); track('exam_date_set',{set:!!state.examDate});
+  if(currentView==='settings') renderSettings(); else render();
+}
+
+// ===== 模擬試験 =====
+// 本番のHSK4は 听力45／阅读40／书写15。このアプリには听力の音源が無いので、
+// ここで作れるのは「読解＋語順」の模試だけ。180/300のような換算スコアは出さない。
+// 出せない数字を出すと、本番で足をすくわれるのはユーザーの方なので。
+var MOCK_MIN_DAYS = 10;      // これ未満だと出題の幅が足りない
+var MOCK_LIMIT_SEC = 30*60;
+var _mock = null, _mockTimer = null;
+
+function mockDoneDays(){
+  return LESSONS.filter(function(l){ return state.completed[l.day] && BANK[l.day]; }).map(function(l){ return l.day; });
+}
+function mockAvailable(){ return mockDoneDays().length >= MOCK_MIN_DAYS; }
+
+function mockBuildQuestions(){
+  var days=_shuffle(mockDoneDays().slice()), qs=[];
+  days.forEach(function(d){
+    var b=BANK[d]; if(!b) return;
+    (b.mc||[]).forEach(function(m){
+      qs.push({ kind:'mc', day:d, tag:m.tag||'語彙', q:m.q,
+                opts:_shuffle((m.opts||[]).slice()) });
+    });
+    if(b.drag && b.drag.words) qs.push({ kind:'drag', day:d, tag:'語順', words:_shuffle(b.drag.words.slice()), answer:b.drag.answer });
+  });
+  qs=_shuffle(qs);
+  var mc=qs.filter(function(q){return q.kind==='mc';}).slice(0,32);
+  var dg=qs.filter(function(q){return q.kind==='drag';}).slice(0,8);
+  return _shuffle(mc.concat(dg));
+}
+
+function mockStart(){
+  var qs=mockBuildQuestions();
+  if(!qs.length){ return; }
+  _mock={ qs:qs, i:0, answers:{}, built:[], startedAt:Date.now(), endsAt:Date.now()+MOCK_LIMIT_SEC*1000, done:false };
+  track('mock_start',{count:qs.length});
+  goView('mock');
+  mockTick();
+}
+function mockTick(){
+  if(_mockTimer) clearInterval(_mockTimer);
+  _mockTimer=setInterval(function(){
+    if(!_mock || _mock.done || currentView!=='mock'){ clearInterval(_mockTimer); _mockTimer=null; return; }
+    if(Date.now()>=_mock.endsAt){ mockFinish(true); return; }
+    var el=$('mockClock'); if(el) el.textContent=mockClockText();
+  },1000);
+}
+function mockClockText(){
+  var left=Math.max(0, Math.ceil((_mock.endsAt-Date.now())/1000));
+  return Math.floor(left/60)+':'+String(left%60).padStart(2,'0');
+}
+function mockPick(i){ if(!_mock||_mock.done) return; _mock.answers[_mock.i]=i; renderMockScreen(); }
+function mockChip(i){
+  if(!_mock||_mock.done) return;
+  var b=_mock.built[_mock.i]||[]; if(b.indexOf(i)<0) b.push(i);
+  _mock.built[_mock.i]=b; renderMockScreen();
+}
+function mockChipUndo(){ if(!_mock||_mock.done) return; var b=_mock.built[_mock.i]||[]; b.pop(); _mock.built[_mock.i]=b; renderMockScreen(); }
+function mockNav(d){
+  if(!_mock||_mock.done) return;
+  _mock.i=Math.max(0, Math.min(_mock.qs.length-1, _mock.i+d));
+  renderMockScreen(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function mockIsRight(q, idx){
+  if(q.kind==='mc'){ var o=q.opts[_mock.answers[idx]]; return !!(o && o.ok); }
+  var b=(_mock.built[idx]||[]).map(function(k){ return q.words[k]; }).join('');
+  return b===String(q.answer||'').replace(/[。，、？！]/g,'') || b+'。'===q.answer;
+}
+function mockFinish(auto){
+  if(!_mock||_mock.done) return;
+  if(_mockTimer){ clearInterval(_mockTimer); _mockTimer=null; }
+  var byTag={}, correct=0;
+  _mock.qs.forEach(function(q,idx){
+    var r=mockIsRight(q,idx);
+    if(r) correct++;
+    if(!byTag[q.tag]) byTag[q.tag]={c:0,t:0};
+    byTag[q.tag].t++; if(r) byTag[q.tag].c++;
+  });
+  _mock.done=true; _mock.correct=correct; _mock.byTag=byTag; _mock.auto=!!auto;
+  _mock.elapsed=Math.round((Date.now()-_mock.startedAt)/1000);
+  if(!Array.isArray(state.mockHistory)) state.mockHistory=[];
+  state.mockHistory.push({ t:Date.now(), total:_mock.qs.length, correct:correct, elapsed:_mock.elapsed });
+  if(state.mockHistory.length>20) state.mockHistory=state.mockHistory.slice(-20);
+  save();
+  track('mock_finish',{ total:_mock.qs.length, correct:correct, elapsed:_mock.elapsed, auto:!!auto });
+  renderMockScreen(); window.scrollTo({top:0,behavior:'smooth'});
+}
+// 間違えた問題が出たDayの語をまとめて★に入れる。復習に流し込むのが模試の目的なので。
+function mockStarWeak(){
+  if(!_mock||!_mock.done) return;
+  var days={}, n=0;
+  _mock.qs.forEach(function(q,idx){ if(!mockIsRight(q,idx)) days[q.day]=true; });
+  Object.keys(days).forEach(function(d){
+    var l=LESSONS[Number(d)-1]; if(!l) return;
+    l.vocab.forEach(function(v){
+      if(state.bookmarks[v.id]) return;
+      // toggleBookmark と同じ形で入れる（一覧はこの形を前提に描画している）
+      state.bookmarks[v.id]={ id:v.id, type:'単語', title:v.zh, sub:v.ja, day:l.day,
+        pinyin:v.pinyin||'', example:v.example||'', exPinyin:v.exPinyin||'', exJa:v.exJa||'', hl:0 };
+      n++;
+    });
+  });
+  save(); track('mock_star_weak',{count:n});
+  _toast(n>0? n+'語をブックマークに追加しました。復習で出題されます。' : '追加できる語がありませんでした。');
+  renderMockScreen();
+}
+function mockExit(){
+  if(_mockTimer){ clearInterval(_mockTimer); _mockTimer=null; }
+  _mock=null; showToday();
+}
+
+function renderMockScreen(){
+  var c=$('content'); if(!c) return;
+  c.style.display=''; c.className='';
+  $('bookmarkPanel').className='bookmark-panel card';
+  if($('bottomNav')) $('bottomNav').style.display='none';
+  if(!_mock){ c.innerHTML=mockIntroHtml(); return; }
+  c.innerHTML = _mock.done ? mockResultHtml() : mockQuestionHtml();
+}
+
+function mockIntroHtml(){
+  var days=mockDoneDays().length;
+  var h='<div class="card"><div class="section-title"><h2>模擬試験</h2><span class="badge">30分</span></div>';
+  if(!mockAvailable()){
+    h+='<div class="empty" style="margin-top:4px">完了したDayが'+days+'日ぶんです。'
+     + MOCK_MIN_DAYS+'日ぶん終わると、そこまでの範囲で模試を受けられます。</div>';
+    h+='<button style="width:100%;margin-top:12px" onclick="showToday()">今日やることへ戻る</button>';
+    return h+'</div>';
+  }
+  h+='<div class="small muted" style="margin-top:2px">完了した'+days+'日ぶんから40問を出題します。制限時間30分。</div>';
+  h+='<div class="note"><b>听力（リスニング）は含みません。</b>本番のHSK4は听力45問・阅读40問・书写15問で、'
+   + 'このアプリには音源がありません。ここで測れるのは<b>読解と語順</b>だけなので、本番の点数の目安にはなりません。'
+   + '「覚えた範囲がどれだけ定着しているか」を見るために使ってください。</div>';
+  var hist=(state.mockHistory||[]).slice(-3).reverse();
+  if(hist.length){
+    h+='<div class="set-label">これまでの結果</div><div class="vlist">';
+    hist.forEach(function(r){
+      var d=new Date(r.t);
+      h+='<div class="vrow" style="cursor:default"><div class="vrow-main"><div class="vrow-top">'
+       + '<span class="vrow-zh" style="font-size:17px">'+r.correct+'/'+r.total+'</span>'
+       + '<span class="vrow-py">'+Math.round(r.correct/r.total*100)+'%</span></div>'
+       + '<span class="vrow-ja">'+(d.getMonth()+1)+'月'+d.getDate()+'日</span></div></div>';
+    });
+    h+='</div>';
+  }
+  h+='<button class="primary" style="width:100%;margin-top:14px" onclick="mockStart()">模試を始める（40問・30分）</button>';
+  h+='<button style="width:100%;margin-top:8px" onclick="showToday()">あとにする</button>';
+  return h+'</div>';
+}
+
+function mockQuestionHtml(){
+  var q=_mock.qs[_mock.i], n=_mock.qs.length, done=Object.keys(_mock.answers).length;
+  var h='<div class="card"><div class="section-title">'
+   + '<h2 style="font-size:17px">模試 '+(_mock.i+1)+' / '+n+'</h2>'
+   + '<span class="badge" id="mockClock">'+mockClockText()+'</span></div>';
+  h+='<div class="mt-prog"><i style="width:'+Math.round(done/n*100)+'%"></i></div>';
+  h+='<span class="mt-qtype">'+esc(q.tag)+'</span>';
+  if(q.kind==='mc'){
+    h+='<div class="mt-q">'+q.q+'</div><div class="mt-opts">';
+    q.opts.forEach(function(o,i){
+      var sel=(_mock.answers[_mock.i]===i);
+      h+='<button class="mt-opt'+(sel?' correct':'')+'" onclick="mockPick('+i+')">'+esc(o.t)+'</button>';
+    });
+    h+='</div>';
+  } else {
+    var built=_mock.built[_mock.i]||[];
+    h+='<div class="mt-q">正しい語順に並べてください。</div>';
+    h+='<div class="mt-built">'+(built.length?built.map(function(k){return esc(q.words[k]);}).join(' '):'<span class="muted" style="font-size:14px">ここに並びます</span>')+'</div>';
+    h+='<div class="mt-chips">';
+    q.words.forEach(function(w,i){
+      var used=built.indexOf(i)>=0;
+      h+='<button class="mt-chip"'+(used?' disabled':'')+' onclick="mockChip('+i+')">'+esc(w)+'</button>';
+    });
+    h+='</div><button style="width:100%" onclick="mockChipUndo()">ひとつ戻す</button>';
+  }
+  h+='<div class="lc-nav" style="margin-top:16px">'
+   + '<button class="lc-btn flex"'+(_mock.i===0?' disabled':'')+' onclick="mockNav(-1)">前の問題</button>'
+   + (_mock.i===n-1
+      ? '<button class="lc-btn primary flex" onclick="mockFinish(false)">採点する</button>'
+      : '<button class="lc-btn primary flex" onclick="mockNav(1)">次の問題</button>')
+   + '</div>';
+  h+='<div class="small muted" style="margin-top:10px;text-align:center"><a href="#" onclick="mockFinish(false);return false">ここまでで採点する</a></div>';
+  return h+'</div>';
+}
+
+function mockResultHtml(){
+  var n=_mock.qs.length, c=_mock.correct, pct=Math.round(c/n*100);
+  var h='<div class="card"><div class="section-title"><h2>模試の結果</h2>'
+   + '<span class="badge">'+Math.floor(_mock.elapsed/60)+'分'+(_mock.elapsed%60)+'秒</span></div>';
+  if(_mock.auto) h+='<div class="note">制限時間になったので、そこまでで採点しました。</div>';
+  h+='<div class="mt-result"><div class="sc">'+c+' / '+n+'</div><div class="sub">正答率 '+pct+'%</div></div>';
+  h+='<div class="set-label">分野ごと</div><div class="lc-bands">';
+  Object.keys(_mock.byTag).forEach(function(t){
+    var b=_mock.byTag[t], w=Math.round(b.c/b.t*100);
+    h+='<div class="lc-band"><span class="badge">'+esc(t)+'</span>'
+     + '<span class="lcbar"><span style="width:'+w+'%"></span></span>'
+     + '<span class="lcsc">'+b.c+'/'+b.t+'</span></div>';
+  });
+  h+='</div>';
+  h+='<div class="note"><b>この点数は本番の目安ではありません。</b>听力（試験の約1/3）を含まないためです。'
+   + '分野ごとの内訳を、どこを厚く復習するかの材料として使ってください。</div>';
+  h+='<button class="primary" style="width:100%;margin-top:12px" onclick="mockStarWeak()">間違えたDayの語を★に入れる</button>';
+  h+='<button style="width:100%;margin-top:8px" onclick="mockExit()">終わる</button>';
+  return h+'</div>';
 }
 
 // 設定パネルの表示切替。#settingsPanel は同期バーの ID を保つため常時 DOM に残す。
@@ -6704,6 +6945,15 @@ function renderSettings(){
   h+='<div class="set-label">出題の向き</div>'
    + seg([{v:'zh2ja',t:'中文 → 日本語'},{v:'ja2zh',t:'日本語 → 中文'}], dir, function(v){ return "srsSetDir('"+v+"')"; })
    + '<div class="small muted" style="margin-top:6px">中文→日本語は意味を答える練習、日本語→中文は中文を思い出す練習です。スケジュールは共通です。</div>';
+
+  h+='<div class="set-label">受験予定日</div>'
+   + '<div class="small muted" style="margin-bottom:8px">入れておくと、今日画面に残り日数が出ます。締切があるほうが続きます。</div>'
+   + '<input id="examDateInput" type="date" value="'+esc(examDate())+'" style="width:100%;border:var(--bw) solid var(--stroke);border-radius:12px;padding:11px 13px;font:inherit;background:#fff" onchange="setExamDate(this.value)">'
+   + (examDate()? '<button style="width:100%;margin-top:8px" onclick="setExamDate(\'\')">日付を消す</button>' : '');
+
+  h+='<div class="set-label">模擬試験</div>'
+   + '<div class="small muted" style="margin-bottom:8px">完了したDayの範囲から40問・30分。<b>听力は含みません</b>（音源が無いため）。</div>'
+   + '<button style="width:100%" onclick="showMock()">模擬試験へ</button>';
 
   h+='<div class="set-label">レベル診断</div>'
    + '<div class="small muted" style="margin-bottom:8px">HSK3〜6級の問題からいまの級を判定します。学習を始める前に一度どうぞ。</div>'
@@ -6955,6 +7205,16 @@ window.toggleJa = toggleJa;
 window.toggleDensity = toggleDensity;
 window.showStudy = showStudy;
 window.showTest = showTest;
+window.mockStart = mockStart;
+window.mockPick = mockPick;
+window.mockChip = mockChip;
+window.mockChipUndo = mockChipUndo;
+window.mockNav = mockNav;
+window.mockFinish = mockFinish;
+window.mockStarWeak = mockStarWeak;
+window.mockExit = mockExit;
+window.showMock = showMock;
+window.setExamDate = setExamDate;
 window.showToday = showToday;
 window.showSettings = showSettings;
 window.showLevelCheck = showLevelCheck;
