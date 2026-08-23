@@ -43,16 +43,16 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .drag-area{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;padding:10px;border:1px dashed #DCD3C6;border-radius:16px;background:#FBF7F0;min-height:58px}
 .answer-area{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;padding:10px;border:1px solid #E3DBCE;border-radius:16px;background:#fff;min-height:58px}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:9px 12px;border-radius:14px;background:white;border:1px solid var(--line);font-weight:800;box-shadow:0 2px 6px rgba(16,24,40,.05);touch-action:manipulation}
-.chip.used{background:#EDEFF2;color:#A29A8E;text-decoration:line-through}
+.chip.used{background:var(--gray);color:#A29A8E;text-decoration:line-through}
 .chip.answer-chip{background:#221B15;color:white;border-color:#221B15}
-.chip.dragging{opacity:.45}.chip.selected{outline:3px solid #C9D5DE}
+.chip.dragging{opacity:.45}.chip.selected{outline:3px solid #CFC6B6}
 .bookmark-panel{display:none}.bookmark-panel.active{display:block}.empty{padding:14px;border:1px dashed #DCD3C6;border-radius:16px;background:#FBF7F0;color:var(--muted)}
 .bm-stickybar{position:sticky;top:var(--top-h,64px);z-index:8;background:var(--card);padding:8px 0;margin:0 0 8px;box-shadow:0 6px 10px -6px rgba(16,24,40,.18)}
-.home-grid{display:grid;gap:12px}.home-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:14px;box-shadow:0 4px 14px rgba(16,24,40,.04)}
-.home-card h3{margin:0 0 6px;font-size:17px}.home-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+
+
 .day-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}.daybtn{padding:10px 0;border-radius:12px;background:#fff}.daybtn.done{background:var(--goodbg);border-color:var(--goodline);color:#2E8B62}
-.progressline{height:10px;border-radius:999px;background:#EDEFF2;overflow:hidden;margin-top:8px}.progressline span{display:block;height:100%;background:#221B15;width:0%}
-@media(min-width:700px){.home-grid{grid-template-columns:1fr 1fr}.day-grid{grid-template-columns:repeat(10,1fr)}}
+.progressline{height:10px;border-radius:999px;background:var(--gray);overflow:hidden;margin-top:8px}.progressline span{display:block;height:100%;background:#221B15;width:0%}
+@media(min-width:700px){.day-grid{grid-template-columns:repeat(10,1fr)}}
 .bottomnav{position:fixed;left:0;right:0;bottom:0;background:rgba(252,249,242,.94);backdrop-filter:blur(14px);border-top:var(--bw) solid var(--stroke);padding:11px 14px;padding-bottom:calc(11px + env(safe-area-inset-bottom));display:flex;gap:8px;z-index:20;transform:translateZ(0);-webkit-transform:translateZ(0);will-change:transform}.bottomnav button{flex:1}
 @media(max-width:430px){.top{padding:calc(20px + env(safe-area-inset-top)) 14px 14px}h1{font-size:21px;margin-bottom:16px;text-align:center}button{padding:10px 11px}.app{padding-top:20px}}@media(min-width:800px){.vocab{grid-template-columns:1fr 1fr}.top h1{font-size:28px}.app{padding-bottom:40px}.bottomnav{display:none}}
 
@@ -73,13 +73,13 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .hl-badge-1{background:#C2773C;color:#94621C}
 .hl-badge-2{background:#C2773C;color:#fff}
 .hl-badge-3{background:#C8483B;color:#fff}
-.ai-challenge-box{background:#EDEFF2;border:1px solid #9DB0BE;border-radius:16px;padding:14px;margin-top:12px}
-.ai-challenge-box h3{margin:0 0 8px;color:#1E3A4C;font-size:15px}
+.ai-challenge-box{background:var(--gray);border:1px solid #CFC6B6;border-radius:16px;padding:14px;margin-top:12px}
+.ai-challenge-box h3{margin:0 0 8px;color:var(--ink);font-size:15px}
 .ai-q{font-weight:700;margin-bottom:8px;line-height:1.5}
 .ai-opts label{display:block;padding:8px 10px;border:1px solid #ECE5DA;border-radius:10px;margin-bottom:6px;cursor:pointer;touch-action:manipulation}
 .ai-ans-box{background:#EAF5EF;border:1px solid #C2E2CE;border-radius:10px;padding:10px;margin-top:8px}
-.speak-btn{border:none!important;background:transparent!important;font-size:20px;padding:2px 6px!important;cursor:pointer;touch-action:manipulation;line-height:1;vertical-align:middle;opacity:0.7}
-.speak-btn:active{opacity:1;transform:scale(1.2)}
+.speak-btn{border:none!important;background:transparent!important;padding:4px 6px!important;cursor:pointer;touch-action:manipulation;line-height:0;vertical-align:middle;color:var(--muted);display:inline-flex;align-items:center}.speak-btn .spk-ic{width:18px;height:18px;display:block}
+.speak-btn:active{color:var(--ink);transform:scale(1.15)}
 .syncdot{width:8px;height:8px;border-radius:999px;background:#A29A8E;display:inline-block}
 .syncdot.on{background:var(--good)}.syncdot.warn{background:var(--brand-2)}.syncdot.err{background:var(--bad)}
 .cloud-note{font-size:11px;color:#8C8074;text-align:center;margin-top:4px}
@@ -137,7 +137,7 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .flashcard .fc-prompt{font-size:26px;font-weight:800;margin:6px 0}
 .flashcard .fc-sub{color:#5C5249;margin-top:4px}
 .flashcard .fc-answer{margin-top:14px;padding-top:14px;border-top:1px dashed #DCD3C6}
-.flashcard .fc-answer .a-main{font-size:24px;font-weight:800;color:#173A52}
+.flashcard .fc-answer .a-main{font-size:24px;font-weight:800;color:var(--ink)}
 .fc-actions{display:flex;gap:8px;margin-top:14px}
 .fc-actions button{flex:1;padding:11px 6px;font-size:13px}
 .fc-progress{text-align:center;color:#8C8074;font-size:13px;margin-top:10px}
@@ -146,9 +146,9 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .ex-leech{border:1px solid #E8D9C4;background:#FBF4E8;border-radius:10px;padding:8px 10px}
 .btn-vague{background:var(--amberbg);color:#94621C;border-color:#E8D9C4}
 .btn-known{background:#EAF5EF;color:#2E8B62;border-color:#C2E2CE}
-.btn-master{background:#EDEFF2;color:#1E3A4C;border-color:#C9D5DE}
+.btn-master{background:var(--gray);color:var(--ink);border-color:#CFC6B6}
 
-.lc-progress{height:10px;border-radius:999px;background:#EDEFF2;overflow:hidden;margin:4px 0 14px}.lc-progress span{display:block;height:100%;background:#C2773C;transition:width .25s}
+.lc-progress{height:10px;border-radius:999px;background:var(--gray);overflow:hidden;margin:4px 0 14px}.lc-progress span{display:block;height:100%;background:#C2773C;transition:width .25s}
 .lc-q{font-size:18px;font-weight:700;line-height:1.5;white-space:pre-wrap}
 .lc-qpin{color:#5C5249;font-size:13px;margin-top:4px}
 .lc-opts{display:grid;gap:10px;margin-top:14px}
@@ -157,15 +157,15 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .lc-opt.unknown{border-style:dashed;color:var(--muted);font-weight:600;text-align:center}
 .lc-opt.unknown.sel{border-color:#A29A8E;background:#EFE9E0;color:#8C8074;border-style:dashed}
 .lc-nav{display:flex;gap:10px;margin-top:16px}
-.lc-result-lv{font-size:32px;font-weight:800;color:#173A52;text-align:center;margin:6px 0}
+.lc-result-lv{font-size:32px;font-weight:800;color:var(--ink);text-align:center;margin:6px 0}
 .lc-result-sub{text-align:center;color:var(--muted);font-size:14px;margin-bottom:8px}
 .lc-bands{display:grid;gap:8px;margin:14px 0}
 .lc-band{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:12px;padding:10px 12px}
-.lc-band .lcbar{flex:1;height:8px;border-radius:999px;background:#EDEFF2;margin:0 10px;overflow:hidden}.lc-band .lcbar span{display:block;height:100%;background:#1E3A4C}
+.lc-band .lcbar{flex:1;height:8px;border-radius:999px;background:var(--gray);margin:0 10px;overflow:hidden}.lc-band .lcbar span{display:block;height:100%;background:var(--ink)}
 .lc-band .lcsc{font-size:13px;font-weight:700;color:#463F37;min-width:38px;text-align:right}
 .lc-pick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
 .lc-btn{border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px;font:inherit;font-weight:700;color:var(--ink);cursor:pointer;touch-action:manipulation}
-.lc-btn.primary{background:#1E3A4C;color:#fff;border-color:#1E3A4C}.lc-btn.primary:disabled{opacity:.4;cursor:not-allowed}
+.lc-btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}.lc-btn.primary:disabled{opacity:.4;cursor:not-allowed}
 .lc-btn.rec{border-color:#C2773C;background:#FBF4E8;color:#94621C}
 .lc-btn.flex{flex:1}
 .lc-startlist{margin:14px 0 0;padding:0;list-style:none;color:#463F37;line-height:1.7;font-size:14px}.lc-startlist li{padding-left:18px;position:relative}.lc-startlist li:before{content:"・";position:absolute;left:2px}
@@ -173,15 +173,15 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 mark.cw-hl{background:#FBF4E8;color:inherit;border-radius:3px;padding:0 1px}
 .cw-subtabs{display:flex;gap:8px;margin-bottom:12px}
 .cw-subtab{flex:1;border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px;font:inherit;font-weight:700;color:#5C5249;cursor:pointer}
-.cw-subtab.active{border-color:#1E3A4C;background:#EDEFF2;color:#1E3A4C}
+.cw-subtab.active{border-color:var(--ink);background:var(--gray);color:var(--ink)}
 .cw-item{border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
 .cw-item-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
 .cw-item .zh{font-size:17px;font-weight:700}
 .cw-del{border:none;background:transparent;font-size:16px;cursor:pointer;line-height:1}
-#cw-fab{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:9998;background:#1E3A4C;color:#fff;border:none;border-radius:999px;padding:13px 22px;font:inherit;font-weight:700;font-size:14px;box-shadow:0 10px 28px rgba(46,75,107,.40);cursor:pointer;display:none;max-width:90vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#cw-fab{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:9998;background:var(--ink);color:#fff;border:none;border-radius:999px;padding:13px 22px;font:inherit;font-weight:700;font-size:14px;box-shadow:0 10px 28px rgba(46,75,107,.40);cursor:pointer;display:none;max-width:90vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #cw-modal{position:fixed;inset:0;z-index:9999;background:rgba(16,24,40,.45);display:none;align-items:center;justify-content:center;padding:16px}
 .cw-modal-card{background:#fff;border-radius:18px;padding:18px;width:100%;max-width:440px;max-height:88vh;overflow:auto;box-shadow:0 20px 50px rgba(16,24,40,.3)}
-.cw-modal-h{font-size:18px;font-weight:800;margin-bottom:10px;color:#173A52}
+.cw-modal-h{font-size:18px;font-weight:800;margin-bottom:10px;color:var(--ink)}
 .cw-l{display:block;font-size:12px;font-weight:700;color:#8C8074;margin:10px 0 4px}
 .cw-in{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;font:inherit;box-sizing:border-box}
 .cw-row{display:flex;gap:8px;align-items:center}.cw-row .cw-in{flex:1}
@@ -192,12 +192,12 @@ mark.cw-hl{background:#FBF4E8;color:inherit;border-radius:3px;padding:0 1px}
 z{font-family:var(--zh-font);font-style:normal}
 #mtRoot{scroll-margin-top:calc(var(--top-h,64px) + 10px)}
 .mt-counter{font-size:13px;color:var(--muted);font-weight:600}
-.mt-prog{height:6px;background:#EDEFF2;border-radius:999px;overflow:hidden;margin:8px 0 14px}.mt-prog>i{display:block;height:100%;background:var(--blue2,#1E3A4C);transition:width .25s}
-.mt-qtype{display:inline-block;font-size:11px;font-weight:700;color:#1E3A4C;background:#EDEFF2;border-radius:6px;padding:3px 8px;margin-bottom:10px}
+.mt-prog{height:6px;background:var(--gray);border-radius:999px;overflow:hidden;margin:8px 0 14px}.mt-prog>i{display:block;height:100%;background:var(--blue2,var(--ink));transition:width .25s}
+.mt-qtype{display:inline-block;font-size:11px;font-weight:700;color:var(--ink);background:var(--gray);border-radius:6px;padding:3px 8px;margin-bottom:10px}
 .mt-q{font-size:18px;line-height:1.55;font-weight:600;margin:2px 0 14px;white-space:pre-wrap}
-.mt-blank{display:inline-block;min-width:56px;height:1.05em;margin:0 4px;vertical-align:-0.18em;border:1.5px dashed #9DB0BE;border-radius:7px;background:#EDEFF2}
-.vsearch{display:flex;align-items:center;gap:8px;background:#EDEFF2;border-radius:12px;padding:10px 12px;margin:10px 0 0}
-.vsearch-ic{color:#1E3A4C;font-size:15px}
+.mt-blank{display:inline-block;min-width:56px;height:1.05em;margin:0 4px;vertical-align:-0.18em;border:1.5px dashed #CFC6B6;border-radius:7px;background:var(--gray)}
+.vsearch{display:flex;align-items:center;gap:8px;background:var(--gray);border-radius:12px;padding:10px 12px;margin:10px 0 0}
+.vsearch-ic{color:var(--ink);font-size:15px}
 .vsearch input{flex:1;border:none;background:transparent;outline:none;font-size:15px;color:inherit;min-width:0}
 .vsearch input::-webkit-search-cancel-button,.vsearch input::-webkit-search-decoration{-webkit-appearance:none;appearance:none}
 .vsearch-clear{border:none;background:transparent;color:var(--muted);font-size:20px;line-height:1;cursor:pointer;padding:0 2px}
@@ -210,7 +210,7 @@ z{font-family:var(--zh-font);font-style:normal}
 .vrow-zh{font-size:19px;font-weight:700}
 .vrow-py{font-size:13px;color:var(--muted)}
 .vrow-ja{display:block;font-size:13.5px;color:#463F37;margin-top:2px}
-.vrow-day{flex-shrink:0;font-size:11px;font-weight:700;color:#1E3A4C;background:#EDEFF2;border-radius:8px;padding:4px 9px;white-space:nowrap}
+.vrow-day{flex-shrink:0;font-size:11px;font-weight:700;color:var(--ink);background:var(--gray);border-radius:8px;padding:4px 9px;white-space:nowrap}
 .vempty{text-align:center;color:var(--muted);font-size:14px;padding:36px 0}
 body.fs-sm .vrow-zh{font-size:17px}body.fs-sm .vrow-py{font-size:12px}body.fs-sm .vrow-ja{font-size:12.5px}
 body.fs-lg .vrow-zh{font-size:23px}body.fs-lg .vrow-py{font-size:15px}body.fs-lg .vrow-ja{font-size:16px}
@@ -224,26 +224,26 @@ body.fs-lg .vrow-zh{font-size:23px}body.fs-lg .vrow-py{font-size:15px}body.fs-lg
 .mt-opt .mk{margin-left:auto;font-weight:800}.mt-opt.correct .mk{color:var(--good)}.mt-opt.wrong .mk{color:var(--bad)}
 .mt-exp{margin-top:14px;border-radius:12px;padding:12px 13px;font-size:14px;line-height:1.65;background:#FBF4E8;border:1px solid #E8D9C4}
 .mt-exp h4{margin:0 0 6px;font-size:13px;color:#94621C}.mt-exp .row{margin:5px 0}.mt-exp .x{color:var(--bad);font-weight:700}.mt-exp .o{color:var(--good);font-weight:700}
-.mt-next{margin-top:16px}.mt-btn{width:100%;border:none;border-radius:12px;padding:14px;font-size:16px;font-weight:700;cursor:pointer;background:var(--blue,#173A52);color:#fff}.mt-btn.ghost{background:#EDEFF2;color:var(--blue,#173A52)}.mt-btn[disabled]{opacity:.5}
+.mt-next{margin-top:16px}.mt-btn{width:100%;border:none;border-radius:12px;padding:14px;font-size:16px;font-weight:700;cursor:pointer;background:var(--blue,var(--ink));color:#fff}.mt-btn.ghost{background:var(--gray);color:var(--blue,var(--ink))}.mt-btn[disabled]{opacity:.5}
 .mt-ta{width:100%;min-height:84px;border:1.5px solid var(--line);border-radius:12px;padding:12px;font-size:18px;font-family:var(--zh-font);margin-bottom:10px}
 .mt-verdict{display:inline-block;border-radius:8px;padding:4px 10px;font-weight:800;font-size:13px;margin-bottom:6px}.v-correct{background:#EAF5EF;color:var(--good)}.v-acceptable{background:#FBF4E8;color:#94621C}.v-incorrect{background:#FBE9E5;color:var(--bad)}
-.mt-result{text-align:center;padding:10px 6px}.mt-result .sc{font-size:40px;font-weight:800;color:var(--blue,#173A52)}.mt-result .sub{color:var(--muted);margin:6px 0 16px}
+.mt-result{text-align:center;padding:10px 6px}.mt-result .sc{font-size:40px;font-weight:800;color:var(--blue,var(--ink))}.mt-result .sub{color:var(--muted);margin:6px 0 16px}
 .mt-built{min-height:46px;border:1.5px dashed var(--line);border-radius:10px;padding:8px;font-size:17px;margin-bottom:8px;font-family:var(--zh-font);display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .mt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 10px}.mt-chip{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:9px 12px;font-size:16px;cursor:pointer;font-family:var(--zh-font)}.mt-chip[disabled]{opacity:.4;cursor:default}
-.mt-spin{display:inline-block;width:14px;height:14px;border:2px solid #DCD3C6;border-top-color:#1E3A4C;border-radius:50%;animation:mtsp .8s linear infinite;vertical-align:-2px}@keyframes mtsp{to{transform:rotate(360deg)}}
+.mt-spin{display:inline-block;width:14px;height:14px;border:2px solid #DCD3C6;border-top-color:var(--ink);border-radius:50%;animation:mtsp .8s linear infinite;vertical-align:-2px}@keyframes mtsp{to{transform:rotate(360deg)}}
 .pinyin,.expinyin{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 body.fs-sm .zh{font-size:17px}body.fs-sm .pinyin{font-size:13px}body.fs-sm .ja{font-size:14px}body.fs-sm .ex{font-size:14px}body.fs-sm .note{font-size:14px}body.fs-sm .expinyin{font-size:13px}body.fs-sm .exja{font-size:14px}body.fs-sm .testq{font-size:14px}
 body.fs-lg .zh{font-size:24px}body.fs-lg .pinyin{font-size:17px}body.fs-lg .ja{font-size:18px}body.fs-lg .ex{font-size:18px}body.fs-lg .note{font-size:17px}body.fs-lg .expinyin{font-size:17px}body.fs-lg .exja{font-size:18px}body.fs-lg .testq{font-size:18px}
 .fontsize-seg{display:flex;gap:6px;align-items:center;margin-top:12px}.fontsize-seg .label-inline{font-size:12px;color:var(--muted);margin-right:2px}.fontsize-seg button{padding:6px 12px}
-.home-ring{display:flex;align-items:center;gap:14px;margin-top:10px}.home-ring .ring-text{display:flex;flex-direction:column}
-.ring-track{stroke:#ECE5DA}.ring-prog{stroke:var(--good);transition:stroke-dashoffset .6s ease}.ring-pct{font-size:20px;font-weight:800;fill:var(--ink)}
+
+
 @keyframes hsk-pop{0%{transform:scale(.85);opacity:.3}60%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
 @keyframes hsk-checkpulse{0%{transform:scale(1)}30%{transform:scale(1.18)}100%{transform:scale(1)}}
 .hsk-pop{animation:hsk-pop .45s ease}.hsk-checkpulse{animation:hsk-checkpulse .5s ease}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-@media (prefers-reduced-motion: reduce){.hsk-pop,.hsk-checkpulse{animation:none}.ring-prog{transition:none}}
+@media (prefers-reduced-motion: reduce){.hsk-pop,.hsk-checkpulse{animation:none}}
 .fs-global{display:flex;align-items:center;gap:6px;margin-top:2px}
-.fs-global .fs-label{font-size:11px;color:#1E3A4C;font-weight:700;margin-right:2px}
+.fs-global .fs-label{font-size:11px;color:var(--ink);font-weight:700;margin-right:2px}
 /* ===== D-4「背面シェイプ」: 色はカードではなく地が持つ。カードは常に白＋黒枠 ===== */
 #bgShapes{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
 #bgShapes svg{width:100%;height:100%;display:block}
@@ -278,25 +278,25 @@ h1,h2,h3,.badge,.zh,.vrow-zh,.fc-prompt,.tc-title,.tc-count,.daybtn,.set-label,
 .day-list-details{margin-top:12px;border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}
 .day-list-details>summary{list-style:none;cursor:pointer;padding:14px 18px;font-weight:900;font-size:14.5px;color:var(--ink);display:flex;align-items:center;justify-content:space-between;touch-action:manipulation}
 .day-list-details>summary::-webkit-details-marker{display:none}
-.day-list-details>summary::after{content:"＋";font-size:16px;color:#1E3A4C}
+.day-list-details>summary::after{content:"＋";font-size:16px;color:var(--ink)}
 .day-list-details[open]>summary::after{content:"−"}
 .day-list-details .dl-body{padding:0 14px 14px}
 .fs-btn{padding:8px 17px;font-size:12.5px;font-weight:900;border:var(--bw) solid #CFC6B6;background:#fff;color:var(--muted);border-radius:999px;line-height:1.4;touch-action:manipulation;cursor:pointer;min-height:36px}
 .fs-btn.on{background:var(--stroke);color:var(--bg);border-color:var(--stroke)}
 .g-details{margin-top:8px;border:1px dashed #DCD3C6;border-radius:14px;background:#FBF7F0;overflow:hidden}
-.g-details>summary{list-style:none;cursor:pointer;padding:10px 12px;font-size:13px;font-weight:700;color:#1E3A4C;display:flex;align-items:center;justify-content:space-between;touch-action:manipulation}
+.g-details>summary{list-style:none;cursor:pointer;padding:10px 12px;font-size:13px;font-weight:700;color:var(--ink);display:flex;align-items:center;justify-content:space-between;touch-action:manipulation}
 .g-details>summary::-webkit-details-marker{display:none}
-.g-details>summary::after{content:"＋";font-size:15px;color:#1E3A4C;margin-left:8px}
+.g-details>summary::after{content:"＋";font-size:15px;color:var(--ink);margin-left:8px}
 .g-details[open]>summary::after{content:"−"}
-.g-details>summary:hover{background:#EDEFF2}
+.g-details>summary:hover{background:var(--gray)}
 .g-details .note{margin:0;border:0;border-top:1px solid #ECE5DA;border-radius:0;background:transparent}
 .g-details .note:first-of-type{border-top:0}
 .fc-actions.g4{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.fc-actions.g4 button{padding:12px;font-weight:700;border-radius:14px;border:0.5px solid;touch-action:manipulation}
-.g4-again{background:#FBE9E5;color:#C8483B;border-color:#EBD2CD}
-.g4-hard{background:#FBF4E8;color:#94621C;border-color:#E8D9C4}
-.g4-good{background:#EDEFF2;color:#1E3A4C;border-color:#C9D5DE}
-.g4-easy{background:#EAF5EF;color:#2E8B62;border-color:#C2E2CE}
+.fc-actions.g4 button{padding:13px;font-weight:900;border-radius:999px;border:var(--bw) solid;touch-action:manipulation}
+.g4-again{background:var(--blush);color:#A3402A;border-color:var(--stroke)}
+.g4-hard{background:var(--apricot);color:#8A5A18;border-color:var(--stroke)}
+.g4-good{background:#fff;color:var(--ink);border-color:var(--stroke)}
+.g4-easy{background:var(--sage);color:#3D5A2E;border-color:var(--stroke)}
 .hsk-toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(10px);max-width:88%;background:#221B15;color:#fff;font-size:13px;font-weight:600;line-height:1.5;padding:11px 16px;border-radius:14px;box-shadow:0 6px 22px rgba(0,0,0,.25);opacity:0;transition:opacity .3s ease,transform .3s ease;z-index:60;pointer-events:none;text-align:center}
 .hsk-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
@@ -490,7 +490,6 @@ document.addEventListener('click', function(e){
   var id = btn.dataset.id;
   if(a==='showHome') showHome();
   else if(a==='showBookmarks') showBookmarks();
-  else if(a==='toggleBookmarkHint') toggleBookmarkHint();
   else if(a==='removeBookmark' && id) toggleBookmark(id);
   else if(a==='hl' && id) cycleHighlight(id);
   else if(a==='bmSort' && id) bmSetSort(id);
@@ -5826,14 +5825,14 @@ function fmtBmItem(b){
   var h='<div class="vitem lv-'+lv+'"><div class="vitem-inner" style="padding:12px;border-radius:12px">';
   h+='<div class="item-head"><div>';
   h+='<span class="badge">'+esc(b.type)+'</span><span class="badge">Day '+b.day+'</span>';
-  h+='<div class="zh">'+esc(b.title)+' <button class="speak-btn" onclick="speakZh(\''+esc(b.title)+'\')">🔊</button></div>';
+  h+='<div class="zh">'+esc(b.title)+' <button class="speak-btn" onclick="speakZh(\''+esc(b.title)+'\')"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div>';
   if(pin) h+='<div class="pinyin">'+esc(pin)+'</div>';
   h+='<div class="small">'+esc(b.sub||'')+'</div>';
   h+=lvControl(b.id);
   h+='</div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">';
   h+='<button class="bookmark active" data-action="removeBookmark" data-id="'+b.id+'">★</button>';
   h+='</div></div>';
-  if(ex){h+='<div class="ex"><div style="color:#173A52;font-weight:600">'+esc(ex)+'</div>';
+  if(ex){h+='<div class="ex"><div style="color:var(--ink);font-weight:600">'+esc(ex)+'</div>';
     if(exP) h+='<div class="small" style="color:#5C5249">'+esc(exP)+'</div>';
     if(exJ) h+='<div class="small" style="color:#463F37">'+esc(exJ)+'</div>';
     h+='</div>';}
@@ -5983,10 +5982,6 @@ function renderHome(){
   </details>`;
  updateCompleteButtons();
 }
-function toggleBookmarkHint(){
- const el=$('bookmarkHint');
- if(el) el.style.display=el.style.display==='none'?'block':'none';
-}
 
 function render(){
  applyFontScale();
@@ -6035,9 +6030,9 @@ function render(){
    <div class="section-title"><h2>単語5個</h2></div>
    <div class="vocab">${l.vocab.map((v,i)=>`
     <div class="vitem lv-${state.levels[v.id]||0}">
-     <div class="item-head"><div><div class="zh">${i+1}. ${esc(v.zh)} <button class="speak-btn" onclick="speakZh('${esc(v.zh)}')" title="発音">🔊</button></div><div class="pinyin">${esc(v.pinyin)}</div><div class="ja">${esc(v.ja)}</div>${lvControl(v.id)}</div>
+     <div class="item-head"><div><div class="zh">${i+1}. ${esc(v.zh)} <button class="speak-btn" onclick="speakZh('${esc(v.zh)}')" title="発音"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div><div class="pinyin">${esc(v.pinyin)}</div><div class="ja">${esc(v.ja)}</div>${lvControl(v.id)}</div>
      <button class="bookmark ${isBookmarked(v.id)?'active':''}" onclick="toggleBookmark('${v.id}','単語','${esc(v.zh)}','${esc(v.pinyin)}｜${esc(v.ja)}')">${isBookmarked(v.id)?'★':'☆'}</button></div>
-     <div class="ex"><span class="cw-ex" data-ex="${esc(v.example)}" data-exp="${esc(v.exPinyin)}" data-exj="${esc(v.exJa)}">${esc(v.example)}</span> <button class="speak-btn" onclick="speakZh('${esc(v.example)}')" title="例文を聞く">🔊</button></div><div class="pinyin expinyin">${esc(v.exPinyin)}</div><div class="ja exja">${esc(v.exJa)}</div>
+     <div class="ex"><span class="cw-ex" data-ex="${esc(v.example)}" data-exp="${esc(v.exPinyin)}" data-exj="${esc(v.exJa)}">${esc(v.example)}</span> <button class="speak-btn" onclick="speakZh('${esc(v.example)}')" title="例文を聞く"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div><div class="pinyin expinyin">${esc(v.exPinyin)}</div><div class="ja exja">${esc(v.exJa)}</div>
     </div>`).join('')}</div>
   </div>
   <div class="card">
@@ -6051,7 +6046,7 @@ function render(){
      <div class="note"><span class="label">違い・注意：</span>${esc(g.contrast)}</div>
      <div class="note"><span class="label">日本人が間違えやすい点：</span>${esc(g.mistake)}</div>
      </details>
-     <div class="ex"><span class="label">例文：</span><span class="cw-ex" data-ex="${esc(g.example)}" data-exp="${esc(g.exPinyin)}" data-exj="${esc(g.exJa)}">${esc(g.example)}</span> <button class="speak-btn" onclick="speakZh('${esc(g.example)}')" title="例文を聞く">🔊</button></div><div class="pinyin expinyin">${esc(g.exPinyin)}</div><div class="ja exja">${esc(g.exJa)}</div>
+     <div class="ex"><span class="label">例文：</span><span class="cw-ex" data-ex="${esc(g.example)}" data-exp="${esc(g.exPinyin)}" data-exj="${esc(g.exJa)}">${esc(g.example)}</span> <button class="speak-btn" onclick="speakZh('${esc(g.example)}')" title="例文を聞く"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div><div class="pinyin expinyin">${esc(g.exPinyin)}</div><div class="ja exja">${esc(g.exJa)}</div>
     </div>`).join('')}
   </div>
   <div class="card" id="testCard">
@@ -6545,9 +6540,9 @@ function _revRender(c){
     function exBlock(){
       if(!card.ex){ return leech?'<div class="leech-tip">🔁 つまずき中：例文がない語です。短い例文を自作する／出題の向きを変えると覚えやすくなります。</div>':''; }
       var tip=leech?'<div class="leech-tip">🔁 つまずき中：例文ごと声に出して、文脈で覚えてみましょう（向きを変えるのも有効）。</div>':'';
-      return tip+'<div class="ex'+(leech?' ex-leech':'')+'" style="text-align:left;margin-top:10px"><div style="color:#173A52;font-weight:600">'+esc(card.ex)+' <button class="speak-btn" onclick="speakZh(\''+esc(card.ex)+'\')" aria-label="例文を再生">🔊</button></div>'+(card.exP?'<div class="small">'+esc(card.exP)+'</div>':'')+(card.exJ?'<div class="small">'+esc(card.exJ)+'</div>':'')+'</div>';
+      return tip+'<div class="ex'+(leech?' ex-leech':'')+'" style="text-align:left;margin-top:10px"><div style="color:var(--ink);font-weight:600">'+esc(card.ex)+' <button class="speak-btn" onclick="speakZh(\''+esc(card.ex)+'\')" aria-label="例文を再生"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div>'+(card.exP?'<div class="small">'+esc(card.exP)+'</div>':'')+(card.exJ?'<div class="small">'+esc(card.exJ)+'</div>':'')+'</div>';
     }
-    var spk='<button class="speak-btn" onclick="speakZh(\''+esc(card.zh)+'\')" aria-label="発音を再生">🔊</button>';
+    var spk='<button class="speak-btn" onclick="speakZh(\''+esc(card.zh)+'\')" aria-label="発音を再生"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button>';
     var dir=(state.srsDir==='ja2zh')?'ja2zh':'zh2ja';
     var h='<div class="card testwrap"><div class="section-title"><h2>今日の復習'+(state.revScope==='bm'?'（ブックマーク）':'')+'</h2><span class="badge">残り '+remain+'問</span></div>';
     h+='<div class="flashcard"><span class="badge">'+esc(card.type)+'</span><span class="badge">'+(card.custom?'マイ単語':'Day '+card.day)+'</span>'+(leech?'<span class="badge badge-leech">🔁 つまずき中</span>':'');
@@ -6705,7 +6700,6 @@ Object.assign(window, {
   showTest,
   showBookmarks,
   toggleBookmark,
-  toggleBookmarkHint,
   gradeTest,
   selectOrderChip,
   undoOrderChip,
@@ -6759,7 +6753,7 @@ function _renderAiQ(){
     h+='<div class="ai-ans-box"><b>'+(sel===q.ans?'🎉 正解！':'❌ 不正解')+'</b> '+esc(q.exp)+'</div>';
   }
   h+='<div style="margin-top:8px;display:flex;gap:8px">';
-  if(sel!==null) h+='<button class="primary" style="background:#1E3A4C;border-color:#1E3A4C;flex:1" onclick="startAiChallenge()">もう1問</button>';
+  if(sel!==null) h+='<button class="primary" style="background:var(--ink);border-color:var(--ink);flex:1" onclick="startAiChallenge()">もう1問</button>';
   h+='<button class="primary" style="flex:1" onclick="_aiClose()">閉じる</button>';
   h+='</div></div>';
   area.innerHTML=h;
@@ -6774,7 +6768,7 @@ function _aiPickIdx(i){
 function _aiClose(){
   _aiQ=null; _aiAns=null;
   var a=$('aiChallengeArea');
-  if(a) a.innerHTML='<button class="primary" style="width:100%;margin-top:8px;background:#1E3A4C;border-color:#1E3A4C" onclick="startAiChallenge()">📝 チャレンジ問題（応用）</button>';
+  if(a) a.innerHTML='<button class="primary" style="width:100%;margin-top:8px;background:var(--ink);border-color:var(--ink)" onclick="startAiChallenge()">📝 チャレンジ問題（応用）</button>';
 }
 
 function _shuffle(arr){
@@ -6899,7 +6893,6 @@ window.selectOrderChip = selectOrderChip;
 window.showBookmarks = showBookmarks;
 window.showDay = showDay;
 window.toggleBookmark = toggleBookmark;
-window.toggleBookmarkHint = toggleBookmarkHint;
 window.undoOrderChip = undoOrderChip;
 window.showHome = showHome;
 window.toggleComplete = toggleComplete;
@@ -7173,11 +7166,11 @@ function cwRenderListHtml(){
   if(!arr.length) return head+'<div class="empty">まだありません。例文の語を選択するか、上の「＋新規追加」で登録してください。</div>';
   var body=arr.map(function(w,i){
     return '<div class="cw-item">'
-      +'<div class="cw-item-head"><div class="zh">'+cwEsc(w.zh)+' <button class="speak-btn" data-cw-action="speak" data-i="'+i+'">🔊</button></div>'
+      +'<div class="cw-item-head"><div class="zh">'+cwEsc(w.zh)+' <button class="speak-btn" data-cw-action="speak" data-i="'+i+'"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div>'
       +'<button class="cw-del" data-cw-action="del" data-i="'+i+'" title="削除">🗑</button></div>'
       +(w.pinyin?'<div class="pinyin">'+cwEsc(w.pinyin)+'</div>':'')
       +(w.ja?'<div class="ja">'+cwEsc(w.ja)+'</div>':'')
-      +(w.example?'<div class="ex"><span class="cw-ex" data-ex="'+cwEsc(w.example)+'">'+cwEsc(w.example)+'</span> <button class="speak-btn" data-cw-action="speak-ex" data-i="'+i+'">🔊</button></div>':'')
+      +(w.example?'<div class="ex"><span class="cw-ex" data-ex="'+cwEsc(w.example)+'">'+cwEsc(w.example)+'</span> <button class="speak-btn" data-cw-action="speak-ex" data-i="'+i+'"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div>':'')
       +(w.exJa?'<div class="ja exja">'+cwEsc(w.exJa)+'</div>':'')
       +'</div>';
   }).join('');
@@ -7244,7 +7237,7 @@ function cwOpenModal(selObj){
   if(!ov){ ov=document.createElement('div'); ov.id='cw-modal'; document.body.appendChild(ov); }
   ov.innerHTML='<div class="cw-modal-card">'
     +'<div class="cw-modal-h">マイ単語に追加</div>'
-    +'<label class="cw-l">単語（中国語）</label><div class="cw-row"><input id="cw-zh" class="cw-in" value="'+cwEsc(selObj.text)+'" placeholder="例：填写"><button class="speak-btn" data-cw-action="speak-input" title="発音">🔊</button><button class="lc-btn" data-cw-action="autofill" style="flex:0 0 auto;padding:9px 12px">自動取得</button></div>'
+    +'<label class="cw-l">単語（中国語）</label><div class="cw-row"><input id="cw-zh" class="cw-in" value="'+cwEsc(selObj.text)+'" placeholder="例：填写"><button class="speak-btn" data-cw-action="speak-input" title="発音"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button><button class="lc-btn" data-cw-action="autofill" style="flex:0 0 auto;padding:9px 12px">自動取得</button></div>'
     +'<div class="small" style="margin:4px 0 0;color:#8C8074">中国語を入れて「自動取得」を押すと、ピンインと意味が入ります。</div>'
     +'<label class="cw-l">ピンイン</label><input id="cw-pin" class="cw-in" placeholder="自動取得 or 手入力">'
     +'<label class="cw-l">意味</label><input id="cw-ja" class="cw-in" placeholder="自動取得 or 手入力">'
@@ -7252,7 +7245,7 @@ function cwOpenModal(selObj){
     +'<input id="cw-exp" type="hidden" value="'+cwEsc(selObj.exp)+'"><input id="cw-exj" type="hidden" value="'+cwEsc(selObj.exj)+'">'
     +(selObj.exj?'<div class="small" style="margin-top:6px">例文訳：'+cwEsc(selObj.exj)+'</div>':'')
     +'<div class="cw-modal-actions"><button class="lc-btn" data-cw-action="modal-cancel">キャンセル</button><button class="lc-btn primary" data-cw-action="modal-save">保存</button></div>'
-    +'<div class="small" id="cw-msg" style="margin-top:8px;min-height:1em">発音🔊はいつでも使えます。ピンイン・意味は自動取得（編集可）。</div>'
+    +'<div class="small" id="cw-msg" style="margin-top:8px;min-height:1em">発音ボタンはいつでも使えます。ピンイン・意味は自動取得（編集可）。</div>'
     +'</div>';
   ov.style.display='flex';
   ov.onclick=function(e){ if(e.target===ov) cwCloseModal(); };
