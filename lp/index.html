@@ -27,13 +27,14 @@
 <style>
 /* アプリ本体（../index.html）と同じトークン。ブランドを1つに保つため値を共有する */
 :root{
-  --bg:#FCF9F2;--card:#fff;--ink:#2A2724;--muted:#8A8377;--line:#E4DCCB;
+  --bg:#FCF9F2;--card:#fff;--ink:#2A2724;--ink-2:#4A443C;--muted:#8A8377;--line:#E4DCCB;
   --brand:#F2A227;--good:#4E7A3C;--bad:#B0561F;--gray:#F0EBE0;--paper:#FBF6EA;
   --sage:#D5E4C8;--apricot:#FBE0BC;--blush:#F6D9D2;
   --stroke:#2A2724;--bw:1.5px;
   --font-display:'Zen Maru Gothic','Hiragino Maru Gothic ProN',sans-serif;
   --font-body:'Zen Kaku Gothic New','Hiragino Sans','Yu Gothic',sans-serif;
   --font-hand:'Yomogi','Hiragino Maru Gothic ProN',cursive;
+  --zh-font:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -43,13 +44,22 @@ h1,h2,h3,.num,.btn,.badge{font-family:var(--font-display)}
 .hand{font-family:var(--font-hand);font-weight:400}
 img,svg{max-width:100%}
 a{color:var(--bad)}
+.zh{font-family:var(--zh-font);font-weight:700}
 
 /* 背面シェイプ。色はカードではなく地が持つ（アプリと同じ考え方） */
 #bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
 #bg svg{width:100%;height:100%;min-width:900px}
 
-.wrap{max-width:760px;margin:0 auto;padding:0 20px}
-section{padding:44px 0}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+
+/* 節のリズム：細い罫と手書きのアイブロウで、読む位置を見失わないようにする */
+.band{border-top:var(--bw) solid var(--line);padding:42px 0 6px}
+.band:first-of-type{border-top:none}
+.eyebrow{display:flex;align-items:center;gap:11px;margin:0 0 12px;
+  font-family:var(--font-hand);font-size:13px;color:var(--muted);line-height:1.6}
+.eyebrow::after{content:"";flex:1;height:1.5px;background:var(--line)}
+h2{font-size:clamp(21px,4.6vw,28px);line-height:1.42;margin:0 0 8px;font-weight:900;text-wrap:balance}
+.sec-lead{color:var(--ink-2);font-size:14.5px;margin:0 0 22px;line-height:1.85;max-width:38em}
 .card{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:20px;padding:20px 22px}
 
 /* ヘッダー */
@@ -58,11 +68,14 @@ section{padding:44px 0}
 .brand-word{font-family:var(--font-display);font-size:24px;font-weight:900;letter-spacing:.04em}
 .brand-sub{font-family:var(--font-hand);font-size:12px;color:var(--muted);align-self:flex-end;padding-bottom:3px}
 
-/* ファーストビュー：広告からの流入を想定し、ここだけで判断できるようにする */
-.hero{padding:30px 0 8px}
+/* ファーストビュー：広告からの流入を想定し、ここだけで判断できるようにする。
+   モックはCTAより後ろに置く。前に置くと、狭い画面でボタンが折り返しの外へ落ちる。 */
+.hero{padding:28px 0 8px}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:30px;align-items:center}
+@media(min-width:820px){.hero-grid{grid-template-columns:1.06fr .94fr;gap:38px}}
 h1{font-size:clamp(30px,7.4vw,46px);line-height:1.32;letter-spacing:.005em;margin:0 0 16px;font-weight:900;text-wrap:balance}
 h1 .em{color:var(--bad)}
-.lead{font-size:clamp(15.5px,3.8vw,17.5px);line-height:1.9;margin:0 0 8px;max-width:34em}
+.lead{font-size:clamp(15.5px,3.8vw,17px);line-height:1.9;margin:0 0 8px;max-width:34em}
 .squiggle{display:block;height:10px;margin:2px 0 18px;overflow:visible}
 .squiggle path{stroke:var(--brand);stroke-width:4.5;fill:none;stroke-linecap:round}
 
@@ -75,15 +88,39 @@ h1 .em{color:var(--bad)}
 @media(min-width:560px){.cta-row{flex-direction:row;align-items:center}.cta-row .btn{flex:0 0 auto}}
 .cta-note{font-size:13px;color:var(--muted);margin-top:10px}
 
+/* 端末モック：アプリの「今日」画面をそのまま縮めたもの */
+.mock{width:100%;max-width:330px;margin:0 auto;background:var(--card);
+  border:var(--bw) solid var(--stroke);border-radius:30px;padding:9px}
+.mock-screen{background:var(--bg);border:var(--bw) solid var(--line);border-radius:22px;padding:12px 12px 14px;overflow:hidden}
+.mock-brand{display:flex;align-items:center;gap:7px;margin-bottom:9px}
+.mock-brand .w{font-family:var(--font-display);font-size:16px;font-weight:900;letter-spacing:.04em}
+.mock-brand .s{font-family:var(--font-hand);font-size:9.5px;color:var(--muted);align-self:flex-end;padding-bottom:2px}
+.mock-tabs{display:flex;gap:4px;margin-bottom:12px}
+.mock-tab{flex:1;text-align:center;font-family:var(--font-display);font-size:9.5px;font-weight:700;color:var(--muted);
+  background:rgba(255,255,255,.72);border:var(--bw) solid #CFC6B6;border-radius:999px;padding:5px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mock-tab.on{color:var(--bg);background:var(--stroke);border-color:var(--stroke);font-weight:900}
+.mock-h{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+.mock-h b{font-size:14.5px;font-weight:900}
+.mock-h .hand{font-size:10px;color:var(--bad)}
+.mock-card{background:#fff;border:var(--bw) solid var(--stroke);border-radius:14px;padding:9px 11px;margin-top:8px;
+  display:flex;align-items:center;gap:10px}
+.mock-card .t{font-size:10.5px;line-height:1.6;color:var(--ink-2)}
+.mock-two{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}
+.mock-t{background:#fff;border:var(--bw) solid var(--stroke);border-radius:14px;padding:9px 10px}
+.mock-t.accent{background:var(--apricot)}
+.mock-t .e{font-family:var(--font-hand);font-size:9px;color:var(--muted);display:block}
+.mock-t .ti{font-family:var(--font-display);font-size:14px;font-weight:900;display:block;line-height:1.3;margin-top:1px}
+.mock-t .m{font-size:9px;color:var(--ink-2);line-height:1.55;display:block;margin-top:2px;min-height:2.8em}
+.mock-t .b{display:block;text-align:center;font-family:var(--font-display);font-size:9.5px;font-weight:900;
+  border:var(--bw) solid var(--stroke);border-radius:999px;padding:5px;margin-top:6px;background:var(--stroke);color:var(--bg)}
+.mock-t.rev .b{background:#fff;color:var(--ink)}
+
 /* 数字 */
-.nums{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
+.nums{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 @media(min-width:560px){.nums{grid-template-columns:repeat(4,1fr)}}
 .numbox{background:#fff;border:var(--bw) solid var(--stroke);border-radius:18px;padding:15px 12px;text-align:center}
 .num{font-size:29px;font-weight:900;line-height:1.15;display:block}
 .numlabel{font-size:12.5px;color:var(--muted);margin-top:3px;display:block;line-height:1.5}
-
-h2{font-size:clamp(21px,4.6vw,26px);line-height:1.45;margin:0 0 6px;font-weight:900;text-wrap:balance}
-.sec-lead{color:var(--muted);font-size:14px;margin:0 0 20px}
 
 /* 3ステップ */
 .steps{display:grid;gap:14px}
@@ -92,24 +129,94 @@ h2{font-size:clamp(21px,4.6vw,26px);line-height:1.45;margin:0 0 6px;font-weight:
 .step .n{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:999px;
   background:var(--sage);border:var(--bw) solid var(--stroke);font-family:var(--font-display);font-weight:900;font-size:15px;margin-bottom:10px}
 .step h3{font-size:17.5px;margin:0 0 6px;font-weight:900}
-.step p{font-size:14px;margin:0;line-height:1.8;color:#4A443C}
+.step p{font-size:14px;margin:0;line-height:1.8;color:var(--ink-2)}
 
-/* 対象 */
+/* 触って確かめる部分。アプリの画面をそのまま持ってきている */
+.demo{display:grid;gap:16px;align-items:start}
+@media(min-width:760px){.demo{grid-template-columns:1.12fr .88fr}}
+.pane{background:#fff;border:var(--bw) solid var(--stroke);border-radius:20px;overflow:hidden}
+.pane-head{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:10px 16px;border-bottom:var(--bw) solid var(--stroke);background:var(--paper);
+  font-family:var(--font-hand);font-size:12px;color:var(--muted)}
+.pane-body{padding:18px 18px 20px}
+.demo-note{font-size:13.5px;line-height:1.85;color:var(--ink-2);margin:0 0 12px}
+.demo-note b{font-weight:700}
+
+.badge{display:inline-block;font-size:10.5px;font-weight:900;background:var(--gray);
+  border:var(--bw) solid var(--stroke);border-radius:999px;padding:2px 9px;margin:0 5px 8px 0;line-height:1.7}
+.fc-prompt{font-family:var(--zh-font);font-size:34px;font-weight:700;line-height:1.35;margin:4px 0 2px}
+.fc-sub{font-size:13px;color:var(--muted);line-height:1.7}
+.fc-answer{margin-top:10px;padding-top:12px;border-top:var(--bw) dashed var(--line)}
+.a-main{font-size:19px;font-weight:700;line-height:1.6}
+.ex{background:var(--paper);border-radius:14px;padding:11px 13px;margin-top:11px;font-size:13.5px;line-height:1.75}
+.ex .s{color:var(--muted);font-size:12.5px}
+.fc-actions{margin-top:14px}
+.fc-actions button{width:100%;font-family:var(--font-display);font-size:15px;font-weight:900;
+  padding:14px;border:var(--bw) solid var(--stroke);border-radius:999px;background:#fff;color:var(--ink);cursor:pointer;min-height:50px}
+.g4{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(min-width:420px){.g4{grid-template-columns:repeat(4,1fr)}}
+.g4 button{font-size:13.5px;padding:13px 4px}
+.fc-actions .g4-again{background:var(--blush);color:#A3402A}
+.fc-actions .g4-hard{background:var(--apricot);color:#8A5A18}
+.fc-actions .g4-good{background:#fff}
+.fc-actions .g4-easy{background:var(--sage);color:#3D5A2E}
+.verdict{background:var(--paper);border-radius:14px;padding:12px 14px;margin-top:12px;font-size:14px;line-height:1.8}
+.verdict b{font-weight:900}
+
+/* 次に出る日の一覧。間隔が開いていくことが、ここで目に見える */
+.strip{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.strip li{display:flex;align-items:center;gap:10px;background:#fff;border:var(--bw) solid var(--stroke);
+  border-radius:14px;padding:10px 13px;font-size:13.5px}
+.strip .w{font-family:var(--zh-font);font-weight:700;font-size:16px;flex:none;min-width:2.6em}
+.strip .g{color:var(--muted);font-size:12px;flex:1;line-height:1.5}
+.strip .d{font-family:var(--font-display);font-weight:900;font-size:14px;flex:none}
+.strip li.waiting{border-style:dashed;border-color:var(--line);background:transparent;color:var(--muted)}
+.strip li.waiting .w{color:var(--muted)}
+
+/* 並べ替え */
+.q{font-size:15px;font-weight:700;line-height:1.7;margin:0 0 4px}
+.q-note{font-size:12.5px;color:var(--muted);line-height:1.7;margin:0 0 10px}
+/* 候補と回答の上下関係は、アプリ本体の並べ替え問題と同じにしてある */
+.bank{min-height:60px;background:var(--paper);border:var(--bw) dashed #DFD2B8;border-radius:14px;
+  padding:9px;display:flex;flex-wrap:wrap;gap:7px;align-content:flex-start}
+.slot{min-height:60px;background:#fff;border:var(--bw) solid var(--line);border-radius:14px;
+  padding:9px;margin-top:10px;display:flex;flex-wrap:wrap;gap:7px;align-content:flex-start}
+.slot:empty::before{content:"ここにタップした順で語句が入ります";font-size:12.5px;color:var(--muted);font-family:var(--font-hand);align-self:center}
+.chip{font-family:var(--zh-font);font-size:16px;font-weight:700;background:#fff;color:var(--ink);
+  border:var(--bw) solid var(--stroke);border-radius:12px;padding:8px 13px;cursor:pointer;line-height:1.5;
+  min-height:44px;display:inline-flex;align-items:center}
+.chip.used{background:var(--gray);color:#A29A8E;border-color:var(--line);text-decoration:line-through;cursor:default}
+.chip.in{background:var(--stroke);color:var(--bg);border-color:var(--stroke)}
+.chip .n{font-family:var(--font-display);font-size:11px;opacity:.72;margin-right:6px}
+.row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.row button{flex:1;min-width:130px;font-family:var(--font-display);font-size:14.5px;font-weight:900;
+  padding:13px;border:var(--bw) solid var(--stroke);border-radius:999px;background:#fff;cursor:pointer;min-height:48px}
+.row button.primary{background:var(--stroke);color:var(--bg)}
+.row button[disabled]{opacity:.42;cursor:default}
+.ok{color:var(--good);font-weight:900}
+.ng{color:var(--bad);font-weight:900}
+
+/* 向いている人 */
+.who4{display:grid;gap:12px}
+@media(min-width:640px){.who4{grid-template-columns:1fr 1fr}}
+.who4 .card{padding:16px 18px}
+.who4 h3{font-size:16px;margin:0 0 4px;font-weight:900}
+.who4 p{font-size:13.5px;margin:0;color:var(--ink-2);line-height:1.8}
+
+/* 例文 */
 .who{display:grid;gap:12px}
 @media(min-width:640px){.who{grid-template-columns:1fr 1fr}}
 .who .card{padding:18px 20px}
 .who h3{font-size:16.5px;margin:0 0 8px;font-weight:900}
 .who ul{margin:0;padding-left:1.2em;font-size:14px;line-height:1.85}
 .who li{margin-bottom:4px}
-.zh{font-family:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;font-weight:700}
 
 /* 正直な但し書き */
 .honest{background:var(--paper);border:var(--bw) dashed #DFD2B8;border-radius:20px;padding:20px 22px}
-.honest h2{font-size:19px;margin-bottom:12px}
 .honest dl{margin:0}
 .honest dt{font-weight:700;font-size:14.5px;margin-top:14px}
 .honest dt:first-of-type{margin-top:0}
-.honest dd{margin:4px 0 0;font-size:14px;color:#4A443C;line-height:1.8}
+.honest dd{margin:4px 0 0;font-size:14px;color:var(--ink-2);line-height:1.8}
 
 /* 価格 */
 .price{background:var(--apricot);border:var(--bw) solid var(--stroke);border-radius:22px;padding:24px 22px}
@@ -125,7 +232,7 @@ h2{font-size:clamp(21px,4.6vw,26px);line-height:1.45;margin:0 0 6px;font-weight:
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"＋";font-size:17px;color:var(--muted);flex:none}
 .faq details[open] summary::after{content:"−"}
-.faq .a{padding:0 20px 17px;font-size:14.5px;line-height:1.85;color:#4A443C;margin:0}
+.faq .a{padding:0 20px 17px;font-size:14.5px;line-height:1.85;color:var(--ink-2);margin:0}
 
 footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46px;font-size:13px;color:var(--muted);line-height:1.8}
 </style>
@@ -155,27 +262,69 @@ footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46p
   </header>
 
   <section class="hero">
-    <h1>90日で、<br>HSK4に<span class="em">届く</span>。</h1>
-    <svg class="squiggle" width="210" viewBox="0 0 210 10" aria-hidden="true"><path d="M3 7 Q 28 1 53 6 T 103 6 T 153 6 T 203 5"/></svg>
-    <p class="lead">頻出<b>450語</b>と文法<b>270項目</b>を、1日15分・単語5個ずつ。忘れる頃にもう一度出してくれるので、覚えたことが抜けていきません。</p>
-    <p class="lead">上海の会議室でも、街角の食堂でも使う中国語を。</p>
+    <div class="hero-grid">
+      <div>
+        <h1>90日で、<br>HSK4に<span class="em">届く</span>。</h1>
+        <svg class="squiggle" width="210" viewBox="0 0 210 10" aria-hidden="true"><path d="M3 7 Q 28 1 53 6 T 103 6 T 153 6 T 203 5"/></svg>
+        <p class="lead">頻出<b>450語</b>と文法<b>270項目</b>を、1日15分・単語5個ずつ。忘れる頃にもう一度出してくれるので、覚えたことが抜けていきません。</p>
+        <p class="lead">上海の会議室でも、街角の食堂でも使う中国語を。</p>
 
-    <div class="cta-row">
-      <a class="btn amber" href="../" data-ev="cta_hero">無料で始める</a>
-      <span class="cta-note">登録不要・インストール不要。<br>ブラウザで開くだけで、今日ぶんが始まります。</span>
+        <div class="cta-row">
+          <a class="btn amber" href="../" data-ev="cta_hero">無料で始める</a>
+          <span class="cta-note">登録不要・インストール不要。<br>ブラウザで開くだけで、今日ぶんが始まります。</span>
+        </div>
+      </div>
+
+      <div class="mock" aria-hidden="true">
+        <div class="mock-screen">
+          <div class="mock-brand">
+            <svg width="19" height="19" viewBox="0 0 100 100">
+              <path d="M52 6 C 62 30, 80 42, 80 64 A 30 30 0 1 1 20 64 C 20 46, 33 41, 41 28 C 44 41, 50 45, 50 37 C 50 26, 47 16, 52 6 Z" fill="#F2A227" stroke="#2A2724" stroke-width="5" stroke-linejoin="round"></path>
+            </svg>
+            <span class="w">加油</span><span class="s">90日でHSK4合格</span>
+          </div>
+          <div class="mock-tabs">
+            <span class="mock-tab on">今日</span><span class="mock-tab">ブックマーク</span><span class="mock-tab">単語</span><span class="mock-tab">設定</span>
+          </div>
+          <div class="mock-h"><b>今日やること</b><span class="hand">あと78日！</span></div>
+          <div class="mock-card">
+            <svg width="34" height="34" viewBox="0 0 80 80" style="flex:none">
+              <circle cx="40" cy="40" r="30" fill="#FCF9F2" stroke="#2A2724" stroke-width="4"/>
+              <circle cx="40" cy="40" r="30" fill="none" stroke="#F2A227" stroke-width="8" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="164.0" transform="rotate(-90 40 40)"/>
+              <text x="40" y="41" text-anchor="middle" dominant-baseline="central" style="font-size:19px;font-weight:900;fill:#2A2724">13%</text>
+            </svg>
+            <span class="t">90日のうち <b>12日</b> 完了<br>のこり 78日</span>
+          </div>
+          <div class="mock-two">
+            <div class="mock-t accent">
+              <span class="e">あたらしく覚える</span>
+              <span class="ti">Day 13</span>
+              <span class="m">HSK4 基礎強化 · 単語5個・文法3つ</span>
+              <span class="b">学習を始める</span>
+            </div>
+            <div class="mock-t rev">
+              <span class="e">思い出す</span>
+              <span class="ti">18 枚</span>
+              <span class="m">期限 13 ＋ 新しく覚える 5</span>
+              <span class="b">復習する</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section style="padding-top:14px">
+  <section style="padding:26px 0 6px">
     <div class="nums">
       <div class="numbox"><span class="num">450</span><span class="numlabel">頻出単語<br>（重複なし）</span></div>
       <div class="numbox"><span class="num">270</span><span class="numlabel">文法項目</span></div>
       <div class="numbox"><span class="num">90</span><span class="numlabel">日ぶんの<br>カリキュラム</span></div>
-      <div class="numbox"><span class="num">90</span><span class="numlabel">日ぶんの<br>ミニテスト</span></div>
+      <div class="numbox"><span class="num">450</span><span class="numlabel">問の<br>ミニテスト</span></div>
     </div>
   </section>
 
-  <section>
+  <section class="band">
+    <p class="eyebrow">毎日の15分</p>
     <h2>やることは、毎日ひとつだけ</h2>
     <p class="sec-lead">「今日は何をやるんだっけ」で止まらないように作りました。</p>
     <div class="steps">
@@ -197,7 +346,53 @@ footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46p
     </div>
   </section>
 
-  <section>
+  <section class="band" id="srsDemo">
+    <p class="eyebrow">間隔反復・実際に押せます</p>
+    <h2>覚えた語が、<br>静かに抜けていかない。</h2>
+    <p class="sec-lead">アプリの復習画面を、そのまま置いています。3枚ぶん、実際に答えてみてください。押した手応えで、その語が次に出る日が決まります。</p>
+
+    <div class="demo">
+      <div class="pane">
+        <div class="pane-head"><span>復習の画面</span><span id="srsRemain">残り 3枚</span></div>
+        <div class="pane-body" id="srsBody"></div>
+      </div>
+      <div>
+        <p class="demo-note">1回目はどれを押しても<b>翌日</b>に出ます。2回目で<b>6日後</b>、3回目で<b>15日後</b>と、正解のたびに間隔が開いていきます。<br>
+        「もう一度」を押した語だけが<b>1日後</b>に戻り、しばらく近い間隔で出続けます。</p>
+        <ul class="strip" id="srsStrip"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="quizDemo">
+    <p class="eyebrow">ミニテスト・実際に解けます</p>
+    <h2>知っているか、ではなく<br>組み立てられるか。</h2>
+    <p class="sec-lead">1日の終わりに5問。選択3問・並べ替え1問・作文1問で、その日の語と文法をすぐ使わせます。これは Day 1 の並べ替え問題そのものです。</p>
+
+    <div class="demo">
+      <div class="pane">
+        <div class="pane-head"><span>Day 1 ミニテスト</span><span>4 / 5 問目</span></div>
+        <div class="pane-body">
+          <p class="q">語句を正しい順番にタップしてください。</p>
+          <p class="q-note">上の候補をタップすると、下の回答欄に順番に入ります。回答欄の語をタップすると外せます。</p>
+          <div class="bank" id="qBank"></div>
+          <div class="slot" id="qSlot"></div>
+          <div class="row">
+            <button type="button" class="primary" id="qCheck" disabled>答え合わせ</button>
+            <button type="button" id="qReset">やり直す</button>
+          </div>
+          <div id="qVerdict"></div>
+        </div>
+      </div>
+      <div>
+        <p class="demo-note">並べ替えは、語の意味を覚えていても語順が身についていないと通りません。日本語の語順のまま置くと、たいてい外れます。</p>
+        <p class="demo-note">90日ぶんすべてに、この5問が用意してあります。答え合わせのあと、間違えた語はそのまま復習に回ります。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <p class="eyebrow">例文の選び方</p>
     <h2>ビジネスでも、暮らしでも</h2>
     <p class="sec-lead">例文は、実際に口に出す場面から選んでいます。</p>
     <div class="who">
@@ -220,9 +415,33 @@ footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46p
     </div>
   </section>
 
-  <section>
+  <section class="band">
+    <p class="eyebrow">向いている人</p>
+    <h2>毎日15分を、90日ぶん<br>置いておける人へ。</h2>
+    <p class="sec-lead">逆に、今週末の試験に間に合わせたい人には向きません。積み上がるまでに時間がかかる作りです。</p>
+    <div class="who4">
+      <div class="card">
+        <h3>駐在・出張で中国語を使う人</h3>
+        <p>会議と生活の両方の語彙が要る。仕事で使う場面から例文を選んでいます。</p>
+      </div>
+      <div class="card">
+        <h3>HSK3に受かって、次を探している人</h3>
+        <p>HSK4は累計1200語。3から600語増えるところを、90日に割ってあります。</p>
+      </div>
+      <div class="card">
+        <h3>独学で、続かなかった人</h3>
+        <p>単語帳のどこまでやったかを覚えておく必要がありません。開けば今日ぶんが出ています。</p>
+      </div>
+      <div class="card">
+        <h3>昔かじって、やり直す人</h3>
+        <p>最初の級診断（16問・約5分）で、いまの位置から始められます。スキップも可能です。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <p class="eyebrow">先に、正直なところを</p>
     <div class="honest">
-      <h2>先に、正直なところを</h2>
       <dl>
         <dt>リスニングは入っていません</dt>
         <dd>HSK4は听力45問・阅读40問・书写15問で、听力が約3分の1を占めます。このアプリには音源がないため、その対策はできません。<b>他の教材と併用してください。</b>模試の点数も、本番の目安にはなりません。</dd>
@@ -236,9 +455,10 @@ footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46p
     </div>
   </section>
 
-  <section>
+  <section class="band">
+    <p class="eyebrow">これからの話</p>
     <div class="price">
-      <span class="tag">これからの話</span>
+      <span class="tag">まだ決めていません</span>
       <div class="amount">¥7,800 <small>買い切り（予定）</small></div>
       <p>いまは全機能が無料です。今後もし有料版を作るなら、<b>Day 8以降・リスニング音源・模試の拡充</b>をまとめて、月額ではなく買い切りにするつもりです。<br>
       作るかどうかは、ほしい方が何人いるかで決めます。<b>いま支払いは発生しませんし、連絡先も取りません。</b>下のボタンを押すと、人数として1つ数えられるだけです。</p>
@@ -249,8 +469,9 @@ footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46p
     </div>
   </section>
 
-  <section class="faq">
-    <h2>よくある質問</h2>
+  <section class="band faq">
+    <p class="eyebrow">よくある質問</p>
+    <h2>先に答えておきます</h2>
     <p class="sec-lead">HSK4の勉強法として気になるところを。</p>
 
     <details>
@@ -294,10 +515,10 @@ footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46p
     </details>
   </section>
 
-  <section style="padding-top:8px">
+  <section class="band" style="border-top:none;padding-top:8px">
     <div class="card" style="text-align:center">
       <h2 style="margin-bottom:10px">まず1日ぶん、やってみてください</h2>
-      <p style="font-size:14.5px;color:#4A443C;margin:0 0 18px">合わなければ閉じるだけです。登録もインストールも要りません。</p>
+      <p style="font-size:14.5px;color:var(--ink-2);margin:0 0 18px">合わなければ閉じるだけです。登録もインストールも要りません。</p>
       <a class="btn amber" href="../" data-ev="cta_bottom" style="width:100%;max-width:340px">無料で始める</a>
     </div>
   </section>
@@ -345,6 +566,137 @@ footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46p
     pb.disabled=true; pb.textContent='ありがとうございます';
     var t=document.getElementById('priceThanks'); if(t) t.style.display='block';
   });
+
+  // デモを触ったかどうかは、読んだだけの人と分ける手がかりになるので1度だけ記録する。
+  var demoSeen={};
+  function demo(which){ if(demoSeen[which]) return; demoSeen[which]=true; track('lp_demo',{ which:which, src:src }); }
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  // ===== 復習デモ =====
+  // アプリ本体の srsGrade と同じ計算。1回目=1日 / 2回目=6日 / 3回目以降=前回×EF。
+  // 「もう一度」は間隔を1日に戻す。EFは初回の採点では2.5のままなので、ここでは定数でよい。
+  var SRS=[
+    {zh:'水平',pin:'shuǐpíng',ja:'レベル、能力水準',reps:0,interval:0,stage:'1回目',
+     ex:'我的中文水平还不够高。',exP:'Wǒ de Zhōngwén shuǐpíng hái bú gòu gāo.',exJ:'私の中国語レベルはまだ十分高くありません。'},
+    {zh:'提高',pin:'tígāo',ja:'高める、向上させる',reps:1,interval:1,stage:'2回目',
+     ex:'我想提高中文会话能力。',exP:'Wǒ xiǎng tígāo Zhōngwén huìhuà nénglì.',exJ:'中国語の会話力を上げたいです。'},
+    {zh:'表达',pin:'biǎodá',ja:'表現する',reps:2,interval:6,stage:'3回目',
+     ex:'我想更自然地表达自己的想法。',exP:'Wǒ xiǎng gèng zìrán de biǎodá zìjǐ de xiǎngfǎ.',exJ:'自分の考えをもっと自然に表現したいです。'}
+  ];
+  var srsIdx=0, srsShown=false, srsDone=[];
+  var srsBody=document.getElementById('srsBody'),
+      srsStrip=document.getElementById('srsStrip'),
+      srsRemain=document.getElementById('srsRemain');
+
+  function nextInterval(c, q){
+    if(q<3) return 1;                       // もう一度＝つまずき。1日に戻る
+    var reps=c.reps+1;
+    if(reps===1) return 1;
+    if(reps===2) return 6;
+    return Math.round((c.interval||1)*2.5); // EF既定値。以降は正解のたびに開いていく
+  }
+  function dayLabel(d){ return d===1 ? '明日' : d+'日後'; }
+
+  function srsRender(){
+    if(!srsBody) return;
+    if(srsIdx>=SRS.length){
+      srsRemain.textContent='おわり';
+      srsBody.innerHTML='<div class="a-main">3枚、おつかれさまでした。</div>'+
+        '<p class="fc-sub" style="margin-top:8px">押した手応えのぶんだけ、次に出る日が右にずれました。'+
+        '実際のアプリでは、この予定に従って毎朝その日ぶんが並びます。</p>'+
+        '<div class="fc-actions"><button type="button" id="srsAgain">もう一度ためす</button></div>';
+      document.getElementById('srsAgain').addEventListener('click', function(){
+        srsIdx=0; srsShown=false; srsDone=[]; srsRender(); srsStripRender();
+      });
+      return;
+    }
+    var c=SRS[srsIdx];
+    srsRemain.textContent='残り '+(SRS.length-srsIdx)+'枚';
+    var h='<span class="badge">単語</span><span class="badge">Day 1</span><span class="badge">'+c.stage+'</span>'+
+          '<div class="fc-prompt">'+esc(c.zh)+'</div>';
+    if(!srsShown){
+      h+='<div class="fc-sub">→ 拼音と意味を思い出そう</div>'+
+         '<div class="fc-actions"><button type="button" id="srsReveal">答えを見る</button></div>';
+    } else {
+      h+='<div class="fc-answer"><div class="a-main">'+esc(c.ja)+'</div>'+
+         '<div class="fc-sub">'+esc(c.pin)+'</div>'+
+         '<div class="ex"><div class="zh">'+esc(c.ex)+'</div>'+
+         '<div class="s">'+esc(c.exP)+'</div><div class="s">'+esc(c.exJ)+'</div></div></div>'+
+         '<div class="fc-actions g4">'+
+         '<button type="button" class="g4-again" data-q="2">もう一度</button>'+
+         '<button type="button" class="g4-hard" data-q="3">難しい</button>'+
+         '<button type="button" class="g4-good" data-q="4">普通</button>'+
+         '<button type="button" class="g4-easy" data-q="5">簡単</button></div>';
+    }
+    srsBody.innerHTML=h;
+    var rv=document.getElementById('srsReveal');
+    if(rv) rv.addEventListener('click', function(){ demo('srs'); srsShown=true; srsRender(); });
+    Array.prototype.forEach.call(srsBody.querySelectorAll('.g4 button'), function(b){
+      b.addEventListener('click', function(){
+        var q=Number(b.getAttribute('data-q'));
+        var c2=SRS[srsIdx];
+        srsDone.push({ zh:c2.zh, ja:c2.ja, days:nextInterval(c2,q), label:b.textContent });
+        srsIdx++; srsShown=false; srsRender(); srsStripRender();
+      });
+    });
+  }
+  function srsStripRender(){
+    if(!srsStrip) return;
+    var h='';
+    for(var i=0;i<SRS.length;i++){
+      var d=srsDone[i];
+      if(d){
+        h+='<li><span class="w">'+esc(d.zh)+'</span><span class="g">'+esc(d.ja)+'<br>'+esc(d.label)+'</span>'+
+           '<span class="d">'+esc(dayLabel(d.days))+'</span></li>';
+      } else {
+        h+='<li class="waiting"><span class="w">'+esc(SRS[i].zh)+'</span>'+
+           '<span class="g">'+esc(SRS[i].stage)+'の出題</span><span class="d">—</span></li>';
+      }
+    }
+    srsStrip.innerHTML=h;
+  }
+  if(srsBody){ srsRender(); srsStripRender(); }
+
+  // ===== 並べ替えデモ（Day 1 のミニテスト4問目そのまま） =====
+  var QWORDS=['说得','还不太','自然','中文','我'];
+  var QANSWER='我中文说得还不太自然。';
+  var QJA='私は中国語を話すのが、まだあまり自然ではありません。';
+  var picked=[];
+  var qSlot=document.getElementById('qSlot'), qBank=document.getElementById('qBank'),
+      qCheck=document.getElementById('qCheck'), qReset=document.getElementById('qReset'),
+      qVerdict=document.getElementById('qVerdict');
+
+  function qRender(){
+    if(!qSlot) return;
+    qSlot.innerHTML=picked.map(function(i,pos){
+      return '<button type="button" class="chip in" data-pos="'+pos+'"><span class="n">'+(pos+1)+'</span>'+esc(QWORDS[i])+'</button>'; }).join('');
+    qBank.innerHTML=QWORDS.map(function(w,i){
+      var used=picked.indexOf(i)>=0;
+      return '<button type="button" class="chip'+(used?' used':'')+'" data-i="'+i+'"'+(used?' disabled':'')+'>'+esc(w)+'</button>'; }).join('');
+    qCheck.disabled = picked.length!==QWORDS.length;
+    Array.prototype.forEach.call(qBank.querySelectorAll('.chip:not(.used)'), function(b){
+      b.addEventListener('click', function(){
+        demo('quiz');
+        picked.push(Number(b.getAttribute('data-i'))); qVerdict.innerHTML=''; qRender();
+      });
+    });
+    Array.prototype.forEach.call(qSlot.querySelectorAll('.chip'), function(b){
+      b.addEventListener('click', function(){
+        picked.splice(Number(b.getAttribute('data-pos')),1); qVerdict.innerHTML=''; qRender();
+      });
+    });
+  }
+  if(qCheck) qCheck.addEventListener('click', function(){
+    var made=picked.map(function(i){ return QWORDS[i]; }).join('');
+    var right=made===QANSWER.replace(/[，。！？]/g,'');
+    qVerdict.innerHTML='<div class="verdict"><span class="'+(right?'ok':'ng')+'">'+(right?'○ 正解':'× 惜しい')+'</span><br>'+
+      '正しい語順は <b class="zh">'+esc(QANSWER)+'</b><br><span class="fc-sub">'+esc(QJA)+'</span></div>';
+    track('lp_demo_quiz',{ correct:right, src:src });
+  });
+  if(qReset) qReset.addEventListener('click', function(){ picked=[]; qVerdict.innerHTML=''; qRender(); });
+  if(qSlot) qRender();
 
   // どこまで読まれたか。ファーストビューで離脱しているのかを見分けるため。
   var marks={25:false,50:false,75:false,100:false};

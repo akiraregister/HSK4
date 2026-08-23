@@ -12,7 +12,7 @@ HSK4級を90日で目指す、日本語話者向けの学習アプリ。GitHub P
 | ファイル | 中身 |
 |---|---|
 | `index.html` | **アプリ全体（約900KB / 7,400行）**。CSS・JS・学習データすべて内包 |
-| `lp/index.html` | 告知用ランディングページ。アプリと同じトークンを複製している |
+| `lp/index.html` | 告知用ランディングページ。アプリと同じトークンを複製し、復習カードと並べ替えを実際に触れるデモとして載せている |
 | `lp/og.png` | SNS共有用の画像。`lp/og-source.html` を1200×630で撮ったもの |
 | `sw.js` | Service Worker。**更新したら `CACHE_VERSION` を1つ上げる**（ファイル冒頭の規約） |
 | `tests/` | 実ブラウザで画面を操作するテスト。`tests/README.md` 参照 |
@@ -57,7 +57,7 @@ HSK4級を90日で目指す、日本語話者向けの学習アプリ。GitHub P
 ## 検証
 
 ```bash
-node tests/run.mjs        # 全94項目＋Service Workerチェック
+node tests/run.mjs        # 全103項目＋Service Workerチェック
 ```
 
 **変更したら必ず通すこと。** ビルドもCIも無いので、これが唯一の安全網。

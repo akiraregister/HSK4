@@ -37,6 +37,41 @@ ok('価格の意向が記録される', evs.some(e=>e.e==='lp_price_interest'));
 ok('押した後は無効化される', await p.$eval('#priceBtn',b=>b.disabled));
 ok('お礼が出る', await p.$eval('#priceThanks',e=>getComputedStyle(e).display!=='none'));
 
+// 復習デモ：手応えで次の出題日が変わることを、画面の文字から確かめる。
+// 1回目=明日 / 2回目=6日後 / 3回目=15日後 は、本体の srsGrade（SM-2）と同じ値。
+await p.click('#srsBody button:has-text("答えを見る")');
+ok('デモ：答えを見ると意味が出る', (await p.$eval('#srsBody', e=>e.textContent)).includes('レベル、能力水準'));
+await p.click('#srsBody button:has-text("普通")');
+
+await p.click('#srsBody button:has-text("答えを見る")');
+await p.click('#srsBody button:has-text("普通")');
+
+await p.click('#srsBody button:has-text("答えを見る")');
+await p.click('#srsBody button:has-text("簡単")');
+
+const strip=await p.$eval('#srsStrip', e=>e.textContent);
+ok('デモ：1回目は翌日に戻る', strip.includes('明日'), strip.replace(/\s+/g,' ').slice(0,90));
+ok('デモ：2回目は6日後', strip.includes('6日後'));
+ok('デモ：3回目は15日後', strip.includes('15日後'));
+ok('デモ：3枚で終わる', (await p.$eval('#srsBody', e=>e.textContent)).includes('おつかれさま'));
+
+// 並べ替えデモ：正解と不正解の両方を通す
+const tap=async (i)=>{ await p.click(`#qBank .chip[data-i="${i}"]:not(.used)`); };
+for(const i of [4,3,0,1,2]) await tap(i);          // 我 / 中文 / 说得 / 还不太 / 自然
+ok('デモ：5語そろうと答え合わせが押せる', !(await p.$eval('#qCheck', b=>b.disabled)));
+await p.click('#qCheck');
+ok('デモ：正しい語順は正解になる', (await p.$eval('#qVerdict', e=>e.textContent)).includes('正解'));
+
+await p.click('#qReset');
+for(const i of [4,0,3,1,2]) await tap(i);          // 我 / 说得 / 中文 …（日本語の語順に引きずられた形）
+await p.click('#qCheck');
+ok('デモ：語順が違えば不正解になる', (await p.$eval('#qVerdict', e=>e.textContent)).includes('惜しい'));
+
+evs=await p.evaluate(()=>JSON.parse(localStorage.getItem('hsk4-events')||'[]'));
+ok('デモを触ったことが記録される',
+   evs.some(e=>e.e==='lp_demo'&&e.p&&e.p.which==='srs') && evs.some(e=>e.e==='lp_demo'&&e.p&&e.p.which==='quiz'),
+   evs.filter(e=>e.e==='lp_demo').map(e=>e.p.which).join(','));
+
 // アプリへ実際に遷移できるか（相対パスの検証）
 await p.click('[data-ev="cta_hero"]');
 await p.waitForLoadState('load');
