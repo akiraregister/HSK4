@@ -7,35 +7,35 @@
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Yomogi&display=swap" rel="stylesheet">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="加油">
-<meta name="theme-color" content="#1E3A4C">
+<meta name="theme-color" content="#FCF9F2">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon-180.png">
 <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="assets/icon-512.png">
 <style>
-:root{--bg:#F7F3ED;--card:#fff;--ink:#221B15;--muted:#8C8074;--line:#ECE5DA;--accent:#1E3A4C;--good:#2E8B62;--goodbg:#EAF5EF;--goodline:#C2E2CE;--bad:#C8483B;--gray:#EFE9E0;--primary:#1E3A4C;--primary-2:#27485E;--brand:#F2A227;--brand-2:#E0871A;--brand-3:#FBD27A;--paper:#FBF1E0;--caution:#C2773C;--sc-head:#173A52;--pinyin:#7E8C97;--brand-tint:#FBF1E2;--caution-tint:#F7ECE0;--primary-tint:#EDEFF2;--font-brand:'Noto Serif SC','Songti SC','Hiragino Mincho ProN',serif}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#FBF7F0,#fff);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Segoe UI,sans-serif}
-.app{max-width:980px;margin:0 auto;padding:18px 12px calc(90px + env(safe-area-inset-bottom))}.top{position:sticky;top:0;z-index:10;background:rgba(251,247,239,.86);backdrop-filter:blur(14px);border-bottom:1px solid #E8DFD2;padding:calc(18px + env(safe-area-inset-top)) 16px 14px}.top-inner{max-width:980px;margin:0 auto}
-h1{font-size:20px;margin:0 0 14px;letter-spacing:-.03em;line-height:1.2;text-align:center}.small{font-size:12px;color:var(--muted);line-height:1.45}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-select,button,input,textarea{font:inherit}select{flex:1;min-width:180px;border:1px solid var(--line);border-radius:14px;padding:10px;background:#fff}
-button{border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;font-weight:700;color:var(--ink);touch-action:manipulation;cursor:pointer}
-.top .row button{border:0.5px solid #9DB0BE;background:#fff;color:#173A52}
-.nav-tabs{display:flex;border-bottom:1.5px solid #9DB0BE;margin-top:8px}
-.nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:9px 2px 8px;font-size:14px;font-weight:700;color:#8C8074;border-bottom:2.5px solid transparent;cursor:pointer;margin-bottom:-1.5px;touch-action:manipulation;user-select:none}
-.nav-tab svg{width:23px;height:23px;display:block}
+:root{--bg:#FCF9F2;--card:#fff;--ink:#2A2724;--muted:#8A8377;--line:#E4DCCB;--accent:#2A2724;--good:#4E7A3C;--goodbg:#D5E4C8;--goodline:#B6CBA4;--bad:#B0561F;--gray:#F0EBE0;--primary:#2A2724;--primary-2:#3D3833;--brand:#F2A227;--brand-2:#D98A16;--brand-3:#FBE0BC;--paper:#FBF6EA;--caution:#B0561F;--sc-head:#2A2724;--pinyin:#7C7469;--brand-tint:#FBE0BC;--caution-tint:#F6D9D2;--primary-tint:#F0EBE0;--sage:#D5E4C8;--apricot:#FBE0BC;--blush:#F6D9D2;--stroke:#2A2724;--bw:1.5px;--font-brand:'Zen Maru Gothic','Hiragino Maru Gothic ProN',sans-serif;--font-hand:'Yomogi','Hiragino Maru Gothic ProN',cursive}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Zen Maru Gothic','Hiragino Maru Gothic ProN',-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;font-weight:500}
+.app{max-width:980px;margin:0 auto;padding:18px 12px calc(90px + env(safe-area-inset-bottom))}.top{position:sticky;top:0;z-index:10;background:rgba(252,249,242,.90);backdrop-filter:blur(14px);border-bottom:var(--bw) solid var(--stroke);padding:calc(18px + env(safe-area-inset-top)) 16px 14px}.top-inner{max-width:980px;margin:0 auto}
+h1{font-size:20px;margin:0 0 12px;letter-spacing:-.01em;line-height:1.2;text-align:left}.small{font-size:12px;color:var(--muted);line-height:1.45}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+select,button,input,textarea{font:inherit}select{flex:1;min-width:180px;border:var(--bw) solid var(--stroke);border-radius:999px;padding:11px 14px;background:#fff;font-weight:700}
+button{border:var(--bw) solid var(--stroke);background:#fff;border-radius:999px;padding:11px 14px;font-weight:900;color:var(--ink);touch-action:manipulation;cursor:pointer}
+.top .row button{border:var(--bw) solid var(--stroke);background:#fff;color:var(--ink)}
+.nav-tabs{display:flex;gap:6px;margin-top:10px}
+.nav-tab{flex:1;display:flex;align-items:center;justify-content:center;padding:10px 6px;font-size:13px;font-weight:700;color:var(--muted);background:rgba(255,255,255,.72);border:var(--bw) solid #CFC6B6;border-radius:999px;cursor:pointer;touch-action:manipulation;user-select:none;min-height:44px}
+.nav-tab svg{display:none}
 .nav-tab i{font-size:17px}
 .nav-tab span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
-.nav-tab.active{color:#1E3A4C;border-bottom:2.5px solid #1E3A4C}
-.nav-tab.tab-done{color:#2E8B62}button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.nav-tab.active{color:var(--bg);background:var(--stroke);border-color:var(--stroke);font-weight:900}
+.nav-tab.tab-done{color:var(--good)}button.primary{background:var(--accent);color:var(--bg);border-color:var(--stroke)}
 button.complete.active{background:var(--goodbg);color:#2E8B62;border-color:var(--goodline)}button.toggle.off{background:#fff;color:var(--ink)}button.toggle.on{background:var(--gray);color:#5C5249}
 button.bookmark{padding:7px 9px;border-radius:999px;background:#fff;color:#A29A8E}button.bookmark.active{background:#FBF4E8;border-color:#E8D9C4;color:#94621C}
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 10px 30px -16px rgba(20,30,50,.12);padding:16px;margin:12px 0}.section-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.section-title h2{font-size:18px;margin:0}.badge{display:inline-flex;border-radius:999px;background:#EFE9E0;color:#463F37;padding:4px 8px;font-size:12px;font-weight:700}
-.vocab{display:grid;gap:10px}.vitem{border:1px solid var(--line);border-radius:16px;padding:12px;background:#fff}.item-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.zh{font-size:20px;font-weight:800}.pinyin{color:#5C5249;margin-top:2px}.ja{color:#463F37;margin-top:4px}.ex{margin-top:10px;line-height:1.55}
-.gitem{border:1px solid var(--line);border-radius:16px;padding:14px;margin:10px 0;background:#fff}.gitem h3{margin:0 0 6px;font-size:17px}.label{font-weight:800;color:#463F37}.note{background:#FBF7F0;border:1px dashed #DCD3C6;border-radius:14px;padding:10px;margin-top:8px;line-height:1.55}
+.card{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:20px;padding:16px;margin:12px 0}.section-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.section-title h2{font-size:18px;margin:0}.badge{display:inline-flex;border-radius:999px;background:var(--gray);color:#5C5249;padding:4px 10px;font-size:12px;font-weight:900}
+.vocab{display:grid;gap:10px}.vitem{border:var(--bw) solid var(--stroke);border-radius:18px;padding:13px 15px;background:#fff}.item-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.zh{font-size:20px;font-weight:800}.pinyin{color:#5C5249;margin-top:2px}.ja{color:#463F37;margin-top:4px}.ex{margin-top:10px;line-height:1.55}
+.gitem{border:var(--bw) solid var(--stroke);border-radius:18px;padding:15px 17px;margin:10px 0;background:#fff}.gitem h3{margin:0 0 6px;font-size:17px}.label{font-weight:800;color:#463F37}.note{background:var(--paper);border:var(--bw) dashed #DFD2B8;border-radius:14px;padding:11px 13px;margin-top:8px;line-height:1.6}
 .testq{border-top:1px solid var(--line);padding:14px 0}.testq:first-child{border-top:0}.opts{display:grid;gap:8px;margin-top:8px}.opt{display:flex;gap:8px;align-items:flex-start;border:1px solid var(--line);border-radius:14px;padding:10px;background:#fff}
 textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:8px;background:#fff;min-height:44px}textarea{min-height:88px;resize:vertical}
 .answer{display:none;margin-top:8px;border-radius:14px;background:#FBF7F0;border:1px dashed #DCD3C6;padding:10px}.show-answers .answer{display:block}
@@ -53,17 +53,17 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .day-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}.daybtn{padding:10px 0;border-radius:12px;background:#fff}.daybtn.done{background:var(--goodbg);border-color:var(--goodline);color:#2E8B62}
 .progressline{height:10px;border-radius:999px;background:#EDEFF2;overflow:hidden;margin-top:8px}.progressline span{display:block;height:100%;background:#221B15;width:0%}
 @media(min-width:700px){.home-grid{grid-template-columns:1fr 1fr}.day-grid{grid-template-columns:repeat(10,1fr)}}
-.bottomnav{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:8px 12px;padding-bottom:calc(8px + env(safe-area-inset-bottom));display:flex;gap:8px;z-index:20;transform:translateZ(0);-webkit-transform:translateZ(0);will-change:transform}.bottomnav button{flex:1}
+.bottomnav{position:fixed;left:0;right:0;bottom:0;background:rgba(252,249,242,.94);backdrop-filter:blur(14px);border-top:var(--bw) solid var(--stroke);padding:11px 14px;padding-bottom:calc(11px + env(safe-area-inset-bottom));display:flex;gap:8px;z-index:20;transform:translateZ(0);-webkit-transform:translateZ(0);will-change:transform}.bottomnav button{flex:1}
 @media(max-width:430px){.top{padding:calc(20px + env(safe-area-inset-top)) 14px 14px}h1{font-size:21px;margin-bottom:16px;text-align:center}button{padding:10px 11px}.app{padding-top:20px}}@media(min-width:800px){.vocab{grid-template-columns:1fr 1fr}.top h1{font-size:28px}.app{padding-bottom:40px}.bottomnav{display:none}}
 
-.syncbar{display:flex;gap:6px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:6px;padding:6px 10px;border:1px solid #E8DFD2;background:#FBF4E8;border-radius:16px}
+.syncbar{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:2px;padding:11px 13px;border:var(--bw) solid var(--stroke);background:#fff;border-radius:16px}
 .syncbar .sync-status{font-size:12px;color:#463F37;font-weight:700}
 .syncbar .sync-user{font-size:12px;color:#5C5249;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .syncbar button{padding:5px 8px;font-size:11px}
-.syncbar .login{background:#221B15;color:white;border-color:#221B15}
-.syncbar .logout{background:white;color:#463F37}
-.syncbar .force-btn{background:#FBF4E8;color:#94621C;border-color:#E8D9C4;font-size:10px;padding:4px 7px}
-.syncbar .force-dl{background:#EDEFF2;color:#1E3A4C;border-color:#C9D5DE}
+.syncbar .login{background:var(--stroke);color:var(--bg);border-color:var(--stroke)}
+.syncbar .logout{background:#fff;color:var(--ink);border-color:var(--stroke)}
+.syncbar .force-btn{background:var(--apricot);color:#8A5A18;border-color:var(--stroke);font-size:10.5px;padding:6px 11px}
+.syncbar .force-dl{background:var(--sage);color:#3D5A2E;border-color:var(--stroke)}
 .hl-btn{border:none!important;background:transparent!important;font-size:18px;padding:2px 4px!important;cursor:pointer;touch-action:manipulation;line-height:1}
 .hl-0 .vitem-inner{border-left:4px solid transparent}
 .hl-1 .vitem-inner{border-left:4px solid #C2773C;background:#FBF4E8}
@@ -81,31 +81,31 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .speak-btn{border:none!important;background:transparent!important;font-size:20px;padding:2px 6px!important;cursor:pointer;touch-action:manipulation;line-height:1;vertical-align:middle;opacity:0.7}
 .speak-btn:active{opacity:1;transform:scale(1.2)}
 .syncdot{width:8px;height:8px;border-radius:999px;background:#A29A8E;display:inline-block}
-.syncdot.on{background:#2E8B62}.syncdot.warn{background:#C2773C}.syncdot.err{background:#C8483B}
+.syncdot.on{background:var(--good)}.syncdot.warn{background:var(--brand-2)}.syncdot.err{background:var(--bad)}
 .cloud-note{font-size:11px;color:#8C8074;text-align:center;margin-top:4px}
 
 /* ===== 改善案（フィードバック②③④⑤⑥＋）追加スタイル ===== */
 :root{--blue:#1E3A4C;--amber:#C2773C;--amberbg:#FBF4E8;--red2:#C8483B;--redbg:#FBE9E5}
 /* ④ 下部ボタン配色：前=淡色 / 完了=グリーン / 次=ブルー */
-#bottomPrev,#bottomNext{background:#EDEFF2;color:#1E3A4C;border-color:#C9D5DE;display:inline-flex;align-items:center;justify-content:center;gap:5px}
+#bottomPrev,#bottomNext{background:#fff;color:var(--ink);border-color:var(--stroke);display:inline-flex;align-items:center;justify-content:center;gap:5px}
 #bottomPrev svg,#bottomNext svg{width:18px;height:18px}
-#bottomComplete{background:#1E3A4C;color:#fff;border-color:#1E3A4C}
-#bottomComplete.active{background:#C9D5DE;color:#173A52;border-color:#9DB0BE}
+#bottomComplete{background:var(--brand);color:var(--ink);border-color:var(--stroke);flex:1.4}
+#bottomComplete.active{background:var(--sage);color:var(--ink);border-color:var(--stroke)}
 /* ②③ 学習画面内ツールバー（拼音/和訳トグル・密度・Day選択） */
 .daytools{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
-.modebar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;position:sticky;top:var(--top-h,64px);z-index:9;background:rgba(248,250,252,.97);backdrop-filter:blur(8px);padding:8px;border-radius:12px;box-shadow:0 4px 12px rgba(16,24,40,.07)}
-.chip-toggle{border:1px solid var(--line);background:#fff;color:#5C5249;border-radius:999px;padding:7px 14px;font-weight:700;font-size:13px;cursor:pointer;touch-action:manipulation}
-.chip-toggle.on{background:#EDEFF2;border-color:#C9D5DE;color:#1E3A4C}
+.modebar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;position:sticky;top:var(--top-h,64px);z-index:9;background:rgba(252,249,242,.95);backdrop-filter:blur(8px);padding:8px 0;border-radius:12px}
+.chip-toggle{border:var(--bw) solid #CFC6B6;background:rgba(255,255,255,.8);color:var(--muted);border-radius:999px;padding:8px 15px;font-weight:900;font-size:13px;cursor:pointer;touch-action:manipulation}
+.chip-toggle.on{background:var(--stroke);border-color:var(--stroke);color:var(--bg)}
 .daybar{display:flex;gap:8px;align-items:center;margin-bottom:10px}
 .daybar select{flex:1;min-width:120px}
 .daybar button{flex:0 0 auto;background:#fff}
 /* ⑤ 難易度コントロール（普通/曖昧/苦手）＋カード左の色バー */
-.lvc{display:inline-flex;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:6px}
-.lvc button{border:0;border-radius:0;padding:4px 9px;font-size:11px;font-weight:800;background:#fff;color:#A29A8E}
+.lvc{display:inline-flex;gap:6px;margin-top:8px}
+.lvc button{border:var(--bw) solid #E0D6C4;border-radius:999px;padding:6px 13px;font-size:11.5px;font-weight:900;background:#fff;color:#A89A85;min-height:32px}
 .lvc button+button{border-left:1px solid var(--line)}
-.lvc button.lvc-on-0{background:#EFE9E0;color:#5C5249}
-.lvc button.lvc-on-1{background:var(--amberbg);color:#94621C}
-.lvc button.lvc-on-2{background:var(--redbg);color:#C8483B}
+.lvc button.lvc-on-0{background:var(--gray);border-color:var(--stroke);color:#5C5249}
+.lvc button.lvc-on-1{background:var(--apricot);border-color:var(--stroke);color:#8A5A18}
+.lvc button.lvc-on-2{background:var(--blush);border-color:var(--stroke);color:#A3402A}
 .vitem.lv-1,.gitem.lv-1{border-left:5px solid var(--amber)}
 .vitem.lv-2,.gitem.lv-2{border-left:5px solid var(--red2)}
 /* ⑥ 密度（標準 / コンパクト） */
@@ -132,7 +132,7 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 #bookmarkPanel.compact .gitem .pinyin,#bookmarkPanel.compact .vitem .pinyin{margin-top:1px}
 /* ＋ ブックマークだけのミニテスト（フラッシュカード） */
 .testwrap .seg{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
-.testwrap .seg .chip-toggle.on{background:#EDEFF2;border-color:#C9D5DE;color:#1E3A4C}
+.testwrap .seg .chip-toggle.on{background:var(--stroke);border-color:var(--stroke);color:var(--bg)}
 .flashcard{border:1px solid var(--line);border-radius:18px;padding:22px 16px;background:#fff;text-align:center;box-shadow:0 10px 30px -16px rgba(20,30,50,.12);margin-top:12px}
 .flashcard .fc-prompt{font-size:26px;font-weight:800;margin:6px 0}
 .flashcard .fc-sub{color:#5C5249;margin-top:4px}
@@ -244,31 +244,41 @@ body.fs-lg .zh{font-size:24px}body.fs-lg .pinyin{font-size:17px}body.fs-lg .ja{f
 @media (prefers-reduced-motion: reduce){.hsk-pop,.hsk-checkpulse{animation:none}.ring-prog{transition:none}}
 .fs-global{display:flex;align-items:center;gap:6px;margin-top:2px}
 .fs-global .fs-label{font-size:11px;color:#1E3A4C;font-weight:700;margin-right:2px}
+/* ===== D-4「背面シェイプ」: 色はカードではなく地が持つ。カードは常に白＋黒枠 ===== */
+#bgShapes{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+#bgShapes svg{width:100%;height:100%;display:block}
+@media(min-width:800px){#bgShapes{display:none}}
+/* 手書きのひとこと。ラベルとひとことだけに使い、本文には使わない */
+.hand{font-family:var(--font-hand);font-weight:400}
+/* 見出しの下の squiggle。各画面に1本だけ */
+.squiggle{display:block;margin-top:1px;height:9px;overflow:visible}
+.squiggle path{stroke:var(--brand);stroke-width:4;fill:none;stroke-linecap:round}
 /* 設定パネル（ブックマークパネルと同じく #content とは別枠。設定タブでのみ表示） */
 .settings-panel{display:none}
 .settings-panel.active{display:block}
-.set-label{font-size:12px;font-weight:800;color:#8C8074;letter-spacing:.04em;margin:18px 0 7px}
+.set-label{font-size:11.5px;font-weight:900;color:var(--muted);letter-spacing:.05em;margin:18px 0 8px}
 .set-label:first-of-type{margin-top:10px}
 .set-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 /* 「今日」画面：新規／復習の2カード */
 .today-actions{display:grid;gap:12px;margin-top:12px}
 @media(min-width:640px){.today-actions{grid-template-columns:1fr 1fr}}
-.tcard{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px;display:flex;flex-direction:column;gap:4px;box-shadow:0 4px 14px rgba(16,24,40,.04)}
-.tcard.accent{border-color:#C9D5DE;background:#F7FAFC}
-.tcard .tc-eyebrow{font-size:11px;font-weight:800;letter-spacing:.1em;color:#8C8074}
-.tcard .tc-title{font-size:19px;font-weight:800;color:#173A52;line-height:1.35}
-.tcard .tc-meta{font-size:13px;color:#5C5249;line-height:1.6}
-.tcard button{margin-top:10px;width:100%}
-.tcard .tc-count{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:30px;font-weight:700;color:#1E3A4C;line-height:1.1;font-variant-numeric:tabular-nums}
-.tcard.done .tc-count{color:#2E8B62}
+.tcard{border:var(--bw) solid var(--stroke);border-radius:20px;background:#fff;padding:17px 19px;display:flex;flex-direction:column;gap:2px}
+.tcard.accent{background:#fff}
+.tcard .tc-eyebrow{font-family:var(--font-hand);font-size:14px;font-weight:400;letter-spacing:0;color:var(--good)}
+.tcard.rev .tc-eyebrow{color:var(--bad)}
+.tcard .tc-title{font-size:27px;font-weight:900;color:var(--ink);line-height:1.2}
+.tcard .tc-meta{font-size:13px;color:#6A6258;line-height:1.6}
+.tcard button{margin-top:12px;width:100%;padding:14px;font-size:15.5px;font-weight:900}
+.tcard .tc-count{font-size:27px;font-weight:900;color:var(--ink);line-height:1.2}
+.tcard.done .tc-count{color:var(--good)}
 .day-list-details{margin-top:12px;border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}
-.day-list-details>summary{list-style:none;cursor:pointer;padding:13px 16px;font-weight:700;font-size:15px;color:#1E3A4C;display:flex;align-items:center;justify-content:space-between;touch-action:manipulation}
+.day-list-details>summary{list-style:none;cursor:pointer;padding:14px 18px;font-weight:900;font-size:14.5px;color:var(--ink);display:flex;align-items:center;justify-content:space-between;touch-action:manipulation}
 .day-list-details>summary::-webkit-details-marker{display:none}
 .day-list-details>summary::after{content:"＋";font-size:16px;color:#1E3A4C}
 .day-list-details[open]>summary::after{content:"−"}
 .day-list-details .dl-body{padding:0 14px 14px}
-.fs-btn{padding:3px 11px;font-size:12px;font-weight:700;border:0.5px solid #9DB0BE;background:#fff;color:#173A52;border-radius:10px;line-height:1.4;touch-action:manipulation;cursor:pointer}
-.fs-btn.on{background:#1E3A4C;color:#fff;border-color:#1E3A4C}
+.fs-btn{padding:8px 17px;font-size:12.5px;font-weight:900;border:var(--bw) solid #CFC6B6;background:#fff;color:var(--muted);border-radius:999px;line-height:1.4;touch-action:manipulation;cursor:pointer;min-height:36px}
+.fs-btn.on{background:var(--stroke);color:var(--bg);border-color:var(--stroke)}
 .g-details{margin-top:8px;border:1px dashed #DCD3C6;border-radius:14px;background:#FBF7F0;overflow:hidden}
 .g-details>summary{list-style:none;cursor:pointer;padding:10px 12px;font-size:13px;font-weight:700;color:#1E3A4C;display:flex;align-items:center;justify-content:space-between;touch-action:manipulation}
 .g-details>summary::-webkit-details-marker{display:none}
@@ -286,13 +296,13 @@ body.fs-lg .zh{font-size:24px}body.fs-lg .pinyin{font-size:17px}body.fs-lg .ja{f
 .hsk-toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(10px);max-width:88%;background:#221B15;color:#fff;font-size:13px;font-weight:600;line-height:1.5;padding:11px 16px;border-radius:14px;box-shadow:0 6px 22px rgba(0,0,0,.25);opacity:0;transition:opacity .3s ease,transform .3s ease;z-index:60;pointer-events:none;text-align:center}
 .hsk-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-h1.brand{display:flex;align-items:center;justify-content:center;gap:9px}.brand .brand-flame{width:22px;height:22px;flex:none}.brand .brand-word{font-family:var(--font-brand);font-size:26px;font-weight:900;color:var(--primary);letter-spacing:.06em;line-height:1}.brand .brand-sub{font-family:system-ui,-apple-system,sans-serif;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.02em}@media(max-width:360px){.brand .brand-sub{display:none}}
+h1.brand{display:flex;align-items:center;justify-content:flex-start;gap:10px}.brand .brand-flame{width:30px;height:30px;flex:none}.brand .brand-word{font-family:var(--font-brand);font-size:26px;font-weight:900;color:var(--primary);letter-spacing:.06em;line-height:1}.brand .brand-sub{font-family:var(--font-hand);font-size:12px;font-weight:400;color:var(--muted);letter-spacing:.02em;align-self:flex-end;padding-bottom:2px}@media(max-width:360px){.brand .brand-sub{display:none}}
 </style>
 </head>
 <body>
 <div class="top">
  <div class="top-inner">
-  <h1 class="brand" aria-label="加油 90日でHSK4合格"><svg class="brand-flame" viewBox="0 0 100 100" aria-hidden="true"><path d="M52 6 C 62 30, 80 42, 80 64 A 30 30 0 1 1 20 64 C 20 46, 33 41, 41 28 C 44 41, 50 45, 50 37 C 50 26, 47 16, 52 6 Z" fill="#F2A227"/><path d="M50 52 C 56 62, 63 66, 63 74 A 13 13 0 1 1 37 74 C 37 65, 45 62, 50 52 Z" fill="#FBD27A"/></svg><span class="brand-word">加油</span><span class="brand-sub">90日でHSK4合格</span></h1>
+  <h1 class="brand" aria-label="加油 90日でHSK4合格"><svg class="brand-flame" viewBox="0 0 100 100" aria-hidden="true"><path d="M52 6 C 62 30, 80 42, 80 64 A 30 30 0 1 1 20 64 C 20 46, 33 41, 41 28 C 44 41, 50 45, 50 37 C 50 26, 47 16, 52 6 Z" fill="#F2A227" stroke="#2A2724" stroke-width="4.5" stroke-linejoin="round"></path><circle cx="41" cy="63" r="3.6" fill="#2A2724"></circle><circle cx="59" cy="63" r="3.6" fill="#2A2724"></circle><path d="M43 73 Q 50 79 57 73" stroke="#2A2724" stroke-width="3.8" fill="none" stroke-linecap="round"></path></svg><span class="brand-word">加油</span><span class="brand-sub">90日でHSK4合格</span></h1>
   <div class="nav-tabs">
    <div class="nav-tab" id="homeBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v2.5"/><circle cx="12" cy="13.5" r="7.5"/><path d="M12 10v3.5l2.5 1.5"/></svg><span>今日</span></div>
    <div class="nav-tab" id="bookmarkViewBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>ブックマーク</span></div>
@@ -304,6 +314,8 @@ h1.brand{display:flex;align-items:center;justify-content:center;gap:9px}.brand .
 
  </div>
 </div>
+
+<div id="bgShapes" aria-hidden="true"></div>
 
 <div class="app">
  <div id="bookmarkPanel" class="bookmark-panel card"></div>
@@ -5910,48 +5922,51 @@ function renderHome(){
 
  const newCard=allDone
   ? `<div class="tcard done">
-      <span class="tc-eyebrow">新規</span>
+      <span class="tc-eyebrow">あたらしく覚える</span>
       <span class="tc-title">90日ぶん完走しました</span>
       <span class="tc-meta">あとは復習を続けて定着させましょう。</span>
       <button onclick="showDay(${current})">Day ${current} を見返す</button>
      </div>`
   : `<div class="tcard accent">
-      <span class="tc-eyebrow">新規</span>
+      <span class="tc-eyebrow">あたらしく覚える</span>
       <span class="tc-title">Day ${nextDay}</span>
-      <span class="tc-meta">${esc(nextLesson.title.replace(/^Day\s*\d+｜/,''))}<br>単語${nextLesson.vocab.length}個・文法${nextLesson.grammar.length}つ・ミニテスト</span>
+      <span class="tc-meta">${esc(nextLesson.title.replace(/^Day\s*\d+｜/,''))} · 単語${nextLesson.vocab.length}個・文法${nextLesson.grammar.length}つ</span>
       <button class="primary" onclick="showDay(${nextDay})">学習を始める</button>
      </div>`;
 
  const revCard = cnt.elig===0
-  ? `<div class="tcard">
-      <span class="tc-eyebrow">復習</span>
+  ? `<div class="tcard rev">
+      <span class="tc-eyebrow">思い出す</span>
       <span class="tc-title">まだありません</span>
       <span class="tc-meta">Dayを1つ完了すると、その単語・文法がここに入り、忘れる頃に出題されます。</span>
       <button disabled>復習する</button>
      </div>`
-  : `<div class="tcard${revTotal===0?' done':''}">
-      <span class="tc-eyebrow">復習</span>
+  : `<div class="tcard rev${revTotal===0?' done':''}">
+      <span class="tc-eyebrow">思い出す</span>
       <span class="tc-count">${revTotal}<span style="font-size:14px;font-weight:700"> 枚</span></span>
       <span class="tc-meta">${revTotal===0?'今日のぶんは終わっています。':`期限 ${cnt.due} ＋ 新しく覚える ${shownNew}`}</span>
       <button class="${revTotal>0?'primary':''}" ${revTotal===0?'disabled':''} onclick="showTest()">${revTotal===0?'今日の復習は完了':'復習する'}</button>
      </div>`;
 
  c.innerHTML=`
-  <div class="card">
-   <div class="section-title"><h2>今日やること</h2><span class="badge">${doneCount}/${LESSONS.length} 完了</span></div>
-   <div class="home-ring">
-     <svg width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="完了 ${doneCount} / ${LESSONS.length} 日、${percent}パーセント">
-       <circle class="ring-track" cx="40" cy="40" r="34" fill="none" stroke-width="8"/>
-       <circle class="ring-prog" cx="40" cy="40" r="34" fill="none" stroke-width="8" stroke-linecap="round" stroke-dasharray="${ringC}" stroke-dashoffset="${ringOff}" transform="rotate(-90 40 40)"/>
-       <text class="ring-pct" x="40" y="41" text-anchor="middle" dominant-baseline="central">${percent}%</text>
-     </svg>
-     <div class="ring-text">
-       <div class="small">90日のうち <b>${doneCount}日</b> 完了</div>
-       <div class="small" style="margin-top:2px">新しく覚えるぶんと、思い出すぶん。両方そろって1日ぶんです。</div>
-     </div>
+  <div style="margin:2px 0 14px">
+   <div style="display:flex;align-items:baseline;gap:9px;flex-wrap:wrap">
+     <span style="font-size:21px;font-weight:900">今日やること</span>
+     <span class="hand" style="font-size:13px;color:var(--bad)">${allDone?'90日ぶん完走！':`あと${LESSONS.length-doneCount}日！`}</span>
    </div>
-   <div class="today-actions">${newCard}${revCard}</div>
+   <svg class="squiggle" width="168" viewBox="0 0 168 9" aria-hidden="true"><path d="M2 6 Q 22 1 42 5 T 82 5 T 122 5 T 158 4"/></svg>
   </div>
+
+  <div class="card" style="display:flex;align-items:center;gap:15px;padding:14px 18px">
+     <svg width="54" height="54" viewBox="0 0 80 80" style="flex:none" role="img" aria-label="完了 ${doneCount} / ${LESSONS.length} 日、${percent}パーセント">
+       <circle cx="40" cy="40" r="30" fill="var(--bg)" stroke="var(--stroke)" stroke-width="4"/>
+       <circle cx="40" cy="40" r="30" fill="none" stroke="var(--brand)" stroke-width="8" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="${(188.5*(1-percent/100)).toFixed(1)}" transform="rotate(-90 40 40)"/>
+       <text x="40" y="41" text-anchor="middle" dominant-baseline="central" style="font-size:17px;font-weight:900;fill:var(--ink)">${percent}%</text>
+     </svg>
+     <div style="font-size:13.5px;line-height:1.65;color:#4A443C">90日のうち <b>${doneCount}日</b> 完了<br>のこり ${LESSONS.length-doneCount}日</div>
+  </div>
+
+  <div class="today-actions">${newCard}${revCard}</div>
 
   <details class="day-list-details">
     <summary>全90日から選ぶ</summary>
@@ -5981,6 +5996,7 @@ function render(){
    :(currentView==='settings'||currentView==='levelcheck')?'settingsTab'
    :'homeBtn');
  setSettingsPanel(currentView==='settings');
+ renderBgShapes(currentView==='levelcheck'?'settings':currentView);
  if(currentView==='settings'){ if($('bottomNav')) $('bottomNav').style.display='none'; renderSettings(); return; }
  if(currentView==='vocab'){ if(document.querySelector('.vlist') && document.activeElement && document.activeElement.id==='vocabSearch'){ vocabFilterOnly(); } else { renderVocabScreen(); } return; }
  if(currentView==='levelcheck'){ if($('bottomNav')) $('bottomNav').style.display='none'; renderLevelCheckScreen(); return; }
@@ -6603,6 +6619,31 @@ function renderTestScreen(){
   html+='<div class="small muted" style="margin-top:14px">出題範囲や1日の新規問数は<a href="#" onclick="showSettings();return false">設定</a>で変更できます。</div>';
   html+='</div>';
   c.innerHTML=html;
+}
+
+// 背面シェイプ。色はカードではなく地が持つので、画面ごとに配置と色を変える。
+// 3色（セージ / アプリコット / ブラッシュ）だけを使い回し、新しい色は増やさない。
+var BG_SHAPES = {
+  today:    [['#FBE0BC', 'M-40 96 C 60 52, 150 78, 236 60 C 322 42, 386 66, 430 40 L 430 250 C 350 286, 250 250, 160 268 C 70 286, 10 262, -40 282 Z'],
+             ['#D5E4C8', 'M-30 420 C 70 386, 170 424, 264 402 C 340 384, 392 402, 430 388 L 430 596 C 344 626, 236 592, 146 612 C 70 628, 14 610, -30 622 Z'],
+             ['#F6D9D2', 'M212 700 C 268 676, 340 692, 400 668 L 430 668 L 430 844 L 150 844 C 158 792, 176 716, 212 700 Z']],
+  day:      [['#D5E4C8', 'M-40 84 C 70 44, 168 74, 258 52 C 330 34, 388 56, 430 34 L 430 300 C 348 336, 240 300, 150 320 C 74 336, 12 314, -40 330 Z'],
+             ['#FBE0BC', 'M-30 470 C 80 438, 176 474, 268 452 C 344 434, 394 452, 430 438 L 430 648 C 340 678, 232 644, 142 664 C 66 680, 12 662, -30 674 Z']],
+  review:   [['#F6D9D2', 'M-40 100 C 76 58, 172 90, 262 66 C 336 46, 390 68, 430 46 L 430 402 C 344 440, 236 402, 146 424 C 70 442, 10 420, -40 436 Z'],
+             ['#FBE0BC', 'M-30 590 C 84 558, 180 592, 272 570 C 348 552, 396 570, 430 556 L 430 844 L -30 844 Z']],
+  bookmark: [['#FBE0BC', 'M-40 90 C 70 50, 166 80, 256 58 C 330 40, 388 62, 430 40 L 430 288 C 348 324, 240 288, 150 308 C 74 324, 12 302, -40 318 Z'],
+             ['#D5E4C8', 'M-30 560 C 84 528, 180 562, 272 540 C 348 522, 396 540, 430 526 L 430 844 L -30 844 Z']],
+  vocab:    [['#D5E4C8', 'M-40 76 C 70 38, 166 68, 256 46 C 330 28, 388 50, 430 28 L 430 236 C 348 272, 240 236, 150 256 C 74 272, 12 250, -40 266 Z'],
+             ['#F6D9D2', 'M-30 706 C 84 674, 180 708, 272 686 C 348 668, 396 686, 430 672 L 430 844 L -30 844 Z']],
+  settings: [['#EDE6D8', 'M-40 82 C 70 44, 166 74, 256 52 C 330 34, 388 56, 430 34 L 430 214 C 348 250, 240 214, 150 234 C 74 250, 12 228, -40 244 Z'],
+             ['#D5E4C8', 'M240 760 C 300 738, 372 754, 430 730 L 430 844 L 190 844 C 198 812, 212 772, 240 760 Z']]
+};
+function renderBgShapes(view){
+  var host=$('bgShapes'); if(!host) return;
+  var set=BG_SHAPES[view]||BG_SHAPES.today;
+  host.innerHTML='<svg viewBox="0 0 390 844" preserveAspectRatio="xMidYMin slice">'
+    + set.map(function(sh){ return '<path d="'+sh[1]+'" fill="'+sh[0]+'"></path>'; }).join('')
+    + '</svg>';
 }
 
 // 設定パネルの表示切替。#settingsPanel は同期バーの ID を保つため常時 DOM に残す。
