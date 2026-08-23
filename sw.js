@@ -5,19 +5,24 @@
    ・Firebase / Google 系の通信は常にネット直結（キャッシュしない＝同期・ログインに影響なし）
    ※ アプリを更新したら下の CACHE_VERSION の数字を1つ上げてコミットしてください。 */
 
-const CACHE_VERSION = 'hsk4-cache-v6';
+const CACHE_VERSION = 'hsk4-cache-v7';
 const PRECACHE = [
   './',
   './index.html',
   './manifest.json',
-  './icons/HSK4-icon-A-180.png',
-  './icons/HSK4-icon-A-1024.png'
+  './assets/icon.svg',
+  './assets/icon-192.png',
+  './assets/icon-512.png',
+  './assets/icon-512-maskable.png',
+  './assets/apple-touch-icon-180.png'
 ];
 
 self.addEventListener('install', (event) => {
+  // cache.addAll は1件でも404すると全体が失敗するため、1件ずつ追加して
+  // allSettled で束ねる。ファイルを1つ消してもプリキャッシュが全滅しない。
   event.waitUntil(
     caches.open(CACHE_VERSION)
-      .then((cache) => cache.addAll(PRECACHE))
+      .then((cache) => Promise.allSettled(PRECACHE.map((url) => cache.add(url))))
       .then(() => self.skipWaiting())
       .catch(() => self.skipWaiting())
   );
