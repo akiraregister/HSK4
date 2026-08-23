@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>加油 — 90日でHSK4に届く中国語アプリ（無料）</title>
+<meta name="description" content="HSK4級を90日で。頻出450語と文法270項目を、1日15分・単語5個ずつ。忘れる頃に出題する間隔反復と、全90日ぶんのミニテスト付き。登録不要・ブラウザだけで無料で使えます。">
+<link rel="canonical" href="https://akiraregister.github.io/HSK4/lp/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://akiraregister.github.io/HSK4/lp/">
+<meta property="og:title" content="加油 — 90日でHSK4に届く中国語アプリ">
+<meta property="og:description" content="頻出450語＋文法270項目を1日15分。間隔反復とミニテスト付き。登録不要・無料。">
+<meta property="og:image" content="https://akiraregister.github.io/HSK4/lp/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="theme-color" content="#FCF9F2">
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Yomogi&display=swap" rel="stylesheet">
+
+<style>
+/* アプリ本体（../index.html）と同じトークン。ブランドを1つに保つため値を共有する */
+:root{
+  --bg:#FCF9F2;--card:#fff;--ink:#2A2724;--muted:#8A8377;--line:#E4DCCB;
+  --brand:#F2A227;--good:#4E7A3C;--bad:#B0561F;--gray:#F0EBE0;--paper:#FBF6EA;
+  --sage:#D5E4C8;--apricot:#FBE0BC;--blush:#F6D9D2;
+  --stroke:#2A2724;--bw:1.5px;
+  --font-display:'Zen Maru Gothic','Hiragino Maru Gothic ProN',sans-serif;
+  --font-body:'Zen Kaku Gothic New','Hiragino Sans','Yu Gothic',sans-serif;
+  --font-hand:'Yomogi','Hiragino Maru Gothic ProN',cursive;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-weight:400;line-height:1.85;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2.5px solid var(--bad);outline-offset:3px;border-radius:6px}
+h1,h2,h3,.num,.btn,.badge{font-family:var(--font-display)}
+.hand{font-family:var(--font-hand);font-weight:400}
+img,svg{max-width:100%}
+a{color:var(--bad)}
+
+/* 背面シェイプ。色はカードではなく地が持つ（アプリと同じ考え方） */
+#bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+#bg svg{width:100%;height:100%;min-width:900px}
+
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+section{padding:44px 0}
+.card{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:20px;padding:20px 22px}
+
+/* ヘッダー */
+.top{padding:20px 0 0}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-word{font-family:var(--font-display);font-size:24px;font-weight:900;letter-spacing:.04em}
+.brand-sub{font-family:var(--font-hand);font-size:12px;color:var(--muted);align-self:flex-end;padding-bottom:3px}
+
+/* ファーストビュー：広告からの流入を想定し、ここだけで判断できるようにする */
+.hero{padding:30px 0 8px}
+h1{font-size:clamp(30px,7.4vw,46px);line-height:1.32;letter-spacing:.005em;margin:0 0 16px;font-weight:900;text-wrap:balance}
+h1 .em{color:var(--bad)}
+.lead{font-size:clamp(15.5px,3.8vw,17.5px);line-height:1.9;margin:0 0 8px;max-width:34em}
+.squiggle{display:block;height:10px;margin:2px 0 18px;overflow:visible}
+.squiggle path{stroke:var(--brand);stroke-width:4.5;fill:none;stroke-linecap:round}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--stroke);color:var(--bg);border:var(--bw) solid var(--stroke);border-radius:999px;
+  padding:17px 30px;font-size:17px;font-weight:900;text-decoration:none;min-height:56px;cursor:pointer;font-family:var(--font-display)}
+.btn.ghost{background:#fff;color:var(--ink)}
+.btn.amber{background:var(--brand);color:var(--ink)}
+.cta-row{display:flex;flex-direction:column;gap:10px;align-items:stretch;margin-top:20px}
+@media(min-width:560px){.cta-row{flex-direction:row;align-items:center}.cta-row .btn{flex:0 0 auto}}
+.cta-note{font-size:13px;color:var(--muted);margin-top:10px}
+
+/* 数字 */
+.nums{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
+@media(min-width:560px){.nums{grid-template-columns:repeat(4,1fr)}}
+.numbox{background:#fff;border:var(--bw) solid var(--stroke);border-radius:18px;padding:15px 12px;text-align:center}
+.num{font-size:29px;font-weight:900;line-height:1.15;display:block}
+.numlabel{font-size:12.5px;color:var(--muted);margin-top:3px;display:block;line-height:1.5}
+
+h2{font-size:clamp(21px,4.6vw,26px);line-height:1.45;margin:0 0 6px;font-weight:900;text-wrap:balance}
+.sec-lead{color:var(--muted);font-size:14px;margin:0 0 20px}
+
+/* 3ステップ */
+.steps{display:grid;gap:14px}
+@media(min-width:700px){.steps{grid-template-columns:repeat(3,1fr)}}
+.step{background:#fff;border:var(--bw) solid var(--stroke);border-radius:20px;padding:18px 20px}
+.step .n{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:999px;
+  background:var(--sage);border:var(--bw) solid var(--stroke);font-family:var(--font-display);font-weight:900;font-size:15px;margin-bottom:10px}
+.step h3{font-size:17.5px;margin:0 0 6px;font-weight:900}
+.step p{font-size:14px;margin:0;line-height:1.8;color:#4A443C}
+
+/* 対象 */
+.who{display:grid;gap:12px}
+@media(min-width:640px){.who{grid-template-columns:1fr 1fr}}
+.who .card{padding:18px 20px}
+.who h3{font-size:16.5px;margin:0 0 8px;font-weight:900}
+.who ul{margin:0;padding-left:1.2em;font-size:14px;line-height:1.85}
+.who li{margin-bottom:4px}
+.zh{font-family:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;font-weight:700}
+
+/* 正直な但し書き */
+.honest{background:var(--paper);border:var(--bw) dashed #DFD2B8;border-radius:20px;padding:20px 22px}
+.honest h2{font-size:19px;margin-bottom:12px}
+.honest dl{margin:0}
+.honest dt{font-weight:700;font-size:14.5px;margin-top:14px}
+.honest dt:first-of-type{margin-top:0}
+.honest dd{margin:4px 0 0;font-size:14px;color:#4A443C;line-height:1.8}
+
+/* 価格 */
+.price{background:var(--apricot);border:var(--bw) solid var(--stroke);border-radius:22px;padding:24px 22px}
+.price .tag{font-family:var(--font-hand);font-size:14px;color:#8A5A18}
+.price .amount{font-size:34px;font-weight:900;font-family:var(--font-display);line-height:1.25;margin:4px 0 2px}
+.price .amount small{font-size:15px;font-weight:700}
+.price p{font-size:14px;line-height:1.85;margin:10px 0 0}
+#priceThanks{display:none;background:#fff;border:var(--bw) solid var(--stroke);border-radius:16px;padding:14px 16px;margin-top:14px;font-size:14px;line-height:1.8}
+
+/* FAQ */
+.faq details{background:#fff;border:var(--bw) solid var(--stroke);border-radius:18px;margin-bottom:10px;overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:16px 20px;font-weight:700;font-size:15.5px;display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"＋";font-size:17px;color:var(--muted);flex:none}
+.faq details[open] summary::after{content:"−"}
+.faq .a{padding:0 20px 17px;font-size:14.5px;line-height:1.85;color:#4A443C;margin:0}
+
+footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46px;font-size:13px;color:var(--muted);line-height:1.8}
+</style>
+</head>
+<body>
+
+<div id="bg" aria-hidden="true">
+  <svg viewBox="0 0 390 1400" preserveAspectRatio="xMidYMin slice">
+    <path d="M-40 120 C 60 74, 150 100, 236 80 C 322 60, 386 86, 430 58 L 430 300 C 350 338, 250 300, 160 320 C 70 338, 10 314, -40 334 Z" fill="#FBE0BC"></path>
+    <path d="M-30 560 C 70 524, 170 564, 264 540 C 340 520, 392 540, 430 524 L 430 760 C 344 792, 236 756, 146 778 C 70 796, 14 776, -30 790 Z" fill="#D5E4C8"></path>
+    <path d="M-30 1030 C 84 996, 180 1032, 272 1008 C 348 988, 396 1008, 430 992 L 430 1400 L -30 1400 Z" fill="#F6D9D2"></path>
+  </svg>
+</div>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M52 6 C 62 30, 80 42, 80 64 A 30 30 0 1 1 20 64 C 20 46, 33 41, 41 28 C 44 41, 50 45, 50 37 C 50 26, 47 16, 52 6 Z" fill="#F2A227" stroke="#2A2724" stroke-width="4.5" stroke-linejoin="round"></path>
+        <circle cx="41" cy="63" r="3.6" fill="#2A2724"></circle><circle cx="59" cy="63" r="3.6" fill="#2A2724"></circle>
+        <path d="M43 73 Q 50 79 57 73" stroke="#2A2724" stroke-width="3.8" fill="none" stroke-linecap="round"></path>
+      </svg>
+      <span class="brand-word">加油</span>
+      <span class="brand-sub">ジャーヨウ／がんばれ</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>90日で、<br>HSK4に<span class="em">届く</span>。</h1>
+    <svg class="squiggle" width="210" viewBox="0 0 210 10" aria-hidden="true"><path d="M3 7 Q 28 1 53 6 T 103 6 T 153 6 T 203 5"/></svg>
+    <p class="lead">頻出<b>450語</b>と文法<b>270項目</b>を、1日15分・単語5個ずつ。忘れる頃にもう一度出してくれるので、覚えたことが抜けていきません。</p>
+    <p class="lead">上海の会議室でも、街角の食堂でも使う中国語を。</p>
+
+    <div class="cta-row">
+      <a class="btn amber" href="../" data-ev="cta_hero">無料で始める</a>
+      <span class="cta-note">登録不要・インストール不要。<br>ブラウザで開くだけで、今日ぶんが始まります。</span>
+    </div>
+  </section>
+
+  <section style="padding-top:14px">
+    <div class="nums">
+      <div class="numbox"><span class="num">450</span><span class="numlabel">頻出単語<br>（重複なし）</span></div>
+      <div class="numbox"><span class="num">270</span><span class="numlabel">文法項目</span></div>
+      <div class="numbox"><span class="num">90</span><span class="numlabel">日ぶんの<br>カリキュラム</span></div>
+      <div class="numbox"><span class="num">90</span><span class="numlabel">日ぶんの<br>ミニテスト</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>やることは、毎日ひとつだけ</h2>
+    <p class="sec-lead">「今日は何をやるんだっけ」で止まらないように作りました。</p>
+    <div class="steps">
+      <div class="step">
+        <span class="n">1</span>
+        <h3>開くと今日ぶんが出ている</h3>
+        <p>新しく覚える5語と、思い出す番が来た語。この2つが1画面に並びます。探す手間がありません。</p>
+      </div>
+      <div class="step">
+        <span class="n">2</span>
+        <h3>忘れる頃に、また出る</h3>
+        <p>手応えを4段階で答えるだけ。間隔反復が次に出す日を決めるので、覚えた語が静かに抜けていくのを防ぎます。</p>
+      </div>
+      <div class="step">
+        <span class="n">3</span>
+        <h3>模試で、いまを確かめる</h3>
+        <p>40問30分。分野ごとの正答率が出て、間違えた範囲の語をそのまま復習に送れます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>ビジネスでも、暮らしでも</h2>
+    <p class="sec-lead">例文は、実際に口に出す場面から選んでいます。</p>
+    <div class="who">
+      <div class="card">
+        <h3>仕事の場面</h3>
+        <ul>
+          <li><span class="zh">我发了资料。</span>／資料を送りました</li>
+          <li><span class="zh">这个问题比我想象的复杂。</span>／この問題は思っていたより複雑です</li>
+          <li>会議・出張・メールで使う語彙を厚めに</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>暮らしの場面</h3>
+        <ul>
+          <li><span class="zh">在上海生活很方便。</span>／上海での生活は便利です</li>
+          <li><span class="zh">这个方法很适合我。</span>／この方法は私に合っています</li>
+          <li>買い物・移動・人づきあいの言い回しも</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="honest">
+      <h2>先に、正直なところを</h2>
+      <dl>
+        <dt>リスニングは入っていません</dt>
+        <dd>HSK4は听力45問・阅读40問・书写15問で、听力が約3分の1を占めます。このアプリには音源がないため、その対策はできません。<b>他の教材と併用してください。</b>模試の点数も、本番の目安にはなりません。</dd>
+
+        <dt>450語は、HSK4の全範囲ではありません</dt>
+        <dd>HSK4の出題範囲は累計1200語（HSK3から新たに増えるのが600語）です。このアプリはそのうち<b>頻出の450語</b>を扱います。骨格を作るには足りますが、範囲の全部ではありません。</dd>
+
+        <dt>個人が作っています</dt>
+        <dd>大きな会社の製品ではありません。使ってみて合わなければ、それで構いません。<b>いまは全機能が無料</b>で、支払いを求める画面はどこにもありません。</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="price">
+      <span class="tag">これからの話</span>
+      <div class="amount">¥7,800 <small>買い切り（予定）</small></div>
+      <p>いまは全機能が無料です。今後もし有料版を作るなら、<b>Day 8以降・リスニング音源・模試の拡充</b>をまとめて、月額ではなく買い切りにするつもりです。<br>
+      作るかどうかは、ほしい方が何人いるかで決めます。<b>いま支払いは発生しませんし、連絡先も取りません。</b>下のボタンを押すと、人数として1つ数えられるだけです。</p>
+      <div class="cta-row">
+        <button class="btn ghost" id="priceBtn" type="button">この内容なら払ってもいい</button>
+      </div>
+      <div id="priceThanks">ありがとうございます。人数として記録しました。<br>十分に集まったら制作します。</div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <p class="sec-lead">HSK4の勉強法として気になるところを。</p>
+
+    <details>
+      <summary>HSK4はどのくらいの難易度ですか</summary>
+      <p class="a">累計1200語を扱う中級の入口で、日常の話題なら中国語で一通りやりとりできる水準とされています。合格ラインは300点満点中180点。日本人は漢字が読めるぶん阅读で稼ぎやすい一方、听力で落とす人が多いのが特徴です。</p>
+    </details>
+
+    <details>
+      <summary>本当に90日で受かりますか</summary>
+      <p class="a">保証はできません。このアプリが用意しているのは、90日ぶんに割った頻出450語と文法270項目、その定着のための間隔反復です。<b>听力対策は含まれていない</b>ので、合格を狙うならリスニング教材との併用が要ります。1日15分を90日続けたときに、語彙と文法の骨格ができている——そこまでが役割です。</p>
+    </details>
+
+    <details>
+      <summary>1日どのくらい時間がかかりますか</summary>
+      <p class="a">新しく覚えるぶんが単語5個・文法3つ・ミニテストで、10〜15分ほど。これに復習が加わりますが、枚数は日によって変わります。多すぎると感じたら、1日の新規問数を減らすか「なし」にして復習だけに絞れます。</p>
+    </details>
+
+    <details>
+      <summary>途中で何日か空けてしまったら</summary>
+      <p class="a">復習の期限が来た語がたまりますが、1日の新規問数を「なし」にすれば、新しい語を増やさず復習だけを消化できます。まず溜まったぶんを片付けてから再開するのが楽です。</p>
+    </details>
+
+    <details>
+      <summary>自分のレベルがHSK4か分かりません</summary>
+      <p class="a">最初に級診断（16問・約5分）が出ます。HSK3相当と出た場合も、HSK4の1200語にはHSK1〜3の語彙が含まれるので、少し背伸びですが同じ教材で進められます。HSK5以上と出た場合は<b>この教材では易しすぎる</b>と正直にお伝えします。診断はスキップもできます。</p>
+    </details>
+
+    <details>
+      <summary>アプリのインストールは必要ですか</summary>
+      <p class="a">不要です。ブラウザで開くだけで使えます。ホーム画面に追加すると、アプリのように起動でき、オフラインでも学習できます。iPhoneなら共有ボタンから「ホーム画面に追加」です。</p>
+    </details>
+
+    <details>
+      <summary>学習データはどこに保存されますか</summary>
+      <p class="a">既定では使っている端末の中だけです。Googleアカウントでログインすると、進捗・ブックマーク・復習スケジュールを端末間で同期できます。ログインは任意で、しなくても全機能が使えます。</p>
+    </details>
+
+    <details>
+      <summary>お金はかかりますか</summary>
+      <p class="a">かかりません。いま支払いを求める画面はどこにもなく、全機能が無料です。将来の有料版については上のとおり検討中で、決まった時点で改めてお知らせします。</p>
+    </details>
+  </section>
+
+  <section style="padding-top:8px">
+    <div class="card" style="text-align:center">
+      <h2 style="margin-bottom:10px">まず1日ぶん、やってみてください</h2>
+      <p style="font-size:14.5px;color:#4A443C;margin:0 0 18px">合わなければ閉じるだけです。登録もインストールも要りません。</p>
+      <a class="btn amber" href="../" data-ev="cta_bottom" style="width:100%;max-width:340px">無料で始める</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>加油（ジャーヨウ）は、HSK4級を目指す日本語話者のための学習アプリです。個人が作って個人で運営しています。<br>
+    ご意見・不具合のご連絡は <a href="https://github.com/akiraregister/HSK4/issues">GitHub</a> へどうぞ。</p>
+  </footer>
+
+</div>
+
+<script>
+// アプリ本体と同じ計測の仕組み。同一オリジンなので、LPとアプリのイベントが
+// 1つのログに並び、「LPを見た人のうち何人が始めたか」がそのまま追える。
+(function(){
+  var KEY='hsk4-events', MAX=500;
+  function sink(){ try{ return localStorage.getItem('hsk4-sink-url')||''; }catch(e){ return ''; } }
+  function track(name, props){
+    var ev={ t:Date.now(), e:name }; if(props) ev.p=props;
+    try{
+      var log=JSON.parse(localStorage.getItem(KEY)||'[]');
+      log.push(ev); if(log.length>MAX) log=log.slice(-MAX);
+      localStorage.setItem(KEY, JSON.stringify(log));
+    }catch(e){}
+    var u=sink();
+    if(u){ try{
+      var b=JSON.stringify(ev);
+      if(navigator.sendBeacon) navigator.sendBeacon(u, new Blob([b],{type:'application/json'}));
+      else fetch(u,{method:'POST',headers:{'Content-Type':'application/json'},body:b,keepalive:true}).catch(function(){});
+    }catch(e){} }
+  }
+
+  var ref=''; try{ ref=document.referrer||''; }catch(e){}
+  var src=''; try{ src=new URLSearchParams(location.search).get('src')||''; }catch(e){}
+  track('lp_view',{ src:src, ref:ref.slice(0,120) });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-ev]'), function(a){
+    a.addEventListener('click', function(){ track('lp_cta',{ where:a.getAttribute('data-ev'), src:src }); });
+  });
+
+  var pb=document.getElementById('priceBtn');
+  if(pb) pb.addEventListener('click', function(){
+    var n=0; try{ n=Number(localStorage.getItem('hsk4-price-interest')||0)+1; localStorage.setItem('hsk4-price-interest',String(n)); }catch(e){}
+    track('lp_price_interest',{ src:src });
+    pb.disabled=true; pb.textContent='ありがとうございます';
+    var t=document.getElementById('priceThanks'); if(t) t.style.display='block';
+  });
+
+  // どこまで読まれたか。ファーストビューで離脱しているのかを見分けるため。
+  var marks={25:false,50:false,75:false,100:false};
+  window.addEventListener('scroll', function(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(h<=0) return;
+    var pct=Math.round(window.scrollY/h*100);
+    [25,50,75,100].forEach(function(m){
+      if(!marks[m] && pct>=m){ marks[m]=true; track('lp_scroll',{ depth:m, src:src }); }
+    });
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>

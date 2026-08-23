@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- SNS共有時のサムネイル(og.png 1200x630)の元。Chromiumで撮って書き出す:
+     node scripts/make-og.mjs   （scratchpad の手順は README 代わりにこのコメント）
+     文言を変えたら撮り直して lp/og.png を差し替えること。 -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Zen+Kaku+Gothic+New:wght@400;700&family=Yomogi&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0}
+  body{width:1200px;height:630px;overflow:hidden;background:#FCF9F2;
+       font-family:'Zen Kaku Gothic New',sans-serif;color:#2A2724;position:relative}
+  svg.bg{position:absolute;inset:0}
+  .inner{position:relative;height:100%;padding:64px 72px;display:flex;flex-direction:column;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:16px}
+  .brand span{font-family:'Zen Maru Gothic',sans-serif;font-size:40px;font-weight:900;letter-spacing:.05em}
+  .brand em{font-family:'Yomogi',cursive;font-style:normal;font-size:20px;color:#8A8377;align-self:flex-end;padding-bottom:6px}
+  h1{font-family:'Zen Maru Gothic',sans-serif;font-size:88px;font-weight:900;line-height:1.26;letter-spacing:.01em}
+  h1 i{font-style:normal;color:#B0561F}
+  .sub{font-size:27px;line-height:1.7;margin-top:22px;color:#4A443C}
+  .nums{display:flex;gap:14px}
+  .n{background:#fff;border:2.5px solid #2A2724;border-radius:22px;padding:16px 26px;text-align:center}
+  .n b{font-family:'Zen Maru Gothic',sans-serif;font-size:38px;font-weight:900;display:block;line-height:1.1}
+  .n span{font-size:16px;color:#8A8377}
+  .free{background:#F2A227;border:2.5px solid #2A2724;border-radius:999px;padding:16px 34px;
+        font-family:'Zen Maru Gothic',sans-serif;font-size:26px;font-weight:900;align-self:center}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:20px}
+</style>
+</head>
+<body>
+<svg class="bg" width="1200" height="630" viewBox="0 0 1200 630" aria-hidden="true">
+  <path d="M-40 0 L1240 0 L1240 150 C 1080 210, 900 150, 720 186 C 560 218, 380 176, 200 208 C 110 224, 20 208, -40 224 Z" fill="#FBE0BC"></path>
+  <path d="M820 452 C 920 418, 1060 448, 1240 404 L1240 670 L700 670 C 716 566, 748 476, 820 452 Z" fill="#D5E4C8"></path>
+  <path d="M-40 560 C 80 528, 200 556, 300 540 L300 670 L-40 670 Z" fill="#F6D9D2"></path>
+</svg>
+
+<div class="inner">
+  <div class="brand">
+    <svg width="62" height="62" viewBox="0 0 100 100">
+      <path d="M52 6 C 62 30, 80 42, 80 64 A 30 30 0 1 1 20 64 C 20 46, 33 41, 41 28 C 44 41, 50 45, 50 37 C 50 26, 47 16, 52 6 Z" fill="#F2A227" stroke="#2A2724" stroke-width="4.5" stroke-linejoin="round"></path>
+      <circle cx="41" cy="63" r="3.6" fill="#2A2724"></circle><circle cx="59" cy="63" r="3.6" fill="#2A2724"></circle>
+      <path d="M43 73 Q 50 79 57 73" stroke="#2A2724" stroke-width="3.8" fill="none" stroke-linecap="round"></path>
+    </svg>
+    <span>加油</span><em>ジャーヨウ</em>
+  </div>
+
+  <div>
+    <h1>90日で、HSK4に<i>届く</i>。</h1>
+    <p class="sub">頻出450語＋文法270項目を、1日15分。<br>忘れる頃にもう一度出してくれます。</p>
+  </div>
+
+  <div class="row">
+    <div class="nums">
+      <div class="n"><b>450</b><span>頻出単語</span></div>
+      <div class="n"><b>270</b><span>文法項目</span></div>
+      <div class="n"><b>90</b><span>日ぶん</span></div>
+    </div>
+    <div class="free">登録不要・無料</div>
+  </div>
+</div>
+</body>
+</html>
