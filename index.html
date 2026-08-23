@@ -6291,6 +6291,7 @@ function mtAdvance(){
 function mtResult(){
   var n=_mt.correct, total=_mt.quiz.length, pct=Math.round(n/total*100);
   state.scores[_mt.day]=n; save();
+  track('minitest_finish',{day:_mt.day, correct:n, total:total});
   var msg=pct===100?'満点！':pct>=80?'よくできました。':pct>=60?'あと少し。解説を読み返しましょう。':'復習タブで反復しましょう。';
   var root=$('mtRoot');
   root.innerHTML='<div class="mt-result"><div class="sc">'+n+' / '+total+'</div><div class="sub">'+pct+'％　'+msg+'</div>'+
@@ -6306,7 +6307,7 @@ function mtSaveGraderUrl(){
   if(v) localStorage.setItem('hsk4-grader-url', v); else localStorage.removeItem('hsk4-grader-url');
   if(msg){ msg.textContent='保存しました。'; msg.style.color='var(--good)'; }
 }
-function setDay(d){currentView='day';current=Math.max(1,Math.min(LESSONS.length,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
+function setDay(d){currentView='day';track('day_open',{day:Math.max(1,Math.min(LESSONS.length,d))});current=Math.max(1,Math.min(LESSONS.length,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
 function updateCompleteButtons(){
  const done=!!state.completed[current];
  // completeTab (nav-tab)
@@ -6323,7 +6324,9 @@ function updateCompleteButtons(){
 function toggleComplete(){
   var nowDone=!state.completed[current];
   var ungraded = nowDone && (state.scores[current]==null);
-  state.completed[current]=nowDone; save(); render();
+  state.completed[current]=nowDone; save();
+  track(nowDone?'day_complete':'day_uncomplete',{day:current, graded:state.scores[current]!=null});
+  render();
   if(nowDone){ var bc=$('bottomComplete'); if(bc) bc.classList.add('hsk-checkpulse'); var ct=$('completeTab'); if(ct) ct.classList.add('hsk-checkpulse'); }
   if(ungraded) _toast('完了しました。ミニテストはまだ未採点です。解いておくと「復習」での定着が高まります。');
 }
@@ -6387,7 +6390,16 @@ document.getElementById('bookmarkViewBtn').addEventListener('click', showBookmar
 // This is necessary because this file uses <script type="module"> for Firebase imports.
 // 画面遷移はすべてこの1本を通す。currentView を書き換えて再描画するだけなので、
 // 遷移先が増えてもフラグの消し忘れが起きない。
-function goView(v){ currentView=v; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function goView(v){
+  // 復習の途中で他の画面へ移ったら、そこがセッションの終わりなので記録する
+  if(currentView==='review' && v!=='review' && _rev) trackSrsEnd('leave');
+  currentView=v; render(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function trackSrsEnd(how){
+  if(!_rev) return;
+  track('srs_end',{ reviewed:_rev.reviewed, again:_rev.again, hard:_rev.hard,
+                    good:_rev.good, easy:_rev.easy, how:how||'button' });
+}
 function showDay(d){ currentView='day'; setDay(Number(d)); }
 function showBookmarks(){ goView('bookmark'); }
 function showToday(){ goView('today'); }
@@ -6536,6 +6548,7 @@ function revStart(scope){
   var pool=srsBuildDue(nl, state.revScope);
   if(!pool.length){ _rev=null; renderTestScreen(); window.scrollTo({top:0,behavior:'smooth'}); return; }
   _rev={queue:pool, idx:0, revealed:false, again:0, hard:0, good:0, easy:0, reviewed:0};
+  track('srs_start',{n:pool.length, scope:state.revScope, dir:state.srsDir});
   renderTestScreen(); window.scrollTo({top:0,behavior:'smooth'});
 }
 function revReveal(){ if(_rev){ _rev.revealed=true; renderTestScreen(); } }
@@ -6549,7 +6562,7 @@ function revGrade(q){
   _rev.idx++; _rev.revealed=false;
   renderTestScreen();
 }
-function revEnd(){ _rev=null; renderTestScreen(); window.scrollTo({top:0,behavior:'smooth'}); }
+function revEnd(){ trackSrsEnd('button'); _rev=null; renderTestScreen(); window.scrollTo({top:0,behavior:'smooth'}); }
 function _revRender(c){
   while(_rev.idx<_rev.queue.length && !srsCard(_rev.queue[_rev.idx])) _rev.idx++;
   if(_rev.idx<_rev.queue.length){
@@ -6916,6 +6929,46 @@ function mockResultHtml(){
   return h+'</div>';
 }
 
+// ===== 計測の確認・書き出し =====
+// 利用者が少ないうちは「Day7到達率」のような割合に意味が無い（分母が小さすぎる）。
+// なので率は出さず、実数と生ログだけを見せる。判断材料になるのは人数が増えてから。
+function trackSummary(){
+  var log=trackRead(), sum={ events:log.length, days:{}, opens:0, completes:0, srs:0, mocks:0, first:null, last:null };
+  log.forEach(function(ev){
+    if(!sum.first || ev.t<sum.first) sum.first=ev.t;
+    if(!sum.last || ev.t>sum.last) sum.last=ev.t;
+    var p=ev.p||{};
+    if(ev.e==='day_open'){ sum.opens++; if(p.day) sum.days[p.day]=true; }
+    else if(ev.e==='day_complete') sum.completes++;
+    else if(ev.e==='srs_start') sum.srs++;
+    else if(ev.e==='mock_finish') sum.mocks++;
+  });
+  sum.uniqueDays=Object.keys(sum.days).length;
+  return sum;
+}
+function trackCopy(){
+  var txt=JSON.stringify(trackRead());
+  var done=function(){ _toast('計測ログをコピーしました（'+trackRead().length+'件）'); };
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done, function(){ trackFallbackCopy(txt, done); }); }
+  else trackFallbackCopy(txt, done);
+}
+function trackFallbackCopy(txt, done){
+  try{
+    var ta=document.createElement('textarea'); ta.value=txt;
+    ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy'); document.body.removeChild(ta); done();
+  }catch(e){ _toast('コピーできませんでした'); }
+}
+function trackClear(){
+  try{ localStorage.removeItem(TRACK_KEY); }catch(e){}
+  _toast('計測ログを消しました'); renderSettings();
+}
+function setTrackSink(v){
+  try{ localStorage.setItem('hsk4-sink-url', String(v||'').trim()); }catch(e){}
+  _toast(String(v||'').trim() ? '送信先を設定しました' : '送信先を解除しました（端末内にのみ記録）');
+  renderSettings();
+}
+
 // 設定パネルの表示切替。#settingsPanel は同期バーの ID を保つため常時 DOM に残す。
 function setSettingsPanel(on){
   var p=$('settingsPanel'); if(!p) return;
@@ -6958,6 +7011,23 @@ function renderSettings(){
   h+='<div class="set-label">レベル診断</div>'
    + '<div class="small muted" style="margin-bottom:8px">HSK3〜6級の問題からいまの級を判定します。学習を始める前に一度どうぞ。</div>'
    + '<button style="width:100%" onclick="showLevelCheck()">級診断を受ける</button>';
+
+  var ts=trackSummary();
+  h+='<div class="set-label">計測</div>'
+   + '<div class="small muted" style="margin-bottom:8px">操作の記録です。送信先が空のあいだは<b>この端末の中だけ</b>に貯まります（最大'+TRACK_MAX+'件）。'
+   + '過去には遡れないので、人が増える前から取り続けることに意味があります。</div>'
+   + '<div class="lc-bands" style="margin:0 0 10px">'
+   +   '<div class="lc-band"><span class="badge">記録</span><span class="lcsc">'+ts.events+'件</span></div>'
+   +   '<div class="lc-band"><span class="badge">開いたDay</span><span class="lcsc">'+ts.uniqueDays+'日</span></div>'
+   +   '<div class="lc-band"><span class="badge">完了</span><span class="lcsc">'+ts.completes+'回</span></div>'
+   +   '<div class="lc-band"><span class="badge">復習</span><span class="lcsc">'+ts.srs+'回</span></div>'
+   +   '<div class="lc-band"><span class="badge">模試</span><span class="lcsc">'+ts.mocks+'回</span></div>'
+   + '</div>'
+   + '<div class="set-row"><button style="flex:1" onclick="trackCopy()">ログをコピー</button>'
+   +   '<button style="flex:1" onclick="trackClear()">消す</button></div>'
+   + '<div class="small muted" style="margin:10px 0 6px">送信先URL（POSTで1件ずつ送ります）</div>'
+   + '<input id="sinkUrlInput" type="text" value="'+esc(trackSinkUrl())+'" placeholder="空欄＝端末内のみ" spellcheck="false" style="width:100%;border:var(--bw) solid var(--stroke);border-radius:12px;padding:11px 13px;font:inherit;background:#fff">'
+   + '<button style="width:100%;margin-top:8px" onclick="setTrackSink(document.getElementById(\'sinkUrlInput\').value)">保存</button>';
 
   h+='<div class="set-label">作文の採点サーバー</div>'
    + '<div class="small muted" style="margin-bottom:8px">ミニテストの作文をAI採点するサーバーのURLです。端末ごとに保存され、クラウド同期はされません。</div>'
@@ -7215,6 +7285,9 @@ window.mockStarWeak = mockStarWeak;
 window.mockExit = mockExit;
 window.showMock = showMock;
 window.setExamDate = setExamDate;
+window.trackCopy = trackCopy;
+window.trackClear = trackClear;
+window.setTrackSink = setTrackSink;
 window.showToday = showToday;
 window.showSettings = showSettings;
 window.showLevelCheck = showLevelCheck;
