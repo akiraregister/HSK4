@@ -6202,7 +6202,7 @@ function render(){
   </div>
   <div class="card">
    <div class="section-title"><h2>${esc(l.title)}</h2><span class="badge">${state.completed[l.day]?'完了済み':'未完了'}</span></div>
-   <div class="small">今日の内容：単語${l.vocab.length}個${l.grammar.length?`・文法${l.grammar.length}つ`:''}${LISTENING[l.day]?'・聴解1問':''}・ミニテスト5問</div>
+   <div class="small">今日の内容：単語${l.vocab.length}個${l.grammar.length?`・文法${l.grammar.length}つ`:''}${LISTENING[l.day]?'・リスニング1問':''}・ミニテスト5問</div>
    ${state.scores[l.day]!=null?`<div class="scorebox">前回のミニテスト：<b>${state.scores[l.day]} / 5</b></div>`:''}
   </div>
   <div class="card">
@@ -6229,7 +6229,7 @@ function render(){
     </div>`).join('')}
   </div>`:''}
   ${LISTENING[l.day]?`<div class="card" id="lsCard">
-   <div class="section-title"><h2>聴解</h2><span class="badge">1問</span></div>
+   <div class="section-title"><h2>リスニング</h2><span class="badge">1問</span></div>
    <div id="lsRoot"></div>
   </div>`:''}
   <div class="card" id="testCard">
