@@ -5841,7 +5841,7 @@ function mtPick(day){
   }
   var five=[pick(meaning), pick(usage), pick(grammar), pick(grammar)];
   if(Math.random()<0.5){ five.push(Object.assign({__t:'drag'}, b.drag)); }
-  else { var w=mtRand(b.writing); five.push(Object.assign({__t:'writing', vocab:b.vocab, grammar:b.grammar}, w)); }
+  else { var wi=Math.floor(Math.random()*b.writing.length); var w=b.writing[wi]; five.push(Object.assign({__t:'writing', idx:wi, vocab:b.vocab, grammar:b.grammar}, w)); }
   return five.map(function(q){ if(q.opts){ var c=Object.assign({},q); c.opts=mtShuffle(q.opts); return c; } return q; });
 }
 function mtInit(day){
@@ -5915,7 +5915,7 @@ function mtGradeDrag(q,made){
 }
 function mtWriting(q){
   var h='<span class="mt-qtype">作文（AI採点）</span><div class="mt-q">次の日本語を中国語で書いてください：\n「'+mtEsc(q.prompt)+'」</div>';
-  h+='<textarea class="mt-ta" id="mtTa" placeholder="ここに中文を入力" spellcheck="false"></textarea>';
+  h+='<textarea class="mt-ta" id="mtTa" maxlength="200" placeholder="ここに中文を入力" spellcheck="false"></textarea>';
   h+='<button class="mt-btn" id="mtGrade">採点してもらう</button><div id="mtExp"></div><div id="mtNx"></div>';
   return h;
 }
@@ -5923,9 +5923,11 @@ function mtBindWriting(q){ $('mtGrade').onclick=function(){ mtGradeWriting(q); }
 function mtGradeWriting(q){
   if(_mt.answered) return;
   var ta=$('mtTa'); var userZh=(ta.value||'').trim(); if(!userZh){ ta.focus(); return; }
+  if(userZh.length>200){ ta.focus(); return; }
   var gb=$('mtGrade'); gb.setAttribute('disabled',''); gb.innerHTML='<span class="mt-spin"></span> 採点中…';
+  // 出題文・模範解答は送らない。採点サーバー側が day/idx から自分のデータを引く。
   fetch(mtGraderUrl(),{ method:'POST', headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({ prompt_ja:q.prompt, answer_zh:q.answer, user_zh:userZh, vocab:q.vocab, grammar:q.grammar }) })
+    body:JSON.stringify({ day:_mt.day, idx:q.idx, user_zh:userZh }) })
   .then(function(r){ return r.json(); })
   .then(function(data){
     if(data.error) throw new Error(data.error);

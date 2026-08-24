@@ -1,0 +1,12 @@
+name = "hsk4-grader"
+main = "src/index.js"
+compatibility_date = "2026-08-24"
+
+# APIキーは secret として置く（このファイルには書かない）。
+#   npx wrangler secret put ANTHROPIC_API_KEY
+
+# 回数制限を使うときだけ、下の2行のコメントを外して id を入れる。
+# 繋がなければ制限なしで動く。手順は README.md を参照。
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT"
+# id = "ここにKV名前空間のIDを貼る"

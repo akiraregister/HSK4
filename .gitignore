@@ -1,2 +1,3 @@
 node_modules/
 tests/__shots/
+worker/.wrangler/
