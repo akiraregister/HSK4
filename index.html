@@ -7101,10 +7101,11 @@ function mockQuestionHtml(){
   h+='<div class="mt-prog"><i style="width:'+Math.round(done/n*100)+'%"></i></div>';
   h+='<span class="mt-qtype">'+esc(q.tag)+'</span>';
   if(q.kind==='mc'){
-    h+='<div class="mt-q">'+q.q+'</div><div class="mt-opts">';
+    var _zh=mtOptsZh(q);
+    h+='<div class="mt-q">'+mtBlank(mtRich(q.q))+'</div><div class="mt-opts">';
     q.opts.forEach(function(o,i){
       var sel=(_mock.answers[_mock.i]===i);
-      h+='<button class="mt-opt'+(sel?' correct':'')+'" onclick="mockPick('+i+')">'+esc(o.t)+'</button>';
+      h+='<button class="mt-opt'+(sel?' correct':'')+'" onclick="mockPick('+i+')"><span>'+mtOptLabel(o.t,_zh)+'</span></button>';
     });
     h+='</div>';
   } else {
