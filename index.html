@@ -228,6 +228,27 @@ body.fs-lg .vrow-zh{font-size:23px}body.fs-lg .vrow-py{font-size:15px}body.fs-lg
 .mt-ta{width:100%;min-height:84px;border:1.5px solid var(--line);border-radius:12px;padding:12px;font-size:18px;font-family:var(--zh-font);margin-bottom:10px}
 .mt-verdict{display:inline-block;border-radius:8px;padding:4px 10px;font-weight:800;font-size:13px;margin-bottom:6px}.v-correct{background:#EAF5EF;color:var(--good)}.v-acceptable{background:#FBF4E8;color:#94621C}.v-incorrect{background:#FBE9E5;color:var(--bad)}
 .mt-result{text-align:center;padding:10px 6px}.mt-result .sc{font-size:40px;font-weight:800;color:var(--blue,var(--ink))}.mt-result .sub{color:var(--muted);margin:6px 0 16px}
+.ls-play{width:100%;border:none;border-radius:12px;padding:14px;font-size:15.5px;font-weight:700;cursor:pointer;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px}
+.ls-play[disabled]{background:var(--gray);color:var(--muted);cursor:default}
+.ls-wave{display:flex;align-items:center;justify-content:center;gap:5px;height:40px;margin:16px 0 10px}
+.ls-wave i{display:block;width:6px;border-radius:3px;background:var(--ink);transform-origin:center;animation:ls-bar 1.1s ease-in-out infinite}
+.ls-wave i:nth-child(1){animation-delay:0s;height:16px}.ls-wave i:nth-child(2){animation-delay:.12s;height:30px}.ls-wave i:nth-child(3){animation-delay:.24s;height:40px}.ls-wave i:nth-child(4){animation-delay:.36s;height:22px}.ls-wave i:nth-child(5){animation-delay:.48s;height:34px}.ls-wave i:nth-child(6){animation-delay:.6s;height:18px}
+@keyframes ls-bar{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
+.ls-prog{height:6px;background:var(--gray);border-radius:999px;overflow:hidden;margin:2px 0 6px}.ls-prog>i{display:block;height:100%;width:0%;background:var(--ink)}
+.ls-hint{text-align:center;font-size:12px;color:var(--muted);margin-top:4px}
+.ls-q{font-size:16px;line-height:1.75;font-weight:600;margin:14px 0 16px;text-align:center}
+.ls-tf{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ls-tf button{border:1.5px solid var(--stroke);background:#fff;border-radius:16px;padding:18px 10px;font-size:24px;font-weight:900;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px}
+.ls-tf button span.t{font-size:12.5px;font-weight:700}
+.ls-tf .ok{color:var(--good)}.ls-tf .ng{color:var(--bad)}
+.ls-opts{display:flex;flex-direction:column;gap:10px}
+.ls-verdict{display:inline-block;border-radius:8px;padding:5px 12px;font-weight:800;font-size:13.5px;margin-bottom:14px}
+.ls-transcript{border:1.5px solid var(--stroke);border-radius:16px;padding:14px 16px;background:#fff}
+.ls-tline{display:flex;gap:10px;margin-bottom:12px}.ls-tline:last-child{margin-bottom:0}
+.ls-spk{flex:none;width:26px;height:26px;border-radius:999px;background:var(--gray);color:#5C5249;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900}
+.ls-tline .zh{font-size:16.5px;font-weight:700;font-family:var(--zh-font)}
+.ls-tline .py{font-size:13px;color:#5C5249;margin-top:2px}
+.ls-tline .ja{font-size:13px;color:#463F37;margin-top:2px}
 .mt-built{min-height:46px;border:1.5px dashed var(--line);border-radius:10px;padding:8px;font-size:17px;margin-bottom:8px;font-family:var(--zh-font);display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .mt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 10px}.mt-chip{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:9px 12px;font-size:16px;cursor:pointer;font-family:var(--zh-font)}.mt-chip[disabled]{opacity:.4;cursor:default}
 .mt-spin{display:inline-block;width:14px;height:14px;border:2px solid #DCD3C6;border-top-color:var(--ink);border-radius:50%;animation:mtsp .8s linear infinite;vertical-align:-2px}@keyframes mtsp{to{transform:rotate(360deg)}}
@@ -5511,6 +5532,401 @@ const BANK = {
   }
 };
 
+/* ===== Day別 聴解（新機能）。LISTENINGが有るDayだけカードを出す。SRS復習・模擬試験には出さない ===== */
+const LISTENING = {
+ "1": {
+  "audio": "audio/day1.mp3",
+  "type": "tf",
+  "narrator": [
+   {
+    "zh": "我在一家日本公司工作，同事大部分是中国人。",
+    "pinyin": "Wǒ zài yì jiā Rìběn gōngsī gōngzuò, tóngshì dàbùfen shì Zhōngguórén.",
+    "ja": "私は日系企業で働いていて、同僚のほとんどは中国人です。"
+   },
+   {
+    "zh": "一开始我的中文水平不太高，跟他们聊天很复杂，也不知道怎么表达自己的想法。",
+    "pinyin": "Yì kāishǐ wǒ de Zhōngwén shuǐpíng bú tài gāo, gēn tāmen liáotiān hěn fùzá, yě bù zhīdào zěnme biǎodá zìjǐ de xiǎngfǎ.",
+    "ja": "最初は中国語のレベルがあまり高くなく、彼らとの会話は複雑で、自分の考えをどう表現すればいいかも分かりませんでした。"
+   },
+   {
+    "zh": "后来我每天都练习说中文，慢慢提高了水平。",
+    "pinyin": "Hòulái wǒ měitiān dōu liànxí shuō Zhōngwén, mànman tígāo le shuǐpíng.",
+    "ja": "その後毎日中国語を話す練習をして、少しずつレベルが上がりました。"
+   },
+   {
+    "zh": "现在跟同事聊天方便多了。",
+    "pinyin": "Xiànzài gēn tóngshì liáotiān fāngbiàn duō le.",
+    "ja": "今では同僚とのおしゃべりがずいぶん楽になりました。"
+   }
+  ],
+  "judge": {
+   "zh": "他现在跟中国同事聊天已经很方便了。",
+   "pinyin": "Tā xiànzài gēn Zhōngguó tóngshì liáotiān yǐjīng hěn fāngbiàn le.",
+   "ja": "（言い換え）彼は今、中国人の同僚とのおしゃべりがもう楽になっている。"
+  },
+  "answer": true,
+  "explain": "最後の一文「现在跟同事聊天方便多了」がそのまま言い換えられています。「了」は状況の変化（大変だった→楽になった）を表しています。"
+ },
+ "2": {
+  "audio": "audio/day2.mp3",
+  "type": "mc",
+  "lines": [
+   {
+    "spk": "M",
+    "zh": "喂，你还在开会吗？我打了好几次电话都没打通。",
+    "pinyin": "Wéi, nǐ hái zài kāihuì ma? Wǒ dǎ le hǎo jǐ cì diànhuà dōu méi dǎtōng.",
+    "ja": "もしもし、まだ会議中？何回も電話したけどつながらなかったよ。"
+   },
+   {
+    "spk": "F",
+    "zh": "不好意思，我一直在开着会，没听到手机响。有什么事吗？",
+    "pinyin": "Bù hǎoyìsi, wǒ yìzhí zài kāizhe huì, méi tīngdào shǒujī xiǎng. Yǒu shénme shì ma?",
+    "ja": "ごめん、ずっと会議中で、携帯の音に気づかなかった。何かあった？"
+   },
+   {
+    "spk": "M",
+    "zh": "客户想问，今天的方案能不能继续讨论，还是改到明天？",
+    "pinyin": "Kèhù xiǎng wèn, jīntiān de fāng'àn néng bu néng jìxù tǎolùn, háishi gǎi dào míngtiān?",
+    "ja": "お客さんが、今日のプランを続けて話し合えるか、それとも明日に変えるか聞きたいって。"
+   },
+   {
+    "spk": "F",
+    "zh": "我这边还没准备好，只好改到明天了。麻烦你及时联系客户一下。",
+    "pinyin": "Wǒ zhè biān hái méi zhǔnbèi hǎo, zhǐhǎo gǎi dào míngtiān le. Máfan nǐ jíshí liánxì kèhù yíxià.",
+    "ja": "こっちはまだ準備できてないから、仕方なく明日に変えるしかない。悪いけどすぐお客さんに連絡してもらえる？"
+   }
+  ],
+  "q": {
+   "zh": "女的为什么要把讨论改到明天？",
+   "pinyin": "Nǚ de wèishénme yào bǎ tǎolùn gǎi dào míngtiān?",
+   "ja": "（質問）女性はなぜ話し合いを明日に変えるのですか？"
+  },
+  "opts": [
+   "因为客户不想继续讨论",
+   "因为她还没准备好",
+   "因为电话一直打不通",
+   "因为方案已经讨论过了"
+  ],
+  "answerIdx": 1,
+  "explain": "女性は「我这边还没准备好，只好改到明天了」と言っています。電話がつながらなかったのは男性が気づいた経緯であって、変更の理由ではありません。"
+ },
+ "3": {
+  "audio": "audio/day3.mp3",
+  "type": "mc",
+  "lines": [
+   {
+    "spk": "F",
+    "zh": "明天出差的行程你安排好了吗？",
+    "pinyin": "Míngtiān chūchāi de xíngchéng nǐ ānpái hǎo le ma?",
+    "ja": "明日の出張の日程、もう手配できた？"
+   },
+   {
+    "spk": "M",
+    "zh": "安排好了，不过我还没习惯这么早起床，有点担心睡过头。",
+    "pinyin": "Ānpái hǎo le, búguò wǒ hái méi xíguàn zhème zǎo qǐchuáng, yǒudiǎn dānxīn shuìguòtóu.",
+    "ja": "手配はできたよ、でもこんなに早起きするのにまだ慣れてなくて、寝坊しないか少し心配なんだ。"
+   },
+   {
+    "spk": "F",
+    "zh": "那我提醒你一下，别忘了把机票和证件准备好，免得影响出发时间。",
+    "pinyin": "Nà wǒ tíxǐng nǐ yíxià, bié wàng le bǎ jīpiào hé zhèngjiàn zhǔnbèi hǎo, miǎnde yǐngxiǎng chūfā shíjiān.",
+    "ja": "じゃあ念のため言っておくけど、航空券と証明書の準備を忘れないでね、出発時間に影響しないように。"
+   },
+   {
+    "spk": "M",
+    "zh": "好，我现在就把这些事情解决完，谢谢提醒。",
+    "pinyin": "Hǎo, wǒ xiànzài jiù bǎ zhèxiē shìqing jiějué wán, xièxie tíxǐng.",
+    "ja": "うん、今すぐ全部片付けておくよ、教えてくれてありがとう。"
+   }
+  ],
+  "q": {
+   "zh": "男的现在担心什么？",
+   "pinyin": "Nán de xiànzài dānxīn shénme?",
+   "ja": "（質問）男性は今、何を心配していますか？"
+  },
+  "opts": [
+   "他担心机票丢了",
+   "他担心自己睡过头",
+   "他担心行程没安排好",
+   "他担心证件影响出发"
+  ],
+  "answerIdx": 1,
+  "explain": "男性は「还没习惯这么早起床，有点担心睡过头」と言っています。行程はすでに「安排好了」なので、それ自体への心配ではありません。"
+ },
+ "4": {
+  "audio": "audio/day4.mp3",
+  "type": "tf",
+  "narrator": [
+   {
+    "zh": "昨天下午系统突然发生了问题，很多客户查不到订单。",
+    "pinyin": "Zuótiān xiàwǔ xìtǒng tūrán fāshēng le wèntí, hěn duō kèhù chá bu dào dìngdān.",
+    "ja": "昨日の午後、システムに突然問題が発生し、多くの客が注文を確認できなくなりました。"
+   },
+   {
+    "zh": "我赶紧叫同事一起讨论，怎么才能尽快把问题处理好。",
+    "pinyin": "Wǒ gǎnjǐn jiào tóngshì yìqǐ tǎolùn, zěnme cái néng jǐnkuài bǎ wèntí chǔlǐ hǎo.",
+    "ja": "私はすぐに同僚を呼んで、どうすれば早く問題を対応できるか一緒に話し合いました。"
+   },
+   {
+    "zh": "我们讨论了半个小时，终于把问题处理好了，客户也都能查到订单的结果了。",
+    "pinyin": "Wǒmen tǎolùn le bàn ge xiǎoshí, zhōngyú bǎ wèntí chǔlǐ hǎo le, kèhù yě dōu néng chádào dìngdān de jiéguǒ le.",
+    "ja": "30分話し合って、ついに問題を対応し終え、客も注文の結果を確認できるようになりました。"
+   }
+  ],
+  "judge": {
+   "zh": "他们最后没有处理好这个问题。",
+   "pinyin": "Tāmen zuìhòu méiyǒu chǔlǐ hǎo zhège wèntí.",
+   "ja": "（言い換え）彼らは結局この問題をうまく処理できなかった。"
+  },
+  "answer": false,
+  "explain": "話では「终于把问题处理好了」と最後に解決したと言っています。「没有处理好」は内容と逆なので、この言い換えは誤りです。"
+ },
+ "5": {
+  "audio": "audio/day5.mp3",
+  "type": "mc",
+  "lines": [
+   {
+    "spk": "M",
+    "zh": "你办签证的手续顺利吗？",
+    "pinyin": "Nǐ bàn qiānzhèng de shǒuxù shùnlì ma?",
+    "ja": "ビザの手続きは順調？"
+   },
+   {
+    "spk": "F",
+    "zh": "几乎办完了，就是有点麻烦，材料要拿进去、拿出来好几次。",
+    "pinyin": "Jīhū bàn wán le, jiùshì yǒudiǎn máfan, cáiliào yào ná jìnqù, ná chūlái hǎo jǐ cì.",
+    "ja": "ほとんど終わったけど、ちょっと面倒で、書類を何回も持って入ったり出したりしたよ。"
+   },
+   {
+    "spk": "M",
+    "zh": "是吗，那你现在中文说得怎么样了？",
+    "pinyin": "Shì ma, nà nǐ xiànzài Zhōngwén shuō de zěnmeyàng le?",
+    "ja": "そうなんだ、じゃあ今の中国語の話し方はどう？"
+   },
+   {
+    "spk": "F",
+    "zh": "说得比较流利、也比较自然了，都是这几个月天天练习的结果。",
+    "pinyin": "Shuō de bǐjiào liúlì, yě bǐjiào zìrán le, dōu shì zhè jǐ ge yuè tiāntiān liànxí de jiéguǒ.",
+    "ja": "わりと流暢で自然に話せるようになったよ、ここ数ヶ月毎日練習した結果だね。"
+   }
+  ],
+  "q": {
+   "zh": "女的签证手续办得怎么样了？",
+   "pinyin": "Nǚ de qiānzhèng shǒuxù bàn de zěnmeyàng le?",
+   "ja": "（質問）女性のビザの手続きはどうなっていますか？"
+  },
+  "opts": [
+   "已经办完了，非常顺利",
+   "几乎办完了，但是有点麻烦",
+   "还没开始办",
+   "因为材料不够，没办成"
+  ],
+  "answerIdx": 1,
+  "explain": "女性は「几乎办完了，就是有点麻烦」と言っています。完全に終わったわけでも、順調とだけ言ったわけでもありません。"
+ },
+ "6": {
+  "audio": "audio/day6.mp3",
+  "type": "mc",
+  "lines": [
+   {
+    "spk": "F",
+    "zh": "这次出差你负责订机票，顺利吗？",
+    "pinyin": "Zhè cì chūchāi nǐ fùzé dìng jīpiào, shùnlì ma?",
+    "ja": "今回の出張、あなたが航空券の予約担当だったけど、順調だった？"
+   },
+   {
+    "spk": "M",
+    "zh": "有点难买，不过还是买得到的，而且是准时的航班。不过说明书上的中文，我看不太懂，你能帮我看看吗？",
+    "pinyin": "Yǒudiǎn nán mǎi, búguò háishi mǎi de dào de, érqiě shì zhǔnshí de hángbān. Búguò shuōmíngshū shàng de Zhōngwén, wǒ kàn bú tài dǒng, nǐ néng bāng wǒ kànkan ma?",
+    "ja": "ちょっと取りにくかったけど、なんとか買えたよ、時間通りの便だし。でも説明書の中国語がよく分からなくて、ちょっと見てもらえる？"
+   },
+   {
+    "spk": "F",
+    "zh": "没问题，这个中文说明书比英文的简单多了，我看得懂。",
+    "pinyin": "Méi wèntí, zhège Zhōngwén shuōmíngshū bǐ Yīngwén de jiǎndān duō le, wǒ kàn de dǒng.",
+    "ja": "問題ないよ、この中国語の説明書は英語のよりずっと簡単だから、私は分かるよ。"
+   },
+   {
+    "spk": "M",
+    "zh": "太好了，那这件事就同意交给你了，安全第一，别弄错时间。",
+    "pinyin": "Tài hǎo le, nà zhè jiàn shì jiù tóngyì jiāo gěi nǐ le, ānquán dì yī, bié nòngcuò shíjiān.",
+    "ja": "よかった、じゃあこの件はあなたに任せることにするよ、安全第一で、時間を間違えないでね。"
+   }
+  ],
+  "q": {
+   "zh": "女的希望男的帮她做什么？",
+   "pinyin": "Nǚ de xīwàng nán de bāng tā zuò shénme?",
+   "ja": "（質問）男性は女性に何を手伝ってほしいと言われましたか？"
+  },
+  "opts": [
+   "帮她订机票",
+   "帮她看懂中文说明书",
+   "帮她买说明书",
+   "帮她准时出发"
+  ],
+  "answerIdx": 1,
+  "explain": "男性が「说明书上的中文，我看不太懂，你能帮我看看吗」と頼んでいます。機票はすでに男性が自分で「买得到」しています。"
+ },
+ "7": {
+  "audio": "audio/day7.mp3",
+  "type": "tf",
+  "narrator": [
+   {
+    "zh": "客户本来想把会议时间提前，但是我们的准备工作没有那么快就能做完，只好跟客户解释情况。",
+    "pinyin": "Kèhù běnlái xiǎng bǎ huìyì shíjiān tíqián, dànshì wǒmen de zhǔnbèi gōngzuò méiyǒu nàme kuài jiù néng zuò wán, zhǐhǎo gēn kèhù jiěshì qíngkuàng.",
+    "ja": "客は本来会議の時間を前倒ししたがっていましたが、私たちの準備がそれほど早くは終わらないので、仕方なく客に事情を説明しました。"
+   },
+   {
+    "zh": "客户一开始有点不同意，但是听了我们的解释以后，同意把会议往后推迟一天。",
+    "pinyin": "Kèhù yì kāishǐ yǒudiǎn bù tóngyì, dànshì tīng le wǒmen de jiěshì yǐhòu, tóngyì bǎ huìyì wǎng hòu tuīchí yì tiān.",
+    "ja": "客は最初少し納得していませんでしたが、私たちの説明を聞いた後、会議を1日後ろに延期することに同意しました。"
+   }
+  ],
+  "judge": {
+   "zh": "客户同意把会议提前了。",
+   "pinyin": "Kèhù tóngyì bǎ huìyì tíqián le.",
+   "ja": "（言い換え）客は会議を前倒しすることに同意した。"
+  },
+  "answer": false,
+  "explain": "実際は逆で「推迟一天（1日延期）」に同意しています。「提前」と「推迟」は今日の重要な対義語ペアです。"
+ },
+ "8": {
+  "audio": "audio/day8.mp3",
+  "type": "mc",
+  "lines": [
+   {
+    "spk": "F",
+    "zh": "你在整理什么呢？",
+    "pinyin": "Nǐ zài zhěnglǐ shénme ne?",
+    "ja": "何を整理しているの？"
+   },
+   {
+    "spk": "M",
+    "zh": "我在准备下周的计划，一边检查资料一边整理笔记。",
+    "pinyin": "Wǒ zài zhǔnbèi xiàzhōu de jìhuà, yìbiān jiǎnchá zīliào yìbiān zhěnglǐ bǐjì.",
+    "ja": "来週の計画を準備していて、資料をチェックしながらノートを整理してるんだ。"
+   },
+   {
+    "spk": "F",
+    "zh": "因为时间比较紧，所以你打算怎么选择重点？",
+    "pinyin": "Yīnwèi shíjiān bǐjiào jǐn, suǒyǐ nǐ dǎsuàn zěnme xuǎnzé zhòngdiǎn?",
+    "ja": "時間が結構タイトだから、どうやって重点を選ぶつもり？"
+   },
+   {
+    "spk": "M",
+    "zh": "虽然时间不多，但是我打算先把最重要的部分检查完，剩下的以后再说。",
+    "pinyin": "Suīrán shíjiān bù duō, dànshì wǒ dǎsuàn xiān bǎ zuì zhòngyào de bùfen jiǎnchá wán, shèngxià de yǐhòu zài shuō.",
+    "ja": "時間は多くないけど、まず一番重要な部分をチェックし終えて、残りは後で考えるつもりだよ。"
+   }
+  ],
+  "q": {
+   "zh": "男的现在在做什么？",
+   "pinyin": "Nán de xiànzài zài zuò shénme?",
+   "ja": "（質問）男性は今、何をしていますか？"
+  },
+  "opts": [
+   "一边检查资料一边整理笔记",
+   "一边开会一边写计划",
+   "已经把所有资料都整理完了",
+   "决定不做这个计划了"
+  ],
+  "answerIdx": 0,
+  "explain": "冒頭で男性が「一边检查资料一边整理笔记」と説明しています。「一边〜一边〜」は同時に行う動作を表す構文です。"
+ },
+ "9": {
+  "audio": "audio/day9.mp3",
+  "type": "mc",
+  "lines": [
+   {
+    "spk": "M",
+    "zh": "最近工作比较忙，我都想放弃学中文了。",
+    "pinyin": "Zuìjìn gōngzuò bǐjiào máng, wǒ dōu xiǎng fàngqì xué Zhōngwén le.",
+    "ja": "最近仕事が結構忙しくて、中国語の勉強を諦めたいくらいだよ。"
+   },
+   {
+    "spk": "F",
+    "zh": "别放弃啊，只要你坚持每天学一点，就能看到进步。",
+    "pinyin": "Bié fàngqì a, zhǐyào nǐ jiānchí měitiān xué yìdiǎn, jiù néng kàndào jìnbù.",
+    "ja": "諦めないで、毎日少しずつ続けさえすれば、進歩が見えてくるよ。"
+   },
+   {
+    "spk": "M",
+    "zh": "可是如果太忙的话，我就没时间尝试新的学习方法了。",
+    "pinyin": "Kěshì rúguǒ tài máng dehuà, wǒ jiù méi shíjiān chángshì xīn de xuéxí fāngfǎ le.",
+    "ja": "でももし忙しすぎたら、新しい勉強法を試す時間がなくなっちゃうよ。"
+   },
+   {
+    "spk": "F",
+    "zh": "只有坚持下去，才能有比较好的效果，加油！",
+    "pinyin": "Zhǐyǒu jiānchí xiàqù, cái néng yǒu bǐjiào hǎo de xiàoguǒ, jiāyóu!",
+    "ja": "続けてこそ、まあまあの効果が出るんだよ、頑張って！"
+   }
+  ],
+  "q": {
+   "zh": "女的建议男的怎么做？",
+   "pinyin": "Nǚ de jiànyì nán de zěnme zuò?",
+   "ja": "（質問）女性は男性にどうするよう勧めていますか？"
+  },
+  "opts": [
+   "放弃学中文",
+   "坚持每天学习",
+   "换一个新的学习方法",
+   "先把工作辞掉"
+  ],
+  "answerIdx": 1,
+  "explain": "女性は繰り返し「坚持」を勧めています（只要坚持…／只有坚持下去…）。新しい方法を試す話は男性の発言で、女性の助言ではありません。"
+ },
+ "10": {
+  "audio": "audio/day10.mp3",
+  "type": "mc",
+  "lines": [
+   {
+    "spk": "M",
+    "zh": "关于这次的项目，我想提醒大家几点。",
+    "pinyin": "Guānyú zhè cì de xiàngmù, wǒ xiǎng tíxǐng dàjiā jǐ diǎn.",
+    "ja": "今回のプロジェクトについて、皆さんにいくつか注意してほしい点があります。"
+   },
+   {
+    "spk": "M",
+    "zh": "第一，做事情要根据客户的要求来安排计划，不能只按照自己的想法做。",
+    "pinyin": "Dì yī, zuò shìqing yào gēnjù kèhù de yāoqiú lái ānpái jìhuà, bù néng zhǐ ànzhào zìjǐ de xiǎngfǎ zuò.",
+    "ja": "第一に、物事は客の要求に基づいて計画を立てるべきで、自分の考えだけで進めてはいけません。"
+   },
+   {
+    "spk": "M",
+    "zh": "第二，不管遇到什么困难，都要先跟同事讨论，不要自己一个人解决。",
+    "pinyin": "Dì èr, bùguǎn yù dào shénme kùnnan, dōu yào xiān gēn tóngshì tǎolùn, búyào zìjǐ yí ge rén jiějué.",
+    "ja": "第二に、どんな困難にぶつかっても、まず同僚と話し合うべきで、自分一人で解決してはいけません。"
+   },
+   {
+    "spk": "M",
+    "zh": "第三，这个项目不但是一次工作，而且是大家积累经验的好机会。",
+    "pinyin": "Dì sān, zhège xiàngmù búdàn shì yí cì gōngzuò, érqiě shì dàjiā jīlěi jīngyàn de hǎo jīhuì.",
+    "ja": "第三に、このプロジェクトは単なる仕事であるだけでなく、皆にとって経験を積む良い機会でもあります。"
+   },
+   {
+    "spk": "M",
+    "zh": "除了完成任务以外，还要注意跟客户保持联系，及时解决问题。",
+    "pinyin": "Chúle wánchéng rènwu yǐwài, hái yào zhùyì gēn kèhù bǎochí liánxì, jíshí jiějué wèntí.",
+    "ja": "タスクを完了させること以外に、客との連絡を保ち、タイムリーに問題を解決することにも注意してください。"
+   }
+  ],
+  "q": {
+   "zh": "下面哪一点不是说话人的要求？",
+   "pinyin": "Xiàmiàn nǎ yì diǎn bú shì shuōhuàrén de yāoqiú?",
+   "ja": "（質問）次のうち、話し手の要求ではないものはどれですか？"
+  },
+  "opts": [
+   "根据客户的要求做计划",
+   "遇到困难要自己解决，不用讨论",
+   "把这次项目当作积累经验的机会",
+   "除了完成任务，还要及时解决问题、保持联系"
+  ],
+  "answerIdx": 1,
+  "explain": "話し手は「不管遇到什么困难，都要先跟同事讨论，不要自己一个人解决」と言っており、B はちょうどその逆の内容です。他の3つはすべて話し手が実際に述べた要求です。"
+ }
+};
+
 const $=id=>document.getElementById(id);
 let current=Number(localStorage.getItem('hsk4-current-day')||1);
 // 画面状態は単一の文字列で持つ。以前は homeView/bookmarkView/testView/vocabView/
@@ -5785,7 +6201,7 @@ function render(){
   </div>
   <div class="card">
    <div class="section-title"><h2>${esc(l.title)}</h2><span class="badge">${state.completed[l.day]?'完了済み':'未完了'}</span></div>
-   <div class="small">今日の内容：単語${l.vocab.length}個${l.grammar.length?`・文法${l.grammar.length}つ`:''}・ミニテスト5問</div>
+   <div class="small">今日の内容：単語${l.vocab.length}個${l.grammar.length?`・文法${l.grammar.length}つ`:''}${LISTENING[l.day]?'・聴解1問':''}・ミニテスト5問</div>
    ${state.scores[l.day]!=null?`<div class="scorebox">前回のミニテスト：<b>${state.scores[l.day]} / 5</b></div>`:''}
   </div>
   <div class="card">
@@ -5811,11 +6227,16 @@ function render(){
      <div class="ex"><span class="label">例文：</span><span class="cw-ex" data-ex="${esc(g.example)}" data-exp="${esc(g.exPinyin)}" data-exj="${esc(g.exJa)}">${esc(g.example)}</span> <button class="speak-btn" onclick="speakZh('${esc(g.example)}')" title="例文を聞く"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div><div class="pinyin expinyin">${esc(g.exPinyin)}</div><div class="ja exja">${esc(g.exJa)}</div>
     </div>`).join('')}
   </div>`:''}
+  ${LISTENING[l.day]?`<div class="card" id="lsCard">
+   <div class="section-title"><h2>聴解</h2><span class="badge">1問</span></div>
+   <div id="lsRoot"></div>
+  </div>`:''}
   <div class="card" id="testCard">
    <div class="section-title"><h2>今日のミニテスト</h2><span class="badge">5問</span></div>
    <div id="mtRoot"></div>
   </div>`;
  mtInit(l.day);
+ if(LISTENING[l.day]) lsInit(l.day);
  updateCompleteButtons();
 }
 /* ===== 新ミニテストエンジン（案P：1問ずつ・即時解説・AI作文採点） ===== */
@@ -5991,7 +6412,121 @@ function mtSaveGraderUrl(){
   if(v) localStorage.setItem('hsk4-grader-url', v); else localStorage.removeItem('hsk4-grader-url');
   if(msg){ msg.textContent='保存しました。'; msg.style.color='var(--good)'; }
 }
-function setDay(d){currentView='day';track('day_open',{day:Math.max(1,Math.min(LESSONS.length,d))});current=Math.max(1,Math.min(LESSONS.length,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
+/* ===== 聴解エンジン（LISTENINGが有るDayだけ表示。SRS復習・模擬試験には出さない） ===== */
+var _ls=null;
+function lsStopAudio(){ if(_ls && _ls.audio){ try{ _ls.audio.pause(); }catch(e){} } }
+function lsInit(day){
+  lsStopAudio();
+  _ls={day:day, entry:LISTENING[day], phase:'ready', audio:null};
+  lsRenderReady();
+}
+function lsRenderReady(){
+  var root=$('lsRoot'); if(!root) return;
+  root.innerHTML='<div class="small">会話を聞いて、内容について答えます。音声は<b>1回だけ</b>再生され、聞き終えるまで中国語の文字は表示されません。</div>'+
+    '<button class="ls-play" id="lsPlayBtn" type="button">'+
+    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"></circle><path d="M10 8.5l6 3.5-6 3.5z" fill="#fff" stroke="none"></path></svg>'+
+    '音声を再生する</button>';
+  $('lsPlayBtn').onclick=lsPlay;
+}
+function lsPlay(){
+  if(!_ls || _ls.phase!=='ready') return;
+  _ls.phase='playing';
+  track('listening_play',{day:_ls.day});
+  var root=$('lsRoot'); if(!root) return;
+  root.innerHTML='<div class="small">聞き終わるまで、文字は出ません。最後まで集中して聞きましょう。</div>'+
+    '<div class="ls-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>'+
+    '<div class="ls-prog"><i id="lsProgBar"></i></div>'+
+    '<button class="ls-play" disabled type="button">再生中…</button>'+
+    '<div class="ls-hint">音声はこの1回のみ。一時停止・巻き戻しはできません。</div>';
+  var audio=new Audio(_ls.entry.audio);
+  _ls.audio=audio;
+  audio.ontimeupdate=function(){
+    var bar=$('lsProgBar'); if(!bar || !audio.duration) return;
+    bar.style.width=Math.min(100, audio.currentTime/audio.duration*100)+'%';
+  };
+  audio.onended=function(){ lsQuestion(); };
+  audio.onerror=function(){ lsAudioError(); };
+  audio.play().catch(function(){ lsAudioError(); });
+}
+function lsAudioError(){
+  if(!_ls) return;
+  var root=$('lsRoot'); if(!root) return;
+  root.innerHTML='<div class="small" style="color:var(--bad)">音声の読み込みに失敗しました。通信状態を確認して、もう一度お試しください。</div>'+
+    '<button class="ls-play" id="lsRetryBtn" type="button">もう一度読み込む</button>';
+  $('lsRetryBtn').onclick=lsRenderReady;
+  _ls.phase='ready';
+}
+function lsQuestion(){
+  if(!_ls) return;
+  _ls.phase='question';
+  var e=_ls.entry, root=$('lsRoot'); if(!root) return;
+  if(e.type==='tf'){
+    root.innerHTML='<div class="small">短い話のあと、別の声が内容を1文で言い換えました。合っていれば○、違っていれば×を選んでください。</div>'+
+      '<div class="ls-q">聞いた内容と、いまの言い換えは<br>合っていますか？</div>'+
+      '<div class="ls-tf"><button id="lsTfOk" type="button"><span class="ok">○</span><span class="t">合っている</span></button>'+
+      '<button id="lsTfNg" type="button"><span class="ng">×</span><span class="t">違う</span></button></div>';
+    $('lsTfOk').onclick=function(){ lsAnswerTF(true); };
+    $('lsTfNg').onclick=function(){ lsAnswerTF(false); };
+  } else {
+    var optsHtml=e.opts.map(function(o,i){
+      var lab=String.fromCharCode(65+i);
+      return '<button class="mt-opt ls-opt" data-i="'+i+'" type="button"><span>'+lab+'. <z>'+mtEsc(o)+'</z></span></button>';
+    }).join('');
+    root.innerHTML='<div class="small">会話のあと、質問が読まれました。正しい答えを選んでください。</div>'+
+      '<div class="ls-q"><z>'+mtEsc(e.q.zh)+'</z></div>'+
+      '<div class="ls-opts">'+optsHtml+'</div>';
+    [].forEach.call(root.querySelectorAll('.ls-opt'), function(btn){
+      btn.onclick=function(){ lsAnswerMC(Number(btn.dataset.i)); };
+    });
+  }
+}
+function lsAnswerTF(choice){
+  if(!_ls || _ls.phase!=='question') return;
+  var e=_ls.entry, right=(choice===e.answer);
+  track('listening_answer',{day:_ls.day, correct:right});
+  var root=$('lsRoot');
+  if(root) [].forEach.call(root.querySelectorAll('.ls-tf button'), function(b){ b.setAttribute('disabled',''); });
+  lsReveal(right);
+}
+function lsAnswerMC(idx){
+  if(!_ls || _ls.phase!=='question') return;
+  var e=_ls.entry, right=(idx===e.answerIdx);
+  track('listening_answer',{day:_ls.day, correct:right});
+  var root=$('lsRoot');
+  if(root) [].forEach.call(root.querySelectorAll('.ls-opt'), function(b,i){
+    b.setAttribute('disabled','');
+    if(i===e.answerIdx) b.classList.add('correct');
+    else if(i===idx) b.classList.add('wrong');
+  });
+  lsReveal(right);
+}
+function lsReveal(right){
+  if(!_ls) return;
+  _ls.phase='answered';
+  var e=_ls.entry, root=$('lsRoot'); if(!root) return;
+  var items;
+  if(e.type==='tf'){
+    items = e.narrator.map(function(l){ return {spk:'話', l:l}; });
+    items.push({spk:'言', l:e.judge});
+  } else {
+    items = e.lines.map(function(l){ return {spk:(l.spk==='M'?'男':'女'), l:l}; });
+    items.push({spk:'問', l:e.q});
+  }
+  var transcriptHtml=items.map(function(it){
+    return '<div class="ls-tline"><div class="ls-spk">'+mtEsc(it.spk)+'</div><div class="body">'+
+      '<div class="zh"><z>'+mtEsc(it.l.zh)+'</z></div><div class="py">'+mtEsc(it.l.pinyin)+'</div><div class="ja">'+mtEsc(it.l.ja)+'</div>'+
+      '</div></div>';
+  }).join('');
+  var verdictStyle = right ? 'background:#EAF5EF;color:var(--good)' : 'background:#FBE9E5;color:var(--bad)';
+  var answerLine = e.type==='tf'
+    ? '正しい答え：<b>'+(e.answer?'○ 合っている':'× 違う')+'</b>'
+    : '正しい答え：<b><z>'+mtEsc(e.opts[e.answerIdx])+'</z></b>（'+String.fromCharCode(65+e.answerIdx)+'）';
+  root.innerHTML='<div class="ls-verdict" style="'+verdictStyle+'">'+(right?'正解 ✓':'不正解 ✗')+'</div>'+
+    '<div class="small" style="margin-bottom:14px">'+answerLine+'</div>'+
+    '<div class="ls-transcript">'+transcriptHtml+'</div>'+
+    '<div class="note"><span class="label">解説：</span>'+mtEsc(e.explain)+'</div>';
+}
+function setDay(d){lsStopAudio();currentView='day';track('day_open',{day:Math.max(1,Math.min(LESSONS.length,d))});current=Math.max(1,Math.min(LESSONS.length,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
 function updateCompleteButtons(){
  const done=!!state.completed[current];
  // completeTab (nav-tab)
@@ -6075,6 +6610,7 @@ document.getElementById('bookmarkViewBtn').addEventListener('click', showBookmar
 // 画面遷移はすべてこの1本を通す。currentView を書き換えて再描画するだけなので、
 // 遷移先が増えてもフラグの消し忘れが起きない。
 function goView(v){
+  lsStopAudio();
   // 復習の途中で他の画面へ移ったら、そこがセッションの終わりなので記録する
   if(currentView==='review' && v!=='review' && _rev) trackSrsEnd('leave');
   currentView=v; render(); window.scrollTo({top:0,behavior:'smooth'});
