@@ -93,7 +93,7 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 #bottomComplete.active{background:var(--sage);color:var(--ink);border-color:var(--stroke)}
 /* ②③ 学習画面内ツールバー（拼音/和訳トグル・密度・Day選択） */
 .daytools{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
-.modebar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;position:sticky;top:var(--top-h,64px);z-index:9;background:rgba(252,249,242,.95);backdrop-filter:blur(8px);padding:8px 0;border-radius:12px}
+.modebar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
 .chip-toggle{border:var(--bw) solid #CFC6B6;background:rgba(255,255,255,.8);color:var(--muted);border-radius:999px;padding:8px 15px;font-weight:900;font-size:13px;cursor:pointer;touch-action:manipulation}
 .chip-toggle.on{background:var(--stroke);border-color:var(--stroke);color:var(--bg)}
 .daybar{display:flex;gap:8px;align-items:center;margin-bottom:10px}
@@ -6524,7 +6524,29 @@ function lsReveal(right){
   root.innerHTML='<div class="ls-verdict" style="'+verdictStyle+'">'+(right?'正解 ✓':'不正解 ✗')+'</div>'+
     '<div class="small" style="margin-bottom:14px">'+answerLine+'</div>'+
     '<div class="ls-transcript">'+transcriptHtml+'</div>'+
-    '<div class="note"><span class="label">解説：</span>'+mtEsc(e.explain)+'</div>';
+    '<div class="note"><span class="label">解説：</span>'+mtEsc(e.explain)+'</div>'+
+    '<button class="mt-btn ghost" id="lsReplayBtn" type="button" style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px">'+lsReplayIcon()+'もう一度聞く（答え合わせ後は文字を見ながらでOK）</button>';
+  $('lsReplayBtn').onclick=lsReplay;
+}
+function lsReplayIcon(){
+  return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"></circle><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"></path></svg>';
+}
+function lsReplay(){
+  if(!_ls || _ls.phase!=='answered') return;
+  lsStopAudio();
+  var btn=$('lsReplayBtn'); if(!btn) return;
+  btn.setAttribute('disabled','');
+  btn.innerHTML='再生中…';
+  var audio=new Audio(_ls.entry.audio);
+  _ls.audio=audio;
+  var restore=function(){
+    var b=$('lsReplayBtn'); if(!b) return;
+    b.removeAttribute('disabled');
+    b.innerHTML=lsReplayIcon()+'もう一度聞く（答え合わせ後は文字を見ながらでOK）';
+  };
+  audio.onended=restore;
+  audio.onerror=restore;
+  audio.play().catch(restore);
 }
 function setDay(d){lsStopAudio();currentView='day';track('day_open',{day:Math.max(1,Math.min(LESSONS.length,d))});current=Math.max(1,Math.min(LESSONS.length,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
 function updateCompleteButtons(){
