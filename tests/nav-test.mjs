@@ -43,7 +43,7 @@ ok('全90日は折りたたみの中', !!(await page.$('details.day-list-details
 
 // --- 単語 ---
 await page.click('#vocabTab'); await page.waitForTimeout(250);
-ok('単語タブに遷移', (await view()) === 'vocabTab' && (await page.textContent('#content')).includes('全450語'));
+ok('単語タブに遷移', (await view()) === 'vocabTab' && (await page.textContent('#content')).includes('全498語'));
 
 // --- ブックマーク ---
 await page.click('#bookmarkViewBtn'); await page.waitForTimeout(250);
