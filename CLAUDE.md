@@ -16,6 +16,7 @@ HSK4級を90日で目指す、日本語話者向けの学習アプリ。GitHub P
 | `lp/og.png` | SNS共有用の画像。`lp/og-source.html` を1200×630で撮ったもの |
 | `sw.js` | Service Worker。**更新したら `CACHE_VERSION` を1つ上げる**（ファイル冒頭の規約） |
 | `tests/` | 実ブラウザで画面を操作するテスト。`tests/README.md` 参照 |
+| `worker/` | 作文のAI採点Worker（Cloudflare）。ソースはここが本体、`hsk4-grader.hsk4test.workers.dev` は配置先。作文の内容を変えたら `worker/README.md` の手順で作り直して配置し直すこと |
 
 ### index.html の中の地図
 
@@ -69,11 +70,9 @@ node tests/run.mjs        # 全103項目＋Service Workerチェック
 
 - **コンテンツがクライアントに全部ある** — `LESSONS`/`BANK` が `index.html` 内にあるため、
   クライアント側のpaywallは原理的に成立しない。有料化するなら最初に解く問題
-- **AI採点Workerが無認証** — `hsk4-grader.hsk4test.workers.dev` に誰でもPOSTできる
 - **Firestoreのルールが未確認** — entitlement を置く前に必ず見る
 - **法務3点セットが無い** — 利用規約・プライバシーポリシー・特商法表記
 - **听力（リスニング）の音源が無い** — 試験の約1/3。模試でも正直にそう書いている
-- ルート直下の `icon-192_1.png` `icon-512_2.png` 等は未参照（約60KB）
 
 ## 決まっていること
 
