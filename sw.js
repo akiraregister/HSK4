@@ -5,7 +5,7 @@
    ・Firebase / Google 系の通信は常にネット直結（キャッシュしない＝同期・ログインに影響なし）
    ※ アプリを更新したら下の CACHE_VERSION の数字を1つ上げてコミットしてください。 */
 
-const CACHE_VERSION = 'hsk4-cache-v14';
+const CACHE_VERSION = 'hsk4-cache-v15';
 const PRECACHE = [
   './',
   './index.html',
