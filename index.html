@@ -441,7 +441,7 @@ function setSyncStatus(kind, text, userText=''){
 function cloudDocRef(){ return cloudUser ? doc(db,'users',cloudUser.uid,'hsk4','state') : null; }
 function localUpdatedAt(){ const n=Number(localStorage.getItem(storageKey+'-updatedAtMs')||0); return Number.isFinite(n)?n:0; }
 function markLocalUpdated(){ localStorage.setItem(storageKey+'-updatedAtMs', String(nowMs())); }
-function normalizeStateForCloud(s){ return {completed:s.completed||{}, answers:s.answers||{}, scores:s.scores||{}, bookmarks:s.bookmarks||{}, dragOrders:s.dragOrders||{}, levels:s.levels||{}, customWords:Array.isArray(s.customWords)?s.customWords:[], density:s.density||'standard', fontScale:(s.fontScale==='sm'||s.fontScale==='lg')?s.fontScale:'md', srs:(s.srs&&typeof s.srs==='object')?s.srs:{}, srsNewLimit:(typeof s.srsNewLimit==='number')?s.srsNewLimit:8, srsDir:(s.srsDir==='ja2zh')?'ja2zh':'zh2ja', examDate:(typeof s.examDate==='string')?s.examDate:'', mockHistory:Array.isArray(s.mockHistory)?s.mockHistory:[], bmSort:(['recommend','hard','added','random'].indexOf(s.bmSort)>=0)?s.bmSort:'recommend', revScope:(s.revScope==='bm')?'bm':'all', currentDay:current||1, updatedAtMs:nowMs(), appVersion:'firebase-sync-v1', storageKey:storageKey}; }
+function normalizeStateForCloud(s){ return {completed:s.completed||{}, answers:s.answers||{}, scores:s.scores||{}, bookmarks:s.bookmarks||{}, dragOrders:s.dragOrders||{}, levels:s.levels||{}, customWords:Array.isArray(s.customWords)?s.customWords:[], density:s.density||'standard', fontScale:(s.fontScale==='sm'||s.fontScale==='lg')?s.fontScale:'md', srs:(s.srs&&typeof s.srs==='object')?s.srs:{}, srsNewLimit:(typeof s.srsNewLimit==='number')?s.srsNewLimit:8, srsDueLimit:(typeof s.srsDueLimit==='number')?s.srsDueLimit:30, srsDir:(s.srsDir==='ja2zh')?'ja2zh':'zh2ja', examDate:(typeof s.examDate==='string')?s.examDate:'', mockHistory:Array.isArray(s.mockHistory)?s.mockHistory:[], bmSort:(['recommend','hard','added','random'].indexOf(s.bmSort)>=0)?s.bmSort:'recommend', revScope:(s.revScope==='bm')?'bm':'all', currentDay:current||1, updatedAtMs:nowMs(), appVersion:'firebase-sync-v1', storageKey:storageKey}; }
 async function saveCloudState(force=false){
   if(!cloudUser || ((!cloudReady)&&!force) || (cloudLoading && !force)) return;
   try{ const payload=normalizeStateForCloud(state); payload.updatedAt=serverTimestamp(); await setDoc(cloudDocRef(), payload, {merge:true}); setSyncStatus('on','クラウド同期済み',cloudUser.email||''); }
@@ -472,6 +472,7 @@ async function loadCloudState(){
       if(cloud.srs&&typeof cloud.srs==='object') state.srs=cloud.srs;             // 復習スケジュール（SM-2）
       if(Array.isArray(cloud.customWords)) state.customWords=cloud.customWords;    // マイ単語
       if(typeof cloud.srsNewLimit==='number') state.srsNewLimit=cloud.srsNewLimit;
+      if(typeof cloud.srsDueLimit==='number') state.srsDueLimit=cloud.srsDueLimit;
       if(cloud.srsDir==='ja2zh'||cloud.srsDir==='zh2ja') state.srsDir=cloud.srsDir;
       if(['recommend','hard','added','random'].indexOf(cloud.bmSort)>=0) state.bmSort=cloud.bmSort;
       if(cloud.revScope==='bm'||cloud.revScope==='all') state.revScope=cloud.revScope;
@@ -7434,6 +7435,7 @@ let state=JSON.parse(localStorage.getItem(storageKey)||'{"completed":{},"answers
 if(state.fontScale!=='sm'&&state.fontScale!=='lg') state.fontScale='md';
 if(!state.srs || typeof state.srs!=='object') state.srs={};
 if(typeof state.srsNewLimit!=='number') state.srsNewLimit=8;
+if(typeof state.srsDueLimit!=='number') state.srsDueLimit=30;
 if(state.srsDir!=='ja2zh' && state.srsDir!=='zh2ja') state.srsDir='zh2ja';
 if(['recommend','hard','added','random'].indexOf(state.bmSort)<0) state.bmSort='recommend';
 if(state.revScope!=='bm' && state.revScope!=='all') state.revScope='all'; // 復習の範囲（all=完了Day∪ブックマーク / bm=ブックマークのみ）
@@ -7567,13 +7569,16 @@ function renderHome(){
  const nextLesson=LESSONS[nextDay-1];
  const allDone=doneCount>=LESSONS.length;
 
- // 復習の枚数は「今日やること」を判断する材料なので、新規と必ず同じ画面に並べる。
+ // 復習の問数は「今日やること」を判断する材料なので、新規と必ず同じ画面に並べる。
  // 別タブに分かれていると復習の溜まりが見えず、気づいたときには手遅れになるため。
  const scope=(state.revScope==='bm')?'bm':'all';
  const nl=(typeof state.srsNewLimit==='number')?state.srsNewLimit:8;
+ const dl=(typeof state.srsDueLimit==='number')?state.srsDueLimit:30;
  const cnt=srsCounts(scope);
  const shownNew=(nl<0)?cnt.fresh:Math.min(nl,cnt.fresh);
- const revTotal=cnt.due+shownNew;
+ const shownDue=(dl<0)?cnt.due:Math.min(dl,cnt.due);
+ const carryOver=cnt.due-shownDue;
+ const revTotal=shownDue+shownNew;
 
  const newCard=allDone
   ? `<div class="tcard done">
@@ -7598,8 +7603,8 @@ function renderHome(){
      </div>`
   : `<div class="tcard rev${revTotal===0?' done':''}">
       <span class="tc-eyebrow">思い出す</span>
-      <span class="tc-count">${revTotal}<span style="font-size:14px;font-weight:700"> 枚</span></span>
-      <span class="tc-meta">${revTotal===0?'今日のぶんは終わっています。':`期限 ${cnt.due} ＋ 新しく覚える ${shownNew}`}</span>
+      <span class="tc-count">${revTotal}<span style="font-size:14px;font-weight:700"> 問</span></span>
+      <span class="tc-meta">${revTotal===0?'今日のぶんは終わっています。':`期限 ${shownDue}${carryOver>0?`（+${carryOver}は明日以降）`:''} ＋ 新しく覚える ${shownNew}`}</span>
       <button class="${revTotal>0?'primary':''}" ${revTotal===0?'disabled':''} onclick="showTest()">${revTotal===0?'今日の復習は完了':'復習する'}</button>
      </div>`;
 
@@ -8218,7 +8223,7 @@ function srsCard(id){
   if(m[2]==='v'){ var v=l.vocab[Number(m[3])]; if(!v) return null;
     return {id:id, type:'単語', day:l.day, zh:v.zh, pin:v.pinyin, ja:v.ja, ex:v.example, exP:v.exPinyin, exJ:v.exJa}; }
   var g=l.grammar[Number(m[3])]; if(!g) return null;
-  return {id:id, type:'文法', day:l.day, zh:g.name, pin:g.pinyin, ja:g.meaning, ex:g.example, exP:g.exPinyin, exJ:g.exJa};
+  return {id:id, type:'文法', day:l.day, zh:g.name, pin:g.pinyin, ja:g.meaning, ex:g.example, exP:g.exPinyin, exJ:g.exJa, contrast:g.contrast};
 }
 function cwNewId(){ return 'cw-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8); }
 function cwEnsureIds(){ var ch=false; (state.customWords||[]).forEach(function(w){ if(w && !w.id){ w.id=cwNewId(); ch=true; } }); if(ch){ try{ localStorage.setItem(storageKey, JSON.stringify(state)); }catch(e){} } return ch; }
@@ -8242,9 +8247,12 @@ function srsCounts(scope){
   elig.forEach(function(id){ var s=state.srs[id]; if(!s) fresh++; else if((s.due||0)<=now) due++; });
   return {elig:elig.length, due:due, fresh:fresh};
 }
-function srsBuildDue(newLimit, scope){
+function srsBuildDue(newLimit, scope, dueLimit){
   var elig=srsEligibleIds(scope), now=nowMs(), due=[], fresh=[];
   elig.forEach(function(id){ var s=state.srs[id]; if(!s) fresh.push(id); else if((s.due||0)<=now) due.push(id); });
+  // 久しぶりに開くと期限切れが一気に溜まるので、最も古いものから優先し、上限を超えた分は翌日以降に残す。
+  due.sort(function(a,b){ return (state.srs[a].due||0)-(state.srs[b].due||0); });
+  if(typeof dueLimit==='number' && dueLimit>=0) due=due.slice(0, dueLimit);
   due=_shuffle(due); fresh=_shuffle(fresh);
   if(newLimit>=0) fresh=fresh.slice(0, newLimit);
   return due.concat(fresh);
@@ -8268,6 +8276,7 @@ function srsGrade(id, q){
   return s;
 }
 function srsSetNewLimit(n){ state.srsNewLimit=Number(n); save(); rerenderSrsHost(); }
+function srsSetDueLimit(n){ state.srsDueLimit=Number(n); save(); rerenderSrsHost(); }
 function srsSetDir(d){ state.srsDir=(d==='ja2zh')?'ja2zh':'zh2ja'; save(); rerenderSrsHost(); }
 
 // ===== 復習セッション =====
@@ -8278,7 +8287,8 @@ function revSetScope(s){ state.revScope=(s==='bm')?'bm':'all'; save(); rerenderS
 function revStart(scope){
   if(scope==='bm'||scope==='all') state.revScope=scope;
   var nl=(typeof state.srsNewLimit==='number')?state.srsNewLimit:8;
-  var pool=srsBuildDue(nl, state.revScope);
+  var dl=(typeof state.srsDueLimit==='number')?state.srsDueLimit:30;
+  var pool=srsBuildDue(nl, state.revScope, dl);
   if(!pool.length){ _rev=null; renderTestScreen(); window.scrollTo({top:0,behavior:'smooth'}); return; }
   _rev={queue:pool, idx:0, revealed:false, again:0, hard:0, good:0, easy:0, reviewed:0};
   track('srs_start',{n:pool.length, scope:state.revScope, dir:state.srsDir});
@@ -8307,6 +8317,10 @@ function _revRender(c){
       var tip=leech?'<div class="leech-tip">🔁 つまずき中：例文ごと声に出して、文脈で覚えてみましょう（向きを変えるのも有効）。</div>':'';
       return tip+'<div class="ex'+(leech?' ex-leech':'')+'" style="text-align:left;margin-top:10px"><div style="color:var(--ink);font-weight:600">'+esc(card.ex)+' <button class="speak-btn" onclick="speakZh(\''+esc(card.ex)+'\')" aria-label="例文を再生"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div>'+(card.exP?'<div class="small">'+esc(card.exP)+'</div>':'')+(card.exJ?'<div class="small">'+esc(card.exJ)+'</div>':'')+'</div>';
     }
+    // 似た意味の文法表現(了/过 など)を取り違えないよう、Day画面と同じ「違い・注意」を復習でも出す。
+    function contrastBlock(){
+      return card.contrast?'<div class="note" style="text-align:left;margin-top:10px"><span class="label">違い・注意：</span>'+esc(card.contrast)+'</div>':'';
+    }
     var spk='<button class="speak-btn" onclick="speakZh(\''+esc(card.zh)+'\')" aria-label="発音を再生"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button>';
     var dir=(state.srsDir==='ja2zh')?'ja2zh':'zh2ja';
     var h='<div class="card testwrap"><div class="section-title"><h2>今日の復習'+(state.revScope==='bm'?'（ブックマーク）':'')+'</h2><span class="badge">残り '+remain+'問</span></div>';
@@ -8320,6 +8334,7 @@ function _revRender(c){
         h+='<div class="fc-answer"><div class="a-main">'+esc(card.ja)+'</div>';
         if(card.pin) h+='<div class="fc-sub">'+esc(card.pin)+'</div>';
         h+=exBlock();
+        h+=contrastBlock();
         h+='</div>';
         h+='<div class="fc-actions g4"><button class="g4-again" onclick="revGrade(2)">もう一度</button><button class="g4-hard" onclick="revGrade(3)">難しい</button><button class="g4-good" onclick="revGrade(4)">普通</button><button class="g4-easy" onclick="revGrade(5)">簡単</button></div>';
       }
@@ -8332,6 +8347,7 @@ function _revRender(c){
         h+='<div class="fc-answer"><div class="a-main">'+esc(card.zh)+' '+spk+'</div>';
         if(card.pin) h+='<div class="fc-sub">'+esc(card.pin)+'</div>';
         h+=exBlock();
+        h+=contrastBlock();
         h+='</div>';
         h+='<div class="fc-actions g4"><button class="g4-again" onclick="revGrade(2)">もう一度</button><button class="g4-hard" onclick="revGrade(3)">難しい</button><button class="g4-good" onclick="revGrade(4)">普通</button><button class="g4-easy" onclick="revGrade(5)">簡単</button></div>';
       }
@@ -8365,9 +8381,12 @@ function renderTestScreen(){
   // ほぼ変えない設定なので、毎日通る導線から外して設定タブへ移した。
   var scope=(state.revScope==='bm')?'bm':'all';
   var nl=(typeof state.srsNewLimit==='number')?state.srsNewLimit:8;
+  var dl=(typeof state.srsDueLimit==='number')?state.srsDueLimit:30;
   var cnt=srsCounts(scope);
   var shownNew=(nl<0)?cnt.fresh:Math.min(nl,cnt.fresh);
-  var todayTotal=cnt.due+shownNew;
+  var shownDue=(dl<0)?cnt.due:Math.min(dl,cnt.due);
+  var carryOver=cnt.due-shownDue;
+  var todayTotal=shownDue+shownNew;
   var html='<div class="card testwrap"><div class="section-title"><h2>今日の復習</h2><span class="badge">'+todayTotal+'問</span></div>';
   if(cnt.elig===0){
     html+='<div class="empty" style="margin-top:4px">'+(scope==='bm'?'ブックマークがまだありません。学習画面で単語・文法の ☆ を押すと、ここで復習できます。':'まだ復習対象がありません。学習画面で各Dayを完了すると、その単語・文法が復習に入ります。')+'</div>';
@@ -8376,7 +8395,7 @@ function renderTestScreen(){
     html+='<div class="empty" style="margin-top:4px">今日ぶんの復習は終わっています。おつかれさまでした。</div>';
     html+='<button style="width:100%;margin-top:12px" onclick="showToday()">今日やることへ戻る</button>';
   } else {
-    html+='<div class="small muted" style="margin-top:2px">期限 '+cnt.due+' 枚 ＋ 新しく覚える '+shownNew+' 枚。忘れる頃に自動で出題します（間隔反復）。</div>';
+    html+='<div class="small muted" style="margin-top:2px">期限 '+shownDue+'問'+(carryOver>0?'（+'+carryOver+'問は明日以降に持ち越し）':'')+' ＋ 新しく覚える '+shownNew+'問。忘れる頃に自動で出題します（間隔反復）。</div>';
     html+='<button class="primary" style="width:100%;margin-top:12px" onclick="revStart()">復習を始める（'+todayTotal+'問）</button>';
     html+='<button style="width:100%;margin-top:8px" onclick="showToday()">あとにする</button>';
   }
@@ -8751,6 +8770,7 @@ function renderSettings(){
   var body=$('settingsBody'); if(!body) return;
   var scope=(state.revScope==='bm')?'bm':'all';
   var nl=(typeof state.srsNewLimit==='number')?state.srsNewLimit:8;
+  var dl=(typeof state.srsDueLimit==='number')?state.srsDueLimit:30;
   var dir=(state.srsDir==='ja2zh')?'ja2zh':'zh2ja';
   function seg(opts, cur, fn){
     return '<div class="set-row">'+opts.map(function(o){
@@ -8764,6 +8784,9 @@ function renderSettings(){
   h+='<div class="set-label">1日の新規問数</div>'
    + seg([{v:0,t:'なし'},{v:8,t:'8'},{v:16,t:'16'},{v:-1,t:'制限なし'}], nl, function(v){ return 'srsSetNewLimit('+v+')'; })
    + '<div class="small muted" style="margin-top:6px">新しく覚え始める語の上限です。多いほど将来の復習が増えます。</div>';
+  h+='<div class="set-label">1日の復習上限</div>'
+   + seg([{v:20,t:'20'},{v:30,t:'30'},{v:50,t:'50'},{v:-1,t:'制限なし'}], dl, function(v){ return 'srsSetDueLimit('+v+')'; })
+   + '<div class="small muted" style="margin-top:6px">数日あけて開いても、期限切れが一気に出題されないようにする上限です。超えた分は古いものを優先しつつ翌日以降に回します。</div>';
   h+='<div class="set-label">出題の向き</div>'
    + seg([{v:'zh2ja',t:'中文 → 日本語'},{v:'ja2zh',t:'日本語 → 中文'}], dir, function(v){ return "srsSetDir('"+v+"')"; })
    + '<div class="small muted" style="margin-top:6px">中文→日本語は意味を答える練習、日本語→中文は中文を思い出す練習です。スケジュールは共通です。</div>';
@@ -9036,6 +9059,7 @@ window.revGrade = revGrade;
 window.revEnd = revEnd;
 window.revSetScope = revSetScope;
 window.srsSetNewLimit = srsSetNewLimit;
+window.srsSetDueLimit = srsSetDueLimit;
 window.srsSetDir = srsSetDir;
 window.toggleJa = toggleJa;
 window.toggleDensity = toggleDensity;
@@ -9087,6 +9111,7 @@ window.hsk4ForceDownload=async function(){
     if(cl.srs&&typeof cl.srs==='object') state.srs=cl.srs;
     if(Array.isArray(cl.customWords)) state.customWords=cl.customWords;
     if(typeof cl.srsNewLimit==='number') state.srsNewLimit=cl.srsNewLimit;
+    if(typeof cl.srsDueLimit==='number') state.srsDueLimit=cl.srsDueLimit;
     if(cl.srsDir==='ja2zh'||cl.srsDir==='zh2ja') state.srsDir=cl.srsDir;
     if(['recommend','hard','added','random'].indexOf(cl.bmSort)>=0) state.bmSort=cl.bmSort;
     if(cl.revScope==='bm'||cl.revScope==='all') state.revScope=cl.revScope;
