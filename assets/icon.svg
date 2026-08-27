@@ -1,9 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 2048 2048" role="img" aria-label="加油 HSK4">
+<defs><style>
+@font-face{font-family:'JY';font-weight:900;src:url(data:font/woff2;base64,d09GMgABAAAAAASEABAAAAAACBAAAAQrAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGYFSGx4cHgZgAEQRCAqEWIQHCwoAATYCJAMQBCAFhAQHIBckGAobnAbIxKDcqmo64GuKBUZNMZuwIqYvWE79pZLp76cuShPwAQ1kqr9qSRWUadGkw0irOt/NogVHAxogbBi7vMj3gAAwQoLrYCAqLq1uRrppxkQ3Qm0TLS6E2g0DDqS7DAMGpLsNkwcQChH4RRQMQqHHdGgyfMFvPRJDYYUCBNNB6DMQ6NA7KBPJFUFmLIQhDzJ+eQxtAOGPwZ0Ok9XoMFknO8wWbiLnGahMlkEFFciEVgmYHsw8P0wVFfsZ+pYuhhAQrBS0A6jy2iG9GEl00G1UIob0UHZwZ0mtDvlg3Teol18OMMsJmz8cg4b6AfKF4DbwgQXdBgOFGslg5B8JBvGKTQJJcZBt3O++sRAsSOK/PGPYVNEM1ZMJCM9DhoUMX0LJMfUGcnwDtBCehpTAt2QNH6wcNXKkWCQWGVbe1ey8l3bs2D7trkAgQBacTPW913z8ceTJg1H3AoFAm2zlXbLgnlxuP3rVHWCV39/s87E+n8+08t07QhcEAvJVfj8E832+1lXHCF1wVLbyMATzj3iqCrshTY6TDRw9qDwVCCh3PQs5cmDs9vO+82O3P+/bevPm6KMHcz645caNUUcOhG9/3Ex4Y/+sRb7qFiGyZiLD/BtdcrLgpkzWLCcrryOyTrefjYtI1mdeKNILK5kuQXeIJhzkcsHIOlv4Dxu8M0S5cX1KTrES7Vlsu1rdwWZN0G/Vao7qJ5Q3aYOrUQKr8FaXpCm6qzp4TnZ5o0ZfVTC5UF/ZqCkvb9ToKwsnF+irGjVlG5WDVQ3KIUrVEGWDajBi0luswTFt1erq6FZzSNNG3Ra1eotuY4s5OBo+KabNEtzaQe/8870itCG48c7pug9f/bLTtEZV/Pbwh/cX3t+6bPnmOZeffs+5Dt+4vmXfTemf2z3+peDOh+ccev583qzN118s2bfz/e+u/51FEtvi6jrWbNnaVhfXdlfZURgdmUK+Wt62Ijky+i7A1vTCDz8lg/uGZP8mkdPv8rwfbE2xexM/3ny3h3fwWUwx/R4yohuGdPiSWf7/ZwD9kXf8v4gpvl2oTjNDLKDfYRT9DkoydpLxGPICo9AFpil6k60SWAMjI8WOy/hBAQSRuA8EGIyLgCIbUxuZaiDEeHQDEUKRSg2WNwN2TMZkeDEJmYhDHMs3YSIc8GKyIo/FJMoNT81hImyIQx1KUY1OWDCAGhgwEVNQBg6TYYcDJsSgEG4YuGQXWmHBxM6TOQyARQJiEY94uYDTzEInSlALXdUD8httNkxJchOb61mumeW02eQicPBixsYY25bzWSQiHolIwL1rhh0WsEPZCjAlAR9F60lgEX54NhsclbOmwIhYmMDBU2DhwKGgGxZYjwI+WlscZk6ljoGn0caYiH8NEoz8LKGsnkiGgvz6v+JRpfHL+EtMCitA0wj9jnqhhY56AQAAAA==) format('woff2');}
+</style></defs>
 <path fill="#FBF1E0" d="M0 0H2048V2048H0Z"/>
-<g transform="translate(1024,1024) scale(17) translate(-50,-50)">
+<g transform="translate(614.4,307.2) scale(8.192)">
 <path d="M52 6 C 62 30, 80 42, 80 64 A 30 30 0 1 1 20 64 C 20 46, 33 41, 41 28 C 44 41, 50 45, 50 37 C 50 26, 47 16, 52 6 Z" fill="#F2A227" stroke="#2A2724" stroke-width="4.5" stroke-linejoin="round"/>
 <circle cx="41" cy="63" r="3.6" fill="#2A2724"/>
 <circle cx="59" cy="63" r="3.6" fill="#2A2724"/>
 <path d="M43 73 Q 50 79 57 73" stroke="#2A2724" stroke-width="3.8" fill="none" stroke-linecap="round"/>
 </g>
+<text x="1024" y="1706" text-anchor="middle" font-family="JY,'Hiragino Maru Gothic ProN',sans-serif" font-weight="900" font-size="532.48" fill="#2A2724">加油</text>
 </svg>
