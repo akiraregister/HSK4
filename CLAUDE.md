@@ -2,6 +2,8 @@
 
 HSK4級を90日で目指す、日本語話者向けの学習アプリ。GitHub Pages で公開している。
 
+**このリポジトリでの会話は日本語で応答すること。**
+
 - 本体 https://akiraregister.github.io/HSK4/
 - LP　 https://akiraregister.github.io/HSK4/lp/
 
