@@ -7,7 +7,8 @@ const errs = []; p.on('pageerror', e => errs.push(e.message));
 const res = []; const ok = (n, v, x = '') => res.push(`${v ? 'PASS' : 'FAIL'}  ${n}${x ? '  — ' + x : ''}`);
 const evs = () => p.evaluate(() => JSON.parse(localStorage.getItem('hsk4-events') || '[]'));
 
-await p.goto(B, { waitUntil: 'load' }); await p.waitForTimeout(700);
+// 計測セクションと採点サーバー設定は開発者向けなので ?debug=1 で有効化する
+await p.goto(B + '?debug=1', { waitUntil: 'load' }); await p.waitForTimeout(700);
 const skip = await p.$('[data-lc-action="skip"]'); if (skip) { await skip.click(); await p.waitForTimeout(400); }
 
 // --- 学習の一連の操作でイベントが積まれるか ---

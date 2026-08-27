@@ -59,8 +59,9 @@ ok('設定タブに遷移', (await view()) === 'settingsTab');
 const sp = await page.$eval('#settingsPanel', e => getComputedStyle(e).display);
 ok('設定パネルが表示される', sp !== 'none', sp);
 const stxt = await page.textContent('#settingsPanel');
-for (const key of ['クラウド同期', '文字サイズ', '復習の出題範囲', '1日の新規問数', '出題の向き', 'レベル診断', '作文の採点サーバー'])
+for (const key of ['クラウド同期', '文字サイズ', '復習の出題範囲', '1日の新規問数', '出題の向き', 'レベル診断'])
   ok(`設定に「${key}」がある`, stxt.includes(key));
+ok('通常表示では開発者向け設定（作文の採点サーバー）が隠れている', !stxt.includes('作文の採点サーバー'));
 ok('同期バーのボタンが生きている', !!(await page.$('#settingsPanel #loginBtn')));
 ok('設定表示中は#contentが隠れる', await page.$eval('#content', e => getComputedStyle(e).display === 'none'));
 
