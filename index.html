@@ -9793,7 +9793,8 @@ function srsEligibleIds(scope){
   });
   Object.keys(state.bookmarks||{}).forEach(function(id){ if(/^d\d+-[vg]\d+$/.test(id)) set[id]=true; });
   (state.customWords||[]).forEach(function(w){ if(w && w.id) set[w.id]=true; }); // マイ単語も復習対象（bm絞り込み時は下で除外）
-  var ids=Object.keys(set);
+  // コンテンツ変更などでもう存在しないIDは、件数と実際に出せる問題数がズレる原因になるので先に除く。
+  var ids=Object.keys(set).filter(function(id){ return !!srsCard(id); });
   if(scope==='bm'){ ids=ids.filter(function(id){ return state.bookmarks && state.bookmarks[id]; }); }
   return ids;
 }
