@@ -10358,7 +10358,7 @@ function renderSettings(){
 
   h+='<div class="set-label">受験予定日</div>'
    + '<div class="small muted" style="margin-bottom:8px">入れておくと、今日画面に残り日数が出ます。締切があるほうが続きます。</div>'
-   + '<input id="examDateInput" type="date" value="'+esc(examDate())+'" style="width:100%;border:var(--bw) solid var(--stroke);border-radius:12px;padding:11px 13px;font:inherit;background:#fff" onchange="setExamDate(this.value)">'
+   + '<input id="examDateInput" type="date" value="'+esc(examDate())+'" style="width:100%;box-sizing:border-box;-webkit-appearance:none;appearance:none;border:var(--bw) solid var(--stroke);border-radius:12px;padding:11px 13px;font:inherit;background:#fff" onchange="setExamDate(this.value)">'
    + (examDate()? '<button style="width:100%;margin-top:8px" onclick="setExamDate(\'\')">日付を消す</button>' : '');
 
   h+='<div class="set-label">模擬試験</div>'
