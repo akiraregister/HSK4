@@ -17,7 +17,7 @@ HSK4級を90日で目指す、日本語話者向けの学習アプリ。GitHub P
 | `lp/index.html` | 告知用ランディングページ。アプリと同じトークンを複製し、復習カードと並べ替えを実際に触れるデモとして載せている |
 | `lp/og.png` | SNS共有用の画像。`lp/og-source.html` を1200×630で撮ったもの |
 | `sw.js` | Service Worker。**更新したら `CACHE_VERSION` を1つ上げる**（ファイル冒頭の規約） |
-| `audio/dayN.mp3` | リスニング問題の音声（Day 1〜60、Google Cloud TTS生成）。台本は `index.html` の `LISTENING` |
+| `audio/dayN.mp3` | リスニング問題の音声（Day 1〜70、Google Cloud TTS生成）。台本は `index.html` の `LISTENING` |
 | `tests/` | 実ブラウザで画面を操作するテスト。`tests/README.md` 参照 |
 | `worker/` | 作文のAI採点Worker（Cloudflare）。ソースはここが本体、`hsk4-grader.hsk4test.workers.dev` は配置先。作文の内容を変えたら `worker/README.md` の手順で作り直して配置し直すこと |
 
@@ -75,7 +75,7 @@ node tests/run.mjs        # 全103項目＋Service Workerチェック
   クライアント側のpaywallは原理的に成立しない。有料化するなら最初に解く問題
 - **Firestoreルールは確認済み・健全** — `users/{uid}/hsk4/{docId}` のみ、本人以外は読み書き不可、期限切れも無し。ただし将来 entitlement を足すなら**同じドキュメントの中に置かない**こと（利用者が自分で書き換えられる）
 - **法務3点セットが無い** — 利用規約・プライバシーポリシー・特商法表記
-- **听力（リスニング）は Day 1〜60 まで実装済み・残り Day 61〜90 が未対応** — 台本は `LISTENING`（`index.html` 内）、音声は `audio/dayN.mp3`。Google Cloud TTS（Chirp3-HD Puck/Aoede）で生成。模試には未収録（`LISTENING` の問題はSRS復習・模試の対象外）
+- **听力（リスニング）は Day 1〜70 まで実装済み・残り Day 71〜90 が未対応** — 台本は `LISTENING`（`index.html` 内）、音声は `audio/dayN.mp3`。Google Cloud TTS（Chirp3-HD Puck/Aoede）で生成。模試には未収録（`LISTENING` の問題はSRS復習・模試の対象外）
 
 ## 決まっていること
 
