@@ -20,6 +20,7 @@ HSK4級を90日で目指す、日本語話者向けの学習アプリ。GitHub P
 | `audio/dayN.mp3` | リスニング問題の音声（Day 1〜90、全日実装済み。Google Cloud TTS生成）。台本は `index.html` の `LISTENING`。模試には未収録（SRS復習・模試の対象外） |
 | `tests/` | 実ブラウザで画面を操作するテスト。`tests/README.md` 参照 |
 | `worker/` | 作文のAI採点Worker（Cloudflare）。ソースはここが本体、`hsk4-grader.hsk4test.workers.dev` は配置先。作文の内容を変えたら `worker/README.md` の手順で作り直して配置し直すこと |
+| `legal/` | 利用規約・プライバシーポリシー・特定商取引法に基づく表記。設定画面とLPのフッターからリンク。特商法ページの事業者情報は**未定のまま**なので、販売開始前に確定させること |
 
 ### index.html の中の地図
 
@@ -74,7 +75,7 @@ node tests/run.mjs        # 全103項目＋Service Workerチェック
 - **コンテンツがクライアントに全部ある** — `LESSONS`/`BANK` が `index.html` 内にあるため、
   クライアント側のpaywallは原理的に成立しない。有料化するなら最初に解く問題
 - **Firestoreルールは確認済み・健全** — `users/{uid}/hsk4/{docId}` のみ、本人以外は読み書き不可、期限切れも無し。ただし将来 entitlement を足すなら**同じドキュメントの中に置かない**こと（利用者が自分で書き換えられる）
-- **法務3点セットが無い** — 利用規約・プライバシーポリシー・特商法表記
+- **特商法ページの事業者情報が未定** — `legal/tokushoho.html` の会社名・所在地・電話番号・メール・決済方法が仮のまま。販売開始前に確定させること
 
 ## 決まっていること
 

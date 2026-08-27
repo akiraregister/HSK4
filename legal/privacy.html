@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>プライバシーポリシー — 加油</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FCF9F2;--card:#fff;--ink:#2A2724;--muted:#8A8377;--line:#E4DCCB;--brand:#F2A227;--stroke:#2A2724;--bw:1.5px;--font-display:'Zen Maru Gothic','Hiragino Maru Gothic ProN',sans-serif;--font-body:'Zen Kaku Gothic New','Hiragino Sans','Yu Gothic',sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.85;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:32px 20px 64px}
+.back{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:700;color:var(--muted);text-decoration:none;margin-bottom:18px}
+.back:hover{color:var(--ink)}
+h1{font-family:var(--font-display);font-weight:900;font-size:24px;margin:0 0 6px}
+.updated{font-size:12.5px;color:var(--muted);margin-bottom:28px}
+h2{font-family:var(--font-display);font-weight:900;font-size:16px;margin:28px 0 10px;padding-top:18px;border-top:1px solid var(--line)}
+h2:first-of-type{border-top:none;padding-top:0}
+h3{font-family:var(--font-display);font-weight:700;font-size:14px;margin:16px 0 6px}
+p,li{font-size:14.5px}
+ul,ol{padding-left:1.3em;margin:8px 0}
+li{margin:4px 0}
+.card{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:16px;padding:16px 18px;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:700;white-space:nowrap}
+.badge{display:inline-block;background:#F0EBE0;color:#5C5249;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:700;margin-right:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="../index.html">← 加油に戻る</a>
+<h1>プライバシーポリシー</h1>
+<div class="updated">制定日：2026年8月27日</div>
+
+<p>加油（以下「本サービス」といいます）における利用者の情報の取り扱いについて、以下のとおりプライバシーポリシー（以下「本ポリシー」といいます）を定めます。</p>
+
+<h2>1. 取得する情報と取得方法</h2>
+
+<h3><span class="badge">任意</span>Googleアカウント情報</h3>
+<p>複数端末での学習進捗の同期のためにGoogleアカウントでログインした場合、Firebase Authentication（Google LLC提供）を通じて、メールアドレス・表示名・アカウント識別子（UID）を取得します。ログインしない場合、これらの情報は取得しません。</p>
+
+<h3>学習データ</h3>
+<p>学習した日数、正答・誤答の記録、ブックマーク、単語帳、復習（SRS）の状態、模擬試験の結果、設定などの学習データを扱います。</p>
+<ul>
+<li>ログインしていない場合：お使いの端末のブラウザ内（localStorage）にのみ保存されます。運営者のサーバーには送信されません。</li>
+<li>ログインしている場合：上記に加えて、Cloud Firestore（Google LLC提供）にアカウントごとに保存し、複数端末での同期に利用します。他の利用者がこのデータを閲覧することはできません。</li>
+</ul>
+
+<h3>作文の解答内容</h3>
+<p>ミニテストの作文問題でAI採点を利用した場合、入力した中国語の解答文と、問題を特定するための日付・問題番号を、採点用のサーバー（Cloudflare Workers）経由でAnthropic, PBC（Claude API）に送信し、採点結果を受け取ります。氏名やアカウント情報など、解答文以外の個人を特定する情報は送信しません。</p>
+
+<h3>辞書・翻訳の参照</h3>
+<p>単語帳などで簡易的な翻訳を表示する際、調べたい中国語の単語・例文を外部の翻訳サービス（Google翻訳、MyMemory等）に送信して結果を取得することがあります。個人を特定する情報は含まれません。</p>
+
+<h3>端末内の利用ログ</h3>
+<p>アプリの利用状況（学習開始・完了などのイベント）を、既定では端末のブラウザ内（localStorage）にのみ記録します。通常のご利用でこの記録が運営者のサーバーに送信されることはありません。開発者が動作確認のために送信先を手動で設定できる機能がありますが、一般利用者向けの初期設定では無効です。</p>
+
+<h3>Cookieについて</h3>
+<p>本サービスはCookieを使用していません。上記のとおり、情報の保存にはブラウザのlocalStorageを利用しています。</p>
+
+<h2>2. 利用目的</h2>
+<ul>
+<li>本サービスの機能（学習進捗の記録・複数端末間の同期・作文の自動採点・辞書機能）を提供するため</li>
+<li>本サービスの不具合の発見・改善のため</li>
+<li>利用規約に違反する行為への対応のため</li>
+</ul>
+
+<h2>3. 第三者への提供・業務委託</h2>
+<p>取得した情報の一部について、以下の外部サービスを利用しています。委託先の選定にあたっては、適切な情報管理体制を確認しています。</p>
+<table>
+<tr><th>サービス</th><th>提供元</th><th>用途</th></tr>
+<tr><td>Firebase Authentication / Cloud Firestore</td><td>Google LLC</td><td>ログイン認証、学習データの保存・同期</td></tr>
+<tr><td>Cloudflare Workers</td><td>Cloudflare, Inc.</td><td>作文採点リクエストの中継</td></tr>
+<tr><td>Claude API</td><td>Anthropic, PBC</td><td>作文の自動採点（解答文のみ送信）</td></tr>
+<tr><td>翻訳API</td><td>Google 等</td><td>単語・例文の簡易翻訳表示</td></tr>
+</table>
+<p>法令に基づく場合を除き、これら以外の第三者に個人情報を提供することはありません。</p>
+
+<h2>4. 保存期間・削除</h2>
+<p>ログインして保存された学習データは、利用者がアカウントを削除するか、削除をご希望される旨をお問い合わせいただくまで保存されます。端末内（localStorage）のデータは、利用者がブラウザの設定から削除するまで端末に保存されます。削除をご希望の場合は、下記の連絡先までご連絡ください。</p>
+
+<h2>5. 未成年の方のご利用について</h2>
+<p>未成年の方が本サービスを利用する場合は、保護者の同意のもとでご利用ください。</p>
+
+<h2>6. 本ポリシーの変更</h2>
+<p>本ポリシーの内容は、法令の変更やサービス内容の変更に応じて、予告なく変更されることがあります。変更後の内容は、本ページに掲載した時点から効力を生じます。</p>
+
+<h2>お問い合わせ</h2>
+<div class="card">本ポリシーに関するお問い合わせ、保存されている情報の開示・訂正・削除のご請求は、<a href="tokushoho.html">特定商取引法に基づく表記</a>に記載の連絡先までお願いいたします。</div>
+
+</div>
+</body>
+</html>
