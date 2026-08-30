@@ -1,0 +1,19 @@
+name = "hsk4-paywall"
+main = "src/index.js"
+compatibility_date = "2026-08-30"
+
+[vars]
+# アプリ本体のURL（Stripeの決済完了/キャンセル後に戻す先）
+APP_ORIGIN = "https://akiraregister.github.io/HSK4"
+# Stripeの価格ID（ダッシュボードの商品ページに price_ から始まる文字列で表示される）
+# 秘密情報ではないが、初回配置までは空のままでよい。
+STRIPE_PRICE_ID = ""
+
+# 以下はsecretとして置く（このファイルには書かない。手順はREADME.md参照）
+#   npx wrangler secret put STRIPE_SECRET_KEY
+#   npx wrangler secret put STRIPE_WEBHOOK_SECRET
+
+# 購入済みフラグを保存するKV。作成手順はREADME.md参照。
+[[kv_namespaces]]
+binding = "ENTITLEMENTS"
+id = "ここにKV名前空間のIDを貼る"

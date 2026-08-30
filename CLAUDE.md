@@ -21,6 +21,7 @@ HSK4級を90日で目指す、日本語話者向けの学習アプリ。GitHub P
 | `tests/` | 実ブラウザで画面を操作するテスト。`tests/README.md` 参照 |
 | `worker/` | 作文のAI採点Worker（Cloudflare）。ソースはここが本体、`hsk4-grader.hsk4test.workers.dev` は配置先。作文の内容を変えたら `worker/README.md` の手順で作り直して配置し直すこと |
 | `legal/` | 利用規約・プライバシーポリシー・特定商取引法に基づく表記。設定画面とLPのフッターからリンク。特商法ページの事業者情報は**未定のまま**なので、販売開始前に確定させること |
+| `worker-paywall/` | 購入・権限管理Worker（Cloudflare）。Stripe決済とFirebase uidごとの購入済み判定を担当。作文採点Workerとはあえて別Workerにしてある（理由は `worker-paywall/README.md`）。**まだ配置していない・`GET /content`（Day8-90本体の配信）も未実装** |
 
 ### index.html の中の地図
 
@@ -73,8 +74,9 @@ node tests/run.mjs        # 全103項目＋Service Workerチェック
 有料化に進む場合の前提。詳細はマネタイズ提案書（下記）に。
 
 - **コンテンツがクライアントに全部ある** — `LESSONS`/`BANK` が `index.html` 内にあるため、
-  クライアント側のpaywallは原理的に成立しない。有料化するなら最初に解く問題
-- **Firestoreルールは確認済み・健全** — `users/{uid}/hsk4/{docId}` のみ、本人以外は読み書き不可、期限切れも無し。ただし将来 entitlement を足すなら**同じドキュメントの中に置かない**こと（利用者が自分で書き換えられる）
+  クライアント側のpaywallは原理的に成立しない。有料化するなら最初に解く問題。
+  設計は決定済み（下記「paywallの設計」）だが、Day8-90の切り出しと配信自体は未着手
+- **Firestoreルールは確認済み・健全** — `users/{uid}/hsk4/{docId}` のみ、本人以外は読み書き不可、期限切れも無し。ただし将来 entitlement を足すなら**同じドキュメントの中に置かない**こと（利用者が自分で書き換えられる）→ 実際には entitlement はFirestoreではなくCloudflare KVに持たせる方針にした
 - **特商法ページの事業者情報が未定** — `legal/tokushoho.html` の会社名・所在地・電話番号・メール・決済方法が仮のまま。販売開始前に確定させること
 
 ## 決まっていること
@@ -83,6 +85,21 @@ node tests/run.mjs        # 全103項目＋Service Workerチェック
 - **価格** ¥7,800前後の**買い切り**が主軸。90日という終わりのある商品に月額は合わない
 - **paywall位置** Day 8。間隔反復が効き目を体感させるのに最低1週間かかるため
 - **HSK5以上の人** 正直に「易しすぎる」と伝え、関心の人数だけ数える（メールは取らない）
+
+## paywallの設計（決定済み・実装中）
+
+- **決済** Stripe Checkout（買い切り、1回払い）
+- **権限管理** Firebaseのuidをキーに、Cloudflare KVに購入済みフラグを保存。
+  Firestoreは使わない（Admin SDKがWorkerで扱いにくい／entitlementを利用者が
+  書き換えられる木に置きたくない、の両方が理由）
+- **Worker構成** `hsk4-grader`（作文採点）とは別に、新しく `worker-paywall/`
+  （`hsk4-paywall`）を作った。役目を混ぜない方針（`worker-paywall/README.md` 参照）
+- **未着手** Day8-90の `LESSONS`/`BANK`/`LISTENING` を `index.html` から切り出して
+  `GET /content` 経由で配る部分、`index.html` 側の購入導線（ログイン→Checkout→
+  戻ってきたら`/entitlement`確認）、`hsk4-grader` 側への認証追加
+- **未着手（アカウント側の作業）** Cloudflare KV名前空間の作成、Stripeでの商品・
+  価格作成、StripeのWebhook登録とシークレット設定 — いずれも実際のアカウントが
+  必要なため、`worker-paywall/README.md` の手順を見ながら利用者自身が行うこと
 
 ## 関連
 
