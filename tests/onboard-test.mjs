@@ -47,14 +47,36 @@ async function answerAll(p, upTo) {
   await c.close();
 }
 
+// --- リスニング問題（各級5問目） ---
+{
+  const { c, p } = await fresh();
+  await p.click('[data-lc-action="start"]'); await p.waitForTimeout(300);
+  for (let i = 0; i < 4; i++) { // HSK3の最初の4問（テキスト）を飛ばす
+    await p.click('.lc-opt.unknown'); await p.waitForTimeout(50);
+    await p.click('[data-lc-action="next"]'); await p.waitForTimeout(90);
+  }
+  const listenTxt = await p.textContent('#content');
+  ok('5問目はリスニング問題になる', listenTxt.includes('音声を再生'));
+  ok('最初は中文が表示されない', !listenTxt.includes('我明天不去上班'));
+  await p.click('[data-lc-action="listen"]'); await p.waitForTimeout(100);
+  ok('再生ボタンを押してもエラーにならない', errs.length === 0, errs.join(','));
+  await p.click('[data-lc-action="revealListen"]'); await p.waitForTimeout(200);
+  ok('聞こえない場合は文字で確認できる', (await p.textContent('#content')).includes('我明天不去上班'));
+  ok('選択肢はまだ選んでいない', (await p.$('.lc-opt.sel')) === null);
+  await p.click('.lc-opt.unknown'); await p.waitForTimeout(50);
+  await p.click('[data-lc-action="next"]'); await p.waitForTimeout(150);
+  ok('リスニング問題の次は次の級（HSK4）へ進む', (await p.textContent('#content')).includes('估计'));
+  await c.close();
+}
+
 // --- 3分岐 ---
 // 判定アルゴリズムは既存で今回触っていないので、結果画面の「級を選ぶ」から
 // 各級を直接選んで、分岐先だけを確かめる。
 for (const [lv, label, expect] of [[3, 'HSK3', '少し背伸び'], [4, 'HSK4', '今日やること'], [5, 'HSK5', '易しすぎます']]) {
   const { c, p } = await fresh();
   await p.click('[data-lc-action="start"]'); await p.waitForTimeout(300);
-  // 16問すべて「わからない」で流して結果画面へ
-  for (let i = 0; i < 16; i++) {
+  // 20問すべて「わからない」で流して結果画面へ
+  for (let i = 0; i < 20; i++) {
     await p.click('.lc-opt.unknown'); await p.waitForTimeout(50);
     await p.click('[data-lc-action="next"]'); await p.waitForTimeout(90);
   }

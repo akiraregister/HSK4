@@ -151,6 +151,11 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .lc-progress{height:10px;border-radius:999px;background:var(--gray);overflow:hidden;margin:4px 0 14px}.lc-progress span{display:block;height:100%;background:#C2773C;transition:width .25s}
 .lc-q{font-size:18px;font-weight:700;line-height:1.5;white-space:pre-wrap}
 .lc-qpin{color:#5C5249;font-size:13px;margin-top:4px}
+.lc-listen{margin:14px 0 4px}
+.lc-listen .lc-btn{display:inline-flex;align-items:center;gap:8px}
+.lc-listen .lc-btn svg{width:20px;height:20px}
+.lc-listen-reveal{display:block;margin-top:10px;background:none;border:none;padding:0;font:inherit;font-size:13px;color:var(--muted);text-decoration:underline;cursor:pointer}
+.lc-listen-text{font-family:var(--zh-font);font-size:16px;margin-top:8px;color:#5C5249}
 .lc-opts{display:grid;gap:10px;margin-top:14px}
 .lc-opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px 14px;font:inherit;font-weight:600;color:var(--ink);cursor:pointer;touch-action:manipulation}
 .lc-opt.sel{border-color:#C2773C;background:#FBF4E8;color:#94621C}
@@ -2507,7 +2512,7 @@ let current=Number(localStorage.getItem('hsk4-current-day')||1);
 let currentView='today';
 let showAnswers=false, selectedChip=null;
 let _vocabQuery='', _vocabIndex=null;
-let lcStage='start', lcIndex=0, lcAnswers={}, lcSoonLevel=null, lcLastRec=null;
+let lcStage='start', lcIndex=0, lcAnswers={}, lcSoonLevel=null, lcLastRec=null, lcListenRevealed=false;
 let cwSubTab='bm';
 const storageKey='hsk4-90-v4-state';
 let state=JSON.parse(localStorage.getItem(storageKey)||'{"completed":{},"answers":{},"scores":{},"bookmarks":{},"dragOrders":{}}');
@@ -4272,21 +4277,33 @@ const PLACEMENT_QUESTIONS = [
   { level:3, q:"空欄に入る語は？\n现在几____了？", pinyin:"Xiànzài jǐ ___ le?", options:["点","本","张","条"], answer:"点" },
   { level:3, q:"空欄に入る語は？\n____今天下雨，所以我没出去。", pinyin:"___ jīntiān xiàyǔ, suǒyǐ wǒ méi chūqù.", options:["因为","但是","虽然","如果"], answer:"因为" },
   { level:3, q:"「打算」の意味は？", pinyin:"dǎsuàn", options:["終わる","〜するつもり","楽しい","急ぐ"], answer:"〜するつもり" },
+  { level:3, q:"音声を聞いて、内容に最も近いものを選んでください。", listenZh:"我明天不去上班，因为身体不舒服。",
+    options:["明日は体調が悪いので仕事を休みます。","明日は用事があるので早退します。","今日は仕事に行きませんでした。","明日は休みなので家にいます。"],
+    answer:"明日は体調が悪いので仕事を休みます。" },
   // --- HSK4 ---
   { level:4, q:"「估计」の意味は？", pinyin:"gūjì", options:["諦める","見積もる・推測する","招待する","比較する"], answer:"見積もる・推測する" },
   { level:4, q:"空欄に入る語は？（把構文）\n请____窗户关上。", pinyin:"Qǐng ___ chuānghu guānshàng.", options:["把","被","给","对"], answer:"把" },
   { level:4, q:"「随着」の意味は？", pinyin:"suízhe", options:["〜について","〜につれて","〜のために","〜以外に"], answer:"〜につれて" },
   { level:4, q:"自然な語順はどれ？（程度補語）\n他汉语说____。", pinyin:"Tā Hànyǔ shuō ___.", options:["很流利","得很流利","的很流利","流利得"], answer:"得很流利" },
+  { level:4, q:"音声を聞いて、内容に最も近いものを選んでください。", listenZh:"随着工作越来越忙，我周末也经常需要处理邮件。",
+    options:["仕事が忙しくなるにつれて、週末もメールを処理することが多い。","仕事が減ったので、週末はゆっくりできる。","週末はいつもメールをチェックしない。","仕事が忙しいのは今週だけだ。"],
+    answer:"仕事が忙しくなるにつれて、週末もメールを処理することが多い。" },
   // --- HSK5 ---
   { level:5, q:"「陆续」の意味は？", pinyin:"lùxù", options:["突然","次々と","わざと","かろうじて"], answer:"次々と" },
   { level:5, q:"空欄に入る語は？\n他工作非常认真，从不____。", pinyin:"Tā gōngzuò fēicháng rènzhēn, cóng bù ___.", options:["马虎","仔细","努力","主动"], answer:"马虎" },
   { level:5, q:"空欄に入る語は？\n这件事我____妈妈都没告诉。", pinyin:"Zhè jiàn shì wǒ ___ māma dōu méi gàosu.", options:["连","把","被","对"], answer:"连" },
   { level:5, q:"「不得不」の意味は？", pinyin:"bùdébù", options:["してはいけない","せざるを得ない","する必要がない","できない"], answer:"せざるを得ない" },
+  { level:5, q:"音声を聞いて、内容に最も近いものを選んでください。", listenZh:"尽管他工作很忙，但从不马虎，每件事都做得很认真。",
+    options:["彼は忙しくても、決していい加減にせず、何事も真剣に取り組む。","彼は忙しいので、細かいことは気にしない。","彼は暇なときだけ真剣に仕事をする。","彼は仕事が嫌いで、いつも適当にやっている。"],
+    answer:"彼は忙しくても、決していい加減にせず、何事も真剣に取り組む。" },
   // --- HSK6 ---
   { level:6, q:"「络绎不绝」の意味は？", pinyin:"luòyì bùjué", options:["静かで人がいない","（人や車が）絶え間なく続く","突然終わる","ばらばらだ"], answer:"（人や車が）絶え間なく続く" },
   { level:6, q:"「鉴于」の意味は？（書き言葉）", pinyin:"jiànyú", options:["〜に鑑みて","〜のついでに","〜にもかかわらず","〜のような"], answer:"〜に鑑みて" },
   { level:6, q:"「一丝不苟」の意味は？", pinyin:"yīsī bùgǒu", options:["いい加減だ","きわめて几帳面だ","中途半端だ","気まぐれだ"], answer:"きわめて几帳面だ" },
-  { level:6, q:"空欄に入る語は？\n____在家等，不如主动联系他。", pinyin:"___ zài jiā děng, bùrú zhǔdòng liánxì tā.", options:["与其","即使","无论","尽管"], answer:"与其" }
+  { level:6, q:"空欄に入る語は？\n____在家等，不如主动联系他。", pinyin:"___ zài jiā děng, bùrú zhǔdòng liánxì tā.", options:["与其","即使","无论","尽管"], answer:"与其" },
+  { level:6, q:"音声を聞いて、内容に最も近いものを選んでください。", listenZh:"面对络绎不绝的顾客，他始终一丝不苟地为每个人提供服务。",
+    options:["絶え間なく訪れる客に対し、彼はいつも几帳面に一人ひとり対応している。","客が少ないので、彼はゆっくり対応できる。","彼は忙しすぎて、対応がいい加減になっている。","客が来ないときは、彼は仕事をサボっている。"],
+    answer:"絶え間なく訪れる客に対し、彼はいつも几帳面に一人ひとり対応している。" }
 ];
 
 // マスター(75%以上)できた最高級の「ひとつ上」を学習目標に。何も届かなければHSK3。
@@ -4370,11 +4387,12 @@ function lcThanksHtml(){
 
 function lcStartHtml(){
   return '<div class="card">'
-    + '<span class="badge">全'+PLACEMENT_QUESTIONS.length+'問・約5分</span>'
+    + '<span class="badge">全'+PLACEMENT_QUESTIONS.length+'問・約7分</span>'
     + '<h2 style="margin:12px 0 6px;font-size:19px">あなたに合う級を見つけましょう</h2>'
     + '<div class="small">HSK3〜6級の難易度を混ぜた選択式テストです。結果から学習をおすすめする級を判定します。</div>'
     + '<ul class="lc-startlist">'
-    + '<li>各級4問ずつ、やさしい順に出題されます</li>'
+    + '<li>各級5問ずつ（うち1問はリスニング）、やさしい順に出題されます</li>'
+    + '<li>リスニングは音量にご注意ください。聞こえない場合は文字でも確認できます</li>'
     + '<li>わからなければ推測でも構いません</li>'
     + '<li>判定後、級は自分で選び直すこともできます</li>'
     + '</ul>'
@@ -4393,11 +4411,19 @@ function lcQuizHtml(){
     return '<button class="lc-opt'+(sel===o?' sel':'')+'" data-lc-action="answer" data-opt="'+i+'">'+esc(o)+'</button>';
   }).join('');
   opts += '<button class="lc-opt unknown'+(sel==='__unknown__'?' sel':'')+'" data-lc-action="unknown">分からない</button>';
+  var sub = item.listenZh
+    ? '<div class="lc-listen">'
+      + '<button type="button" class="lc-btn primary" data-lc-action="listen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg>音声を再生</button>'
+      + (lcListenRevealed
+          ? '<div class="lc-listen-text">'+esc(item.listenZh)+'</div>'
+          : '<button type="button" class="lc-listen-reveal" data-lc-action="revealListen">聞こえない場合は文字で確認する</button>')
+      + '</div>'
+    : (item.pinyin?'<div class="lc-qpin">'+esc(item.pinyin)+'</div>':'');
   return '<div class="card">'
     + '<div class="lc-progress"><span style="width:'+pct+'%"></span></div>'
     + '<div class="small muted" style="font-weight:700">第 '+(lcIndex+1)+' / '+total+' 問</div>'
     + '<div class="lc-q" style="margin-top:6px">'+esc(item.q)+'</div>'
-    + (item.pinyin?'<div class="lc-qpin">'+esc(item.pinyin)+'</div>':'')
+    + sub
     + '<div class="lc-opts">'+opts+'</div>'
     + '<div class="lc-nav">'
     + '<button class="lc-btn"'+(lcIndex===0?' style="visibility:hidden"':'')+' data-lc-action="prev">前へ</button>'
@@ -4466,18 +4492,20 @@ document.addEventListener('click', function(e){
   var b=e.target.closest && e.target.closest('[data-lc-action]');
   if(!b) return;
   var a=b.dataset.lcAction;
-  if(a==='start'){ lcStage='quiz'; lcIndex=0; lcAnswers={}; render(); }
+  if(a==='start'){ lcStage='quiz'; lcIndex=0; lcAnswers={}; lcListenRevealed=false; render(); }
   else if(a==='answer'){ lcAnswers[lcIndex]=PLACEMENT_QUESTIONS[lcIndex].options[Number(b.dataset.opt)]; render(); }
   else if(a==='unknown'){ lcAnswers[lcIndex]='__unknown__'; render(); }
-  else if(a==='prev'){ if(lcIndex>0){ lcIndex--; render(); } }
+  else if(a==='listen'){ var qi=PLACEMENT_QUESTIONS[lcIndex]; if(qi && qi.listenZh && window.speakZh) window.speakZh(qi.listenZh); }
+  else if(a==='revealListen'){ lcListenRevealed=true; render(); }
+  else if(a==='prev'){ if(lcIndex>0){ lcIndex--; lcListenRevealed=false; render(); } }
   else if(a==='next'){
     if(lcAnswers[lcIndex]==null) return;
-    if(lcIndex<PLACEMENT_QUESTIONS.length-1){ lcIndex++; render(); }
+    if(lcIndex<PLACEMENT_QUESTIONS.length-1){ lcIndex++; lcListenRevealed=false; render(); }
     else { lcStage='result'; markOnboarded('done');
            try{ track('level_check_done',{rec:lcLastRec}); }catch(e){}
            render(); window.scrollTo({top:0,behavior:'smooth'}); }
   }
-  else if(a==='retry'){ lcStage='start'; lcIndex=0; lcAnswers={}; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+  else if(a==='retry'){ lcStage='start'; lcIndex=0; lcAnswers={}; lcListenRevealed=false; render(); window.scrollTo({top:0,behavior:'smooth'}); }
   else if(a==='pick'){ lcPick(Number(b.dataset.lv)); }
   else if(a==='backToResult'){ lcStage='result'; render(); }
   else if(a==='interest'){ lcInterest(Number(b.dataset.lv)); }

@@ -71,7 +71,7 @@ HSK4級を90日で目指す、日本語話者向けの学習アプリ。GitHub P
 ## 検証
 
 ```bash
-node tests/run.mjs        # 全103項目＋Service Workerチェック
+node tests/run.mjs        # 全109項目＋Service Workerチェック
 ```
 
 **変更したら必ず通すこと。** ビルドもCIも無いので、これが唯一の安全網。
