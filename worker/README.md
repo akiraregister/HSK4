@@ -19,8 +19,9 @@ Cloudflare Worker。加油アプリのミニテスト・作文問題を、Claude
 | ファイル | 中身 |
 |---|---|
 | `src/index.js` | Worker本体 |
+| `src/firebase-verify.js` | FirebaseのIDトークン検証。`worker-paywall/src/firebase-verify.js` と同一内容（各Workerを自己完結させるためコピーしてある） |
 | `src/writing-bank.js` | 180問の出題文・模範解答。**自動生成、手で編集しない** |
-| `build-bank.mjs` | `../index.html` の `BANK` から `writing-bank.js` を作り直すスクリプト |
+| `build-bank.mjs` | `../index.html`（Day1-7）と`../worker-paywall/src/content-bundle.js`（Day8-90）から `writing-bank.js` を作り直すスクリプト |
 | `wrangler.toml` | Cloudflareへの配置設定 |
 
 ## index.html の作文問題を変えたら
@@ -74,6 +75,24 @@ id = "ここに貼る"
 `DAILY_LIMIT`）を超えると429で断るようになる。KVを繋がなければ、このガードは
 素通しになるだけで、他の動作には影響しない。
 
+## Day8以降は購入済みユーザーのみ（実装済み・KV接続が必要）
+
+Day1-7（無料お試し分）はこれまで通り誰でも採点できる。Day8以降は
+FirebaseのIDトークン（`Authorization: Bearer ...`）を検証し、`worker-paywall`
+が管理する購入済みフラグ（Cloudflare KV）を確認したうえで通す。
+
+`worker-paywall`と**同じKV名前空間**を読むだけなので、新しく作る必要はない。
+`worker-paywall/README.md`の手順でKVを作ってあれば、そのidをここにも貼るだけでよい。
+
+```toml
+[[kv_namespaces]]
+binding = "ENTITLEMENTS"
+id = "worker-paywallのwrangler.tomlに書いたのと同じid"
+```
+
+このKVを繋がないと、Day8以降の採点は常に403（購入済みユーザーのみと案内）になる
+（安全側のデフォルト）。Day1-7の採点には影響しない。
+
 ## 動作確認
 
 ```bash
@@ -93,4 +112,9 @@ curl -i -X POST http://127.0.0.1:8787/ \
 curl -i -X POST http://127.0.0.1:8787/ \
   -H "Origin: https://evil.example.com" -H "Content-Type: application/json" \
   -d '{"day":3,"idx":0,"user_zh":"我今天很忙。"}'
+
+# Day8以降はトークン無しだと403（購入済みユーザーのみと案内）になるはず
+curl -i -X POST http://127.0.0.1:8787/ \
+  -H "Origin: https://akiraregister.github.io" -H "Content-Type: application/json" \
+  -d '{"day":8,"idx":0,"user_zh":"我今天很忙。"}'
 ```

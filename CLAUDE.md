@@ -19,7 +19,7 @@ HSK4級を90日で目指す、日本語話者向けの学習アプリ。GitHub P
 | `sw.js` | Service Worker。**更新したら `CACHE_VERSION` を1つ上げる**（ファイル冒頭の規約） |
 | `audio/dayN.mp3` | リスニング問題の音声（Day 1〜90、全日実装済み。Google Cloud TTS生成）。台本はDay1-7が `index.html` の `LISTENING`、Day8-90が `worker-paywall/src/content-bundle.js`。模試には未収録（SRS復習・模試の対象外） |
 | `tests/` | 実ブラウザで画面を操作するテスト。`tests/README.md` 参照 |
-| `worker/` | 作文のAI採点Worker（Cloudflare）。ソースはここが本体、`hsk4-grader.hsk4test.workers.dev` は配置先。作文の内容を変えたら `worker/README.md` の手順で作り直して配置し直すこと。`writing-bank.js` はDay1-7（`index.html`）とDay8-90（`worker-paywall/src/content-bundle.js`）をマージして作る |
+| `worker/` | 作文のAI採点Worker（Cloudflare）。ソースはここが本体、`hsk4-grader.hsk4test.workers.dev` は配置先。作文の内容を変えたら `worker/README.md` の手順で作り直して配置し直すこと。`writing-bank.js` はDay1-7（`index.html`）とDay8-90（`worker-paywall/src/content-bundle.js`）をマージして作る。Day8以降の採点はFirebaseログイン＋購入済み（`worker-paywall`と同じKVを読む）が必要 |
 | `legal/` | 利用規約・プライバシーポリシー・特定商取引法に基づく表記。設定画面とLPのフッターからリンク。特商法ページの事業者情報は**未定のまま**なので、販売開始前に確定させること |
 | `worker-paywall/` | 購入・権限管理Worker（Cloudflare）。Stripe決済とFirebase uidごとの購入済み判定、Day8-90本体（`GET /content`）の配信を担当。作文採点Workerとはあえて別Workerにしてある（理由は `worker-paywall/README.md`）。**まだCloudflareに配置していない**（コードとしては完成、アカウント側の作業＝KV/Stripe設定が未了） |
 
@@ -109,10 +109,13 @@ node tests/run.mjs        # 全103項目＋Service Workerチェック
   Stripeの`success_url`（`?purchase=success`）で戻ってきたときは、ログイン確認後に
   `onAuthStateChanged`内で自動的に`fetchPaidContent()`を呼んでトースト表示・再描画する
   （`?purchase=cancel`はURLだけ掃除）。ログインのたびに未購入分が無いか一度だけ確認もする
-- **未着手** `hsk4-grader` 側への認証追加（別タスク）
-- **未着手（アカウント側の作業）** Cloudflareへの配置、KV名前空間の作成、Stripeでの商品・
-  価格作成、StripeのWebhook登録とシークレット設定 — いずれも実際のアカウントが
-  必要なため、`worker-paywall/README.md` の手順を見ながら利用者自身が行うこと
+- **`hsk4-grader`側の認証も実装済み** Day1-7は誰でも採点できるまま、Day8以降は
+  Firebase IDトークン＋`worker-paywall`と同じKV（`ENTITLEMENTS`）で購入済み判定。
+  未接続時は安全側でDay8以降を常に403にする（詳細は`worker/README.md`）
+- **未着手（アカウント側の作業）** Cloudflareへの配置、KV名前空間の作成（`worker/`と
+  `worker-paywall/`の両方に**同じid**を設定）、Stripeでの商品・価格作成、Webhook登録
+  とシークレット設定 — いずれも実際のアカウントが必要なため、`worker-paywall/README.md`
+  ／`worker/README.md`の手順を見ながら利用者自身が行うこと
 
 ## 関連
 

@@ -10,3 +10,11 @@ compatibility_date = "2026-08-24"
 # [[kv_namespaces]]
 # binding = "RATE_LIMIT"
 # id = "ここにKV名前空間のIDを貼る"
+
+# Day8以降の採点を購入済みユーザーに限定するためのKV。
+# worker-paywall/wrangler.toml の ENTITLEMENTS と「同じ id」を指定すること
+# （購入済みフラグを書くのはworker-paywall、ここは読むだけ）。
+# 繋がないとDay8以降は常に403になる（安全側のデフォルト）。手順はREADME.md参照。
+# [[kv_namespaces]]
+# binding = "ENTITLEMENTS"
+# id = "worker-paywallと同じKV名前空間のIDを貼る"

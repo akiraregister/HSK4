@@ -12,10 +12,12 @@
 // 費用の歯止めは下の回数制限のほうが本体）。
 
 import { WRITING } from './writing-bank.js';
+import { verifyFirebaseIdToken } from './firebase-verify.js';
 
 const MODEL = 'claude-sonnet-4-6';
 const MAX_USER_ZH = 200;        // 作文1問の答えとしては十分な長さ
 const DAILY_LIMIT = 30;         // IPごと・1日あたり。RATE_LIMIT を繋いだときだけ効く
+const FREE_DAYS = 7;            // index.htmlと同じ境界。Day8以降はログイン＋購入済みが必要
 
 const ALLOWED_ORIGINS = [
   'https://akiraregister.github.io',
@@ -27,11 +29,26 @@ function isAllowedOrigin(origin) {
   return ALLOWED_ORIGINS.includes(origin) || LOCAL_ORIGIN.test(origin);
 }
 
+// Day8以降は購入済みユーザーのみ。ENTITLEMENTSはworker-paywallと同じKV名前空間を
+// 指す（購入済みフラグを持つのはあちら側で、ここは読むだけ）。未接続なら安全側に
+// 倒して常に「未購入」扱いにする。
+async function requireEntitledUid(request, env) {
+  const auth = request.headers.get('Authorization') || '';
+  const m = auth.match(/^Bearer (.+)$/);
+  if (!m) return null;
+  const uid = await verifyFirebaseIdToken(m[1]);
+  if (!uid) return null;
+  if (!env.ENTITLEMENTS) return null;
+  const rec = await env.ENTITLEMENTS.get(uid);
+  try { return (rec && JSON.parse(rec).purchased) ? uid : null; }
+  catch { return null; }
+}
+
 function corsHeaders(origin) {
   return {
     'Access-Control-Allow-Origin': isAllowedOrigin(origin) ? origin : ALLOWED_ORIGINS[0],
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     'Access-Control-Max-Age': '86400',
     'Vary': 'Origin',
   };
@@ -127,6 +144,9 @@ export default {
     if (!Number.isInteger(day) || !Number.isInteger(idx)) {
       // 古い形式（出題文をそのまま送ってくる版）のアプリはここに来る
       return json({ error: 'アプリを再読み込みしてから、もう一度お試しください。' }, 400, origin);
+    }
+    if (day > FREE_DAYS && !(await requireEntitledUid(request, env))) {
+      return json({ error: 'Day8以降の採点は購入済みユーザーのみご利用いただけます。' }, 403, origin);
     }
     if (!userZh) {
       return json({ error: '解答が空です' }, 400, origin);
