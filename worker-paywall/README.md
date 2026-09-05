@@ -57,14 +57,16 @@ Workerを配置していなくてもテストは動く）。
 返ってきたURLへ遷移）。Day8以降でコンテンツが無い場合は `lockedDayHTML()` の
 ロック画面を表示する。
 
+Stripeの`success_url`（`?purchase=success`）で戻ってきたときは、ログイン確認後に
+`index.html`の`onAuthStateChanged`内で自動的に`fetchPaidContent()`を呼び、成功なら
+トースト表示のうえ再描画する（`?purchase=cancel`はURLだけ掃除）。ログインのたびに
+未購入分が無いか一度だけ確認もするので、別端末で購入した場合もログインすれば反映される。
+
 ## まだやっていないこと（次のフェーズ）
 
 - **`hsk4-grader`（作文採点）側の認証追加** — 現状は誰でも呼べる。将来は
   こちらのFirebase検証の仕組みを流用し、有料ユーザーのみ・回数制限付きに
   する想定（別タスク）。
-- **決済後の自動反映** — 現状はStripe決済から戻ってきたら手動で「購入済みの内容を
-  確認する」ボタンを押す必要がある。`success_url`のクエリパラメータを見て
-  自動的に`fetchPaidContent()`を呼ぶ導線は未実装。
 - **`worker/build-bank.mjs`との連携** — 作文採点Workerの `writing-bank.js` は
   Day1-7（`index.html`）とDay8-90（`content-bundle.js`）の両方をマージして
   作るように更新済み。`content-bundle.js`を作り直したら、`worker/build-bank.mjs`

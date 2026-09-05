@@ -31,6 +31,7 @@ HSK4級を90日で目指す、日本語話者向けの学習アプリ。GitHub P
 | 531行目 | `const BANK` — Day1-7のミニテスト。毎日ここから5問が選ばれる。**画面に出るのはこちらで、`LESSONS[].test` は使われていない** |
 | 2140行目 | `const LISTENING` — Day1-7のリスニング問題 |
 | 2400行目付近 | 有料コンテンツ（Day8-90）の読み込み。`TOTAL_DAYS`（固定90。`LESSONS.length`とは別物）、`mergePaidContent()`／`restorePaidContentCache()`（起動時にlocalStorageキャッシュを復元）、`fetchPaidContent()`（`hsk4-paywall`の`/content`を取得）、`startCheckout()`（`/checkout`を呼んでStripeへ）、`lockedDayHTML()`（Day8以降が未取得のときの画面） |
+| `initFirebase()`内の`onAuthStateChanged` | ログイン確認後の処理。`?purchase=success`ならここで`fetchPaidContent()`を自動で呼びトースト表示、`?purchase=cancel`はURLだけ掃除（それぞれのタイミングは`restorePaidContentCache()`の直後／`onAuthStateChanged`内） |
 | 320-430行目 | Firebase（遅延読み込み。落ちてもアプリ本体は動く） |
 | 中盤 | `track()` / 背面シェイプ / 各画面の `render*()` |
 | 終盤 | SRS（SM-2）、模擬試験、級診断、マイ単語 |
@@ -84,8 +85,6 @@ node tests/run.mjs        # 全103項目＋Service Workerチェック
   `/checkout`・`/webhook`・`/entitlement`・`/content`すべて実装済み）だが、実際にCloudflareへ
   配置してURLを得るところ、KV名前空間の作成、Stripeでの商品・価格作成、Webhook登録が未了。
   手順は`worker-paywall/README.md`参照。配置するまでは`startCheckout()`は失敗する
-- **決済後の自動反映が無い** — Stripeから戻ってきても`fetchPaidContent()`は自動で呼ばれない。
-  利用者がロック画面の「購入済みの内容を確認する」を手で押す必要がある
 - **Firestoreルールは確認済み・健全** — `users/{uid}/hsk4/{docId}` のみ、本人以外は読み書き不可、期限切れも無し。entitlementはFirestoreではなくCloudflare KVに持たせる方針にした（実装済み）ので、この境界は既に守られている
 - **特商法ページの事業者情報が未定** — `legal/tokushoho.html` の会社名・所在地・電話番号・メール・決済方法が仮のまま。販売開始前に確定させること
 
@@ -106,9 +105,11 @@ node tests/run.mjs        # 全103項目＋Service Workerチェック
   `LESSONS`/`BANK`/`LISTENING` からDay8-90を `worker-paywall/src/content-bundle.js`
   に分離し、`index.html` にはDay1-7だけを残す（実装済み。詳細は`worker-paywall/README.md`）
 - **index.html側の導線** `startCheckout()`（購入）、`fetchPaidContent()`（取得・
-  localStorageへキャッシュ）、`lockedDayHTML()`（未購入時のDay8以降の画面）まで実装済み
-- **未着手** `hsk4-grader` 側への認証追加（別タスク）、決済後に`fetchPaidContent()`を
-  自動で呼ぶ導線（現状は手動ボタン）
+  localStorageへキャッシュ）、`lockedDayHTML()`（未購入時のDay8以降の画面）まで実装済み。
+  Stripeの`success_url`（`?purchase=success`）で戻ってきたときは、ログイン確認後に
+  `onAuthStateChanged`内で自動的に`fetchPaidContent()`を呼んでトースト表示・再描画する
+  （`?purchase=cancel`はURLだけ掃除）。ログインのたびに未購入分が無いか一度だけ確認もする
+- **未着手** `hsk4-grader` 側への認証追加（別タスク）
 - **未着手（アカウント側の作業）** Cloudflareへの配置、KV名前空間の作成、Stripeでの商品・
   価格作成、StripeのWebhook登録とシークレット設定 — いずれも実際のアカウントが
   必要なため、`worker-paywall/README.md` の手順を見ながら利用者自身が行うこと

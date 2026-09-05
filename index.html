@@ -414,7 +414,29 @@ async function initFirebase(){
     provider=new GoogleAuthProvider();
     firebaseReady=true;
     getRedirectResult(auth).catch(e=>console.warn('Redirect result error',e));
-    onAuthStateChanged(auth, async (user)=>{ cloudUser=user; cloudReady=false; if(user){ setSyncStatus('warn','ログイン済み：同期準備中...',user.email||''); await loadCloudState(); } else { setSyncStatus('warn','未ログイン：この端末内に保存中'); } });
+    onAuthStateChanged(auth, async (user)=>{
+      cloudUser=user; cloudReady=false;
+      if(user){
+        setSyncStatus('warn','ログイン済み：同期準備中...',user.email||'');
+        await loadCloudState();
+        // Stripeの決済ページから戻ってきた直後（成功）なら、購入済みの内容を
+        // 自動で取得する。ログイン確認後でないとfetchPaidContent()できないため、
+        // ここ（onAuthStateChanged内）で処理する。
+        var purchaseParam=null;
+        try{ purchaseParam=new URLSearchParams(location.search).get('purchase'); }catch(e){}
+        if(purchaseParam==='success'){
+          try{ history.replaceState(null,'',location.pathname); }catch(e){}
+          var got=await fetchPaidContent();
+          _toast(got?'購入ありがとうございます！Day8以降が使えるようになりました。':'購入の確認に少し時間がかかっています。少し待ってから「購入済みの内容を確認する」をお試しください。');
+          if(got) render();
+        } else if(LESSONS.length<TOTAL_DAYS){
+          // 別端末で購入済みの場合などに備え、ログインのたびに一度だけ確認する。
+          fetchPaidContent().then(function(got2){ if(got2) render(); });
+        }
+      } else {
+        setSyncStatus('warn','未ログイン：この端末内に保存中');
+      }
+    });
   }catch(e){
     console.warn('Firebase init failed; running local-only', e);
     setSyncStatus('warn','オフライン：この端末内に保存中');
@@ -2425,6 +2447,15 @@ function mergePaidContent(data){
     if(raw) mergePaidContent(JSON.parse(raw));
   }catch(e){}
 })();
+(function cleanupCancelledPurchaseUrl(){
+  // 決済キャンセルで戻ってきたときのURL掃除。成功時(purchase=success)はログインが
+  // 前提になるため、onAuthStateChangedの中で処理する（initFirebase()参照）。
+  try{
+    if(new URLSearchParams(location.search).get('purchase')==='cancel'){
+      history.replaceState(null,'',location.pathname);
+    }
+  }catch(e){}
+})();
 async function fetchPaidContent(){
   if(!firebaseReady || !auth || !auth.currentUser) return false;
   try{
@@ -4102,6 +4133,8 @@ function startAiChallenge(){
 }
 
 // モジュールスコープの関数をグローバルに公開（onclick属性から呼び出せるように）
+window.startCheckout = startCheckout;
+window.fetchPaidContent = fetchPaidContent;
 window.startAiChallenge = startAiChallenge;
 window.mtSaveGraderUrl = mtSaveGraderUrl;
 window.mtInit = mtInit;
