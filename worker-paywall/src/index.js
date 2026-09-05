@@ -14,6 +14,7 @@
 
 import { verifyFirebaseIdToken } from './firebase-verify.js';
 import { verifyStripeSignature, createCheckoutSession } from './stripe.js';
+import { PAID_CONTENT } from './content-bundle.js';
 
 const ALLOWED_ORIGINS = [
   'https://akiraregister.github.io',
@@ -113,9 +114,13 @@ export default {
     }
 
     if (url.pathname === '/content' && request.method === 'GET') {
-      // Day8-90のコンテンツ配信は未実装。index.html側の切り出し方を
-      // 詰めてから、このWorkerに実装を追加する（worker-paywall/README.md参照）。
-      return json({ error: '未実装です' }, 501, origin);
+      const uid = await requireUid(request);
+      if (!uid) return json({ error: 'ログインしてください' }, 401, origin);
+      const rec = await env.ENTITLEMENTS.get(uid);
+      let purchased = false;
+      try { purchased = !!(rec && JSON.parse(rec).purchased); } catch { purchased = false; }
+      if (!purchased) return json({ error: '購入が確認できません' }, 403, origin);
+      return json(PAID_CONTENT, 200, origin);
     }
 
     return json({ error: 'Not found' }, 404, origin);

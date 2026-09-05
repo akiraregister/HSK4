@@ -1,4 +1,4 @@
-import { launch } from './browser.mjs';
+import { launch, seedFullContent } from './browser.mjs';
 const B = process.env.BASE || 'http://127.0.0.1:8765/';
 const br = await launch();
 const res = [];
@@ -8,6 +8,7 @@ const errs = [];
 async function fresh() {
   const c = await br.newContext({ viewport: { width: 390, height: 844 } });
   const p = await c.newPage();
+  await seedFullContent(p);
   p.on('pageerror', e => errs.push(e.message));
   await p.goto(B, { waitUntil: 'load' });
   await p.waitForTimeout(600);

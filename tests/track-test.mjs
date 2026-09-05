@@ -1,8 +1,9 @@
-import { launch } from './browser.mjs';
+import { launch, seedFullContent } from './browser.mjs';
 const B = process.env.BASE || 'http://127.0.0.1:8765/';
 const br = await launch();
 const c = await br.newContext({ viewport: { width: 390, height: 844 }, permissions: ['clipboard-read', 'clipboard-write'] });
 const p = await c.newPage();
+await seedFullContent(p);
 const errs = []; p.on('pageerror', e => errs.push(e.message));
 const res = []; const ok = (n, v, x = '') => res.push(`${v ? 'PASS' : 'FAIL'}  ${n}${x ? '  — ' + x : ''}`);
 const evs = () => p.evaluate(() => JSON.parse(localStorage.getItem('hsk4-events') || '[]'));

@@ -1,9 +1,10 @@
-import { launch } from './browser.mjs';
+import { launch, seedFullContent } from './browser.mjs';
 
 const BASE = process.env.BASE || 'http://127.0.0.1:8765/';
 const browser = await launch();
 const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
 const page = await ctx.newPage();
+await seedFullContent(page);
 
 const errs = [];
 page.on('pageerror', e => errs.push('PAGEERROR: ' + e.message));

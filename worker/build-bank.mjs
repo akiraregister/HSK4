@@ -1,7 +1,10 @@
-// index.html の BANK から、Worker が持つ作文データを生成する。
+// Day1-7分は index.html の BANK から、Day8-90分は worker-paywall/src/content-bundle.js
+// （有料コンテンツ、hsk4-paywall Workerが購入済みユーザーにだけ配るもの）から読み、
+// 両方をマージしてWorkerが持つ作文データを生成する。
 // 手で写すとアプリ側とずれるので、必ずこれで作り直すこと。
 //   node worker/build-bank.mjs
 import { readFile, writeFile } from 'fs/promises';
+import { PAID_CONTENT } from '../worker-paywall/src/content-bundle.js';
 
 const ROOT = new URL('..', import.meta.url).pathname;
 const src = await readFile(ROOT + 'index.html', 'utf8');
@@ -17,7 +20,7 @@ for (; i < src.length; i++) {
   if (c === '{') depth++;
   else if (c === '}') { depth--; if (depth === 0) { i++; break; } }
 }
-const BANK = eval('(' + src.slice(open, i) + ')');
+const BANK = { ...eval('(' + src.slice(open, i) + ')'), ...PAID_CONTENT.bank };
 
 const out = {};
 for (const day of Object.keys(BANK).map(Number).sort((a, b) => a - b)) {

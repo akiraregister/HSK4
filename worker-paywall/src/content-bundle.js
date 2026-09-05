@@ -1,0 +1,31110 @@
+// 自動生成。手で編集しないこと。作り直しは `node worker-paywall/build-content.mjs`。
+// 出典: index.html の LESSONS/BANK/LISTENING（Day8-90ぶん）
+// GET /content で購入済みユーザーにだけ返す。
+export const PAID_CONTENT = {
+ "lessons": [
+  {
+   "day": 8,
+   "title": "Day 8｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d8-v0",
+     "zh": "检查",
+     "pinyin": "jiǎnchá",
+     "ja": "チェックする",
+     "example": "发邮件之前，请检查一下内容。",
+     "exPinyin": "Fā yóujiàn zhīqián, qǐng jiǎnchá yíxià nèiróng.",
+     "exJa": "メールを送る前に内容を確認してください。"
+    },
+    {
+     "id": "d8-v1",
+     "zh": "整理",
+     "pinyin": "zhěnglǐ",
+     "ja": "整理する",
+     "example": "我把今天的会议内容整理好了。",
+     "exPinyin": "Wǒ bǎ jīntiān de huìyì nèiróng zhěnglǐ hǎo le.",
+     "exJa": "今日の会議内容を整理しました。"
+    },
+    {
+     "id": "d8-v2",
+     "zh": "准备",
+     "pinyin": "zhǔnbèi",
+     "ja": "準備する",
+     "example": "我已经准备好明天的资料了。",
+     "exPinyin": "Wǒ yǐjīng zhǔnbèi hǎo míngtiān de zīliào le.",
+     "exJa": "明日の資料はもう準備できました。"
+    },
+    {
+     "id": "d8-v3",
+     "zh": "计划",
+     "pinyin": "jìhuà",
+     "ja": "計画する",
+     "example": "周末你有什么计划？",
+     "exPinyin": "Zhōumò nǐ yǒu shénme jìhuà?",
+     "exJa": "週末は何か予定がありますか。"
+    },
+    {
+     "id": "d8-v4",
+     "zh": "选择",
+     "pinyin": "xuǎnzé",
+     "ja": "選ぶ",
+     "example": "我还没决定选择哪一个。",
+     "exPinyin": "Wǒ hái méi juédìng xuǎnzé nǎ yí ge.",
+     "exJa": "どれを選ぶかまだ決めていません。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d8-g0",
+     "name": "一边〜一边〜",
+     "pinyin": "yìbiān",
+     "meaning": "〜しながら〜する",
+     "explain": "同じ主語が二つの動作を同時にする時に使います。",
+     "contrast": "一边吃饭，一边看手机。姿勢の持続なら着も使えます。",
+     "mistake": "基本は同じ主語で使います。",
+     "example": "我一边吃饭，一边看手机。",
+     "exPinyin": "Wǒ yìbiān chīfàn, yìbiān kàn shǒujī.",
+     "exJa": "ご飯を食べながらスマホを見ます。",
+     "test": "コーヒーを飲みながら勉強します。",
+     "answer": "我一边喝咖啡，一边学习。"
+    },
+    {
+     "id": "d8-g1",
+     "name": "因为〜所以〜",
+     "pinyin": "yīnwèi/suǒyǐ",
+     "meaning": "〜なので、だから〜",
+     "explain": "理由と結果を明確につなぐ表現です。",
+     "contrast": "会話では片方だけでも使いますが、両方使うと論理が明確です。",
+     "mistake": "英語のbecause/so感覚に引っ張られなくてOKです。",
+     "example": "因为地铁很方便，所以我每天坐地铁上班。",
+     "exPinyin": "Yīnwèi dìtiě hěn fāngbiàn, suǒyǐ wǒ měitiān zuò dìtiě shàngbān.",
+     "exJa": "地下鉄が便利なので、毎日地下鉄で通勤しています。",
+     "test": "時間がないので、昼ごはんを食べませんでした。",
+     "answer": "因为没有时间，所以我没吃午饭。"
+    },
+    {
+     "id": "d8-g2",
+     "name": "虽然〜但是〜",
+     "pinyin": "suīrán/dànshì",
+     "meaning": "〜だけれども、しかし〜",
+     "explain": "前半で事実、後半で逆の結果を言います。",
+     "contrast": "虽然忙，但是还要学习。論理が明確です。",
+     "mistake": "日本語の「でも」だけの感覚で短くつなぎすぎないこと。",
+     "example": "虽然有点儿贵，但是很好吃。",
+     "exPinyin": "Suīrán yǒudiǎnr guì, dànshì hěn hǎochī.",
+     "exJa": "少し高いですが、とても美味しいです。",
+     "test": "忙しいですが、勉強を続けたいです。",
+     "answer": "虽然很忙，但是我想继续学习。"
+    }
+   ]
+  },
+  {
+   "day": 9,
+   "title": "Day 9｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d9-v0",
+     "zh": "比较",
+     "pinyin": "bǐjiào",
+     "ja": "比較的、比べる",
+     "example": "这家店比较适合带孩子来。",
+     "exPinyin": "Zhè jiā diàn bǐjiào shìhé dài háizi lái.",
+     "exJa": "この店は子ども連れで来るのに比較的向いています。"
+    },
+    {
+     "id": "d9-v1",
+     "zh": "决定",
+     "pinyin": "juédìng",
+     "ja": "決める",
+     "example": "我决定重新准备HSK四级。",
+     "exPinyin": "Wǒ juédìng chóngxīn zhǔnbèi HSK sì jí.",
+     "exJa": "HSK4級を改めて準備することに決めました。"
+    },
+    {
+     "id": "d9-v2",
+     "zh": "尝试",
+     "pinyin": "chángshì",
+     "ja": "試す",
+     "example": "我想尝试用中文开会。",
+     "exPinyin": "Wǒ xiǎng chángshì yòng Zhōngwén kāihuì.",
+     "exJa": "中国語で会議をすることに挑戦したいです。"
+    },
+    {
+     "id": "d9-v3",
+     "zh": "坚持",
+     "pinyin": "jiānchí",
+     "ja": "続ける、堅持する",
+     "example": "每天坚持十分钟也有帮助。",
+     "exPinyin": "Měitiān jiānchí shí fēnzhōng yě yǒu bāngzhù.",
+     "exJa": "毎日10分続けるだけでも役に立ちます。"
+    },
+    {
+     "id": "d9-v4",
+     "zh": "放弃",
+     "pinyin": "fàngqì",
+     "ja": "諦める",
+     "example": "遇到困难也不要放弃。",
+     "exPinyin": "Yùdào kùnnan yě bú yào fàngqì.",
+     "exJa": "困難にあっても諦めないでください。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d9-g0",
+     "name": "如果〜就〜",
+     "pinyin": "rúguǒ/jiù",
+     "meaning": "もし〜なら〜",
+     "explain": "条件と結果をつなぐ基本表現です。",
+     "contrast": "如果〜就〜は起こるかどうか分からない仮定、只要〜就〜は最低条件、只有〜才〜は唯一の必要条件です。条件の強さが違います。",
+     "mistake": "就は結果側に置きます。",
+     "example": "如果你方便，我们就明天见。",
+     "exPinyin": "Rúguǒ nǐ fāngbiàn, wǒmen jiù míngtiān jiàn.",
+     "exJa": "都合がよければ明日会いましょう。",
+     "test": "雨が降ったら家で勉強します。",
+     "answer": "如果下雨，我就在家学习。"
+    },
+    {
+     "id": "d9-g1",
+     "name": "只要〜就〜",
+     "pinyin": "zhǐyào/jiù",
+     "meaning": "〜さえすれば〜",
+     "explain": "最低条件を表します。",
+     "contrast": "只要〜就〜は十分条件（それだけで結果が起こる）、只有〜才〜は必要条件（それが無いと結果が起こらない）です。",
+     "mistake": "只有才との違いに注意。只要は十分条件です。",
+     "example": "只要坚持，就会有进步。",
+     "exPinyin": "Zhǐyào jiānchí, jiù huì yǒu jìnbù.",
+     "exJa": "続けさえすれば進歩します。",
+     "test": "毎日聞けば慣れます。",
+     "answer": "只要每天听，就会习惯。"
+    },
+    {
+     "id": "d9-g2",
+     "name": "只有〜才〜",
+     "pinyin": "zhǐyǒu/cái",
+     "meaning": "〜して初めて〜",
+     "explain": "必要条件を表します。",
+     "contrast": "只有〜才〜は必要条件、只要〜就〜は十分条件です。「それだけで足りるか（只要）」か「それが無いとダメか（只有）」かで見分けます。",
+     "mistake": "只要就は十分条件、只有才は必要条件です。",
+     "example": "只有多练习，才会说得自然。",
+     "exPinyin": "Zhǐyǒu duō liànxí, cái huì shuō de zìrán.",
+     "exJa": "たくさん練習して初めて自然に話せます。",
+     "test": "復習して初めて覚えられます。",
+     "answer": "只有复习，才能记住。"
+    }
+   ]
+  },
+  {
+   "day": 10,
+   "title": "Day 10｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d10-v0",
+     "zh": "注意",
+     "pinyin": "zhùyì",
+     "ja": "注意する",
+     "example": "过马路的时候要注意车。",
+     "exPinyin": "Guò mǎlù de shíhou yào zhùyì chē.",
+     "exJa": "道を渡る時は車に注意してください。"
+    },
+    {
+     "id": "d10-v1",
+     "zh": "根据",
+     "pinyin": "gēnjù",
+     "ja": "〜に基づいて",
+     "example": "根据天气预报，明天可能会下雨。",
+     "exPinyin": "Gēnjù tiānqì yùbào, míngtiān kěnéng huì xià yǔ.",
+     "exJa": "天気予報によると、明日は雨が降るかもしれません。"
+    },
+    {
+     "id": "d10-v2",
+     "zh": "要求",
+     "pinyin": "yāoqiú",
+     "ja": "要求する",
+     "example": "客户对时间有特别要求。",
+     "exPinyin": "Kèhù duì shíjiān yǒu tèbié yāoqiú.",
+     "exJa": "顧客は時間について特別な要望があります。"
+    },
+    {
+     "id": "d10-v3",
+     "zh": "经验",
+     "pinyin": "jīngyàn",
+     "ja": "経験",
+     "example": "在上海生活的经验对我很有帮助。",
+     "exPinyin": "Zài Shànghǎi shēnghuó de jīngyàn duì wǒ hěn yǒu bāngzhù.",
+     "exJa": "上海での生活経験は私にとても役立っています。"
+    },
+    {
+     "id": "d10-v4",
+     "zh": "机会",
+     "pinyin": "jīhuì",
+     "ja": "機会",
+     "example": "我想找更多说中文的机会。",
+     "exPinyin": "Wǒ xiǎng zhǎo gèng duō shuō Zhōngwén de jīhuì.",
+     "exJa": "中国語を話す機会をもっと作りたいです。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d10-g0",
+     "name": "不但〜而且〜",
+     "pinyin": "búdàn/érqiě",
+     "meaning": "〜だけでなく、さらに〜",
+     "explain": "二つの特徴を積み上げる表現です。",
+     "contrast": "而且だけでも「そのうえ」を表せますが、前に不但を置くと「二つの内容が同じ方向に積み重なっている」ことがはっきりします。",
+     "mistake": "而且だけでも使えますが、不但と組み合わせると論理的です。",
+     "example": "这家店不但方便，而且味道不错。",
+     "exPinyin": "Zhè jiā diàn búdàn fāngbiàn, érqiě wèidào búcuò.",
+     "exJa": "この店は便利なだけでなく、味も悪くありません。",
+     "test": "彼は中国語だけでなく英語も話せます。",
+     "answer": "他不但会说中文，而且会说英文。"
+    },
+    {
+     "id": "d10-g1",
+     "name": "不管〜都〜",
+     "pinyin": "bùguǎn/dōu",
+     "meaning": "〜に関わらず〜",
+     "explain": "条件が変わっても結果が変わらないことを表します。",
+     "contrast": "不管〜都〜と无论〜都〜はどちらも「〜に関わらず」ですが、不管は話し言葉的、无论はやや書き言葉的です。",
+     "mistake": "无论都より口語的です。",
+     "example": "不管多忙，我都想坚持学习。",
+     "exPinyin": "Bùguǎn duō máng, wǒ dōu xiǎng jiānchí xuéxí.",
+     "exJa": "どんなに忙しくても学習を続けたいです。",
+     "test": "天気がどうであれ行きます。",
+     "answer": "不管天气怎么样，我都去。"
+    },
+    {
+     "id": "d10-g2",
+     "name": "除了〜以外，还〜",
+     "pinyin": "chúle/yǐwài/hái",
+     "meaning": "〜以外に、さらに〜",
+     "explain": "追加情報を述べる表現です。",
+     "contrast": "除了〜以外，还〜は「それに加えて」という追加の意味、除了〜以外，都〜は「それを除いて全部」という除外の意味です。还と都で意味が逆になります。",
+     "mistake": "除了の後ろだけで終わらず、还/也で追加します。",
+     "example": "除了日语以外，我还想多用中文。",
+     "exPinyin": "Chúle Rìyǔ yǐwài, wǒ hái xiǎng duō yòng Zhōngwén.",
+     "exJa": "日本語以外に中国語ももっと使いたいです。",
+     "test": "上海以外に蘇州にも行ったことがあります。",
+     "answer": "除了上海以外，我还去过苏州。"
+    }
+   ]
+  },
+  {
+   "day": 11,
+   "title": "Day 11｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d11-v0",
+     "zh": "环境",
+     "pinyin": "huánjìng",
+     "ja": "環境",
+     "example": "语言环境很重要。",
+     "exPinyin": "Yǔyán huánjìng hěn zhòngyào.",
+     "exJa": "言語環境はとても重要です。"
+    },
+    {
+     "id": "d11-v1",
+     "zh": "条件",
+     "pinyin": "tiáojiàn",
+     "ja": "条件",
+     "example": "如果条件合适，我们就开始。",
+     "exPinyin": "Rúguǒ tiáojiàn héshì, wǒmen jiù kāishǐ.",
+     "exJa": "条件が合えば始めましょう。"
+    },
+    {
+     "id": "d11-v2",
+     "zh": "感觉",
+     "pinyin": "gǎnjué",
+     "ja": "感じる",
+     "example": "我感觉今天的听力比较难。",
+     "exPinyin": "Wǒ gǎnjué jīntiān de tīnglì bǐjiào nán.",
+     "exJa": "今日のリスニングは少し難しく感じます。"
+    },
+    {
+     "id": "d11-v3",
+     "zh": "兴趣",
+     "pinyin": "xìngqù",
+     "ja": "興味",
+     "example": "我对中国文化很有兴趣。",
+     "exPinyin": "Wǒ duì Zhōngguó wénhuà hěn yǒu xìngqù.",
+     "exJa": "中国文化にとても興味があります。"
+    },
+    {
+     "id": "d11-v4",
+     "zh": "目的",
+     "pinyin": "mùdì",
+     "ja": "目的",
+     "example": "我学习中文的目的是提高表达能力。",
+     "exPinyin": "Wǒ xuéxí Zhōngwén de mùdì shì tígāo biǎodá nénglì.",
+     "exJa": "中国語を学ぶ目的は表現力を高めることです。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d11-g0",
+     "name": "先〜再〜",
+     "pinyin": "xiān/zài",
+     "meaning": "先に〜して、それから〜",
+     "explain": "動作の順番を表します。",
+     "contrast": "先〜再〜は二つの動作の順番を簡潔につなげ、先〜然后〜も同じ順番を表せますが、然后の方がややくだけた「それから」という響きです。",
+     "mistake": "然后も使えますが、先再は順番が明確です。",
+     "example": "我们先看资料，再讨论问题。",
+     "exPinyin": "Wǒmen xiān kàn zīliào, zài tǎolùn wèntí.",
+     "exJa": "先に資料を見て、それから問題を議論しましょう。",
+     "test": "先に食べてから出発しましょう。",
+     "answer": "我们先吃饭，再出发。"
+    },
+    {
+     "id": "d11-g1",
+     "name": "就要〜了",
+     "pinyin": "jiùyào…le",
+     "meaning": "もうすぐ〜する",
+     "explain": "近い未来を表します。",
+     "contrast": "就要〜了と快〜了・要〜了はどれも「もうすぐ〜する」を表しますが、就要〜了は会议就要开始了のように具体的な時間の言葉と一緒に使いやすい形です。",
+     "mistake": "文末了を忘れないようにします。",
+     "example": "会议就要开始了。",
+     "exPinyin": "Huìyì jiùyào kāishǐ le.",
+     "exJa": "会議がもうすぐ始まります。",
+     "test": "もうすぐ遅刻します。",
+     "answer": "我就要迟到了。"
+    },
+    {
+     "id": "d11-g2",
+     "name": "快〜了",
+     "pinyin": "kuài…le",
+     "meaning": "もうすぐ〜になる",
+     "explain": "状態や動作が近いことを表します。",
+     "contrast": "快到了 はもうすぐ着く。到了は着いた。",
+     "mistake": "まだ完了していません。",
+     "example": "我快到了。",
+     "exPinyin": "Wǒ kuài dào le.",
+     "exJa": "もうすぐ着きます。",
+     "test": "もうすぐ雨が降りそうです。",
+     "answer": "快下雨了。"
+    }
+   ]
+  },
+  {
+   "day": 12,
+   "title": "Day 12｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d12-v0",
+     "zh": "关系",
+     "pinyin": "guānxì",
+     "ja": "関係",
+     "example": "这件事和我没有关系。",
+     "exPinyin": "Zhè jiàn shì hé wǒ méiyǒu guānxì.",
+     "exJa": "この件は私とは関係ありません。"
+    },
+    {
+     "id": "d12-v1",
+     "zh": "内容",
+     "pinyin": "nèiróng",
+     "ja": "内容",
+     "example": "今天会议的内容比较复杂。",
+     "exPinyin": "Jīntiān huìyì de nèiróng bǐjiào fùzá.",
+     "exJa": "今日の会議内容はやや複雑です。"
+    },
+    {
+     "id": "d12-v2",
+     "zh": "重点",
+     "pinyin": "zhòngdiǎn",
+     "ja": "重点",
+     "example": "请把重点写在第一页。",
+     "exPinyin": "Qǐng bǎ zhòngdiǎn xiě zài dì yī yè.",
+     "exJa": "重点を1ページ目に書いてください。"
+    },
+    {
+     "id": "d12-v3",
+     "zh": "区别",
+     "pinyin": "qūbié",
+     "ja": "違い",
+     "example": "这两个词的区别是什么？",
+     "exPinyin": "Zhè liǎng ge cí de qūbié shì shénme?",
+     "exJa": "この2つの単語の違いは何ですか。"
+    },
+    {
+     "id": "d12-v4",
+     "zh": "原因",
+     "pinyin": "yuányīn",
+     "ja": "原因",
+     "example": "迟到的原因是路上堵车。",
+     "exPinyin": "Chídào de yuányīn shì lùshang dǔchē.",
+     "exJa": "遅刻の原因は道が渋滞していたことです。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d12-g0",
+     "name": "刚〜就〜",
+     "pinyin": "gāng/jiù",
+     "meaning": "〜したばかりなのにすぐ〜",
+     "explain": "二つの出来事が近い時間で起きたことを表します。",
+     "contrast": "刚〜就〜は「したばかりなのに、もうすぐに〜」という意外性を含み、一〜就〜は「〜するとすぐに〜する」という一般的な条件的つながりです。",
+     "mistake": "忙しい感じが出ます。",
+     "example": "我刚到公司就开会了。",
+     "exPinyin": "Wǒ gāng dào gōngsī jiù kāihuì le.",
+     "exJa": "会社に着いたばかりですぐ会議になりました。",
+     "test": "家に着いたばかりで電話が来ました。",
+     "answer": "我刚到家就接到电话了。"
+    },
+    {
+     "id": "d12-g1",
+     "name": "刚才と刚",
+     "pinyin": "gāngcái/gāng",
+     "meaning": "さっき/〜したばかり",
+     "explain": "刚才は時間名詞でさっき、刚は副詞で〜したばかりです。",
+     "contrast": "刚才は名詞で「さっき」という時点そのものを指し（刚才我给你打电话了）、刚は副詞で動詞の前に置いて「〜したばかり」を表します（我刚到）。",
+     "mistake": "位置に注意します。",
+     "example": "我刚才给你发消息了。",
+     "exPinyin": "Wǒ gāngcái gěi nǐ fā xiāoxi le.",
+     "exJa": "さっきあなたにメッセージを送りました。",
+     "test": "私は着いたばかりです。",
+     "answer": "我刚到。"
+    },
+    {
+     "id": "d12-g2",
+     "name": "又〜了",
+     "pinyin": "yòu…le",
+     "meaning": "また〜した",
+     "explain": "同じことが再び起きたことを表します。",
+     "contrast": "又迟到了 はまた遅刻した。",
+     "mistake": "再は未来のまた、又は発生済みのまたが多いです。",
+     "example": "他又迟到了。",
+     "exPinyin": "Tā yòu chídào le.",
+     "exJa": "彼はまた遅刻しました。",
+     "test": "また雨が降ってきました。",
+     "answer": "又下雨了。"
+    }
+   ]
+  },
+  {
+   "day": 13,
+   "title": "Day 13｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d13-v0",
+     "zh": "方法",
+     "pinyin": "fāngfǎ",
+     "ja": "方法",
+     "example": "这个方法很适合我。",
+     "exPinyin": "Zhège fāngfǎ hěn shìhé wǒ.",
+     "exJa": "この方法は私に合っています。"
+    },
+    {
+     "id": "d13-v1",
+     "zh": "能力",
+     "pinyin": "nénglì",
+     "ja": "能力",
+     "example": "我想提高中文表达能力。",
+     "exPinyin": "Wǒ xiǎng tígāo Zhōngwén biǎodá nénglì.",
+     "exJa": "中国語の表現力を高めたいです。"
+    },
+    {
+     "id": "d13-v2",
+     "zh": "速度",
+     "pinyin": "sùdù",
+     "ja": "速度",
+     "example": "他说话的速度太快了。",
+     "exPinyin": "Tā shuōhuà de sùdù tài kuài le.",
+     "exJa": "彼の話すスピードは速すぎます。"
+    },
+    {
+     "id": "d13-v3",
+     "zh": "质量",
+     "pinyin": "zhìliàng",
+     "ja": "質",
+     "example": "这份报告的质量不错。",
+     "exPinyin": "Zhè fèn bàogào de zhìliàng búcuò.",
+     "exJa": "このレポートの質は悪くありません。"
+    },
+    {
+     "id": "d13-v4",
+     "zh": "态度",
+     "pinyin": "tàidu",
+     "ja": "態度",
+     "example": "他的工作态度很认真。",
+     "exPinyin": "Tā de gōngzuò tàidu hěn rènzhēn.",
+     "exJa": "彼の仕事の態度はとても真面目です。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d13-g0",
+     "name": "再",
+     "pinyin": "zài",
+     "meaning": "もう一度、またこれから",
+     "explain": "未来やこれからの繰り返し・追加を表します。",
+     "contrast": "再はこれから起こる・繰り返す動作に使い（请再说一遍）、又はすでに起きた繰り返しに使います（他又迟到了＝彼はまた遅刻した）。",
+     "mistake": "すでに起きたことには又が自然です。",
+     "example": "请再说一遍。",
+     "exPinyin": "Qǐng zài shuō yí biàn.",
+     "exJa": "もう一度言ってください。",
+     "test": "もう一度説明してください。",
+     "answer": "请再解释一下。"
+    },
+    {
+     "id": "d13-g1",
+     "name": "还是／或者",
+     "pinyin": "háishi/huòzhě",
+     "meaning": "選択疑問/平叙文の選択",
+     "explain": "疑問文で選択を聞く時は还是、普通の文でまたはは或者です。",
+     "contrast": "还是は疑問文で選択肢を尋ねる時に使い（你喝茶还是咖啡？）、或者は平叙文で「〜か〜」という選択を述べる時に使います（你喝茶或者咖啡都可以＝お茶でもコーヒーでもいいです）。",
+     "mistake": "疑問文で或者を使うと不自然なことがあります。",
+     "example": "你坐地铁还是打车？",
+     "exPinyin": "Nǐ zuò dìtiě háishi dǎchē?",
+     "exJa": "地下鉄ですか、タクシーですか。",
+     "test": "コーヒーかお茶を飲みたいです。",
+     "answer": "我想喝咖啡或者茶。"
+    },
+    {
+     "id": "d13-g2",
+     "name": "才",
+     "pinyin": "cái",
+     "meaning": "やっと、〜しか",
+     "explain": "才は思ったより遅い・少ない感覚を表します。",
+     "contrast": "八点才到 は8時になってやっと着いた。",
+     "mistake": "就と感覚が逆です。",
+     "example": "他十点才到公司。",
+     "exPinyin": "Tā shí diǎn cái dào gōngsī.",
+     "exJa": "彼は10時になってやっと会社に着きました。",
+     "test": "私は今やっと分かりました。",
+     "answer": "我现在才明白。"
+    }
+   ]
+  },
+  {
+   "day": 14,
+   "title": "Day 14｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d14-v0",
+     "zh": "服务",
+     "pinyin": "fúwù",
+     "ja": "サービス",
+     "example": "这家店的服务很好。",
+     "exPinyin": "Zhè jiā diàn de fúwù hěn hǎo.",
+     "exJa": "この店のサービスはとても良いです。"
+    },
+    {
+     "id": "d14-v1",
+     "zh": "价格",
+     "pinyin": "jiàgé",
+     "ja": "価格",
+     "example": "这个价格比我想象的高。",
+     "exPinyin": "Zhège jiàgé bǐ wǒ xiǎngxiàng de gāo.",
+     "exJa": "この価格は思っていたより高いです。"
+    },
+    {
+     "id": "d14-v2",
+     "zh": "味道",
+     "pinyin": "wèidào",
+     "ja": "味",
+     "example": "这个菜味道不错。",
+     "exPinyin": "Zhège cài wèidào búcuò.",
+     "exJa": "この料理は味が悪くありません。"
+    },
+    {
+     "id": "d14-v3",
+     "zh": "辣椒",
+     "pinyin": "làjiāo",
+     "ja": "唐辛子",
+     "example": "孩子也要吃，请少放一点辣椒。",
+     "exPinyin": "Háizi yě yào chī, qǐng shǎo fàng yìdiǎn làjiāo.",
+     "exJa": "子どもも食べるので、唐辛子を少なめにしてください。"
+    },
+    {
+     "id": "d14-v4",
+     "zh": "调整",
+     "pinyin": "tiáozhěng",
+     "ja": "調整する",
+     "example": "这个时间可以调整一下吗？",
+     "exPinyin": "Zhège shíjiān kěyǐ tiáozhěng yíxià ma?",
+     "exJa": "この時間を少し調整できますか。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d14-g0",
+     "name": "就",
+     "pinyin": "jiù",
+     "meaning": "もう、すぐ、たった",
+     "explain": "就は早さ・少なさ・当然の結果を表します。",
+     "contrast": "八点就到 は8時にはもう着いた。",
+     "mistake": "才との対比で覚えると便利です。",
+     "example": "我马上就到。",
+     "exPinyin": "Wǒ mǎshàng jiù dào.",
+     "exJa": "すぐ着きます。",
+     "test": "彼は7時にはもう出発しました。",
+     "answer": "他七点就出发了。"
+    },
+    {
+     "id": "d14-g1",
+     "name": "才と就",
+     "pinyin": "cái/jiù",
+     "meaning": "遅い/早いの感覚",
+     "explain": "同じ時間でも才と就で話し手の感じ方が逆です。",
+     "contrast": "九点才到 は遅い、九点就到 は早い。",
+     "mistake": "訳より話者の気持ちを意識します。",
+     "example": "他晚上十点才回家。",
+     "exPinyin": "Tā wǎnshang shí diǎn cái huí jiā.",
+     "exJa": "彼は夜10時になってやっと帰宅しました。",
+     "test": "私は5分で着きます。",
+     "answer": "我五分钟就到。"
+    },
+    {
+     "id": "d14-g2",
+     "name": "有点儿と一点儿",
+     "pinyin": "yǒudiǎnr/yìdiǎnr",
+     "meaning": "少し〜/少しの量",
+     "explain": "有点儿は形容詞の前、一点儿は量や程度を表します。",
+     "contrast": "有点儿は形容詞の前に置いて「少し〜だ」という程度を表し（有点儿贵）、一点儿は名詞や動詞の後で「少しの量」を表します（少放一点儿辣椒＝唐辛子を少し減らして）。",
+     "mistake": "手续一点麻烦ではなく，手续有点儿麻烦。",
+     "example": "这个手续有点儿麻烦。",
+     "exPinyin": "Zhège shǒuxù yǒudiǎnr máfan.",
+     "exJa": "この手続きは少し面倒です。",
+     "test": "辛さを少し控えてください。",
+     "answer": "请少放一点儿辣椒。"
+    }
+   ]
+  },
+  {
+   "day": 15,
+   "title": "Day 15｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d15-v0",
+     "zh": "客户",
+     "pinyin": "kèhù",
+     "ja": "顧客",
+     "example": "下午我要去见一个客户。",
+     "exPinyin": "Xiàwǔ wǒ yào qù jiàn yí ge kèhù.",
+     "exJa": "午後、顧客に会いに行きます。"
+    },
+    {
+     "id": "d15-v1",
+     "zh": "经理",
+     "pinyin": "jīnglǐ",
+     "ja": "マネージャー",
+     "example": "王经理让我明天再联系他。",
+     "exPinyin": "Wáng jīnglǐ ràng wǒ míngtiān zài liánxì tā.",
+     "exJa": "王マネージャーは明日また連絡するよう私に言いました。"
+    },
+    {
+     "id": "d15-v2",
+     "zh": "同事",
+     "pinyin": "tóngshì",
+     "ja": "同僚",
+     "example": "我跟同事讨论了一下这个问题。",
+     "exPinyin": "Wǒ gēn tóngshì tǎolùn le yíxià zhège wèntí.",
+     "exJa": "同僚とこの問題について少し話し合いました。"
+    },
+    {
+     "id": "d15-v3",
+     "zh": "会议室",
+     "pinyin": "huìyìshì",
+     "ja": "会議室",
+     "example": "会议室已经订好了。",
+     "exPinyin": "Huìyìshì yǐjīng dìng hǎo le.",
+     "exJa": "会議室はもう予約してあります。"
+    },
+    {
+     "id": "d15-v4",
+     "zh": "资料",
+     "pinyin": "zīliào",
+     "ja": "資料",
+     "example": "请把资料发给我。",
+     "exPinyin": "Qǐng bǎ zīliào fā gěi wǒ.",
+     "exJa": "資料を私に送ってください。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d15-g0",
+     "name": "一点儿也不",
+     "pinyin": "yìdiǎnr yě bù",
+     "meaning": "少しも〜ない",
+     "explain": "完全な否定を強調します。",
+     "contrast": "一点儿也不贵 は少しも高くない。",
+     "mistake": "不太より強い否定です。",
+     "example": "这个菜一点儿也不辣。",
+     "exPinyin": "Zhège cài yìdiǎnr yě bú là.",
+     "exJa": "この料理は少しも辛くありません。",
+     "test": "彼は全然緊張していません。",
+     "answer": "他一点儿也不紧张。"
+    },
+    {
+     "id": "d15-g1",
+     "name": "差点儿",
+     "pinyin": "chàdiǎnr",
+     "meaning": "危うく〜するところだった",
+     "explain": "もう少しで何かが起きそうだったことを表します。",
+     "contrast": "差点儿迟到 は遅刻しそうだった。",
+     "mistake": "実際には起きていない場合が多いです。",
+     "example": "我今天差点儿迟到。",
+     "exPinyin": "Wǒ jīntiān chàdiǎnr chídào.",
+     "exJa": "今日は危うく遅刻するところでした。",
+     "test": "危うく地下鉄に乗り遅れるところでした。",
+     "answer": "我差点儿没赶上地铁。"
+    },
+    {
+     "id": "d15-g2",
+     "name": "好像",
+     "pinyin": "hǎoxiàng",
+     "meaning": "〜みたいだ",
+     "explain": "見た感じ・聞いた感じで推測する時に使います。",
+     "contrast": "好像要下雨 は雨が降りそう。",
+     "mistake": "可能より感覚的です。",
+     "example": "外面好像下雨了。",
+     "exPinyin": "Wàimiàn hǎoxiàng xià yǔ le.",
+     "exJa": "外は雨が降っているみたいです。",
+     "test": "彼は少し疲れているみたいです。",
+     "answer": "他好像有点儿累。"
+    }
+   ]
+  },
+  {
+   "day": 16,
+   "title": "Day 16｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d16-v0",
+     "zh": "报告",
+     "pinyin": "bàogào",
+     "ja": "報告書",
+     "example": "我还没看完这份报告。",
+     "exPinyin": "Wǒ hái méi kàn wán zhè fèn bàogào.",
+     "exJa": "この報告書をまだ読み終えていません。"
+    },
+    {
+     "id": "d16-v1",
+     "zh": "合同",
+     "pinyin": "hétong",
+     "ja": "契約書",
+     "example": "签合同之前要仔细看。",
+     "exPinyin": "Qiān hétong zhīqián yào zǐxì kàn.",
+     "exJa": "契約書に署名する前によく見る必要があります。"
+    },
+    {
+     "id": "d16-v2",
+     "zh": "护照",
+     "pinyin": "hùzhào",
+     "ja": "パスポート",
+     "example": "去银行办手续需要带护照。",
+     "exPinyin": "Qù yínháng bàn shǒuxù xūyào dài hùzhào.",
+     "exJa": "銀行で手続きをするにはパスポートを持って行く必要があります。"
+    },
+    {
+     "id": "d16-v3",
+     "zh": "身份证",
+     "pinyin": "shēnfènzhèng",
+     "ja": "身分証",
+     "example": "参观工厂需要带身份证。",
+     "exPinyin": "Cānguān gōngchǎng xūyào dài shēnfènzhèng.",
+     "exJa": "工場見学には身分証が必要です。"
+    },
+    {
+     "id": "d16-v4",
+     "zh": "地址",
+     "pinyin": "dìzhǐ",
+     "ja": "住所",
+     "example": "你可以把地址发给我吗？",
+     "exPinyin": "Nǐ kěyǐ bǎ dìzhǐ fā gěi wǒ ma?",
+     "exJa": "住所を私に送ってもらえますか。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d16-g0",
+     "name": "可能と可以",
+     "pinyin": "kěnéng/kěyǐ",
+     "meaning": "可能性/許可・可能",
+     "explain": "可能は〜かもしれない、可以は〜できる/してよいです。",
+     "contrast": "可能は「〜かもしれない」という可能性の推測（明天可能会下雨）、可以は「〜できる／してよい」という能力・許可を表します（这里可以拍照）。",
+     "mistake": "日本語の「できる」に引っ張られないこと。",
+     "example": "明天可能会下雨。",
+     "exPinyin": "Míngtiān kěnéng huì xià yǔ.",
+     "exJa": "明日は雨が降るかもしれません。",
+     "test": "ここで写真を撮ってもいいですか。",
+     "answer": "这里可以拍照吗？"
+    },
+    {
+     "id": "d16-g1",
+     "name": "应该と要",
+     "pinyin": "yīnggāi/yào",
+     "meaning": "〜すべき/〜する必要がある",
+     "explain": "应该は判断としてすべき、要は必要・予定・意志です。",
+     "contrast": "应该は「〜すべきだ」という客観的な判断（你应该休息）、要は「〜する必要がある／〜するつもりだ」という必要性や意志を表します（我要休息）。",
+     "mistake": "文脈で助言か必要かを見ます。",
+     "example": "你应该早点休息。",
+     "exPinyin": "Nǐ yīnggāi zǎodiǎn xiūxi.",
+     "exJa": "早めに休んだ方がいいです。",
+     "test": "明日は会議に出なければなりません。",
+     "answer": "明天我要参加会议。"
+    },
+    {
+     "id": "d16-g2",
+     "name": "必须と得",
+     "pinyin": "bìxū/děi",
+     "meaning": "必ず〜/〜しなきゃ",
+     "explain": "必须は正式で強い義務、得は口語的な必要です。",
+     "contrast": "必须は書き言葉的で強い義務（必须提交）、得（děi）は話し言葉で「〜しなきゃ」という必要を表します（我得走了）。発音はdeではなくděiなので注意。",
+     "mistake": "得はdeではなくděiです。",
+     "example": "我得先回家了。",
+     "exPinyin": "Wǒ děi xiān huí jiā le.",
+     "exJa": "先に家に帰らなければなりません。",
+     "test": "この書類は今日提出しなければなりません。",
+     "answer": "这个文件今天必须提交。"
+    }
+   ]
+  },
+  {
+   "day": 17,
+   "title": "Day 17｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d17-v0",
+     "zh": "定位",
+     "pinyin": "dìngwèi",
+     "ja": "位置情報",
+     "example": "我把定位发给你。",
+     "exPinyin": "Wǒ bǎ dìngwèi fā gěi nǐ.",
+     "exJa": "位置情報をあなたに送ります。"
+    },
+    {
+     "id": "d17-v1",
+     "zh": "二维码",
+     "pinyin": "èrwéimǎ",
+     "ja": "QRコード",
+     "example": "请扫这个二维码。",
+     "exPinyin": "Qǐng sǎo zhège èrwéimǎ.",
+     "exJa": "このQRコードをスキャンしてください。"
+    },
+    {
+     "id": "d17-v2",
+     "zh": "外卖",
+     "pinyin": "wàimài",
+     "ja": "デリバリー",
+     "example": "你把外卖拿进来吧。",
+     "exPinyin": "Nǐ bǎ wàimài ná jìnlái ba.",
+     "exJa": "デリバリーを中に持ってきてください。"
+    },
+    {
+     "id": "d17-v3",
+     "zh": "地铁",
+     "pinyin": "dìtiě",
+     "ja": "地下鉄",
+     "example": "我每天坐地铁上班。",
+     "exPinyin": "Wǒ měitiān zuò dìtiě shàngbān.",
+     "exJa": "私は毎日地下鉄で通勤しています。"
+    },
+    {
+     "id": "d17-v4",
+     "zh": "高铁",
+     "pinyin": "gāotiě",
+     "ja": "高速鉄道",
+     "example": "从上海坐高铁去杭州很方便。",
+     "exPinyin": "Cóng Shànghǎi zuò gāotiě qù Hángzhōu hěn fāngbiàn.",
+     "exJa": "上海から高速鉄道で杭州へ行くのは便利です。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d17-g0",
+     "name": "让：使役",
+     "pinyin": "ràng",
+     "meaning": "〜させる、〜してもらう",
+     "explain": "让＋人＋動詞で、誰かに何かをさせる/してもらう意味です。",
+     "contrast": "让は「让＋人＋動詞」の形で、相手に何かをさせる・してもらうことを表します。命令のニュアンスが強い場合と、単に依頼・許可のニュアンスの場合があり、文脈で判断します（经理让我明天再联系他＝マネージャーに明日また連絡するよう言われた）。",
+     "mistake": "日本語の「〜してもらう」に近い時もあります。",
+     "example": "经理让我明天再联系他。",
+     "exPinyin": "Jīnglǐ ràng wǒ míngtiān zài liánxì tā.",
+     "exJa": "マネージャーは明日また連絡するよう私に言いました。",
+     "test": "先生は私にもう一度読むよう言いました。",
+     "answer": "老师让我再读一遍。"
+    },
+    {
+     "id": "d17-g1",
+     "name": "被：受け身",
+     "pinyin": "bèi",
+     "meaning": "〜される",
+     "explain": "被は受け身を表します。",
+     "contrast": "被は「被＋（動作主）＋動詞」で受け身を表しますが、中国語は日本語ほど受け身文を多用しません。被害・迷惑のニュアンスがある時によく使われます（我的手机被孩子拿走了）。",
+     "mistake": "中国語は日本語ほど受け身を多用しません。",
+     "example": "我的手机被孩子拿走了。",
+     "exPinyin": "Wǒ de shǒujī bèi háizi ná zǒu le.",
+     "exJa": "私のスマホは子どもに持っていかれました。",
+     "test": "資料はマネージャーに直されました。",
+     "answer": "资料被经理改了。"
+    },
+    {
+     "id": "d17-g2",
+     "name": "给：対象",
+     "pinyin": "gěi",
+     "meaning": "〜に、〜してあげる",
+     "explain": "给＋人で動作の相手を表します。",
+     "contrast": "给は「给＋人＋動詞」の形で動作の相手（〜に）を示し、「あげる」という意味だけでなく、送る相手・伝える相手を示す前置詞としても使います（我给你发地址＝あなたに住所を送ります）。",
+     "mistake": "あげるだけでなく、相手を示す前置詞として使います。",
+     "example": "我给你发个地址。",
+     "exPinyin": "Wǒ gěi nǐ fā ge dìzhǐ.",
+     "exJa": "住所をあなたに送ります。",
+     "test": "午後私に電話してください。",
+     "answer": "下午给我打电话。"
+    }
+   ]
+  },
+  {
+   "day": 18,
+   "title": "Day 18｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d18-v0",
+     "zh": "打车",
+     "pinyin": "dǎchē",
+     "ja": "タクシーに乗る/呼ぶ",
+     "example": "下雨天打车不太容易。",
+     "exPinyin": "Xiàyǔ tiān dǎchē bú tài róngyì.",
+     "exJa": "雨の日はタクシーを呼ぶのがあまり簡単ではありません。"
+    },
+    {
+     "id": "d18-v1",
+     "zh": "堵车",
+     "pinyin": "dǔchē",
+     "ja": "渋滞する",
+     "example": "今天路上堵车很严重。",
+     "exPinyin": "Jīntiān lùshang dǔchē hěn yánzhòng.",
+     "exJa": "今日は道の渋滞がひどいです。"
+    },
+    {
+     "id": "d18-v2",
+     "zh": "迟到",
+     "pinyin": "chídào",
+     "ja": "遅刻する",
+     "example": "我今天早上差点儿迟到。",
+     "exPinyin": "Wǒ jīntiān zǎoshang chàdiǎnr chídào.",
+     "exJa": "今朝、危うく遅刻するところでした。"
+    },
+    {
+     "id": "d18-v3",
+     "zh": "加班",
+     "pinyin": "jiābān",
+     "ja": "残業する",
+     "example": "今天可能要加班。",
+     "exPinyin": "Jīntiān kěnéng yào jiābān.",
+     "exJa": "今日は残業になるかもしれません。"
+    },
+    {
+     "id": "d18-v4",
+     "zh": "出差",
+     "pinyin": "chūchāi",
+     "ja": "出張する",
+     "example": "我下周要去北京出差。",
+     "exPinyin": "Wǒ xià zhōu yào qù Běijīng chūchāi.",
+     "exJa": "来週北京に出張します。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d18-g0",
+     "name": "跟：相手",
+     "pinyin": "gēn",
+     "meaning": "〜と",
+     "explain": "跟は一緒に行動する相手や相談相手を表します。",
+     "contrast": "跟は一緒に行動する相手や相談相手を示し（跟朋友吃饭、跟经理讨论）、和と似ていますが跟の方が話し言葉でよく使われます。",
+     "mistake": "和より口語で自然な場面があります。",
+     "example": "我想跟你讨论一下。",
+     "exPinyin": "Wǒ xiǎng gēn nǐ tǎolùn yíxià.",
+     "exJa": "あなたと少し相談したいです。",
+     "test": "同僚と昼ごはんを食べます。",
+     "answer": "我跟同事吃午饭。"
+    },
+    {
+     "id": "d18-g1",
+     "name": "对〜来说",
+     "pinyin": "duì…lái shuō",
+     "meaning": "〜にとって",
+     "explain": "誰かの立場から見た評価を言う時に使います。",
+     "contrast": "对我来说は「私にとって」という立場・視点を示し、对我说は「私に言う」という動作の対象を示します。来说があるかどうかで意味が変わるので注意してください。",
+     "mistake": "对我说 は私に言う、对我来说 は私にとって。",
+     "example": "对我来说，中文语顺最难。",
+     "exPinyin": "Duì wǒ lái shuō, Zhōngwén yǔxù zuì nán.",
+     "exJa": "私にとって中国語の語順が一番難しいです。",
+     "test": "外国人にとって手続きは少し面倒です。",
+     "answer": "对外国人来说，手续有点儿麻烦。"
+    },
+    {
+     "id": "d18-g2",
+     "name": "关于",
+     "pinyin": "guānyú",
+     "meaning": "〜について",
+     "explain": "話題・テーマを示すやや正式な表現です。",
+     "contrast": "关于は「〜について」という話題を示すやや正式な表現で、文の最初に置かれることが多いです（关于这个问题，我想再确认一下）。口語では说到（〜と言えば）もよく使われます。",
+     "mistake": "口語では说到もあります。",
+     "example": "关于这个问题，我想再确认一下。",
+     "exPinyin": "Guānyú zhège wèntí, wǒ xiǎng zài quèrèn yíxià.",
+     "exJa": "この問題について、もう一度確認したいです。",
+     "test": "中国語学習について相談したいです。",
+     "answer": "关于中文学习，我想咨询一下。"
+    }
+   ]
+  },
+  {
+   "day": 19,
+   "title": "Day 19｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d19-v0",
+     "zh": "报名",
+     "pinyin": "bàomíng",
+     "ja": "申し込む",
+     "example": "我打算报名参加HSK四级考试。",
+     "exPinyin": "Wǒ dǎsuàn bàomíng cānjiā HSK sì jí kǎoshì.",
+     "exJa": "HSK4級試験に申し込むつもりです。"
+    },
+    {
+     "id": "d19-v1",
+     "zh": "考试",
+     "pinyin": "kǎoshì",
+     "ja": "試験",
+     "example": "这次考试比我想象的难。",
+     "exPinyin": "Zhè cì kǎoshì bǐ wǒ xiǎngxiàng de nán.",
+     "exJa": "今回の試験は思ったより難しいです。"
+    },
+    {
+     "id": "d19-v2",
+     "zh": "复习",
+     "pinyin": "fùxí",
+     "ja": "復習する",
+     "example": "晚上我想复习今天学的语法。",
+     "exPinyin": "Wǎnshang wǒ xiǎng fùxí jīntiān xué de yǔfǎ.",
+     "exJa": "夜、今日学んだ文法を復習したいです。"
+    },
+    {
+     "id": "d19-v3",
+     "zh": "预习",
+     "pinyin": "yùxí",
+     "ja": "予習する",
+     "example": "上课之前我会先预习。",
+     "exPinyin": "Shàngkè zhīqián wǒ huì xiān yùxí.",
+     "exJa": "授業の前に先に予習します。"
+    },
+    {
+     "id": "d19-v4",
+     "zh": "发音",
+     "pinyin": "fāyīn",
+     "ja": "発音",
+     "example": "我的发音还需要多练习。",
+     "exPinyin": "Wǒ de fāyīn hái xūyào duō liànxí.",
+     "exJa": "私の発音はまだもっと練習が必要です。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d19-g0",
+     "name": "为了",
+     "pinyin": "wèile",
+     "meaning": "〜のために",
+     "explain": "目的を表します。",
+     "contrast": "为了は「〜のために」という目的を表し（为了提高中文，我每天练习）、原因を表す因为とは区別されます。",
+     "mistake": "因为は理由、为了は目的です。",
+     "example": "为了提高中文，我每天练习。",
+     "exPinyin": "Wèile tígāo Zhōngwén, wǒ měitiān liànxí.",
+     "exJa": "中国語を上げるために毎日練習しています。",
+     "test": "健康のために歩いて通勤します。",
+     "answer": "为了健康，我走路上班。"
+    },
+    {
+     "id": "d19-g1",
+     "name": "由于",
+     "pinyin": "yóuyú",
+     "meaning": "〜のために",
+     "explain": "理由を表すやや正式な表現です。",
+     "contrast": "由于は理由を表すやや書き言葉寄りの表現で（由于天气原因，活动取消），会話では因为の方が自然に聞こえることが多いです。",
+     "mistake": "会話では因为の方が自然な場合も多いです。",
+     "example": "由于下雨，活动取消了。",
+     "exPinyin": "Yóuyú xià yǔ, huódòng qǔxiāo le.",
+     "exJa": "雨のためイベントは中止になりました。",
+     "test": "交通のため少し遅れます。",
+     "answer": "由于交通原因，我会晚一点到。"
+    },
+    {
+     "id": "d19-g2",
+     "name": "因此",
+     "pinyin": "yīncǐ",
+     "meaning": "したがって",
+     "explain": "前の理由を受けて結果を述べる書き言葉寄りの接続詞です。",
+     "contrast": "因此は前の理由を受けて結果を述べる書き言葉寄りの接続詞で（他每天练习，因此进步很快），会話では所以の方がよく使われます。",
+     "mistake": "会話では所以の方が自然なことが多いです。",
+     "example": "他每天练习，因此进步很快。",
+     "exPinyin": "Tā měitiān liànxí, yīncǐ jìnbù hěn kuài.",
+     "exJa": "彼は毎日練習しているので進歩が速いです。",
+     "test": "時間がありません。したがって今日はここまでです。",
+     "answer": "没有时间了，因此今天到这里。"
+    }
+   ]
+  },
+  {
+   "day": 20,
+   "title": "Day 20｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d20-v0",
+     "zh": "语法",
+     "pinyin": "yǔfǎ",
+     "ja": "文法",
+     "example": "这个语法点我还不太懂。",
+     "exPinyin": "Zhège yǔfǎ diǎn wǒ hái bú tài dǒng.",
+     "exJa": "この文法ポイントはまだあまり分かりません。"
+    },
+    {
+     "id": "d20-v1",
+     "zh": "句子",
+     "pinyin": "jùzi",
+     "ja": "文",
+     "example": "请你用这个词造一个句子。",
+     "exPinyin": "Qǐng nǐ yòng zhège cí zào yí ge jùzi.",
+     "exJa": "この単語を使って文を作ってください。"
+    },
+    {
+     "id": "d20-v2",
+     "zh": "词语",
+     "pinyin": "cíyǔ",
+     "ja": "語句",
+     "example": "今天的词语都很实用。",
+     "exPinyin": "Jīntiān de cíyǔ dōu hěn shíyòng.",
+     "exJa": "今日の語句はどれも実用的です。"
+    },
+    {
+     "id": "d20-v3",
+     "zh": "听力",
+     "pinyin": "tīnglì",
+     "ja": "リスニング",
+     "example": "我的听力比以前好多了。",
+     "exPinyin": "Wǒ de tīnglì bǐ yǐqián hǎo duō le.",
+     "exJa": "私のリスニングは以前よりずっと良くなりました。"
+    },
+    {
+     "id": "d20-v4",
+     "zh": "阅读",
+     "pinyin": "yuèdú",
+     "ja": "読解",
+     "example": "阅读题需要仔细看。",
+     "exPinyin": "Yuèdú tí xūyào zǐxì kàn.",
+     "exJa": "読解問題はよく読む必要があります。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d20-g0",
+     "name": "不过",
+     "pinyin": "búguò",
+     "meaning": "ただし、でも",
+     "explain": "前の内容を受けて、少し反対・補足を言う時に使います。",
+     "contrast": "不过は前の内容を受けて軽く反対・補足を加える時に使い（这家店不错，不过有点儿贵），但是より柔らかく会話的な響きです。",
+     "mistake": "但是より柔らかく会話で自然です。",
+     "example": "这家店不错，不过有点儿贵。",
+     "exPinyin": "Zhè jiā diàn búcuò, búguò yǒudiǎnr guì.",
+     "exJa": "この店は悪くないですが、少し高いです。",
+     "test": "便利ですが少し遠いです。",
+     "answer": "很方便，不过有点儿远。"
+    },
+    {
+     "id": "d20-g1",
+     "name": "而且",
+     "pinyin": "érqiě",
+     "meaning": "しかも、さらに",
+     "explain": "前の内容に追加してもう一つ特徴を言います。",
+     "contrast": "而且は前の内容にもう一つ特徴を追加する時に使い（这里离地铁近，而且很安静），还有より文と文を論理的につなぐ感じが強くなります。",
+     "mistake": "还有より文と文をつなぐ感じが強いです。",
+     "example": "这里离地铁近，而且很安静。",
+     "exPinyin": "Zhèlǐ lí dìtiě jìn, érqiě hěn ānjìng.",
+     "exJa": "ここは地下鉄に近く、しかも静かです。",
+     "test": "このアプリは便利で見やすいです。",
+     "answer": "这个应用很方便，而且很好看。"
+    },
+    {
+     "id": "d20-g2",
+     "name": "另外",
+     "pinyin": "lìngwài",
+     "meaning": "それから、別に",
+     "explain": "話題や情報を追加する時に使います。",
+     "contrast": "另外は新しい話題や情報を付け加える時に使い（另外，我想确认一下时间），而且が性質の追加であるのに対して、另外は話題そのものの追加に向いています。",
+     "mistake": "而且は性質の追加、另外は話題の追加に向いています。",
+     "example": "另外，我想确认一下时间。",
+     "exPinyin": "Lìngwài, wǒ xiǎng quèrèn yíxià shíjiān.",
+     "exJa": "それから、時間を確認したいです。",
+     "test": "それから住所を送ってください。",
+     "answer": "另外，请把地址发给我。"
+    }
+   ]
+  },
+  {
+   "day": 21,
+   "title": "Day 21｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d21-v0",
+     "zh": "书写",
+     "pinyin": "shūxiě",
+     "ja": "書写",
+     "example": "HSK四级也有书写部分。",
+     "exPinyin": "HSK sì jí yě yǒu shūxiě bùfen.",
+     "exJa": "HSK4級にも書写部分があります。"
+    },
+    {
+     "id": "d21-v1",
+     "zh": "翻译",
+     "pinyin": "fānyì",
+     "ja": "翻訳する",
+     "example": "这句话可以怎么翻译？",
+     "exPinyin": "Zhè jù huà kěyǐ zěnme fānyì?",
+     "exJa": "この文はどう翻訳できますか。"
+    },
+    {
+     "id": "d21-v2",
+     "zh": "意思",
+     "pinyin": "yìsi",
+     "ja": "意味",
+     "example": "这个词是什么意思？",
+     "exPinyin": "Zhège cí shì shénme yìsi?",
+     "exJa": "この単語はどういう意味ですか。"
+    },
+    {
+     "id": "d21-v3",
+     "zh": "想象",
+     "pinyin": "xiǎngxiàng",
+     "ja": "想像する",
+     "example": "事情没有我想象的那么简单。",
+     "exPinyin": "Shìqing méiyǒu wǒ xiǎngxiàng de nàme jiǎndān.",
+     "exJa": "物事は思っていたほど簡単ではありません。"
+    },
+    {
+     "id": "d21-v4",
+     "zh": "犹豫",
+     "pinyin": "yóuyù",
+     "ja": "ためらう",
+     "example": "说中文的时候，我有时会犹豫。",
+     "exPinyin": "Shuō Zhōngwén de shíhou, wǒ yǒushí huì yóuyù.",
+     "exJa": "中国語を話す時、時々ためらってしまいます。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d21-g0",
+     "name": "尤其",
+     "pinyin": "yóuqí",
+     "meaning": "特に",
+     "explain": "いくつかある中で特に強調したいものを言う時に使います。",
+     "contrast": "尤其は比較対象の中で「特にこれが」と絞り込む時に使い（我想提高中文，尤其是口语＝特に会話力を高めたい）、特别は単に程度が高いことを表す点で少し違います。",
+     "mistake": "特别と近いですが、尤其は比較対象の中で特に。",
+     "example": "我想提高中文，尤其是口语。",
+     "exPinyin": "Wǒ xiǎng tígāo Zhōngwén, yóuqí shì kǒuyǔ.",
+     "exJa": "中国語、特に会話力を高めたいです。",
+     "test": "補語、特に結果補語が苦手です。",
+     "answer": "我不擅长补语，尤其是结果补语。"
+    },
+    {
+     "id": "d21-g1",
+     "name": "甚至",
+     "pinyin": "shènzhì",
+     "meaning": "〜さえ",
+     "explain": "極端な例を出して強調します。",
+     "contrast": "甚至は極端な例を挙げて「〜さえも」と強調する時に使います（他忙得甚至没时间吃饭＝忙しすぎて食事の時間さえない）。连〜都〜と近い働きです。",
+     "mistake": "強調表現です。",
+     "example": "他忙得甚至没时间吃午饭。",
+     "exPinyin": "Tā máng de shènzhì méi shíjiān chī wǔfàn.",
+     "exJa": "彼は忙しすぎて昼食の時間さえありません。",
+     "test": "彼は中国語で会議さえできます。",
+     "answer": "他甚至可以用中文开会。"
+    },
+    {
+     "id": "d21-g2",
+     "name": "并不是",
+     "pinyin": "bìng bú shì",
+     "meaning": "必ずしも〜ではない",
+     "explain": "相手の前提をやわらかく否定する表現です。",
+     "contrast": "并不是は相手の思い込みや前提をやわらかく否定する表現で、不是より論理的な響きがあります（我的中文并不是大家想象的那么好＝私の中国語は皆が思うほど良いわけではない）。",
+     "mistake": "不是より少し論理的です。",
+     "example": "我的中文并不是大家想象的那么好。",
+     "exPinyin": "Wǒ de Zhōngwén bìng bú shì dàjiā xiǎngxiàng de nàme hǎo.",
+     "exJa": "私の中国語は皆が想像するほど良いわけではありません。",
+     "test": "これは必ずしも簡単ではありません。",
+     "answer": "这并不是很简单。"
+    }
+   ]
+  },
+  {
+   "day": 22,
+   "title": "Day 22｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d22-v0",
+     "zh": "主动",
+     "pinyin": "zhǔdòng",
+     "ja": "主体的に",
+     "example": "学习语言要主动开口。",
+     "exPinyin": "Xuéxí yǔyán yào zhǔdòng kāikǒu.",
+     "exJa": "言語学習では自分から口を開く必要があります。"
+    },
+    {
+     "id": "d22-v1",
+     "zh": "依赖",
+     "pinyin": "yīlài",
+     "ja": "頼る",
+     "example": "不要太依赖翻译软件。",
+     "exPinyin": "Bú yào tài yīlài fānyì ruǎnjiàn.",
+     "exJa": "翻訳ソフトに頼りすぎないでください。"
+    },
+    {
+     "id": "d22-v2",
+     "zh": "明显",
+     "pinyin": "míngxiǎn",
+     "ja": "明らか",
+     "example": "最近他的中文进步很明显。",
+     "exPinyin": "Zuìjìn tā de Zhōngwén jìnbù hěn míngxiǎn.",
+     "exJa": "最近、彼の中国語の進歩は明らかです。"
+    },
+    {
+     "id": "d22-v3",
+     "zh": "正式",
+     "pinyin": "zhèngshì",
+     "ja": "正式な",
+     "example": "这是一次正式的会议。",
+     "exPinyin": "Zhè shì yí cì zhèngshì de huìyì.",
+     "exJa": "これは正式な会議です。"
+    },
+    {
+     "id": "d22-v4",
+     "zh": "临时",
+     "pinyin": "línshí",
+     "ja": "臨時の",
+     "example": "客户临时改变了时间。",
+     "exPinyin": "Kèhù línshí gǎibiàn le shíjiān.",
+     "exJa": "顧客が急に時間を変更しました。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d22-g0",
+     "name": "并没有",
+     "pinyin": "bìng méiyǒu",
+     "meaning": "実は〜していない",
+     "explain": "予想に反してそうではない、という否定です。",
+     "contrast": "并没有は「そうだと思われているが実はしていない」という誤解を訂正するニュアンスがあり、没有だけよりも強く聞こえます（我并没有忘记这件事＝忘れたわけではない）。",
+     "mistake": "没よりやや強く、誤解を訂正する感じがあります。",
+     "example": "我并没有忘记这件事。",
+     "exPinyin": "Wǒ bìng méiyǒu wàngjì zhè jiàn shì.",
+     "exJa": "この件を忘れたわけではありません。",
+     "test": "私は諦めたわけではありません。",
+     "answer": "我并没有放弃。"
+    },
+    {
+     "id": "d22-g1",
+     "name": "非〜不可",
+     "pinyin": "fēi…bùkě",
+     "meaning": "どうしても〜しなければならない",
+     "explain": "強い必要性を表します。",
+     "contrast": "非〜不可は必须よりも強い口調で「どうしても〜しないと駄目だ」を表します（这个问题今天非解决不可＝今日中にどうしても解決しなければならない）。",
+     "mistake": "必须より強く聞こえることがあります。",
+     "example": "这个问题今天非解决不可。",
+     "exPinyin": "Zhège wèntí jīntiān fēi jiějué bùkě.",
+     "exJa": "この問題は今日どうしても解決しなければなりません。",
+     "test": "HSK4はどうしても合格しなければなりません。",
+     "answer": "HSK四级非通过不可。"
+    },
+    {
+     "id": "d22-g2",
+     "name": "一〜就〜",
+     "pinyin": "yī…jiù…",
+     "meaning": "〜するとすぐ〜",
+     "explain": "一つの動作の直後に次の動作が起きることを表します。",
+     "contrast": "一〜就〜は「〜するとすぐに〜する」という一般的な連続動作を表し、刚〜就〜（Day12）と似ていますが、一〜就〜の方が「いつもそうなる」という習慣的な意味でも使えます（我一到公司就开会＝会社に着くといつも会議になる）。",
+     "mistake": "刚就より一般的です。",
+     "example": "我一到公司就开会。",
+     "exPinyin": "Wǒ yí dào gōngsī jiù kāihuì.",
+     "exJa": "会社に着くとすぐ会議です。",
+     "test": "家に着いたらすぐ連絡します。",
+     "answer": "我一到家就联系你。"
+    }
+   ]
+  },
+  {
+   "day": 23,
+   "title": "Day 23｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d23-v0",
+     "zh": "突然",
+     "pinyin": "tūrán",
+     "ja": "突然",
+     "example": "天气突然变冷了。",
+     "exPinyin": "Tiānqì tūrán biàn lěng le.",
+     "exJa": "天気が急に寒くなりました。"
+    },
+    {
+     "id": "d23-v1",
+     "zh": "原来",
+     "pinyin": "yuánlái",
+     "ja": "もともと、なんだ",
+     "example": "原来这个词是这个意思。",
+     "exPinyin": "Yuánlái zhège cí shì zhège yìsi.",
+     "exJa": "なるほど、この単語はこういう意味だったのですね。"
+    },
+    {
+     "id": "d23-v2",
+     "zh": "后来",
+     "pinyin": "hòulái",
+     "ja": "その後",
+     "example": "后来我慢慢习惯了上海生活。",
+     "exPinyin": "Hòulái wǒ mànmàn xíguàn le Shànghǎi shēnghuó.",
+     "exJa": "その後、私はだんだん上海生活に慣れました。"
+    },
+    {
+     "id": "d23-v3",
+     "zh": "首先",
+     "pinyin": "shǒuxiān",
+     "ja": "まず",
+     "example": "首先，我们确认一下时间。",
+     "exPinyin": "Shǒuxiān, wǒmen quèrèn yíxià shíjiān.",
+     "exJa": "まず、時間を確認しましょう。"
+    },
+    {
+     "id": "d23-v4",
+     "zh": "最后",
+     "pinyin": "zuìhòu",
+     "ja": "最後に",
+     "example": "最后，我们决定坐地铁去。",
+     "exPinyin": "Zuìhòu, wǒmen juédìng zuò dìtiě qù.",
+     "exJa": "最後に、地下鉄で行くことに決めました。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d23-g0",
+     "name": "V起来：印象",
+     "pinyin": "qǐlái",
+     "meaning": "〜してみると、〜な感じ",
+     "explain": "看起来、听起来、吃起来などで感覚を述べます。",
+     "contrast": "看起来很难 は見た感じ難しそう。",
+     "mistake": "実際ではなく印象です。",
+     "example": "这个语法听起来有点儿难。",
+     "exPinyin": "Zhège yǔfǎ tīng qǐlái yǒudiǎnr nán.",
+     "exJa": "この文法は聞いた感じ少し難しそうです。",
+     "test": "この料理は見た目がおいしそうです。",
+     "answer": "这个菜看起来很好吃。"
+    },
+    {
+     "id": "d23-g1",
+     "name": "V下去：継続",
+     "pinyin": "xiàqù",
+     "meaning": "〜し続ける",
+     "explain": "動作を継続する意味です。",
+     "contrast": "V下去は「今の動作をこのまま続けていく」という継続を表す方向補語です（我想把中文学下去＝中国語をこのまま学び続けたい）。坚持（頑張って続ける）と組み合わせてもよく使われます。",
+     "mistake": "方向補語から派生した抽象的な意味です。",
+     "example": "我想把中文学下去。",
+     "exPinyin": "Wǒ xiǎng bǎ Zhōngwén xué xiàqù.",
+     "exJa": "中国語を学び続けたいです。",
+     "test": "この習慣を続けたいです。",
+     "answer": "我想把这个习惯坚持下去。"
+    },
+    {
+     "id": "d23-g2",
+     "name": "V下来：記録",
+     "pinyin": "xiàlái",
+     "meaning": "〜して残す",
+     "explain": "写下来、记下来で書き留める意味です。",
+     "contrast": "写下来 は書いて残す、写完は書き終える。",
+     "mistake": "HSK学習では记下来が便利です。",
+     "example": "请把这个句子记下来。",
+     "exPinyin": "Qǐng bǎ zhège jùzi jì xiàlái.",
+     "exJa": "この文をメモしてください。",
+     "test": "新しい単語を書き留めました。",
+     "answer": "我把新单词写下来了。"
+    }
+   ]
+  },
+  {
+   "day": 24,
+   "title": "Day 24｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d24-v0",
+     "zh": "另外",
+     "pinyin": "lìngwài",
+     "ja": "さらに",
+     "example": "另外，我还有一个问题。",
+     "exPinyin": "Lìngwài, wǒ hái yǒu yí ge wèntí.",
+     "exJa": "それから、もう一つ質問があります。"
+    },
+    {
+     "id": "d24-v1",
+     "zh": "而且",
+     "pinyin": "érqiě",
+     "ja": "しかも",
+     "example": "这家店很近，而且味道不错。",
+     "exPinyin": "Zhè jiā diàn hěn jìn, érqiě wèidào búcuò.",
+     "exJa": "この店は近いし、味も悪くありません。"
+    },
+    {
+     "id": "d24-v2",
+     "zh": "不过",
+     "pinyin": "búguò",
+     "ja": "ただし",
+     "example": "这件衣服很好看，不过有点儿贵。",
+     "exPinyin": "Zhè jiàn yīfu hěn hǎokàn, búguò yǒudiǎnr guì.",
+     "exJa": "この服はきれいですが、少し高いです。"
+    },
+    {
+     "id": "d24-v3",
+     "zh": "尤其",
+     "pinyin": "yóuqí",
+     "ja": "特に",
+     "example": "我尤其想提高口语。",
+     "exPinyin": "Wǒ yóuqí xiǎng tígāo kǒuyǔ.",
+     "exJa": "特に会話力を高めたいです。"
+    },
+    {
+     "id": "d24-v4",
+     "zh": "甚至",
+     "pinyin": "shènzhì",
+     "ja": "〜さえ",
+     "example": "他忙得甚至没时间吃午饭。",
+     "exPinyin": "Tā máng de shènzhì méi shíjiān chī wǔfàn.",
+     "exJa": "彼は忙しすぎて昼ごはんを食べる時間さえありませんでした。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d24-g0",
+     "name": "V错",
+     "pinyin": "cuò",
+     "meaning": "〜し間違える",
+     "explain": "说错、写错、听错、看错など、動作の結果が間違っていることを表します。",
+     "contrast": "写错了 は書き間違えた。",
+     "mistake": "結果補語なので結果に注目します。",
+     "example": "我把这个字写错了。",
+     "exPinyin": "Wǒ bǎ zhège zì xiě cuò le.",
+     "exJa": "この字を書き間違えました。",
+     "test": "聞き間違えました。",
+     "answer": "我听错了。"
+    },
+    {
+     "id": "d24-g1",
+     "name": "V清楚",
+     "pinyin": "qīngchu",
+     "meaning": "はっきり〜する",
+     "explain": "听清楚、看清楚、说清楚で、はっきり聞く・見る・説明する意味です。",
+     "contrast": "听见は聞こえる、听清楚ははっきり聞こえる。",
+     "mistake": "清楚は補語として便利です。",
+     "example": "我没听清楚。",
+     "exPinyin": "Wǒ méi tīng qīngchu.",
+     "exJa": "はっきり聞き取れませんでした。",
+     "test": "もう少しはっきり説明してください。",
+     "answer": "请说清楚一点。"
+    },
+    {
+     "id": "d24-g2",
+     "name": "V懂",
+     "pinyin": "dǒng",
+     "meaning": "〜して理解する",
+     "explain": "看懂、听懂、读懂など、情報を理解できたことを表します。",
+     "contrast": "听见は聞こえる、听懂は理解できる。",
+     "mistake": "聞こえることと理解することを分けます。",
+     "example": "这个句子我看懂了。",
+     "exPinyin": "Zhège jùzi wǒ kàn dǒng le.",
+     "exJa": "この文は読んで理解できました。",
+     "test": "彼の中国語を理解できません。",
+     "answer": "我听不懂他的中文。"
+    }
+   ]
+  },
+  {
+   "day": 25,
+   "title": "Day 25｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d25-v0",
+     "zh": "由于",
+     "pinyin": "yóuyú",
+     "ja": "〜のため",
+     "example": "由于下雨，活动取消了。",
+     "exPinyin": "Yóuyú xià yǔ, huódòng qǔxiāo le.",
+     "exJa": "雨のため、イベントは中止になりました。"
+    },
+    {
+     "id": "d25-v1",
+     "zh": "因此",
+     "pinyin": "yīncǐ",
+     "ja": "したがって",
+     "example": "他每天练习，因此进步很快。",
+     "exPinyin": "Tā měitiān liànxí, yīncǐ jìnbù hěn kuài.",
+     "exJa": "彼は毎日練習しているので、進歩が速いです。"
+    },
+    {
+     "id": "d25-v2",
+     "zh": "否则",
+     "pinyin": "fǒuzé",
+     "ja": "さもないと",
+     "example": "你要早点出门，否则会迟到。",
+     "exPinyin": "Nǐ yào zǎodiǎn chūmén, fǒuzé huì chídào.",
+     "exJa": "早めに出ないと遅刻します。"
+    },
+    {
+     "id": "d25-v3",
+     "zh": "只要",
+     "pinyin": "zhǐyào",
+     "ja": "〜さえすれば",
+     "example": "只要每天练习，就会有进步。",
+     "exPinyin": "Zhǐyào měitiān liànxí, jiù huì yǒu jìnbù.",
+     "exJa": "毎日練習さえすれば、進歩します。"
+    },
+    {
+     "id": "d25-v4",
+     "zh": "无论",
+     "pinyin": "wúlùn",
+     "ja": "〜に関わらず",
+     "example": "无论多忙，我都想坚持学习。",
+     "exPinyin": "Wúlùn duō máng, wǒ dōu xiǎng jiānchí xuéxí.",
+     "exJa": "どんなに忙しくても、学習を続けたいです。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d25-g0",
+     "name": "多V一点儿",
+     "pinyin": "duō V yìdiǎnr",
+     "meaning": "もう少し多く〜する",
+     "explain": "多说一点儿、多练一点儿のように、動作量を増やします。",
+     "contrast": "多练一点儿 はもう少し練習する。",
+     "mistake": "一点儿の位置に注意します。",
+     "example": "你可以多说一点儿中文。",
+     "exPinyin": "Nǐ kěyǐ duō shuō yìdiǎnr Zhōngwén.",
+     "exJa": "もう少し中国語を話してもいいですよ。",
+     "test": "もう少しゆっくり話してください。",
+     "answer": "请说慢一点儿。"
+    },
+    {
+     "id": "d25-g1",
+     "name": "少V一点儿",
+     "pinyin": "shǎo V yìdiǎnr",
+     "meaning": "少し控えめに〜する",
+     "explain": "少放一点儿、少吃一点儿のように量を減らします。",
+     "contrast": "少放辣椒 は唐辛子を少なめに入れる。",
+     "mistake": "少＋動詞＋一点儿の語順が自然です。",
+     "example": "请少放一点儿辣椒。",
+     "exPinyin": "Qǐng shǎo fàng yìdiǎnr làjiāo.",
+     "exJa": "唐辛子を少し少なめにしてください。",
+     "test": "少し小さい声で話してください。",
+     "answer": "请小声一点儿。"
+    },
+    {
+     "id": "d25-g2",
+     "name": "形容詞一点儿",
+     "pinyin": "adj yìdiǎnr",
+     "meaning": "もう少し〜",
+     "explain": "大一点儿、慢一点儿、便宜一点儿など、程度調整に使います。",
+     "contrast": "慢一点儿 は少しゆっくり。",
+     "mistake": "依頼では请…一点儿が柔らかいです。",
+     "example": "请说慢一点儿。",
+     "exPinyin": "Qǐng shuō màn yìdiǎnr.",
+     "exJa": "少しゆっくり話してください。",
+     "test": "辛さを少し控えめにしてください。",
+     "answer": "请做得不太辣一点儿。"
+    }
+   ]
+  },
+  {
+   "day": 26,
+   "title": "Day 26｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d26-v0",
+     "zh": "附近",
+     "pinyin": "fùjìn",
+     "ja": "近く",
+     "example": "公司附近有很多饭店。",
+     "exPinyin": "Gōngsī fùjìn yǒu hěn duō fàndiàn.",
+     "exJa": "会社の近くには多くのレストランがあります。"
+    },
+    {
+     "id": "d26-v1",
+     "zh": "周围",
+     "pinyin": "zhōuwéi",
+     "ja": "周辺",
+     "example": "这个小区周围很安静。",
+     "exPinyin": "Zhège xiǎoqū zhōuwéi hěn ānjìng.",
+     "exJa": "この住宅エリアの周辺は静かです。"
+    },
+    {
+     "id": "d26-v2",
+     "zh": "距离",
+     "pinyin": "jùlí",
+     "ja": "距離",
+     "example": "这里距离地铁站不远。",
+     "exPinyin": "Zhèlǐ jùlí dìtiězhàn bù yuǎn.",
+     "exJa": "ここは地下鉄駅から遠くありません。"
+    },
+    {
+     "id": "d26-v3",
+     "zh": "入口",
+     "pinyin": "rùkǒu",
+     "ja": "入口",
+     "example": "地铁入口在前面。",
+     "exPinyin": "Dìtiě rùkǒu zài qiánmiàn.",
+     "exJa": "地下鉄の入口は前にあります。"
+    },
+    {
+     "id": "d26-v4",
+     "zh": "出口",
+     "pinyin": "chūkǒu",
+     "ja": "出口",
+     "example": "请从三号出口出来。",
+     "exPinyin": "Qǐng cóng sān hào chūkǒu chūlái.",
+     "exJa": "3番出口から出てください。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d26-g0",
+     "name": "V一下",
+     "pinyin": "yíxià",
+     "meaning": "ちょっと〜する",
+     "explain": "動作を軽く・短くする表現です。",
+     "contrast": "V一下は動作を「ちょっと」と軽くすることで、依頼や提案を柔らかくする効果があります（请帮我看一下＝ちょっと見てもらえますか）。",
+     "mistake": "依頼を柔らかくする効果があります。",
+     "example": "请帮我看一下。",
+     "exPinyin": "Qǐng bāng wǒ kàn yíxià.",
+     "exJa": "ちょっと見てもらえますか。",
+     "test": "少し相談したいです。",
+     "answer": "我想商量一下。"
+    },
+    {
+     "id": "d26-g1",
+     "name": "V一V",
+     "pinyin": "V yi V",
+     "meaning": "ちょっと〜してみる",
+     "explain": "看一看、想一想、试一试のように軽く試します。",
+     "contrast": "看一下に近いです。",
+     "mistake": "動詞を繰り返す形に慣れましょう。",
+     "example": "你想一想再回答。",
+     "exPinyin": "Nǐ xiǎng yi xiǎng zài huídá.",
+     "exJa": "少し考えてから答えてください。",
+     "test": "ちょっと試してみましょう。",
+     "answer": "我们试一试吧。"
+    },
+    {
+     "id": "d26-g2",
+     "name": "V着V着",
+     "pinyin": "V zhe V zhe",
+     "meaning": "〜しているうちに",
+     "explain": "同じ動作が続く中で別の変化が起きる時に使います。",
+     "contrast": "V着V着は同じ動作を繰り返す中で、思いがけず別の変化が起きたことを表します（我听着听着就懂了＝聞いているうちに分かるようになった）。",
+     "mistake": "自然なストーリー表現です。",
+     "example": "我听着听着就懂了。",
+     "exPinyin": "Wǒ tīngzhe tīngzhe jiù dǒng le.",
+     "exJa": "聞いているうちに分かるようになりました。",
+     "test": "歩いているうちに道に迷いました。",
+     "answer": "我走着走着就迷路了。"
+    }
+   ]
+  },
+  {
+   "day": 27,
+   "title": "Day 27｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d27-v0",
+     "zh": "楼下",
+     "pinyin": "lóuxià",
+     "ja": "階下",
+     "example": "快递放在楼下了。",
+     "exPinyin": "Kuàidì fàng zài lóuxià le.",
+     "exJa": "宅配便は階下に置いてあります。"
+    },
+    {
+     "id": "d27-v1",
+     "zh": "楼上",
+     "pinyin": "lóushàng",
+     "ja": "階上",
+     "example": "会议室在楼上。",
+     "exPinyin": "Huìyìshì zài lóushàng.",
+     "exJa": "会議室は上の階にあります。"
+    },
+    {
+     "id": "d27-v2",
+     "zh": "对面",
+     "pinyin": "duìmiàn",
+     "ja": "向かい",
+     "example": "便利店在公司对面。",
+     "exPinyin": "Biànlìdiàn zài gōngsī duìmiàn.",
+     "exJa": "コンビニは会社の向かいにあります。"
+    },
+    {
+     "id": "d27-v3",
+     "zh": "旁边",
+     "pinyin": "pángbiān",
+     "ja": "隣",
+     "example": "我坐在经理旁边。",
+     "exPinyin": "Wǒ zuò zài jīnglǐ pángbiān.",
+     "exJa": "私はマネージャーの隣に座っています。"
+    },
+    {
+     "id": "d27-v4",
+     "zh": "里面",
+     "pinyin": "lǐmiàn",
+     "ja": "中",
+     "example": "文件在包里面。",
+     "exPinyin": "Wénjiàn zài bāo lǐmiàn.",
+     "exJa": "ファイルはカバンの中にあります。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d27-g0",
+     "name": "从〜到〜",
+     "pinyin": "cóng/dào",
+     "meaning": "〜から〜まで",
+     "explain": "時間・場所・範囲を表します。",
+     "contrast": "从〜到〜は起点と終点をセットで示す表現で、時間にも場所にも使えます（从我家到公司要半个小时＝家から会社まで30分、从九点到十点＝9時から10時まで）。",
+     "mistake": "到の後ろに終点を置きます。",
+     "example": "从我家到公司要半个小时。",
+     "exPinyin": "Cóng wǒ jiā dào gōngsī yào bàn ge xiǎoshí.",
+     "exJa": "家から会社まで30分かかります。",
+     "test": "会議は9時から10時までです。",
+     "answer": "会议从九点到十点。"
+    },
+    {
+     "id": "d27-g1",
+     "name": "离",
+     "pinyin": "lí",
+     "meaning": "〜から近い/遠い",
+     "explain": "場所間の距離を言う時に使います。",
+     "contrast": "离は二つの場所の距離を言う時に使い（我家离地铁站很近＝家は地下鉄駅から近い）、場所そのものを示す在や起点を示す从とは役割が違います。",
+     "mistake": "在は場所、离は距離です。",
+     "example": "我家离地铁站很近。",
+     "exPinyin": "Wǒ jiā lí dìtiězhàn hěn jìn.",
+     "exJa": "私の家は地下鉄駅から近いです。",
+     "test": "会社は家から遠いです。",
+     "answer": "公司离我家很远。"
+    },
+    {
+     "id": "d27-g2",
+     "name": "往〜走",
+     "pinyin": "wǎng zǒu",
+     "meaning": "〜の方向へ進む",
+     "explain": "道案内で使う表現です。",
+     "contrast": "往〜走／往〜拐は道案内でよく使う表現で、場所名だけでなく前・左・右などの方向語とも一緒に使えます（你往前走五分钟就到了＝前に5分歩けば着く）。",
+     "mistake": "場所名だけでなく方向語と使えます。",
+     "example": "你往前走五分钟就到了。",
+     "exPinyin": "Nǐ wǎng qián zǒu wǔ fēnzhōng jiù dào le.",
+     "exJa": "前に5分歩けば着きます。",
+     "test": "右へ曲がってください。",
+     "answer": "请往右拐。"
+    }
+   ]
+  },
+  {
+   "day": 28,
+   "title": "Day 28｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d28-v0",
+     "zh": "外面",
+     "pinyin": "wàimiàn",
+     "ja": "外",
+     "example": "外面下雨了。",
+     "exPinyin": "Wàimiàn xià yǔ le.",
+     "exJa": "外は雨が降ってきました。"
+    },
+    {
+     "id": "d28-v1",
+     "zh": "声音",
+     "pinyin": "shēngyīn",
+     "ja": "音、声",
+     "example": "他的声音有点儿小。",
+     "exPinyin": "Tā de shēngyīn yǒudiǎnr xiǎo.",
+     "exJa": "彼の声は少し小さいです。"
+    },
+    {
+     "id": "d28-v2",
+     "zh": "消息",
+     "pinyin": "xiāoxi",
+     "ja": "知らせ、メッセージ",
+     "example": "我刚看到你的消息。",
+     "exPinyin": "Wǒ gāng kàn dào nǐ de xiāoxi.",
+     "exJa": "今あなたのメッセージを見ました。"
+    },
+    {
+     "id": "d28-v3",
+     "zh": "邮件",
+     "pinyin": "yóujiàn",
+     "ja": "メール",
+     "example": "我已经把邮件发出去了。",
+     "exPinyin": "Wǒ yǐjīng bǎ yóujiàn fā chūqù le.",
+     "exJa": "メールはもう送りました。"
+    },
+    {
+     "id": "d28-v4",
+     "zh": "电话",
+     "pinyin": "diànhuà",
+     "ja": "電話",
+     "example": "我下午给你回电话。",
+     "exPinyin": "Wǒ xiàwǔ gěi nǐ huí diànhuà.",
+     "exJa": "午後あなたに電話を折り返します。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d28-g0",
+     "name": "存在文：地方有",
+     "pinyin": "location yǒu",
+     "meaning": "場所に〜がある",
+     "explain": "場所＋有＋もの、という語順です。",
+     "contrast": "「場所＋有＋もの」の語順で、その場所に何があるかを説明します（公司附近有很多饭店＝会社の近くにレストランがたくさんある）。「もの」が新しい情報として後ろに来るのが特徴です。",
+     "mistake": "場所を前に出すのが自然です。",
+     "example": "公司附近有很多饭店。",
+     "exPinyin": "Gōngsī fùjìn yǒu hěn duō fàndiàn.",
+     "exJa": "会社の近くに多くのレストランがあります。",
+     "test": "机の上にスマホがあります。",
+     "answer": "桌子上有手机。"
+    },
+    {
+     "id": "d28-g1",
+     "name": "所在文：东西在地方",
+     "pinyin": "thing zài place",
+     "meaning": "ものは場所にある",
+     "explain": "特定の物がどこにあるかを言う語順です。",
+     "contrast": "「もの＋在＋場所」の語順で、特定のものがどこにあるかを説明します（我的手机在桌子上＝私のスマホは机の上にある）。すでに知っているものの位置を言う時に使います。",
+     "mistake": "有と在は焦点が違います。",
+     "example": "我的手机在桌子上。",
+     "exPinyin": "Wǒ de shǒujī zài zhuōzi shang.",
+     "exJa": "私のスマホは机の上にあります。",
+     "test": "会議室は上の階にあります。",
+     "answer": "会议室在楼上。"
+    },
+    {
+     "id": "d28-g2",
+     "name": "有と在",
+     "pinyin": "yǒu/zài",
+     "meaning": "存在/所在",
+     "explain": "有は場所に何があるか、在は特定のものがどこにあるかを表します。",
+     "contrast": "有は「場所＋有＋もの」で場所に何があるかを説明し（公司附近有很多饭店）、在は「もの＋在＋場所」で特定のものがどこにあるかを説明します（手机在桌子上）。焦点がもの側か場所側かで使い分けます。",
+     "mistake": "主語と情報の焦点が違います。",
+     "example": "桌子上有一杯咖啡。",
+     "exPinyin": "Zhuōzi shang yǒu yì bēi kāfēi.",
+     "exJa": "机の上にコーヒーが一杯あります。",
+     "test": "コーヒーは机の上にあります。",
+     "answer": "咖啡在桌子上。"
+    }
+   ]
+  },
+  {
+   "day": 29,
+   "title": "Day 29｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d29-v0",
+     "zh": "微信",
+     "pinyin": "Wēixìn",
+     "ja": "WeChat",
+     "example": "我们微信联系吧。",
+     "exPinyin": "Wǒmen Wēixìn liánxì ba.",
+     "exJa": "WeChatで連絡しましょう。"
+    },
+    {
+     "id": "d29-v1",
+     "zh": "手机",
+     "pinyin": "shǒujī",
+     "ja": "スマホ",
+     "example": "我的手机快没电了。",
+     "exPinyin": "Wǒ de shǒujī kuài méi diàn le.",
+     "exJa": "私のスマホはもうすぐ電池が切れそうです。"
+    },
+    {
+     "id": "d29-v2",
+     "zh": "电脑",
+     "pinyin": "diànnǎo",
+     "ja": "パソコン",
+     "example": "我的电脑突然坏了。",
+     "exPinyin": "Wǒ de diànnǎo tūrán huài le.",
+     "exJa": "私のパソコンが急に壊れました。"
+    },
+    {
+     "id": "d29-v3",
+     "zh": "表格",
+     "pinyin": "biǎogé",
+     "ja": "表",
+     "example": "这个表格需要重新填写。",
+     "exPinyin": "Zhège biǎogé xūyào chóngxīn tiánxiě.",
+     "exJa": "この表は書き直す必要があります。"
+    },
+    {
+     "id": "d29-v4",
+     "zh": "文件",
+     "pinyin": "wénjiàn",
+     "ja": "ファイル",
+     "example": "请把文件发给我。",
+     "exPinyin": "Qǐng bǎ wénjiàn fā gěi wǒ.",
+     "exJa": "ファイルを私に送ってください。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d29-g0",
+     "name": "時間場所動作",
+     "pinyin": "word order",
+     "meaning": "時間→場所→動作",
+     "explain": "中国語では時間・場所・動作の順が自然です。",
+     "contrast": "中国語の語順は「時間→場所→動作」の順が基本で（我明天在公司开会＝私は明日会社で会議する）、日本語のように語順を自由に入れ替えることはできません。",
+     "mistake": "日本語の自由語順をそのまま移さないこと。",
+     "example": "我明天在公司开会。",
+     "exPinyin": "Wǒ míngtiān zài gōngsī kāihuì.",
+     "exJa": "私は明日会社で会議します。",
+     "test": "今夜家で中国語を勉強します。",
+     "answer": "我今晚在家学中文。"
+    },
+    {
+     "id": "d29-g1",
+     "name": "用＋言語＋動詞",
+     "pinyin": "yòng",
+     "meaning": "〜語で〜する",
+     "explain": "言語を手段として使う時に用を使います。",
+     "contrast": "用＋言語＋動詞は「その言語を手段として使う」ことを表し（用中文说＝中国語で言う）、说中文のように言語がそのまま目的語になる形とは少し使い方が違います。",
+     "mistake": "说中文は中国語を話す、用中文说は中国語で言う。",
+     "example": "我想用中文表达自己的想法。",
+     "exPinyin": "Wǒ xiǎng yòng Zhōngwén biǎodá zìjǐ de xiǎngfǎ.",
+     "exJa": "中国語で自分の考えを表現したいです。",
+     "test": "英語で説明してもいいですか。",
+     "answer": "可以用英文解释吗？"
+    },
+    {
+     "id": "d29-g2",
+     "name": "用＋工具＋動詞",
+     "pinyin": "yòng tool",
+     "meaning": "〜を使って〜する",
+     "explain": "スマホ、PC、ソフトなど道具を使う表現です。",
+     "contrast": "用＋道具＋動詞は、スマホやパソコンなどの道具を使って何かをすることを表し、道具は必ず動詞の前に置きます（我用手机点外卖＝スマホでデリバリーを注文する）。",
+     "mistake": "道具は動詞の前に置きます。",
+     "example": "我用手机点外卖。",
+     "exPinyin": "Wǒ yòng shǒujī diǎn wàimài.",
+     "exJa": "スマホでデリバリーを注文します。",
+     "test": "パソコンで資料を作ります。",
+     "answer": "我用电脑做资料。"
+    }
+   ]
+  },
+  {
+   "day": 30,
+   "title": "Day 30｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d30-v0",
+     "zh": "礼貌",
+     "pinyin": "lǐmào",
+     "ja": "礼儀正しい",
+     "example": "他说话很有礼貌。",
+     "exPinyin": "Tā shuōhuà hěn yǒu lǐmào.",
+     "exJa": "彼は話し方がとても礼儀正しいです。"
+    },
+    {
+     "id": "d30-v1",
+     "zh": "耐心",
+     "pinyin": "nàixīn",
+     "ja": "辛抱強さ",
+     "example": "老师很有耐心。",
+     "exPinyin": "Lǎoshī hěn yǒu nàixīn.",
+     "exJa": "先生はとても辛抱強いです。"
+    },
+    {
+     "id": "d30-v2",
+     "zh": "仔细",
+     "pinyin": "zǐxì",
+     "ja": "丁寧に、細かく",
+     "example": "请仔细看一下合同。",
+     "exPinyin": "Qǐng zǐxì kàn yíxià hétong.",
+     "exJa": "契約書をよく見てください。"
+    },
+    {
+     "id": "d30-v3",
+     "zh": "认真",
+     "pinyin": "rènzhēn",
+     "ja": "真面目に",
+     "example": "他学习中文很认真。",
+     "exPinyin": "Tā xuéxí Zhōngwén hěn rènzhēn.",
+     "exJa": "彼は中国語をとても真面目に勉強しています。"
+    },
+    {
+     "id": "d30-v4",
+     "zh": "马虎",
+     "pinyin": "mǎhu",
+     "ja": "いい加減",
+     "example": "这个地方不能太马虎。",
+     "exPinyin": "Zhège dìfang bù néng tài mǎhu.",
+     "exJa": "この部分はいい加減にしてはいけません。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d30-g0",
+     "name": "帮＋人＋動詞",
+     "pinyin": "bāng",
+     "meaning": "〜してあげる/手伝う",
+     "explain": "相手のために動作をする表現です。",
+     "contrast": "帮＋人＋動詞は「その人のために手伝ってあげる」ことを表す口語的な表現です（你能帮我看一下吗？＝ちょっと見てもらえますか）。より正式には帮助も使われます。",
+     "mistake": "帮助より口語的です。",
+     "example": "你能帮我看一下吗？",
+     "exPinyin": "Nǐ néng bāng wǒ kàn yíxià ma?",
+     "exJa": "ちょっと見てもらえますか。",
+     "test": "資料を送るのを手伝ってください。",
+     "answer": "请帮我发一下资料。"
+    },
+    {
+     "id": "d30-g1",
+     "name": "替＋人＋動詞",
+     "pinyin": "tì",
+     "meaning": "人の代わりに〜する",
+     "explain": "代理で何かをする時に使います。",
+     "contrast": "帮は「手伝う」、替は「その人の代わりに丸ごと行う」という代行の意味です（你能替我参加会议吗？＝私の代わりに会議に出てもらえますか）。",
+     "mistake": "帮は手伝う、替は代行する。",
+     "example": "你能替我参加会议吗？",
+     "exPinyin": "Nǐ néng tì wǒ cānjiā huìyì ma?",
+     "exJa": "私の代わりに会議に出てもらえますか。",
+     "test": "彼の代わりに資料を送ります。",
+     "answer": "我替他发资料。"
+    },
+    {
+     "id": "d30-g2",
+     "name": "对〜有兴趣",
+     "pinyin": "duì…yǒu xìngqù",
+     "meaning": "〜に興味がある",
+     "explain": "興味の対象を对で示します。",
+     "contrast": "对〜有兴趣は「〜に興味がある」という決まった言い方で、兴趣（興味）は名詞として对の後ろに置かれます（我对中国文化很有兴趣）。喜欢（好きだ）よりも「関心がある」という響きです。",
+     "mistake": "喜欢とは少し違います。",
+     "example": "我对中国文化很有兴趣。",
+     "exPinyin": "Wǒ duì Zhōngguó wénhuà hěn yǒu xìngqù.",
+     "exJa": "中国文化にとても興味があります。",
+     "test": "文法に興味があります。",
+     "answer": "我对语法有兴趣。"
+    }
+   ]
+  },
+  {
+   "day": 31,
+   "title": "Day 31｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d31-v0",
+     "zh": "清楚",
+     "pinyin": "qīngchu",
+     "ja": "はっきりしている",
+     "example": "这个说明写得很清楚。",
+     "exPinyin": "Zhège shuōmíng xiě de hěn qīngchu.",
+     "exJa": "この説明はとても分かりやすく書かれています。"
+    },
+    {
+     "id": "d31-v1",
+     "zh": "简单",
+     "pinyin": "jiǎndān",
+     "ja": "簡単",
+     "example": "这个语法没有我想象的那么简单。",
+     "exPinyin": "Zhège yǔfǎ méiyǒu wǒ xiǎngxiàng de nàme jiǎndān.",
+     "exJa": "この文法は思っていたほど簡単ではありません。"
+    },
+    {
+     "id": "d31-v2",
+     "zh": "困难",
+     "pinyin": "kùnnan",
+     "ja": "難しい",
+     "example": "开始的时候会有一点困难。",
+     "exPinyin": "Kāishǐ de shíhou huì yǒu yìdiǎn kùnnan.",
+     "exJa": "最初は少し難しいことがあります。"
+    },
+    {
+     "id": "d31-v3",
+     "zh": "重要",
+     "pinyin": "zhòngyào",
+     "ja": "重要",
+     "example": "每天开口说中文很重要。",
+     "exPinyin": "Měitiān kāikǒu shuō Zhōngwén hěn zhòngyào.",
+     "exJa": "毎日中国語を口に出すことは重要です。"
+    },
+    {
+     "id": "d31-v4",
+     "zh": "主要",
+     "pinyin": "zhǔyào",
+     "ja": "主要な",
+     "example": "主要问题是语顺不太自然。",
+     "exPinyin": "Zhǔyào wèntí shì yǔxù bú tài zìrán.",
+     "exJa": "主な問題は語順があまり自然ではないことです。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d31-g0",
+     "name": "对〜满意",
+     "pinyin": "duì…mǎnyì",
+     "meaning": "〜に満足する",
+     "explain": "満足の対象を对で示します。",
+     "contrast": "对〜满意は「〜に満足している」という決まった言い方で、対象を对で示します（客户对服务很满意＝顧客はサービスに満足している）。",
+     "mistake": "满意は形容詞的に使います。",
+     "example": "客户对服务很满意。",
+     "exPinyin": "Kèhù duì fúwù hěn mǎnyì.",
+     "exJa": "顧客はサービスに満足しています。",
+     "test": "私はこの結果に満足しています。",
+     "answer": "我对这个结果很满意。"
+    },
+    {
+     "id": "d31-g1",
+     "name": "对〜有帮助",
+     "pinyin": "duì…yǒu bāngzhù",
+     "meaning": "〜に役立つ",
+     "explain": "何が誰に役立つかを言う表現です。",
+     "contrast": "对〜有帮助は「〜にとって役立つ」という意味で、帮助は名詞としても動詞としても使えます（这个应用对我很有帮助＝このアプリは私にとても役立つ）。",
+     "mistake": "帮助は動詞にも名詞にもなります。",
+     "example": "这个应用对我很有帮助。",
+     "exPinyin": "Zhège yìngyòng duì wǒ hěn yǒu bāngzhù.",
+     "exJa": "このアプリは私にとても役立ちます。",
+     "test": "毎日の復習は中国語に役立ちます。",
+     "answer": "每天复习对中文有帮助。"
+    },
+    {
+     "id": "d31-g2",
+     "name": "在〜方面",
+     "pinyin": "zài…fāngmiàn",
+     "meaning": "〜の面で",
+     "explain": "ある分野・側面について述べます。",
+     "contrast": "在〜方面は「〜という分野・側面では」と範囲を限定する表現で、自己評価や比較でよく使われます（在表达方面，我还需要多练习＝表現面ではまだ練習が必要）。",
+     "mistake": "作文や自己評価に便利です。",
+     "example": "在表达方面，我还需要多练习。",
+     "exPinyin": "Zài biǎodá fāngmiàn, wǒ hái xūyào duō liànxí.",
+     "exJa": "表現面ではまだもっと練習が必要です。",
+     "test": "聞き取り面で進歩しました。",
+     "answer": "在听力方面，我进步了。"
+    }
+   ]
+  },
+  {
+   "day": 32,
+   "title": "Day 32｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d32-v0",
+     "zh": "一般",
+     "pinyin": "yìbān",
+     "ja": "普通、一般的",
+     "example": "这家店味道一般。",
+     "exPinyin": "Zhè jiā diàn wèidào yìbān.",
+     "exJa": "この店の味は普通です。"
+    },
+    {
+     "id": "d32-v1",
+     "zh": "特别",
+     "pinyin": "tèbié",
+     "ja": "特別に、とても",
+     "example": "我特别喜欢上海的生活。",
+     "exPinyin": "Wǒ tèbié xǐhuan Shànghǎi de shēnghuó.",
+     "exJa": "私は上海での生活が特に好きです。"
+    },
+    {
+     "id": "d32-v2",
+     "zh": "实际",
+     "pinyin": "shíjì",
+     "ja": "実際",
+     "example": "实际情况比我们想象的复杂。",
+     "exPinyin": "Shíjì qíngkuàng bǐ wǒmen xiǎngxiàng de fùzá.",
+     "exJa": "実際の状況は私たちが想像したより複雑です。"
+    },
+    {
+     "id": "d32-v3",
+     "zh": "正确",
+     "pinyin": "zhèngquè",
+     "ja": "正しい",
+     "example": "这个答案是正确的。",
+     "exPinyin": "Zhège dá'àn shì zhèngquè de.",
+     "exJa": "この答えは正しいです。"
+    },
+    {
+     "id": "d32-v4",
+     "zh": "错误",
+     "pinyin": "cuòwù",
+     "ja": "間違い",
+     "example": "这个句子有一个语法错误。",
+     "exPinyin": "Zhège jùzi yǒu yí ge yǔfǎ cuòwù.",
+     "exJa": "この文には文法ミスが1つあります。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d32-g0",
+     "name": "系统地",
+     "pinyin": "xìtǒng de",
+     "meaning": "体系的に〜する",
+     "explain": "地は副詞化マーカーで、動作の方法を表します。",
+     "contrast": "地は動詞の前について「どのように行うか」という方法を表す副詞化マーカーで、的（名詞修飾）とは役割が異なります（系统地学习＝体系的に学ぶ）。",
+     "mistake": "的ではなく地を使います。",
+     "example": "我想系统地复习语法。",
+     "exPinyin": "Wǒ xiǎng xìtǒng de fùxí yǔfǎ.",
+     "exJa": "文法を体系的に復習したいです。",
+     "test": "もっと自然に表現したいです。",
+     "answer": "我想更自然地表达。"
+    },
+    {
+     "id": "d32-g1",
+     "name": "地と得",
+     "pinyin": "de/de",
+     "meaning": "動詞の前/後",
+     "explain": "地は動詞の前で方法、得は動詞の後で程度を説明します。",
+     "contrast": "地は動詞の前に置いて動作の方法を説明し（自然地说＝自然に話す）、得は動詞の後に置いてその動作の程度や結果を説明します（说得自然＝話すのが自然だ）。位置で役割が変わります。",
+     "mistake": "位置が違います。",
+     "example": "他自然地表达了自己的想法。",
+     "exPinyin": "Tā zìrán de biǎodá le zìjǐ de xiǎngfǎ.",
+     "exJa": "彼は自然に自分の考えを表現しました。",
+     "test": "彼は中国語を自然に話します。",
+     "answer": "他中文说得很自然。"
+    },
+    {
+     "id": "d32-g2",
+     "name": "的地得",
+     "pinyin": "de trio",
+     "meaning": "三つのdeの違い",
+     "explain": "的は名詞修飾、地は動詞修飾、得は動詞後の程度・結果です。",
+     "contrast": "的は名詞の前で名詞を修飾し（我的中文＝私の中国語）、地は動詞の前で動作の方法を説明し（自然地说＝自然に話す）、得は動詞の後で程度・結果を説明します（说得自然＝話すのが自然だ）。日本語話者が混同しやすい三つのdeです。",
+     "mistake": "日本人学習者が混乱しやすいポイントです。",
+     "example": "我的中文说得还不太自然。",
+     "exPinyin": "Wǒ de Zhōngwén shuō de hái bú tài zìrán.",
+     "exJa": "私の中国語はまだあまり自然ではありません。",
+     "test": "彼はゆっくり説明しました。",
+     "answer": "他慢慢地解释了。"
+    }
+   ]
+  },
+  {
+   "day": 33,
+   "title": "Day 33｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d33-v0",
+     "zh": "满意",
+     "pinyin": "mǎnyì",
+     "ja": "満足する",
+     "example": "客户对服务很满意。",
+     "exPinyin": "Kèhù duì fúwù hěn mǎnyì.",
+     "exJa": "顧客はサービスに満足しています。"
+    },
+    {
+     "id": "d33-v1",
+     "zh": "担心",
+     "pinyin": "dānxīn",
+     "ja": "心配する",
+     "example": "我有点儿担心明天的考试。",
+     "exPinyin": "Wǒ yǒudiǎnr dānxīn míngtiān de kǎoshì.",
+     "exJa": "明日の試験が少し心配です。"
+    },
+    {
+     "id": "d33-v2",
+     "zh": "放心",
+     "pinyin": "fàngxīn",
+     "ja": "安心する",
+     "example": "你放心，我已经处理好了。",
+     "exPinyin": "Nǐ fàngxīn, wǒ yǐjīng chǔlǐ hǎo le.",
+     "exJa": "安心してください、もう対応しました。"
+    },
+    {
+     "id": "d33-v3",
+     "zh": "生气",
+     "pinyin": "shēngqì",
+     "ja": "怒る",
+     "example": "他迟到了，所以经理有点儿生气。",
+     "exPinyin": "Tā chídào le, suǒyǐ jīnglǐ yǒudiǎnr shēngqì.",
+     "exJa": "彼が遅刻したので、マネージャーは少し怒っています。"
+    },
+    {
+     "id": "d33-v4",
+     "zh": "紧张",
+     "pinyin": "jǐnzhāng",
+     "ja": "緊張する",
+     "example": "考试前我有点儿紧张。",
+     "exPinyin": "Kǎoshì qián wǒ yǒudiǎnr jǐnzhāng.",
+     "exJa": "試験前は少し緊張します。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d33-g0",
+     "name": "的时候",
+     "pinyin": "de shíhou",
+     "meaning": "〜する時",
+     "explain": "動詞句＋的时候で〜する時を表します。",
+     "contrast": "「動詞句＋的时候」で「〜する時」を表し、时候の前に的を入れるのが基本の形です（说中文的时候，我有点儿紧张＝中国語を話す時、少し緊張する）。",
+     "mistake": "时候の前に的を入れるのが基本です。",
+     "example": "说中文的时候，我有点儿紧张。",
+     "exPinyin": "Shuō Zhōngwén de shíhou, wǒ yǒudiǎnr jǐnzhāng.",
+     "exJa": "中国語を話す時、少し緊張します。",
+     "test": "会議の時、よくメモします。",
+     "answer": "开会的时候，我经常记笔记。"
+    },
+    {
+     "id": "d33-g1",
+     "name": "〜以前／〜以后",
+     "pinyin": "yǐqián/yǐhòu",
+     "meaning": "〜の前/後",
+     "explain": "動詞句や時間語の後ろに置いて、前後関係を表します。",
+     "contrast": "以前／以后は動詞句や時間語の後ろに置いて前後関係を表し、日本語とは語順が逆になる点に注意が必要です（下班以后＝退勤の後、直訳は「退勤・以後」）。",
+     "mistake": "日本語と語順が逆に感じやすいです。",
+     "example": "下班以后我想学习中文。",
+     "exPinyin": "Xiàbān yǐhòu wǒ xiǎng xuéxí Zhōngwén.",
+     "exJa": "退勤後、中国語を勉強したいです。",
+     "test": "会議の前に資料を見ます。",
+     "answer": "开会以前我看资料。"
+    },
+    {
+     "id": "d33-g2",
+     "name": "〜之前／〜之后",
+     "pinyin": "zhīqián/zhīhòu",
+     "meaning": "〜の前/後",
+     "explain": "以前/以后より少し書き言葉・明確な前後関係です。",
+     "contrast": "之前／之后は以前／以后とほぼ同じ「〜の前/後」ですが、より書き言葉寄りで前後関係を明確に示す時に使われます（发邮件之前，请检查一下＝メールを送る前に確認して）。会話では以前/以后も同じように使えます。",
+     "mistake": "会話では以前/以后も自然です。",
+     "example": "发邮件之前，请检查一下。",
+     "exPinyin": "Fā yóujiàn zhīqián, qǐng jiǎnchá yíxià.",
+     "exJa": "メールを送る前に確認してください。",
+     "test": "授業の後で復習します。",
+     "answer": "上课之后我复习。"
+    }
+   ]
+  },
+  {
+   "day": 34,
+   "title": "Day 34｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d34-v0",
+     "zh": "舒服",
+     "pinyin": "shūfu",
+     "ja": "快適だ",
+     "example": "这个房间很舒服。",
+     "exPinyin": "Zhège fángjiān hěn shūfu.",
+     "exJa": "この部屋は快適です。"
+    },
+    {
+     "id": "d34-v1",
+     "zh": "健康",
+     "pinyin": "jiànkāng",
+     "ja": "健康",
+     "example": "为了健康，我每天走路上班。",
+     "exPinyin": "Wèile jiànkāng, wǒ měitiān zǒulù shàngbān.",
+     "exJa": "健康のために、私は毎日歩いて通勤しています。"
+    },
+    {
+     "id": "d34-v2",
+     "zh": "发烧",
+     "pinyin": "fāshāo",
+     "ja": "熱が出る",
+     "example": "孩子发烧了，所以我今天在家。",
+     "exPinyin": "Háizi fāshāo le, suǒyǐ wǒ jīntiān zài jiā.",
+     "exJa": "子どもが熱を出したので、今日は家にいます。"
+    },
+    {
+     "id": "d34-v3",
+     "zh": "休息",
+     "pinyin": "xiūxi",
+     "ja": "休む",
+     "example": "你最近太忙了，要多休息。",
+     "exPinyin": "Nǐ zuìjìn tài máng le, yào duō xiūxi.",
+     "exJa": "最近忙しすぎるので、もっと休んでください。"
+    },
+    {
+     "id": "d34-v4",
+     "zh": "运动",
+     "pinyin": "yùndòng",
+     "ja": "運動する",
+     "example": "下班以后我想去运动。",
+     "exPinyin": "Xiàbān yǐhòu wǒ xiǎng qù yùndòng.",
+     "exJa": "退勤後、運動しに行きたいです。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d34-g0",
+     "name": "从来没〜过",
+     "pinyin": "cónglái méi guo",
+     "meaning": "これまで一度も〜したことがない",
+     "explain": "経験の完全否定です。",
+     "contrast": "从来没〜过は「これまで一度も〜したことがない」という経験の完全否定で、没〜过だけよりも強い言い方です（我从来没参加过HSK考试）。",
+     "mistake": "没…过より強いです。",
+     "example": "我从来没参加过HSK考试。",
+     "exPinyin": "Wǒ cónglái méi cānjiāguo HSK kǎoshì.",
+     "exJa": "HSK試験を一度も受けたことがありません。",
+     "test": "この料理を一度も食べたことがありません。",
+     "answer": "我从来没吃过这个菜。"
+    },
+    {
+     "id": "d34-g1",
+     "name": "曾经〜过",
+     "pinyin": "céngjīng guo",
+     "meaning": "かつて〜したことがある",
+     "explain": "過去の経験を少し正式に述べます。",
+     "contrast": "曾经〜过は「かつて〜したことがある」という過去の経験を少し正式に述べる表現で、会話では过だけでも十分なことが多いです（我曾经在北京工作过＝以前北京で働いたことがある）。",
+     "mistake": "会話では以前/过だけでも自然です。",
+     "example": "我曾经学过一点儿中文。",
+     "exPinyin": "Wǒ céngjīng xuéguo yìdiǎnr Zhōngwén.",
+     "exJa": "かつて少し中国語を学んだことがあります。",
+     "test": "以前蘇州に行ったことがあります。",
+     "answer": "我曾经去过苏州。"
+    },
+    {
+     "id": "d34-g2",
+     "name": "没想到",
+     "pinyin": "méi xiǎngdào",
+     "meaning": "思いがけず〜",
+     "explain": "予想外の結果を表します。",
+     "contrast": "没想到は「〜だとは思わなかった」という予想外の気持ちを表す口語表現です（没想到这个语法这么重要＝この文法がこんなに重要だとは思わなかった）。",
+     "mistake": "想不到も近いです。",
+     "example": "没想到这个语法这么重要。",
+     "exPinyin": "Méi xiǎngdào zhège yǔfǎ zhème zhòngyào.",
+     "exJa": "この文法がこんなに重要だとは思いませんでした。",
+     "test": "こんなに便利だとは思いませんでした。",
+     "answer": "没想到这么方便。"
+    }
+   ]
+  },
+  {
+   "day": 35,
+   "title": "Day 35｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d35-v0",
+     "zh": "天气",
+     "pinyin": "tiānqì",
+     "ja": "天気",
+     "example": "今天的天气很好。",
+     "exPinyin": "Jīntiān de tiānqì hěn hǎo.",
+     "exJa": "今日の天気は良いです。"
+    },
+    {
+     "id": "d35-v1",
+     "zh": "下雨",
+     "pinyin": "xiàyǔ",
+     "ja": "雨が降る",
+     "example": "如果明天下雨，我们就不去公园。",
+     "exPinyin": "Rúguǒ míngtiān xià yǔ, wǒmen jiù bú qù gōngyuán.",
+     "exJa": "明日雨が降れば、公園には行きません。"
+    },
+    {
+     "id": "d35-v2",
+     "zh": "变冷",
+     "pinyin": "biàn lěng",
+     "ja": "寒くなる",
+     "example": "这几天上海突然变冷了。",
+     "exPinyin": "Zhè jǐ tiān Shànghǎi tūrán biàn lěng le.",
+     "exJa": "ここ数日、上海は急に寒くなりました。"
+    },
+    {
+     "id": "d35-v3",
+     "zh": "变热",
+     "pinyin": "biàn rè",
+     "ja": "暑くなる",
+     "example": "中午以后天气变热了。",
+     "exPinyin": "Zhōngwǔ yǐhòu tiānqì biàn rè le.",
+     "exJa": "昼以降、天気が暑くなりました。"
+    },
+    {
+     "id": "d35-v4",
+     "zh": "季节",
+     "pinyin": "jìjié",
+     "ja": "季節",
+     "example": "我最喜欢上海的秋天这个季节。",
+     "exPinyin": "Wǒ zuì xǐhuan Shànghǎi de qiūtiān zhège jìjié.",
+     "exJa": "私は上海の秋という季節が一番好きです。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d35-g0",
+     "name": "看来",
+     "pinyin": "kànlái",
+     "meaning": "どうやら〜のようだ",
+     "explain": "状況を見て判断する時に使います。",
+     "contrast": "看来は目の前の状況から判断して「どうやら〜のようだ」と結論づける表現で、好像よりも判断・推論の色合いが強いです（看来今天会迟到＝どうやら今日は遅刻しそうだ）。",
+     "mistake": "好像より判断・結論に近いです。",
+     "example": "看来今天会迟到。",
+     "exPinyin": "Kànlái jīntiān huì chídào.",
+     "exJa": "どうやら今日は遅刻しそうです。",
+     "test": "どうやらこの文法は大事です。",
+     "answer": "看来这个语法很重要。"
+    },
+    {
+     "id": "d35-g1",
+     "name": "听说",
+     "pinyin": "tīngshuō",
+     "meaning": "〜だそうだ",
+     "explain": "聞いた情報を伝える時に使います。",
+     "contrast": "听说は人から聞いた情報を伝える口語的な表現で（听说这家店很好吃＝この店は美味しいそうだ）、自分で確認した事実ではない点がポイントです。",
+     "mistake": "自分で確認した事実ではありません。",
+     "example": "听说这家店很好吃。",
+     "exPinyin": "Tīngshuō zhè jiā diàn hěn hǎochī.",
+     "exJa": "この店は美味しいそうです。",
+     "test": "明日会議があるそうです。",
+     "answer": "听说明天有会议。"
+    },
+    {
+     "id": "d35-g2",
+     "name": "据说",
+     "pinyin": "jùshuō",
+     "meaning": "〜だと言われている",
+     "explain": "听说より少し書き言葉・客観的です。",
+     "contrast": "据说は听说と同じ「伝聞」を表しますが、より書き言葉的・客観的な響きがあります。日常会話では听说の方が自然なことも多いです（据说这个应用很好用＝このアプリは使いやすいと言われている）。",
+     "mistake": "日常会話では听说が自然なことも多いです。",
+     "example": "据说这个应用很好用。",
+     "exPinyin": "Jùshuō zhège yìngyòng hěn hǎoyòng.",
+     "exJa": "このアプリは使いやすいと言われています。",
+     "test": "このレストランは有名だそうです。",
+     "answer": "据说这家餐厅很有名。"
+    }
+   ]
+  },
+  {
+   "day": 36,
+   "title": "Day 36｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d36-v0",
+     "zh": "城市",
+     "pinyin": "chéngshì",
+     "ja": "都市",
+     "example": "上海是一个很方便的城市。",
+     "exPinyin": "Shànghǎi shì yí ge hěn fāngbiàn de chéngshì.",
+     "exJa": "上海はとても便利な都市です。"
+    },
+    {
+     "id": "d36-v1",
+     "zh": "生活",
+     "pinyin": "shēnghuó",
+     "ja": "生活",
+     "example": "我已经习惯上海的生活了。",
+     "exPinyin": "Wǒ yǐjīng xíguàn Shànghǎi de shēnghuó le.",
+     "exJa": "私はもう上海の生活に慣れました。"
+    },
+    {
+     "id": "d36-v2",
+     "zh": "工作",
+     "pinyin": "gōngzuò",
+     "ja": "仕事",
+     "example": "我平时在工作中经常用日语和英语。",
+     "exPinyin": "Wǒ píngshí zài gōngzuò zhōng jīngcháng yòng Rìyǔ hé Yīngyǔ.",
+     "exJa": "普段仕事では日本語と英語をよく使います。"
+    },
+    {
+     "id": "d36-v3",
+     "zh": "家庭",
+     "pinyin": "jiātíng",
+     "ja": "家庭",
+     "example": "家庭生活中也有很多学习中文的机会。",
+     "exPinyin": "Jiātíng shēnghuó zhōng yě yǒu hěn duō xuéxí Zhōngwén de jīhuì.",
+     "exJa": "家庭生活の中にも中国語を学ぶ機会はたくさんあります。"
+    },
+    {
+     "id": "d36-v4",
+     "zh": "孩子",
+     "pinyin": "háizi",
+     "ja": "子ども",
+     "example": "孩子也要吃，所以请做得不太辣。",
+     "exPinyin": "Háizi yě yào chī, suǒyǐ qǐng zuò de bú tài là.",
+     "exJa": "子どもも食べるので、あまり辛くしないでください。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d36-g0",
+     "name": "原来",
+     "pinyin": "yuánlái",
+     "meaning": "なんだ、もともと",
+     "explain": "新しく気づいた時の「なんだ〜だったのか」を表します。",
+     "contrast": "原来は新しく気づいた時の「なんだ、実は〜だったのか」という発見を表し（原来这个词是这个意思）、本来（もともとの予定）とは使う場面が違います。",
+     "mistake": "本来はもともとの予定、原来は気づきにも使います。",
+     "example": "原来这个词是这个意思。",
+     "exPinyin": "Yuánlái zhège cí shì zhège yìsi.",
+     "exJa": "なんだ、この単語はこういう意味だったんですね。",
+     "test": "なるほど、あなたは日本人だったんですね。",
+     "answer": "原来你是日本人。"
+    },
+    {
+     "id": "d36-g1",
+     "name": "本来〜后来〜",
+     "pinyin": "běnlái/hòulái",
+     "meaning": "もともと〜、その後〜",
+     "explain": "計画や状況の変化を説明します。",
+     "contrast": "本来〜后来〜は「もともとはこうだったが、その後こうなった」という状況の変化をセットで説明する表現です（我本来想打车，后来坐地铁了）。",
+     "mistake": "ストーリー説明に便利です。",
+     "example": "我本来想打车，后来坐地铁了。",
+     "exPinyin": "Wǒ běnlái xiǎng dǎchē, hòulái zuò dìtiě le.",
+     "exJa": "元々タクシーに乗るつもりでしたが、その後地下鉄にしました。",
+     "test": "元々行くつもりでしたが後でやめました。",
+     "answer": "我本来想去，后来不去了。"
+    },
+    {
+     "id": "d36-g2",
+     "name": "差不多",
+     "pinyin": "chàbuduō",
+     "meaning": "だいたい、ほぼ",
+     "explain": "数量・時間・程度が大体同じ、またはほぼ完了したことを表します。",
+     "contrast": "差不多は数量・時間・程度が「ほぼ同じ」「もう少しで完了」であることを表します（我差不多五分钟后到＝あと5分くらいで着く）。次のDayで学ぶ大概（推測のだいたい）と似ていますが、差不多は「近い・ほぼ完了」に寄った意味です。",
+     "mistake": "随便とは違います。",
+     "example": "我差不多五分钟后到。",
+     "exPinyin": "Wǒ chàbuduō wǔ fēnzhōng hòu dào.",
+     "exJa": "だいたい5分後に着きます。",
+     "test": "宿題はほぼ終わりました。",
+     "answer": "作业差不多做完了。"
+    }
+   ]
+  },
+  {
+   "day": 37,
+   "title": "Day 37｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d37-v0",
+     "zh": "邀请",
+     "pinyin": "yāoqǐng",
+     "ja": "招待する",
+     "example": "我邀请朋友来家里。",
+     "exPinyin": "Wǒ yāo qǐng péng yǒu lái jiā lǐ。",
+     "exJa": "友達を家に招待します。"
+    },
+    {
+     "id": "d37-v1",
+     "zh": "接受",
+     "pinyin": "jiēshòu",
+     "ja": "受け入れる",
+     "example": "他接受了我的建议。",
+     "exPinyin": "Tā jiē shòu le wǒ de jiàn yì。",
+     "exJa": "彼は私の提案を受け入れた。"
+    },
+    {
+     "id": "d37-v2",
+     "zh": "参观",
+     "pinyin": "cānguān",
+     "ja": "見学する",
+     "example": "我们去参观工厂。",
+     "exPinyin": "Wǒ men qù cān guān gōng chǎng。",
+     "exJa": "私たちは工場を見学します。"
+    },
+    {
+     "id": "d37-v3",
+     "zh": "举办",
+     "pinyin": "jǔbàn",
+     "ja": "開催する",
+     "example": "公司举办了活动。",
+     "exPinyin": "Gōng sī jǔ bàn le huó dòng。",
+     "exJa": "会社はイベントを開催した。"
+    },
+    {
+     "id": "d37-v4",
+     "zh": "庆祝",
+     "pinyin": "qìngzhù",
+     "ja": "祝う",
+     "example": "大家一起庆祝生日。",
+     "exPinyin": "Dà jiā yì qǐ qìng zhù shēng rì。",
+     "exJa": "みんなで誕生日を祝う。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d37-g0",
+     "name": "大概",
+     "pinyin": "dàgài",
+     "meaning": "だいたい、多分",
+     "explain": "数量や推測をざっくり言う時に使います。",
+     "contrast": "大概は数字の前について「だいたい〜くらい」という推測を表します（我大概三点到＝だいたい3時に着く）。差不多（Day36）が「近い・ほぼ同じ」であるのに対し、大概は「はっきりしないので概算する」ニュアンスです。",
+     "mistake": "数字と一緒に使うと自然です。",
+     "example": "我大概三点到。",
+     "exPinyin": "Wǒ dàgài sān diǎn dào.",
+     "exJa": "だいたい3時に着きます。",
+     "test": "この仕事はだいたい1時間かかります。",
+     "answer": "这个工作大概要一个小时。"
+    },
+    {
+     "id": "d37-g1",
+     "name": "左右",
+     "pinyin": "zuǒyòu",
+     "meaning": "〜くらい",
+     "explain": "数量や時間の後ろにつけて、およそを表します。",
+     "contrast": "左右は数字や時間の後ろにつけて「〜前後、〜くらい」という幅を表します（会议三点左右开始＝会議は3時ごろ始まる）。大概が前につくのに対し、左右は後ろにつく点が違います。",
+     "mistake": "左右は数字の後ろに置きます。",
+     "example": "会议三点左右开始。",
+     "exPinyin": "Huìyì sān diǎn zuǒyòu kāishǐ.",
+     "exJa": "会議は3時ごろ始まります。",
+     "test": "家から会社まで30分くらいです。",
+     "answer": "从家到公司要半个小时左右。"
+    },
+    {
+     "id": "d37-g2",
+     "name": "每〜都〜",
+     "pinyin": "měi/dōu",
+     "meaning": "毎〜すべて〜",
+     "explain": "毎日、毎回など、全てに当てはまることを表します。",
+     "contrast": "每〜都〜は「毎日、毎回など全てに当てはまる」ことを表し、都を入れることで「例外なく全部」というニュアンスが強まります（我每天都学中文）。",
+     "mistake": "都を入れると「毎回全部」感が出ます。",
+     "example": "我每天都学中文。",
+     "exPinyin": "Wǒ měitiān dōu xué Zhōngwén.",
+     "exJa": "私は毎日中国語を勉強しています。",
+     "test": "毎回少し復習します。",
+     "answer": "我每次都复习一点儿。"
+    }
+   ]
+  },
+  {
+   "day": 38,
+   "title": "Day 38｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d38-v0",
+     "zh": "推荐",
+     "pinyin": "tuījiàn",
+     "ja": "勧める",
+     "example": "我推荐这本书。",
+     "exPinyin": "Wǒ tuī jiàn zhè běn shū。",
+     "exJa": "私はこの本を勧めます。"
+    },
+    {
+     "id": "d38-v1",
+     "zh": "介绍",
+     "pinyin": "jièshào",
+     "ja": "紹介する",
+     "example": "请介绍一下你自己。",
+     "exPinyin": "Qǐng jiè shào yí xià nǐ zì jǐ。",
+     "exJa": "自己紹介してください。"
+    },
+    {
+     "id": "d38-v2",
+     "zh": "建议",
+     "pinyin": "jiànyì",
+     "ja": "助言・提案",
+     "example": "我有一个建议。",
+     "exPinyin": "Wǒ yǒu yí gè jiàn yì。",
+     "exJa": "一つ提案があります。"
+    },
+    {
+     "id": "d38-v3",
+     "zh": "鼓励",
+     "pinyin": "gǔlì",
+     "ja": "励ます",
+     "example": "老师鼓励学生。",
+     "exPinyin": "Lǎo shī gǔ lì xué shēng。",
+     "exJa": "先生は生徒を励ます。"
+    },
+    {
+     "id": "d38-v4",
+     "zh": "表扬",
+     "pinyin": "biǎoyáng",
+     "ja": "褒める",
+     "example": "经理表扬了他。",
+     "exPinyin": "Jīng lǐ biǎo yáng le tā。",
+     "exJa": "マネージャーは彼を褒めた。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d38-g0",
+     "name": "有的〜有的〜",
+     "pinyin": "yǒude/yǒude",
+     "meaning": "あるものは〜、あるものは〜",
+     "explain": "複数の中で違う種類があることを表します。",
+     "contrast": "有的〜有的〜は同じグループの中に違う種類があることを説明する表現です（有的菜很辣，有的菜不辣＝辛い料理もあれば辛くない料理もある）。",
+     "mistake": "分類して説明する時に便利です。",
+     "example": "有的菜很辣，有的菜不辣。",
+     "exPinyin": "Yǒude cài hěn là, yǒude cài bú là.",
+     "exJa": "辛い料理もあれば辛くない料理もあります。",
+     "test": "ある人は地下鉄で、ある人はタクシーで来ます。",
+     "answer": "有的人坐地铁来，有的人打车来。"
+    },
+    {
+     "id": "d38-g1",
+     "name": "又〜又〜",
+     "pinyin": "yòu/yòu",
+     "meaning": "〜でもあり〜でもある",
+     "explain": "二つの性質が同時にあることを表します。",
+     "contrast": "又〜又〜は二つの性質が同時に成り立つことを表し、良い意味にも悪い意味にも使えます（这家店又便宜又好吃＝この店は安くて美味しい）。",
+     "mistake": "ネガティブにもポジティブにも使えます。",
+     "example": "这家店又便宜又好吃。",
+     "exPinyin": "Zhè jiā diàn yòu piányi yòu hǎochī.",
+     "exJa": "この店は安くて美味しいです。",
+     "test": "彼は忙しくて疲れています。",
+     "answer": "他又忙又累。"
+    },
+    {
+     "id": "d38-g2",
+     "name": "既然〜就〜",
+     "pinyin": "jìrán/jiù",
+     "meaning": "〜である以上、〜する",
+     "explain": "すでに成立している条件を受けて、当然の結果を言います。",
+     "contrast": "既然〜就〜は「すでに起きている事実」を受けて当然の結果を導く表現です（既然你来了，我们就开始吧）。如果〜就〜（Day9）が「起こるか分からない仮定」であるのに対し、既然はすでに確定した事実を前提にします。",
+     "mistake": "如果は未確定条件、既然は既成事実です。",
+     "example": "既然你来了，我们就开始吧。",
+     "exPinyin": "Jìrán nǐ lái le, wǒmen jiù kāishǐ ba.",
+     "exJa": "あなたが来たので始めましょう。",
+     "test": "もう決めた以上、続けましょう。",
+     "answer": "既然决定了，就继续吧。"
+    }
+   ]
+  },
+  {
+   "day": 39,
+   "title": "Day 39｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d39-v0",
+     "zh": "批评",
+     "pinyin": "pīpíng",
+     "ja": "叱る・批判する",
+     "example": "他被老师批评了。",
+     "exPinyin": "Tā bèi lǎo shī pī píng le。",
+     "exJa": "彼は先生に叱られた。"
+    },
+    {
+     "id": "d39-v1",
+     "zh": "反对",
+     "pinyin": "fǎnduì",
+     "ja": "反対する",
+     "example": "我反对这个计划。",
+     "exPinyin": "Wǒ fǎn duì zhè ge jì huà。",
+     "exJa": "私はこの計画に反対です。"
+    },
+    {
+     "id": "d39-v2",
+     "zh": "支持",
+     "pinyin": "zhīchí",
+     "ja": "支持する",
+     "example": "我支持你的决定。",
+     "exPinyin": "Wǒ zhī chí nǐ de jué dìng。",
+     "exJa": "あなたの決定を支持します。"
+    },
+    {
+     "id": "d39-v3",
+     "zh": "商量",
+     "pinyin": "shāngliáng",
+     "ja": "相談する",
+     "example": "这件事我们再商量。",
+     "exPinyin": "Zhè jiàn shì wǒ men zài shāng liáng。",
+     "exJa": "この件はまた相談しましょう。"
+    },
+    {
+     "id": "d39-v4",
+     "zh": "谈",
+     "pinyin": "tán",
+     "ja": "話し合う",
+     "example": "我们谈谈这个问题。",
+     "exPinyin": "Wǒ men tán tán zhè ge wèn tí。",
+     "exJa": "この問題について話しましょう。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d39-g0",
+     "name": "即使〜也〜",
+     "pinyin": "jíshǐ/yě",
+     "meaning": "たとえ〜でも〜",
+     "explain": "仮定の譲歩を表します。",
+     "contrast": "即使〜也〜は「たとえ〜だとしても」という仮定の譲歩を表します（即使很忙，我也想坚持学习）。虽然〜但是〜が「実際に起きている事実」の譲歩であるのに対し、即使は「まだ起きていないこと」への仮定です。",
+     "mistake": "虽然は事実、即使は仮定です。",
+     "example": "即使很忙，我也想坚持学习。",
+     "exPinyin": "Jíshǐ hěn máng, wǒ yě xiǎng jiānchí xuéxí.",
+     "exJa": "たとえ忙しくても学習を続けたいです。",
+     "test": "たとえ難しくても諦めません。",
+     "answer": "即使很难，我也不放弃。"
+    },
+    {
+     "id": "d39-g1",
+     "name": "哪怕〜也〜",
+     "pinyin": "nǎpà/yě",
+     "meaning": "たとえ〜でも〜",
+     "explain": "即使に近いですが、口語的で強い譲歩です。",
+     "contrast": "哪怕〜也〜は即使〜也〜とほぼ同じ意味ですが、より口語的で感情がこもった強い譲歩を表します（哪怕每天只有十分钟，也要练习）。",
+     "mistake": "少し感情が入る表現です。",
+     "example": "哪怕每天只有十分钟，也要练习。",
+     "exPinyin": "Nǎpà měitiān zhǐyǒu shí fēnzhōng, yě yào liànxí.",
+     "exJa": "毎日10分だけでも練習します。",
+     "test": "たとえ少しでも続けたいです。",
+     "answer": "哪怕只有一点儿，我也想坚持。"
+    },
+    {
+     "id": "d39-g2",
+     "name": "随着",
+     "pinyin": "suízhe",
+     "meaning": "〜につれて",
+     "explain": "時間や状況の変化に伴う変化を表します。",
+     "contrast": "随着は時間や状況の変化に伴って別のことも変化していくことを表す、やや書き言葉寄りの表現です（随着练习增加，我的表达越来越自然）。会話では越〜越〜もよく使われます。",
+     "mistake": "越…越…より少し書き言葉です。",
+     "example": "随着练习增加，我的表达越来越自然。",
+     "exPinyin": "Suízhe liànxí zēngjiā, wǒ de biǎodá yuèláiyuè zìrán.",
+     "exJa": "練習が増えるにつれて表現が自然になります。",
+     "test": "年齢とともに考え方が変わりました。",
+     "answer": "随着年龄增长，想法改变了。"
+    }
+   ]
+  },
+  {
+   "day": 40,
+   "title": "Day 40｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d40-v0",
+     "zh": "通知",
+     "pinyin": "tōngzhī",
+     "ja": "知らせる",
+     "example": "请通知大家开会。",
+     "exPinyin": "Qǐng tōng zhī dà jiā kāi huì。",
+     "exJa": "会議をみんなに知らせてください。"
+    },
+    {
+     "id": "d40-v1",
+     "zh": "提供",
+     "pinyin": "tígōng",
+     "ja": "提供する",
+     "example": "酒店提供早餐。",
+     "exPinyin": "Jiǔ diàn tí gōng zǎo cān。",
+     "exJa": "ホテルは朝食を提供する。"
+    },
+    {
+     "id": "d40-v2",
+     "zh": "申请",
+     "pinyin": "shēnqǐng",
+     "ja": "申請する",
+     "example": "我申请了签证。",
+     "exPinyin": "Wǒ shēn qǐng le qiān zhèng。",
+     "exJa": "ビザを申請した。"
+    },
+    {
+     "id": "d40-v3",
+     "zh": "登记",
+     "pinyin": "dēngjì",
+     "ja": "登録する",
+     "example": "请在前台登记。",
+     "exPinyin": "Qǐng zài qián tái dēng jì。",
+     "exJa": "フロントで登録してください。"
+    },
+    {
+     "id": "d40-v4",
+     "zh": "完成",
+     "pinyin": "wánchéng",
+     "ja": "やり遂げる",
+     "example": "我完成了作业。",
+     "exPinyin": "Wǒ wán chéng le zuò yè。",
+     "exJa": "宿題を終えました。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d40-g0",
+     "name": "通过",
+     "pinyin": "tōngguò",
+     "meaning": "〜を通じて",
+     "explain": "方法・手段を表します。",
+     "contrast": "通过は目的を達成するための「手段」を表します（我想通过HSK提高中文水平＝HSKを通じて中国語力を上げたい）。次に出る经过（過程を経る）とは焦点が違います。",
+     "mistake": "经过は過程、通过は手段です。",
+     "example": "我想通过HSK提高中文水平。",
+     "exPinyin": "Wǒ xiǎng tōngguò HSK tígāo Zhōngwén shuǐpíng.",
+     "exJa": "HSKを通じて中国語レベルを上げたいです。",
+     "test": "毎日の練習を通じて自然になりたいです。",
+     "answer": "我想通过每天练习变得更自然。"
+    },
+    {
+     "id": "d40-g1",
+     "name": "经过",
+     "pinyin": "jīngguò",
+     "meaning": "〜を経て",
+     "explain": "ある過程や経験を経たことを表します。",
+     "contrast": "经过はある「過程・経過」を経たことに焦点を当てる表現です（经过三个月的练习，我进步了很多＝3か月の練習を経てかなり進歩した）。通过が手段であるのに対し、经过は時間や過程そのものを表します。",
+     "mistake": "通过は手段、经过は過程に注目します。",
+     "example": "经过三个月的练习，我进步了很多。",
+     "exPinyin": "Jīngguò sān ge yuè de liànxí, wǒ jìnbù le hěn duō.",
+     "exJa": "3か月の練習を経てかなり進歩しました。",
+     "test": "相談の後、私たちは決めました。",
+     "answer": "经过讨论，我们决定了。"
+    },
+    {
+     "id": "d40-g2",
+     "name": "按照",
+     "pinyin": "ànzhào",
+     "meaning": "〜に従って",
+     "explain": "ルール・方法・順番に従うことを表します。",
+     "contrast": "按照はルール・手順・基準に「従って」何かをすることを表します（请按照这个步骤操作＝この手順に従って操作してください）。根据（〜に基づいて、根拠）とは少しニュアンスが違います。",
+     "mistake": "根据は根拠、按照は手順や基準です。",
+     "example": "请按照这个步骤操作。",
+     "exPinyin": "Qǐng ànzhào zhège bùzhòu cāozuò.",
+     "exJa": "この手順に従って操作してください。",
+     "test": "予定通り進めましょう。",
+     "answer": "我们按照计划进行吧。"
+    }
+   ]
+  },
+  {
+   "day": 41,
+   "title": "Day 41｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d41-v0",
+     "zh": "进行",
+     "pinyin": "jìnxíng",
+     "ja": "行う",
+     "example": "会议正在进行。",
+     "exPinyin": "Huì yì zhèng zài jìn xíng。",
+     "exJa": "会議が行われている。"
+    },
+    {
+     "id": "d41-v1",
+     "zh": "收拾",
+     "pinyin": "shōushí",
+     "ja": "片付ける",
+     "example": "我收拾房间。",
+     "exPinyin": "Wǒ shōu shí fáng jiān。",
+     "exJa": "部屋を片付けます。"
+    },
+    {
+     "id": "d41-v2",
+     "zh": "节约",
+     "pinyin": "jiéyuē",
+     "ja": "節約する",
+     "example": "我们要节约用水。",
+     "exPinyin": "Wǒ men yào jié yuē yòng shuǐ。",
+     "exJa": "水を節約しよう。"
+    },
+    {
+     "id": "d41-v3",
+     "zh": "浪费",
+     "pinyin": "làngfèi",
+     "ja": "浪費する",
+     "example": "别浪费时间。",
+     "exPinyin": "Bié làng fèi shí jiān。",
+     "exJa": "時間を無駄にするな。"
+    },
+    {
+     "id": "d41-v4",
+     "zh": "增加",
+     "pinyin": "zēngjiā",
+     "ja": "増える・増やす",
+     "example": "工资增加了。",
+     "exPinyin": "Gōng zī zēng jiā le。",
+     "exJa": "給料が増えた。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d41-g0",
+     "name": "根据",
+     "pinyin": "gēnjù",
+     "meaning": "〜に基づいて",
+     "explain": "情報・根拠に基づいて判断する時に使います。",
+     "contrast": "根据は情報・データなどの「根拠」に基づいて判断することを表し（根据天气预报，明天会下雨＝天気予報によると）、按照（Day40）が手順・基準に「従う」ことを表すのとは焦点が違います。",
+     "mistake": "按照は手順に従う、根据は情報を根拠にする。",
+     "example": "根据天气预报，明天会下雨。",
+     "exPinyin": "Gēnjù tiānqì yùbào, míngtiān huì xià yǔ.",
+     "exJa": "天気予報によると明日は雨です。",
+     "test": "資料に基づいて判断します。",
+     "answer": "根据资料来判断。"
+    },
+    {
+     "id": "d41-g1",
+     "name": "按时／准时",
+     "pinyin": "ànshí/zhǔnshí",
+     "meaning": "期限通り/時間通り",
+     "explain": "按时は決められた時間通り、准时は時間に正確です。",
+     "contrast": "按时は決められた期限や締め切りを守ることを表し（请按时提交报告＝報告書を期限通りに提出して）、准时は時刻そのものに正確であることを表します（准时到达＝時間通りに到着する）。",
+     "mistake": "コロケーションで覚えると自然です。",
+     "example": "请按时提交报告。",
+     "exPinyin": "Qǐng ànshí tíjiāo bàogào.",
+     "exJa": "報告書を期限通り提出してください。",
+     "test": "明日は時間通りに来てください。",
+     "answer": "明天请准时来。"
+    },
+    {
+     "id": "d41-g2",
+     "name": "由〜负责",
+     "pinyin": "yóu…fùzé",
+     "meaning": "〜が担当する",
+     "explain": "仕事の担当者を説明する時に使います。",
+     "contrast": "由〜负责は「〜が担当する」という役割・責任の所在を示す表現です（这个项目由我负责＝このプロジェクトは私が担当する）。形は被構文に似ていますが、受け身ではなく担当者を示す点が違います。",
+     "mistake": "被と似た形に見えますが、担当者を示します。",
+     "example": "这个项目由我负责。",
+     "exPinyin": "Zhège xiàngmù yóu wǒ fùzé.",
+     "exJa": "このプロジェクトは私が担当します。",
+     "test": "この問題は誰が担当しますか。",
+     "answer": "这个问题由谁负责？"
+    }
+   ]
+  },
+  {
+   "day": 42,
+   "title": "Day 42｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d42-v0",
+     "zh": "减少",
+     "pinyin": "jiǎnshǎo",
+     "ja": "減らす",
+     "example": "减少压力很重要。",
+     "exPinyin": "Jiǎn shǎo yā lì hěn zhòng yào。",
+     "exJa": "ストレスを減らすことは大切だ。"
+    },
+    {
+     "id": "d42-v1",
+     "zh": "降低",
+     "pinyin": "jiàngdī",
+     "ja": "下げる",
+     "example": "价格降低了。",
+     "exPinyin": "Jià gé jiàng dī le。",
+     "exJa": "価格が下がった。"
+    },
+    {
+     "id": "d42-v2",
+     "zh": "修改",
+     "pinyin": "xiūgǎi",
+     "ja": "修正する",
+     "example": "请修改这个句子。",
+     "exPinyin": "Qǐng xiū gǎi zhè ge jù zi。",
+     "exJa": "この文を直してください。"
+    },
+    {
+     "id": "d42-v3",
+     "zh": "说明",
+     "pinyin": "shuōmíng",
+     "ja": "説明する",
+     "example": "他说明了原因。",
+     "exPinyin": "Tā shuō míng le yuán yīn。",
+     "exJa": "彼は理由を説明した。"
+    },
+    {
+     "id": "d42-v4",
+     "zh": "表示",
+     "pinyin": "biǎoshì",
+     "ja": "表す",
+     "example": "他表示同意。",
+     "exPinyin": "Tā biǎo shì tóng yì。",
+     "exJa": "彼は同意を示した。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d42-g0",
+     "name": "为〜做准备",
+     "pinyin": "wèi…zuò zhǔnbèi",
+     "meaning": "〜のために準備する",
+     "explain": "試験・会議・出張などの準備に使います。",
+     "contrast": "为〜做准备は「何の準備をしているか」という対象が明確な表現です（我在为HSK四级做准备＝HSK4級の準備をしている）。为了（Day19）が目的全体を表すのに対し、こちらは準備という具体的な行動に焦点があります。",
+     "mistake": "为了は目的全体、为…做准备は準備対象が明確です。",
+     "example": "我在为HSK四级做准备。",
+     "exPinyin": "Wǒ zài wèi HSK sì jí zuò zhǔnbèi.",
+     "exJa": "HSK4級の準備をしています。",
+     "test": "明日の会議の準備をしています。",
+     "answer": "我在为明天的会议做准备。"
+    },
+    {
+     "id": "d42-g1",
+     "name": "针对",
+     "pinyin": "zhēnduì",
+     "meaning": "〜に対して、〜向けに",
+     "explain": "特定の問題・対象に向けた対応を表します。",
+     "contrast": "针对は特定の問題や対象に狙いを定めて対応することを表す、やや正式な言い方です（针对这个问题，我们再讨论一下＝この問題についてもう少し議論しよう）。对于（Day18）よりも「的を絞って対応する」ニュアンスが強いです。",
+     "mistake": "仕事でよく使うやや正式な表現です。",
+     "example": "针对这个问题，我们再讨论一下。",
+     "exPinyin": "Zhēnduì zhège wèntí, wǒmen zài tǎolùn yíxià.",
+     "exJa": "この問題についてもう少し議論しましょう。",
+     "test": "日本人向けに例文を作ります。",
+     "answer": "针对日本人做例句。"
+    },
+    {
+     "id": "d42-g2",
+     "name": "以〜为主",
+     "pinyin": "yǐ…wéi zhǔ",
+     "meaning": "〜を中心にする",
+     "explain": "主な内容・中心を表します。",
+     "contrast": "以〜为主は「〜を中心・メインにする」ことを表します（这个课程以HSK四级语法为主＝このコースはHSK4級文法が中心）。",
+     "mistake": "为主はメインという意味です。",
+     "example": "这个课程以HSK四级语法为主。",
+     "exPinyin": "Zhège kèchéng yǐ HSK sì jí yǔfǎ wéi zhǔ.",
+     "exJa": "このコースはHSK4級文法を中心にしています。",
+     "test": "今日は復習を中心にします。",
+     "answer": "今天以复习为主。"
+    }
+   ]
+  },
+  {
+   "day": 43,
+   "title": "Day 43｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d43-v0",
+     "zh": "怀疑",
+     "pinyin": "huáiyí",
+     "ja": "疑う",
+     "example": "我怀疑他说谎。",
+     "exPinyin": "Wǒ huái yí tā shuō huǎng。",
+     "exJa": "彼が嘘をついていると疑う。"
+    },
+    {
+     "id": "d43-v1",
+     "zh": "估计",
+     "pinyin": "gūjì",
+     "ja": "推測する",
+     "example": "我估计他会迟到。",
+     "exPinyin": "Wǒ gū jì tā huì chí dào。",
+     "exJa": "彼は遅れると思う。"
+    },
+    {
+     "id": "d43-v2",
+     "zh": "判断",
+     "pinyin": "pànduàn",
+     "ja": "判断する",
+     "example": "很难判断对错。",
+     "exPinyin": "Hěn nán pàn duàn duì cuò。",
+     "exJa": "正誤を判断するのは難しい。"
+    },
+    {
+     "id": "d43-v3",
+     "zh": "考虑",
+     "pinyin": "kǎolǜ",
+     "ja": "考慮する",
+     "example": "让我考虑一下。",
+     "exPinyin": "Ràng wǒ kǎo lǜ yí xià。",
+     "exJa": "少し考えさせて。"
+    },
+    {
+     "id": "d43-v4",
+     "zh": "理解",
+     "pinyin": "lǐjiě",
+     "ja": "理解する",
+     "example": "我理解你的想法。",
+     "exPinyin": "Wǒ lǐ jiě nǐ de xiǎng fǎ。",
+     "exJa": "あなたの考えを理解します。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d43-g0",
+     "name": "以〜为例",
+     "pinyin": "yǐ…wéi lì",
+     "meaning": "〜を例にすると",
+     "explain": "説明で例を出す時に使います。",
+     "contrast": "以〜为例は「〜を例として挙げると」という、説明の際に使う表現です（以“把”字句为例＝把構文を例にすると）。次に出る例如・比如が単純に例を示す語であるのに対し、これは「例に取る」という動作そのものを表します。",
+     "mistake": "作文・説明で便利です。",
+     "example": "以“把”字句为例。",
+     "exPinyin": "Yǐ “bǎ” zì jù wéi lì.",
+     "exJa": "把構文を例にすると。",
+     "test": "上海を例に説明します。",
+     "answer": "以上海为例来说明。"
+    },
+    {
+     "id": "d43-g1",
+     "name": "例如",
+     "pinyin": "lìrú",
+     "meaning": "例えば",
+     "explain": "例を出す基本表現です。",
+     "contrast": "例如と比如はどちらも「例えば」ですが、例如の方がやや書き言葉寄りで説明文や資料に向いています（例如，在上海坐地铁很方便）。",
+     "mistake": "比如より少し書き言葉寄りです。",
+     "example": "例如，在上海坐地铁很方便。",
+     "exPinyin": "Lìrú, zài Shànghǎi zuò dìtiě hěn fāngbiàn.",
+     "exJa": "例えば、上海では地下鉄に乗るのが便利です。",
+     "test": "例えば、この文は自然です。",
+     "answer": "例如，这个句子很自然。"
+    },
+    {
+     "id": "d43-g2",
+     "name": "比如",
+     "pinyin": "bǐrú",
+     "meaning": "例えば",
+     "explain": "口語でも書き言葉でも使える例示表現です。",
+     "contrast": "比如は例如とほぼ同じ「例えば」ですが、より口語的で会話でよく使われます（生活中有很多中文表达，比如点外卖）。",
+     "mistake": "例如より少し会話的です。",
+     "example": "生活中有很多中文表达，比如点外卖。",
+     "exPinyin": "Shēnghuó zhōng yǒu hěn duō Zhōngwén biǎodá, bǐrú diǎn wàimài.",
+     "exJa": "生活には例えばデリバリー注文などの中国語表現がたくさんあります。",
+     "test": "例えば地下鉄に乗る時に使います。",
+     "answer": "比如坐地铁的时候会用。"
+    }
+   ]
+  },
+  {
+   "day": 44,
+   "title": "Day 44｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d44-v0",
+     "zh": "了解",
+     "pinyin": "liǎojiě",
+     "ja": "把握する",
+     "example": "我不太了解情况。",
+     "exPinyin": "Wǒ bú tài liǎo jiě qíng kuàng。",
+     "exJa": "状況がよくわからない。"
+    },
+    {
+     "id": "d44-v1",
+     "zh": "熟悉",
+     "pinyin": "shúxī",
+     "ja": "熟知している",
+     "example": "我对这里很熟悉。",
+     "exPinyin": "Wǒ duì zhè lǐ hěn shú xī。",
+     "exJa": "ここはよく知っている。"
+    },
+    {
+     "id": "d44-v2",
+     "zh": "适应",
+     "pinyin": "shìyìng",
+     "ja": "適応する",
+     "example": "我适应了新工作。",
+     "exPinyin": "Wǒ shì yìng le xīn gōng zuò。",
+     "exJa": "新しい仕事に慣れた。"
+    },
+    {
+     "id": "d44-v3",
+     "zh": "养成",
+     "pinyin": "yǎngchéng",
+     "ja": "身につける",
+     "example": "养成好习惯很重要。",
+     "exPinyin": "Yǎng chéng hǎo xí guàn hěn zhòng yào。",
+     "exJa": "良い習慣を身につけるのは大切だ。"
+    },
+    {
+     "id": "d44-v4",
+     "zh": "努力",
+     "pinyin": "nǔlì",
+     "ja": "努力する",
+     "example": "他很努力地学习。",
+     "exPinyin": "Tā hěn nǔ lì dì xué xí。",
+     "exJa": "彼は一生懸命勉強する。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d44-g0",
+     "name": "像〜这样的",
+     "pinyin": "xiàng…zhèyàng de",
+     "meaning": "〜のような",
+     "explain": "例を挙げて種類を説明する表現です。",
+     "contrast": "像〜这样的は具体例を挙げてその種類・タイプを説明する表現です（像上海这样的城市，生活很方便＝上海のような都市は生活が便利）。",
+     "mistake": "例示と分類に便利です。",
+     "example": "像上海这样的城市，生活很方便。",
+     "exPinyin": "Xiàng Shànghǎi zhèyàng de chéngshì, shēnghuó hěn fāngbiàn.",
+     "exJa": "上海のような都市は生活が便利です。",
+     "test": "このような表現を覚えたいです。",
+     "answer": "我想记住像这样的表达。"
+    },
+    {
+     "id": "d44-g1",
+     "name": "〜之类的",
+     "pinyin": "zhīlèi de",
+     "meaning": "〜のようなもの",
+     "explain": "例を挙げた後に同類をまとめる表現です。",
+     "contrast": "〜之类的は挙げた例と同じ種類のものをまとめて指す表現です（我想学习点外卖、打车之类的表达＝デリバリーやタクシー配車のような表現）。口語では什么的も同じように使われます。",
+     "mistake": "口語では什么的もあります。",
+     "example": "我想学习点外卖、打车之类的表达。",
+     "exPinyin": "Wǒ xiǎng xuéxí diǎn wàimài, dǎchē zhīlèi de biǎodá.",
+     "exJa": "デリバリーやタクシー配車のような表現を学びたいです。",
+     "test": "文法や語順のようなものを復習します。",
+     "answer": "复习语法、语顺之类的。"
+    },
+    {
+     "id": "d44-g2",
+     "name": "顺便",
+     "pinyin": "shùnbiàn",
+     "meaning": "ついでに〜",
+     "explain": "何かのついでに別のことをする時に使います。",
+     "contrast": "顺便は主な動作のついでに別のことをすることを表します（我下楼顺便买杯咖啡＝下に行くついでにコーヒーを買う）。同時に二つの動作をする一边〜一边〜とは違い、あくまで「ついで」である点がポイントです。",
+     "mistake": "一边とは違い同時ではなくついでです。",
+     "example": "我下楼顺便买杯咖啡。",
+     "exPinyin": "Wǒ xià lóu shùnbiàn mǎi bēi kāfēi.",
+     "exJa": "下に行くついでにコーヒーを買います。",
+     "test": "帰りに牛乳を買ってください。",
+     "answer": "回来的时候顺便买牛奶。"
+    }
+   ]
+  },
+  {
+   "day": 45,
+   "title": "Day 45｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d45-v0",
+     "zh": "后悔",
+     "pinyin": "hòuhuǐ",
+     "ja": "後悔する",
+     "example": "我有点后悔。",
+     "exPinyin": "Wǒ yǒu diǎn hòu huǐ。",
+     "exJa": "少し後悔している。"
+    },
+    {
+     "id": "d45-v1",
+     "zh": "羡慕",
+     "pinyin": "xiànmù",
+     "ja": "羨む",
+     "example": "我很羡慕你。",
+     "exPinyin": "Wǒ hěn xiàn mù nǐ。",
+     "exJa": "あなたが羨ましい。"
+    },
+    {
+     "id": "d45-v2",
+     "zh": "感动",
+     "pinyin": "gǎndòng",
+     "ja": "感動する",
+     "example": "这个故事很感动。",
+     "exPinyin": "Zhè ge gù shì hěn gǎn dòng。",
+     "exJa": "この話は感動的だ。"
+    },
+    {
+     "id": "d45-v3",
+     "zh": "吃惊",
+     "pinyin": "chījīng",
+     "ja": "驚く",
+     "example": "我听了很吃惊。",
+     "exPinyin": "Wǒ tīng le hěn chī jīng。",
+     "exJa": "聞いて驚いた。"
+    },
+    {
+     "id": "d45-v4",
+     "zh": "害怕",
+     "pinyin": "hàipà",
+     "ja": "怖がる",
+     "example": "你别害怕。",
+     "exPinyin": "Nǐ bié hài pà。",
+     "exJa": "怖がらないで。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d45-g0",
+     "name": "顺便问一下",
+     "pinyin": "shùnbiàn wèn yíxià",
+     "meaning": "ついでに聞く",
+     "explain": "別の話題に軽く追加で質問する表現です。",
+     "contrast": "顺便问一下は、本題とは別に軽く質問を追加する時の前置きです（顺便问一下，明天几点开会？＝ついでに聞きますが、明日は何時に会議ですか）。",
+     "mistake": "会話で自然です。",
+     "example": "顺便问一下，明天几点开会？",
+     "exPinyin": "Shùnbiàn wèn yíxià, míngtiān jǐ diǎn kāihuì?",
+     "exJa": "ついでに聞きますが、明日は何時に会議ですか。",
+     "test": "ついでに住所を教えてください。",
+     "answer": "顺便把地址告诉我。"
+    },
+    {
+     "id": "d45-g1",
+     "name": "主动",
+     "pinyin": "zhǔdòng",
+     "meaning": "自分から〜する",
+     "explain": "自発的に行動することを表します。",
+     "contrast": "主动は自分から進んで行動することを表し（学习语言要主动开口＝言語学習では自分から話す必要がある）、被动（受け身・受動的）とは反対の性質です。",
+     "mistake": "被动は受け身・受動的です。",
+     "example": "学习语言要主动开口。",
+     "exPinyin": "Xuéxí yǔyán yào zhǔdòng kāikǒu.",
+     "exJa": "言語学習では自分から話す必要があります。",
+     "test": "自分から質問します。",
+     "answer": "我主动问问题。"
+    },
+    {
+     "id": "d45-g2",
+     "name": "靠",
+     "pinyin": "kào",
+     "meaning": "〜に頼る、〜で",
+     "explain": "手段や依存対象を表します。",
+     "contrast": "靠は「〜に頼る、〜を手段にする」という口語的な表現です（不要太靠翻译软件＝翻訳ソフトに頼りすぎないで）。次のDayで出る依赖より軽い言い方です。",
+     "mistake": "依靠より口語的です。",
+     "example": "不要太靠翻译软件。",
+     "exPinyin": "Bú yào tài kào fānyì ruǎnjiàn.",
+     "exJa": "翻訳ソフトに頼りすぎないでください。",
+     "test": "努力に頼るしかありません。",
+     "answer": "只能靠努力。"
+    }
+   ]
+  },
+  {
+   "day": 46,
+   "title": "Day 46｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d46-v0",
+     "zh": "激动",
+     "pinyin": "jīdòng",
+     "ja": "興奮する",
+     "example": "他激动得说不出话。",
+     "exPinyin": "Tā jī dòng dé shuō bù chū huà。",
+     "exJa": "彼は興奮して言葉が出ない。"
+    },
+    {
+     "id": "d46-v1",
+     "zh": "兴奋",
+     "pinyin": "xīngfèn",
+     "ja": "わくわくする",
+     "example": "我很兴奋。",
+     "exPinyin": "Wǒ hěn xīng fèn。",
+     "exJa": "とてもわくわくしている。"
+    },
+    {
+     "id": "d46-v2",
+     "zh": "失望",
+     "pinyin": "shīwàng",
+     "ja": "失望する",
+     "example": "我对结果很失望。",
+     "exPinyin": "Wǒ duì jié guǒ hěn shī wàng。",
+     "exJa": "結果に失望した。"
+    },
+    {
+     "id": "d46-v3",
+     "zh": "伤心",
+     "pinyin": "shāngxīn",
+     "ja": "悲しむ",
+     "example": "她伤心地哭了。",
+     "exPinyin": "Tā shāng xīn dì kū le。",
+     "exJa": "彼女は悲しくて泣いた。"
+    },
+    {
+     "id": "d46-v4",
+     "zh": "同情",
+     "pinyin": "tóngqíng",
+     "ja": "同情する",
+     "example": "我很同情他。",
+     "exPinyin": "Wǒ hěn tóng qíng tā。",
+     "exJa": "彼に同情する。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d46-g0",
+     "name": "依赖",
+     "pinyin": "yīlài",
+     "meaning": "依存する、頼る",
+     "explain": "依存のニュアンスが強い表現です。",
+     "contrast": "依赖は靠よりも「依存している」という度合いが強く、頼りすぎているニュアンスを含みます（不要太依赖手机翻译＝スマホ翻訳に頼りすぎないで）。",
+     "mistake": "頼りすぎる感じが出ます。",
+     "example": "不要太依赖手机翻译。",
+     "exPinyin": "Bú yào tài yīlài shǒujī fānyì.",
+     "exJa": "スマホ翻訳に頼りすぎないでください。",
+     "test": "環境だけに頼ってはいけません。",
+     "answer": "不要只依赖环境。"
+    },
+    {
+     "id": "d46-g1",
+     "name": "总而言之",
+     "pinyin": "zǒng éryán zhī",
+     "meaning": "要するに",
+     "explain": "まとめの表現です。",
+     "contrast": "总而言之は総括する時のやや正式な言い方です（总而言之，学习语言需要坚持＝要するに、言語学習には継続が必要だ）。次に出る总之の方が口語でよく使われます。",
+     "mistake": "総括に便利です。",
+     "example": "总而言之，学习语言需要坚持。",
+     "exPinyin": "Zǒng éryán zhī, xuéxí yǔyán xūyào jiānchí.",
+     "exJa": "要するに、言語学習には継続が必要です。",
+     "test": "要するに、もっと練習が必要です。",
+     "answer": "总而言之，我需要多练习。"
+    },
+    {
+     "id": "d46-g2",
+     "name": "总之",
+     "pinyin": "zǒngzhī",
+     "meaning": "とにかく、要するに",
+     "explain": "まとめ・結論を短く言う表現です。",
+     "contrast": "总之は总而言之と同じ「要するに」ですが、より口語的で日常会話でもよく使われます（总之，每天学一点儿就好＝とにかく毎日少し学べばいい）。",
+     "mistake": "口語でも使えます。",
+     "example": "总之，每天学一点儿就好。",
+     "exPinyin": "Zǒngzhī, měitiān xué yìdiǎnr jiù hǎo.",
+     "exJa": "とにかく毎日少し学べばいいです。",
+     "test": "とにかく続けましょう。",
+     "answer": "总之，坚持吧。"
+    }
+   ]
+  },
+  {
+   "day": 47,
+   "title": "Day 47｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d47-v0",
+     "zh": "友好",
+     "pinyin": "yǒuhǎo",
+     "ja": "友好的",
+     "example": "这里的人很友好。",
+     "exPinyin": "Zhè lǐ de rén hěn yǒu hǎo。",
+     "exJa": "ここの人は親切だ。"
+    },
+    {
+     "id": "d47-v1",
+     "zh": "热闹",
+     "pinyin": "rènào",
+     "ja": "にぎやか",
+     "example": "街上很热闹。",
+     "exPinyin": "Jiē shàng hěn rè nào。",
+     "exJa": "通りはにぎやかだ。"
+    },
+    {
+     "id": "d47-v2",
+     "zh": "安静",
+     "pinyin": "ānjìng",
+     "ja": "静か",
+     "example": "教室很安静。",
+     "exPinyin": "Jiào shì hěn ān jìng。",
+     "exJa": "教室は静かだ。"
+    },
+    {
+     "id": "d47-v3",
+     "zh": "活泼",
+     "pinyin": "huópō",
+     "ja": "活発",
+     "example": "这个孩子很活泼。",
+     "exPinyin": "Zhè ge hái zi hěn huó pō。",
+     "exJa": "この子は活発だ。"
+    },
+    {
+     "id": "d47-v4",
+     "zh": "诚实",
+     "pinyin": "chéngshí",
+     "ja": "正直",
+     "example": "他是个诚实的人。",
+     "exPinyin": "Tā shì gè chéng shí de rén。",
+     "exJa": "彼は正直な人だ。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d47-g0",
+     "name": "反正",
+     "pinyin": "fǎnzhèng",
+     "meaning": "どうせ、とにかく",
+     "explain": "理由を少し雑にまとめる口語表現です。",
+     "contrast": "反正は「どうせ〜だから」と理由を少し投げやり気味にまとめる口語表現です（反正不远，我们走过去吧＝どうせ遠くないので歩いて行こう）。場面によっては投げやりに聞こえることもあります。",
+     "mistake": "場面によって投げやりに聞こえることもあります。",
+     "example": "反正不远，我们走过去吧。",
+     "exPinyin": "Fǎnzhèng bù yuǎn, wǒmen zǒu guòqù ba.",
+     "exJa": "どうせ遠くないので歩いて行きましょう。",
+     "test": "どうせ時間があるので復習しましょう。",
+     "answer": "反正有时间，复习一下吧。"
+    },
+    {
+     "id": "d47-g1",
+     "name": "不知不觉",
+     "pinyin": "bù zhī bù jué",
+     "meaning": "いつの間にか",
+     "explain": "気づかないうちに変化が起きることを表します。",
+     "contrast": "不知不觉は、自分でも気づかないうちに時間が経過したり変化が起きたりしたことを表します（不知不觉，我在上海住了快八年了＝いつの間にか上海に8年近く住んでいる）。",
+     "mistake": "感想表現で自然です。",
+     "example": "不知不觉，我在上海住了快八年了。",
+     "exPinyin": "Bù zhī bù jué, wǒ zài Shànghǎi zhù le kuài bā nián le.",
+     "exJa": "いつの間にか上海にもうすぐ8年住んでいます。",
+     "test": "いつの間にか中国語に慣れました。",
+     "answer": "不知不觉，我习惯了中文。"
+    },
+    {
+     "id": "d47-g2",
+     "name": "慢慢地",
+     "pinyin": "mànmàn de",
+     "meaning": "ゆっくりと、だんだん",
+     "explain": "変化や動作がゆっくり進むことを表します。",
+     "contrast": "慢慢地は動作や変化が「ゆっくり」進むことを表す口語的な表現です（我慢慢地习惯了上海生活＝だんだん上海生活に慣れた）。次のDayで出る渐渐地はより書き言葉寄りです。",
+     "mistake": "慢慢は動詞の前でも使えます。",
+     "example": "我慢慢地习惯了上海生活。",
+     "exPinyin": "Wǒ mànmàn de xíguàn le Shànghǎi shēnghuó.",
+     "exJa": "だんだん上海生活に慣れました。",
+     "test": "ゆっくり話してください。",
+     "answer": "请慢慢说。"
+    }
+   ]
+  },
+  {
+   "day": 48,
+   "title": "Day 48｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d48-v0",
+     "zh": "勇敢",
+     "pinyin": "yǒnggǎn",
+     "ja": "勇敢",
+     "example": "他很勇敢。",
+     "exPinyin": "Tā hěn yǒng gǎn。",
+     "exJa": "彼は勇敢だ。"
+    },
+    {
+     "id": "d48-v1",
+     "zh": "骄傲",
+     "pinyin": "jiāoào",
+     "ja": "誇りに思う・高慢",
+     "example": "我为你骄傲。",
+     "exPinyin": "Wǒ wèi nǐ jiāo ào。",
+     "exJa": "あなたを誇りに思う。"
+    },
+    {
+     "id": "d48-v2",
+     "zh": "谦虚",
+     "pinyin": "qiānxū",
+     "ja": "謙虚",
+     "example": "他很谦虚。",
+     "exPinyin": "Tā hěn qiān xū。",
+     "exJa": "彼は謙虚だ。"
+    },
+    {
+     "id": "d48-v3",
+     "zh": "粗心",
+     "pinyin": "cūxīn",
+     "ja": "そそっかしい",
+     "example": "你太粗心了。",
+     "exPinyin": "Nǐ tài cū xīn le。",
+     "exJa": "君は不注意すぎる。"
+    },
+    {
+     "id": "d48-v4",
+     "zh": "性格",
+     "pinyin": "xìnggé",
+     "ja": "性格",
+     "example": "她的性格很好。",
+     "exPinyin": "Tā de xìng gé hěn hǎo。",
+     "exJa": "彼女は性格が良い。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d48-g0",
+     "name": "渐渐地",
+     "pinyin": "jiànjiàn de",
+     "meaning": "だんだん",
+     "explain": "変化が徐々に進む書き言葉寄り表現です。",
+     "contrast": "渐渐地は慢慢地と同じ「だんだん」ですが、変化が徐々に進むことを表すやや書き言葉寄りの表現です（我的中文渐渐地自然了＝私の中国語はだんだん自然になった）。",
+     "mistake": "慢慢地より少し書き言葉です。",
+     "example": "我的中文渐渐地自然了。",
+     "exPinyin": "Wǒ de Zhōngwén jiànjiàn de zìrán le.",
+     "exJa": "私の中国語はだんだん自然になりました。",
+     "test": "彼はだんだん慣れてきました。",
+     "answer": "他渐渐地习惯了。"
+    },
+    {
+     "id": "d48-g1",
+     "name": "先别",
+     "pinyin": "xiān bié",
+     "meaning": "まず〜しないで",
+     "explain": "一旦止めてほしい時の自然表現です。",
+     "contrast": "先别は「（今は）まだしないで」という一時的な禁止・制止を表します（先别急，我们慢慢说＝まず焦らず、ゆっくり話そう）。次の先不用（する必要がない）とは意味が違います。",
+     "mistake": "先不用とはニュアンスが違います。",
+     "example": "先别急，我们慢慢说。",
+     "exPinyin": "Xiān bié jí, wǒmen mànmàn shuō.",
+     "exJa": "まず焦らず、ゆっくり話しましょう。",
+     "test": "まず送らないでください。",
+     "answer": "先别发。"
+    },
+    {
+     "id": "d48-g2",
+     "name": "先不用",
+     "pinyin": "xiān bú yòng",
+     "meaning": "今はまだ〜しなくてよい",
+     "explain": "現時点では不要という表現です。",
+     "contrast": "先不用は「今の時点では必要ない」ということを表します（你先不用发资料＝今はまだ資料を送らなくていい）。先别が「するな」という禁止であるのに対し、先不用は「しなくてよい」という不要の表現です。",
+     "mistake": "先别はしないで、先不用はしなくてよい。",
+     "example": "你先不用发资料。",
+     "exPinyin": "Nǐ xiān bú yòng fā zīliào.",
+     "exJa": "今はまだ資料を送らなくていいです。",
+     "test": "今はまだ来なくていいです。",
+     "answer": "你先不用来。"
+    }
+   ]
+  },
+  {
+   "day": 49,
+   "title": "Day 49｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d49-v0",
+     "zh": "脾气",
+     "pinyin": "píqì",
+     "ja": "気性",
+     "example": "他脾气不太好。",
+     "exPinyin": "Tā pí qì bú tài hǎo。",
+     "exJa": "彼は気が短い。"
+    },
+    {
+     "id": "d49-v1",
+     "zh": "印象",
+     "pinyin": "yìnxiàng",
+     "ja": "印象",
+     "example": "他给我留下好印象。",
+     "exPinyin": "Tā gěi wǒ liú xià hǎo yìn xiàng。",
+     "exJa": "彼は良い印象を残した。"
+    },
+    {
+     "id": "d49-v2",
+     "zh": "看法",
+     "pinyin": "kànfǎ",
+     "ja": "見方",
+     "example": "我有不同的看法。",
+     "exPinyin": "Wǒ yǒu bù tóng de kàn fǎ。",
+     "exJa": "私は違う見方がある。"
+    },
+    {
+     "id": "d49-v3",
+     "zh": "意见",
+     "pinyin": "yìjiàn",
+     "ja": "意見",
+     "example": "大家有什么意见？",
+     "exPinyin": "Dà jiā yǒu shén me yì jiàn？",
+     "exJa": "皆さん意見は？"
+    },
+    {
+     "id": "d49-v4",
+     "zh": "主意",
+     "pinyin": "zhǔyì",
+     "ja": "アイデア",
+     "example": "这是个好主意。",
+     "exPinyin": "Zhè shì gè hǎo zhǔ yì。",
+     "exJa": "それは良い考えだ。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d49-g0",
+     "name": "我来吧",
+     "pinyin": "wǒ lái ba",
+     "meaning": "私が〜します",
+     "explain": "自分が引き受ける時の自然表現です。",
+     "contrast": "我来吧は「（それは）私がやります」と自分から役割を引き受ける時の自然な言い方です（这个问题我来处理吧＝この問題は私が対応します）。",
+     "mistake": "来は役割を引き受ける意味にもなります。",
+     "example": "这个问题我来处理吧。",
+     "exPinyin": "Zhège wèntí wǒ lái chǔlǐ ba.",
+     "exJa": "この問題は私が対応します。",
+     "test": "私が説明します。",
+     "answer": "我来解释吧。"
+    },
+    {
+     "id": "d49-g1",
+     "name": "该〜了",
+     "pinyin": "gāi…le",
+     "meaning": "そろそろ〜する時間だ",
+     "explain": "予定・時間が来たことを表します。",
+     "contrast": "该〜了は、予定していた時間や順番が来たことを表します（该开会了＝そろそろ会議の時間だ）。应该（〜すべきだ、判断）とは違い、時間・タイミングが来たという意味です。",
+     "mistake": "应该とは違い時間が来た感じです。",
+     "example": "该开会了。",
+     "exPinyin": "Gāi kāihuì le.",
+     "exJa": "そろそろ会議の時間です。",
+     "test": "そろそろ復習する時間です。",
+     "answer": "该复习了。"
+    },
+    {
+     "id": "d49-g2",
+     "name": "不用",
+     "pinyin": "bú yòng",
+     "meaning": "〜しなくてよい",
+     "explain": "必要がないことを表します。",
+     "contrast": "不用は「する必要がない」ことを表します（你不用担心＝心配しなくていい）。次のDayに出る不要（〜しないで、禁止）とは意味が違うので混同に注意してください。",
+     "mistake": "不要はしないで、不用はしなくてよい。",
+     "example": "你不用担心。",
+     "exPinyin": "Nǐ bú yòng dānxīn.",
+     "exJa": "心配しなくていいです。",
+     "test": "今日は来なくていいです。",
+     "answer": "你今天不用来。"
+    }
+   ]
+  },
+  {
+   "day": 50,
+   "title": "Day 50｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d50-v0",
+     "zh": "办法",
+     "pinyin": "bànfǎ",
+     "ja": "方法・手段",
+     "example": "我有办法。",
+     "exPinyin": "Wǒ yǒu bàn fǎ。",
+     "exJa": "私には方法がある。"
+    },
+    {
+     "id": "d50-v1",
+     "zh": "经历",
+     "pinyin": "jīnglì",
+     "ja": "経験・体験",
+     "example": "这是难忘的经历。",
+     "exPinyin": "Zhè shì nán wàng de jīng lì。",
+     "exJa": "忘れられない経験だ。"
+    },
+    {
+     "id": "d50-v2",
+     "zh": "过程",
+     "pinyin": "guòchéng",
+     "ja": "過程",
+     "example": "学习的过程很重要。",
+     "exPinyin": "Xué xí de guò chéng hěn zhòng yào。",
+     "exJa": "学ぶ過程が大切だ。"
+    },
+    {
+     "id": "d50-v3",
+     "zh": "效果",
+     "pinyin": "xiàoguǒ",
+     "ja": "効果",
+     "example": "这个方法效果很好。",
+     "exPinyin": "Zhè ge fāng fǎ xiào guǒ hěn hǎo。",
+     "exJa": "この方法は効果的だ。"
+    },
+    {
+     "id": "d50-v4",
+     "zh": "优点",
+     "pinyin": "yōudiǎn",
+     "ja": "長所",
+     "example": "他有很多优点。",
+     "exPinyin": "Tā yǒu hěn duō yōu diǎn。",
+     "exJa": "彼には長所が多い。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d50-g0",
+     "name": "不要",
+     "pinyin": "bú yào",
+     "meaning": "〜しないで",
+     "explain": "禁止・忠告を表します。",
+     "contrast": "不要は「〜しないで」という禁止・忠告を表します（不要忘记带护照＝パスポートを忘れないで）。「する必要がない」不用（Day49）とは違い、こちらは「するな」という禁止です。",
+     "mistake": "不用とは違います。",
+     "example": "不要忘记带护照。",
+     "exPinyin": "Bú yào wàngjì dài hùzhào.",
+     "exJa": "パスポートを忘れないでください。",
+     "test": "あまり辛くしないでください。",
+     "answer": "不要做得太辣。"
+    },
+    {
+     "id": "d50-g1",
+     "name": "别",
+     "pinyin": "bié",
+     "meaning": "〜しないで",
+     "explain": "不要より口語的な禁止・忠告です。",
+     "contrast": "别は不要と同じ「〜しないで」という禁止・忠告ですが、より口語的でくだけた言い方です（别担心，没问题＝心配しないで、大丈夫）。",
+     "mistake": "親しい場面で自然です。",
+     "example": "别担心，没问题。",
+     "exPinyin": "Bié dānxīn, méi wèntí.",
+     "exJa": "心配しないで、大丈夫です。",
+     "test": "遅刻しないでください。",
+     "answer": "别迟到。"
+    },
+    {
+     "id": "d50-g2",
+     "name": "别再",
+     "pinyin": "bié zài",
+     "meaning": "もう〜しないで",
+     "explain": "同じことを繰り返さないように言う表現です。",
+     "contrast": "别再は「同じことをもう繰り返さないで」という意味を加えた言い方です（别再忘记了＝もう忘れないで）。再（繰り返し）が入ることで「今後も」というニュアンスが強まります。",
+     "mistake": "再は繰り返しを表します。",
+     "example": "别再忘记了。",
+     "exPinyin": "Bié zài wàngjì le.",
+     "exJa": "もう忘れないでください。",
+     "test": "もうこのミスをしないでください。",
+     "answer": "别再犯这个错误了。"
+    }
+   ]
+  },
+  {
+   "day": 51,
+   "title": "Day 51｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d51-v0",
+     "zh": "缺点",
+     "pinyin": "quēdiǎn",
+     "ja": "欠点",
+     "example": "每个人都有缺点。",
+     "exPinyin": "Měi gè rén dōu yǒu quē diǎn。",
+     "exJa": "誰にでも欠点がある。"
+    },
+    {
+     "id": "d51-v1",
+     "zh": "任务",
+     "pinyin": "rènwu",
+     "ja": "任務",
+     "example": "我完成了任务。",
+     "exPinyin": "Wǒ wán chéng le rèn wu。",
+     "exJa": "任務を完了した。"
+    },
+    {
+     "id": "d51-v2",
+     "zh": "责任",
+     "pinyin": "zérèn",
+     "ja": "責任",
+     "example": "这是我的责任。",
+     "exPinyin": "Zhè shì wǒ de zé rèn。",
+     "exJa": "これは私の責任だ。"
+    },
+    {
+     "id": "d51-v3",
+     "zh": "压力",
+     "pinyin": "yālì",
+     "ja": "プレッシャー",
+     "example": "工作压力很大。",
+     "exPinyin": "Gōng zuò yā lì hěn dà。",
+     "exJa": "仕事のプレッシャーが大きい。"
+    },
+    {
+     "id": "d51-v4",
+     "zh": "危险",
+     "pinyin": "wēixiǎn",
+     "ja": "危険",
+     "example": "这里很危险。",
+     "exPinyin": "Zhè lǐ hěn wēi xiǎn。",
+     "exJa": "ここは危険だ。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d51-g0",
+     "name": "再也不",
+     "pinyin": "zài yě bù",
+     "meaning": "二度と〜しない",
+     "explain": "強い決意や否定です。",
+     "contrast": "再也不は自分自身の強い決意「二度と〜しない」を表し（我再也不这样说了＝もう二度とこう言わない）、别再（Day50）が相手への「もうしないで」という禁止であるのに対し、こちらは主語自身の意志です。",
+     "mistake": "別再は相手への禁止、再也不は主語の決意です。",
+     "example": "我再也不这样说了。",
+     "exPinyin": "Wǒ zài yě bù zhèyàng shuō le.",
+     "exJa": "もう二度とこう言いません。",
+     "test": "二度と忘れません。",
+     "answer": "我再也不忘了。"
+    },
+    {
+     "id": "d51-g1",
+     "name": "可以的话",
+     "pinyin": "kěyǐ dehuà",
+     "meaning": "可能なら",
+     "explain": "相手に柔らかく依頼する表現です。",
+     "contrast": "可以的话は「もし可能であれば」という条件を軽く提示する依頼表現です（可以的话，今天发给我＝可能なら今日送って）。次の方便的话より「できるかどうか」に寄っています。",
+     "mistake": "方便的话より可能性に寄ります。",
+     "example": "可以的话，今天发给我。",
+     "exPinyin": "Kěyǐ dehuà, jīntiān fā gěi wǒ.",
+     "exJa": "可能なら今日送ってください。",
+     "test": "できれば少し早く来てください。",
+     "answer": "可以的话，请早点来。"
+    },
+    {
+     "id": "d51-g2",
+     "name": "方便的话",
+     "pinyin": "fāngbiàn dehuà",
+     "meaning": "都合がよければ",
+     "explain": "相手に配慮した依頼表現です。",
+     "contrast": "方便的话は「もし都合がよければ」と相手の状況に配慮した依頼表現です（方便的话，请给我回个电话＝都合がよければ電話を折り返して）。可以的话が「可能かどうか」であるのに対し、こちらは「都合がよいかどうか」です。",
+     "mistake": "都合を聞く自然な表現です。",
+     "example": "方便的话，请给我回个电话。",
+     "exPinyin": "Fāngbiàn dehuà, qǐng gěi wǒ huí ge diànhuà.",
+     "exJa": "都合がよければ電話を折り返してください。",
+     "test": "都合がよければ住所を送ってください。",
+     "answer": "方便的话，请把地址发给我。"
+    }
+   ]
+  },
+  {
+   "day": 52,
+   "title": "Day 52｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d52-v0",
+     "zh": "情况",
+     "pinyin": "qíngkuàng",
+     "ja": "状況",
+     "example": "情况有点复杂。",
+     "exPinyin": "Qíng kuàng yǒu diǎn fù zá。",
+     "exJa": "状況は少し複雑だ。"
+    },
+    {
+     "id": "d52-v1",
+     "zh": "标准",
+     "pinyin": "biāozhǔn",
+     "ja": "基準・標準",
+     "example": "这是标准答案。",
+     "exPinyin": "Zhè shì biāo zhǔn dá àn。",
+     "exJa": "これは標準的な答えだ。"
+    },
+    {
+     "id": "d52-v2",
+     "zh": "规定",
+     "pinyin": "guīdìng",
+     "ja": "規定",
+     "example": "这是公司的规定。",
+     "exPinyin": "Zhè shì gōng sī de guī dìng。",
+     "exJa": "これは会社の規則だ。"
+    },
+    {
+     "id": "d52-v3",
+     "zh": "目标",
+     "pinyin": "mùbiāo",
+     "ja": "目標",
+     "example": "我的目标是通过考试。",
+     "exPinyin": "Wǒ de mù biāo shì tōng guò kǎo shì。",
+     "exJa": "私の目標は試験合格だ。"
+    },
+    {
+     "id": "d52-v4",
+     "zh": "将来",
+     "pinyin": "jiānglái",
+     "ja": "将来",
+     "example": "将来我想当老师。",
+     "exPinyin": "Jiāng lái wǒ xiǎng dāng lǎo shī。",
+     "exJa": "将来教師になりたい。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d52-g0",
+     "name": "麻烦你",
+     "pinyin": "máfan nǐ",
+     "meaning": "お手数ですが",
+     "explain": "丁寧にお願いする表現です。",
+     "contrast": "麻烦你は「お手数をおかけしますが」という、依頼の前に添える丁寧な前置きです（麻烦你帮我看一下＝お手数ですがちょっと見てもらえますか）。请だけよりも相手への配慮が伝わります。",
+     "mistake": "请だけより配慮があります。",
+     "example": "麻烦你帮我看一下。",
+     "exPinyin": "Máfan nǐ bāng wǒ kàn yíxià.",
+     "exJa": "お手数ですが、ちょっと見てもらえますか。",
+     "test": "お手数ですが住所を送ってください。",
+     "answer": "麻烦你把地址发给我。"
+    },
+    {
+     "id": "d52-g1",
+     "name": "不好意思",
+     "pinyin": "bù hǎoyìsi",
+     "meaning": "すみませんが",
+     "explain": "依頼・謝罪・声かけの前置きとして便利です。",
+     "contrast": "不好意思は「すみません」と軽く声をかけたり依頼したりする時の日常表現で（不好意思，请问地铁站怎么走？）、对不起（本格的な謝罪）よりも軽いニュアンスです。",
+     "mistake": "对不起より軽い日常表現です。",
+     "example": "不好意思，请问地铁站怎么走？",
+     "exPinyin": "Bù hǎoyìsi, qǐngwèn dìtiězhàn zěnme zǒu?",
+     "exJa": "すみません、地下鉄駅へはどう行きますか。",
+     "test": "すみません、少し辛さを控えてください。",
+     "answer": "不好意思，请少放一点儿辣椒。"
+    },
+    {
+     "id": "d52-g2",
+     "name": "要不〜吧",
+     "pinyin": "yàobù…ba",
+     "meaning": "それなら〜しましょうか",
+     "explain": "提案をする自然な会話表現です。",
+     "contrast": "要不〜吧は「それなら〜しましょうか」と代案をやわらかく提案する会話表現です（要不我们坐地铁吧＝それなら地下鉄で行こうか）。",
+     "mistake": "柔らかい提案です。",
+     "example": "要不我们坐地铁吧。",
+     "exPinyin": "Yàobù wǒmen zuò dìtiě ba.",
+     "exJa": "それなら地下鉄で行きましょうか。",
+     "test": "それなら明日話しましょう。",
+     "answer": "要不我们明天再聊吧。"
+    }
+   ]
+  },
+  {
+   "day": 53,
+   "title": "Day 53｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d53-v0",
+     "zh": "重视",
+     "pinyin": "zhòngshì",
+     "ja": "重視する",
+     "example": "我们重视质量。",
+     "exPinyin": "Wǒ men zhòng shì zhì liàng。",
+     "exJa": "私たちは品質を重視する。"
+    },
+    {
+     "id": "d53-v1",
+     "zh": "交流",
+     "pinyin": "jiāoliú",
+     "ja": "交流する",
+     "example": "我们用中文交流。",
+     "exPinyin": "Wǒ men yòng zhōng wén jiāo liú。",
+     "exJa": "中国語で交流する。"
+    },
+    {
+     "id": "d53-v2",
+     "zh": "合作",
+     "pinyin": "hézuò",
+     "ja": "協力する",
+     "example": "我们合作得很好。",
+     "exPinyin": "Wǒ men hé zuò dé hěn hǎo。",
+     "exJa": "うまく協力できている。"
+    },
+    {
+     "id": "d53-v3",
+     "zh": "比赛",
+     "pinyin": "bǐsài",
+     "ja": "試合",
+     "example": "明天有足球比赛。",
+     "exPinyin": "Míng tiān yǒu zú qiú bǐ sài。",
+     "exJa": "明日サッカーの試合がある。"
+    },
+    {
+     "id": "d53-v4",
+     "zh": "参加",
+     "pinyin": "cānjiā",
+     "ja": "参加する",
+     "example": "我参加了会议。",
+     "exPinyin": "Wǒ cān jiā le huì yì。",
+     "exJa": "会議に参加した。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d53-g0",
+     "name": "算了",
+     "pinyin": "suàn le",
+     "meaning": "もういい、やめておこう",
+     "explain": "何かを諦める・やめる時の自然表現です。",
+     "contrast": "算了は「もういい、やめておこう」と何かを諦めたり水に流したりする時の表現です（太麻烦了，算了吧＝面倒すぎるのでやめよう）。言い方によっては投げやりに聞こえることもあります。",
+     "mistake": "言い方によっては投げやりに聞こえます。",
+     "example": "太麻烦了，算了吧。",
+     "exPinyin": "Tài máfan le, suàn le ba.",
+     "exJa": "面倒すぎるのでやめましょう。",
+     "test": "今日は混んでいるのでやめましょう。",
+     "answer": "今天人太多了，算了吧。"
+    },
+    {
+     "id": "d53-g1",
+     "name": "怪不得",
+     "pinyin": "guàibude",
+     "meaning": "どうりで〜",
+     "explain": "理由が分かって納得した時に使います。",
+     "contrast": "怪不得は、理由が分かって「なるほど、どうりで」と納得した時に使う表現です（怪不得你这么累＝どうりでそんなに疲れているわけだ）。",
+     "mistake": "责怪ではなく「なるほど」に近いです。",
+     "example": "怪不得你这么累。",
+     "exPinyin": "Guàibude nǐ zhème lèi.",
+     "exJa": "どうりでそんなに疲れているわけですね。",
+     "test": "どうりで今日は道が混んでいます。",
+     "answer": "怪不得今天路上这么堵。"
+    },
+    {
+     "id": "d53-g2",
+     "name": "其实",
+     "pinyin": "qíshí",
+     "meaning": "実は",
+     "explain": "相手の予想と違う事実や本音を言う時に使います。",
+     "contrast": "其实は「実は、実際のところは」と、相手の予想や思い込みと違う事実・本音を伝える表現です（其实我的中文没有大家想象的那么好）。原来（Day36、新しい気づき）とは違い、其实は自分がすでに知っている実情を打ち明ける時に使います。",
+     "mistake": "原来は新発見、其实は実際のところです。",
+     "example": "其实我的中文没有大家想象的那么好。",
+     "exPinyin": "Qíshí wǒ de Zhōngwén méiyǒu dàjiā xiǎngxiàng de nàme hǎo.",
+     "exJa": "実は私の中国語は皆が想像するほど良くありません。",
+     "test": "実は少し緊張しています。",
+     "answer": "其实我有点儿紧张。"
+    }
+   ]
+  },
+  {
+   "day": 54,
+   "title": "Day 54｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d54-v0",
+     "zh": "举行",
+     "pinyin": "jǔxíng",
+     "ja": "挙行する",
+     "example": "学校举行运动会。",
+     "exPinyin": "Xué xiào jǔ xíng yùn dòng huì。",
+     "exJa": "学校は運動会を開く。"
+    },
+    {
+     "id": "d54-v1",
+     "zh": "总结",
+     "pinyin": "zǒngjié",
+     "ja": "まとめる",
+     "example": "我做了一个总结。",
+     "exPinyin": "Wǒ zuò le yí gè zǒng jié。",
+     "exJa": "まとめを作った。"
+    },
+    {
+     "id": "d54-v2",
+     "zh": "详细",
+     "pinyin": "xiángxì",
+     "ja": "詳しい",
+     "example": "请详细说明。",
+     "exPinyin": "Qǐng xiáng xì shuō míng。",
+     "exJa": "詳しく説明してください。"
+    },
+    {
+     "id": "d54-v3",
+     "zh": "严格",
+     "pinyin": "yángé",
+     "ja": "厳しい",
+     "example": "老师很严格。",
+     "exPinyin": "Lǎo shī hěn yán gé。",
+     "exJa": "先生は厳しい。"
+    },
+    {
+     "id": "d54-v4",
+     "zh": "严重",
+     "pinyin": "yánzhòng",
+     "ja": "深刻",
+     "example": "问题很严重。",
+     "exPinyin": "Wèn tí hěn yán zhòng。",
+     "exJa": "問題は深刻だ。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d54-g0",
+     "name": "说实话",
+     "pinyin": "shuō shíhuà",
+     "meaning": "正直に言うと",
+     "explain": "本音を言う前置きです。",
+     "contrast": "说实话は「正直に言うと」という本音を切り出す前置きです（说实话，我有点儿紧张＝正直に言うと少し緊張している）。",
+     "mistake": "少しカジュアルですが自然です。",
+     "example": "说实话，我有点儿紧张。",
+     "exPinyin": "Shuō shíhuà, wǒ yǒudiǎnr jǐnzhāng.",
+     "exJa": "正直に言うと、少し緊張しています。",
+     "test": "正直、まだよく分かりません。",
+     "answer": "说实话，我还不太明白。"
+    },
+    {
+     "id": "d54-g1",
+     "name": "说不定",
+     "pinyin": "shuōbudìng",
+     "meaning": "もしかすると〜かもしれない",
+     "explain": "可能性を口語的に表す表現です。",
+     "contrast": "说不定は可能よりもややくだけた言い方で、可能性を口語的に表します（说不定明天会下雨＝もしかしたら明日雨が降るかもしれない）。",
+     "mistake": "可能よりややくだけています。",
+     "example": "说不定明天会下雨。",
+     "exPinyin": "Shuōbudìng míngtiān huì xià yǔ.",
+     "exJa": "もしかしたら明日雨が降るかもしれません。",
+     "test": "もしかすると彼は知っています。",
+     "answer": "说不定他知道。"
+    },
+    {
+     "id": "d54-g2",
+     "name": "看情况",
+     "pinyin": "kàn qíngkuàng",
+     "meaning": "状況を見る",
+     "explain": "今すぐ決められない時に使います。",
+     "contrast": "看情况は「今すぐには決められないので、状況を見てから判断する」ことを表します（明天看情况吧＝明日は状況を見よう）。曖昧に聞こえることもあるので、仕事の場面では補足を添えるとよいです。",
+     "mistake": "曖昧すぎる場合もあるので仕事では補足するとよいです。",
+     "example": "明天看情况吧。",
+     "exPinyin": "Míngtiān kàn qíngkuàng ba.",
+     "exJa": "明日は状況を見ましょう。",
+     "test": "天気を見て決めましょう。",
+     "answer": "看天气再决定吧。"
+    }
+   ]
+  },
+  {
+   "day": 55,
+   "title": "Day 55｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d55-v0",
+     "zh": "航班",
+     "pinyin": "hángbān",
+     "ja": "フライト・便",
+     "example": "我的航班晚点了。",
+     "exPinyin": "Wǒ de háng bān wǎn diǎn le。",
+     "exJa": "私のフライトは遅れた。"
+    },
+    {
+     "id": "d55-v1",
+     "zh": "行李",
+     "pinyin": "xíngli",
+     "ja": "荷物",
+     "example": "我的行李很重。",
+     "exPinyin": "Wǒ de xíng li hěn zhòng。",
+     "exJa": "私の荷物は重い。"
+    },
+    {
+     "id": "d55-v2",
+     "zh": "登机牌",
+     "pinyin": "dēngjīpái",
+     "ja": "搭乗券",
+     "example": "请出示登机牌。",
+     "exPinyin": "Qǐng chū shì dēng jī pái。",
+     "exJa": "搭乗券を見せてください。"
+    },
+    {
+     "id": "d55-v3",
+     "zh": "出发",
+     "pinyin": "chūfā",
+     "ja": "出発する",
+     "example": "我们明天出发。",
+     "exPinyin": "Wǒ men míng tiān chū fā。",
+     "exJa": "私たちは明日出発する。"
+    },
+    {
+     "id": "d55-v4",
+     "zh": "到达",
+     "pinyin": "dàodá",
+     "ja": "到着する",
+     "example": "飞机准时到达。",
+     "exPinyin": "Fēi jī zhǔn shí dào dá。",
+     "exJa": "飛行機は時間通り到着した。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d55-g0",
+     "name": "回头",
+     "pinyin": "huítóu",
+     "meaning": "あとで",
+     "explain": "口語で「あとで」を表します。",
+     "contrast": "回头は口語で「あとで」を表し（我回头联系你＝あとで連絡する）、次に出る一会儿（少し後で）よりも「後日～近い将来」まで幅広く使えます。",
+     "mistake": "以后より近い後での感じがあります。",
+     "example": "我回头联系你。",
+     "exPinyin": "Wǒ huítóu liánxì nǐ.",
+     "exJa": "あとで連絡します。",
+     "test": "あとで資料を送ります。",
+     "answer": "我回头把资料发给你。"
+    },
+    {
+     "id": "d55-g1",
+     "name": "一会儿",
+     "pinyin": "yíhuìr",
+     "meaning": "少し後で",
+     "explain": "短い時間の後に何かをする表現です。",
+     "contrast": "一会儿は回头よりも短い時間、「もうすぐ、少し後で」を表します（我一会儿给你回电话＝少し後で電話を折り返す）。",
+     "mistake": "回头より近い時間です。",
+     "example": "我一会儿给你回电话。",
+     "exPinyin": "Wǒ yíhuìr gěi nǐ huí diànhuà.",
+     "exJa": "少し後で電話を折り返します。",
+     "test": "少し後で会いましょう。",
+     "answer": "一会儿见。"
+    },
+    {
+     "id": "d55-g2",
+     "name": "等〜再〜",
+     "pinyin": "děng…zài",
+     "meaning": "〜を待ってから〜",
+     "explain": "条件となる人・時間を待って、その後に動作します。",
+     "contrast": "等〜再〜は「〜を待ってから、その後に〜する」という条件を作る表現です（等经理来了再决定＝マネージャーが来てから決めよう）。",
+     "mistake": "等は条件節を作れます。",
+     "example": "等经理来了再决定。",
+     "exPinyin": "Děng jīnglǐ lái le zài juédìng.",
+     "exJa": "マネージャーが来てから決めましょう。",
+     "test": "子どもが寝てから勉強します。",
+     "answer": "等孩子睡了再学习。"
+    }
+   ]
+  },
+  {
+   "day": 56,
+   "title": "Day 56｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d56-v0",
+     "zh": "风景",
+     "pinyin": "fēngjǐng",
+     "ja": "風景",
+     "example": "这里的风景很美。",
+     "exPinyin": "Zhè lǐ de fēng jǐng hěn měi。",
+     "exJa": "ここの景色は美しい。"
+    },
+    {
+     "id": "d56-v1",
+     "zh": "导游",
+     "pinyin": "dǎoyóu",
+     "ja": "ガイド",
+     "example": "导游带我们参观。",
+     "exPinyin": "Dǎo yóu dài wǒ men cān guān。",
+     "exJa": "ガイドが案内してくれた。"
+    },
+    {
+     "id": "d56-v2",
+     "zh": "门票",
+     "pinyin": "ménpiào",
+     "ja": "入場券",
+     "example": "门票多少钱？",
+     "exPinyin": "Mén piào duō shǎo qián？",
+     "exJa": "入場券はいくら？"
+    },
+    {
+     "id": "d56-v3",
+     "zh": "排队",
+     "pinyin": "páiduì",
+     "ja": "並ぶ",
+     "example": "大家在排队买票。",
+     "exPinyin": "Dà jiā zài pái duì mǎi piào。",
+     "exJa": "みんな切符を買うため並んでいる。"
+    },
+    {
+     "id": "d56-v4",
+     "zh": "拍照",
+     "pinyin": "pāizhào",
+     "ja": "写真を撮る",
+     "example": "我们一起拍照吧。",
+     "exPinyin": "Wǒ men yì qǐ pāi zhào ba。",
+     "exJa": "一緒に写真を撮ろう。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d56-g0",
+     "name": "让我想一下",
+     "pinyin": "ràng wǒ xiǎng yíxià",
+     "meaning": "少し考えさせて",
+     "explain": "即答できない時の自然な表現です。",
+     "contrast": "让我想一下は、即答できない時に「少し考えさせて」と時間をもらう自然な表現です（让我想一下怎么说＝どう言えばいいか少し考えさせて）。",
+     "mistake": "仕事でも会話でも使えます。",
+     "example": "让我想一下怎么说。",
+     "exPinyin": "Ràng wǒ xiǎng yíxià zěnme shuō.",
+     "exJa": "どう言えばいいか少し考えさせてください。",
+     "test": "少し考えてから答えます。",
+     "answer": "让我想一下再回答。"
+    },
+    {
+     "id": "d56-g1",
+     "name": "我想确认一下",
+     "pinyin": "wǒ xiǎng quèrèn yíxià",
+     "meaning": "確認したいです",
+     "explain": "丁寧に確認を始める表現です。",
+     "contrast": "我想确认一下は、すでにある情報や予定を丁寧に確かめたい時に使います（我想确认一下明天的安排＝明日の予定を確認したい）。次の我想问一下（新しく質問する）とは少し目的が違います。",
+     "mistake": "いきなり聞くより自然です。",
+     "example": "我想确认一下明天的安排。",
+     "exPinyin": "Wǒ xiǎng quèrèn yíxià míngtiān de ānpái.",
+     "exJa": "明日の予定を確認したいです。",
+     "test": "会議時間を確認したいです。",
+     "answer": "我想确认一下会议时间。"
+    },
+    {
+     "id": "d56-g2",
+     "name": "我想问一下",
+     "pinyin": "wǒ xiǎng wèn yíxià",
+     "meaning": "ちょっと聞きたいです",
+     "explain": "質問する前置きとして自然です。",
+     "contrast": "我想问一下は新しく質問を切り出す時の柔らかい前置きです（我想问一下，这个词怎么用？）。確認済みの情報を確かめる我想确认一下とは、聞く目的が違います。",
+     "mistake": "礼貌で柔らかい聞き方です。",
+     "example": "我想问一下，这个词怎么用？",
+     "exPinyin": "Wǒ xiǎng wèn yíxià, zhège cí zěnme yòng?",
+     "exJa": "この単語をどう使うか聞きたいです。",
+     "test": "少し聞いてもいいですか。",
+     "answer": "我可以问一下吗？"
+    }
+   ]
+  },
+  {
+   "day": 57,
+   "title": "Day 57｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d57-v0",
+     "zh": "工资",
+     "pinyin": "gōngzī",
+     "ja": "給料",
+     "example": "这个月工资发了。",
+     "exPinyin": "Zhè ge yuè gōng zī fā le。",
+     "exJa": "今月の給料が出た。"
+    },
+    {
+     "id": "d57-v1",
+     "zh": "奖金",
+     "pinyin": "jiǎngjīn",
+     "ja": "ボーナス",
+     "example": "年底有奖金。",
+     "exPinyin": "Nián dǐ yǒu jiǎng jīn。",
+     "exJa": "年末にボーナスがある。"
+    },
+    {
+     "id": "d57-v2",
+     "zh": "收入",
+     "pinyin": "shōurù",
+     "ja": "収入",
+     "example": "他的收入很高。",
+     "exPinyin": "Tā de shōu rù hěn gāo。",
+     "exJa": "彼の収入は高い。"
+    },
+    {
+     "id": "d57-v3",
+     "zh": "招聘",
+     "pinyin": "zhāopìn",
+     "ja": "求人・採用する",
+     "example": "公司在招聘新人。",
+     "exPinyin": "Gōng sī zài zhāo pìn xīn rén。",
+     "exJa": "会社は新人を募集している。"
+    },
+    {
+     "id": "d57-v4",
+     "zh": "面试",
+     "pinyin": "miànshì",
+     "ja": "面接",
+     "example": "我明天去面试。",
+     "exPinyin": "Wǒ míng tiān qù miàn shì。",
+     "exJa": "明日面接に行く。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d57-g0",
+     "name": "我不太确定",
+     "pinyin": "bù tài quèdìng",
+     "meaning": "あまり確信がない",
+     "explain": "自信がない時に自然に言えます。",
+     "contrast": "我不太确定は「あまり確信がない」と、断定を避けて柔らかく言う表現です（我不太确定这个句子对不对＝この文が正しいかあまり確信がない）。不知道（知らない）よりも柔らかい言い方です。",
+     "mistake": "不知道より柔らかいです。",
+     "example": "我不太确定这个句子对不对。",
+     "exPinyin": "Wǒ bú tài quèdìng zhège jùzi duì bu duì.",
+     "exJa": "この文が正しいかあまり確信がありません。",
+     "test": "時間はまだ確定していません。",
+     "answer": "时间还不太确定。"
+    },
+    {
+     "id": "d57-g1",
+     "name": "我不太清楚",
+     "pinyin": "bù tài qīngchu",
+     "meaning": "よく分かりません",
+     "explain": "分からないことを柔らかく言います。",
+     "contrast": "我不知道より少し柔らかいことがあります。",
+     "mistake": "清楚ははっきり分かるという意味です。",
+     "example": "这个情况我不太清楚。",
+     "exPinyin": "Zhège qíngkuàng wǒ bú tài qīngchu.",
+     "exJa": "この状況はあまりよく分かりません。",
+     "test": "住所はよく分かりません。",
+     "answer": "地址我不太清楚。"
+    },
+    {
+     "id": "d57-g2",
+     "name": "这样说自然吗",
+     "pinyin": "zìrán ma",
+     "meaning": "この言い方は自然ですか",
+     "explain": "中国語学習で非常に使える質問です。",
+     "contrast": "对不对だけでなく、自然かどうかを聞くのが大事です。",
+     "mistake": "自然な会話力を伸ばす質問です。",
+     "example": "这样说自然吗？",
+     "exPinyin": "Zhèyàng shuō zìrán ma?",
+     "exJa": "この言い方は自然ですか。",
+     "test": "この文は自然ですか。",
+     "answer": "这个句子自然吗？"
+    }
+   ]
+  },
+  {
+   "day": 58,
+   "title": "Day 58｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d58-v0",
+     "zh": "简历",
+     "pinyin": "jiǎnlì",
+     "ja": "履歴書",
+     "example": "请发一份简历。",
+     "exPinyin": "Qǐng fā yí fèn jiǎn lì。",
+     "exJa": "履歴書を送ってください。"
+    },
+    {
+     "id": "d58-v1",
+     "zh": "职业",
+     "pinyin": "zhíyè",
+     "ja": "職業",
+     "example": "你的职业是什么？",
+     "exPinyin": "Nǐ de zhí yè shì shén me？",
+     "exJa": "あなたの職業は？"
+    },
+    {
+     "id": "d58-v2",
+     "zh": "专业",
+     "pinyin": "zhuānyè",
+     "ja": "専攻",
+     "example": "我的专业是法律。",
+     "exPinyin": "Wǒ de zhuān yè shì fǎ lǜ。",
+     "exJa": "私の専攻は法律だ。"
+    },
+    {
+     "id": "d58-v3",
+     "zh": "知识",
+     "pinyin": "zhīshi",
+     "ja": "知識",
+     "example": "学习新知识很有趣。",
+     "exPinyin": "Xué xí xīn zhī shi hěn yǒu qù。",
+     "exJa": "新しい知識を学ぶのは楽しい。"
+    },
+    {
+     "id": "d58-v4",
+     "zh": "文章",
+     "pinyin": "wénzhāng",
+     "ja": "文章",
+     "example": "这篇文章很长。",
+     "exPinyin": "Zhè piān wén zhāng hěn cháng。",
+     "exJa": "この文章は長い。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d58-g0",
+     "name": "应该怎么说",
+     "pinyin": "yīnggāi zěnme shuō",
+     "meaning": "どう言うべきですか",
+     "explain": "より自然・正確な言い方を聞く表現です。",
+     "contrast": "应该怎么说は、より自然・正確な言い方を相手に尋ねる時の表現です（这个用中文应该怎么说？＝これは中国語でどう言えばいい？）。学習中に非常によく使えるフレーズです。",
+     "mistake": "学習時に非常に便利です。",
+     "example": "这个用中文应该怎么说？",
+     "exPinyin": "Zhège yòng Zhōngwén yīnggāi zěnme shuō?",
+     "exJa": "これは中国語でどう言えばいいですか。",
+     "test": "自然にはどう言いますか。",
+     "answer": "自然一点应该怎么说？"
+    },
+    {
+     "id": "d58-g1",
+     "name": "不太地道",
+     "pinyin": "bú tài dìdao",
+     "meaning": "あまりネイティブらしくない",
+     "explain": "自然な中国語らしさを表す表現です。",
+     "contrast": "不太地道は、文法的には間違っていなくても「ネイティブらしい自然さに欠ける」ことを表します（这个表达不太地道＝この表現はあまり自然な中国語らしくない）。地道は「本場らしい、自然な」という意味です。",
+     "mistake": "地道は本場らしい、自然なという意味です。",
+     "example": "这个表达不太地道。",
+     "exPinyin": "Zhège biǎodá bú tài dìdao.",
+     "exJa": "この表現はあまり自然な中国語らしくありません。",
+     "test": "もっと自然な言い方を教えてください。",
+     "answer": "请告诉我更地道的说法。"
+    },
+    {
+     "id": "d58-g2",
+     "name": "口语里",
+     "pinyin": "kǒuyǔ lǐ",
+     "meaning": "口語では",
+     "explain": "話し言葉の表現を説明する時に使います。",
+     "contrast": "口语里は「話し言葉では」という意味で、話し言葉特有の言い回しを説明する時に使います（口语里常说“没事儿”＝口語ではよく「没事儿」と言う）。次のDayで出る书面语里（書き言葉では）と対になる表現です。",
+     "mistake": "書き言葉との差を意識できます。",
+     "example": "口语里常说“没事儿”。",
+     "exPinyin": "Kǒuyǔ lǐ cháng shuō “méi shìr”.",
+     "exJa": "口語ではよく「没事儿」と言います。",
+     "test": "口語ではこう言えます。",
+     "answer": "口语里可以这样说。"
+    }
+   ]
+  },
+  {
+   "day": 59,
+   "title": "Day 59｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d59-v0",
+     "zh": "词典",
+     "pinyin": "cídiǎn",
+     "ja": "辞書",
+     "example": "我用词典查生词。",
+     "exPinyin": "Wǒ yòng cí diǎn chá shēng cí。",
+     "exJa": "辞書で新出単語を調べる。"
+    },
+    {
+     "id": "d59-v1",
+     "zh": "成绩",
+     "pinyin": "chéngjì",
+     "ja": "成績",
+     "example": "他的成绩很好。",
+     "exPinyin": "Tā de chéng jì hěn hǎo。",
+     "exJa": "彼の成績は良い。"
+    },
+    {
+     "id": "d59-v2",
+     "zh": "及格",
+     "pinyin": "jígé",
+     "ja": "合格する",
+     "example": "我考试及格了。",
+     "exPinyin": "Wǒ kǎo shì jí gé le。",
+     "exJa": "試験に合格した。"
+    },
+    {
+     "id": "d59-v3",
+     "zh": "练习",
+     "pinyin": "liànxí",
+     "ja": "練習する",
+     "example": "每天练习汉语。",
+     "exPinyin": "Měi tiān liàn xí hàn yǔ。",
+     "exJa": "毎日中国語を練習する。"
+    },
+    {
+     "id": "d59-v4",
+     "zh": "笔记",
+     "pinyin": "bǐjì",
+     "ja": "ノート・メモ",
+     "example": "我记了笔记。",
+     "exPinyin": "Wǒ jì le bǐ jì。",
+     "exJa": "ノートを取った。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d59-g0",
+     "name": "书面语里",
+     "pinyin": "shūmiànyǔ lǐ",
+     "meaning": "書き言葉では",
+     "explain": "文章・通知・メールで使う表現を説明できます。",
+     "contrast": "书面语里は「書き言葉では」という意味で、文章・メールなどで使われる表現を説明します（书面语里常用“由于”＝書き言葉ではよく「由于」を使う）。会話では因为の方が自然な場合が多いです。",
+     "mistake": "口語では因为の方が自然な場合があります。",
+     "example": "书面语里常用“由于”。",
+     "exPinyin": "Shūmiànyǔ lǐ chángyòng “yóuyú”.",
+     "exJa": "書き言葉ではよく「由于」を使います。",
+     "test": "書き言葉ではこう書けます。",
+     "answer": "书面语里可以这样写。"
+    },
+    {
+     "id": "d59-g1",
+     "name": "是〜的：強調",
+     "pinyin": "shì…de",
+     "meaning": "すでに起きたことの時・場所・方法を強調する",
+     "explain": "起きたこと自体は前提にして、「いつ・どこで・どうやって」を取り立てます。是は省けますが的は省けません。",
+     "contrast": "我去了上海 は行った事実、我是昨天去的上海 は「昨日」を強調します。",
+     "mistake": "これから起きることには使えません。",
+     "example": "我是坐高铁来的。",
+     "exPinyin": "Wǒ shì zuò gāotiě lái de.",
+     "exJa": "私は高鉄で来ました。",
+     "test": "私は先週上海に来ました。（「先週」を強調して）",
+     "answer": "我是上个星期来上海的。"
+    },
+    {
+     "id": "d59-g2",
+     "name": "正在〜呢：進行",
+     "pinyin": "zhèngzài…ne",
+     "meaning": "ちょうど〜しているところだ",
+     "explain": "動作が進行中であることを表します。正在／在／正のいずれかを動詞の前に置き、文末に呢を添えることもあります。",
+     "contrast": "我看报告 は習慣や予定、我正在看报告呢 は今まさに進行中です。",
+     "mistake": "是・有・知道のような状態を表す語には使えません。",
+     "example": "我正在开会呢，等一下回你。",
+     "exPinyin": "Wǒ zhèngzài kāihuì ne, děng yíxià huí nǐ.",
+     "exJa": "いま会議中なので、あとで返します。",
+     "test": "彼はいま資料を整理しているところです。",
+     "answer": "他正在整理资料呢。"
+    }
+   ]
+  },
+  {
+   "day": 60,
+   "title": "Day 60｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d60-v0",
+     "zh": "厨房",
+     "pinyin": "chúfáng",
+     "ja": "台所",
+     "example": "妈妈在厨房做饭。",
+     "exPinyin": "Mā ma zài chú fáng zuò fàn。",
+     "exJa": "母は台所で料理している。"
+    },
+    {
+     "id": "d60-v1",
+     "zh": "客厅",
+     "pinyin": "kètīng",
+     "ja": "居間",
+     "example": "客厅很宽敞。",
+     "exPinyin": "Kè tīng hěn kuān chǎng。",
+     "exJa": "居間は広い。"
+    },
+    {
+     "id": "d60-v2",
+     "zh": "家具",
+     "pinyin": "jiājù",
+     "ja": "家具",
+     "example": "这些家具很贵。",
+     "exPinyin": "Zhè xiē jiā jù hěn guì。",
+     "exJa": "これらの家具は高い。"
+    },
+    {
+     "id": "d60-v3",
+     "zh": "沙发",
+     "pinyin": "shāfā",
+     "ja": "ソファ",
+     "example": "他坐在沙发上。",
+     "exPinyin": "Tā zuò zài shā fā shàng。",
+     "exJa": "彼はソファに座っている。"
+    },
+    {
+     "id": "d60-v4",
+     "zh": "窗户",
+     "pinyin": "chuānghù",
+     "ja": "窓",
+     "example": "请打开窗户。",
+     "exPinyin": "Qǐng dǎ kāi chuāng hù。",
+     "exJa": "窓を開けてください。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d60-g0",
+     "name": "V了＋時間量",
+     "pinyin": "le",
+     "meaning": "どのくらいの間〜したかを表す",
+     "explain": "動詞のすぐ後ろに了を置き、その後に時間の長さを置きます。文末にもう一つ了を足すと、今も続いていることを表します。",
+     "contrast": "我学了中文 は完了、我学了三年中文了 は三年続けて今も学んでいる、です。",
+     "mistake": "時間の長さを動詞の前に置かないこと。",
+     "example": "我学了三年中文了。",
+     "exPinyin": "Wǒ xué le sān nián Zhōngwén le.",
+     "exJa": "中国語を3年学んでいます。",
+     "test": "私は上海に8年住んでいます。",
+     "answer": "我在上海住了八年了。"
+    },
+    {
+     "id": "d60-g1",
+     "name": "V了＋回数",
+     "pinyin": "cì / biàn",
+     "meaning": "何回〜したかを表す",
+     "explain": "動詞の後ろに回数を置きます。次は単なる回数、遍は最初から最後まで通した回数です。",
+     "contrast": "看了两次 は二回見た、看了两遍 は通して二回読んだ、が近いです。",
+     "mistake": "目的語が人称代名詞のときは、回数をその後ろに置きます（等了他两次）。",
+     "example": "这个报告我看了两遍。",
+     "exPinyin": "Zhège bàogào wǒ kàn le liǎng biàn.",
+     "exJa": "この報告書は2回通して読みました。",
+     "test": "この映画は3回見ました。",
+     "answer": "这个电影我看了三次。"
+    },
+    {
+     "id": "d60-g2",
+     "name": "连〜也／都〜",
+     "pinyin": "lián…yě/dōu",
+     "meaning": "〜さえも〜",
+     "explain": "極端な例を挙げて「それすらそうだ」と示します。连の後ろに取り立てる語、後半に也か都を置きます。",
+     "contrast": "他不知道 は単なる否定、连他都不知道 は「彼でさえ知らない」という含みです。",
+     "mistake": "也／都を落とすと文になりません。",
+     "example": "他忙得连午饭都没吃。",
+     "exPinyin": "Tā máng de lián wǔfàn dōu méi chī.",
+     "exJa": "彼は忙しくて昼食さえ食べませんでした。",
+     "test": "この字は私でさえ書けません。",
+     "answer": "这个字连我也不会写。"
+    }
+   ]
+  },
+  {
+   "day": 61,
+   "title": "Day 61｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d61-v0",
+     "zh": "镜子",
+     "pinyin": "jìngzi",
+     "ja": "鏡",
+     "example": "她在照镜子。",
+     "exPinyin": "Tā zài zhào jìng zi。",
+     "exJa": "彼女は鏡を見ている。"
+    },
+    {
+     "id": "d61-v1",
+     "zh": "钥匙",
+     "pinyin": "yàoshi",
+     "ja": "鍵",
+     "example": "我找不到钥匙。",
+     "exPinyin": "Wǒ zhǎo bú dào yào shi。",
+     "exJa": "鍵が見つからない。"
+    },
+    {
+     "id": "d61-v2",
+     "zh": "垃圾",
+     "pinyin": "lājī",
+     "ja": "ゴミ",
+     "example": "请把垃圾扔掉。",
+     "exPinyin": "Qǐng bǎ lā jī rēng diào。",
+     "exJa": "ゴミを捨ててください。"
+    },
+    {
+     "id": "d61-v3",
+     "zh": "工具",
+     "pinyin": "gōngjù",
+     "ja": "道具",
+     "example": "这是修理工具。",
+     "exPinyin": "Zhè shì xiū lǐ gōng jù。",
+     "exJa": "これは修理道具だ。"
+    },
+    {
+     "id": "d61-v4",
+     "zh": "毛巾",
+     "pinyin": "máojīn",
+     "ja": "タオル",
+     "example": "我需要一条毛巾。",
+     "exPinyin": "Wǒ xū yào yì tiáo máo jīn。",
+     "exJa": "タオルが一枚要る。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d61-g0",
+     "name": "不是〜而是〜",
+     "pinyin": "búshì…érshì",
+     "meaning": "〜ではなく〜だ",
+     "explain": "前半で否定し、後半で正しいほうを示します。",
+     "contrast": "不是〜就是〜 は「〜かさもなくば〜」で、二つのうちどちらか、の意味になります。",
+     "mistake": "而是のかわりに但是を使わないこと。",
+     "example": "问题不是价格，而是时间。",
+     "exPinyin": "Wèntí búshì jiàgé, érshì shíjiān.",
+     "exJa": "問題は価格ではなく時間です。",
+     "test": "私が言いたいのは方法ではなく目的です。",
+     "answer": "我想说的不是方法，而是目的。"
+    },
+    {
+     "id": "d61-g1",
+     "name": "跟〜一样",
+     "pinyin": "gēn…yíyàng",
+     "meaning": "〜と同じだ",
+     "explain": "跟（または和）＋比べる相手＋一样。後ろに形容詞を続けると「同じくらい〜だ」になります。",
+     "contrast": "比 は差を示し、跟〜一样 は等しいことを示します。",
+     "mistake": "否定は跟〜不一样で、不は一样の前に置きます。",
+     "example": "这个方法跟上次一样有效。",
+     "exPinyin": "Zhège fāngfǎ gēn shàng cì yíyàng yǒuxiào.",
+     "exJa": "この方法は前回と同じく有効です。",
+     "test": "彼の意見は私と同じです。",
+     "answer": "他的看法跟我一样。"
+    },
+    {
+     "id": "d61-g2",
+     "name": "除了〜都〜",
+     "pinyin": "chúle…dōu",
+     "meaning": "〜以外はすべて〜",
+     "explain": "除了の後ろを例外として外し、残り全部を都で受けます。",
+     "contrast": "除了〜以外，还〜 は付け加える形、除了〜都〜 は取り除く形で、向きが逆です。",
+     "mistake": "还と都を取り違えると意味が反対になります。",
+     "example": "除了小王，大家都参加了。",
+     "exPinyin": "Chúle Xiǎo Wáng, dàjiā dōu cānjiā le.",
+     "exJa": "王さん以外は全員参加しました。",
+     "test": "日曜以外は毎日出勤します。",
+     "answer": "除了星期天，我每天都上班。"
+    }
+   ]
+  },
+  {
+   "day": 62,
+   "title": "Day 62｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d62-v0",
+     "zh": "牙膏",
+     "pinyin": "yágāo",
+     "ja": "歯磨き粉",
+     "example": "牙膏用完了。",
+     "exPinyin": "Yá gāo yòng wán le。",
+     "exJa": "歯磨き粉を使い切った。"
+    },
+    {
+     "id": "d62-v1",
+     "zh": "洗衣机",
+     "pinyin": "xǐyījī",
+     "ja": "洗濯機",
+     "example": "洗衣机坏了。",
+     "exPinyin": "Xǐ yī jī huài le。",
+     "exJa": "洗濯機が壊れた。"
+    },
+    {
+     "id": "d62-v2",
+     "zh": "冰箱",
+     "pinyin": "bīngxiāng",
+     "ja": "冷蔵庫",
+     "example": "把牛奶放进冰箱。",
+     "exPinyin": "Bǎ niú nǎi fàng jìn bīng xiāng。",
+     "exJa": "牛乳を冷蔵庫に入れて。"
+    },
+    {
+     "id": "d62-v3",
+     "zh": "空调",
+     "pinyin": "kōngtiáo",
+     "ja": "エアコン",
+     "example": "请打开空调。",
+     "exPinyin": "Qǐng dǎ kāi kōng tiáo。",
+     "exJa": "エアコンをつけて。"
+    },
+    {
+     "id": "d62-v4",
+     "zh": "电梯",
+     "pinyin": "diàntī",
+     "ja": "エレベーター",
+     "example": "我们坐电梯上去。",
+     "exPinyin": "Wǒ men zuò diàn tī shàng qù。",
+     "exJa": "エレベーターで上がろう。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d62-g0",
+     "name": "对于",
+     "pinyin": "duìyú",
+     "meaning": "〜について、〜に対して",
+     "explain": "話題を先に示すときに使い、文頭にも主語の後ろにも置けます。",
+     "contrast": "对我来说 は「私にとって」、对于这个问题 は「この問題について」で、指すものが違います。",
+     "mistake": "人に向けた動作（对他说）には对于を使いません。",
+     "example": "对于这个安排，我没有意见。",
+     "exPinyin": "Duìyú zhège ānpái, wǒ méiyǒu yìjiàn.",
+     "exJa": "この段取りについて、私は異議ありません。",
+     "test": "この件について、もう少し考えたいです。",
+     "answer": "对于这件事，我想再考虑一下。"
+    },
+    {
+     "id": "d62-g1",
+     "name": "使：〜させる",
+     "pinyin": "shǐ",
+     "meaning": "ある状態を引き起こす",
+     "explain": "主に気持ちや状態の変化を引き起こすときに使う、書き言葉寄りの使役です。",
+     "contrast": "让 は人に何かをさせる指示寄り、使 は状態を引き起こす結果寄りです。",
+     "mistake": "話し言葉で人に頼むときは让を使います。",
+     "example": "这个结果使大家很失望。",
+     "exPinyin": "Zhège jiéguǒ shǐ dàjiā hěn shīwàng.",
+     "exJa": "この結果はみんなをがっかりさせました。",
+     "test": "この知らせは私をとても驚かせました。",
+     "answer": "这个消息使我很吃惊。"
+    },
+    {
+     "id": "d62-g2",
+     "name": "叫／给：受け身",
+     "pinyin": "jiào / gěi",
+     "meaning": "〜される（話し言葉）",
+     "explain": "被と同じ受け身です。叫と让は動作をした人を必ず言い、给はより口語的です。",
+     "contrast": "被 は書き言葉でも使え、動作主を省けます。叫は省けません。",
+     "mistake": "叫の後ろの動作主を省略しないこと。",
+     "example": "我的伞叫人拿走了。",
+     "exPinyin": "Wǒ de sǎn jiào rén ná zǒu le.",
+     "exJa": "私の傘は誰かに持って行かれました。",
+     "test": "私の自転車は雨に濡れました。",
+     "answer": "我的自行车叫雨淋湿了。"
+    }
+   ]
+  },
+  {
+   "day": 63,
+   "title": "Day 63｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d63-v0",
+     "zh": "房东",
+     "pinyin": "fángdōng",
+     "ja": "大家（おおや）",
+     "example": "房东人很好。",
+     "exPinyin": "Fáng dōng rén hěn hǎo。",
+     "exJa": "大家さんは親切だ。"
+    },
+    {
+     "id": "d63-v1",
+     "zh": "租",
+     "pinyin": "zū",
+     "ja": "借りる・賃借",
+     "example": "我租了一间房子。",
+     "exPinyin": "Wǒ zū le yì jiān fáng zi。",
+     "exJa": "部屋を一つ借りた。"
+    },
+    {
+     "id": "d63-v2",
+     "zh": "邻居",
+     "pinyin": "línjū",
+     "ja": "隣人",
+     "example": "我的邻居很友好。",
+     "exPinyin": "Wǒ de lín jū hěn yǒu hǎo。",
+     "exJa": "隣人は親切だ。"
+    },
+    {
+     "id": "d63-v3",
+     "zh": "亲戚",
+     "pinyin": "qīnqi",
+     "ja": "親戚",
+     "example": "春节我去看亲戚。",
+     "exPinyin": "Chūn jié wǒ qù kàn qīn qi。",
+     "exJa": "春節に親戚を訪ねる。"
+    },
+    {
+     "id": "d63-v4",
+     "zh": "顾客",
+     "pinyin": "gùkè",
+     "ja": "顧客",
+     "example": "这家店顾客很多。",
+     "exPinyin": "Zhè jiā diàn gù kè hěn duō。",
+     "exJa": "この店は客が多い。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d63-g0",
+     "name": "难道〜吗",
+     "pinyin": "nándào…ma",
+     "meaning": "まさか〜ではないだろう（反語）",
+     "explain": "答えを求めず、驚きや納得のいかない気持ちを表します。文末に吗を伴うのが普通です。",
+     "contrast": "你不知道吗 は普通の確認、难道你不知道吗 は「知らないはずがない」という含みです。",
+     "mistake": "反語なので、はい／いいえで答える質問には使いません。",
+     "example": "难道这个问题没有别的办法吗？",
+     "exPinyin": "Nándào zhège wèntí méiyǒu bié de bànfǎ ma?",
+     "exJa": "まさかこの問題に他の方法がないのですか。",
+     "test": "まさか彼はまだ知らないのですか。",
+     "answer": "难道他还不知道吗？"
+    },
+    {
+     "id": "d63-g1",
+     "name": "到底：問い詰める",
+     "pinyin": "dàodǐ",
+     "meaning": "いったい〜なのか",
+     "explain": "疑問文に置いて「はっきりさせたい」気持ちを加えます。",
+     "contrast": "你去吗 は可否の確認、你到底去不去 ははっきりさせたい追及です。",
+     "mistake": "到底と吗は一緒に使えません。疑問詞か反復疑問と組みます。",
+     "example": "你到底同意不同意？",
+     "exPinyin": "Nǐ dàodǐ tóngyì bu tóngyì?",
+     "exJa": "いったい賛成なのですか、反対なのですか。",
+     "test": "会議はいったい何時に始まるのですか。",
+     "answer": "会议到底几点开始？"
+    },
+    {
+     "id": "d63-g2",
+     "name": "否则",
+     "pinyin": "fǒuzé",
+     "meaning": "そうでなければ",
+     "explain": "前の条件が満たされない場合にどうなるかを後ろで述べます。書き言葉寄りです。",
+     "contrast": "不然 はより口語的で、意味はほぼ同じです。",
+     "mistake": "否则の前は、指示や条件になる文にします。",
+     "example": "请按时提交，否则会影响进度。",
+     "exPinyin": "Qǐng ànshí tíjiāo, fǒuzé huì yǐngxiǎng jìndù.",
+     "exJa": "期限通りに提出してください、でないと進行に影響します。",
+     "test": "早めに出発しよう、でないと遅刻します。",
+     "answer": "我们早点儿出发吧，否则会迟到。"
+    }
+   ]
+  },
+  {
+   "day": 64,
+   "title": "Day 64｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d64-v0",
+     "zh": "性别",
+     "pinyin": "xìngbié",
+     "ja": "性別",
+     "example": "请填写性别。",
+     "exPinyin": "Qǐng tián xiě xìng bié。",
+     "exJa": "性別を記入してください。"
+    },
+    {
+     "id": "d64-v1",
+     "zh": "年龄",
+     "pinyin": "niánlíng",
+     "ja": "年齢",
+     "example": "他的年龄不大。",
+     "exPinyin": "Tā de nián líng bú dà。",
+     "exJa": "彼は年が若い。"
+    },
+    {
+     "id": "d64-v2",
+     "zh": "样子",
+     "pinyin": "yàngzi",
+     "ja": "様子・格好",
+     "example": "他的样子很着急。",
+     "exPinyin": "Tā de yàng zi hěn zháo jí。",
+     "exJa": "彼は焦った様子だ。"
+    },
+    {
+     "id": "d64-v3",
+     "zh": "帅",
+     "pinyin": "shuài",
+     "ja": "かっこいい",
+     "example": "这个演员很帅。",
+     "exPinyin": "Zhè ge yǎn yuán hěn shuài。",
+     "exJa": "この俳優はかっこいい。"
+    },
+    {
+     "id": "d64-v4",
+     "zh": "美丽",
+     "pinyin": "měilì",
+     "ja": "美しい",
+     "example": "这是个美丽的城市。",
+     "exPinyin": "Zhè shì gè měi lì de chéng shì。",
+     "exJa": "美しい街だ。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d64-g0",
+     "name": "稍微〜一点儿",
+     "pinyin": "shāowēi…yìdiǎnr",
+     "meaning": "少しだけ〜",
+     "explain": "稍微の後ろに形容詞や動詞を置き、一点儿や一些で受けます。",
+     "contrast": "有点儿 は不満を含む「少し〜だ」、稍微〜一点儿 は依頼や調整に使えます。",
+     "mistake": "稍微だけで終わらせず、一点儿などで受けます。",
+     "example": "请稍微说慢一点儿。",
+     "exPinyin": "Qǐng shāowēi shuō màn yìdiǎnr.",
+     "exJa": "少しゆっくり話してください。",
+     "test": "少し早めに来てもらえますか。",
+     "answer": "你能稍微早一点儿来吗？"
+    },
+    {
+     "id": "d64-g1",
+     "name": "最好",
+     "pinyin": "zuìhǎo",
+     "meaning": "〜したほうがいい",
+     "explain": "勧めや助言をやわらかく述べます。否定は最好别です。",
+     "contrast": "应该 は義務寄り、最好 は「そのほうが望ましい」という提案です。",
+     "mistake": "「いちばん良い」の意味だけで覚えないこと。助言で使うことが多いです。",
+     "example": "你最好提前跟他确认一下。",
+     "exPinyin": "Nǐ zuìhǎo tíqián gēn tā quèrèn yíxià.",
+     "exJa": "事前に彼に確認したほうがいいですよ。",
+     "test": "明日は早めに出発したほうがいいです。",
+     "answer": "明天最好早点儿出发。"
+    },
+    {
+     "id": "d64-g2",
+     "name": "不如",
+     "pinyin": "bùrú",
+     "meaning": "〜には及ばない／〜したほうがましだ",
+     "explain": "A不如B で「AはBに及ばない」。後ろに動詞句を続けると提案になります。",
+     "contrast": "没有〜那么〜 も比較の否定ですが、不如 は提案にも使えます。",
+     "mistake": "比べる相手を不如の後ろに置きます。順序を逆にしないこと。",
+     "example": "坐地铁不如走路快。",
+     "exPinyin": "Zuò dìtiě bùrú zǒulù kuài.",
+     "exJa": "地下鉄より歩いたほうが速いです。",
+     "test": "電話するより直接会ったほうがいいです。",
+     "answer": "打电话不如直接见面。"
+    }
+   ]
+  },
+  {
+   "day": 65,
+   "title": "Day 65｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d65-v0",
+     "zh": "害羞",
+     "pinyin": "hàixiū",
+     "ja": "恥ずかしがる",
+     "example": "她有点害羞。",
+     "exPinyin": "Tā yǒu diǎn hài xiū。",
+     "exJa": "彼女は少し恥ずかしがり屋だ。"
+    },
+    {
+     "id": "d65-v1",
+     "zh": "热情",
+     "pinyin": "rèqíng",
+     "ja": "親切・熱心",
+     "example": "服务员很热情。",
+     "exPinyin": "Fú wù yuán hěn rè qíng。",
+     "exJa": "店員は親切だ。"
+    },
+    {
+     "id": "d65-v2",
+     "zh": "冷静",
+     "pinyin": "lěngjìng",
+     "ja": "冷静",
+     "example": "请保持冷静。",
+     "exPinyin": "Qǐng bǎo chí lěng jìng。",
+     "exJa": "冷静さを保って。"
+    },
+    {
+     "id": "d65-v3",
+     "zh": "大方",
+     "pinyin": "dàfāng",
+     "ja": "気前が良い・上品",
+     "example": "他很大方。",
+     "exPinyin": "Tā hěn dà fāng。",
+     "exJa": "彼は気前が良い。"
+    },
+    {
+     "id": "d65-v4",
+     "zh": "友谊",
+     "pinyin": "yǒuyì",
+     "ja": "友情",
+     "example": "我们的友谊很深。",
+     "exPinyin": "Wǒ men de yǒu yì hěn shēn。",
+     "exJa": "私たちの友情は深い。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d65-g0",
+     "name": "于是",
+     "pinyin": "yúshì",
+     "meaning": "そこで、それで",
+     "explain": "前の出来事を受けて、続けて起こした行動を述べます。",
+     "contrast": "所以 は理由とその結果、于是 は時間の流れに沿った次の行動です。",
+     "mistake": "因为と組にするのは所以で、于是ではありません。",
+     "example": "地铁停了，于是我们打车去了。",
+     "exPinyin": "Dìtiě tíng le, yúshì wǒmen dǎchē qù le.",
+     "exJa": "地下鉄が止まったので、タクシーで行きました。",
+     "test": "雨が降ってきたので、私たちは予定を変えました。",
+     "answer": "下雨了，于是我们改变了计划。"
+    },
+    {
+     "id": "d65-g1",
+     "name": "并且",
+     "pinyin": "bìngqiě",
+     "meaning": "しかも、そのうえ",
+     "explain": "前の内容に、同じ方向の内容を足します。書き言葉でよく使います。",
+     "contrast": "而且 は口語でも広く使い、并且 はやや硬い言い方です。",
+     "mistake": "逆の内容を足すときは但是を使います。",
+     "example": "这个方案成本低，并且容易执行。",
+     "exPinyin": "Zhège fāng'àn chéngběn dī, bìngqiě róngyì zhíxíng.",
+     "exJa": "この案はコストが低く、しかも実行しやすいです。",
+     "test": "彼は中国語ができ、しかも日本語も話せます。",
+     "answer": "他会说中文，并且也会说日语。"
+    },
+    {
+     "id": "d65-g2",
+     "name": "其中",
+     "pinyin": "qízhōng",
+     "meaning": "そのうちの",
+     "explain": "前に出た集合を受けて「そのうち」と部分を取り出します。",
+     "contrast": "里面 は場所寄り、其中 は数や集合の内訳に使います。",
+     "mistake": "其中の前に、集合を示す文が必要です。",
+     "example": "我们有五个方案，其中两个已经通过了。",
+     "exPinyin": "Wǒmen yǒu wǔ ge fāng'àn, qízhōng liǎng ge yǐjīng tōngguò le.",
+     "exJa": "案が5つあり、そのうち2つはすでに通っています。",
+     "test": "参加者は30人で、そのうち10人は新人です。",
+     "answer": "参加的有三十个人，其中十个是新人。"
+    }
+   ]
+  },
+  {
+   "day": 66,
+   "title": "Day 66｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d66-v0",
+     "zh": "愉快",
+     "pinyin": "yúkuài",
+     "ja": "楽しい",
+     "example": "祝你旅途愉快。",
+     "exPinyin": "Zhù nǐ lǚ tú yú kuài。",
+     "exJa": "楽しい旅を。"
+    },
+    {
+     "id": "d66-v1",
+     "zh": "开心",
+     "pinyin": "kāixīn",
+     "ja": "嬉しい",
+     "example": "今天我很开心。",
+     "exPinyin": "Jīn tiān wǒ hěn kāi xīn。",
+     "exJa": "今日は嬉しい。"
+    },
+    {
+     "id": "d66-v2",
+     "zh": "幸福",
+     "pinyin": "xìngfú",
+     "ja": "幸せ",
+     "example": "他们生活很幸福。",
+     "exPinyin": "Tā men shēng huó hěn xìng fú。",
+     "exJa": "彼らは幸せに暮らしている。"
+    },
+    {
+     "id": "d66-v3",
+     "zh": "着急",
+     "pinyin": "zháojí",
+     "ja": "焦る",
+     "example": "别着急，慢慢来。",
+     "exPinyin": "Bié zháo jí， màn màn lái。",
+     "exJa": "焦らず、ゆっくり。"
+    },
+    {
+     "id": "d66-v4",
+     "zh": "烦恼",
+     "pinyin": "fánnǎo",
+     "ja": "悩み",
+     "example": "他有很多烦恼。",
+     "exPinyin": "Tā yǒu hěn duō fán nǎo。",
+     "exJa": "彼には悩みが多い。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d66-g0",
+     "name": "任何",
+     "pinyin": "rènhé",
+     "meaning": "どんな〜も",
+     "explain": "名詞の前に置き、後ろに都や也を伴って全肯定や全否定にします。",
+     "contrast": "什么 は疑問にも任指にも使え、任何 は書き言葉寄りの硬い言い方です。",
+     "mistake": "任何の後ろに量詞は要りません。",
+     "example": "有任何问题都可以随时联系我。",
+     "exPinyin": "Yǒu rènhé wèntí dōu kěyǐ suíshí liánxì wǒ.",
+     "exJa": "どんな問題でもいつでも連絡してください。",
+     "test": "どんな理由でも遅刻はできません。",
+     "answer": "任何理由都不能迟到。"
+    },
+    {
+     "id": "d66-g1",
+     "name": "谁都／什么都〜",
+     "pinyin": "shéi dōu / shénme dōu",
+     "meaning": "誰でも／何でも〜、誰も／何も〜ない",
+     "explain": "疑問詞に都や也を続けると「すべて」を表します。否定と組めば全否定になります。",
+     "contrast": "谁知道？ は疑問、谁都知道 は「誰でも知っている」です。",
+     "mistake": "都／也を落とすと疑問文に読まれます。",
+     "example": "这个道理谁都懂。",
+     "exPinyin": "Zhège dàolǐ shéi dōu dǒng.",
+     "exJa": "この道理は誰でも分かります。",
+     "test": "今日は何も食べたくありません。",
+     "answer": "我今天什么都不想吃。"
+    },
+    {
+     "id": "d66-g2",
+     "name": "是不是／V不V",
+     "pinyin": "shì bu shì",
+     "meaning": "〜かどうか（反復疑問）",
+     "explain": "肯定形と否定形を並べて疑問にします。",
+     "contrast": "你去吗 は単純な質問、你去不去 は選ばせる問い方で、少し直接的です。",
+     "mistake": "吗と一緒には使えません。",
+     "example": "你是不是已经发邮件了？",
+     "exPinyin": "Nǐ shì bu shì yǐjīng fā yóujiàn le?",
+     "exJa": "もうメールを送りましたか。",
+     "test": "明日の会議に参加しますか。",
+     "answer": "你参不参加明天的会议？"
+    }
+   ]
+  },
+  {
+   "day": 67,
+   "title": "Day 67｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d67-v0",
+     "zh": "失败",
+     "pinyin": "shībài",
+     "ja": "失敗する",
+     "example": "失败是成功之母。",
+     "exPinyin": "Shī bài shì chéng gōng zhī mǔ。",
+     "exJa": "失敗は成功のもと。"
+    },
+    {
+     "id": "d67-v1",
+     "zh": "成功",
+     "pinyin": "chénggōng",
+     "ja": "成功する",
+     "example": "他终于成功了。",
+     "exPinyin": "Tā zhōng yú chéng gōng le。",
+     "exJa": "彼はついに成功した。"
+    },
+    {
+     "id": "d67-v2",
+     "zh": "倒霉",
+     "pinyin": "dǎoméi",
+     "ja": "運が悪い",
+     "example": "今天真倒霉。",
+     "exPinyin": "Jīn tiān zhēn dǎo méi。",
+     "exJa": "今日はついてない。"
+    },
+    {
+     "id": "d67-v3",
+     "zh": "遗憾",
+     "pinyin": "yíhàn",
+     "ja": "残念",
+     "example": "很遗憾你不能来。",
+     "exPinyin": "Hěn yí hàn nǐ bù néng lái。",
+     "exJa": "来られなくて残念。"
+    },
+    {
+     "id": "d67-v4",
+     "zh": "可惜",
+     "pinyin": "kěxī",
+     "ja": "惜しい",
+     "example": "太可惜了。",
+     "exPinyin": "Tài kě xī le。",
+     "exJa": "実に惜しい。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d67-g0",
+     "name": "動詞＋人＋物：二重目的語",
+     "pinyin": "gěi / jiāo / wèn",
+     "meaning": "〜に〜を〜する",
+     "explain": "给・送・教・问などは、人と物を続けて二つ取れます。",
+     "contrast": "我给他一本书 は二重目的語、我把书给他 は把構文で、処理の焦点が違います。",
+     "mistake": "人と物の順序を入れ替えないこと。",
+     "example": "经理给了我一个新任务。",
+     "exPinyin": "Jīnglǐ gěi le wǒ yí ge xīn rènwù.",
+     "exJa": "部長は私に新しい仕事をくれました。",
+     "test": "先生は私たちに中国語を教えています。",
+     "answer": "老师教我们中文。"
+    },
+    {
+     "id": "d67-g1",
+     "name": "离合词：帮忙・见面・请假",
+     "pinyin": "bāngmáng / jiànmiàn / qǐngjià",
+     "meaning": "2字で1語だが、間に語を挟める動詞",
+     "explain": "帮忙・见面・请假などはもともと動詞＋目的語なので、後ろにさらに目的語を置けません。数量や修飾語は間に挟みます。",
+     "contrast": "帮我一个忙 とは言えますが、帮忙我 とは言えません。",
+     "mistake": "见面他 ではなく 跟他见面 とします。",
+     "example": "我想请两天假。",
+     "exPinyin": "Wǒ xiǎng qǐng liǎng tiān jià.",
+     "exJa": "2日間休みを取りたいです。",
+     "test": "明日彼と会いたいです。",
+     "answer": "我想明天跟他见面。"
+    },
+    {
+     "id": "d67-g2",
+     "name": "V出来：見分ける",
+     "pinyin": "chūlái",
+     "meaning": "〜して分かる、見分けがつく",
+     "explain": "看・听・尝などの後ろに出来を付けて、識別できたことを表します。",
+     "contrast": "看懂 は内容が分かる、看出来 は違いや正体に気づく、が近いです。",
+     "mistake": "可能形は看得出来／看不出来です。",
+     "example": "我听出来他有点儿不高兴。",
+     "exPinyin": "Wǒ tīng chūlái tā yǒudiǎnr bù gāoxìng.",
+     "exJa": "彼が少し不機嫌なのが聞いて分かりました。",
+     "test": "この2つの違いが見分けられません。",
+     "answer": "这两个的区别我看不出来。"
+    }
+   ]
+  },
+  {
+   "day": 68,
+   "title": "Day 68｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d68-v0",
+     "zh": "想念",
+     "pinyin": "xiǎngniàn",
+     "ja": "恋しく思う",
+     "example": "我很想念家人。",
+     "exPinyin": "Wǒ hěn xiǎng niàn jiā rén。",
+     "exJa": "家族が恋しい。"
+    },
+    {
+     "id": "d68-v1",
+     "zh": "无聊",
+     "pinyin": "wúliáo",
+     "ja": "退屈",
+     "example": "这部电影很无聊。",
+     "exPinyin": "Zhè bù diàn yǐng hěn wú liáo。",
+     "exJa": "この映画は退屈だ。"
+    },
+    {
+     "id": "d68-v2",
+     "zh": "奇怪",
+     "pinyin": "qíguài",
+     "ja": "不思議・変だ",
+     "example": "这件事很奇怪。",
+     "exPinyin": "Zhè jiàn shì hěn qí guài。",
+     "exJa": "この件は変だ。"
+    },
+    {
+     "id": "d68-v3",
+     "zh": "厉害",
+     "pinyin": "lìhài",
+     "ja": "すごい・ひどい",
+     "example": "他汉语说得很厉害。",
+     "exPinyin": "Tā hàn yǔ shuō dé hěn lì hài。",
+     "exJa": "彼は中国語がすごく上手い。"
+    },
+    {
+     "id": "d68-v4",
+     "zh": "可怜",
+     "pinyin": "kělián",
+     "ja": "かわいそう",
+     "example": "这只小狗很可怜。",
+     "exPinyin": "Zhè zhī xiǎo gǒu hěn kě lián。",
+     "exJa": "この子犬はかわいそうだ。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d68-g0",
+     "name": "比〜＋形容詞＋得多",
+     "pinyin": "bǐ…de duō",
+     "meaning": "〜よりずっと〜だ",
+     "explain": "比較文の形容詞の後ろに得多・多了・一点儿・一些を置いて、差の大きさを示します。",
+     "contrast": "比〜好 は差の大きさを言わず、比〜好得多 は差が大きいことを示します。",
+     "mistake": "比〜很好 とは言えません。很は比較文に使えません。",
+     "example": "今年的成绩比去年好得多。",
+     "exPinyin": "Jīnnián de chéngjì bǐ qùnián hǎo de duō.",
+     "exJa": "今年の成績は去年よりずっと良いです。",
+     "test": "高鉄は飛行機よりずっと便利です。",
+     "answer": "高铁比飞机方便得多。"
+    },
+    {
+     "id": "d68-g1",
+     "name": "有时候〜有时候〜",
+     "pinyin": "yǒu shíhou…yǒu shíhou",
+     "meaning": "〜のときもあれば〜のときもある",
+     "explain": "二つの場合を並べて、時によって変わることを示します。",
+     "contrast": "有的〜有的〜 はものを分けて言い、有时候〜有时候〜 は時で分けます。",
+     "mistake": "偶尔 は「たまに」で頻度が低い場合。対になる二つを並べるときは有时候を使います。",
+     "example": "我有时候坐地铁，有时候打车。",
+     "exPinyin": "Wǒ yǒu shíhou zuò dìtiě, yǒu shíhou dǎchē.",
+     "exJa": "地下鉄のときもあれば、タクシーのときもあります。",
+     "test": "昼は外で食べるときも、自分で作るときもあります。",
+     "answer": "中午我有时候在外面吃，有时候自己做。"
+    },
+    {
+     "id": "d68-g2",
+     "name": "既〜又〜",
+     "pinyin": "jì…yòu",
+     "meaning": "〜であり、そのうえ〜だ",
+     "explain": "同じ方向の性質を二つ並べます。書き言葉でもよく使います。",
+     "contrast": "又〜又〜 は口語的、既〜又〜 はやや硬い言い方です。",
+     "mistake": "反対の性質を並べるときは虽然〜但是〜を使います。",
+     "example": "这个方法既省钱又省时间。",
+     "exPinyin": "Zhège fāngfǎ jì shěng qián yòu shěng shíjiān.",
+     "exJa": "この方法はお金も時間も節約できます。",
+     "test": "この店は安くて、しかも静かです。",
+     "answer": "这家店既便宜又安静。"
+    }
+   ]
+  },
+  {
+   "day": 69,
+   "title": "Day 69｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d69-v0",
+     "zh": "然而",
+     "pinyin": "ránér",
+     "ja": "しかし",
+     "example": "我想去，然而没时间。",
+     "exPinyin": "Wǒ xiǎng qù， rán ér méi shí jiān。",
+     "exJa": "行きたいが、時間がない。"
+    },
+    {
+     "id": "d69-v1",
+     "zh": "不仅",
+     "pinyin": "bùjǐn",
+     "ja": "…だけでなく",
+     "example": "他不仅聪明，而且努力。",
+     "exPinyin": "Tā bù jǐn cōng ming， ér qiě nǔ lì。",
+     "exJa": "彼は賢いだけでなく努力家だ。"
+    },
+    {
+     "id": "d69-v2",
+     "zh": "既然",
+     "pinyin": "jìrán",
+     "ja": "…である以上",
+     "example": "既然来了，就好好玩。",
+     "exPinyin": "Jì rán lái le， jiù hǎo hǎo wán。",
+     "exJa": "来たからにはしっかり楽しもう。"
+    },
+    {
+     "id": "d69-v3",
+     "zh": "即使",
+     "pinyin": "jíshǐ",
+     "ja": "たとえ…でも",
+     "example": "即使下雨我也去。",
+     "exPinyin": "Jí shǐ xià yǔ wǒ yě qù。",
+     "exJa": "たとえ雨でも行く。"
+    },
+    {
+     "id": "d69-v4",
+     "zh": "万一",
+     "pinyin": "wànyī",
+     "ja": "万一",
+     "example": "万一迟到怎么办？",
+     "exPinyin": "Wàn yī chí dào zěn me bàn？",
+     "exJa": "万一遅れたらどうする？"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d69-g0",
+     "name": "来得及／来不及",
+     "pinyin": "láidejí / láibují",
+     "meaning": "間に合う／間に合わない",
+     "explain": "時間的に間に合うかどうかを表します。後ろに動詞を続けられます。",
+     "contrast": "赶得上 は乗り物などに追いつく、来得及 は時間の余裕を言います。",
+     "mistake": "否定は不来得及ではなく来不及です。",
+     "example": "现在出发还来得及。",
+     "exPinyin": "Xiànzài chūfā hái láidejí.",
+     "exJa": "いま出発すればまだ間に合います。",
+     "test": "もう間に合わないので、次の便にしましょう。",
+     "answer": "已经来不及了，我们坐下一班吧。"
+    },
+    {
+     "id": "d69-g1",
+     "name": "受不了",
+     "pinyin": "shòubuliǎo",
+     "meaning": "我慢できない、耐えられない",
+     "explain": "体力や気持ちが限界を超えていることを表します。肯定は受得了です。",
+     "contrast": "不喜欢 は好みの問題、受不了 は限界を超えている状態です。",
+     "mistake": "受不了の後ろには、耐えられない対象を置きます。",
+     "example": "上海的夏天我有点儿受不了。",
+     "exPinyin": "Shànghǎi de xiàtiān wǒ yǒudiǎnr shòubuliǎo.",
+     "exJa": "上海の夏は少し耐えられません。",
+     "test": "この暑さはもう耐えられません。",
+     "answer": "这么热我真的受不了了。"
+    },
+    {
+     "id": "d69-g2",
+     "name": "只好",
+     "pinyin": "zhǐhǎo",
+     "meaning": "〜するしかない",
+     "explain": "ほかに方法がなく、やむを得ずそうすることを表します。",
+     "contrast": "只能 は能力や条件の限界、只好 は仕方なくという気持ちが強く出ます。",
+     "mistake": "進んで選んだ場合には使いません。",
+     "example": "地铁停了，我们只好打车。",
+     "exPinyin": "Dìtiě tíng le, wǒmen zhǐhǎo dǎchē.",
+     "exJa": "地下鉄が止まったので、タクシーにするしかありませんでした。",
+     "test": "資料が間に合わず、会議を延期するしかありませんでした。",
+     "answer": "资料没准备好，我们只好推迟会议。"
+    }
+   ]
+  },
+  {
+   "day": 70,
+   "title": "Day 70｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d70-v0",
+     "zh": "总之",
+     "pinyin": "zǒngzhī",
+     "ja": "要するに",
+     "example": "总之，我同意。",
+     "exPinyin": "Zǒng zhī， wǒ tóng yì。",
+     "exJa": "要するに、賛成だ。"
+    },
+    {
+     "id": "d70-v1",
+     "zh": "反正",
+     "pinyin": "fǎnzhèng",
+     "ja": "どうせ",
+     "example": "反正都一样。",
+     "exPinyin": "Fǎn zhèng dōu yí yàng。",
+     "exJa": "どうせ同じだ。"
+    },
+    {
+     "id": "d70-v2",
+     "zh": "难怪",
+     "pinyin": "nánguài",
+     "ja": "道理で",
+     "example": "难怪他这么累。",
+     "exPinyin": "Nán guài tā zhè me lèi。",
+     "exJa": "道理で彼は疲れている。"
+    },
+    {
+     "id": "d70-v3",
+     "zh": "难道",
+     "pinyin": "nándào",
+     "ja": "まさか…ではあるまい",
+     "example": "难道你忘了？",
+     "exPinyin": "Nán dào nǐ wàng le？",
+     "exJa": "まさか忘れたの？"
+    },
+    {
+     "id": "d70-v4",
+     "zh": "千万",
+     "pinyin": "qiānwàn",
+     "ja": "くれぐれも",
+     "example": "你千万别迟到。",
+     "exPinyin": "Nǐ qiān wàn bié chí dào。",
+     "exJa": "くれぐれも遅れないで。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d70-g0",
+     "name": "也就是说",
+     "pinyin": "yě jiù shì shuō",
+     "meaning": "つまり、言い換えると",
+     "explain": "前の内容を、分かりやすく言い直します。",
+     "contrast": "总之 は話をまとめる、也就是说 は同じ内容を言い換える、です。",
+     "mistake": "新しい情報を足すときには使いません。",
+     "example": "他明天出差，也就是说会议他参加不了。",
+     "exPinyin": "Tā míngtiān chūchāi, yě jiù shì shuō huìyì tā cānjiā bu liǎo.",
+     "exJa": "彼は明日出張です。つまり会議には出られません。",
+     "test": "資料は明日届きます。つまり今日は確認できません。",
+     "answer": "资料明天到，也就是说今天不能确认。"
+    },
+    {
+     "id": "d70-g1",
+     "name": "在我看来",
+     "pinyin": "zài wǒ kànlái",
+     "meaning": "私の見たところでは",
+     "explain": "自分の見方であることを先に示してから意見を述べます。",
+     "contrast": "我觉得 は日常的、在我看来 は改まった場でも使いやすい言い方です。",
+     "mistake": "事実を述べるときには付けません。",
+     "example": "在我看来，这个价格还可以接受。",
+     "exPinyin": "Zài wǒ kànlái, zhège jiàgé hái kěyǐ jiēshòu.",
+     "exJa": "私の見たところ、この価格はまだ受け入れられます。",
+     "test": "私の見たところ、この計画は少し急ぎすぎです。",
+     "answer": "在我看来，这个计划有点儿急。"
+    },
+    {
+     "id": "d70-g2",
+     "name": "正好",
+     "pinyin": "zhènghǎo",
+     "meaning": "ちょうど、都合よく",
+     "explain": "時間・数量・タイミングがぴったり合うことを表します。",
+     "contrast": "刚好 とほぼ同じ意味で、正好 のほうがやや書き言葉寄りです。",
+     "mistake": "偶然そうなった場合に使い、意図して合わせた場合には使いません。",
+     "example": "我正好也要去那边，一起走吧。",
+     "exPinyin": "Wǒ zhènghǎo yě yào qù nàbiān, yìqǐ zǒu ba.",
+     "exJa": "ちょうど私もそちらへ行くので、一緒に行きましょう。",
+     "test": "ちょうど時間があるので、今すぐ確認します。",
+     "answer": "我正好有时间，现在就确认。"
+    }
+   ]
+  },
+  {
+   "day": 71,
+   "title": "Day 71｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d71-v0",
+     "zh": "到底",
+     "pinyin": "dàodǐ",
+     "ja": "一体・結局",
+     "example": "你到底想说什么？",
+     "exPinyin": "Nǐ dào dǐ xiǎng shuō shén me？",
+     "exJa": "一体何が言いたいの？"
+    },
+    {
+     "id": "d71-v1",
+     "zh": "至少",
+     "pinyin": "zhìshǎo",
+     "ja": "少なくとも",
+     "example": "至少要等一小时。",
+     "exPinyin": "Zhì shǎo yào děng yì xiǎo shí。",
+     "exJa": "少なくとも1時間待つ。"
+    },
+    {
+     "id": "d71-v2",
+     "zh": "仍然",
+     "pinyin": "réngrán",
+     "ja": "依然として",
+     "example": "他仍然没来。",
+     "exPinyin": "Tā réng rán méi lái。",
+     "exJa": "彼は依然来ていない。"
+    },
+    {
+     "id": "d71-v3",
+     "zh": "偶尔",
+     "pinyin": "ǒuěr",
+     "ja": "たまに",
+     "example": "我偶尔去看电影。",
+     "exPinyin": "Wǒ ǒu ěr qù kàn diàn yǐng。",
+     "exJa": "たまに映画を見に行く。"
+    },
+    {
+     "id": "d71-v4",
+     "zh": "重新",
+     "pinyin": "chóngxīn",
+     "ja": "改めて",
+     "example": "请重新写一遍。",
+     "exPinyin": "Qǐng chóng xīn xiě yí biàn。",
+     "exJa": "書き直してください。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d71-g0",
+     "name": "〜以上／〜以下",
+     "pinyin": "yǐshàng / yǐxià",
+     "meaning": "〜以上／〜以下",
+     "explain": "数量の後ろに置いて範囲を示します。以上はその数を含みます。",
+     "contrast": "超过 はその数を超える、以上 はその数を含む点が違います。",
+     "mistake": "数字の前ではなく後ろに置きます。",
+     "example": "参加的人在五十人以上。",
+     "exPinyin": "Cānjiā de rén zài wǔshí rén yǐshàng.",
+     "exJa": "参加者は50人以上です。",
+     "test": "3年以上の経験が必要です。",
+     "answer": "需要三年以上的经验。"
+    },
+    {
+     "id": "d71-g1",
+     "name": "会：習って身につけた能力",
+     "pinyin": "huì",
+     "meaning": "〜できる（習得して）",
+     "explain": "学んで身につけた技能に使います。「〜だろう」と可能性を表す会とは別の用法です。",
+     "contrast": "能 は条件が整ってできる、会 は習得してできる、です。",
+     "mistake": "力があってできるかどうかは能を使います（我能搬）。",
+     "example": "我会说一点儿中文。",
+     "exPinyin": "Wǒ huì shuō yìdiǎnr Zhōngwén.",
+     "exJa": "中国語が少し話せます。",
+     "test": "彼はピアノが弾けます。",
+     "answer": "他会弹钢琴。"
+    },
+    {
+     "id": "d71-g2",
+     "name": "愿意",
+     "pinyin": "yuànyì",
+     "meaning": "進んで〜する、〜してもよいと思う",
+     "explain": "気持ちとして受け入れる、進んでやる意思を表します。",
+     "contrast": "想 は願望、愿意 は「やってもいい」という承諾寄りです。",
+     "mistake": "否定は不愿意です。",
+     "example": "我愿意帮你看一下资料。",
+     "exPinyin": "Wǒ yuànyì bāng nǐ kàn yíxià zīliào.",
+     "exJa": "喜んで資料を見ますよ。",
+     "test": "彼はこの仕事を引き受けたがっていません。",
+     "answer": "他不愿意做这个工作。"
+    }
+   ]
+  },
+  {
+   "day": 72,
+   "title": "Day 72｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d72-v0",
+     "zh": "互相",
+     "pinyin": "hùxiāng",
+     "ja": "互いに",
+     "example": "我们互相帮助。",
+     "exPinyin": "Wǒ men hù xiāng bāng zhù。",
+     "exJa": "私たちは助け合う。"
+    },
+    {
+     "id": "d72-v1",
+     "zh": "亲自",
+     "pinyin": "qīnzì",
+     "ja": "自ら",
+     "example": "他亲自来道歉。",
+     "exPinyin": "Tā qīn zì lái dào qiàn。",
+     "exJa": "彼は自ら謝りに来た。"
+    },
+    {
+     "id": "d72-v2",
+     "zh": "故意",
+     "pinyin": "gùyì",
+     "ja": "わざと",
+     "example": "我不是故意的。",
+     "exPinyin": "Wǒ bú shì gù yì de。",
+     "exJa": "わざとじゃない。"
+    },
+    {
+     "id": "d72-v3",
+     "zh": "专门",
+     "pinyin": "zhuānmén",
+     "ja": "専ら・わざわざ",
+     "example": "他专门来看你。",
+     "exPinyin": "Tā zhuān mén lái kàn nǐ。",
+     "exJa": "彼はわざわざ会いに来た。"
+    },
+    {
+     "id": "d72-v4",
+     "zh": "顺便",
+     "pinyin": "shùnbiàn",
+     "ja": "ついでに",
+     "example": "顺便买点东西。",
+     "exPinyin": "Shùn biàn mǎi diǎn dōng xī。",
+     "exJa": "ついでに買い物する。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d72-g0",
+     "name": "随便",
+     "pinyin": "suíbiàn",
+     "meaning": "自由に、何でもいい",
+     "explain": "相手に選ばせるときや、こだわらないことを示すときに使います。",
+     "contrast": "都可以 は「どれでも良い」、随便 は相手に任せる気持ちが強い言い方です。",
+     "mistake": "目上に対しては失礼になることがあるので、您决定吧 などに言い換えます。",
+     "example": "你随便坐，别客气。",
+     "exPinyin": "Nǐ suíbiàn zuò, bié kèqi.",
+     "exJa": "どうぞご自由に座ってください。",
+     "test": "何を食べるかは何でもいいです。",
+     "answer": "吃什么都行，我随便。"
+    },
+    {
+     "id": "d72-g1",
+     "name": "是否",
+     "pinyin": "shìfǒu",
+     "meaning": "〜かどうか（書き言葉）",
+     "explain": "是不是の書き言葉です。メールや報告書でよく使います。",
+     "contrast": "是不是 は話し言葉、是否 は文書向けです。",
+     "mistake": "是否と吗は一緒に使えません。",
+     "example": "请确认是否收到这封邮件。",
+     "exPinyin": "Qǐng quèrèn shìfǒu shōudào zhè fēng yóujiàn.",
+     "exJa": "このメールを受け取ったかどうかご確認ください。",
+     "test": "参加できるかどうか、明日お知らせします。",
+     "answer": "我明天告诉你是否能参加。"
+    },
+    {
+     "id": "d72-g2",
+     "name": "同时",
+     "pinyin": "tóngshí",
+     "meaning": "同時に、それと同時に",
+     "explain": "二つのことが同じ時に起きること、また話を並べて足すときに使います。",
+     "contrast": "一边〜一边〜 は一人が同時にする動作、同时 は出来事や話を並べます。",
+     "mistake": "短い動作の同時進行は一边〜一边〜のほうが自然です。",
+     "example": "我们要提高质量，同时也要控制成本。",
+     "exPinyin": "Wǒmen yào tígāo zhìliàng, tóngshí yě yào kòngzhì chéngběn.",
+     "exJa": "品質を上げると同時に、コストも抑える必要があります。",
+     "test": "時間を決めると同時に、場所も決めましょう。",
+     "answer": "我们决定时间，同时也决定地点。"
+    }
+   ]
+  },
+  {
+   "day": 73,
+   "title": "Day 73｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d73-v0",
+     "zh": "取",
+     "pinyin": "qǔ",
+     "ja": "受け取る・引き出す",
+     "example": "我去银行取钱。",
+     "exPinyin": "Wǒ qù yín háng qǔ qián。",
+     "exJa": "銀行へお金を下ろしに行く。"
+    },
+    {
+     "id": "d73-v1",
+     "zh": "存",
+     "pinyin": "cún",
+     "ja": "預ける・蓄える",
+     "example": "我想存钱。",
+     "exPinyin": "Wǒ xiǎng cún qián。",
+     "exJa": "お金を貯めたい。"
+    },
+    {
+     "id": "d73-v2",
+     "zh": "寄",
+     "pinyin": "jì",
+     "ja": "郵送する",
+     "example": "我要寄一封信。",
+     "exPinyin": "Wǒ yào jì yì fēng xìn。",
+     "exJa": "手紙を出したい。"
+    },
+    {
+     "id": "d73-v3",
+     "zh": "扔",
+     "pinyin": "rēng",
+     "ja": "捨てる・投げる",
+     "example": "别乱扔垃圾。",
+     "exPinyin": "Bié luàn rēng lā jī。",
+     "exJa": "ゴミをポイ捨てするな。"
+    },
+    {
+     "id": "d73-v4",
+     "zh": "丢",
+     "pinyin": "diū",
+     "ja": "なくす",
+     "example": "我丢了钱包。",
+     "exPinyin": "Wǒ diū le qián bāo。",
+     "exJa": "財布をなくした。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d73-g0",
+     "name": "不得不",
+     "pinyin": "bùdébù",
+     "meaning": "〜せざるを得ない",
+     "explain": "事情があってやむを得ずそうすることを表します。二重否定で強い必要を示します。",
+     "contrast": "只好 は仕方なさの気持ち、不得不 は外の事情に迫られた感じが強いです。",
+     "mistake": "不得不の後ろは動詞句です。名詞は置けません。",
+     "example": "因为下雨，我们不得不推迟活动。",
+     "exPinyin": "Yīnwèi xiàyǔ, wǒmen bùdébù tuīchí huódòng.",
+     "exJa": "雨のため、イベントを延期せざるを得ませんでした。",
+     "test": "体調が悪く、休みを取らざるを得ませんでした。",
+     "answer": "身体不舒服，我不得不请假。"
+    },
+    {
+     "id": "d73-g1",
+     "name": "结果：ところが",
+     "pinyin": "jiéguǒ",
+     "meaning": "その結果、〜となった",
+     "explain": "前の行動を受けて、実際にどうなったかを述べます。思っていたのと違う結果にもよく使います。",
+     "contrast": "所以 は理由から導かれる当然の結果、结果 は実際にどうなったかの報告です。",
+     "mistake": "名詞の「結果」と同じ形なので、文の中の位置で見分けます。",
+     "example": "我提前出发了，结果还是迟到了。",
+     "exPinyin": "Wǒ tíqián chūfā le, jiéguǒ háishi chídào le.",
+     "exJa": "早めに出発したのに、結局遅刻しました。",
+     "test": "1時間並んだのに、結局買えませんでした。",
+     "answer": "我排了一个小时队，结果没买到。"
+    },
+    {
+     "id": "d73-g2",
+     "name": "关键是",
+     "pinyin": "guānjiàn shì",
+     "meaning": "肝心なのは〜だ",
+     "explain": "いくつかある中で、決め手になる点を取り出して示します。",
+     "contrast": "主要是 は主な理由、关键是 は決め手になる点です。",
+     "mistake": "关键は名詞なので、是を落とさないようにします。",
+     "example": "关键是我们没有足够的时间。",
+     "exPinyin": "Guānjiàn shì wǒmen méiyǒu zúgòu de shíjiān.",
+     "exJa": "肝心なのは、私たちに十分な時間がないことです。",
+     "test": "肝心なのは、毎日続けられるかどうかです。",
+     "answer": "关键是能不能每天坚持。"
+    }
+   ]
+  },
+  {
+   "day": 74,
+   "title": "Day 74｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d74-v0",
+     "zh": "抬",
+     "pinyin": "tái",
+     "ja": "持ち上げる",
+     "example": "我们一起抬桌子。",
+     "exPinyin": "Wǒ men yì qǐ tái zhuō zi。",
+     "exJa": "一緒に机を運ぼう。"
+    },
+    {
+     "id": "d74-v1",
+     "zh": "推",
+     "pinyin": "tuī",
+     "ja": "押す",
+     "example": "请推门进来。",
+     "exPinyin": "Qǐng tuī mén jìn lái。",
+     "exJa": "ドアを押して入って。"
+    },
+    {
+     "id": "d74-v2",
+     "zh": "拉",
+     "pinyin": "lā",
+     "ja": "引く",
+     "example": "用力拉绳子。",
+     "exPinyin": "Yòng lì lā shéng zi。",
+     "exJa": "力を入れて綱を引く。"
+    },
+    {
+     "id": "d74-v3",
+     "zh": "挂",
+     "pinyin": "guà",
+     "ja": "掛ける",
+     "example": "把画挂在墙上。",
+     "exPinyin": "Bǎ huà guà zài qiáng shàng。",
+     "exJa": "絵を壁に掛ける。"
+    },
+    {
+     "id": "d74-v4",
+     "zh": "擦",
+     "pinyin": "cā",
+     "ja": "拭く",
+     "example": "请擦一下桌子。",
+     "exPinyin": "Qǐng cā yí xià zhuō zi。",
+     "exJa": "机を拭いて。"
+    }
+   ],
+   "grammar": [
+    {
+     "id": "d74-g0",
+     "name": "以为",
+     "pinyin": "yǐwéi",
+     "meaning": "〜だと思っていた（実際は違った）",
+     "explain": "思い込みが事実と違っていたときに使います。",
+     "contrast": "认为 は今の判断、以为 は間違っていた思い込みです。",
+     "mistake": "正しい判断を述べるときは认为や觉得を使います。",
+     "example": "我以为今天不上班。",
+     "exPinyin": "Wǒ yǐwéi jīntiān bú shàngbān.",
+     "exJa": "今日は仕事がないと思っていました。",
+     "test": "彼はもう知っていると思っていました。",
+     "answer": "我以为他已经知道了。"
+    },
+    {
+     "id": "d74-g1",
+     "name": "恐怕",
+     "pinyin": "kǒngpà",
+     "meaning": "おそらく〜だろう（よくない見込み）",
+     "explain": "好ましくない可能性を控えめに述べます。断るときの前置きにも使います。",
+     "contrast": "也许 は中立の推量、恐怕 は好ましくない見込みに偏ります。",
+     "mistake": "良い見込みには使いません。",
+     "example": "今天恐怕来不及了。",
+     "exPinyin": "Jīntiān kǒngpà láibují le.",
+     "exJa": "今日はおそらく間に合いません。",
+     "test": "明日はおそらく参加できません。",
+     "answer": "明天我恐怕不能参加。"
+    },
+    {
+     "id": "d74-g2",
+     "name": "首先〜其次〜",
+     "pinyin": "shǒuxiān…qícì",
+     "meaning": "まず〜、次に〜",
+     "explain": "順序立てて理由や手順を並べます。最後は最后で締めます。",
+     "contrast": "先〜再〜 は動作の順番、首先〜其次〜 は説明の順序です。",
+     "mistake": "其次は二番目に使い、三番目以降は再次や最后にします。",
+     "example": "首先要确认时间，其次要准备资料。",
+     "exPinyin": "Shǒuxiān yào quèrèn shíjiān, qícì yào zhǔnbèi zīliào.",
+     "exJa": "まず時間を確認し、次に資料を準備します。",
+     "test": "まず原因を調べ、次に方法を考えましょう。",
+     "answer": "首先调查原因，其次考虑方法。"
+    }
+   ]
+  },
+  {
+   "day": 75,
+   "title": "Day 75｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d75-v0",
+     "zh": "敲",
+     "pinyin": "qiāo",
+     "ja": "叩く",
+     "example": "有人在敲门。",
+     "exPinyin": "Yǒu rén zài qiāo mén。",
+     "exJa": "誰かがドアをノックしている。"
+    },
+    {
+     "id": "d75-v1",
+     "zh": "抱",
+     "pinyin": "bào",
+     "ja": "抱く",
+     "example": "妈妈抱着孩子。",
+     "exPinyin": "Mā ma bào zhe hái zi。",
+     "exJa": "母は子を抱いている。"
+    },
+    {
+     "id": "d75-v2",
+     "zh": "摇",
+     "pinyin": "yáo",
+     "ja": "揺らす・振る",
+     "example": "他摇了摇头。",
+     "exPinyin": "Tā yáo le yáo tóu。",
+     "exJa": "彼は首を振った。"
+    },
+    {
+     "id": "d75-v3",
+     "zh": "弹钢琴",
+     "pinyin": "tángāngqín",
+     "ja": "ピアノを弾く",
+     "example": "她会弹钢琴。",
+     "exPinyin": "Tā huì tán gāng qín。",
+     "exJa": "彼女はピアノが弾ける。"
+    },
+    {
+     "id": "d75-v4",
+     "zh": "散步",
+     "pinyin": "sànbù",
+     "ja": "散歩する",
+     "example": "晚饭后我去散步。",
+     "exPinyin": "Wǎn fàn hòu wǒ qù sàn bù。",
+     "exJa": "夕食後に散歩する。"
+    },
+    {
+     "id": "d75-v5",
+     "zh": "打招呼",
+     "pinyin": "dǎ zhāohu",
+     "ja": "あいさつする、声をかける",
+     "example": "在公司遇到同事要主动打招呼。",
+     "exPinyin": "Zài gōngsī yùdào tóngshì yào zhǔdòng dǎ zhāohu.",
+     "exJa": "会社で同僚に会ったら自分から声をかけましょう。"
+    },
+    {
+     "id": "d75-v6",
+     "zh": "打扰",
+     "pinyin": "dǎrǎo",
+     "ja": "邪魔をする、手を止めさせる",
+     "example": "打扰一下，我想问个问题。",
+     "exPinyin": "Dǎrǎo yíxià, wǒ xiǎng wèn ge wèntí.",
+     "exJa": "少しお邪魔します、質問があります。"
+    },
+    {
+     "id": "d75-v7",
+     "zh": "提",
+     "pinyin": "tí",
+     "ja": "（話を）持ち出す、提げる",
+     "example": "这件事他昨天提过一次。",
+     "exPinyin": "Zhè jiàn shì tā zuótiān tí guo yí cì.",
+     "exJa": "この件は彼が昨日一度持ち出しました。"
+    }
+   ],
+   "grammar": []
+  },
+  {
+   "day": 76,
+   "title": "Day 76｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d76-v0",
+     "zh": "锻炼",
+     "pinyin": "duànliàn",
+     "ja": "鍛える",
+     "example": "每天锻炼身体。",
+     "exPinyin": "Měi tiān duàn liàn shēn tǐ。",
+     "exJa": "毎日体を鍛える。"
+    },
+    {
+     "id": "d76-v1",
+     "zh": "减肥",
+     "pinyin": "jiǎnféi",
+     "ja": "ダイエットする",
+     "example": "我正在减肥。",
+     "exPinyin": "Wǒ zhèng zài jiǎn féi。",
+     "exJa": "ダイエット中だ。"
+    },
+    {
+     "id": "d76-v2",
+     "zh": "旅行",
+     "pinyin": "lǚxíng",
+     "ja": "旅行する",
+     "example": "暑假我去旅行。",
+     "exPinyin": "Shǔ jià wǒ qù lǚ xíng。",
+     "exJa": "夏休みに旅行する。"
+    },
+    {
+     "id": "d76-v3",
+     "zh": "出生",
+     "pinyin": "chūshēng",
+     "ja": "生まれる",
+     "example": "他在北京出生。",
+     "exPinyin": "Tā zài běi jīng chū shēng。",
+     "exJa": "彼は北京で生まれた。"
+    },
+    {
+     "id": "d76-v4",
+     "zh": "长大",
+     "pinyin": "zhǎngdà",
+     "ja": "成長する",
+     "example": "孩子长大了。",
+     "exPinyin": "Hái zi zhǎng dà le。",
+     "exJa": "子どもが大きくなった。"
+    },
+    {
+     "id": "d76-v5",
+     "zh": "轻松",
+     "pinyin": "qīngsōng",
+     "ja": "気楽だ、楽だ",
+     "example": "今天的工作比较轻松。",
+     "exPinyin": "Jīntiān de gōngzuò bǐjiào qīngsōng.",
+     "exJa": "今日の仕事は比較的楽です。"
+    },
+    {
+     "id": "d76-v6",
+     "zh": "力气",
+     "pinyin": "lìqi",
+     "ja": "力",
+     "example": "搬这个箱子需要不少力气。",
+     "exPinyin": "Bān zhège xiāngzi xūyào bù shǎo lìqi.",
+     "exJa": "この箱を運ぶにはかなり力が要ります。"
+    },
+    {
+     "id": "d76-v7",
+     "zh": "活动",
+     "pinyin": "huódòng",
+     "ja": "活動、イベント",
+     "example": "公司下个月有一个活动。",
+     "exPinyin": "Gōngsī xià ge yuè yǒu yí ge huódòng.",
+     "exJa": "会社は来月イベントがあります。"
+    }
+   ],
+   "grammar": []
+  },
+  {
+   "day": 77,
+   "title": "Day 77｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d77-v0",
+     "zh": "结婚",
+     "pinyin": "jiéhūn",
+     "ja": "結婚する",
+     "example": "他们去年结婚了。",
+     "exPinyin": "Tā men qù nián jié hūn le。",
+     "exJa": "彼らは去年結婚した。"
+    },
+    {
+     "id": "d77-v1",
+     "zh": "退休",
+     "pinyin": "tuìxiū",
+     "ja": "退職する",
+     "example": "父亲已经退休了。",
+     "exPinyin": "Fù qīn yǐ jīng tuì xiū le。",
+     "exJa": "父はもう退職した。"
+    },
+    {
+     "id": "d77-v2",
+     "zh": "救",
+     "pinyin": "jiù",
+     "ja": "救う",
+     "example": "医生救了他。",
+     "exPinyin": "Yī shēng jiù le tā。",
+     "exJa": "医者が彼を救った。"
+    },
+    {
+     "id": "d77-v3",
+     "zh": "帮忙",
+     "pinyin": "bāngmáng",
+     "ja": "手伝う",
+     "example": "你能帮个忙吗？",
+     "exPinyin": "Nǐ néng bāng gè máng ma？",
+     "exJa": "手伝ってくれる？"
+    },
+    {
+     "id": "d77-v4",
+     "zh": "照顾",
+     "pinyin": "zhàogù",
+     "ja": "世話する",
+     "example": "她照顾老人。",
+     "exPinyin": "Tā zhào gù lǎo rén。",
+     "exJa": "彼女は老人の世話をする。"
+    },
+    {
+     "id": "d77-v5",
+     "zh": "请假",
+     "pinyin": "qǐngjià",
+     "ja": "休みを取る",
+     "example": "他因为感冒请假了。",
+     "exPinyin": "Tā yīnwèi gǎnmào qǐngjià le.",
+     "exJa": "彼は風邪で休みを取りました。"
+    },
+    {
+     "id": "d77-v6",
+     "zh": "尊重",
+     "pinyin": "zūnzhòng",
+     "ja": "尊重する",
+     "example": "我们应该尊重别人的意见。",
+     "exPinyin": "Wǒmen yīnggāi zūnzhòng biérén de yìjiàn.",
+     "exJa": "他人の意見を尊重すべきです。"
+    },
+    {
+     "id": "d77-v7",
+     "zh": "抱歉",
+     "pinyin": "bàoqiàn",
+     "ja": "申し訳なく思う",
+     "example": "很抱歉，让您久等了。",
+     "exPinyin": "Hěn bàoqiàn, ràng nín jiǔ děng le.",
+     "exJa": "大変申し訳ありません、お待たせしました。"
+    }
+   ],
+   "grammar": []
+  },
+  {
+   "day": 78,
+   "title": "Day 78｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d78-v0",
+     "zh": "富",
+     "pinyin": "fù",
+     "ja": "豊か・金持ち",
+     "example": "他家很富。",
+     "exPinyin": "Tā jiā hěn fù。",
+     "exJa": "彼の家は裕福だ。"
+    },
+    {
+     "id": "d78-v1",
+     "zh": "穷",
+     "pinyin": "qióng",
+     "ja": "貧しい",
+     "example": "以前他很穷。",
+     "exPinyin": "Yǐ qián tā hěn qióng。",
+     "exJa": "以前彼は貧しかった。"
+    },
+    {
+     "id": "d78-v2",
+     "zh": "厚",
+     "pinyin": "hòu",
+     "ja": "厚い",
+     "example": "这本书很厚。",
+     "exPinyin": "Zhè běn shū hěn hòu。",
+     "exJa": "この本は厚い。"
+    },
+    {
+     "id": "d78-v3",
+     "zh": "深",
+     "pinyin": "shēn",
+     "ja": "深い",
+     "example": "这条河很深。",
+     "exPinyin": "Zhè tiáo hé hěn shēn。",
+     "exJa": "この川は深い。"
+    },
+    {
+     "id": "d78-v4",
+     "zh": "空",
+     "pinyin": "kōng",
+     "ja": "空っぽ",
+     "example": "瓶子是空的。",
+     "exPinyin": "Píng zi shì kōng de。",
+     "exJa": "瓶は空だ。"
+    },
+    {
+     "id": "d78-v5",
+     "zh": "超过",
+     "pinyin": "chāoguò",
+     "ja": "超える、上回る",
+     "example": "这次的费用超过了预算。",
+     "exPinyin": "Zhè cì de fèiyòng chāoguò le yùsuàn.",
+     "exJa": "今回の費用は予算を超えました。"
+    },
+    {
+     "id": "d78-v6",
+     "zh": "许多",
+     "pinyin": "xǔduō",
+     "ja": "多くの",
+     "example": "这次会议提出了许多新想法。",
+     "exPinyin": "Zhè cì huìyì tíchū le xǔduō xīn xiǎngfǎ.",
+     "exJa": "今回の会議では多くの新しい考えが出ました。"
+    },
+    {
+     "id": "d78-v7",
+     "zh": "完全",
+     "pinyin": "wánquán",
+     "ja": "完全に、まったく",
+     "example": "我完全同意你的看法。",
+     "exPinyin": "Wǒ wánquán tóngyì nǐ de kànfǎ.",
+     "exJa": "あなたの見方に完全に同意します。"
+    }
+   ],
+   "grammar": []
+  },
+  {
+   "day": 79,
+   "title": "Day 79｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d79-v0",
+     "zh": "干燥",
+     "pinyin": "gānzào",
+     "ja": "乾燥している",
+     "example": "冬天空气很干燥。",
+     "exPinyin": "Dōng tiān kōng qì hěn gān zào。",
+     "exJa": "冬は空気が乾燥している。"
+    },
+    {
+     "id": "d79-v1",
+     "zh": "凉快",
+     "pinyin": "liángkuai",
+     "ja": "涼しい",
+     "example": "今天很凉快。",
+     "exPinyin": "Jīn tiān hěn liáng kuai。",
+     "exJa": "今日は涼しい。"
+    },
+    {
+     "id": "d79-v2",
+     "zh": "暖和",
+     "pinyin": "nuǎnhuo",
+     "ja": "暖かい",
+     "example": "春天很暖和。",
+     "exPinyin": "Chūn tiān hěn nuǎn huo。",
+     "exJa": "春は暖かい。"
+    },
+    {
+     "id": "d79-v3",
+     "zh": "温度",
+     "pinyin": "wēndù",
+     "ja": "温度",
+     "example": "今天温度很高。",
+     "exPinyin": "Jīn tiān wēn dù hěn gāo。",
+     "exJa": "今日は気温が高い。"
+    },
+    {
+     "id": "d79-v4",
+     "zh": "轻",
+     "pinyin": "qīng",
+     "ja": "軽い",
+     "example": "这个包很轻。",
+     "exPinyin": "Zhè ge bāo hěn qīng。",
+     "exJa": "このかばんは軽い。"
+    },
+    {
+     "id": "d79-v5",
+     "zh": "气候",
+     "pinyin": "qìhòu",
+     "ja": "気候",
+     "example": "上海的气候比较湿润。",
+     "exPinyin": "Shànghǎi de qìhòu bǐjiào shīrùn.",
+     "exJa": "上海の気候は比較的湿っています。"
+    },
+    {
+     "id": "d79-v6",
+     "zh": "空气",
+     "pinyin": "kōngqì",
+     "ja": "空気",
+     "example": "早上的空气特别新鲜。",
+     "exPinyin": "Zǎoshang de kōngqì tèbié xīnxiān.",
+     "exJa": "朝の空気はとても新鮮です。"
+    },
+    {
+     "id": "d79-v7",
+     "zh": "停",
+     "pinyin": "tíng",
+     "ja": "止まる、止める",
+     "example": "雨停了，我们出发吧。",
+     "exPinyin": "Yǔ tíng le, wǒmen chūfā ba.",
+     "exJa": "雨がやんだので、出発しましょう。"
+    }
+   ],
+   "grammar": []
+  },
+  {
+   "day": 80,
+   "title": "Day 80｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d80-v0",
+     "zh": "圆",
+     "pinyin": "yuán",
+     "ja": "丸い",
+     "example": "月亮是圆的。",
+     "exPinyin": "Yuè liàng shì yuán de。",
+     "exJa": "月は丸い。"
+    },
+    {
+     "id": "d80-v1",
+     "zh": "直",
+     "pinyin": "zhí",
+     "ja": "まっすぐ",
+     "example": "一直往前走。",
+     "exPinyin": "Yì zhí wǎng qián zǒu。",
+     "exJa": "ずっとまっすぐ進む。"
+    },
+    {
+     "id": "d80-v2",
+     "zh": "假",
+     "pinyin": "jiǎ",
+     "ja": "偽物",
+     "example": "这是假的。",
+     "exPinyin": "Zhè shì jiǎ de。",
+     "exJa": "これは偽物だ。"
+    },
+    {
+     "id": "d80-v3",
+     "zh": "真正",
+     "pinyin": "zhēnzhèng",
+     "ja": "本当の",
+     "example": "这是真正的朋友。",
+     "exPinyin": "Zhè shì zhēn zhèng de péng yǒu。",
+     "exJa": "これこそ本当の友だ。"
+    },
+    {
+     "id": "d80-v4",
+     "zh": "普通",
+     "pinyin": "pǔtōng",
+     "ja": "普通の",
+     "example": "我是个普通人。",
+     "exPinyin": "Wǒ shì gè pǔ tōng rén。",
+     "exJa": "私は普通の人間だ。"
+    },
+    {
+     "id": "d80-v5",
+     "zh": "准确",
+     "pinyin": "zhǔnquè",
+     "ja": "正確だ",
+     "example": "这个数字不太准确，我再确认一下。",
+     "exPinyin": "Zhège shùzì bú tài zhǔnquè, wǒ zài quèrèn yíxià.",
+     "exJa": "この数字はあまり正確でないので、確認し直します。"
+    },
+    {
+     "id": "d80-v6",
+     "zh": "直接",
+     "pinyin": "zhíjiē",
+     "ja": "直接、じかに",
+     "example": "有问题可以直接跟我联系。",
+     "exPinyin": "Yǒu wèntí kěyǐ zhíjiē gēn wǒ liánxì.",
+     "exJa": "問題があれば直接私に連絡してください。"
+    },
+    {
+     "id": "d80-v7",
+     "zh": "肯定",
+     "pinyin": "kěndìng",
+     "ja": "確かに、間違いなく",
+     "example": "他肯定已经出发了。",
+     "exPinyin": "Tā kěndìng yǐjīng chūfā le.",
+     "exJa": "彼は間違いなくもう出発しています。"
+    }
+   ],
+   "grammar": []
+  },
+  {
+   "day": 81,
+   "title": "Day 81｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d81-v0",
+     "zh": "全部",
+     "pinyin": "quánbù",
+     "ja": "全部",
+     "example": "我全部都懂了。",
+     "exPinyin": "Wǒ quán bù dōu dǒng le。",
+     "exJa": "全部わかった。"
+    },
+    {
+     "id": "d81-v1",
+     "zh": "部分",
+     "pinyin": "bùfen",
+     "ja": "一部",
+     "example": "一部分人同意。",
+     "exPinyin": "Yí bù fen rén tóng yì。",
+     "exJa": "一部の人は賛成だ。"
+    },
+    {
+     "id": "d81-v2",
+     "zh": "整个",
+     "pinyin": "zhěnggè",
+     "ja": "全体・まるごと",
+     "example": "整个城市都很安静。",
+     "exPinyin": "Zhěng gè chéng shì dōu hěn ān jìng。",
+     "exJa": "街全体が静かだ。"
+    },
+    {
+     "id": "d81-v3",
+     "zh": "大约",
+     "pinyin": "dàyuē",
+     "ja": "およそ",
+     "example": "大约有十个人。",
+     "exPinyin": "Dà yuē yǒu shí gè rén。",
+     "exJa": "およそ10人いる。"
+    },
+    {
+     "id": "d81-v4",
+     "zh": "也许",
+     "pinyin": "yěxǔ",
+     "ja": "もしかすると",
+     "example": "他也许不来了。",
+     "exPinyin": "Tā yě xǔ bù lái le。",
+     "exJa": "彼は来ないかもしれない。"
+    },
+    {
+     "id": "d81-v5",
+     "zh": "平时",
+     "pinyin": "píngshí",
+     "ja": "普段、いつもは",
+     "example": "我平时六点半起床。",
+     "exPinyin": "Wǒ píngshí liù diǎn bàn qǐchuáng.",
+     "exJa": "私は普段6時半に起きます。"
+    },
+    {
+     "id": "d81-v6",
+     "zh": "期间",
+     "pinyin": "qījiān",
+     "ja": "期間、〜の間",
+     "example": "出差期间我会一直开着手机。",
+     "exPinyin": "Chūchāi qījiān wǒ huì yìzhí kāi zhe shǒujī.",
+     "exJa": "出張の間は携帯をつけたままにします。"
+    },
+    {
+     "id": "d81-v7",
+     "zh": "号码",
+     "pinyin": "hàomǎ",
+     "ja": "番号",
+     "example": "你的手机号码是多少？",
+     "exPinyin": "Nǐ de shǒujī hàomǎ shì duōshao?",
+     "exJa": "携帯番号は何番ですか。"
+    }
+   ],
+   "grammar": []
+  },
+  {
+   "day": 82,
+   "title": "Day 82｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d82-v0",
+     "zh": "实在",
+     "pinyin": "shízài",
+     "ja": "本当に・実に",
+     "example": "我实在太累了。",
+     "exPinyin": "Wǒ shí zài tài lèi le。",
+     "exJa": "本当に疲れた。"
+    },
+    {
+     "id": "d82-v1",
+     "zh": "确实",
+     "pinyin": "quèshí",
+     "ja": "確かに",
+     "example": "这确实是个好主意。",
+     "exPinyin": "Zhè què shí shì gè hǎo zhǔ yì。",
+     "exJa": "確かに良い考えだ。"
+    },
+    {
+     "id": "d82-v2",
+     "zh": "难得",
+     "pinyin": "nándé",
+     "ja": "得難い・めったにない",
+     "example": "这是难得的机会。",
+     "exPinyin": "Zhè shì nán dé de jī huì。",
+     "exJa": "めったにない機会だ。"
+    },
+    {
+     "id": "d82-v3",
+     "zh": "值得",
+     "pinyin": "zhídé",
+     "ja": "…する価値がある",
+     "example": "这本书值得读。",
+     "exPinyin": "Zhè běn shū zhí dé dú。",
+     "exJa": "この本は読む価値がある。"
+    },
+    {
+     "id": "d82-v4",
+     "zh": "舍不得",
+     "pinyin": "shèbùdé",
+     "ja": "手放すのが惜しい",
+     "example": "我舍不得离开。",
+     "exPinyin": "Wǒ shè bù dé lí kāi。",
+     "exJa": "離れるのが名残惜しい。"
+    },
+    {
+     "id": "d82-v5",
+     "zh": "好处",
+     "pinyin": "hǎochù",
+     "ja": "良い点、メリット",
+     "example": "每天走路对身体有好处。",
+     "exPinyin": "Měitiān zǒulù duì shēntǐ yǒu hǎochù.",
+     "exJa": "毎日歩くのは体に良いです。"
+    },
+    {
+     "id": "d82-v6",
+     "zh": "合适",
+     "pinyin": "héshì",
+     "ja": "ちょうどよい、ふさわしい",
+     "example": "这个时间对你合适吗？",
+     "exPinyin": "Zhège shíjiān duì nǐ héshì ma?",
+     "exJa": "この時間はご都合よろしいですか。"
+    },
+    {
+     "id": "d82-v7",
+     "zh": "优秀",
+     "pinyin": "yōuxiù",
+     "ja": "優秀だ",
+     "example": "他是我们组最优秀的同事。",
+     "exPinyin": "Tā shì wǒmen zǔ zuì yōuxiù de tóngshì.",
+     "exJa": "彼は私たちのチームで最も優秀な同僚です。"
+    }
+   ],
+   "grammar": []
+  },
+  {
+   "day": 83,
+   "title": "Day 83｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d83-v0",
+     "zh": "来自",
+     "pinyin": "láizì",
+     "ja": "…から来る",
+     "example": "他来自上海。",
+     "exPinyin": "Tā lái zì shàng hǎi。",
+     "exJa": "彼は上海出身だ。"
+    },
+    {
+     "id": "d83-v1",
+     "zh": "属于",
+     "pinyin": "shǔyú",
+     "ja": "…に属する",
+     "example": "这本书属于我。",
+     "exPinyin": "Zhè běn shū shǔ yú wǒ。",
+     "exJa": "この本は私のものだ。"
+    },
+    {
+     "id": "d83-v2",
+     "zh": "等于",
+     "pinyin": "děngyú",
+     "ja": "…に等しい",
+     "example": "二加二等于四。",
+     "exPinyin": "Èr jiā èr děng yú sì。",
+     "exJa": "2足す2は4。"
+    },
+    {
+     "id": "d83-v3",
+     "zh": "包括",
+     "pinyin": "bāokuò",
+     "ja": "含む",
+     "example": "价格包括早餐。",
+     "exPinyin": "Jià gé bāo kuò zǎo cān。",
+     "exJa": "値段は朝食込みだ。"
+    },
+    {
+     "id": "d83-v4",
+     "zh": "缺少",
+     "pinyin": "quēshǎo",
+     "ja": "不足する",
+     "example": "我们缺少时间。",
+     "exPinyin": "Wǒ men quē shǎo shí jiān。",
+     "exJa": "時間が足りない。"
+    },
+    {
+     "id": "d83-v5",
+     "zh": "成为",
+     "pinyin": "chéngwéi",
+     "ja": "〜になる",
+     "example": "他成为了这个项目的负责人。",
+     "exPinyin": "Tā chéngwéi le zhège xiàngmù de fùzérén.",
+     "exJa": "彼はこのプロジェクトの責任者になりました。"
+    },
+    {
+     "id": "d83-v6",
+     "zh": "出现",
+     "pinyin": "chūxiàn",
+     "ja": "現れる、生じる",
+     "example": "系统出现了一个小问题。",
+     "exPinyin": "Xìtǒng chūxiàn le yí ge xiǎo wèntí.",
+     "exJa": "システムに小さな問題が生じました。"
+    },
+    {
+     "id": "d83-v7",
+     "zh": "引起",
+     "pinyin": "yǐnqǐ",
+     "ja": "引き起こす、（注意を）引く",
+     "example": "这个消息引起了大家的注意。",
+     "exPinyin": "Zhège xiāoxi yǐnqǐ le dàjiā de zhùyì.",
+     "exJa": "この知らせはみんなの注目を集めました。"
+    }
+   ],
+   "grammar": []
+  },
+  {
+   "day": 84,
+   "title": "Day 84｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d84-v0",
+     "zh": "节日",
+     "pinyin": "jiérì",
+     "ja": "祝日",
+     "example": "春节是重要的节日。",
+     "exPinyin": "Chūn jié shì zhòng yào de jié rì。",
+     "exJa": "春節は大切な祝日だ。"
+    },
+    {
+     "id": "d84-v1",
+     "zh": "春节",
+     "pinyin": "chūnjié",
+     "ja": "春節",
+     "example": "春节全家团聚。",
+     "exPinyin": "Chūn jié quán jiā tuán jù。",
+     "exJa": "春節は家族が集まる。"
+    },
+    {
+     "id": "d84-v2",
+     "zh": "礼物",
+     "pinyin": "lǐwù",
+     "ja": "プレゼント",
+     "example": "这是给你的礼物。",
+     "exPinyin": "Zhè shì gěi nǐ de lǐ wù。",
+     "exJa": "これは君へのプレゼントだ。"
+    },
+    {
+     "id": "d84-v3",
+     "zh": "红包",
+     "pinyin": "hóngbāo",
+     "ja": "お年玉・ご祝儀",
+     "example": "孩子收到了红包。",
+     "exPinyin": "Hái zi shōu dào le hóng bāo。",
+     "exJa": "子どもはお年玉をもらった。"
+    },
+    {
+     "id": "d84-v4",
+     "zh": "祝贺",
+     "pinyin": "zhùhè",
+     "ja": "祝う",
+     "example": "祝贺你毕业。",
+     "exPinyin": "Zhù hè nǐ bì yè。",
+     "exJa": "卒業おめでとう。"
+    },
+    {
+     "id": "d84-v5",
+     "zh": "免费",
+     "pinyin": "miǎnfèi",
+     "ja": "無料",
+     "example": "这个应用可以免费使用。",
+     "exPinyin": "Zhège yìngyòng kěyǐ miǎnfèi shǐyòng.",
+     "exJa": "このアプリは無料で使えます。"
+    },
+    {
+     "id": "d84-v6",
+     "zh": "座位",
+     "pinyin": "zuòwèi",
+     "ja": "座席",
+     "example": "我帮你留了一个座位。",
+     "exPinyin": "Wǒ bāng nǐ liú le yí ge zuòwèi.",
+     "exJa": "席を一つ取っておきました。"
+    },
+    {
+     "id": "d84-v7",
+     "zh": "打印",
+     "pinyin": "dǎyìn",
+     "ja": "印刷する",
+     "example": "请把这份资料打印三份。",
+     "exPinyin": "Qǐng bǎ zhè fèn zīliào dǎyìn sān fèn.",
+     "exJa": "この資料を3部印刷してください。"
+    }
+   ],
+   "grammar": []
+  },
+  {
+   "day": 85,
+   "title": "Day 85｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d85-v0",
+     "zh": "传统",
+     "pinyin": "chuántǒng",
+     "ja": "伝統",
+     "example": "这是中国的传统。",
+     "exPinyin": "Zhè shì zhōng guó de chuán tǒng。",
+     "exJa": "これは中国の伝統だ。"
+    },
+    {
+     "id": "d85-v1",
+     "zh": "文化",
+     "pinyin": "wénhuà",
+     "ja": "文化",
+     "example": "我对中国文化感兴趣。",
+     "exPinyin": "Wǒ duì zhōng guó wén huà gǎn xìng qù。",
+     "exJa": "中国文化に興味がある。"
+    },
+    {
+     "id": "d85-v2",
+     "zh": "历史",
+     "pinyin": "lìshǐ",
+     "ja": "歴史",
+     "example": "这座城市历史悠久。",
+     "exPinyin": "Zhè zuò chéng shì lì shǐ yōu jiǔ。",
+     "exJa": "この街は歴史が長い。"
+    },
+    {
+     "id": "d85-v3",
+     "zh": "艺术",
+     "pinyin": "yìshù",
+     "ja": "芸術",
+     "example": "他热爱艺术。",
+     "exPinyin": "Tā rè ài yì shù。",
+     "exJa": "彼は芸術を愛している。"
+    },
+    {
+     "id": "d85-v4",
+     "zh": "音乐",
+     "pinyin": "yīnyuè",
+     "ja": "音楽",
+     "example": "我喜欢听音乐。",
+     "exPinyin": "Wǒ xǐ huan tīng yīn yuè。",
+     "exJa": "音楽を聴くのが好きだ。"
+    },
+    {
+     "id": "d85-v5",
+     "zh": "精彩",
+     "pinyin": "jīngcǎi",
+     "ja": "素晴らしい、見事だ",
+     "example": "昨天的表演非常精彩。",
+     "exPinyin": "Zuótiān de biǎoyǎn fēicháng jīngcǎi.",
+     "exJa": "昨日の公演はとても素晴らしかったです。"
+    },
+    {
+     "id": "d85-v6",
+     "zh": "理想",
+     "pinyin": "lǐxiǎng",
+     "ja": "理想、理想的だ",
+     "example": "这个结果不太理想。",
+     "exPinyin": "Zhège jiéguǒ bú tài lǐxiǎng.",
+     "exJa": "この結果はあまり理想的ではありません。"
+    },
+    {
+     "id": "d85-v7",
+     "zh": "流行",
+     "pinyin": "liúxíng",
+     "ja": "流行する",
+     "example": "这首歌最近很流行。",
+     "exPinyin": "Zhè shǒu gē zuìjìn hěn liúxíng.",
+     "exJa": "この歌は最近とても流行しています。"
+    }
+   ],
+   "grammar": []
+  },
+  {
+   "day": 86,
+   "title": "Day 86｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d86-v0",
+     "zh": "乐器",
+     "pinyin": "yuèqì",
+     "ja": "楽器",
+     "example": "你会弹什么乐器？",
+     "exPinyin": "Nǐ huì tán shén me yuè qì？",
+     "exJa": "どんな楽器が弾ける？"
+    },
+    {
+     "id": "d86-v1",
+     "zh": "绘画",
+     "pinyin": "huìhuà",
+     "ja": "絵画",
+     "example": "她喜欢绘画。",
+     "exPinyin": "Tā xǐ huan huì huà。",
+     "exJa": "彼女は絵を描くのが好きだ。"
+    },
+    {
+     "id": "d86-v2",
+     "zh": "作品",
+     "pinyin": "zuòpǐn",
+     "ja": "作品",
+     "example": "这是他的新作品。",
+     "exPinyin": "Zhè shì tā de xīn zuò pǐn。",
+     "exJa": "これは彼の新作だ。"
+    },
+    {
+     "id": "d86-v3",
+     "zh": "展览",
+     "pinyin": "zhǎnlǎn",
+     "ja": "展覧会",
+     "example": "这个展览很有名。",
+     "exPinyin": "Zhè ge zhǎn lǎn hěn yǒu míng。",
+     "exJa": "この展覧会は有名だ。"
+    },
+    {
+     "id": "d86-v4",
+     "zh": "节目",
+     "pinyin": "jiémù",
+     "ja": "番組・演目",
+     "example": "这个节目很有意思。",
+     "exPinyin": "Zhè ge jié mù hěn yǒu yì sī。",
+     "exJa": "この番組は面白い。"
+    },
+    {
+     "id": "d86-v5",
+     "zh": "材料",
+     "pinyin": "cáiliào",
+     "ja": "材料、書類一式",
+     "example": "请把面试的材料准备好。",
+     "exPinyin": "Qǐng bǎ miànshì de cáiliào zhǔnbèi hǎo.",
+     "exJa": "面接の書類を準備しておいてください。"
+    },
+    {
+     "id": "d86-v6",
+     "zh": "修理",
+     "pinyin": "xiūlǐ",
+     "ja": "修理する",
+     "example": "空调坏了，需要找人修理。",
+     "exPinyin": "Kōngtiáo huài le, xūyào zhǎo rén xiūlǐ.",
+     "exJa": "エアコンが壊れたので、修理を頼む必要があります。"
+    },
+    {
+     "id": "d86-v7",
+     "zh": "使用",
+     "pinyin": "shǐyòng",
+     "ja": "使用する",
+     "example": "使用前请先看说明。",
+     "exPinyin": "Shǐyòng qián qǐng xiān kàn shuōmíng.",
+     "exJa": "使用する前に説明をお読みください。"
+    }
+   ],
+   "grammar": []
+  },
+  {
+   "day": 87,
+   "title": "Day 87｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d87-v0",
+     "zh": "报纸",
+     "pinyin": "bàozhǐ",
+     "ja": "新聞",
+     "example": "我每天看报纸。",
+     "exPinyin": "Wǒ měi tiān kàn bào zhǐ。",
+     "exJa": "毎日新聞を読む。"
+    },
+    {
+     "id": "d87-v1",
+     "zh": "杂志",
+     "pinyin": "zázhì",
+     "ja": "雑誌",
+     "example": "我买了一本杂志。",
+     "exPinyin": "Wǒ mǎi le yì běn zá zhì。",
+     "exJa": "雑誌を一冊買った。"
+    },
+    {
+     "id": "d87-v2",
+     "zh": "广告",
+     "pinyin": "guǎnggào",
+     "ja": "広告",
+     "example": "电视上有很多广告。",
+     "exPinyin": "Diàn shì shàng yǒu hěn duō guǎng gào。",
+     "exJa": "テレビには広告が多い。"
+    },
+    {
+     "id": "d87-v3",
+     "zh": "广播",
+     "pinyin": "guǎngbō",
+     "ja": "放送",
+     "example": "我在听广播。",
+     "exPinyin": "Wǒ zài tīng guǎng bō。",
+     "exJa": "ラジオを聴いている。"
+    },
+    {
+     "id": "d87-v4",
+     "zh": "网站",
+     "pinyin": "wǎngzhàn",
+     "ja": "ウェブサイト",
+     "example": "这个网站很有用。",
+     "exPinyin": "Zhè ge wǎng zhàn hěn yǒu yòng。",
+     "exJa": "このサイトは役立つ。"
+    },
+    {
+     "id": "d87-v5",
+     "zh": "调查",
+     "pinyin": "diàochá",
+     "ja": "調査する",
+     "example": "我们做了一个用户调查。",
+     "exPinyin": "Wǒmen zuò le yí ge yònghù diàochá.",
+     "exJa": "ユーザー調査を行いました。"
+    },
+    {
+     "id": "d87-v6",
+     "zh": "证明",
+     "pinyin": "zhèngmíng",
+     "ja": "証明する、裏づける",
+     "example": "这个结果证明了我们的想法。",
+     "exPinyin": "Zhège jiéguǒ zhèngmíng le wǒmen de xiǎngfǎ.",
+     "exJa": "この結果は私たちの考えを裏づけました。"
+    },
+    {
+     "id": "d87-v7",
+     "zh": "保证",
+     "pinyin": "bǎozhèng",
+     "ja": "保証する、請け合う",
+     "example": "我不能保证今天做完。",
+     "exPinyin": "Wǒ bù néng bǎozhèng jīntiān zuò wán.",
+     "exJa": "今日中に終わるとは保証できません。"
+    }
+   ],
+   "grammar": []
+  },
+  {
+   "day": 88,
+   "title": "Day 88｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d88-v0",
+     "zh": "网络",
+     "pinyin": "wǎngluò",
+     "ja": "ネットワーク",
+     "example": "网络很慢。",
+     "exPinyin": "Wǎng luò hěn màn。",
+     "exJa": "ネットが遅い。"
+    },
+    {
+     "id": "d88-v1",
+     "zh": "密码",
+     "pinyin": "mìmǎ",
+     "ja": "パスワード",
+     "example": "请输入密码。",
+     "exPinyin": "Qǐng shū rù mì mǎ。",
+     "exJa": "パスワードを入力してください。"
+    },
+    {
+     "id": "d88-v2",
+     "zh": "下载",
+     "pinyin": "xiàzài",
+     "ja": "ダウンロードする",
+     "example": "我下载了一个软件。",
+     "exPinyin": "Wǒ xià zài le yí gè ruǎn jiàn。",
+     "exJa": "ソフトをダウンロードした。"
+    },
+    {
+     "id": "d88-v3",
+     "zh": "信息",
+     "pinyin": "xìnxī",
+     "ja": "情報",
+     "example": "这条信息很重要。",
+     "exPinyin": "Zhè tiáo xìn xī hěn zhòng yào。",
+     "exJa": "この情報は重要だ。"
+    },
+    {
+     "id": "d88-v4",
+     "zh": "科学",
+     "pinyin": "kēxué",
+     "ja": "科学",
+     "example": "他研究科学。",
+     "exPinyin": "Tā yán jiū kē xué。",
+     "exJa": "彼は科学を研究している。"
+    },
+    {
+     "id": "d88-v5",
+     "zh": "研究",
+     "pinyin": "yánjiū",
+     "ja": "研究する、検討する",
+     "example": "这个方案我们再研究一下。",
+     "exPinyin": "Zhège fāng'àn wǒmen zài yánjiū yíxià.",
+     "exJa": "この案はもう少し検討しましょう。"
+    },
+    {
+     "id": "d88-v6",
+     "zh": "基础",
+     "pinyin": "jīchǔ",
+     "ja": "基礎、土台",
+     "example": "语法是学中文的基础。",
+     "exPinyin": "Yǔfǎ shì xué Zhōngwén de jīchǔ.",
+     "exJa": "文法は中国語学習の基礎です。"
+    },
+    {
+     "id": "d88-v7",
+     "zh": "积累",
+     "pinyin": "jīlěi",
+     "ja": "積み重ねる",
+     "example": "词汇要一点一点地积累。",
+     "exPinyin": "Cíhuì yào yìdiǎn yìdiǎn de jīlěi.",
+     "exJa": "語彙は少しずつ積み重ねるものです。"
+    }
+   ],
+   "grammar": []
+  },
+  {
+   "day": 89,
+   "title": "Day 89｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d89-v0",
+     "zh": "技术",
+     "pinyin": "jìshù",
+     "ja": "技術",
+     "example": "这项技术很先进。",
+     "exPinyin": "Zhè xiàng jì shù hěn xiān jìn。",
+     "exJa": "この技術は進んでいる。"
+    },
+    {
+     "id": "d89-v1",
+     "zh": "发展",
+     "pinyin": "fāzhǎn",
+     "ja": "発展する",
+     "example": "城市发展得很快。",
+     "exPinyin": "Chéng shì fā zhǎn dé hěn kuài。",
+     "exJa": "都市の発展は速い。"
+    },
+    {
+     "id": "d89-v2",
+     "zh": "工业",
+     "pinyin": "gōngyè",
+     "ja": "工業",
+     "example": "这里工业发达。",
+     "exPinyin": "Zhè lǐ gōng yè fā dá。",
+     "exJa": "ここは工業が発達している。"
+    },
+    {
+     "id": "d89-v3",
+     "zh": "农业",
+     "pinyin": "nóngyè",
+     "ja": "農業",
+     "example": "农业很重要。",
+     "exPinyin": "Nóng yè hěn zhòng yào。",
+     "exJa": "農業は重要だ。"
+    },
+    {
+     "id": "d89-v4",
+     "zh": "社会",
+     "pinyin": "shèhuì",
+     "ja": "社会",
+     "example": "社会在不断变化。",
+     "exPinyin": "Shè huì zài bú duàn biàn huà。",
+     "exJa": "社会は常に変化している。"
+    },
+    {
+     "id": "d89-v5",
+     "zh": "交通",
+     "pinyin": "jiāotōng",
+     "ja": "交通",
+     "example": "这里的交通很方便。",
+     "exPinyin": "Zhèlǐ de jiāotōng hěn fāngbiàn.",
+     "exJa": "ここは交通が便利です。"
+    },
+    {
+     "id": "d89-v6",
+     "zh": "教育",
+     "pinyin": "jiàoyù",
+     "ja": "教育",
+     "example": "他在一家教育公司工作。",
+     "exPinyin": "Tā zài yì jiā jiàoyù gōngsī gōngzuò.",
+     "exJa": "彼は教育系の会社で働いています。"
+    },
+    {
+     "id": "d89-v7",
+     "zh": "竞争",
+     "pinyin": "jìngzhēng",
+     "ja": "競争する、競争",
+     "example": "这个行业的竞争很激烈。",
+     "exPinyin": "Zhège hángyè de jìngzhēng hěn jīliè.",
+     "exJa": "この業界は競争が激しいです。"
+    }
+   ],
+   "grammar": []
+  },
+  {
+   "day": 90,
+   "title": "Day 90｜HSK4 基礎強化",
+   "vocab": [
+    {
+     "id": "d90-v0",
+     "zh": "经济",
+     "pinyin": "jīngjì",
+     "ja": "経済",
+     "example": "经济发展很快。",
+     "exPinyin": "Jīng jì fā zhǎn hěn kuài。",
+     "exJa": "経済の発展は速い。"
+    },
+    {
+     "id": "d90-v1",
+     "zh": "政府",
+     "pinyin": "zhèngfǔ",
+     "ja": "政府",
+     "example": "政府发布了新政策。",
+     "exPinyin": "Zhèng fǔ fā bù le xīn zhèng cè。",
+     "exJa": "政府は新政策を発表した。"
+    },
+    {
+     "id": "d90-v2",
+     "zh": "法律",
+     "pinyin": "fǎlǜ",
+     "ja": "法律",
+     "example": "我们要遵守法律。",
+     "exPinyin": "Wǒ men yào zūn shǒu fǎ lǜ。",
+     "exJa": "法律を守らねばならない。"
+    },
+    {
+     "id": "d90-v3",
+     "zh": "环保",
+     "pinyin": "huánbǎo",
+     "ja": "環境保護",
+     "example": "环保很重要。",
+     "exPinyin": "Huán bǎo hěn zhòng yào。",
+     "exJa": "環境保護は大切だ。"
+    },
+    {
+     "id": "d90-v4",
+     "zh": "节能",
+     "pinyin": "jiénéng",
+     "ja": "省エネ",
+     "example": "这种灯很节能。",
+     "exPinyin": "Zhè zhǒng dēng hěn jié néng。",
+     "exJa": "この照明は省エネだ。"
+    },
+    {
+     "id": "d90-v5",
+     "zh": "作用",
+     "pinyin": "zuòyòng",
+     "ja": "働き、役割",
+     "example": "这个功能起到了很大的作用。",
+     "exPinyin": "Zhège gōngnéng qǐdào le hěn dà de zuòyòng.",
+     "exJa": "この機能は大きな役割を果たしました。"
+    },
+    {
+     "id": "d90-v6",
+     "zh": "积极",
+     "pinyin": "jījí",
+     "ja": "積極的だ、前向きだ",
+     "example": "大家都很积极地参加了讨论。",
+     "exPinyin": "Dàjiā dōu hěn jījí de cānjiā le tǎolùn.",
+     "exJa": "みんな積極的に議論に参加しました。"
+    },
+    {
+     "id": "d90-v7",
+     "zh": "禁止",
+     "pinyin": "jìnzhǐ",
+     "ja": "禁止する",
+     "example": "这里禁止拍照。",
+     "exPinyin": "Zhèlǐ jìnzhǐ pāizhào.",
+     "exJa": "ここは撮影禁止です。"
+    }
+   ],
+   "grammar": []
+  }
+ ],
+ "bank": {
+  "8": {
+   "vocab": [
+    "检查",
+    "整理",
+    "准备",
+    "计划",
+    "选择"
+   ],
+   "grammar": [
+    "一边一边",
+    "因为所以",
+    "虽然但是"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>检查</z>」の意味は？",
+     "opts": [
+      {
+       "t": "チェックする・確認する",
+       "ok": true,
+       "why": "正解。誤りがないか調べる意味。例：<z>检查一下内容</z>（内容を確認する）。"
+      },
+      {
+       "t": "整理する",
+       "ok": false,
+       "why": "これは<z>整理</z>です。"
+      },
+      {
+       "t": "準備する",
+       "ok": false,
+       "why": "これは<z>准备</z>です。"
+      },
+      {
+       "t": "選ぶ",
+       "ok": false,
+       "why": "これは<z>选择</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>整理</z>」の意味は？",
+     "opts": [
+      {
+       "t": "整理する・まとめる",
+       "ok": true,
+       "why": "正解。散らばったものを整える意味。例：<z>整理会议内容</z>（会議内容を整理する）。"
+      },
+      {
+       "t": "チェックする",
+       "ok": false,
+       "why": "これは<z>检查</z>です。"
+      },
+      {
+       "t": "計画する",
+       "ok": false,
+       "why": "これは<z>计划</z>です。"
+      },
+      {
+       "t": "選ぶ",
+       "ok": false,
+       "why": "これは<z>选择</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>发邮件之前，请　一下内容。</z>（送る前に内容を確認）",
+     "opts": [
+      {
+       "t": "检查",
+       "ok": true,
+       "why": "正解。誤りがないか調べるのは<z>检查</z>です。"
+      },
+      {
+       "t": "整理",
+       "ok": false,
+       "why": "<z>整理</z>は「整える」。誤りを調べる確認は<z>检查</z>です。"
+      },
+      {
+       "t": "准备",
+       "ok": false,
+       "why": "<z>准备</z>は「準備する」で文意に合いません。"
+      },
+      {
+       "t": "计划",
+       "ok": false,
+       "why": "<z>计划</z>は「計画する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我还没决定　哪一个。</z>（どれを選ぶか決めていない）",
+     "opts": [
+      {
+       "t": "选择",
+       "ok": true,
+       "why": "正解。複数から一つを選ぶのは<z>选择</z>です。"
+      },
+      {
+       "t": "检查",
+       "ok": false,
+       "why": "<z>检查</z>は「確認する」で文意に合いません。"
+      },
+      {
+       "t": "计划",
+       "ok": false,
+       "why": "<z>计划</z>は「計画する」で、選ぶ意味はありません。"
+      },
+      {
+       "t": "准备",
+       "ok": false,
+       "why": "<z>准备</z>は「準備する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・一边一边",
+     "q": "次の日本語に合う正しい文は？\n「コーヒーを飲みながら勉強します」",
+     "opts": [
+      {
+       "t": "我一边喝咖啡，一边学习。",
+       "ok": true,
+       "why": "正解。<z>一边A，一边B</z>で同じ人が二つの動作を同時にすること。"
+      },
+      {
+       "t": "我一遍喝咖啡，一遍学习。",
+       "ok": false,
+       "why": "<z>一遍</z>は「一回」。同時動作は<z>一边</z>です（字が異なります）。"
+      },
+      {
+       "t": "我一边喝咖啡，一起学习。",
+       "ok": false,
+       "why": "<z>一起</z>は「一緒に」。同時動作の後半も<z>一边</z>です。"
+      },
+      {
+       "t": "我一直喝咖啡，一直学习。",
+       "ok": false,
+       "why": "<z>一直</z>は「ずっと」。同時並行は<z>一边…一边…</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・因为所以",
+     "q": "次の日本語に合う正しい文は？\n「時間がないので、昼ごはんを食べませんでした」",
+     "opts": [
+      {
+       "t": "因为没有时间，所以我没吃午饭。",
+       "ok": true,
+       "why": "正解。<z>因为A，所以B</z>で理由と結果を結びます。"
+      },
+      {
+       "t": "因为没有时间，但是我没吃午饭。",
+       "ok": false,
+       "why": "<z>因为</z>は<z>所以</z>と呼応します。<z>但是</z>は逆接で不整合です。"
+      },
+      {
+       "t": "虽然没有时间，所以我没吃午饭。",
+       "ok": false,
+       "why": "<z>虽然</z>は<z>但是</z>と呼応します。<z>所以</z>とは合いません。"
+      },
+      {
+       "t": "所以没有时间，因为我没吃午饭。",
+       "ok": false,
+       "why": "理由と結果が逆。<z>因为</z>が理由、<z>所以</z>が結果です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・虽然但是",
+     "q": "次の日本語に合う正しい文は？\n「忙しいですが、勉強を続けたいです」",
+     "opts": [
+      {
+       "t": "虽然很忙，但是我想继续学习。",
+       "ok": true,
+       "why": "正解。<z>虽然A，但是B</z>で「Aだが、しかしB」。"
+      },
+      {
+       "t": "因为很忙，但是我想继续学习。",
+       "ok": false,
+       "why": "<z>因为</z>は<z>所以</z>と呼応。逆接の<z>但是</z>とは不整合です。"
+      },
+      {
+       "t": "虽然很忙，所以我想继续学习。",
+       "ok": false,
+       "why": "<z>虽然</z>は<z>但是</z>と呼応します。<z>所以</z>とは合いません。"
+      },
+      {
+       "t": "虽然很忙，但是想继续学习我。",
+       "ok": false,
+       "why": "語順が誤り。<z>我想继续学习</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・一边一边",
+     "q": "次の日本語に合う正しい文は？\n「ご飯を食べながらスマホを見ます」",
+     "opts": [
+      {
+       "t": "我一边吃饭，一边看手机。",
+       "ok": true,
+       "why": "正解。<z>一边…一边…</z>で同時動作を表します。"
+      },
+      {
+       "t": "我一边吃饭和看手机。",
+       "ok": false,
+       "why": "<z>和</z>では同時動作になりません。後半も<z>一边</z>で受けます。"
+      },
+      {
+       "t": "我吃饭一边看手机一边。",
+       "ok": false,
+       "why": "語順が誤り。<z>一边</z>は各動作の前に置きます。"
+      },
+      {
+       "t": "我一边吃饭，又看手机。",
+       "ok": false,
+       "why": "<z>又</z>は「また」。同時動作の後半は<z>一边</z>です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "因为",
+     "地铁很方便",
+     "所以",
+     "我",
+     "每天坐地铁"
+    ],
+    "answer": "因为地铁很方便，所以我每天坐地铁。",
+    "why": "<z>因为＋理由，所以＋結果</z>の語順です。"
+   },
+   "writing": [
+    {
+     "prompt": "明日の資料はもう準備できました。",
+     "answer": "我已经准备好明天的资料了。"
+    },
+    {
+     "prompt": "少し高いですが、とても美味しいです。",
+     "answer": "虽然有点儿贵，但是很好吃。"
+    }
+   ]
+  },
+  "9": {
+   "vocab": [
+    "比较",
+    "决定",
+    "尝试",
+    "坚持",
+    "放弃"
+   ],
+   "grammar": [
+    "如果就",
+    "只要就",
+    "只有才"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>尝试</z>」の意味は？",
+     "opts": [
+      {
+       "t": "試す・挑戦する",
+       "ok": true,
+       "why": "正解。新しいことをやってみる意味。例：<z>尝试用中文开会</z>（中国語で会議に挑戦）。"
+      },
+      {
+       "t": "決める",
+       "ok": false,
+       "why": "これは<z>决定</z>です。"
+      },
+      {
+       "t": "続ける",
+       "ok": false,
+       "why": "これは<z>坚持</z>です。"
+      },
+      {
+       "t": "諦める",
+       "ok": false,
+       "why": "これは<z>放弃</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>坚持</z>」の意味は？",
+     "opts": [
+      {
+       "t": "続ける・やり通す",
+       "ok": true,
+       "why": "正解。途中でやめずに保つ意味。例：<z>每天坚持十分钟</z>（毎日10分続ける）。"
+      },
+      {
+       "t": "諦める",
+       "ok": false,
+       "why": "これは反対語の<z>放弃</z>です。<z>坚持</z>⇔<z>放弃</z>で覚えましょう。"
+      },
+      {
+       "t": "決める",
+       "ok": false,
+       "why": "これは<z>决定</z>です。"
+      },
+      {
+       "t": "試す",
+       "ok": false,
+       "why": "これは<z>尝试</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>遇到困难也不要　。</z>（困難にあっても諦めるな）",
+     "opts": [
+      {
+       "t": "放弃",
+       "ok": true,
+       "why": "正解。途中でやめてしまうのは<z>放弃</z>。<z>不要放弃</z>で「諦めるな」。"
+      },
+      {
+       "t": "坚持",
+       "ok": false,
+       "why": "<z>坚持</z>は逆の「続ける」。<z>不要坚持</z>では意味が逆になります。"
+      },
+      {
+       "t": "决定",
+       "ok": false,
+       "why": "<z>决定</z>は「決める」で文意に合いません。"
+      },
+      {
+       "t": "尝试",
+       "ok": false,
+       "why": "<z>尝试</z>は「試す」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我　重新准备HSK四级。</z>（HSK4級を準備し直すと決めた）",
+     "opts": [
+      {
+       "t": "决定",
+       "ok": true,
+       "why": "正解。意志を固めるのは<z>决定</z>です。"
+      },
+      {
+       "t": "尝试",
+       "ok": false,
+       "why": "<z>尝试</z>は「試す」で、意志決定とは異なります。"
+      },
+      {
+       "t": "坚持",
+       "ok": false,
+       "why": "<z>坚持</z>は「続ける」で文意に合いません。"
+      },
+      {
+       "t": "比较",
+       "ok": false,
+       "why": "<z>比较</z>は「比べる・比較的」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・如果就",
+     "q": "次の日本語に合う正しい文は？\n「雨が降ったら家で勉強します」",
+     "opts": [
+      {
+       "t": "如果下雨，我就在家学习。",
+       "ok": true,
+       "why": "正解。<z>如果A，就B</z>で条件と結果を結びます。"
+      },
+      {
+       "t": "如果下雨，我才在家学习。",
+       "ok": false,
+       "why": "<z>才</z>は必要条件（〜してこそ）。単なる条件は<z>如果…就…</z>です。"
+      },
+      {
+       "t": "只有下雨，我就在家学习。",
+       "ok": false,
+       "why": "<z>只有</z>は<z>才</z>と呼応します。<z>就</z>とは合いません。"
+      },
+      {
+       "t": "如果下雨，就我在家学习。",
+       "ok": false,
+       "why": "<z>就</z>の位置が誤り。主語の後（<z>我就</z>）に置きます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・只要就",
+     "q": "次の日本語に合う正しい文は？\n「毎日聞けば慣れます」",
+     "opts": [
+      {
+       "t": "只要每天听，就会习惯。",
+       "ok": true,
+       "why": "正解。<z>只要A，就B</z>で十分条件「Aさえすれば」を表します。"
+      },
+      {
+       "t": "只有每天听，就会习惯。",
+       "ok": false,
+       "why": "<z>只有</z>は<z>才</z>と呼応します。<z>就</z>とは合いません。"
+      },
+      {
+       "t": "只要每天听，才会习惯。",
+       "ok": false,
+       "why": "<z>只要</z>は<z>就</z>と呼応します。<z>才</z>は<z>只有</z>用です。"
+      },
+      {
+       "t": "每天听只要，就会习惯。",
+       "ok": false,
+       "why": "語順が誤り。<z>只要</z>は条件の前に置きます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・只有才",
+     "q": "次の日本語に合う正しい文は？\n「復習して初めて覚えられます」",
+     "opts": [
+      {
+       "t": "只有复习，才能记住。",
+       "ok": true,
+       "why": "正解。<z>只有A，才B</z>で必要条件「Aして初めてB」を表します。"
+      },
+      {
+       "t": "只要复习，才能记住。",
+       "ok": false,
+       "why": "<z>只要</z>は<z>就</z>と呼応します。<z>才</z>は<z>只有</z>用です。"
+      },
+      {
+       "t": "只有复习，就能记住。",
+       "ok": false,
+       "why": "<z>只有</z>は<z>才</z>と呼応します。<z>就</z>とは合いません。"
+      },
+      {
+       "t": "只有复习才能，记住。",
+       "ok": false,
+       "why": "区切りが誤り。<z>才能记住</z>とつなげます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・只要就",
+     "q": "次の日本語に合う正しい文は？\n「続けさえすれば進歩します」",
+     "opts": [
+      {
+       "t": "只要坚持，就会有进步。",
+       "ok": true,
+       "why": "正解。<z>只要…就…</z>で「〜さえすれば」の十分条件です。"
+      },
+      {
+       "t": "只有坚持，就会有进步。",
+       "ok": false,
+       "why": "<z>只有</z>は<z>才</z>と呼応します。十分条件は<z>只要…就…</z>です。"
+      },
+      {
+       "t": "只要坚持，才会有进步。",
+       "ok": false,
+       "why": "<z>只要</z>は<z>就</z>と呼応します。<z>才</z>とは合いません。"
+      },
+      {
+       "t": "只要坚持就，会有进步。",
+       "ok": false,
+       "why": "<z>就</z>の位置が誤り。<z>就会有进步</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "只有",
+     "多练习",
+     "才",
+     "会",
+     "说得自然"
+    ],
+    "answer": "只有多练习，才会说得自然。",
+    "why": "<z>只有＋条件，才＋結果</z>の語順。必要条件を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "困難にあっても諦めないでください。",
+     "answer": "遇到困难也不要放弃。"
+    },
+    {
+     "prompt": "続けさえすれば進歩します。",
+     "answer": "只要坚持，就会有进步。"
+    }
+   ]
+  },
+  "10": {
+   "vocab": [
+    "注意",
+    "根据",
+    "要求",
+    "经验",
+    "机会"
+   ],
+   "grammar": [
+    "不但而且",
+    "不管都",
+    "除了以外还"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>经验</z>」の意味は？",
+     "opts": [
+      {
+       "t": "経験",
+       "ok": true,
+       "why": "正解。実際にやって得た知識や蓄積。例：<z>生活的经验</z>（生活の経験）。"
+      },
+      {
+       "t": "機会",
+       "ok": false,
+       "why": "これは<z>机会</z>です。"
+      },
+      {
+       "t": "要求・要望",
+       "ok": false,
+       "why": "これは<z>要求</z>です。"
+      },
+      {
+       "t": "注意する",
+       "ok": false,
+       "why": "これは<z>注意</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>要求</z>」の意味は？",
+     "opts": [
+      {
+       "t": "要求する・要望",
+       "ok": true,
+       "why": "正解。相手に求める内容。例：<z>客户有特别要求</z>（顧客に特別な要望がある）。"
+      },
+      {
+       "t": "経験",
+       "ok": false,
+       "why": "これは<z>经验</z>です。"
+      },
+      {
+       "t": "機会",
+       "ok": false,
+       "why": "これは<z>机会</z>です。"
+      },
+      {
+       "t": "〜に基づいて",
+       "ok": false,
+       "why": "これは<z>根据</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我想找更多说中文的　。</z>（中国語を話す機会）",
+     "opts": [
+      {
+       "t": "机会",
+       "ok": true,
+       "why": "正解。何かをするチャンスは<z>机会</z>です。"
+      },
+      {
+       "t": "经验",
+       "ok": false,
+       "why": "<z>经验</z>は「経験（蓄積）」。これから作る「チャンス」は<z>机会</z>です。"
+      },
+      {
+       "t": "要求",
+       "ok": false,
+       "why": "<z>要求</z>は「要望」で文意に合いません。"
+      },
+      {
+       "t": "注意",
+       "ok": false,
+       "why": "<z>注意</z>は「注意する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>过马路的时候要　车。</z>（道を渡る時は車に注意）",
+     "opts": [
+      {
+       "t": "注意",
+       "ok": true,
+       "why": "正解。気をつける・警戒するのは<z>注意</z>です。"
+      },
+      {
+       "t": "要求",
+       "ok": false,
+       "why": "<z>要求</z>は「要望する」で文意に合いません。"
+      },
+      {
+       "t": "机会",
+       "ok": false,
+       "why": "<z>机会</z>は「機会」で意味が異なります。"
+      },
+      {
+       "t": "根据",
+       "ok": false,
+       "why": "<z>根据</z>は「〜に基づいて」で、警戒の意味はありません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不但而且",
+     "q": "次の日本語に合う正しい文は？\n「彼は中国語だけでなく英語も話せます」",
+     "opts": [
+      {
+       "t": "他不但会说中文，而且会说英文。",
+       "ok": true,
+       "why": "正解。<z>不但A，而且B</z>で「AだけでなくB」と積み上げます。"
+      },
+      {
+       "t": "他不但会说中文，但是会说英文。",
+       "ok": false,
+       "why": "<z>不但</z>は<z>而且</z>と呼応します。<z>但是</z>は逆接で不整合です。"
+      },
+      {
+       "t": "他虽然会说中文，而且会说英文。",
+       "ok": false,
+       "why": "<z>虽然</z>は<z>但是</z>と呼応します。<z>而且</z>とは合いません。"
+      },
+      {
+       "t": "他会说中文不但，而且会说英文。",
+       "ok": false,
+       "why": "<z>不但</z>の位置が誤り。動詞句の前に置きます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不管都",
+     "q": "次の日本語に合う正しい文は？\n「どんなに忙しくても続けたいです」",
+     "opts": [
+      {
+       "t": "不管多忙，我都想坚持。",
+       "ok": true,
+       "why": "正解。<z>不管＋疑問，都…</z>で「〜に関わらず」。<z>多忙</z>のように疑問の形を取ります。"
+      },
+      {
+       "t": "不管多忙，我就想坚持。",
+       "ok": false,
+       "why": "<z>不管</z>は<z>都</z>と呼応します。<z>就</z>とは合いません。"
+      },
+      {
+       "t": "虽然多忙，我都想坚持。",
+       "ok": false,
+       "why": "<z>虽然</z>は<z>但是</z>と呼応。<z>都</z>と組むのは<z>不管</z>です。"
+      },
+      {
+       "t": "不管很忙，我都想坚持。",
+       "ok": false,
+       "why": "<z>不管</z>の後ろは疑問の形（<z>多忙</z>）。断定の<z>很忙</z>は不自然です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・除了以外还",
+     "q": "次の日本語に合う正しい文は？\n「上海以外に蘇州にも行ったことがあります」",
+     "opts": [
+      {
+       "t": "除了上海以外，我还去过苏州。",
+       "ok": true,
+       "why": "正解。<z>除了A以外，还B</z>で「A以外にBも」と追加します。"
+      },
+      {
+       "t": "除了上海以外，我去过苏州。",
+       "ok": false,
+       "why": "<z>还／也</z>が必要です。<z>除了…以外，还…</z>で追加を示します。"
+      },
+      {
+       "t": "除了上海，我还去过苏州以外。",
+       "ok": false,
+       "why": "<z>以外</z>の位置が誤り。<z>除了上海以外</z>とまとめます。"
+      },
+      {
+       "t": "只有上海以外，我还去过苏州。",
+       "ok": false,
+       "why": "<z>只有</z>は「〜だけ」。追加の意味は<z>除了…以外</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不但而且",
+     "q": "次の日本語に合う正しい文は？\n「この店は便利なだけでなく、味も良いです」",
+     "opts": [
+      {
+       "t": "这家店不但方便，而且味道不错。",
+       "ok": true,
+       "why": "正解。<z>不但…而且…</z>で二つの長所を積み上げます。"
+      },
+      {
+       "t": "这家店方便不但，而且味道不错。",
+       "ok": false,
+       "why": "<z>不但</z>の位置が誤り。<z>不但方便</z>とします。"
+      },
+      {
+       "t": "这家店虽然方便，而且味道不错。",
+       "ok": false,
+       "why": "<z>虽然</z>は<z>但是</z>と呼応します。<z>而且</z>とは合いません。"
+      },
+      {
+       "t": "这家店不但方便，但是味道不错。",
+       "ok": false,
+       "why": "<z>不但</z>は<z>而且</z>と呼応。逆接の<z>但是</z>は不整合です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "除了",
+     "日语",
+     "以外",
+     "我还",
+     "想多用中文"
+    ],
+    "answer": "除了日语以外，我还想多用中文。",
+    "why": "<z>除了＋A＋以外，还＋B</z>の語順で追加を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "どんなに忙しくても学習を続けたいです。",
+     "answer": "不管多忙，我都想坚持学习。"
+    },
+    {
+     "prompt": "彼は中国語だけでなく英語も話せます。",
+     "answer": "他不但会说中文，而且会说英文。"
+    }
+   ]
+  },
+  "11": {
+   "vocab": [
+    "环境",
+    "条件",
+    "感觉",
+    "兴趣",
+    "目的"
+   ],
+   "grammar": [
+    "先再",
+    "就要了",
+    "快了"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>目的</z>」の意味は？",
+     "opts": [
+      {
+       "t": "目的",
+       "ok": true,
+       "why": "正解。達成しようとすること。例：<z>学习中文的目的</z>（中国語を学ぶ目的）。"
+      },
+      {
+       "t": "興味",
+       "ok": false,
+       "why": "これは<z>兴趣</z>です。"
+      },
+      {
+       "t": "条件",
+       "ok": false,
+       "why": "これは<z>条件</z>です。"
+      },
+      {
+       "t": "環境",
+       "ok": false,
+       "why": "これは<z>环境</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>兴趣</z>」の意味は？",
+     "opts": [
+      {
+       "t": "興味・関心",
+       "ok": true,
+       "why": "正解。例：<z>对中国文化很有兴趣</z>（中国文化に興味がある）。"
+      },
+      {
+       "t": "感じる・感覚",
+       "ok": false,
+       "why": "これは<z>感觉</z>です。"
+      },
+      {
+       "t": "目的",
+       "ok": false,
+       "why": "これは<z>目的</z>です。"
+      },
+      {
+       "t": "条件",
+       "ok": false,
+       "why": "これは<z>条件</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>语言　很重要。</z>（言語環境はとても重要だ）",
+     "opts": [
+      {
+       "t": "环境",
+       "ok": true,
+       "why": "正解。周囲の状況・場は<z>环境</z>。<z>语言环境</z>は定番です。"
+      },
+      {
+       "t": "条件",
+       "ok": false,
+       "why": "<z>条件</z>は「条件」。周囲の状況を指すのは<z>环境</z>です。"
+      },
+      {
+       "t": "兴趣",
+       "ok": false,
+       "why": "<z>兴趣</z>は「興味」で文意に合いません。"
+      },
+      {
+       "t": "目的",
+       "ok": false,
+       "why": "<z>目的</z>は「目的」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我　今天的听力比较难。</z>（今日のリスニングは難しく感じる）",
+     "opts": [
+      {
+       "t": "感觉",
+       "ok": true,
+       "why": "正解。主観的にそう思う・感じるのは<z>感觉</z>です。"
+      },
+      {
+       "t": "兴趣",
+       "ok": false,
+       "why": "<z>兴趣</z>は「興味」で文意に合いません。"
+      },
+      {
+       "t": "目的",
+       "ok": false,
+       "why": "<z>目的</z>は「目的」で意味が異なります。"
+      },
+      {
+       "t": "条件",
+       "ok": false,
+       "why": "<z>条件</z>は「条件」で、感じる意味はありません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・先再",
+     "q": "次の日本語に合う正しい文は？\n「先に食べてから出発しましょう」",
+     "opts": [
+      {
+       "t": "我们先吃饭，再出发。",
+       "ok": true,
+       "why": "正解。<z>先A，再B</z>で動作の順番「先にAしてからB」を表します。"
+      },
+      {
+       "t": "我们先吃饭，又出发。",
+       "ok": false,
+       "why": "<z>又</z>は「（過去に）また」。これからの順番は<z>再</z>です。"
+      },
+      {
+       "t": "我们再吃饭，先出发。",
+       "ok": false,
+       "why": "順序が逆です。先にすることが<z>先</z>、後が<z>再</z>です。"
+      },
+      {
+       "t": "我们先吃饭，才出发。",
+       "ok": false,
+       "why": "<z>才</z>は「やっと」。単なる順番は<z>先…再…</z>が自然です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・就要了",
+     "q": "次の日本語に合う正しい文は？\n「もうすぐ遅刻します」",
+     "opts": [
+      {
+       "t": "我就要迟到了。",
+       "ok": true,
+       "why": "正解。<z>就要…了</z>で「もうすぐ〜する」。文末の<z>了</z>が必要です。"
+      },
+      {
+       "t": "我就要迟到。",
+       "ok": false,
+       "why": "文末の<z>了</z>が抜けています。<z>就要迟到了</z>とします。"
+      },
+      {
+       "t": "我就迟到了。",
+       "ok": false,
+       "why": "<z>要</z>が抜けると「もう遅刻した」の意味になります。"
+      },
+      {
+       "t": "我要就迟到了。",
+       "ok": false,
+       "why": "語順が誤り。<z>就要</z>の順です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・快了",
+     "q": "次の日本語に合う正しい文は？\n「もうすぐ雨が降りそうです」",
+     "opts": [
+      {
+       "t": "快下雨了。",
+       "ok": true,
+       "why": "正解。<z>快…了</z>で「もうすぐ〜になる」。文末の<z>了</z>が必要です。"
+      },
+      {
+       "t": "快下雨。",
+       "ok": false,
+       "why": "文末の<z>了</z>が抜けています。<z>快下雨了</z>とします。"
+      },
+      {
+       "t": "下雨快了。",
+       "ok": false,
+       "why": "語順が誤り。<z>快</z>は動詞の前に置きます。"
+      },
+      {
+       "t": "快要下雨。",
+       "ok": false,
+       "why": "<z>了</z>が抜けています。<z>快要下雨了</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・就要了",
+     "q": "次の日本語に合う正しい文は？\n「会議がもうすぐ始まります」",
+     "opts": [
+      {
+       "t": "会议就要开始了。",
+       "ok": true,
+       "why": "正解。<z>就要…了</z>で近い未来を表します。"
+      },
+      {
+       "t": "会议就要开始。",
+       "ok": false,
+       "why": "文末の<z>了</z>が必要です。"
+      },
+      {
+       "t": "会议要就开始了。",
+       "ok": false,
+       "why": "語順が誤り。<z>就要</z>の順です。"
+      },
+      {
+       "t": "会议快就要开始了。",
+       "ok": false,
+       "why": "<z>快</z>と<z>就要</z>の混在で重複です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我们",
+     "先",
+     "看资料",
+     "再",
+     "讨论问题"
+    ],
+    "answer": "我们先看资料，再讨论问题。",
+    "why": "<z>先＋動作1，再＋動作2</z>で順番を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "中国文化にとても興味があります。",
+     "answer": "我对中国文化很有兴趣。"
+    },
+    {
+     "prompt": "もうすぐ会議が始まります。",
+     "answer": "会议就要开始了。"
+    }
+   ]
+  },
+  "12": {
+   "vocab": [
+    "关系",
+    "内容",
+    "重点",
+    "区别",
+    "原因"
+   ],
+   "grammar": [
+    "刚就",
+    "刚才と刚",
+    "又了"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>区别</z>」の意味は？",
+     "opts": [
+      {
+       "t": "違い・区別",
+       "ok": true,
+       "why": "正解。二つのものの差。例：<z>这两个词的区别</z>（この2語の違い）。"
+      },
+      {
+       "t": "関係",
+       "ok": false,
+       "why": "これは<z>关系</z>です。"
+      },
+      {
+       "t": "原因",
+       "ok": false,
+       "why": "これは<z>原因</z>です。"
+      },
+      {
+       "t": "重点",
+       "ok": false,
+       "why": "これは<z>重点</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>原因</z>」の意味は？",
+     "opts": [
+      {
+       "t": "原因",
+       "ok": true,
+       "why": "正解。物事が起きたわけ。例：<z>迟到的原因</z>（遅刻の原因）。"
+      },
+      {
+       "t": "内容",
+       "ok": false,
+       "why": "これは<z>内容</z>です。"
+      },
+      {
+       "t": "重点",
+       "ok": false,
+       "why": "これは<z>重点</z>です。"
+      },
+      {
+       "t": "違い",
+       "ok": false,
+       "why": "これは<z>区别</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>请把　写在第一页。</z>（重点を1ページ目に書いて）",
+     "opts": [
+      {
+       "t": "重点",
+       "ok": true,
+       "why": "正解。最も大事な点は<z>重点</z>です。"
+      },
+      {
+       "t": "区别",
+       "ok": false,
+       "why": "<z>区别</z>は「違い」で文意に合いません。"
+      },
+      {
+       "t": "原因",
+       "ok": false,
+       "why": "<z>原因</z>は「原因」で意味が異なります。"
+      },
+      {
+       "t": "内容",
+       "ok": false,
+       "why": "<z>内容</z>は「内容（全体）」。最重要点を指すのは<z>重点</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这件事和我没有　。</z>（この件は私と関係ない）",
+     "opts": [
+      {
+       "t": "关系",
+       "ok": true,
+       "why": "正解。つながり・かかわりは<z>关系</z>。<z>没有关系</z>で「関係ない」。"
+      },
+      {
+       "t": "原因",
+       "ok": false,
+       "why": "<z>原因</z>は「原因」で文意に合いません。"
+      },
+      {
+       "t": "内容",
+       "ok": false,
+       "why": "<z>内容</z>は「内容」で意味が異なります。"
+      },
+      {
+       "t": "区别",
+       "ok": false,
+       "why": "<z>区别</z>は「違い」で、かかわりの意味はありません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・刚就",
+     "q": "次の日本語に合う正しい文は？\n「家に着いたばかりで電話が来ました」",
+     "opts": [
+      {
+       "t": "我刚到家就接到电话了。",
+       "ok": true,
+       "why": "正解。<z>刚A就B</z>で「AしたばかりですぐB」。間が短いことを表します。"
+      },
+      {
+       "t": "我刚到家才接到电话了。",
+       "ok": false,
+       "why": "<z>才</z>は「やっと（遅い）」。「着いてすぐ」は<z>就</z>です。"
+      },
+      {
+       "t": "我就到家刚接到电话了。",
+       "ok": false,
+       "why": "語順が誤り。<z>刚到家就接到</z>とします。"
+      },
+      {
+       "t": "我刚才到家就接到电话了。",
+       "ok": false,
+       "why": "<z>刚才</z>と<z>就</z>の組は不自然。「〜したばかりで」は副詞<z>刚</z>を使います。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・刚才と刚",
+     "q": "空欄に最も適切な語は？\n<z>　我给你发消息了。</z>（さっきメッセージを送りました）",
+     "opts": [
+      {
+       "t": "刚才",
+       "ok": true,
+       "why": "正解。<z>刚才</z>は「さっき」という時間詞で、文頭に置けます。"
+      },
+      {
+       "t": "刚",
+       "ok": false,
+       "why": "<z>刚</z>は副詞で動詞の直前に置きます。文頭に単独では立てません（時間詞は<z>刚才</z>）。"
+      },
+      {
+       "t": "才刚",
+       "ok": false,
+       "why": "語順が誤り。文頭の時間詞は<z>刚才</z>です。"
+      },
+      {
+       "t": "刚刚才",
+       "ok": false,
+       "why": "<z>刚刚</z>と<z>才</z>の重複で不自然です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・又了",
+     "q": "次の日本語に合う正しい文は？\n「また雨が降ってきました」",
+     "opts": [
+      {
+       "t": "又下雨了。",
+       "ok": true,
+       "why": "正解。<z>又…了</z>で「（すでに）また〜した」。発生済みの反復を表します。"
+      },
+      {
+       "t": "再下雨了。",
+       "ok": false,
+       "why": "<z>再</z>はこれから先の「また」。すでに起きた反復は<z>又</z>です。"
+      },
+      {
+       "t": "又下雨。",
+       "ok": false,
+       "why": "文末の<z>了</z>が抜けています。<z>又下雨了</z>とします。"
+      },
+      {
+       "t": "下雨又了。",
+       "ok": false,
+       "why": "語順が誤り。<z>又</z>は動詞の前に置きます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・刚就",
+     "q": "次の日本語に合う正しい文は？\n「会社に着いたばかりで会議になりました」",
+     "opts": [
+      {
+       "t": "我刚到公司就开会了。",
+       "ok": true,
+       "why": "正解。<z>刚…就…</z>で「〜したばかりですぐ」。"
+      },
+      {
+       "t": "我刚到公司才开会了。",
+       "ok": false,
+       "why": "<z>才</z>は「やっと（遅い）」。「着いてすぐ」は<z>就</z>です。"
+      },
+      {
+       "t": "我到公司刚就开会了。",
+       "ok": false,
+       "why": "語順が誤り。<z>刚到公司就</z>とします。"
+      },
+      {
+       "t": "我刚到就公司开会了。",
+       "ok": false,
+       "why": "語順が誤り。<z>刚到公司就开会</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我",
+     "刚",
+     "到公司",
+     "就",
+     "开会了"
+    ],
+    "answer": "我刚到公司就开会了。",
+    "why": "<z>刚＋動作1＋就＋動作2＋了</z>で「〜したばかりですぐ」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "遅刻の原因は道が渋滞していたことです。",
+     "answer": "迟到的原因是路上堵车。"
+    },
+    {
+     "prompt": "彼はまた遅刻しました。",
+     "answer": "他又迟到了。"
+    }
+   ]
+  },
+  "13": {
+   "vocab": [
+    "方法",
+    "能力",
+    "速度",
+    "质量",
+    "态度"
+   ],
+   "grammar": [
+    "再(これから)",
+    "还是或者",
+    "才(やっと)"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>态度</z>」の意味は？",
+     "opts": [
+      {
+       "t": "態度",
+       "ok": true,
+       "why": "正解。物事への姿勢。例：<z>工作态度很认真</z>（仕事の態度が真面目）。"
+      },
+      {
+       "t": "能力",
+       "ok": false,
+       "why": "これは<z>能力</z>です。"
+      },
+      {
+       "t": "方法",
+       "ok": false,
+       "why": "これは<z>方法</z>です。"
+      },
+      {
+       "t": "速度",
+       "ok": false,
+       "why": "これは<z>速度</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>质量</z>」の意味は？",
+     "opts": [
+      {
+       "t": "質・品質",
+       "ok": true,
+       "why": "正解。物事の出来のよさ。例：<z>报告的质量不错</z>（レポートの質が良い）。"
+      },
+      {
+       "t": "速度",
+       "ok": false,
+       "why": "これは<z>速度</z>です。"
+      },
+      {
+       "t": "能力",
+       "ok": false,
+       "why": "これは<z>能力</z>です。"
+      },
+      {
+       "t": "態度",
+       "ok": false,
+       "why": "これは<z>态度</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他说话的　太快了。</z>（話すスピードが速すぎる）",
+     "opts": [
+      {
+       "t": "速度",
+       "ok": true,
+       "why": "正解。速さは<z>速度</z>。<z>说话的速度</z>は定番です。"
+      },
+      {
+       "t": "态度",
+       "ok": false,
+       "why": "<z>态度</z>は「態度」で、速さの意味はありません。"
+      },
+      {
+       "t": "能力",
+       "ok": false,
+       "why": "<z>能力</z>は「能力」で文意に合いません。"
+      },
+      {
+       "t": "质量",
+       "ok": false,
+       "why": "<z>质量</z>は「品質」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我想提高中文表达　。</z>（表現する能力を高めたい）",
+     "opts": [
+      {
+       "t": "能力",
+       "ok": true,
+       "why": "正解。何かをする力は<z>能力</z>。<z>表达能力</z>は定番です。"
+      },
+      {
+       "t": "方法",
+       "ok": false,
+       "why": "<z>方法</z>は「やり方」で、能力そのものではありません。"
+      },
+      {
+       "t": "速度",
+       "ok": false,
+       "why": "<z>速度</z>は「速さ」で文意に合いません。"
+      },
+      {
+       "t": "态度",
+       "ok": false,
+       "why": "<z>态度</z>は「態度」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・再",
+     "q": "次の日本語に合う正しい文は？\n「もう一度説明してください」",
+     "opts": [
+      {
+       "t": "请再解释一下。",
+       "ok": true,
+       "why": "正解。これからの「もう一度」は<z>再</z>です。"
+      },
+      {
+       "t": "请又解释一下。",
+       "ok": false,
+       "why": "<z>又</z>は「（すでに）また」。依頼の「もう一度」は<z>再</z>です。"
+      },
+      {
+       "t": "请解释再一下。",
+       "ok": false,
+       "why": "語順が誤り。<z>再</z>は動詞の前（<z>再解释</z>）に置きます。"
+      },
+      {
+       "t": "请再解释一下了。",
+       "ok": false,
+       "why": "文末の<z>了</z>は不要です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・还是或者",
+     "q": "次の日本語に合う正しい文は？\n「コーヒーかお茶を飲みたいです」",
+     "opts": [
+      {
+       "t": "我想喝咖啡或者茶。",
+       "ok": true,
+       "why": "正解。平叙文の「AまたはB」は<z>或者</z>です。"
+      },
+      {
+       "t": "我想喝咖啡还是茶。",
+       "ok": false,
+       "why": "<z>还是</z>は疑問文の選択用。平叙文では<z>或者</z>を使います。"
+      },
+      {
+       "t": "我想喝咖啡或者茶吗？",
+       "ok": false,
+       "why": "平叙の希望に<z>吗</z>は不要。意味も変わります。"
+      },
+      {
+       "t": "我想喝咖啡和茶。",
+       "ok": false,
+       "why": "<z>和</z>は「両方」。「どちらか」は<z>或者</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・还是或者",
+     "q": "次の日本語に合う正しい文は？\n「地下鉄ですか、タクシーですか」",
+     "opts": [
+      {
+       "t": "你坐地铁还是打车？",
+       "ok": true,
+       "why": "正解。疑問文での選択「AかBか」は<z>还是</z>です。"
+      },
+      {
+       "t": "你坐地铁或者打车？",
+       "ok": false,
+       "why": "疑問文の選択は<z>还是</z>。<z>或者</z>は平叙文用です。"
+      },
+      {
+       "t": "你坐地铁还是打车吗？",
+       "ok": false,
+       "why": "<z>还是</z>の選択疑問に<z>吗</z>は付けません。"
+      },
+      {
+       "t": "你还是坐地铁打车？",
+       "ok": false,
+       "why": "語順が誤り。<z>坐地铁还是打车</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・才",
+     "q": "次の日本語に合う正しい文は？\n「彼は10時になってやっと会社に着きました」",
+     "opts": [
+      {
+       "t": "他十点才到公司。",
+       "ok": true,
+       "why": "正解。<z>才</z>は「（思ったより遅く）やっと」。<z>十点才到</z>で遅さを表します。"
+      },
+      {
+       "t": "他十点就到公司。",
+       "ok": false,
+       "why": "<z>就</z>は「（早くも）もう」。「やっと（遅い）」は<z>才</z>です。"
+      },
+      {
+       "t": "他才十点到公司了。",
+       "ok": false,
+       "why": "<z>才</z>の位置が不自然で、<z>了</z>も合いません。<z>十点才到</z>とします。"
+      },
+      {
+       "t": "他到公司十点才。",
+       "ok": false,
+       "why": "語順が誤り。<z>才</z>は動詞の前に置きます。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "他",
+     "十点",
+     "才",
+     "到",
+     "公司"
+    ],
+    "answer": "他十点才到公司。",
+    "why": "主語＋時刻＋<z>才</z>＋動詞の語順。<z>才</z>で「やっと（遅い）」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "この方法は私に合っています。",
+     "answer": "这个方法很适合我。"
+    },
+    {
+     "prompt": "もう一度説明してください。",
+     "answer": "请再解释一下。"
+    }
+   ]
+  },
+  "14": {
+   "vocab": [
+    "服务",
+    "价格",
+    "味道",
+    "辣椒",
+    "调整"
+   ],
+   "grammar": [
+    "就(早い)",
+    "才と就",
+    "有点儿と一点儿"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>价格</z>」の意味は？",
+     "opts": [
+      {
+       "t": "価格・値段",
+       "ok": true,
+       "why": "正解。例：<z>这个价格比较高</z>（この値段は高め）。"
+      },
+      {
+       "t": "味",
+       "ok": false,
+       "why": "これは<z>味道</z>です。"
+      },
+      {
+       "t": "サービス",
+       "ok": false,
+       "why": "これは<z>服务</z>です。"
+      },
+      {
+       "t": "唐辛子",
+       "ok": false,
+       "why": "これは<z>辣椒</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>调整</z>」の意味は？",
+     "opts": [
+      {
+       "t": "調整する",
+       "ok": true,
+       "why": "正解。状況に合わせて整える意味。例：<z>调整时间</z>（時間を調整する）。"
+      },
+      {
+       "t": "サービス",
+       "ok": false,
+       "why": "これは<z>服务</z>です。"
+      },
+      {
+       "t": "価格",
+       "ok": false,
+       "why": "これは<z>价格</z>です。"
+      },
+      {
+       "t": "味",
+       "ok": false,
+       "why": "これは<z>味道</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这个菜　不错。</z>（この料理は味が良い）",
+     "opts": [
+      {
+       "t": "味道",
+       "ok": true,
+       "why": "正解。食べ物の味は<z>味道</z>です。"
+      },
+      {
+       "t": "服务",
+       "ok": false,
+       "why": "<z>服务</z>は「サービス」で文意に合いません。"
+      },
+      {
+       "t": "价格",
+       "ok": false,
+       "why": "<z>价格</z>は「価格」で意味が異なります。"
+      },
+      {
+       "t": "辣椒",
+       "ok": false,
+       "why": "<z>辣椒</z>は「唐辛子」で、味そのものではありません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这家店的　很好。</z>（この店はサービスが良い）",
+     "opts": [
+      {
+       "t": "服务",
+       "ok": true,
+       "why": "正解。接客・対応は<z>服务</z>です。"
+      },
+      {
+       "t": "价格",
+       "ok": false,
+       "why": "<z>价格</z>は「価格」で文意に合いません。"
+      },
+      {
+       "t": "味道",
+       "ok": false,
+       "why": "<z>味道</z>は「味」で意味が異なります。"
+      },
+      {
+       "t": "调整",
+       "ok": false,
+       "why": "<z>调整</z>は「調整する」で、接客の意味はありません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・就",
+     "q": "次の日本語に合う正しい文は？\n「彼は7時にはもう出発しました」",
+     "opts": [
+      {
+       "t": "他七点就出发了。",
+       "ok": true,
+       "why": "正解。<z>就</z>は「（早くも）もう」。<z>七点就出发</z>で早さを表します。"
+      },
+      {
+       "t": "他七点才出发了。",
+       "ok": false,
+       "why": "<z>才</z>は「やっと（遅い）」。「もう（早い）」は<z>就</z>です。"
+      },
+      {
+       "t": "他就七点出发了。",
+       "ok": false,
+       "why": "<z>就</z>の位置が不自然。<z>七点就出发</z>とします。"
+      },
+      {
+       "t": "他七点出发就了。",
+       "ok": false,
+       "why": "語順が誤り。<z>就</z>は動詞の前に置きます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・才と就",
+     "q": "次の日本語に合う正しい文は？\n「私は5分で着きます」",
+     "opts": [
+      {
+       "t": "我五分钟就到。",
+       "ok": true,
+       "why": "正解。短時間で着く「早さ」は<z>就</z>で表します。"
+      },
+      {
+       "t": "我五分钟才到。",
+       "ok": false,
+       "why": "<z>才</z>は「やっと（遅い）」。短時間の早さは<z>就</z>です。"
+      },
+      {
+       "t": "我就五分钟到。",
+       "ok": false,
+       "why": "<z>就</z>の位置が不自然。<z>五分钟就到</z>とします。"
+      },
+      {
+       "t": "我五分钟到就。",
+       "ok": false,
+       "why": "語順が誤り。<z>就</z>は動詞の前に置きます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・有点儿と一点儿",
+     "q": "次の日本語に合う正しい文は？\n「この手続きは少し面倒です」",
+     "opts": [
+      {
+       "t": "这个手续有点儿麻烦。",
+       "ok": true,
+       "why": "正解。形容詞の前で「少し（不満）」は<z>有点儿</z>です。"
+      },
+      {
+       "t": "这个手续一点儿麻烦。",
+       "ok": false,
+       "why": "<z>一点儿</z>は量や差。形容詞の前の「少し〜だ」は<z>有点儿</z>です。"
+      },
+      {
+       "t": "这个手续麻烦有点儿。",
+       "ok": false,
+       "why": "語順が誤り。<z>有点儿</z>は形容詞の前に置きます。"
+      },
+      {
+       "t": "这个手续很有点儿麻烦。",
+       "ok": false,
+       "why": "<z>很</z>と<z>有点儿</z>は併用しません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・有点儿と一点儿",
+     "q": "次の日本語に合う正しい文は？\n「唐辛子を少なめにしてください」",
+     "opts": [
+      {
+       "t": "请少放一点儿辣椒。",
+       "ok": true,
+       "why": "正解。量を表す「少し」は<z>一点儿</z>です。"
+      },
+      {
+       "t": "请少放有点儿辣椒。",
+       "ok": false,
+       "why": "<z>有点儿</z>は形容詞の前用。量には<z>一点儿</z>を使います。"
+      },
+      {
+       "t": "请一点儿少放辣椒。",
+       "ok": false,
+       "why": "語順が誤り。<z>少放一点儿辣椒</z>とします。"
+      },
+      {
+       "t": "请少放辣椒一点儿。",
+       "ok": false,
+       "why": "語順が不自然。<z>一点儿</z>は目的語の前に置きます。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "请",
+     "少",
+     "放",
+     "一点儿",
+     "辣椒"
+    ],
+    "answer": "请少放一点儿辣椒。",
+    "why": "<z>少放＋一点儿＋目的語</z>で「〜を少なめに」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "この価格は思っていたより高いです。",
+     "answer": "这个价格比我想象的高。"
+    },
+    {
+     "prompt": "この時間を少し調整できますか。",
+     "answer": "这个时间可以调整一下吗？"
+    }
+   ]
+  },
+  "15": {
+   "vocab": [
+    "客户",
+    "经理",
+    "同事",
+    "会议室",
+    "资料"
+   ],
+   "grammar": [
+    "一点儿也不",
+    "差点儿",
+    "好像"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>同事</z>」の意味は？",
+     "opts": [
+      {
+       "t": "同僚",
+       "ok": true,
+       "why": "正解。同じ職場で働く人。例：<z>跟同事讨论</z>（同僚と話し合う）。"
+      },
+      {
+       "t": "マネージャー",
+       "ok": false,
+       "why": "これは<z>经理</z>です。"
+      },
+      {
+       "t": "顧客",
+       "ok": false,
+       "why": "これは<z>客户</z>です。"
+      },
+      {
+       "t": "同級生",
+       "ok": false,
+       "why": "これは<z>同学</z>です（字が似ています）。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>客户</z>」の意味は？",
+     "opts": [
+      {
+       "t": "顧客・取引先",
+       "ok": true,
+       "why": "正解。商品やサービスを利用する相手。例：<z>去见一个客户</z>（顧客に会いに行く）。"
+      },
+      {
+       "t": "同僚",
+       "ok": false,
+       "why": "これは<z>同事</z>です。"
+      },
+      {
+       "t": "マネージャー",
+       "ok": false,
+       "why": "これは<z>经理</z>です。"
+      },
+      {
+       "t": "資料",
+       "ok": false,
+       "why": "これは<z>资料</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　已经订好了。</z>（会議室はもう予約してある）",
+     "opts": [
+      {
+       "t": "会议室",
+       "ok": true,
+       "why": "正解。会議をする部屋は<z>会议室</z>。予約する対象になります。"
+      },
+      {
+       "t": "资料",
+       "ok": false,
+       "why": "<z>资料</z>は「資料」で、予約する対象ではありません。"
+      },
+      {
+       "t": "客户",
+       "ok": false,
+       "why": "<z>客户</z>は「顧客」で文意に合いません。"
+      },
+      {
+       "t": "经理",
+       "ok": false,
+       "why": "<z>经理</z>は「マネージャー」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>请把　发给我。</z>（資料を私に送って）",
+     "opts": [
+      {
+       "t": "资料",
+       "ok": true,
+       "why": "正解。送る対象の書類・データは<z>资料</z>です。"
+      },
+      {
+       "t": "会议室",
+       "ok": false,
+       "why": "<z>会议室</z>は「会議室」で、送る対象になりません。"
+      },
+      {
+       "t": "客户",
+       "ok": false,
+       "why": "<z>客户</z>は「顧客」で文意に合いません。"
+      },
+      {
+       "t": "同事",
+       "ok": false,
+       "why": "<z>同事</z>は「同僚」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・一点儿也不",
+     "q": "次の日本語に合う正しい文は？\n「この料理は少しも辛くありません」",
+     "opts": [
+      {
+       "t": "这个菜一点儿也不辣。",
+       "ok": true,
+       "why": "正解。<z>一点儿也不＋形容詞</z>で「少しも〜ない」と強く否定します。"
+      },
+      {
+       "t": "这个菜一点儿不太辣。",
+       "ok": false,
+       "why": "<z>不太</z>は「あまり〜ない」。「少しも〜ない」は<z>一点儿也不</z>です。"
+      },
+      {
+       "t": "这个菜也一点儿不辣。",
+       "ok": false,
+       "why": "語順が誤り。<z>一点儿也不辣</z>とします。"
+      },
+      {
+       "t": "这个菜不一点儿也辣。",
+       "ok": false,
+       "why": "語順が誤り。<z>一点儿也不</z>のまとまりで使います。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・差点儿",
+     "q": "次の日本語に合う正しい文は？\n「今日は危うく遅刻するところでした」",
+     "opts": [
+      {
+       "t": "我今天差点儿迟到。",
+       "ok": true,
+       "why": "正解。<z>差点儿＋動詞</z>で「危うく〜しそうだった（実際はしなかった）」。"
+      },
+      {
+       "t": "我今天差不多迟到。",
+       "ok": false,
+       "why": "<z>差不多</z>は「だいたい・ほぼ」。「危うく〜するところ」は<z>差点儿</z>です。"
+      },
+      {
+       "t": "我今天有点儿迟到。",
+       "ok": false,
+       "why": "<z>有点儿</z>は「少し」。「危うく」の意味はありません。"
+      },
+      {
+       "t": "我今天迟到差点儿。",
+       "ok": false,
+       "why": "語順が誤り。<z>差点儿</z>は動詞の前に置きます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・好像",
+     "q": "次の日本語に合う正しい文は？\n「外は雨が降っているみたいです」",
+     "opts": [
+      {
+       "t": "外面好像下雨了。",
+       "ok": true,
+       "why": "正解。<z>好像…了</z>で「〜みたいだ」と見た目・様子から推測します。"
+      },
+      {
+       "t": "外面好像了下雨。",
+       "ok": false,
+       "why": "<z>了</z>の位置が誤り。<z>好像下雨了</z>とします。"
+      },
+      {
+       "t": "外面很好像下雨了。",
+       "ok": false,
+       "why": "<z>很</z>と<z>好像</z>は併用しません。"
+      },
+      {
+       "t": "外面好像要不要下雨了。",
+       "ok": false,
+       "why": "<z>要不要</z>は誤り。<z>好像下雨了</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・差点儿",
+     "q": "次の日本語に合う正しい文は？\n「危うく地下鉄に乗り遅れるところでした」",
+     "opts": [
+      {
+       "t": "我差点儿没赶上地铁。",
+       "ok": true,
+       "why": "正解。<z>差点儿没＋動詞</z>で「危うく〜しそうだった（実際は間に合った）」。"
+      },
+      {
+       "t": "我差不多没赶上地铁。",
+       "ok": false,
+       "why": "<z>差不多</z>は「だいたい」。「危うく」は<z>差点儿</z>です。"
+      },
+      {
+       "t": "我没差点儿赶上地铁。",
+       "ok": false,
+       "why": "語順が誤り。<z>差点儿没赶上</z>とします。"
+      },
+      {
+       "t": "我有点儿没赶上地铁。",
+       "ok": false,
+       "why": "<z>有点儿</z>は「少し」で、「危うく」の意味はありません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "这个菜",
+     "一点儿",
+     "也",
+     "不",
+     "辣"
+    ],
+    "answer": "这个菜一点儿也不辣。",
+    "why": "<z>一点儿也不＋形容詞</z>で「少しも〜ない」の強い否定を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "資料を私に送ってください。",
+     "answer": "请把资料发给我。"
+    },
+    {
+     "prompt": "外は雨が降っているみたいです。",
+     "answer": "外面好像下雨了。"
+    }
+   ]
+  },
+  "16": {
+   "vocab": [
+    "报告",
+    "合同",
+    "护照",
+    "身份证",
+    "地址"
+   ],
+   "grammar": [
+    "可能と可以",
+    "应该と要",
+    "必须と得"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>合同</z>」の意味は？",
+     "opts": [
+      {
+       "t": "契約書",
+       "ok": true,
+       "why": "正解。取り決めを記した書面。例：<z>签合同</z>（契約書に署名する）。"
+      },
+      {
+       "t": "報告書",
+       "ok": false,
+       "why": "これは<z>报告</z>です。"
+      },
+      {
+       "t": "パスポート",
+       "ok": false,
+       "why": "これは<z>护照</z>です。"
+      },
+      {
+       "t": "住所",
+       "ok": false,
+       "why": "これは<z>地址</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>护照</z>」の意味は？",
+     "opts": [
+      {
+       "t": "パスポート",
+       "ok": true,
+       "why": "正解。海外渡航の身分証明。例：<z>办手续需要带护照</z>（手続きにパスポートが必要）。"
+      },
+      {
+       "t": "身分証",
+       "ok": false,
+       "why": "これは<z>身份证</z>です。"
+      },
+      {
+       "t": "契約書",
+       "ok": false,
+       "why": "これは<z>合同</z>です。"
+      },
+      {
+       "t": "報告書",
+       "ok": false,
+       "why": "これは<z>报告</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我还没看完这份　。</z>（この報告書を読み終えていない）",
+     "opts": [
+      {
+       "t": "报告",
+       "ok": true,
+       "why": "正解。仕事の報告をまとめた書面は<z>报告</z>です。"
+      },
+      {
+       "t": "合同",
+       "ok": false,
+       "why": "<z>合同</z>は「契約書」で文意に合いません。"
+      },
+      {
+       "t": "护照",
+       "ok": false,
+       "why": "<z>护照</z>は「パスポート」で意味が異なります。"
+      },
+      {
+       "t": "地址",
+       "ok": false,
+       "why": "<z>地址</z>は「住所」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>你可以把　发给我吗？</z>（住所を送ってもらえますか）",
+     "opts": [
+      {
+       "t": "地址",
+       "ok": true,
+       "why": "正解。場所を示す情報は<z>地址</z>です。"
+      },
+      {
+       "t": "报告",
+       "ok": false,
+       "why": "<z>报告</z>は「報告書」で文意に合いません。"
+      },
+      {
+       "t": "护照",
+       "ok": false,
+       "why": "<z>护照</z>は「パスポート」で意味が異なります。"
+      },
+      {
+       "t": "身份证",
+       "ok": false,
+       "why": "<z>身份证</z>は「身分証」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・可能と可以",
+     "q": "次の日本語に合う正しい文は？\n「ここで写真を撮ってもいいですか」",
+     "opts": [
+      {
+       "t": "这里可以拍照吗？",
+       "ok": true,
+       "why": "正解。許可「〜してよい」は<z>可以</z>です。"
+      },
+      {
+       "t": "这里可能拍照吗？",
+       "ok": false,
+       "why": "<z>可能</z>は「〜かもしれない」。許可は<z>可以</z>です。"
+      },
+      {
+       "t": "这里会拍照吗？",
+       "ok": false,
+       "why": "<z>会</z>は習得した能力。許可は<z>可以</z>です。"
+      },
+      {
+       "t": "这里拍照可以吗？",
+       "ok": false,
+       "why": "語順が不自然。<z>可以拍照吗</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・可能と可以",
+     "q": "次の日本語に合う正しい文は？\n「明日は雨が降るかもしれません」",
+     "opts": [
+      {
+       "t": "明天可能会下雨。",
+       "ok": true,
+       "why": "正解。推量「〜かもしれない」は<z>可能</z>です。"
+      },
+      {
+       "t": "明天可以会下雨。",
+       "ok": false,
+       "why": "<z>可以</z>は許可・可能。推量は<z>可能</z>です。"
+      },
+      {
+       "t": "明天会可能下雨。",
+       "ok": false,
+       "why": "語順が誤り。<z>可能会下雨</z>とします。"
+      },
+      {
+       "t": "明天一定可能下雨。",
+       "ok": false,
+       "why": "<z>一定</z>（必ず）と<z>可能</z>（かも）は矛盾します。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・应该と要",
+     "q": "次の日本語に合う正しい文は？\n「早めに休んだ方がいいです」",
+     "opts": [
+      {
+       "t": "你应该早点休息。",
+       "ok": true,
+       "why": "正解。助言「〜した方がよい」は<z>应该</z>です。"
+      },
+      {
+       "t": "你会早点休息。",
+       "ok": false,
+       "why": "<z>会</z>は能力・未来の予測。助言は<z>应该</z>です。"
+      },
+      {
+       "t": "你应该休息早点。",
+       "ok": false,
+       "why": "語順が誤り。<z>早点休息</z>とします。"
+      },
+      {
+       "t": "你可能早点休息。",
+       "ok": false,
+       "why": "<z>可能</z>は「〜かもしれない」で、助言になりません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・必须と得",
+     "q": "次の日本語に合う正しい文は？\n「この書類は今日提出しなければなりません」",
+     "opts": [
+      {
+       "t": "这个文件今天必须提交。",
+       "ok": true,
+       "why": "正解。強い義務「必ず〜」は<z>必须</z>です。"
+      },
+      {
+       "t": "这个文件今天可能提交。",
+       "ok": false,
+       "why": "<z>可能</z>は「〜かもしれない」で、義務になりません。"
+      },
+      {
+       "t": "这个文件今天提交必须。",
+       "ok": false,
+       "why": "語順が誤り。<z>必须提交</z>とします。"
+      },
+      {
+       "t": "这个文件今天会提交。",
+       "ok": false,
+       "why": "<z>会</z>は予測・能力。義務は<z>必须</z>です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我",
+     "还没",
+     "看完",
+     "这份",
+     "报告"
+    ],
+    "answer": "我还没看完这份报告。",
+    "why": "<z>还没＋動詞＋完</z>で「まだ〜し終えていない」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "ここで写真を撮ってもいいですか。",
+     "answer": "这里可以拍照吗？"
+    },
+    {
+     "prompt": "明日は会議に出なければなりません。",
+     "answer": "明天我要参加会议。"
+    }
+   ]
+  },
+  "17": {
+   "vocab": [
+    "定位",
+    "二维码",
+    "外卖",
+    "地铁",
+    "高铁"
+   ],
+   "grammar": [
+    "让(使役)",
+    "被(受身)",
+    "给(対象)"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>二维码</z>」の意味は？",
+     "opts": [
+      {
+       "t": "QRコード",
+       "ok": true,
+       "why": "正解。読み取り用の四角いコード。例：<z>扫二维码</z>（QRコードをスキャンする）。"
+      },
+      {
+       "t": "位置情報",
+       "ok": false,
+       "why": "これは<z>定位</z>です。"
+      },
+      {
+       "t": "デリバリー",
+       "ok": false,
+       "why": "これは<z>外卖</z>です。"
+      },
+      {
+       "t": "高速鉄道",
+       "ok": false,
+       "why": "これは<z>高铁</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>外卖</z>」の意味は？",
+     "opts": [
+      {
+       "t": "デリバリー・出前",
+       "ok": true,
+       "why": "正解。配達される料理。例：<z>把外卖拿进来</z>（デリバリーを持ってくる）。"
+      },
+      {
+       "t": "QRコード",
+       "ok": false,
+       "why": "これは<z>二维码</z>です。"
+      },
+      {
+       "t": "地下鉄",
+       "ok": false,
+       "why": "これは<z>地铁</z>です。"
+      },
+      {
+       "t": "位置情報",
+       "ok": false,
+       "why": "これは<z>定位</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我把　发给你。</z>（位置情報を送ります）",
+     "opts": [
+      {
+       "t": "定位",
+       "ok": true,
+       "why": "正解。地図上の現在地は<z>定位</z>です。"
+      },
+      {
+       "t": "二维码",
+       "ok": false,
+       "why": "<z>二维码</z>は「QRコード」で文意に合いません。"
+      },
+      {
+       "t": "外卖",
+       "ok": false,
+       "why": "<z>外卖</z>は「デリバリー」で意味が異なります。"
+      },
+      {
+       "t": "地铁",
+       "ok": false,
+       "why": "<z>地铁</z>は「地下鉄」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>从上海坐　去杭州很方便。</z>（高速鉄道で杭州へ）",
+     "opts": [
+      {
+       "t": "高铁",
+       "ok": true,
+       "why": "正解。都市間を結ぶ高速鉄道は<z>高铁</z>です。"
+      },
+      {
+       "t": "地铁",
+       "ok": false,
+       "why": "<z>地铁</z>は市内の「地下鉄」。都市間移動は<z>高铁</z>です。"
+      },
+      {
+       "t": "外卖",
+       "ok": false,
+       "why": "<z>外卖</z>は「デリバリー」で文意に合いません。"
+      },
+      {
+       "t": "定位",
+       "ok": false,
+       "why": "<z>定位</z>は「位置情報」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・让",
+     "q": "次の日本語に合う正しい文は？\n「先生は私にもう一度読むよう言いました」",
+     "opts": [
+      {
+       "t": "老师让我再读一遍。",
+       "ok": true,
+       "why": "正解。<z>让＋人＋動詞</z>で「（人）に〜させる/してもらう」。"
+      },
+      {
+       "t": "老师被我再读一遍。",
+       "ok": false,
+       "why": "<z>被</z>は受け身。「〜させる」は<z>让</z>です。"
+      },
+      {
+       "t": "老师给我再读一遍。",
+       "ok": false,
+       "why": "<z>给</z>は「〜に与える」。使役は<z>让</z>です。"
+      },
+      {
+       "t": "老师让再我读一遍。",
+       "ok": false,
+       "why": "語順が誤り。<z>让我再读</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・被",
+     "q": "次の日本語に合う正しい文は？\n「資料はマネージャーに直されました」",
+     "opts": [
+      {
+       "t": "资料被经理改了。",
+       "ok": true,
+       "why": "正解。受け手＋被＋し手＋動詞＋了で受け身を表します。"
+      },
+      {
+       "t": "经理被资料改了。",
+       "ok": false,
+       "why": "主客が逆。これだと「マネージャーが資料に直された」になります。"
+      },
+      {
+       "t": "资料被改经理了。",
+       "ok": false,
+       "why": "語順が誤り。<z>被经理改</z>とします。"
+      },
+      {
+       "t": "资料经理被改了。",
+       "ok": false,
+       "why": "語順が誤り。<z>被</z>はし手の前に置きます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・给",
+     "q": "次の日本語に合う正しい文は？\n「午後私に電話してください」",
+     "opts": [
+      {
+       "t": "下午给我打电话。",
+       "ok": true,
+       "why": "正解。<z>给＋人＋動詞</z>で動作の相手を示します。"
+      },
+      {
+       "t": "下午被我打电话。",
+       "ok": false,
+       "why": "<z>被</z>は受け身。相手を示すのは<z>给</z>です。"
+      },
+      {
+       "t": "下午让我打电话。",
+       "ok": false,
+       "why": "<z>让</z>は「〜させる」で意味が変わります。"
+      },
+      {
+       "t": "下午给打我电话。",
+       "ok": false,
+       "why": "語順が誤り。<z>给我打电话</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・让",
+     "q": "次の日本語に合う正しい文は？\n「マネージャーは明日また連絡するよう私に言いました」",
+     "opts": [
+      {
+       "t": "经理让我明天再联系他。",
+       "ok": true,
+       "why": "正解。<z>让＋人＋動詞</z>の使役です。"
+      },
+      {
+       "t": "经理被我明天再联系他。",
+       "ok": false,
+       "why": "<z>被</z>は受け身で文意に合いません。使役は<z>让</z>です。"
+      },
+      {
+       "t": "经理让明天我再联系他。",
+       "ok": false,
+       "why": "語順が誤り。<z>让我</z>を先に置きます。"
+      },
+      {
+       "t": "经理给我明天再联系他。",
+       "ok": false,
+       "why": "<z>给</z>では使役になりません。<z>让</z>を使います。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "经理",
+     "让",
+     "我",
+     "明天",
+     "再联系他"
+    ],
+    "answer": "经理让我明天再联系他。",
+    "why": "<z>让＋人＋（時間）＋動詞</z>の語順で使役を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "位置情報をあなたに送ります。",
+     "answer": "我把定位发给你。"
+    },
+    {
+     "prompt": "私のスマホは子どもに持っていかれました。",
+     "answer": "我的手机被孩子拿走了。"
+    }
+   ]
+  },
+  "18": {
+   "vocab": [
+    "打车",
+    "堵车",
+    "迟到",
+    "加班",
+    "出差"
+   ],
+   "grammar": [
+    "跟(相手)",
+    "対来説",
+    "関于"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>堵车</z>」の意味は？",
+     "opts": [
+      {
+       "t": "渋滞する",
+       "ok": true,
+       "why": "正解。車が混んで進まない状態。例：<z>路上堵车很严重</z>（道がひどく渋滞）。"
+      },
+      {
+       "t": "タクシーに乗る",
+       "ok": false,
+       "why": "これは<z>打车</z>です。"
+      },
+      {
+       "t": "遅刻する",
+       "ok": false,
+       "why": "これは<z>迟到</z>です。"
+      },
+      {
+       "t": "残業する",
+       "ok": false,
+       "why": "これは<z>加班</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>出差</z>」の意味は？",
+     "opts": [
+      {
+       "t": "出張する",
+       "ok": true,
+       "why": "正解。仕事で他地へ行くこと。例：<z>去北京出差</z>（北京に出張する）。"
+      },
+      {
+       "t": "残業する",
+       "ok": false,
+       "why": "これは<z>加班</z>です。"
+      },
+      {
+       "t": "遅刻する",
+       "ok": false,
+       "why": "これは<z>迟到</z>です。"
+      },
+      {
+       "t": "タクシーを呼ぶ",
+       "ok": false,
+       "why": "これは<z>打车</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>今天可能要　。</z>（今日は残業になるかも）",
+     "opts": [
+      {
+       "t": "加班",
+       "ok": true,
+       "why": "正解。定時後も働くのは<z>加班</z>です。"
+      },
+      {
+       "t": "出差",
+       "ok": false,
+       "why": "<z>出差</z>は「出張する」で文意に合いません。"
+      },
+      {
+       "t": "堵车",
+       "ok": false,
+       "why": "<z>堵车</z>は「渋滞する」で意味が異なります。"
+      },
+      {
+       "t": "迟到",
+       "ok": false,
+       "why": "<z>迟到</z>は「遅刻する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>下雨天　不太容易。</z>（雨の日はタクシーを呼ぶのが大変）",
+     "opts": [
+      {
+       "t": "打车",
+       "ok": true,
+       "why": "正解。タクシーを呼ぶ・乗るのは<z>打车</z>です。"
+      },
+      {
+       "t": "堵车",
+       "ok": false,
+       "why": "<z>堵车</z>は「渋滞する」で文意に合いません。"
+      },
+      {
+       "t": "加班",
+       "ok": false,
+       "why": "<z>加班</z>は「残業する」で意味が異なります。"
+      },
+      {
+       "t": "出差",
+       "ok": false,
+       "why": "<z>出差</z>は「出張する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・跟",
+     "q": "次の日本語に合う正しい文は？\n「同僚と昼ごはんを食べます」",
+     "opts": [
+      {
+       "t": "我跟同事吃午饭。",
+       "ok": true,
+       "why": "正解。一緒に行動する相手は<z>跟</z>で示します。"
+      },
+      {
+       "t": "我对同事吃午饭。",
+       "ok": false,
+       "why": "<z>对</z>は「〜に対して」。一緒の相手は<z>跟</z>です。"
+      },
+      {
+       "t": "我给同事吃午饭。",
+       "ok": false,
+       "why": "<z>给</z>は「〜に与える」で意味が変わります。"
+      },
+      {
+       "t": "我跟吃午饭同事。",
+       "ok": false,
+       "why": "語順が誤り。<z>跟同事吃午饭</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・対来説",
+     "q": "次の日本語に合う正しい文は？\n「外国人にとって手続きは少し面倒です」",
+     "opts": [
+      {
+       "t": "对外国人来说，手续有点儿麻烦。",
+       "ok": true,
+       "why": "正解。立場「〜にとって」は<z>对…来说</z>です。"
+      },
+      {
+       "t": "对外国人说，手续有点儿麻烦。",
+       "ok": false,
+       "why": "<z>对…说</z>は「〜に言う」。「〜にとって」は<z>对…来说</z>です。"
+      },
+      {
+       "t": "外国人对来说，手续有点儿麻烦。",
+       "ok": false,
+       "why": "語順が誤り。<z>对外国人来说</z>とまとめます。"
+      },
+      {
+       "t": "对外国人来说手续，有点儿麻烦。",
+       "ok": false,
+       "why": "区切りが誤り。<z>来说</z>の後で区切ります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・関于",
+     "q": "次の日本語に合う正しい文は？\n「この問題について、もう一度確認したいです」",
+     "opts": [
+      {
+       "t": "关于这个问题，我想再确认一下。",
+       "ok": true,
+       "why": "正解。話題「〜について」は<z>关于</z>で示します。"
+      },
+      {
+       "t": "给这个问题，我想再确认一下。",
+       "ok": false,
+       "why": "<z>给</z>は「〜に」。話題提示は<z>关于</z>です。"
+      },
+      {
+       "t": "这个问题关于，我想再确认一下。",
+       "ok": false,
+       "why": "語順が誤り。<z>关于</z>は話題の前に置きます。"
+      },
+      {
+       "t": "关于这个问题我想，再确认一下。",
+       "ok": false,
+       "why": "区切りが誤り。<z>关于这个问题</z>の後で区切ります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・跟",
+     "q": "次の日本語に合う正しい文は？\n「あなたと少し相談したいです」",
+     "opts": [
+      {
+       "t": "我想跟你讨论一下。",
+       "ok": true,
+       "why": "正解。相談相手は<z>跟</z>で示します。"
+      },
+      {
+       "t": "我想对你讨论一下。",
+       "ok": false,
+       "why": "<z>对</z>は「〜に対して」。相談相手は<z>跟</z>です。"
+      },
+      {
+       "t": "我想给你讨论一下。",
+       "ok": false,
+       "why": "<z>给</z>は「〜に与える」で意味が合いません。"
+      },
+      {
+       "t": "我跟想你讨论一下。",
+       "ok": false,
+       "why": "語順が誤り。<z>想跟你讨论</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "对我来说",
+     "中文",
+     "语顺",
+     "最",
+     "难"
+    ],
+    "answer": "对我来说，中文语顺最难。",
+    "why": "<z>对…来说</z>で立場を示し、その後に主述を続けます。"
+   },
+   "writing": [
+    {
+     "prompt": "今日は道の渋滞がひどいです。",
+     "answer": "今天路上堵车很严重。"
+    },
+    {
+     "prompt": "この問題について、もう一度確認したいです。",
+     "answer": "关于这个问题，我想再确认一下。"
+    }
+   ]
+  },
+  "19": {
+   "vocab": [
+    "报名",
+    "考试",
+    "复习",
+    "预习",
+    "发音"
+   ],
+   "grammar": [
+    "为了(目的)",
+    "由于(理由)",
+    "因此(結果)"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>报名</z>」の意味は？",
+     "opts": [
+      {
+       "t": "申し込む・登録する",
+       "ok": true,
+       "why": "正解。参加を申請すること。例：<z>报名参加考试</z>（試験に申し込む）。"
+      },
+      {
+       "t": "試験",
+       "ok": false,
+       "why": "これは<z>考试</z>です。"
+      },
+      {
+       "t": "復習する",
+       "ok": false,
+       "why": "これは<z>复习</z>です。"
+      },
+      {
+       "t": "予習する",
+       "ok": false,
+       "why": "これは<z>预习</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>预习</z>」の意味は？",
+     "opts": [
+      {
+       "t": "予習する",
+       "ok": true,
+       "why": "正解。授業の前に先に学ぶこと。例：<z>上课之前先预习</z>（授業前に予習する）。"
+      },
+      {
+       "t": "復習する",
+       "ok": false,
+       "why": "これは反対の<z>复习</z>です。"
+      },
+      {
+       "t": "申し込む",
+       "ok": false,
+       "why": "これは<z>报名</z>です。"
+      },
+      {
+       "t": "発音",
+       "ok": false,
+       "why": "これは<z>发音</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>晚上我想　今天学的语法。</z>（学んだ文法を復習）",
+     "opts": [
+      {
+       "t": "复习",
+       "ok": true,
+       "why": "正解。学んだ内容を後から学び直すのは<z>复习</z>です。"
+      },
+      {
+       "t": "预习",
+       "ok": false,
+       "why": "<z>预习</z>は「予習」。学んだ後は<z>复习</z>です。"
+      },
+      {
+       "t": "报名",
+       "ok": false,
+       "why": "<z>报名</z>は「申し込む」で文意に合いません。"
+      },
+      {
+       "t": "考试",
+       "ok": false,
+       "why": "<z>考试</z>は「試験」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我的　还需要多练习。</z>（発音をもっと練習）",
+     "opts": [
+      {
+       "t": "发音",
+       "ok": true,
+       "why": "正解。音の出し方は<z>发音</z>です。"
+      },
+      {
+       "t": "复习",
+       "ok": false,
+       "why": "<z>复习</z>は「復習する」で文意に合いません。"
+      },
+      {
+       "t": "考试",
+       "ok": false,
+       "why": "<z>考试</z>は「試験」で意味が異なります。"
+      },
+      {
+       "t": "报名",
+       "ok": false,
+       "why": "<z>报名</z>は「申し込む」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・为了",
+     "q": "次の日本語に合う正しい文は？\n「健康のために歩いて通勤します」",
+     "opts": [
+      {
+       "t": "为了健康，我走路上班。",
+       "ok": true,
+       "why": "正解。目的「〜のために」は<z>为了</z>です。"
+      },
+      {
+       "t": "因为健康，我走路上班。",
+       "ok": false,
+       "why": "<z>因为</z>は理由。これだと「健康だから」と意味が変わります。"
+      },
+      {
+       "t": "由于健康，我走路上班。",
+       "ok": false,
+       "why": "<z>由于</z>は理由。目的は<z>为了</z>です。"
+      },
+      {
+       "t": "为了健康我走路，上班。",
+       "ok": false,
+       "why": "区切りが誤り。<z>为了健康</z>の後で区切ります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・由于",
+     "q": "次の日本語に合う正しい文は？\n「交通のため少し遅れます」",
+     "opts": [
+      {
+       "t": "由于交通原因，我会晚一点到。",
+       "ok": true,
+       "why": "正解。理由「〜のため」を改まって言うのは<z>由于</z>です。"
+      },
+      {
+       "t": "为了交通原因，我会晚一点到。",
+       "ok": false,
+       "why": "<z>为了</z>は目的。理由は<z>由于</z>です。"
+      },
+      {
+       "t": "交通原因由于，我会晚一点到。",
+       "ok": false,
+       "why": "語順が誤り。<z>由于交通原因</z>とします。"
+      },
+      {
+       "t": "由于交通原因我会，晚一点到。",
+       "ok": false,
+       "why": "区切りが誤り。<z>由于交通原因</z>の後で区切ります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・因此",
+     "q": "次の日本語に合う正しい文は？\n「時間がありません。したがって今日はここまでです」",
+     "opts": [
+      {
+       "t": "没有时间了，因此今天到这里。",
+       "ok": true,
+       "why": "正解。結果「したがって」は<z>因此</z>で導きます。"
+      },
+      {
+       "t": "没有时间了，因为今天到这里。",
+       "ok": false,
+       "why": "<z>因为</z>は理由。結果は<z>因此</z>です。"
+      },
+      {
+       "t": "没有时间了，为了今天到这里。",
+       "ok": false,
+       "why": "<z>为了</z>は目的で文意に合いません。"
+      },
+      {
+       "t": "因此没有时间了，今天到这里。",
+       "ok": false,
+       "why": "<z>因此</z>の位置が誤り。結果の前に置きます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・为了",
+     "q": "次の日本語に合う正しい文は？\n「中国語を上げるために毎日練習しています」",
+     "opts": [
+      {
+       "t": "为了提高中文，我每天练习。",
+       "ok": true,
+       "why": "正解。目的を表す<z>为了</z>を使います。"
+      },
+      {
+       "t": "因为提高中文，我每天练习。",
+       "ok": false,
+       "why": "<z>因为</z>は理由。「上げるため」の目的は<z>为了</z>です。"
+      },
+      {
+       "t": "提高中文为了，我每天练习。",
+       "ok": false,
+       "why": "語順が誤り。<z>为了提高中文</z>とします。"
+      },
+      {
+       "t": "为了提高中文我每天，练习。",
+       "ok": false,
+       "why": "区切りが誤り。<z>为了提高中文</z>の後で区切ります。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "为了",
+     "提高中文",
+     "我",
+     "每天",
+     "练习"
+    ],
+    "answer": "为了提高中文，我每天练习。",
+    "why": "<z>为了＋目的，主語＋動作</z>の語順です。"
+   },
+   "writing": [
+    {
+     "prompt": "夜、今日学んだ文法を復習したいです。",
+     "answer": "晚上我想复习今天学的语法。"
+    },
+    {
+     "prompt": "雨のためイベントは中止になりました。",
+     "answer": "由于下雨，活动取消了。"
+    }
+   ]
+  },
+  "20": {
+   "vocab": [
+    "语法",
+    "句子",
+    "词语",
+    "听力",
+    "阅读"
+   ],
+   "grammar": [
+    "不過(逆接)",
+    "而且(順接)",
+    "另外(話題追加)"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>句子</z>」の意味は？",
+     "opts": [
+      {
+       "t": "文・センテンス",
+       "ok": true,
+       "why": "正解。語が集まって意味をなす単位。例：<z>造一个句子</z>（文を作る）。"
+      },
+      {
+       "t": "語句・単語",
+       "ok": false,
+       "why": "これは<z>词语</z>です。"
+      },
+      {
+       "t": "文法",
+       "ok": false,
+       "why": "これは<z>语法</z>です。"
+      },
+      {
+       "t": "リスニング",
+       "ok": false,
+       "why": "これは<z>听力</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>阅读</z>」の意味は？",
+     "opts": [
+      {
+       "t": "読解",
+       "ok": true,
+       "why": "正解。文章を読んで理解すること。例：<z>阅读题</z>（読解問題）。"
+      },
+      {
+       "t": "リスニング",
+       "ok": false,
+       "why": "これは<z>听力</z>です。"
+      },
+      {
+       "t": "文法",
+       "ok": false,
+       "why": "これは<z>语法</z>です。"
+      },
+      {
+       "t": "文",
+       "ok": false,
+       "why": "これは<z>句子</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这个　点我还不太懂。</z>（この文法ポイント）",
+     "opts": [
+      {
+       "t": "语法",
+       "ok": true,
+       "why": "正解。文の組み立てのルールは<z>语法</z>です。"
+      },
+      {
+       "t": "句子",
+       "ok": false,
+       "why": "<z>句子</z>は「文」で文意に合いません。"
+      },
+      {
+       "t": "词语",
+       "ok": false,
+       "why": "<z>词语</z>は「語句」で意味が異なります。"
+      },
+      {
+       "t": "阅读",
+       "ok": false,
+       "why": "<z>阅读</z>は「読解」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　题需要仔细看。</z>（読解問題はよく読む必要がある）",
+     "opts": [
+      {
+       "t": "阅读",
+       "ok": true,
+       "why": "正解。「よく見る・読む」対象なので<z>阅读</z>です。"
+      },
+      {
+       "t": "听力",
+       "ok": false,
+       "why": "<z>听力</z>は「聞く」力。「仔细看」と矛盾します。"
+      },
+      {
+       "t": "语法",
+       "ok": false,
+       "why": "<z>语法</z>は「文法」で文意に合いません。"
+      },
+      {
+       "t": "词语",
+       "ok": false,
+       "why": "<z>词语</z>は「語句」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不過",
+     "q": "次の日本語に合う正しい文は？\n「便利ですが少し遠いです」",
+     "opts": [
+      {
+       "t": "很方便，不过有点儿远。",
+       "ok": true,
+       "why": "正解。逆接「〜だが」は<z>不过</z>です。"
+      },
+      {
+       "t": "很方便，而且有点儿远。",
+       "ok": false,
+       "why": "<z>而且</z>は順接の追加。マイナス内容を続ける逆接は<z>不过</z>です。"
+      },
+      {
+       "t": "很方便，另外有点儿远。",
+       "ok": false,
+       "why": "<z>另外</z>は別の話題の追加で、逆接になりません。"
+      },
+      {
+       "t": "很方便不过，有点儿远。",
+       "ok": false,
+       "why": "区切りが誤り。<z>不过</z>は後半の前に置きます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・而且",
+     "q": "次の日本語に合う正しい文は？\n「ここは地下鉄に近く、しかも静かです」",
+     "opts": [
+      {
+       "t": "这里离地铁近，而且很安静。",
+       "ok": true,
+       "why": "正解。プラス内容を重ねる順接は<z>而且</z>です。"
+      },
+      {
+       "t": "这里离地铁近，不过很安静。",
+       "ok": false,
+       "why": "<z>不过</z>は逆接。良い点を重ねるのは<z>而且</z>です。"
+      },
+      {
+       "t": "这里离地铁近而且，很安静。",
+       "ok": false,
+       "why": "区切りが誤り。<z>而且</z>は後半の前に置きます。"
+      },
+      {
+       "t": "这里离地铁近，而且很安静吗。",
+       "ok": false,
+       "why": "平叙文に<z>吗</z>は不要で、意味も変わります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・另外",
+     "q": "次の日本語に合う正しい文は？\n「それから住所を送ってください」",
+     "opts": [
+      {
+       "t": "另外，请把地址发给我。",
+       "ok": true,
+       "why": "正解。別の用件を追加するのは<z>另外</z>です。"
+      },
+      {
+       "t": "而且，请把地址发给我。",
+       "ok": false,
+       "why": "<z>而且</z>は性質の追加。新しい依頼の追加は<z>另外</z>です。"
+      },
+      {
+       "t": "不过，请把地址发给我。",
+       "ok": false,
+       "why": "<z>不过</z>は逆接で文意に合いません。"
+      },
+      {
+       "t": "另外请把，地址发给我。",
+       "ok": false,
+       "why": "区切りが誤り。<z>另外</z>の後で区切ります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・而且",
+     "q": "次の日本語に合う正しい文は？\n「このアプリは便利で見やすいです」",
+     "opts": [
+      {
+       "t": "这个应用很方便，而且很好看。",
+       "ok": true,
+       "why": "正解。良い点を重ねる<z>而且</z>を使います。"
+      },
+      {
+       "t": "这个应用很方便，不过很好看。",
+       "ok": false,
+       "why": "<z>不过</z>は逆接。良い点を重ねるのは<z>而且</z>です。"
+      },
+      {
+       "t": "这个应用而且很方便，很好看。",
+       "ok": false,
+       "why": "<z>而且</z>の位置が誤り。後半の前に置きます。"
+      },
+      {
+       "t": "这个应用很方便，而且很好看吗。",
+       "ok": false,
+       "why": "平叙文に<z>吗</z>は不要で、意味が変わります。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "这家店",
+     "不错",
+     "不过",
+     "有点儿",
+     "贵"
+    ],
+    "answer": "这家店不错，不过有点儿贵。",
+    "why": "前半で良い点、<z>不过</z>の後で逆の点を述べます。"
+   },
+   "writing": [
+    {
+     "prompt": "この単語を使って文を作ってください。",
+     "answer": "请你用这个词造一个句子。"
+    },
+    {
+     "prompt": "ここは地下鉄に近く、しかも静かです。",
+     "answer": "这里离地铁近，而且很安静。"
+    }
+   ]
+  },
+  "21": {
+   "vocab": [
+    "书写",
+    "翻译",
+    "意思",
+    "想象",
+    "犹豫"
+   ],
+   "grammar": [
+    "尤其",
+    "甚至",
+    "并不是"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>翻译</z>」の意味は？",
+     "opts": [
+      {
+       "t": "翻訳する・通訳する",
+       "ok": true,
+       "why": "正解。別の言語に置き換えること。例：<z>怎么翻译</z>（どう訳すか）。"
+      },
+      {
+       "t": "書写・書くこと",
+       "ok": false,
+       "why": "これは<z>书写</z>です。"
+      },
+      {
+       "t": "想像する",
+       "ok": false,
+       "why": "これは<z>想象</z>です。"
+      },
+      {
+       "t": "ためらう",
+       "ok": false,
+       "why": "これは<z>犹豫</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>犹豫</z>」の意味は？",
+     "opts": [
+      {
+       "t": "ためらう・迷う",
+       "ok": true,
+       "why": "正解。決めかねること。例：<z>说话时会犹豫</z>（話す時ためらう）。"
+      },
+      {
+       "t": "想像する",
+       "ok": false,
+       "why": "これは<z>想象</z>です。"
+      },
+      {
+       "t": "翻訳する",
+       "ok": false,
+       "why": "これは<z>翻译</z>です。"
+      },
+      {
+       "t": "意味",
+       "ok": false,
+       "why": "これは<z>意思</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这个词是什么　？</z>（この単語の意味は）",
+     "opts": [
+      {
+       "t": "意思",
+       "ok": true,
+       "why": "正解。語の表す内容は<z>意思</z>です。"
+      },
+      {
+       "t": "翻译",
+       "ok": false,
+       "why": "<z>翻译</z>は「翻訳する」で文意に合いません。"
+      },
+      {
+       "t": "书写",
+       "ok": false,
+       "why": "<z>书写</z>は「書写」で意味が異なります。"
+      },
+      {
+       "t": "想象",
+       "ok": false,
+       "why": "<z>想象</z>は「想像する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>事情没有我　的那么简单。</z>（思っていたほど簡単でない）",
+     "opts": [
+      {
+       "t": "想象",
+       "ok": true,
+       "why": "正解。頭に思い描くのは<z>想象</z>。<z>没有想象的那么…</z>は定番です。"
+      },
+      {
+       "t": "犹豫",
+       "ok": false,
+       "why": "<z>犹豫</z>は「ためらう」で文意に合いません。"
+      },
+      {
+       "t": "翻译",
+       "ok": false,
+       "why": "<z>翻译</z>は「翻訳する」で意味が異なります。"
+      },
+      {
+       "t": "意思",
+       "ok": false,
+       "why": "<z>意思</z>は「意味」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・尤其",
+     "q": "次の日本語に合う正しい文は？\n「補語、特に結果補語が苦手です」",
+     "opts": [
+      {
+       "t": "我不擅长补语，尤其是结果补语。",
+       "ok": true,
+       "why": "正解。同類の中で特に強調するのは<z>尤其</z>です。"
+      },
+      {
+       "t": "我不擅长补语，甚至是结果补语。",
+       "ok": false,
+       "why": "<z>甚至</z>は「〜さえ」。特に強調は<z>尤其</z>です。"
+      },
+      {
+       "t": "尤其我不擅长补语，是结果补语。",
+       "ok": false,
+       "why": "語順が誤り。<z>尤其是结果补语</z>とまとめます。"
+      },
+      {
+       "t": "我不擅长补语，尤其是结果补语吗。",
+       "ok": false,
+       "why": "平叙文に<z>吗</z>は不要で、意味が変わります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・甚至",
+     "q": "次の日本語に合う正しい文は？\n「彼は中国語で会議さえできます」",
+     "opts": [
+      {
+       "t": "他甚至可以用中文开会。",
+       "ok": true,
+       "why": "正解。極端な例を強調する「〜さえ」は<z>甚至</z>です。"
+      },
+      {
+       "t": "他尤其可以用中文开会。",
+       "ok": false,
+       "why": "<z>尤其</z>は「特に」。「〜さえ」は<z>甚至</z>です。"
+      },
+      {
+       "t": "他甚至用中文开会可以。",
+       "ok": false,
+       "why": "語順が誤り。<z>可以用中文开会</z>とします。"
+      },
+      {
+       "t": "他甚至可以用中文开会吗。",
+       "ok": false,
+       "why": "平叙文に<z>吗</z>は不要で、意味が変わります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・並不是",
+     "q": "次の日本語に合う正しい文は？\n「これは必ずしも簡単ではありません」",
+     "opts": [
+      {
+       "t": "这并不是很简单。",
+       "ok": true,
+       "why": "正解。前提をやわらかく否定する「必ずしも〜でない」は<z>并不是</z>です。"
+      },
+      {
+       "t": "这并没有很简单。",
+       "ok": false,
+       "why": "<z>并没有</z>は動作の否定向け。形容詞の否定は<z>并不是</z>です。"
+      },
+      {
+       "t": "这不并是很简单。",
+       "ok": false,
+       "why": "語順が誤り。<z>并不是</z>のまとまりで使います。"
+      },
+      {
+       "t": "这并是不很简单。",
+       "ok": false,
+       "why": "語順が誤り。<z>并不是很简单</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・甚至",
+     "q": "次の日本語に合う正しい文は？\n「彼は忙しすぎて昼食の時間さえありません」",
+     "opts": [
+      {
+       "t": "他忙得甚至没时间吃午饭。",
+       "ok": true,
+       "why": "正解。<z>甚至</z>で「〜さえ」と極端な例を示します。"
+      },
+      {
+       "t": "他忙得尤其没时间吃午饭。",
+       "ok": false,
+       "why": "<z>尤其</z>は「特に」。「〜さえ」は<z>甚至</z>です。"
+      },
+      {
+       "t": "他甚至忙得没时间吃午饭。",
+       "ok": false,
+       "why": "<z>甚至</z>の位置が誤り。<z>没时间</z>の前に置きます。"
+      },
+      {
+       "t": "他忙得没时间吃午饭甚至。",
+       "ok": false,
+       "why": "語順が誤り。<z>甚至</z>は強調する語句の前に置きます。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我",
+     "想提高中文",
+     "尤其",
+     "是",
+     "口语"
+    ],
+    "answer": "我想提高中文，尤其是口语。",
+    "why": "<z>尤其是＋強調対象</z>で「特に〜」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "この文はどう翻訳できますか。",
+     "answer": "这句话可以怎么翻译？"
+    },
+    {
+     "prompt": "彼は中国語で会議さえできます。",
+     "answer": "他甚至可以用中文开会。"
+    }
+   ]
+  },
+  "22": {
+   "vocab": [
+    "主动",
+    "依赖",
+    "明显",
+    "正式",
+    "临时"
+   ],
+   "grammar": [
+    "并没有",
+    "非不可",
+    "一就"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>依赖</z>」の意味は？",
+     "opts": [
+      {
+       "t": "頼る・依存する",
+       "ok": true,
+       "why": "正解。他に頼ること。例：<z>不要太依赖翻译软件</z>（翻訳ソフトに頼りすぎない）。"
+      },
+      {
+       "t": "主体的に",
+       "ok": false,
+       "why": "これは<z>主动</z>です。"
+      },
+      {
+       "t": "明らか",
+       "ok": false,
+       "why": "これは<z>明显</z>です。"
+      },
+      {
+       "t": "臨時の",
+       "ok": false,
+       "why": "これは<z>临时</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>临时</z>」の意味は？",
+     "opts": [
+      {
+       "t": "臨時の・急に",
+       "ok": true,
+       "why": "正解。その場限り・急なこと。例：<z>临时改变时间</z>（急に時間を変える）。"
+      },
+      {
+       "t": "正式な",
+       "ok": false,
+       "why": "これは反対の<z>正式</z>です。"
+      },
+      {
+       "t": "明らか",
+       "ok": false,
+       "why": "これは<z>明显</z>です。"
+      },
+      {
+       "t": "主体的に",
+       "ok": false,
+       "why": "これは<z>主动</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>最近他的中文进步很　。</z>（進歩が明らか）",
+     "opts": [
+      {
+       "t": "明显",
+       "ok": true,
+       "why": "正解。はっきり分かる様子は<z>明显</z>です。"
+      },
+      {
+       "t": "主动",
+       "ok": false,
+       "why": "<z>主动</z>は「自分から」で文意に合いません。"
+      },
+      {
+       "t": "正式",
+       "ok": false,
+       "why": "<z>正式</z>は「正式な」で意味が異なります。"
+      },
+      {
+       "t": "临时",
+       "ok": false,
+       "why": "<z>临时</z>は「臨時の」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这是一次　的会议。</z>（正式な会議）",
+     "opts": [
+      {
+       "t": "正式",
+       "ok": true,
+       "why": "正解。きちんとした・公式なのは<z>正式</z>です。"
+      },
+      {
+       "t": "临时",
+       "ok": false,
+       "why": "<z>临时</z>は「臨時の」で逆の意味になります。"
+      },
+      {
+       "t": "明显",
+       "ok": false,
+       "why": "<z>明显</z>は「明らか」で文意に合いません。"
+      },
+      {
+       "t": "主动",
+       "ok": false,
+       "why": "<z>主动</z>は「自分から」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・並没有",
+     "q": "次の日本語に合う正しい文は？\n「私は諦めたわけではありません」",
+     "opts": [
+      {
+       "t": "我并没有放弃。",
+       "ok": true,
+       "why": "正解。予想に反する動作の否定は<z>并没有</z>です。"
+      },
+      {
+       "t": "我并不是放弃。",
+       "ok": false,
+       "why": "<z>并不是</z>は名詞・性質の否定向け。動作の否定は<z>并没有</z>です。"
+      },
+      {
+       "t": "我没并有放弃。",
+       "ok": false,
+       "why": "語順が誤り。<z>并没有</z>のまとまりで使います。"
+      },
+      {
+       "t": "我并放弃没有。",
+       "ok": false,
+       "why": "語順が誤り。<z>并没有放弃</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・非不可",
+     "q": "次の日本語に合う正しい文は？\n「HSK4はどうしても合格しなければなりません」",
+     "opts": [
+      {
+       "t": "HSK四级非通过不可。",
+       "ok": true,
+       "why": "正解。強い必要は<z>非＋動詞＋不可</z>で表します。"
+      },
+      {
+       "t": "HSK四级非通过不行。",
+       "ok": false,
+       "why": "定型は<z>非…不可</z>。<z>不行</z>とは組みません。"
+      },
+      {
+       "t": "HSK四级不通过非可。",
+       "ok": false,
+       "why": "語順が誤り。<z>非通过不可</z>とします。"
+      },
+      {
+       "t": "HSK四级非不可通过。",
+       "ok": false,
+       "why": "語順が誤り。<z>非＋動詞＋不可</z>の順です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・一就",
+     "q": "次の日本語に合う正しい文は？\n「家に着いたらすぐ連絡します」",
+     "opts": [
+      {
+       "t": "我一到家就联系你。",
+       "ok": true,
+       "why": "正解。<z>一A就B</z>で「AするとすぐB」。"
+      },
+      {
+       "t": "我一到家才联系你。",
+       "ok": false,
+       "why": "<z>才</z>は「やっと（遅い）」。「すぐ」は<z>就</z>です。"
+      },
+      {
+       "t": "我就到家一联系你。",
+       "ok": false,
+       "why": "語順が誤り。<z>一到家就联系</z>とします。"
+      },
+      {
+       "t": "一我到家就联系你。",
+       "ok": false,
+       "why": "語順が誤り。<z>我一到家</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・一就",
+     "q": "次の日本語に合う正しい文は？\n「会社に着くとすぐ会議です」",
+     "opts": [
+      {
+       "t": "我一到公司就开会。",
+       "ok": true,
+       "why": "正解。<z>一…就…</z>で動作の直後を表します。"
+      },
+      {
+       "t": "我一到公司才开会。",
+       "ok": false,
+       "why": "<z>才</z>は「やっと（遅い）」。「すぐ」は<z>就</z>です。"
+      },
+      {
+       "t": "我到公司一就开会。",
+       "ok": false,
+       "why": "語順が誤り。<z>一到公司就开会</z>とします。"
+      },
+      {
+       "t": "我一就到公司开会。",
+       "ok": false,
+       "why": "語順が誤り。<z>一</z>と<z>就</z>は各動作の前に分けます。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "不要",
+     "太",
+     "依赖",
+     "翻译",
+     "软件"
+    ],
+    "answer": "不要太依赖翻译软件。",
+    "why": "<z>不要太＋動詞＋目的語</z>で「〜しすぎないで」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "翻訳ソフトに頼りすぎないでください。",
+     "answer": "不要太依赖翻译软件。"
+    },
+    {
+     "prompt": "この問題は今日どうしても解決しなければなりません。",
+     "answer": "这个问题今天非解决不可。"
+    }
+   ]
+  },
+  "23": {
+   "vocab": [
+    "突然",
+    "原来",
+    "后来",
+    "首先",
+    "最后"
+   ],
+   "grammar": [
+    "V起来(印象)",
+    "V下去(継続)",
+    "V下来(記録)"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>突然</z>」の意味は？",
+     "opts": [
+      {
+       "t": "突然・急に",
+       "ok": true,
+       "why": "正解。予期せず起こる様子。例：<z>天气突然变冷</z>（天気が急に寒くなる）。"
+      },
+      {
+       "t": "なるほど・もともと",
+       "ok": false,
+       "why": "これは<z>原来</z>です。"
+      },
+      {
+       "t": "その後",
+       "ok": false,
+       "why": "これは<z>后来</z>です。"
+      },
+      {
+       "t": "まず",
+       "ok": false,
+       "why": "これは<z>首先</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>原来</z>」の意味は？",
+     "opts": [
+      {
+       "t": "なるほど・もともと",
+       "ok": true,
+       "why": "正解。気づき「なんだ〜だったのか」。例：<z>原来是这个意思</z>（なるほどこういう意味か）。"
+      },
+      {
+       "t": "その後",
+       "ok": false,
+       "why": "これは<z>后来</z>です。"
+      },
+      {
+       "t": "まず",
+       "ok": false,
+       "why": "これは<z>首先</z>です。"
+      },
+      {
+       "t": "最後に",
+       "ok": false,
+       "why": "これは<z>最后</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　我慢慢习惯了上海生活。</z>（その後、慣れた）",
+     "opts": [
+      {
+       "t": "后来",
+       "ok": true,
+       "why": "正解。過去のある時点の「その後」は<z>后来</z>です。"
+      },
+      {
+       "t": "首先",
+       "ok": false,
+       "why": "<z>首先</z>は「まず」で文意に合いません。"
+      },
+      {
+       "t": "突然",
+       "ok": false,
+       "why": "<z>突然</z>は「急に」で意味が異なります。"
+      },
+      {
+       "t": "原来",
+       "ok": false,
+       "why": "<z>原来</z>は「なるほど」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　，我们确认一下时间。</z>（まず時間を確認）",
+     "opts": [
+      {
+       "t": "首先",
+       "ok": true,
+       "why": "正解。手順の最初は<z>首先</z>です。"
+      },
+      {
+       "t": "最后",
+       "ok": false,
+       "why": "<z>最后</z>は「最後に」で逆の位置です。"
+      },
+      {
+       "t": "后来",
+       "ok": false,
+       "why": "<z>后来</z>は過去の「その後」で文意に合いません。"
+      },
+      {
+       "t": "突然",
+       "ok": false,
+       "why": "<z>突然</z>は「急に」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V起来",
+     "q": "次の日本語に合う正しい文は？\n「この料理は見た目がおいしそうです」",
+     "opts": [
+      {
+       "t": "这个菜看起来很好吃。",
+       "ok": true,
+       "why": "正解。<z>看起来</z>で「見た感じ〜そうだ」と印象を述べます。"
+      },
+      {
+       "t": "这个菜看下去很好吃。",
+       "ok": false,
+       "why": "<z>下去</z>は「し続ける」。印象は<z>起来</z>です。"
+      },
+      {
+       "t": "这个菜看下来很好吃。",
+       "ok": false,
+       "why": "<z>下来</z>は記録・完了寄り。印象は<z>起来</z>です。"
+      },
+      {
+       "t": "这个菜起来看很好吃。",
+       "ok": false,
+       "why": "語順が誤り。<z>看起来</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V下去",
+     "q": "次の日本語に合う正しい文は？\n「この習慣を続けたいです」",
+     "opts": [
+      {
+       "t": "我想把这个习惯坚持下去。",
+       "ok": true,
+       "why": "正解。<z>下去</z>で「〜し続ける」と継続を表します。"
+      },
+      {
+       "t": "我想把这个习惯坚持起来。",
+       "ok": false,
+       "why": "<z>起来</z>は印象・開始。継続は<z>下去</z>です。"
+      },
+      {
+       "t": "我想把这个习惯坚持下来。",
+       "ok": false,
+       "why": "<z>下来</z>は記録・固定寄り。継続は<z>下去</z>です。"
+      },
+      {
+       "t": "我想把这个习惯下去坚持。",
+       "ok": false,
+       "why": "語順が誤り。<z>坚持下去</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V下来",
+     "q": "次の日本語に合う正しい文は？\n「新しい単語を書き留めました」",
+     "opts": [
+      {
+       "t": "我把新单词写下来了。",
+       "ok": true,
+       "why": "正解。<z>下来</z>で「書いて残す」と記録を表します。"
+      },
+      {
+       "t": "我把新单词写下去了。",
+       "ok": false,
+       "why": "<z>下去</z>は「し続ける」。書き留めは<z>下来</z>です。"
+      },
+      {
+       "t": "我把新单词写起来了。",
+       "ok": false,
+       "why": "<z>起来</z>は印象・開始で、記録にはなりません。"
+      },
+      {
+       "t": "我把新单词下来写了。",
+       "ok": false,
+       "why": "語順が誤り。<z>写下来</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V起来",
+     "q": "次の日本語に合う正しい文は？\n「この文法は聞いた感じ少し難しそうです」",
+     "opts": [
+      {
+       "t": "这个语法听起来有点儿难。",
+       "ok": true,
+       "why": "正解。<z>听起来</z>で「聞いた感じ〜そうだ」と印象を述べます。"
+      },
+      {
+       "t": "这个语法听下去有点儿难。",
+       "ok": false,
+       "why": "<z>下去</z>は「聞き続ける」。印象は<z>起来</z>です。"
+      },
+      {
+       "t": "这个语法听下来有点儿难。",
+       "ok": false,
+       "why": "<z>下来</z>は記録・完了寄り。印象は<z>起来</z>です。"
+      },
+      {
+       "t": "这个语法起来听有点儿难。",
+       "ok": false,
+       "why": "語順が誤り。<z>听起来</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "请",
+     "把",
+     "这个句子",
+     "记",
+     "下来"
+    ],
+    "answer": "请把这个句子记下来。",
+    "why": "<z>把＋目的語＋動詞＋下来</z>で「〜を書き留める」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "なるほど、この単語はこういう意味だったのですね。",
+     "answer": "原来这个词是这个意思。"
+    },
+    {
+     "prompt": "中国語を学び続けたいです。",
+     "answer": "我想把中文学下去。"
+    }
+   ]
+  },
+  "24": {
+   "vocab": [
+    "另外",
+    "而且",
+    "不过",
+    "尤其",
+    "甚至"
+   ],
+   "grammar": [
+    "V错",
+    "V清楚",
+    "V懂"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>甚至</z>」の意味は？",
+     "opts": [
+      {
+       "t": "〜さえ",
+       "ok": true,
+       "why": "正解。極端な例を強調。例：<z>甚至没时间吃饭</z>（食事の時間さえない）。"
+      },
+      {
+       "t": "特に",
+       "ok": false,
+       "why": "これは<z>尤其</z>です。"
+      },
+      {
+       "t": "さらに・しかも",
+       "ok": false,
+       "why": "これは<z>而且</z>です。"
+      },
+      {
+       "t": "でも・ただし",
+       "ok": false,
+       "why": "これは<z>不过</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>不过</z>」の意味は？",
+     "opts": [
+      {
+       "t": "でも・ただし（逆接）",
+       "ok": true,
+       "why": "正解。前を受けて軽く逆を言う。例：<z>不错，不过有点儿贵</z>（良いが少し高い）。"
+      },
+      {
+       "t": "さらに・しかも",
+       "ok": false,
+       "why": "これは<z>而且</z>です。"
+      },
+      {
+       "t": "それから・別に",
+       "ok": false,
+       "why": "これは<z>另外</z>です。"
+      },
+      {
+       "t": "特に",
+       "ok": false,
+       "why": "これは<z>尤其</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这家店很近，　味道不错。</z>（近いし、味も良い）",
+     "opts": [
+      {
+       "t": "而且",
+       "ok": true,
+       "why": "正解。良い点を重ねる順接は<z>而且</z>です。"
+      },
+      {
+       "t": "不过",
+       "ok": false,
+       "why": "<z>不过</z>は逆接。良い点を重ねるのは<z>而且</z>です。"
+      },
+      {
+       "t": "尤其",
+       "ok": false,
+       "why": "<z>尤其</z>は「特に」で文意に合いません。"
+      },
+      {
+       "t": "甚至",
+       "ok": false,
+       "why": "<z>甚至</z>は「〜さえ」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我　想提高口语。</z>（特に会話力を高めたい）",
+     "opts": [
+      {
+       "t": "尤其",
+       "ok": true,
+       "why": "正解。「とりわけ・特に」は<z>尤其</z>です。"
+      },
+      {
+       "t": "甚至",
+       "ok": false,
+       "why": "<z>甚至</z>は「〜さえ」で文意に合いません。"
+      },
+      {
+       "t": "另外",
+       "ok": false,
+       "why": "<z>另外</z>は「それから」で意味が異なります。"
+      },
+      {
+       "t": "不过",
+       "ok": false,
+       "why": "<z>不过</z>は「でも」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V错",
+     "q": "次の日本語に合う正しい文は？\n「聞き間違えました」",
+     "opts": [
+      {
+       "t": "我听错了。",
+       "ok": true,
+       "why": "正解。<z>動詞＋错</z>で「〜し間違える」。"
+      },
+      {
+       "t": "我听懂了。",
+       "ok": false,
+       "why": "<z>听懂</z>は「聞いて理解できた」。間違いは<z>听错</z>です。"
+      },
+      {
+       "t": "我听清楚了。",
+       "ok": false,
+       "why": "<z>听清楚</z>は「はっきり聞こえた」。間違いは<z>听错</z>です。"
+      },
+      {
+       "t": "我错听了。",
+       "ok": false,
+       "why": "語順が誤り。<z>听错</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V清楚",
+     "q": "次の日本語に合う正しい文は？\n「もう少しはっきり説明してください」",
+     "opts": [
+      {
+       "t": "请说清楚一点。",
+       "ok": true,
+       "why": "正解。<z>動詞＋清楚</z>で「はっきり〜する」。"
+      },
+      {
+       "t": "请说错一点。",
+       "ok": false,
+       "why": "<z>说错</z>は「言い間違える」。はっきりは<z>说清楚</z>です。"
+      },
+      {
+       "t": "请说懂一点。",
+       "ok": false,
+       "why": "<z>说懂</z>という言い方はしません。はっきりは<z>说清楚</z>です。"
+      },
+      {
+       "t": "请清楚说一点。",
+       "ok": false,
+       "why": "語順が誤り。<z>说清楚</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V懂",
+     "q": "次の日本語に合う正しい文は？\n「彼の中国語を理解できません」",
+     "opts": [
+      {
+       "t": "我听不懂他的中文。",
+       "ok": true,
+       "why": "正解。<z>听不懂</z>で「聞いても理解できない」。"
+      },
+      {
+       "t": "我听不清楚他的中文。",
+       "ok": false,
+       "why": "<z>听不清楚</z>は「音がはっきり聞こえない」。理解の不可は<z>听不懂</z>です。"
+      },
+      {
+       "t": "我听不错他的中文。",
+       "ok": false,
+       "why": "<z>听不错</z>という言い方はしません。理解の不可は<z>听不懂</z>です。"
+      },
+      {
+       "t": "我不听懂他的中文。",
+       "ok": false,
+       "why": "<z>不</z>の位置が誤り。<z>听不懂</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V错",
+     "q": "次の日本語に合う正しい文は？\n「この字を書き間違えました」",
+     "opts": [
+      {
+       "t": "我把这个字写错了。",
+       "ok": true,
+       "why": "正解。<z>写错</z>で「書き間違える」。"
+      },
+      {
+       "t": "我把这个字写清楚了。",
+       "ok": false,
+       "why": "<z>写清楚</z>は「はっきり書いた」。間違いは<z>写错</z>です。"
+      },
+      {
+       "t": "我把这个字写懂了。",
+       "ok": false,
+       "why": "<z>写懂</z>という言い方はしません。間違いは<z>写错</z>です。"
+      },
+      {
+       "t": "我把这个字错写了。",
+       "ok": false,
+       "why": "語順が誤り。<z>写错</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我",
+     "把",
+     "这个字",
+     "写错",
+     "了"
+    ],
+    "answer": "我把这个字写错了。",
+    "why": "<z>把＋目的語＋動詞＋错＋了</z>で「〜を〜し間違えた」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "はっきり聞き取れませんでした。",
+     "answer": "我没听清楚。"
+    },
+    {
+     "prompt": "この文は読んで理解できました。",
+     "answer": "这个句子我看懂了。"
+    }
+   ]
+  },
+  "25": {
+   "vocab": [
+    "由于",
+    "因此",
+    "否则",
+    "只要",
+    "无论"
+   ],
+   "grammar": [
+    "多V一点儿",
+    "少V一点儿",
+    "形容詞一点儿"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>否则</z>」の意味は？",
+     "opts": [
+      {
+       "t": "さもないと",
+       "ok": true,
+       "why": "正解。そうしないと悪い結果になる、を導く。例：<z>早点出门，否则会迟到</z>（早く出ないと遅刻する）。"
+      },
+      {
+       "t": "〜のため",
+       "ok": false,
+       "why": "これは<z>由于</z>です。"
+      },
+      {
+       "t": "したがって",
+       "ok": false,
+       "why": "これは<z>因此</z>です。"
+      },
+      {
+       "t": "〜さえすれば",
+       "ok": false,
+       "why": "これは<z>只要</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>无论</z>」の意味は？",
+     "opts": [
+      {
+       "t": "〜に関わらず",
+       "ok": true,
+       "why": "正解。条件が変わっても結果は同じ。例：<z>无论多忙都坚持</z>（どんなに忙しくても続ける）。"
+      },
+      {
+       "t": "〜さえすれば",
+       "ok": false,
+       "why": "これは<z>只要</z>です。"
+      },
+      {
+       "t": "〜のため",
+       "ok": false,
+       "why": "これは<z>由于</z>です。"
+      },
+      {
+       "t": "したがって",
+       "ok": false,
+       "why": "これは<z>因此</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　下雨，活动取消了。</z>（雨のため中止）",
+     "opts": [
+      {
+       "t": "由于",
+       "ok": true,
+       "why": "正解。原因・理由「〜のため」は<z>由于</z>です。"
+      },
+      {
+       "t": "因此",
+       "ok": false,
+       "why": "<z>因此</z>は「したがって」で結果を導きます。原因側は<z>由于</z>です。"
+      },
+      {
+       "t": "否则",
+       "ok": false,
+       "why": "<z>否则</z>は「さもないと」で文意に合いません。"
+      },
+      {
+       "t": "无论",
+       "ok": false,
+       "why": "<z>无论</z>は「〜に関わらず」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　每天练习，就会有进步。</z>（練習さえすれば進歩）",
+     "opts": [
+      {
+       "t": "只要",
+       "ok": true,
+       "why": "正解。十分条件「〜さえすれば」は<z>只要</z>（<z>就</z>と呼応）です。"
+      },
+      {
+       "t": "无论",
+       "ok": false,
+       "why": "<z>无论</z>は「〜に関わらず」で文意に合いません。"
+      },
+      {
+       "t": "由于",
+       "ok": false,
+       "why": "<z>由于</z>は「〜のため」で意味が異なります。"
+      },
+      {
+       "t": "否则",
+       "ok": false,
+       "why": "<z>否则</z>は「さもないと」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・多V一点儿",
+     "q": "次の日本語に合う正しい文は？\n「もう少し中国語を話してもいいですよ」",
+     "opts": [
+      {
+       "t": "你可以多说一点儿中文。",
+       "ok": true,
+       "why": "正解。<z>多＋動詞＋一点儿</z>で「もう少し多く〜する」。"
+      },
+      {
+       "t": "你可以说多一点儿中文。",
+       "ok": false,
+       "why": "<z>多</z>の位置が誤り。<z>多说一点儿</z>とします。"
+      },
+      {
+       "t": "你可以多一点儿说中文。",
+       "ok": false,
+       "why": "語順が誤り。<z>多说一点儿中文</z>とします。"
+      },
+      {
+       "t": "你可以少说一点儿中文。",
+       "ok": false,
+       "why": "<z>少</z>は「控える」で意味が逆になります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・少V一点儿",
+     "q": "次の日本語に合う正しい文は？\n「唐辛子を少し少なめにしてください」",
+     "opts": [
+      {
+       "t": "请少放一点儿辣椒。",
+       "ok": true,
+       "why": "正解。<z>少＋動詞＋一点儿</z>で「控えめに〜する」。"
+      },
+      {
+       "t": "请放少一点儿辣椒。",
+       "ok": false,
+       "why": "<z>少</z>の位置が誤り。<z>少放一点儿</z>とします。"
+      },
+      {
+       "t": "请多放一点儿辣椒。",
+       "ok": false,
+       "why": "<z>多</z>は「増やす」で意味が逆になります。"
+      },
+      {
+       "t": "请少一点儿放辣椒。",
+       "ok": false,
+       "why": "語順が誤り。<z>少放一点儿辣椒</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・形容詞一点儿",
+     "q": "次の日本語に合う正しい文は？\n「少しゆっくり話してください」",
+     "opts": [
+      {
+       "t": "请说慢一点儿。",
+       "ok": true,
+       "why": "正解。<z>形容詞＋一点儿</z>で程度を調整します。"
+      },
+      {
+       "t": "请说一点儿慢。",
+       "ok": false,
+       "why": "語順が誤り。<z>慢一点儿</z>とします。"
+      },
+      {
+       "t": "请说慢有点儿。",
+       "ok": false,
+       "why": "<z>有点儿</z>は不満の「少し」。依頼の程度調整は<z>一点儿</z>です。"
+      },
+      {
+       "t": "请慢说一点儿。",
+       "ok": false,
+       "why": "<z>说慢一点儿</z>が自然です。<z>慢说</z>はこの場面では不自然です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・形容詞一点儿",
+     "q": "次の日本語に合う正しい文は？\n「少し小さい声で話してください」",
+     "opts": [
+      {
+       "t": "请小声一点儿。",
+       "ok": true,
+       "why": "正解。<z>形容詞＋一点儿</z>で「もう少し〜に」と程度を調整します。"
+      },
+      {
+       "t": "请一点儿小声。",
+       "ok": false,
+       "why": "語順が誤り。<z>小声一点儿</z>とします。"
+      },
+      {
+       "t": "请小声有点儿。",
+       "ok": false,
+       "why": "<z>有点儿</z>は不満の「少し」。依頼の程度調整は<z>一点儿</z>です。"
+      },
+      {
+       "t": "请小一点儿声。",
+       "ok": false,
+       "why": "<z>小声</z>はひとまとまり。間に<z>一点儿</z>を挟まず<z>小声一点儿</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "你",
+     "可以",
+     "多说",
+     "一点儿",
+     "中文"
+    ],
+    "answer": "你可以多说一点儿中文。",
+    "why": "<z>多说＋一点儿＋目的語</z>で「もう少し多く話す」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "早めに出ないと遅刻します。",
+     "answer": "你要早点出门，否则会迟到。"
+    },
+    {
+     "prompt": "唐辛子を少し少なめにしてください。",
+     "answer": "请少放一点儿辣椒。"
+    }
+   ]
+  },
+  "26": {
+   "vocab": [
+    "附近",
+    "周围",
+    "距离",
+    "入口",
+    "出口"
+   ],
+   "grammar": [
+    "V一下",
+    "V一V",
+    "V着V着"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>附近</z>」の意味は？",
+     "opts": [
+      {
+       "t": "近く・付近",
+       "ok": true,
+       "why": "正解。ある地点のそば。例：<z>公司附近</z>（会社の近く）。"
+      },
+      {
+       "t": "周辺・まわり",
+       "ok": false,
+       "why": "これは<z>周围</z>です。"
+      },
+      {
+       "t": "距離",
+       "ok": false,
+       "why": "これは<z>距离</z>です。"
+      },
+      {
+       "t": "入口",
+       "ok": false,
+       "why": "これは<z>入口</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>距离</z>」の意味は？",
+     "opts": [
+      {
+       "t": "距離",
+       "ok": true,
+       "why": "正解。2点間の隔たり。例：<z>距离地铁站不远</z>（地下鉄駅から遠くない）。"
+      },
+      {
+       "t": "近く",
+       "ok": false,
+       "why": "これは<z>附近</z>です。"
+      },
+      {
+       "t": "出口",
+       "ok": false,
+       "why": "これは<z>出口</z>です。"
+      },
+      {
+       "t": "周辺",
+       "ok": false,
+       "why": "これは<z>周围</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这个小区　很安静。</z>（このエリアの周辺は静か）",
+     "opts": [
+      {
+       "t": "周围",
+       "ok": true,
+       "why": "正解。あるものを取り巻く一帯は<z>周围</z>です。"
+      },
+      {
+       "t": "距离",
+       "ok": false,
+       "why": "<z>距离</z>は「距離」で文意に合いません。"
+      },
+      {
+       "t": "入口",
+       "ok": false,
+       "why": "<z>入口</z>は「入口」で意味が異なります。"
+      },
+      {
+       "t": "出口",
+       "ok": false,
+       "why": "<z>出口</z>は「出口」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>地铁　在前面。</z>（地下鉄の入口は前にある）",
+     "opts": [
+      {
+       "t": "入口",
+       "ok": true,
+       "why": "正解。入る場所は<z>入口</z>です。"
+      },
+      {
+       "t": "出口",
+       "ok": false,
+       "why": "<z>出口</z>は出る場所で、逆になります。"
+      },
+      {
+       "t": "周围",
+       "ok": false,
+       "why": "<z>周围</z>は「周辺」で文意に合いません。"
+      },
+      {
+       "t": "距离",
+       "ok": false,
+       "why": "<z>距离</z>は「距離」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V一下",
+     "q": "次の日本語に合う正しい文は？\n「少し相談したいです」",
+     "opts": [
+      {
+       "t": "我想商量一下。",
+       "ok": true,
+       "why": "正解。<z>動詞＋一下</z>で「ちょっと〜する」と動作を軽くします。"
+      },
+      {
+       "t": "我想一下商量。",
+       "ok": false,
+       "why": "語順が誤り。<z>商量一下</z>とします。"
+      },
+      {
+       "t": "我想商量一下下。",
+       "ok": false,
+       "why": "<z>一下下</z>という形はありません。<z>一下</z>です。"
+      },
+      {
+       "t": "我商量想一下。",
+       "ok": false,
+       "why": "語順が誤り。<z>想商量一下</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V一V",
+     "q": "次の日本語に合う正しい文は？\n「ちょっと試してみましょう」",
+     "opts": [
+      {
+       "t": "我们试一试吧。",
+       "ok": true,
+       "why": "正解。動詞＋一＋同じ動詞で「ちょっと〜してみる」。"
+      },
+      {
+       "t": "我们试试一吧。",
+       "ok": false,
+       "why": "語順が誤り。<z>试一试</z>とします。"
+      },
+      {
+       "t": "我们一试试吧。",
+       "ok": false,
+       "why": "語順が誤り。<z>试一试</z>とします。"
+      },
+      {
+       "t": "我们试了一试吧。",
+       "ok": false,
+       "why": "<z>了</z>は不要です。<z>试一试</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V着V着",
+     "q": "次の日本語に合う正しい文は？\n「歩いているうちに道に迷いました」",
+     "opts": [
+      {
+       "t": "我走着走着就迷路了。",
+       "ok": true,
+       "why": "正解。<z>動詞着＋動詞着</z>で「〜しているうちに」を表します。"
+      },
+      {
+       "t": "我走一走就迷路了。",
+       "ok": false,
+       "why": "<z>走一走</z>は「ちょっと歩く」。「〜しているうちに」は<z>走着走着</z>です。"
+      },
+      {
+       "t": "我走着就走着迷路了。",
+       "ok": false,
+       "why": "語順が誤り。<z>走着走着就</z>とします。"
+      },
+      {
+       "t": "我走走着着就迷路了。",
+       "ok": false,
+       "why": "語順が誤り。<z>走着走着</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V一下",
+     "q": "次の日本語に合う正しい文は？\n「ちょっと見てもらえますか」",
+     "opts": [
+      {
+       "t": "请帮我看一下。",
+       "ok": true,
+       "why": "正解。<z>看一下</z>で「ちょっと見る」と動作を軽くします。"
+      },
+      {
+       "t": "请帮我一下看。",
+       "ok": false,
+       "why": "語順が誤り。<z>看一下</z>とします。"
+      },
+      {
+       "t": "请帮看我一下。",
+       "ok": false,
+       "why": "語順が誤り。<z>帮我看一下</z>とします。"
+      },
+      {
+       "t": "请帮我看了一下。",
+       "ok": false,
+       "why": "依頼に<z>了</z>は不適です。<z>看一下</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我",
+     "听着",
+     "听着",
+     "就",
+     "懂了"
+    ],
+    "answer": "我听着听着就懂了。",
+    "why": "<z>動詞着＋動詞着＋就…了</z>で「〜しているうちに…した」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "3番出口から出てください。",
+     "answer": "请从三号出口出来。"
+    },
+    {
+     "prompt": "聞いているうちに分かるようになりました。",
+     "answer": "我听着听着就懂了。"
+    }
+   ]
+  },
+  "27": {
+   "vocab": [
+    "楼下",
+    "楼上",
+    "对面",
+    "旁边",
+    "里面"
+   ],
+   "grammar": [
+    "从到",
+    "離",
+    "往走"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>对面</z>」の意味は？",
+     "opts": [
+      {
+       "t": "向かい",
+       "ok": true,
+       "why": "正解。正面に向き合う側。例：<z>在公司对面</z>（会社の向かい）。"
+      },
+      {
+       "t": "隣",
+       "ok": false,
+       "why": "これは<z>旁边</z>です。"
+      },
+      {
+       "t": "階下",
+       "ok": false,
+       "why": "これは<z>楼下</z>です。"
+      },
+      {
+       "t": "中",
+       "ok": false,
+       "why": "これは<z>里面</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>旁边</z>」の意味は？",
+     "opts": [
+      {
+       "t": "隣・そば",
+       "ok": true,
+       "why": "正解。すぐ横。例：<z>坐在经理旁边</z>（マネージャーの隣に座る）。"
+      },
+      {
+       "t": "向かい",
+       "ok": false,
+       "why": "これは<z>对面</z>です。"
+      },
+      {
+       "t": "階上",
+       "ok": false,
+       "why": "これは<z>楼上</z>です。"
+      },
+      {
+       "t": "中",
+       "ok": false,
+       "why": "これは<z>里面</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>会议室在　。</z>（会議室は上の階）",
+     "opts": [
+      {
+       "t": "楼上",
+       "ok": true,
+       "why": "正解。上の階は<z>楼上</z>です。"
+      },
+      {
+       "t": "楼下",
+       "ok": false,
+       "why": "<z>楼下</z>は下の階で、逆になります。"
+      },
+      {
+       "t": "对面",
+       "ok": false,
+       "why": "<z>对面</z>は「向かい」で文意に合いません。"
+      },
+      {
+       "t": "里面",
+       "ok": false,
+       "why": "<z>里面</z>は「中」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>文件在包　。</z>（ファイルはカバンの中）",
+     "opts": [
+      {
+       "t": "里面",
+       "ok": true,
+       "why": "正解。内部・中は<z>里面</z>です。"
+      },
+      {
+       "t": "旁边",
+       "ok": false,
+       "why": "<z>旁边</z>は「隣」で文意に合いません。"
+      },
+      {
+       "t": "对面",
+       "ok": false,
+       "why": "<z>对面</z>は「向かい」で意味が異なります。"
+      },
+      {
+       "t": "楼上",
+       "ok": false,
+       "why": "<z>楼上</z>は「階上」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・从到",
+     "q": "次の日本語に合う正しい文は？\n「会議は9時から10時までです」",
+     "opts": [
+      {
+       "t": "会议从九点到十点。",
+       "ok": true,
+       "why": "正解。<z>从A到B</z>で「AからBまで」。"
+      },
+      {
+       "t": "会议从九点离十点。",
+       "ok": false,
+       "why": "<z>离</z>は距離。終点「まで」は<z>到</z>です。"
+      },
+      {
+       "t": "会议从九点往十点。",
+       "ok": false,
+       "why": "<z>往</z>は方向。終点「まで」は<z>到</z>です。"
+      },
+      {
+       "t": "会议到九点从十点。",
+       "ok": false,
+       "why": "<z>从</z>と<z>到</z>が逆です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・離",
+     "q": "次の日本語に合う正しい文は？\n「会社は家から遠いです」",
+     "opts": [
+      {
+       "t": "公司离我家很远。",
+       "ok": true,
+       "why": "正解。2点間の距離は<z>离</z>で表します。"
+      },
+      {
+       "t": "公司从我家很远。",
+       "ok": false,
+       "why": "<z>从</z>は起点。距離の基点は<z>离</z>です。"
+      },
+      {
+       "t": "公司在我家很远。",
+       "ok": false,
+       "why": "<z>在</z>は所在。距離は<z>离</z>です。"
+      },
+      {
+       "t": "公司离很远我家。",
+       "ok": false,
+       "why": "語順が誤り。<z>离我家很远</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・往走",
+     "q": "次の日本語に合う正しい文は？\n「右へ曲がってください」",
+     "opts": [
+      {
+       "t": "请往右拐。",
+       "ok": true,
+       "why": "正解。<z>往＋方向</z>で進む向きを表します。"
+      },
+      {
+       "t": "请往拐右。",
+       "ok": false,
+       "why": "語順が誤り。<z>往右拐</z>とします。"
+      },
+      {
+       "t": "请从右拐。",
+       "ok": false,
+       "why": "<z>从</z>は起点。方向は<z>往</z>です。"
+      },
+      {
+       "t": "请右往拐。",
+       "ok": false,
+       "why": "語順が誤り。<z>往右拐</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・从到",
+     "q": "次の日本語に合う正しい文は？\n「家から会社まで30分かかります」",
+     "opts": [
+      {
+       "t": "从我家到公司要半个小时。",
+       "ok": true,
+       "why": "正解。<z>从A到B</z>で範囲を示します。"
+      },
+      {
+       "t": "离我家到公司要半个小时。",
+       "ok": false,
+       "why": "<z>离</z>は距離。起点は<z>从</z>です。"
+      },
+      {
+       "t": "从我家离公司要半个小时。",
+       "ok": false,
+       "why": "<z>离</z>は終点に使いません。終点は<z>到</z>です。"
+      },
+      {
+       "t": "到我家从公司要半个小时。",
+       "ok": false,
+       "why": "<z>从</z>と<z>到</z>が逆です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "你",
+     "往前走",
+     "五分钟",
+     "就",
+     "到了"
+    ],
+    "answer": "你往前走五分钟就到了。",
+    "why": "<z>往＋方向＋走</z>で進む向きを示し、その後に結果を続けます。"
+   },
+   "writing": [
+    {
+     "prompt": "私はマネージャーの隣に座っています。",
+     "answer": "我坐在经理旁边。"
+    },
+    {
+     "prompt": "私の家は地下鉄駅から近いです。",
+     "answer": "我家离地铁站很近。"
+    }
+   ]
+  },
+  "28": {
+   "vocab": [
+    "外面",
+    "声音",
+    "消息",
+    "邮件",
+    "电话"
+   ],
+   "grammar": [
+    "存在文(地方有)",
+    "所在文(東西在)",
+    "有と在"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>消息</z>」の意味は？",
+     "opts": [
+      {
+       "t": "知らせ・メッセージ",
+       "ok": true,
+       "why": "正解。連絡や情報。例：<z>看到你的消息</z>（あなたのメッセージを見た）。"
+      },
+      {
+       "t": "音・声",
+       "ok": false,
+       "why": "これは<z>声音</z>です。"
+      },
+      {
+       "t": "メール",
+       "ok": false,
+       "why": "これは<z>邮件</z>です。"
+      },
+      {
+       "t": "電話",
+       "ok": false,
+       "why": "これは<z>电话</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>声音</z>」の意味は？",
+     "opts": [
+      {
+       "t": "音・声",
+       "ok": true,
+       "why": "正解。耳に聞こえるもの。例：<z>声音有点儿小</z>（声が少し小さい）。"
+      },
+      {
+       "t": "知らせ",
+       "ok": false,
+       "why": "これは<z>消息</z>です。"
+      },
+      {
+       "t": "外",
+       "ok": false,
+       "why": "これは<z>外面</z>です。"
+      },
+      {
+       "t": "メール",
+       "ok": false,
+       "why": "これは<z>邮件</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我已经把　发出去了。</z>（メールを送った）",
+     "opts": [
+      {
+       "t": "邮件",
+       "ok": true,
+       "why": "正解。<z>发邮件</z>（メールを送る）の<z>邮件</z>です。"
+      },
+      {
+       "t": "消息",
+       "ok": false,
+       "why": "<z>消息</z>は短い知らせ。ビジネスの送信物としては<z>邮件</z>が自然です。"
+      },
+      {
+       "t": "电话",
+       "ok": false,
+       "why": "<z>电话</z>は「電話」で<z>发出去</z>と合いません。"
+      },
+      {
+       "t": "声音",
+       "ok": false,
+       "why": "<z>声音</z>は「音・声」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我下午给你回　。</z>（電話を折り返す）",
+     "opts": [
+      {
+       "t": "电话",
+       "ok": true,
+       "why": "正解。<z>回电话</z>（電話を折り返す）の<z>电话</z>です。"
+      },
+      {
+       "t": "邮件",
+       "ok": false,
+       "why": "<z>邮件</z>は「メール」で<z>回电话</z>の文脈に合いません。"
+      },
+      {
+       "t": "消息",
+       "ok": false,
+       "why": "<z>消息</z>は「知らせ」で意味が異なります。"
+      },
+      {
+       "t": "声音",
+       "ok": false,
+       "why": "<z>声音</z>は「音・声」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・存在文",
+     "q": "次の日本語に合う正しい文は？\n「机の上にスマホがあります」",
+     "opts": [
+      {
+       "t": "桌子上有手机。",
+       "ok": true,
+       "why": "正解。場所＋有＋もので「場所に〜がある」。"
+      },
+      {
+       "t": "桌子上在手机。",
+       "ok": false,
+       "why": "<z>在</z>は所在。場所に何があるかは<z>有</z>です。"
+      },
+      {
+       "t": "手机有桌子上。",
+       "ok": false,
+       "why": "語順が誤り。場所を先に置きます。"
+      },
+      {
+       "t": "桌子上手机有。",
+       "ok": false,
+       "why": "語順が誤り。<z>有手机</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・所在文",
+     "q": "次の日本語に合う正しい文は？\n「会議室は上の階にあります」",
+     "opts": [
+      {
+       "t": "会议室在楼上。",
+       "ok": true,
+       "why": "正解。特定のもの＋在＋場所で「〜は…にある」。"
+      },
+      {
+       "t": "会议室有楼上。",
+       "ok": false,
+       "why": "<z>有</z>は存在文。特定のものの所在は<z>在</z>です。"
+      },
+      {
+       "t": "楼上在会议室。",
+       "ok": false,
+       "why": "主語が逆。「会議室は上の階にある」が正しい関係です。"
+      },
+      {
+       "t": "会议室楼上在。",
+       "ok": false,
+       "why": "語順が誤り。<z>在楼上</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・有と在",
+     "q": "次の日本語に合う正しい文は？\n「コーヒーは机の上にあります」",
+     "opts": [
+      {
+       "t": "咖啡在桌子上。",
+       "ok": true,
+       "why": "正解。特定の「コーヒーは」の所在なので<z>在</z>です。"
+      },
+      {
+       "t": "咖啡有桌子上。",
+       "ok": false,
+       "why": "<z>有</z>は存在文。特定のものの所在は<z>在</z>です。"
+      },
+      {
+       "t": "桌子上在咖啡。",
+       "ok": false,
+       "why": "主客が逆。<z>咖啡在桌子上</z>とします。"
+      },
+      {
+       "t": "咖啡桌子上在。",
+       "ok": false,
+       "why": "語順が誤り。<z>在桌子上</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・存在文",
+     "q": "次の日本語に合う正しい文は？\n「会社の近くに多くのレストランがあります」",
+     "opts": [
+      {
+       "t": "公司附近有很多饭店。",
+       "ok": true,
+       "why": "正解。場所＋有＋ものの存在文です。"
+      },
+      {
+       "t": "公司附近在很多饭店。",
+       "ok": false,
+       "why": "<z>在</z>は所在。場所に何があるかは<z>有</z>です。"
+      },
+      {
+       "t": "很多饭店有公司附近。",
+       "ok": false,
+       "why": "語順が誤り。場所を先に置きます。"
+      },
+      {
+       "t": "公司附近很多饭店有。",
+       "ok": false,
+       "why": "語順が誤り。<z>有很多饭店</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我的",
+     "手机",
+     "在",
+     "桌子",
+     "上"
+    ],
+    "answer": "我的手机在桌子上。",
+    "why": "特定のもの＋在＋場所で所在を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "今あなたのメッセージを見ました。",
+     "answer": "我刚看到你的消息。"
+    },
+    {
+     "prompt": "机の上にコーヒーが一杯あります。",
+     "answer": "桌子上有一杯咖啡。"
+    }
+   ]
+  },
+  "29": {
+   "vocab": [
+    "微信",
+    "手机",
+    "电脑",
+    "表格",
+    "文件"
+   ],
+   "grammar": [
+    "時間場所動作",
+    "用＋言語",
+    "用＋工具"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>电脑</z>」の意味は？",
+     "opts": [
+      {
+       "t": "パソコン",
+       "ok": true,
+       "why": "正解。例：<z>电脑突然坏了</z>（パソコンが急に壊れた）。"
+      },
+      {
+       "t": "スマホ",
+       "ok": false,
+       "why": "これは<z>手机</z>です。"
+      },
+      {
+       "t": "表",
+       "ok": false,
+       "why": "これは<z>表格</z>です。"
+      },
+      {
+       "t": "ファイル",
+       "ok": false,
+       "why": "これは<z>文件</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>表格</z>」の意味は？",
+     "opts": [
+      {
+       "t": "表・フォーム",
+       "ok": true,
+       "why": "正解。行と列の表。例：<z>重新填写表格</z>（表を書き直す）。"
+      },
+      {
+       "t": "ファイル",
+       "ok": false,
+       "why": "これは<z>文件</z>です。"
+      },
+      {
+       "t": "パソコン",
+       "ok": false,
+       "why": "これは<z>电脑</z>です。"
+      },
+      {
+       "t": "WeChat",
+       "ok": false,
+       "why": "これは<z>微信</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我的　快没电了。</z>（電池が切れそう）",
+     "opts": [
+      {
+       "t": "手机",
+       "ok": true,
+       "why": "正解。携帯端末で電池切れの対象は<z>手机</z>が自然です。"
+      },
+      {
+       "t": "表格",
+       "ok": false,
+       "why": "<z>表格</z>は「表」で<z>没电</z>と合いません。"
+      },
+      {
+       "t": "文件",
+       "ok": false,
+       "why": "<z>文件</z>は「ファイル」で文意に合いません。"
+      },
+      {
+       "t": "微信",
+       "ok": false,
+       "why": "<z>微信</z>はアプリ名で<z>没电</z>と合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我们　联系吧。</z>（WeChatで連絡しよう）",
+     "opts": [
+      {
+       "t": "微信",
+       "ok": true,
+       "why": "正解。連絡手段のアプリは<z>微信</z>です。"
+      },
+      {
+       "t": "电脑",
+       "ok": false,
+       "why": "<z>电脑</z>は「パソコン」で文意に合いません。"
+      },
+      {
+       "t": "表格",
+       "ok": false,
+       "why": "<z>表格</z>は「表」で意味が異なります。"
+      },
+      {
+       "t": "文件",
+       "ok": false,
+       "why": "<z>文件</z>は「ファイル」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・語順",
+     "q": "次の日本語に合う正しい文は？\n「今夜家で中国語を勉強します」",
+     "opts": [
+      {
+       "t": "我今晚在家学中文。",
+       "ok": true,
+       "why": "正解。中国語は<z>時間→場所→動作</z>の順が自然です。"
+      },
+      {
+       "t": "我在家今晚学中文。",
+       "ok": false,
+       "why": "語順が誤り。時間（今晚）を場所（在家）より前に置きます。"
+      },
+      {
+       "t": "今晚我学中文在家。",
+       "ok": false,
+       "why": "語順が誤り。場所は動作の前に置きます。"
+      },
+      {
+       "t": "我学中文今晚在家。",
+       "ok": false,
+       "why": "語順が誤り。動作を最後に置きます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・用＋言語",
+     "q": "次の日本語に合う正しい文は？\n「英語で説明してもいいですか」",
+     "opts": [
+      {
+       "t": "可以用英文解释吗？",
+       "ok": true,
+       "why": "正解。<z>用＋言語＋動詞</z>で「〜語で〜する」。"
+      },
+      {
+       "t": "可以英文用解释吗？",
+       "ok": false,
+       "why": "語順が誤り。<z>用英文解释</z>とします。"
+      },
+      {
+       "t": "可以用解释英文吗？",
+       "ok": false,
+       "why": "語順が誤り。<z>用英文解释</z>とします。"
+      },
+      {
+       "t": "可以用英文解释吧？",
+       "ok": false,
+       "why": "<z>吧</z>は提案。許可を尋ねるのは<z>吗</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・用＋工具",
+     "q": "次の日本語に合う正しい文は？\n「パソコンで資料を作ります」",
+     "opts": [
+      {
+       "t": "我用电脑做资料。",
+       "ok": true,
+       "why": "正解。<z>用＋道具＋動詞</z>で「〜を使って〜する」。"
+      },
+      {
+       "t": "我电脑用做资料。",
+       "ok": false,
+       "why": "語順が誤り。<z>用电脑做</z>とします。"
+      },
+      {
+       "t": "我做资料用电脑。",
+       "ok": false,
+       "why": "語順が誤り。道具は動作の前に置きます。"
+      },
+      {
+       "t": "我用做资料电脑。",
+       "ok": false,
+       "why": "語順が誤り。<z>用电脑做资料</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・用＋工具",
+     "q": "次の日本語に合う正しい文は？\n「スマホでデリバリーを注文します」",
+     "opts": [
+      {
+       "t": "我用手机点外卖。",
+       "ok": true,
+       "why": "正解。<z>用＋道具＋動詞</z>の語順です。"
+      },
+      {
+       "t": "我手机用点外卖。",
+       "ok": false,
+       "why": "語順が誤り。<z>用手机点</z>とします。"
+      },
+      {
+       "t": "我点外卖用手机。",
+       "ok": false,
+       "why": "語順が誤り。道具を先に置きます。"
+      },
+      {
+       "t": "我用点外卖手机。",
+       "ok": false,
+       "why": "語順が誤り。<z>用手机点外卖</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我",
+     "想",
+     "用中文",
+     "表达",
+     "自己的想法"
+    ],
+    "answer": "我想用中文表达自己的想法。",
+    "why": "<z>用＋言語＋動詞＋目的語</z>の語順です。"
+   },
+   "writing": [
+    {
+     "prompt": "私のパソコンが急に壊れました。",
+     "answer": "我的电脑突然坏了。"
+    },
+    {
+     "prompt": "私は明日会社で会議します。",
+     "answer": "我明天在公司开会。"
+    }
+   ]
+  },
+  "30": {
+   "vocab": [
+    "礼貌",
+    "耐心",
+    "仔细",
+    "认真",
+    "马虎"
+   ],
+   "grammar": [
+    "帮＋人＋動詞",
+    "替＋人＋動詞",
+    "対有興味"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>耐心</z>」の意味は？",
+     "opts": [
+      {
+       "t": "辛抱強さ・根気",
+       "ok": true,
+       "why": "正解。じっくり待てる性質。例：<z>很有耐心</z>（とても辛抱強い）。"
+      },
+      {
+       "t": "礼儀正しさ",
+       "ok": false,
+       "why": "これは<z>礼貌</z>です。"
+      },
+      {
+       "t": "丁寧さ・細かさ",
+       "ok": false,
+       "why": "これは<z>仔细</z>です。"
+      },
+      {
+       "t": "いい加減さ",
+       "ok": false,
+       "why": "これは<z>马虎</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>马虎</z>」の意味は？",
+     "opts": [
+      {
+       "t": "いい加減・そそっかしい",
+       "ok": true,
+       "why": "正解。雑で注意が足りない様子。例：<z>不能太马虎</z>（いい加減にしてはだめ）。"
+      },
+      {
+       "t": "真面目",
+       "ok": false,
+       "why": "これは反対の<z>认真</z>です。"
+      },
+      {
+       "t": "丁寧",
+       "ok": false,
+       "why": "これは<z>仔细</z>です。"
+      },
+      {
+       "t": "辛抱強さ",
+       "ok": false,
+       "why": "これは<z>耐心</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>请　看一下合同。</z>（契約書をよく見る）",
+     "opts": [
+      {
+       "t": "仔细",
+       "ok": true,
+       "why": "正解。細部まで丁寧にの意味は<z>仔细</z>です。"
+      },
+      {
+       "t": "礼貌",
+       "ok": false,
+       "why": "<z>礼貌</z>は「礼儀正しい」で文意に合いません。"
+      },
+      {
+       "t": "耐心",
+       "ok": false,
+       "why": "<z>耐心</z>は「辛抱強さ」で意味が異なります。"
+      },
+      {
+       "t": "马虎",
+       "ok": false,
+       "why": "<z>马虎</z>は「いい加減」で逆の意味になります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他学习中文很　。</z>（真面目に勉強する）",
+     "opts": [
+      {
+       "t": "认真",
+       "ok": true,
+       "why": "正解。真剣で熱心な様子は<z>认真</z>です。"
+      },
+      {
+       "t": "马虎",
+       "ok": false,
+       "why": "<z>马虎</z>は「いい加減」で逆の意味になります。"
+      },
+      {
+       "t": "礼貌",
+       "ok": false,
+       "why": "<z>礼貌</z>は「礼儀正しい」で文意に合いません。"
+      },
+      {
+       "t": "耐心",
+       "ok": false,
+       "why": "<z>耐心</z>は「辛抱強さ」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・帮",
+     "q": "次の日本語に合う正しい文は？\n「ちょっと見てもらえますか」",
+     "opts": [
+      {
+       "t": "你能帮我看一下吗？",
+       "ok": true,
+       "why": "正解。<z>帮＋人＋動詞</z>で「（人）のために〜する」。"
+      },
+      {
+       "t": "你能帮看我一下吗？",
+       "ok": false,
+       "why": "語順が誤り。<z>帮我看</z>とします。"
+      },
+      {
+       "t": "你能我帮看一下吗？",
+       "ok": false,
+       "why": "語順が誤り。<z>帮我看一下</z>とします。"
+      },
+      {
+       "t": "你能帮我一下看吗？",
+       "ok": false,
+       "why": "語順が誤り。<z>看一下</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・替",
+     "q": "次の日本語に合う正しい文は？\n「彼の代わりに資料を送ります」",
+     "opts": [
+      {
+       "t": "我替他发资料。",
+       "ok": true,
+       "why": "正解。<z>替＋人＋動詞</z>で「（人）の代わりに〜する」。"
+      },
+      {
+       "t": "我替发他资料。",
+       "ok": false,
+       "why": "語順が誤り。<z>替他发</z>とします。"
+      },
+      {
+       "t": "我他替发资料。",
+       "ok": false,
+       "why": "語順が誤り。<z>替他发资料</z>とします。"
+      },
+      {
+       "t": "我替他资料发。",
+       "ok": false,
+       "why": "語順が誤り。<z>发资料</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・対有興味",
+     "q": "次の日本語に合う正しい文は？\n「文法に興味があります」",
+     "opts": [
+      {
+       "t": "我对语法有兴趣。",
+       "ok": true,
+       "why": "正解。<z>对＋対象＋有兴趣</z>で「〜に興味がある」。"
+      },
+      {
+       "t": "我有语法对兴趣。",
+       "ok": false,
+       "why": "語順が誤り。<z>对语法有兴趣</z>とします。"
+      },
+      {
+       "t": "我对语法很兴趣。",
+       "ok": false,
+       "why": "<z>有兴趣</z>とします。<z>很兴趣</z>とは言いません。"
+      },
+      {
+       "t": "我语法对有兴趣。",
+       "ok": false,
+       "why": "語順が誤り。<z>对语法有兴趣</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・対有興味",
+     "q": "次の日本語に合う正しい文は？\n「中国文化にとても興味があります」",
+     "opts": [
+      {
+       "t": "我对中国文化很有兴趣。",
+       "ok": true,
+       "why": "正解。<z>对…很有兴趣</z>で「〜にとても興味がある」。"
+      },
+      {
+       "t": "我很有兴趣对中国文化。",
+       "ok": false,
+       "why": "語順が誤り。<z>对中国文化很有兴趣</z>とします。"
+      },
+      {
+       "t": "我对中国文化很兴趣。",
+       "ok": false,
+       "why": "<z>有</z>が必要です。<z>很有兴趣</z>とします。"
+      },
+      {
+       "t": "我中国文化对很有兴趣。",
+       "ok": false,
+       "why": "語順が誤り。<z>对中国文化</z>を先に置きます。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "你能",
+     "帮我",
+     "看",
+     "一下",
+     "吗"
+    ],
+    "answer": "你能帮我看一下吗？",
+    "why": "<z>帮＋人＋動詞＋一下</z>で「ちょっと〜してもらえますか」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "契約書をよく見てください。",
+     "answer": "请仔细看一下合同。"
+    },
+    {
+     "prompt": "中国文化にとても興味があります。",
+     "answer": "我对中国文化很有兴趣。"
+    }
+   ]
+  },
+  "31": {
+   "vocab": [
+    "清楚",
+    "简单",
+    "困难",
+    "重要",
+    "主要"
+   ],
+   "grammar": [
+    "対満足",
+    "対有帮助",
+    "在方面"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>清楚</z>」の意味は？",
+     "opts": [
+      {
+       "t": "はっきりしている・明瞭",
+       "ok": true,
+       "why": "正解。分かりやすい様子。例：<z>写得很清楚</z>（分かりやすく書かれている）。"
+      },
+      {
+       "t": "簡単",
+       "ok": false,
+       "why": "これは<z>简单</z>です。"
+      },
+      {
+       "t": "難しい",
+       "ok": false,
+       "why": "これは<z>困难</z>です。"
+      },
+      {
+       "t": "主要な",
+       "ok": false,
+       "why": "これは<z>主要</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>主要</z>」の意味は？",
+     "opts": [
+      {
+       "t": "主な・主要な",
+       "ok": true,
+       "why": "正解。中心となる部分。例：<z>主要问题</z>（主な問題）。"
+      },
+      {
+       "t": "難しい",
+       "ok": false,
+       "why": "これは<z>困难</z>です。"
+      },
+      {
+       "t": "はっきりしている",
+       "ok": false,
+       "why": "これは<z>清楚</z>です。"
+      },
+      {
+       "t": "簡単",
+       "ok": false,
+       "why": "これは<z>简单</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这个语法没有我想象的那么　。</z>（思ったほど簡単でない）",
+     "opts": [
+      {
+       "t": "简单",
+       "ok": true,
+       "why": "正解。やさしい・容易は<z>简单</z>です。"
+      },
+      {
+       "t": "困难",
+       "ok": false,
+       "why": "<z>困难</z>は「難しい」で逆の意味になります。"
+      },
+      {
+       "t": "重要",
+       "ok": false,
+       "why": "<z>重要</z>は「重要」で文意に合いません。"
+      },
+      {
+       "t": "清楚",
+       "ok": false,
+       "why": "<z>清楚</z>は「はっきりしている」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>每天开口说中文很　。</z>（毎日話すことは重要だ）",
+     "opts": [
+      {
+       "t": "重要",
+       "ok": true,
+       "why": "正解。大切だと述語で言うのは<z>很重要</z>です。"
+      },
+      {
+       "t": "主要",
+       "ok": false,
+       "why": "<z>主要</z>は主に連体修飾で使い、<z>很主要</z>とは普通言いません。"
+      },
+      {
+       "t": "简单",
+       "ok": false,
+       "why": "<z>简单</z>は「簡単」で文意に合いません。"
+      },
+      {
+       "t": "困难",
+       "ok": false,
+       "why": "<z>困难</z>は「難しい」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・対満足",
+     "q": "次の日本語に合う正しい文は？\n「私はこの結果に満足しています」",
+     "opts": [
+      {
+       "t": "我对这个结果很满意。",
+       "ok": true,
+       "why": "正解。<z>对＋対象＋满意</z>で「〜に満足する」。"
+      },
+      {
+       "t": "我这个结果对很满意。",
+       "ok": false,
+       "why": "語順が誤り。<z>对这个结果很满意</z>とします。"
+      },
+      {
+       "t": "这个结果对我很满意。",
+       "ok": false,
+       "why": "主客が逆。これだと「結果が私に満足」になります。"
+      },
+      {
+       "t": "我对满意这个结果。",
+       "ok": false,
+       "why": "語順が誤り。<z>对这个结果很满意</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・対有帮助",
+     "q": "次の日本語に合う正しい文は？\n「毎日の復習は中国語に役立ちます」",
+     "opts": [
+      {
+       "t": "每天复习对中文有帮助。",
+       "ok": true,
+       "why": "正解。<z>対象＋对＋相手＋有帮助</z>で「〜に役立つ」。"
+      },
+      {
+       "t": "每天复习中文对有帮助。",
+       "ok": false,
+       "why": "語順が誤り。<z>对中文有帮助</z>とします。"
+      },
+      {
+       "t": "每天复习对中文很帮助。",
+       "ok": false,
+       "why": "<z>有帮助</z>とします。<z>很帮助</z>とは言いません。"
+      },
+      {
+       "t": "中文对每天复习有帮助。",
+       "ok": false,
+       "why": "主客が逆。「復習が中国語に役立つ」が正しい関係です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・在方面",
+     "q": "次の日本語に合う正しい文は？\n「聞き取り面で進歩しました」",
+     "opts": [
+      {
+       "t": "在听力方面，我进步了。",
+       "ok": true,
+       "why": "正解。<z>在＋分野＋方面</z>で「〜の面で」。"
+      },
+      {
+       "t": "听力在方面，我进步了。",
+       "ok": false,
+       "why": "語順が誤り。<z>在听力方面</z>とまとめます。"
+      },
+      {
+       "t": "在方面听力，我进步了。",
+       "ok": false,
+       "why": "語順が誤り。<z>在听力方面</z>とします。"
+      },
+      {
+       "t": "在听力方面我进步，了。",
+       "ok": false,
+       "why": "区切りが誤り。<z>我进步了</z>とまとめます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・対満足",
+     "q": "次の日本語に合う正しい文は？\n「顧客はサービスに満足しています」",
+     "opts": [
+      {
+       "t": "客户对服务很满意。",
+       "ok": true,
+       "why": "正解。<z>对＋対象＋满意</z>の形です。"
+      },
+      {
+       "t": "客户服务对很满意。",
+       "ok": false,
+       "why": "語順が誤り。<z>对服务很满意</z>とします。"
+      },
+      {
+       "t": "服务对客户很满意。",
+       "ok": false,
+       "why": "主客が逆。「顧客がサービスに満足」が正しい関係です。"
+      },
+      {
+       "t": "客户对很满意服务。",
+       "ok": false,
+       "why": "語順が誤り。<z>对服务很满意</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "这个",
+     "应用",
+     "对我",
+     "很",
+     "有帮助"
+    ],
+    "answer": "这个应用对我很有帮助。",
+    "why": "<z>対象＋对＋相手＋很有帮助</z>の語順です。"
+   },
+   "writing": [
+    {
+     "prompt": "この説明はとても分かりやすく書かれています。",
+     "answer": "这个说明写得很清楚。"
+    },
+    {
+     "prompt": "このアプリは私にとても役立ちます。",
+     "answer": "这个应用对我很有帮助。"
+    }
+   ]
+  },
+  "32": {
+   "vocab": [
+    "一般",
+    "特别",
+    "实际",
+    "正确",
+    "错误"
+   ],
+   "grammar": [
+    "系統地(地)",
+    "地と得",
+    "的地得"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>错误</z>」の意味は？",
+     "opts": [
+      {
+       "t": "間違い・誤り",
+       "ok": true,
+       "why": "正解。正しくないこと。例：<z>语法错误</z>（文法ミス）。"
+      },
+      {
+       "t": "正しい",
+       "ok": false,
+       "why": "これは反対の<z>正确</z>です。"
+      },
+      {
+       "t": "実際",
+       "ok": false,
+       "why": "これは<z>实际</z>です。"
+      },
+      {
+       "t": "普通",
+       "ok": false,
+       "why": "これは<z>一般</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>实际</z>」の意味は？",
+     "opts": [
+      {
+       "t": "実際・現実",
+       "ok": true,
+       "why": "正解。本当の状況。例：<z>实际情况</z>（実際の状況）。"
+      },
+      {
+       "t": "普通",
+       "ok": false,
+       "why": "これは<z>一般</z>です。"
+      },
+      {
+       "t": "特別に",
+       "ok": false,
+       "why": "これは<z>特别</z>です。"
+      },
+      {
+       "t": "正しい",
+       "ok": false,
+       "why": "これは<z>正确</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我　喜欢上海的生活。</z>（特に好き）",
+     "opts": [
+      {
+       "t": "特别",
+       "ok": true,
+       "why": "正解。程度が高い「とりわけ・とても」は<z>特别</z>です。"
+      },
+      {
+       "t": "一般",
+       "ok": false,
+       "why": "<z>一般</z>は「普通」で逆の程度になります。"
+      },
+      {
+       "t": "实际",
+       "ok": false,
+       "why": "<z>实际</z>は「実際」で文意に合いません。"
+      },
+      {
+       "t": "正确",
+       "ok": false,
+       "why": "<z>正确</z>は「正しい」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这个答案是　的。</z>（この答えは正しい）",
+     "opts": [
+      {
+       "t": "正确",
+       "ok": true,
+       "why": "正解。誤りがないことは<z>正确</z>です。"
+      },
+      {
+       "t": "错误",
+       "ok": false,
+       "why": "<z>错误</z>は「間違い」で逆の意味になります。"
+      },
+      {
+       "t": "一般",
+       "ok": false,
+       "why": "<z>一般</z>は「普通」で文意に合いません。"
+      },
+      {
+       "t": "实际",
+       "ok": false,
+       "why": "<z>实际</z>は「実際」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・地",
+     "q": "次の日本語に合う正しい文は？\n「もっと自然に表現したいです」",
+     "opts": [
+      {
+       "t": "我想更自然地表达。",
+       "ok": true,
+       "why": "正解。動詞を修飾する「〜に」は<z>地</z>です。"
+      },
+      {
+       "t": "我想更自然的表达。",
+       "ok": false,
+       "why": "<z>的</z>は名詞修飾。動詞修飾は<z>地</z>です。"
+      },
+      {
+       "t": "我想更自然得表达。",
+       "ok": false,
+       "why": "<z>得</z>は動詞の後の程度補語用です。"
+      },
+      {
+       "t": "我想更地自然表达。",
+       "ok": false,
+       "why": "語順が誤り。<z>自然地表达</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・地と得",
+     "q": "次の日本語に合う正しい文は？\n「彼は中国語を自然に話します」",
+     "opts": [
+      {
+       "t": "他中文说得很自然。",
+       "ok": true,
+       "why": "正解。動詞の後で程度を述べるのは<z>得</z>です。"
+      },
+      {
+       "t": "他中文说地很自然。",
+       "ok": false,
+       "why": "<z>地</z>は動詞の前。動詞の後の程度は<z>得</z>です。"
+      },
+      {
+       "t": "他中文说的很自然。",
+       "ok": false,
+       "why": "程度補語は<z>得</z>です。<z>说的</z>とは書きません。"
+      },
+      {
+       "t": "他中文很自然说得。",
+       "ok": false,
+       "why": "語順が誤り。<z>说得很自然</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・的地得",
+     "q": "次の日本語に合う正しい文は？\n「彼はゆっくり説明しました」",
+     "opts": [
+      {
+       "t": "他慢慢地解释了。",
+       "ok": true,
+       "why": "正解。動詞を修飾する「ゆっくり」は<z>地</z>です。"
+      },
+      {
+       "t": "他慢慢的解释了。",
+       "ok": false,
+       "why": "<z>的</z>は名詞修飾。動詞修飾は<z>地</z>です。"
+      },
+      {
+       "t": "他慢慢得解释了。",
+       "ok": false,
+       "why": "<z>得</z>は動詞の後の程度補語用です。"
+      },
+      {
+       "t": "他解释地慢慢了。",
+       "ok": false,
+       "why": "語順が誤り。<z>慢慢地解释</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・的地得",
+     "q": "次の日本語に合う正しい文は？\n「私の中国語はまだあまり自然ではありません」",
+     "opts": [
+      {
+       "t": "我的中文说得还不太自然。",
+       "ok": true,
+       "why": "正解。名詞修飾は<z>的</z>、動詞後の程度は<z>得</z>です。"
+      },
+      {
+       "t": "我地中文说得还不太自然。",
+       "ok": false,
+       "why": "名詞修飾は<z>的</z>。<z>地</z>は動詞修飾です。"
+      },
+      {
+       "t": "我得中文说得还不太自然。",
+       "ok": false,
+       "why": "名詞修飾は<z>的</z>。<z>得</z>は程度補語です。"
+      },
+      {
+       "t": "我的中文说的还不太自然。",
+       "ok": false,
+       "why": "程度補語は<z>得</z>。<z>说的</z>とは書きません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "他",
+     "自然地",
+     "表达了",
+     "自己的",
+     "想法"
+    ],
+    "answer": "他自然地表达了自己的想法。",
+    "why": "<z>自然地</z>で動作を修飾し、<z>表达了＋目的語</z>を続けます。"
+   },
+   "writing": [
+    {
+     "prompt": "この文には文法ミスが1つあります。",
+     "answer": "这个句子有一个语法错误。"
+    },
+    {
+     "prompt": "文法を体系的に復習したいです。",
+     "answer": "我想系统地复习语法。"
+    }
+   ]
+  },
+  "33": {
+   "vocab": [
+    "满意",
+    "担心",
+    "放心",
+    "生气",
+    "紧张"
+   ],
+   "grammar": [
+    "的時候",
+    "以前以後",
+    "之前之後"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>担心</z>」の意味は？",
+     "opts": [
+      {
+       "t": "心配する",
+       "ok": true,
+       "why": "正解。気がかりに思うこと。例：<z>担心考试</z>（試験を心配する）。"
+      },
+      {
+       "t": "安心する",
+       "ok": false,
+       "why": "これは反対の<z>放心</z>です。"
+      },
+      {
+       "t": "怒る",
+       "ok": false,
+       "why": "これは<z>生气</z>です。"
+      },
+      {
+       "t": "緊張する",
+       "ok": false,
+       "why": "これは<z>紧张</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>紧张</z>」の意味は？",
+     "opts": [
+      {
+       "t": "緊張する",
+       "ok": true,
+       "why": "正解。気が張りつめること。例：<z>考试前有点儿紧张</z>（試験前に緊張する）。"
+      },
+      {
+       "t": "安心する",
+       "ok": false,
+       "why": "これは<z>放心</z>です。"
+      },
+      {
+       "t": "怒る",
+       "ok": false,
+       "why": "これは<z>生气</z>です。"
+      },
+      {
+       "t": "満足する",
+       "ok": false,
+       "why": "これは<z>满意</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>你　，我已经处理好了。</z>（安心して）",
+     "opts": [
+      {
+       "t": "放心",
+       "ok": true,
+       "why": "正解。気がかりが消えて落ち着くのは<z>放心</z>です。"
+      },
+      {
+       "t": "担心",
+       "ok": false,
+       "why": "<z>担心</z>は「心配する」で逆の意味になります。"
+      },
+      {
+       "t": "生气",
+       "ok": false,
+       "why": "<z>生气</z>は「怒る」で文意に合いません。"
+      },
+      {
+       "t": "紧张",
+       "ok": false,
+       "why": "<z>紧张</z>は「緊張する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他迟到了，所以经理有点儿　。</z>（怒っている）",
+     "opts": [
+      {
+       "t": "生气",
+       "ok": true,
+       "why": "正解。腹を立てるのは<z>生气</z>です。"
+      },
+      {
+       "t": "放心",
+       "ok": false,
+       "why": "<z>放心</z>は「安心する」で文意に合いません。"
+      },
+      {
+       "t": "紧张",
+       "ok": false,
+       "why": "<z>紧张</z>は「緊張する」で意味が異なります。"
+      },
+      {
+       "t": "满意",
+       "ok": false,
+       "why": "<z>满意</z>は「満足する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・的時候",
+     "q": "次の日本語に合う正しい文は？\n「会議の時、よくメモします」",
+     "opts": [
+      {
+       "t": "开会的时候，我经常记笔记。",
+       "ok": true,
+       "why": "正解。<z>動詞句＋的时候</z>で「〜する時」。"
+      },
+      {
+       "t": "开会时候，我经常记笔记。",
+       "ok": false,
+       "why": "<z>的</z>が必要です。<z>开会的时候</z>とします。"
+      },
+      {
+       "t": "的时候开会，我经常记笔记。",
+       "ok": false,
+       "why": "語順が誤り。<z>开会的时候</z>とします。"
+      },
+      {
+       "t": "开会的时候我经常，记笔记。",
+       "ok": false,
+       "why": "区切りが誤り。<z>我经常记笔记</z>とまとめます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・以前以後",
+     "q": "次の日本語に合う正しい文は？\n「会議の前に資料を見ます」",
+     "opts": [
+      {
+       "t": "开会以前我看资料。",
+       "ok": true,
+       "why": "正解。<z>動作＋以前</z>で「〜の前に」。"
+      },
+      {
+       "t": "以前开会我看资料。",
+       "ok": false,
+       "why": "語順が誤り。<z>开会以前</z>とします。"
+      },
+      {
+       "t": "开会以后我看资料。",
+       "ok": false,
+       "why": "<z>以后</z>は「後」。「前」は<z>以前</z>です。"
+      },
+      {
+       "t": "开会以前看资料我。",
+       "ok": false,
+       "why": "語順が誤り。<z>我看资料</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・之前之後",
+     "q": "次の日本語に合う正しい文は？\n「授業の後で復習します」",
+     "opts": [
+      {
+       "t": "上课之后我复习。",
+       "ok": true,
+       "why": "正解。<z>動作＋之后</z>で「〜の後で」。"
+      },
+      {
+       "t": "上课之前我复习。",
+       "ok": false,
+       "why": "<z>之前</z>は「前」。「後」は<z>之后</z>です。"
+      },
+      {
+       "t": "之后上课我复习。",
+       "ok": false,
+       "why": "語順が誤り。<z>上课之后</z>とします。"
+      },
+      {
+       "t": "上课之后复习我。",
+       "ok": false,
+       "why": "語順が誤り。<z>我复习</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・的時候",
+     "q": "次の日本語に合う正しい文は？\n「中国語を話す時、少し緊張します」",
+     "opts": [
+      {
+       "t": "说中文的时候，我有点儿紧张。",
+       "ok": true,
+       "why": "正解。<z>動詞句＋的时候</z>の形です。"
+      },
+      {
+       "t": "说中文时候，我有点儿紧张。",
+       "ok": false,
+       "why": "<z>的</z>が必要です。<z>说中文的时候</z>とします。"
+      },
+      {
+       "t": "的时候说中文，我有点儿紧张。",
+       "ok": false,
+       "why": "語順が誤り。<z>说中文的时候</z>とします。"
+      },
+      {
+       "t": "说中文的时候我有点儿，紧张。",
+       "ok": false,
+       "why": "区切りが誤り。<z>我有点儿紧张</z>とまとめます。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "下班",
+     "以后",
+     "我",
+     "想学习",
+     "中文"
+    ],
+    "answer": "下班以后我想学习中文。",
+    "why": "<z>動作＋以后</z>で「〜した後」を表し、その後に文を続けます。"
+   },
+   "writing": [
+    {
+     "prompt": "明日の試験が少し心配です。",
+     "answer": "我有点儿担心明天的考试。"
+    },
+    {
+     "prompt": "メールを送る前に確認してください。",
+     "answer": "发邮件之前，请检查一下。"
+    }
+   ]
+  },
+  "34": {
+   "vocab": [
+    "舒服",
+    "健康",
+    "发烧",
+    "休息",
+    "运动"
+   ],
+   "grammar": [
+    "从来没過",
+    "曾経過",
+    "没想到"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>舒服</z>」の意味は？",
+     "opts": [
+      {
+       "t": "快適だ・心地よい",
+       "ok": true,
+       "why": "正解。気持ちがよい状態。例：<z>这个房间很舒服</z>（この部屋は快適）。"
+      },
+      {
+       "t": "健康",
+       "ok": false,
+       "why": "これは<z>健康</z>です。"
+      },
+      {
+       "t": "休む",
+       "ok": false,
+       "why": "これは<z>休息</z>です。"
+      },
+      {
+       "t": "運動する",
+       "ok": false,
+       "why": "これは<z>运动</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>发烧</z>」の意味は？",
+     "opts": [
+      {
+       "t": "熱が出る",
+       "ok": true,
+       "why": "正解。体温が上がること。例：<z>孩子发烧了</z>（子どもが熱を出した）。"
+      },
+      {
+       "t": "休む",
+       "ok": false,
+       "why": "これは<z>休息</z>です。"
+      },
+      {
+       "t": "運動する",
+       "ok": false,
+       "why": "これは<z>运动</z>です。"
+      },
+      {
+       "t": "健康",
+       "ok": false,
+       "why": "これは<z>健康</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>为了　，我每天走路上班。</z>（健康のため）",
+     "opts": [
+      {
+       "t": "健康",
+       "ok": true,
+       "why": "正解。体の良い状態は<z>健康</z>です。"
+      },
+      {
+       "t": "舒服",
+       "ok": false,
+       "why": "<z>舒服</z>は「快適だ」で文意に合いません。"
+      },
+      {
+       "t": "休息",
+       "ok": false,
+       "why": "<z>休息</z>は「休む」で意味が異なります。"
+      },
+      {
+       "t": "运动",
+       "ok": false,
+       "why": "<z>运动</z>は「運動する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>你最近太忙了，要多　。</z>（もっと休んで）",
+     "opts": [
+      {
+       "t": "休息",
+       "ok": true,
+       "why": "正解。体を休ませるのは<z>休息</z>です。"
+      },
+      {
+       "t": "运动",
+       "ok": false,
+       "why": "<z>运动</z>は「運動する」で文意に合いません。"
+      },
+      {
+       "t": "发烧",
+       "ok": false,
+       "why": "<z>发烧</z>は「熱が出る」で意味が異なります。"
+      },
+      {
+       "t": "健康",
+       "ok": false,
+       "why": "<z>健康</z>は「健康」で文意に合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・从来没過",
+     "q": "次の日本語に合う正しい文は？\n「この料理を一度も食べたことがありません」",
+     "opts": [
+      {
+       "t": "我从来没吃过这个菜。",
+       "ok": true,
+       "why": "正解。<z>从来没＋動詞＋过</z>で「一度も〜したことがない」。"
+      },
+      {
+       "t": "我从来没吃这个菜过。",
+       "ok": false,
+       "why": "語順が誤り。<z>过</z>は動詞の直後に置きます。"
+      },
+      {
+       "t": "我从来不吃过这个菜。",
+       "ok": false,
+       "why": "<z>不＋过</z>は誤り。経験の否定は<z>没…过</z>です。"
+      },
+      {
+       "t": "我从来没吃了这个菜。",
+       "ok": false,
+       "why": "<z>了</z>は経験を表しません。経験は<z>过</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・曾経過",
+     "q": "次の日本語に合う正しい文は？\n「以前蘇州に行ったことがあります」",
+     "opts": [
+      {
+       "t": "我曾经去过苏州。",
+       "ok": true,
+       "why": "正解。<z>曾经＋動詞＋过</z>で「かつて〜したことがある」。"
+      },
+      {
+       "t": "我曾经去苏州过。",
+       "ok": false,
+       "why": "語順が誤り。<z>过</z>は動詞の直後に置きます。"
+      },
+      {
+       "t": "我曾经去了苏州。",
+       "ok": false,
+       "why": "<z>了</z>は経験を表しません。経験は<z>过</z>です。"
+      },
+      {
+       "t": "我去过曾经苏州。",
+       "ok": false,
+       "why": "語順が誤り。<z>曾经去过</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・没想到",
+     "q": "次の日本語に合う正しい文は？\n「こんなに便利だとは思いませんでした」",
+     "opts": [
+      {
+       "t": "没想到这么方便。",
+       "ok": true,
+       "why": "正解。<z>没想到</z>で「思いがけず〜」と予想外を表します。"
+      },
+      {
+       "t": "不想到这么方便。",
+       "ok": false,
+       "why": "<z>不想到</z>とは言いません。予想外は<z>没想到</z>です。"
+      },
+      {
+       "t": "想没到这么方便。",
+       "ok": false,
+       "why": "語順が誤り。<z>没想到</z>とします。"
+      },
+      {
+       "t": "没想这么方便到。",
+       "ok": false,
+       "why": "語順が誤り。<z>没想到这么方便</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・从来没過",
+     "q": "次の日本語に合う正しい文は？\n「HSK試験を一度も受けたことがありません」",
+     "opts": [
+      {
+       "t": "我从来没参加过HSK考试。",
+       "ok": true,
+       "why": "正解。<z>从来没＋動詞＋过</z>の形です。"
+      },
+      {
+       "t": "我从来没参加HSK考试过。",
+       "ok": false,
+       "why": "語順が誤り。<z>过</z>は動詞の直後に置きます。"
+      },
+      {
+       "t": "我从来不参加过HSK考试。",
+       "ok": false,
+       "why": "<z>不＋过</z>は誤り。経験の否定は<z>没…过</z>です。"
+      },
+      {
+       "t": "我从来没参加了HSK考试。",
+       "ok": false,
+       "why": "<z>了</z>は経験を表しません。経験は<z>过</z>です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "没想到",
+     "这个",
+     "语法",
+     "这么",
+     "重要"
+    ],
+    "answer": "没想到这个语法这么重要。",
+    "why": "<z>没想到＋主述</z>で「〜とは思わなかった」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "最近忙しすぎるので、もっと休んでください。",
+     "answer": "你最近太忙了，要多休息。"
+    },
+    {
+     "prompt": "かつて少し中国語を学んだことがあります。",
+     "answer": "我曾经学过一点儿中文。"
+    }
+   ]
+  },
+  "35": {
+   "vocab": [
+    "天气",
+    "下雨",
+    "变冷",
+    "变热",
+    "季节"
+   ],
+   "grammar": [
+    "看来(判断)",
+    "听说(伝聞)",
+    "据说(伝聞)"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>季节</z>」の意味は？",
+     "opts": [
+      {
+       "t": "季節",
+       "ok": true,
+       "why": "正解。春夏秋冬の区分。例：<z>秋天这个季节</z>（秋という季節）。"
+      },
+      {
+       "t": "天気",
+       "ok": false,
+       "why": "これは<z>天气</z>です。"
+      },
+      {
+       "t": "寒くなる",
+       "ok": false,
+       "why": "これは<z>变冷</z>です。"
+      },
+      {
+       "t": "暑くなる",
+       "ok": false,
+       "why": "これは<z>变热</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>变冷</z>」の意味は？",
+     "opts": [
+      {
+       "t": "寒くなる",
+       "ok": true,
+       "why": "正解。気温が下がる変化。例：<z>突然变冷了</z>（急に寒くなった）。"
+      },
+      {
+       "t": "暑くなる",
+       "ok": false,
+       "why": "これは反対の<z>变热</z>です。"
+      },
+      {
+       "t": "天気",
+       "ok": false,
+       "why": "これは<z>天气</z>です。"
+      },
+      {
+       "t": "季節",
+       "ok": false,
+       "why": "これは<z>季节</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>今天的　很好。</z>（天気が良い）",
+     "opts": [
+      {
+       "t": "天气",
+       "ok": true,
+       "why": "正解。晴雨や気温の状態は<z>天气</z>です。"
+      },
+      {
+       "t": "季节",
+       "ok": false,
+       "why": "<z>季节</z>は「季節」で文意に合いません。"
+      },
+      {
+       "t": "下雨",
+       "ok": false,
+       "why": "<z>下雨</z>は「雨が降る」で意味が異なります。"
+      },
+      {
+       "t": "变冷",
+       "ok": false,
+       "why": "<z>变冷</z>は「寒くなる」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>如果明天　，我们就不去公园。</z>（雨が降れば）",
+     "opts": [
+      {
+       "t": "下雨",
+       "ok": true,
+       "why": "正解。雨が降ることは<z>下雨</z>です。"
+      },
+      {
+       "t": "变冷",
+       "ok": false,
+       "why": "<z>变冷</z>は「寒くなる」で文意に合いません。"
+      },
+      {
+       "t": "变热",
+       "ok": false,
+       "why": "<z>变热</z>は「暑くなる」で意味が異なります。"
+      },
+      {
+       "t": "季节",
+       "ok": false,
+       "why": "<z>季节</z>は「季節」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・看来",
+     "q": "次の日本語に合う正しい文は？\n「どうやら今日は遅刻しそうです」",
+     "opts": [
+      {
+       "t": "看来今天会迟到。",
+       "ok": true,
+       "why": "正解。状況から自分で判断する「どうやら〜のようだ」は<z>看来</z>です。"
+      },
+      {
+       "t": "听说今天会迟到。",
+       "ok": false,
+       "why": "<z>听说</z>は人から聞いた話。自分の観察判断は<z>看来</z>です。"
+      },
+      {
+       "t": "据说今天会迟到。",
+       "ok": false,
+       "why": "<z>据说</z>は世間で言われる伝聞。自分の判断は<z>看来</z>です。"
+      },
+      {
+       "t": "看来会今天迟到。",
+       "ok": false,
+       "why": "語順が誤り。<z>今天会迟到</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・听说",
+     "q": "次の日本語に合う正しい文は？\n「明日会議があるそうです」",
+     "opts": [
+      {
+       "t": "听说明天有会议。",
+       "ok": true,
+       "why": "正解。人から聞いた話「〜だそうだ」は<z>听说</z>です。"
+      },
+      {
+       "t": "看来明天有会议。",
+       "ok": false,
+       "why": "<z>看来</z>は自分の判断。伝聞は<z>听说</z>です。"
+      },
+      {
+       "t": "听说会议明天有。",
+       "ok": false,
+       "why": "語順が誤り。<z>明天有会议</z>とします。"
+      },
+      {
+       "t": "听说明天有会议吧。",
+       "ok": false,
+       "why": "<z>吧</z>は推量・提案。伝聞をそのまま伝えるなら不要です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・据说",
+     "q": "次の日本語に合う正しい文は？\n「このレストランは有名だそうです」",
+     "opts": [
+      {
+       "t": "据说这家餐厅很有名。",
+       "ok": true,
+       "why": "正解。世間で言われる伝聞「〜だと言われている」は<z>据说</z>です。"
+      },
+      {
+       "t": "看来这家餐厅很有名。",
+       "ok": false,
+       "why": "<z>看来</z>は自分の判断。伝聞は<z>据说</z>です。"
+      },
+      {
+       "t": "据说很有名这家餐厅。",
+       "ok": false,
+       "why": "語順が誤り。<z>这家餐厅很有名</z>とします。"
+      },
+      {
+       "t": "据说这家餐厅很有名吗。",
+       "ok": false,
+       "why": "平叙の伝聞に<z>吗</z>は不要で、意味が変わります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・听说",
+     "q": "次の日本語に合う正しい文は？\n「この店は美味しいそうです」",
+     "opts": [
+      {
+       "t": "听说这家店很好吃。",
+       "ok": true,
+       "why": "正解。聞いた話を伝える「〜だそうだ」は<z>听说</z>です。"
+      },
+      {
+       "t": "看来这家店很好吃。",
+       "ok": false,
+       "why": "<z>看来</z>は自分の判断。伝聞は<z>听说</z>です。"
+      },
+      {
+       "t": "听说这家店好吃很。",
+       "ok": false,
+       "why": "語順が誤り。<z>很好吃</z>とします。"
+      },
+      {
+       "t": "这家店听说很好吃吗。",
+       "ok": false,
+       "why": "平叙の伝聞に<z>吗</z>は不要で、意味が変わります。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "听说",
+     "这家",
+     "店",
+     "很",
+     "好吃"
+    ],
+    "answer": "听说这家店很好吃。",
+    "why": "<z>听说＋主述</z>で「〜だそうだ」と伝聞を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "ここ数日、上海は急に寒くなりました。",
+     "answer": "这几天上海突然变冷了。"
+    },
+    {
+     "prompt": "どうやら今日は遅刻しそうです。",
+     "answer": "看来今天会迟到。"
+    }
+   ]
+  },
+  "36": {
+   "vocab": [
+    "城市",
+    "生活",
+    "工作",
+    "家庭",
+    "孩子"
+   ],
+   "grammar": [
+    "原来(気づき)",
+    "本来后来",
+    "差不多"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>城市</z>」の意味は？",
+     "opts": [
+      {
+       "t": "都市・街",
+       "ok": true,
+       "why": "正解。人が多く集まる町。例：<z>很方便的城市</z>（便利な都市）。"
+      },
+      {
+       "t": "生活",
+       "ok": false,
+       "why": "これは<z>生活</z>です。"
+      },
+      {
+       "t": "仕事",
+       "ok": false,
+       "why": "これは<z>工作</z>です。"
+      },
+      {
+       "t": "家庭",
+       "ok": false,
+       "why": "これは<z>家庭</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>家庭</z>」の意味は？",
+     "opts": [
+      {
+       "t": "家庭",
+       "ok": true,
+       "why": "正解。家族の集まり・家庭。例：<z>家庭生活</z>（家庭生活）。"
+      },
+      {
+       "t": "仕事",
+       "ok": false,
+       "why": "これは<z>工作</z>です。"
+      },
+      {
+       "t": "子ども",
+       "ok": false,
+       "why": "これは<z>孩子</z>です。"
+      },
+      {
+       "t": "都市",
+       "ok": false,
+       "why": "これは<z>城市</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我已经习惯上海的　了。</z>（上海の生活に慣れた）",
+     "opts": [
+      {
+       "t": "生活",
+       "ok": true,
+       "why": "正解。日々の暮らしは<z>生活</z>です。"
+      },
+      {
+       "t": "工作",
+       "ok": false,
+       "why": "<z>工作</z>は「仕事」で文意に合いません。"
+      },
+      {
+       "t": "家庭",
+       "ok": false,
+       "why": "<z>家庭</z>は「家庭」で意味が異なります。"
+      },
+      {
+       "t": "城市",
+       "ok": false,
+       "why": "<z>城市</z>は「都市」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　也要吃，所以请做得不太辣。</z>（子どもも食べる）",
+     "opts": [
+      {
+       "t": "孩子",
+       "ok": true,
+       "why": "正解。子どもは<z>孩子</z>です。"
+      },
+      {
+       "t": "家庭",
+       "ok": false,
+       "why": "<z>家庭</z>は「家庭」で文意に合いません。"
+      },
+      {
+       "t": "生活",
+       "ok": false,
+       "why": "<z>生活</z>は「生活」で意味が異なります。"
+      },
+      {
+       "t": "工作",
+       "ok": false,
+       "why": "<z>工作</z>は「仕事」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・原来",
+     "q": "次の日本語に合う正しい文は？\n「なるほど、あなたは日本人だったんですね」",
+     "opts": [
+      {
+       "t": "原来你是日本人。",
+       "ok": true,
+       "why": "正解。気づき「なんだ〜だったのか」は<z>原来</z>です。"
+      },
+      {
+       "t": "本来你是日本人。",
+       "ok": false,
+       "why": "<z>本来</z>はもともとの状態。気づきの「なんだ」は<z>原来</z>です。"
+      },
+      {
+       "t": "原来日本人你是。",
+       "ok": false,
+       "why": "語順が誤り。<z>原来你是日本人</z>とします。"
+      },
+      {
+       "t": "你是原来日本人。",
+       "ok": false,
+       "why": "語順が誤り。<z>原来</z>は文頭に置きます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・本来后来",
+     "q": "次の日本語に合う正しい文は？\n「元々行くつもりでしたが後でやめました」",
+     "opts": [
+      {
+       "t": "我本来想去，后来不去了。",
+       "ok": true,
+       "why": "正解。<z>本来…后来…</z>で「もともと〜、その後〜」と変化を述べます。"
+      },
+      {
+       "t": "我本来去想，后来不去了。",
+       "ok": false,
+       "why": "語順が誤り。<z>想去</z>とします。"
+      },
+      {
+       "t": "本来我想去后来，不去了。",
+       "ok": false,
+       "why": "区切りが誤り。<z>后来</z>の前で区切ります。"
+      },
+      {
+       "t": "我本来想去，后来去不了。",
+       "ok": false,
+       "why": "<z>去不了</z>は「行けない」。「やめた」は<z>不去了</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・差不多",
+     "q": "次の日本語に合う正しい文は？\n「宿題はほぼ終わりました」",
+     "opts": [
+      {
+       "t": "作业差不多做完了。",
+       "ok": true,
+       "why": "正解。<z>差不多</z>で「だいたい・ほぼ」を表します。"
+      },
+      {
+       "t": "作业做完差不多了。",
+       "ok": false,
+       "why": "語順が誤り。<z>差不多做完了</z>とします。"
+      },
+      {
+       "t": "作业很差不多做完了。",
+       "ok": false,
+       "why": "<z>很</z>と<z>差不多</z>は併用しません。"
+      },
+      {
+       "t": "差不多作业做完了吗。",
+       "ok": false,
+       "why": "平叙文に<z>吗</z>は不要で、意味が変わります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・差不多",
+     "q": "次の日本語に合う正しい文は？\n「だいたい5分後に着きます」",
+     "opts": [
+      {
+       "t": "我差不多五分钟后到。",
+       "ok": true,
+       "why": "正解。概数「だいたい」は<z>差不多</z>で表します。"
+      },
+      {
+       "t": "我五分钟差不多后到。",
+       "ok": false,
+       "why": "語順が誤り。<z>差不多五分钟后</z>とします。"
+      },
+      {
+       "t": "我差不多到五分钟后。",
+       "ok": false,
+       "why": "語順が誤り。<z>五分钟后到</z>とします。"
+      },
+      {
+       "t": "我五分钟后到差不多。",
+       "ok": false,
+       "why": "語順が誤り。<z>差不多</z>は数量の前に置きます。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我",
+     "本来",
+     "想打车",
+     "后来",
+     "坐地铁了"
+    ],
+    "answer": "我本来想打车，后来坐地铁了。",
+    "why": "本来＋当初の考え，后来＋その後の行動の語順です。"
+   },
+   "writing": [
+    {
+     "prompt": "私はもう上海の生活に慣れました。",
+     "answer": "我已经习惯上海的生活了。"
+    },
+    {
+     "prompt": "なるほど、あなたは日本人だったんですね。",
+     "answer": "原来你是日本人。"
+    }
+   ]
+  },
+  "37": {
+   "vocab": [
+    "邀请",
+    "接受",
+    "参观",
+    "举办",
+    "庆祝"
+   ],
+   "grammar": [
+    "大概",
+    "左右",
+    "毎都"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>邀请</z>」の意味は？",
+     "opts": [
+      {
+       "t": "招待する",
+       "ok": true,
+       "why": "正解。来てもらうよう誘うこと。例：<z>邀请朋友来家里</z>（友達を家に招待）。"
+      },
+      {
+       "t": "受け入れる",
+       "ok": false,
+       "why": "これは<z>接受</z>です。"
+      },
+      {
+       "t": "見学する",
+       "ok": false,
+       "why": "これは<z>参观</z>です。"
+      },
+      {
+       "t": "祝う",
+       "ok": false,
+       "why": "これは<z>庆祝</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>参观</z>」の意味は？",
+     "opts": [
+      {
+       "t": "見学する",
+       "ok": true,
+       "why": "正解。施設などを見て回ること。例：<z>参观工厂</z>（工場を見学）。"
+      },
+      {
+       "t": "開催する",
+       "ok": false,
+       "why": "これは<z>举办</z>です。"
+      },
+      {
+       "t": "招待する",
+       "ok": false,
+       "why": "これは<z>邀请</z>です。"
+      },
+      {
+       "t": "受け入れる",
+       "ok": false,
+       "why": "これは<z>接受</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他　了我的建议。</z>（提案を受け入れた）",
+     "opts": [
+      {
+       "t": "接受",
+       "ok": true,
+       "why": "正解。意見・提案を受け入れるのは<z>接受</z>です。"
+      },
+      {
+       "t": "邀请",
+       "ok": false,
+       "why": "<z>邀请</z>は「招待する」で文意に合いません。"
+      },
+      {
+       "t": "参观",
+       "ok": false,
+       "why": "<z>参观</z>は「見学する」で意味が異なります。"
+      },
+      {
+       "t": "庆祝",
+       "ok": false,
+       "why": "<z>庆祝</z>は「祝う」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>大家一起　生日。</z>（誕生日を祝う）",
+     "opts": [
+      {
+       "t": "庆祝",
+       "ok": true,
+       "why": "正解。めでたいことを祝うのは<z>庆祝</z>です。"
+      },
+      {
+       "t": "邀请",
+       "ok": false,
+       "why": "<z>邀请</z>は「招待する」で文意に合いません。"
+      },
+      {
+       "t": "举办",
+       "ok": false,
+       "why": "<z>举办</z>は「開催する」で意味が異なります。"
+      },
+      {
+       "t": "参观",
+       "ok": false,
+       "why": "<z>参观</z>は「見学する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・大概",
+     "q": "次の日本語に合う正しい文は？\n「この仕事はだいたい1時間かかります」",
+     "opts": [
+      {
+       "t": "这个工作大概要一个小时。",
+       "ok": true,
+       "why": "正解。推量・概数の「だいたい」は<z>大概</z>で、数量の前に置きます。"
+      },
+      {
+       "t": "这个工作要一个小时大概。",
+       "ok": false,
+       "why": "<z>大概</z>の位置が誤り。数量の前に置きます。"
+      },
+      {
+       "t": "这个工作大概一个小时要。",
+       "ok": false,
+       "why": "語順が誤り。<z>要一个小时</z>とします。"
+      },
+      {
+       "t": "这个工作大概要一个小时吗。",
+       "ok": false,
+       "why": "平叙文に<z>吗</z>は不要で、意味が変わります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・左右",
+     "q": "次の日本語に合う正しい文は？\n「家から会社まで30分くらいです」",
+     "opts": [
+      {
+       "t": "从家到公司要半个小时左右。",
+       "ok": true,
+       "why": "正解。概数「〜くらい」は<z>左右</z>で、数量の後ろに置きます。"
+      },
+      {
+       "t": "从家到公司要左右半个小时。",
+       "ok": false,
+       "why": "<z>左右</z>の位置が誤り。数量の後ろに置きます。"
+      },
+      {
+       "t": "从家到公司左右要半个小时。",
+       "ok": false,
+       "why": "<z>左右</z>の位置が誤り。<z>半个小时左右</z>とします。"
+      },
+      {
+       "t": "从家到公司要半个左右小时。",
+       "ok": false,
+       "why": "語順が誤り。<z>半个小时左右</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・毎都",
+     "q": "次の日本語に合う正しい文は？\n「毎回少し復習します」",
+     "opts": [
+      {
+       "t": "我每次都复习一点儿。",
+       "ok": true,
+       "why": "正解。<z>每＋都</z>で「毎回すべて」と強調します。"
+      },
+      {
+       "t": "我都每次复习一点儿。",
+       "ok": false,
+       "why": "語順が誤り。<z>每次都</z>とします。"
+      },
+      {
+       "t": "我每次都一点儿复习。",
+       "ok": false,
+       "why": "語順が誤り。<z>复习一点儿</z>とします。"
+      },
+      {
+       "t": "我每次复习都一点儿。",
+       "ok": false,
+       "why": "語順が誤り。<z>每次都复习</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・大概",
+     "q": "次の日本語に合う正しい文は？\n「だいたい3時に着きます」",
+     "opts": [
+      {
+       "t": "我大概三点到。",
+       "ok": true,
+       "why": "正解。概数「だいたい」は<z>大概</z>で、時刻の前に置きます。"
+      },
+      {
+       "t": "我三点大概到。",
+       "ok": false,
+       "why": "<z>大概</z>の位置が誤り。時刻の前に置きます。"
+      },
+      {
+       "t": "我大概到三点。",
+       "ok": false,
+       "why": "語順が誤り。<z>三点到</z>とします。"
+      },
+      {
+       "t": "我三点到大概。",
+       "ok": false,
+       "why": "語順が誤り。<z>大概</z>は時刻の前に置きます。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "这个工作",
+     "大概",
+     "要",
+     "一个",
+     "小时"
+    ],
+    "answer": "这个工作大概要一个小时。",
+    "why": "<z>大概</z>を数量の前に置いて概数を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "友達を家に招待します。",
+     "answer": "我邀请朋友来家里。"
+    },
+    {
+     "prompt": "会議は3時ごろ始まります。",
+     "answer": "会议三点左右开始。"
+    }
+   ]
+  },
+  "38": {
+   "vocab": [
+    "推荐",
+    "介绍",
+    "建议",
+    "鼓励",
+    "表扬"
+   ],
+   "grammar": [
+    "有的有的",
+    "又又",
+    "既然就"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>推荐</z>」の意味は？",
+     "opts": [
+      {
+       "t": "勧める・推薦する",
+       "ok": true,
+       "why": "正解。良いものを人に勧めること。例：<z>推荐这本书</z>（この本を勧める）。"
+      },
+      {
+       "t": "紹介する",
+       "ok": false,
+       "why": "これは<z>介绍</z>です。"
+      },
+      {
+       "t": "助言・提案する",
+       "ok": false,
+       "why": "これは<z>建议</z>です。"
+      },
+      {
+       "t": "励ます",
+       "ok": false,
+       "why": "これは<z>鼓励</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>鼓励</z>」の意味は？",
+     "opts": [
+      {
+       "t": "励ます",
+       "ok": true,
+       "why": "正解。やる気を出させること。例：<z>老师鼓励学生</z>（先生が生徒を励ます）。"
+      },
+      {
+       "t": "褒める",
+       "ok": false,
+       "why": "これは<z>表扬</z>です（良い行いを評価する意味）。"
+      },
+      {
+       "t": "紹介する",
+       "ok": false,
+       "why": "これは<z>介绍</z>です。"
+      },
+      {
+       "t": "勧める",
+       "ok": false,
+       "why": "これは<z>推荐</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>请　一下你自己。</z>（自己紹介してください）",
+     "opts": [
+      {
+       "t": "介绍",
+       "ok": true,
+       "why": "正解。人や物事を知ってもらうのは<z>介绍</z>です。"
+      },
+      {
+       "t": "推荐",
+       "ok": false,
+       "why": "<z>推荐</z>は「勧める」で文意に合いません。"
+      },
+      {
+       "t": "建议",
+       "ok": false,
+       "why": "<z>建议</z>は「提案する」で意味が異なります。"
+      },
+      {
+       "t": "鼓励",
+       "ok": false,
+       "why": "<z>鼓励</z>は「励ます」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>经理　了他。</z>（彼を褒めた）",
+     "opts": [
+      {
+       "t": "表扬",
+       "ok": true,
+       "why": "正解。良い行いを評価して褒めるのは<z>表扬</z>です。"
+      },
+      {
+       "t": "鼓励",
+       "ok": false,
+       "why": "<z>鼓励</z>は「励ます（やる気を出させる）」で、褒めるとは少し異なります。"
+      },
+      {
+       "t": "介绍",
+       "ok": false,
+       "why": "<z>介绍</z>は「紹介する」で文意に合いません。"
+      },
+      {
+       "t": "推荐",
+       "ok": false,
+       "why": "<z>推荐</z>は「勧める」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・有的有的",
+     "q": "次の日本語に合う正しい文は？\n「ある人は地下鉄で、ある人はタクシーで来ます」",
+     "opts": [
+      {
+       "t": "有的人坐地铁来，有的人打车来。",
+       "ok": true,
+       "why": "正解。<z>有的…，有的…</z>で「あるものは〜、あるものは〜」と分類します。"
+      },
+      {
+       "t": "有的人坐地铁来，有的人来打车。",
+       "ok": false,
+       "why": "語順が誤り。<z>打车来</z>とします。"
+      },
+      {
+       "t": "有的坐地铁人来，有的人打车来。",
+       "ok": false,
+       "why": "語順が誤り。<z>有的人</z>とします。"
+      },
+      {
+       "t": "的有人坐地铁来，有的人打车来。",
+       "ok": false,
+       "why": "語順が誤り。<z>有的人</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・又又",
+     "q": "次の日本語に合う正しい文は？\n「彼は忙しくて疲れています」",
+     "opts": [
+      {
+       "t": "他又忙又累。",
+       "ok": true,
+       "why": "正解。<z>又A又B</z>で「〜でもあり〜でもある」と二つの性質を並べます。"
+      },
+      {
+       "t": "他又忙累。",
+       "ok": false,
+       "why": "2つ目の<z>又</z>が抜けています。<z>又A又B</z>とします。"
+      },
+      {
+       "t": "他忙又累又。",
+       "ok": false,
+       "why": "語順が誤り。<z>又忙又累</z>とします。"
+      },
+      {
+       "t": "他又又忙累。",
+       "ok": false,
+       "why": "語順が誤り。<z>又忙又累</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・既然就",
+     "q": "次の日本語に合う正しい文は？\n「もう決めた以上、続けましょう」",
+     "opts": [
+      {
+       "t": "既然决定了，就继续吧。",
+       "ok": true,
+       "why": "正解。既成事実を受ける「〜である以上」は<z>既然…就…</z>です。"
+      },
+      {
+       "t": "如果决定了，就继续吧。",
+       "ok": false,
+       "why": "<z>如果</z>は未確定の条件。すでに決まった事実は<z>既然</z>です。"
+      },
+      {
+       "t": "既然决定了，才继续吧。",
+       "ok": false,
+       "why": "<z>既然</z>は<z>就</z>と呼応します。<z>才</z>とは合いません。"
+      },
+      {
+       "t": "决定了既然，就继续吧。",
+       "ok": false,
+       "why": "語順が誤り。<z>既然决定了</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・又又",
+     "q": "次の日本語に合う正しい文は？\n「この店は安くて美味しいです」",
+     "opts": [
+      {
+       "t": "这家店又便宜又好吃。",
+       "ok": true,
+       "why": "正解。<z>又A又B</z>で二つの良い点を並べます。"
+      },
+      {
+       "t": "这家店又便宜好吃。",
+       "ok": false,
+       "why": "2つ目の<z>又</z>が抜けています。<z>又A又B</z>とします。"
+      },
+      {
+       "t": "这家店便宜又好吃又。",
+       "ok": false,
+       "why": "語順が誤り。<z>又便宜又好吃</z>とします。"
+      },
+      {
+       "t": "这家店又又便宜好吃。",
+       "ok": false,
+       "why": "語順が誤り。<z>又便宜又好吃</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "既然",
+     "你来了",
+     "我们",
+     "就",
+     "开始吧"
+    ],
+    "answer": "既然你来了，我们就开始吧。",
+    "why": "既然＋既成事実，就＋当然の結果の語順です。"
+   },
+   "writing": [
+    {
+     "prompt": "私はこの本を勧めます。",
+     "answer": "我推荐这本书。"
+    },
+    {
+     "prompt": "あなたが来たので始めましょう。",
+     "answer": "既然你来了，我们就开始吧。"
+    }
+   ]
+  },
+  "39": {
+   "vocab": [
+    "批评",
+    "反对",
+    "支持",
+    "商量",
+    "谈"
+   ],
+   "grammar": [
+    "即使也",
+    "哪怕也",
+    "随着"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>批评</z>」の意味は？",
+     "opts": [
+      {
+       "t": "叱る・批判する",
+       "ok": true,
+       "why": "正解。良くない点を指摘して責める動詞です。例：<z>他被老师批评了</z>（先生に叱られた）。"
+      },
+      {
+       "t": "褒める",
+       "ok": false,
+       "why": "これは反対語の<z>表扬</z>です。<z>批评</z>⇔<z>表扬</z>はセットで覚えると混同しません。"
+      },
+      {
+       "t": "反対する",
+       "ok": false,
+       "why": "これは<z>反对</z>。意見に反対する意味で、人を叱る<z>批评</z>とは別です。"
+      },
+      {
+       "t": "支持する",
+       "ok": false,
+       "why": "これは<z>支持</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>商量</z>」の意味は？",
+     "opts": [
+      {
+       "t": "相談する",
+       "ok": true,
+       "why": "正解。物事をどうするか話し合って決める意味。例：<z>这件事我们再商量</z>。"
+      },
+      {
+       "t": "議論する・討論する",
+       "ok": false,
+       "why": "これは<z>讨论</z>。複数で意見を戦わせる硬い語で、<z>商量</z>（身近な相談）より公式です。"
+      },
+      {
+       "t": "話し合う",
+       "ok": false,
+       "why": "これは<z>谈</z>。<z>商量</z>と近いですが、<z>谈</z>は話す行為そのもの、<z>商量</z>は決めるための相談です。"
+      },
+      {
+       "t": "説明する",
+       "ok": false,
+       "why": "これは<z>说明</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我　这个计划。</z>（私はこの計画に反対だ）",
+     "opts": [
+      {
+       "t": "反对",
+       "ok": true,
+       "why": "正解。計画・意見など「事柄」に反対するのは<z>反对</z>です。"
+      },
+      {
+       "t": "批评",
+       "ok": false,
+       "why": "<z>批评</z>は人や行いを「叱る・批判する」語。計画そのものに対しては<z>反对</z>が自然です。"
+      },
+      {
+       "t": "支持",
+       "ok": false,
+       "why": "<z>支持</z>は逆の「支持する」で意味が反対になります。"
+      },
+      {
+       "t": "商量",
+       "ok": false,
+       "why": "<z>商量</z>は「相談する」で、態度の表明には合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我很　你的决定。</z>（あなたの決定を支持する）",
+     "opts": [
+      {
+       "t": "支持",
+       "ok": true,
+       "why": "正解。賛同して後押しするのは<z>支持</z>。<z>支持你的决定</z>は定番の組み合わせです。"
+      },
+      {
+       "t": "反对",
+       "ok": false,
+       "why": "<z>反对</z>は逆の「反対する」になります。"
+      },
+      {
+       "t": "批评",
+       "ok": false,
+       "why": "<z>批评</z>は叱る・批判する語で、決定への賛同には合いません。"
+      },
+      {
+       "t": "商量",
+       "ok": false,
+       "why": "<z>商量</z>は「相談する」で態度表明ではありません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・即使也",
+     "q": "空欄に入る語は？\n<z>　明天下雨，我也要去。</z>（たとえ明日雨でも行く）",
+     "opts": [
+      {
+       "t": "即使",
+       "ok": true,
+       "why": "正解。<z>即使…也…</z>は「たとえ〜でも」。まだ起きていない仮定の譲歩に使います。"
+      },
+      {
+       "t": "虽然",
+       "ok": false,
+       "why": "<z>虽然</z>は既に起きている事実の譲歩。明日のことはまだ事実でないので仮定の<z>即使</z>が正解です。"
+      },
+      {
+       "t": "因为",
+       "ok": false,
+       "why": "<z>因为</z>は理由（〜だから）で、譲歩の意味になりません。"
+      },
+      {
+       "t": "随着",
+       "ok": false,
+       "why": "<z>随着</z>は「〜につれて」で文意に合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・即使也",
+     "q": "空欄に入る語は？\n<z>即使你不同意，我　会坚持。</z>（たとえ同意しなくても固持する）",
+     "opts": [
+      {
+       "t": "也",
+       "ok": true,
+       "why": "正解。<z>即使</z>は必ず後半で<z>也</z>と呼応します（<z>即使…也…</z>）。"
+      },
+      {
+       "t": "就",
+       "ok": false,
+       "why": "<z>就</z>は<z>即使</z>とは呼応しません。譲歩の後半は<z>也</z>です。"
+      },
+      {
+       "t": "才",
+       "ok": false,
+       "why": "<z>才</z>は「やっと／〜してこそ」で、譲歩の呼応にはなりません。"
+      },
+      {
+       "t": "还",
+       "ok": false,
+       "why": "<z>还</z>単独では呼応が不自然。定型は<z>即使…也…</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・随着",
+     "q": "次の日本語に合う正しい文は？\n「年齢とともに考え方が変わった」",
+     "opts": [
+      {
+       "t": "随着年龄增长，想法也变了。",
+       "ok": true,
+       "why": "正解。<z>随着</z>の後ろは「変化を表す句」（<z>年龄增长</z>）を置きます。"
+      },
+      {
+       "t": "跟着年龄增长，想法变了。",
+       "ok": false,
+       "why": "<z>跟着</z>は「後について行く」。「〜につれて」の変化には<z>随着</z>を使います。"
+      },
+      {
+       "t": "随便年龄增长，想法变了。",
+       "ok": false,
+       "why": "<z>随便</z>は「勝手に・適当に」で全く別の意味です。字面が似ているので注意。"
+      },
+      {
+       "t": "随着年龄，想法变了。",
+       "ok": false,
+       "why": "<z>随着</z>の後ろは名詞だけでなく変化の句が必要（<z>年龄增长</z>）。これだと不自然です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・哪怕也",
+     "q": "次の日本語に合う正しい文は？\n「たとえ少しでも続けたい」",
+     "opts": [
+      {
+       "t": "哪怕只有一点儿，也想坚持。",
+       "ok": true,
+       "why": "正解。<z>哪怕…也…</z>は口語的で強い譲歩。後半は<z>也</z>で呼応します。"
+      },
+      {
+       "t": "哪怕只有一点儿，就想坚持。",
+       "ok": false,
+       "why": "<z>哪怕</z>の呼応は<z>就</z>でなく<z>也／都</z>です。"
+      },
+      {
+       "t": "哪怕只有一点儿，但想坚持。",
+       "ok": false,
+       "why": "<z>但</z>は逆接の接続詞。譲歩構文の後半には<z>也</z>を使います。"
+      },
+      {
+       "t": "即使一点儿，哪怕想坚持。",
+       "ok": false,
+       "why": "<z>哪怕</z>の位置が誤り。<z>哪怕</z>は前半（条件）に置きます。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "即使",
+     "很忙",
+     "我",
+     "也想",
+     "坚持学习"
+    ],
+    "answer": "即使很忙，我也想坚持学习。",
+    "why": "<z>即使</z>＋条件＋主語＋<z>也</z>＋動詞句、の譲歩語順です。"
+   },
+   "writing": [
+    {
+     "prompt": "私はこの計画に反対です。",
+     "answer": "我反对这个计划。"
+    },
+    {
+     "prompt": "たとえ忙しくても、私は中国語の勉強を続けたいです。",
+     "answer": "即使很忙，我也想坚持学习中文。"
+    }
+   ]
+  },
+  "40": {
+   "vocab": [
+    "通知",
+    "提供",
+    "申请",
+    "登记",
+    "完成"
+   ],
+   "grammar": [
+    "通过",
+    "经过",
+    "按照"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>申请</z>」の意味は？",
+     "opts": [
+      {
+       "t": "申請する",
+       "ok": true,
+       "why": "正解。許可や資格を求めて願い出る意味。例：<z>我申请了签证</z>（ビザを申請した）。"
+      },
+      {
+       "t": "登録する",
+       "ok": false,
+       "why": "これは<z>登记</z>。情報を記録する意味で、許可を求める<z>申请</z>とは別です。"
+      },
+      {
+       "t": "提供する",
+       "ok": false,
+       "why": "これは<z>提供</z>です。"
+      },
+      {
+       "t": "知らせる",
+       "ok": false,
+       "why": "これは<z>通知</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>提供</z>」の意味は？",
+     "opts": [
+      {
+       "t": "提供する",
+       "ok": true,
+       "why": "正解。必要なものを差し出す意味。例：<z>酒店提供早餐</z>（ホテルが朝食を提供する）。"
+      },
+      {
+       "t": "やり遂げる・完成する",
+       "ok": false,
+       "why": "これは<z>完成</z>です。"
+      },
+      {
+       "t": "申請する",
+       "ok": false,
+       "why": "これは<z>申请</z>です。"
+      },
+      {
+       "t": "知らせる",
+       "ok": false,
+       "why": "これは<z>通知</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>请在前台　。</z>（フロントで登録してください）",
+     "opts": [
+      {
+       "t": "登记",
+       "ok": true,
+       "why": "正解。氏名などを記録する手続きは<z>登记</z>です。"
+      },
+      {
+       "t": "申请",
+       "ok": false,
+       "why": "<z>申请</z>は許可・資格を求めること。窓口で名前を記録するのは<z>登记</z>が自然です。"
+      },
+      {
+       "t": "完成",
+       "ok": false,
+       "why": "<z>完成</z>は「やり遂げる」で手続きの場面に合いません。"
+      },
+      {
+       "t": "提供",
+       "ok": false,
+       "why": "<z>提供</z>は「提供する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>请　大家明天开会。</z>（明日会議だとみんなに知らせて）",
+     "opts": [
+      {
+       "t": "通知",
+       "ok": true,
+       "why": "正解。情報を伝え知らせるのは<z>通知</z>です。"
+      },
+      {
+       "t": "提供",
+       "ok": false,
+       "why": "<z>提供</z>は物やサービスを差し出すこと。連絡には<z>通知</z>を使います。"
+      },
+      {
+       "t": "申请",
+       "ok": false,
+       "why": "<z>申请</z>は「申請する」で文意に合いません。"
+      },
+      {
+       "t": "登记",
+       "ok": false,
+       "why": "<z>登记</z>は「登録する」で連絡の意味はありません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・通过",
+     "q": "空欄に入る語は？\n<z>我想　HSK提高中文水平。</z>（HSKを通じて中国語を上げたい）",
+     "opts": [
+      {
+       "t": "通过",
+       "ok": true,
+       "why": "正解。<z>通过</z>は「〜を手段として」。HSKという手段で目的を達成する意味です。"
+      },
+      {
+       "t": "经过",
+       "ok": false,
+       "why": "<z>经过</z>は「〜を経て」と過程に注目する語。手段を示すここでは<z>通过</z>が自然です。"
+      },
+      {
+       "t": "按照",
+       "ok": false,
+       "why": "<z>按照</z>は「〜に従って」で手順・基準を表します。"
+      },
+      {
+       "t": "随着",
+       "ok": false,
+       "why": "<z>随着</z>は「〜につれて」で文意に合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・经过",
+     "q": "空欄に入る語は？\n<z>　三个月的练习，我进步了很多。</z>（3か月の練習を経て）",
+     "opts": [
+      {
+       "t": "经过",
+       "ok": true,
+       "why": "正解。<z>经过</z>は時間や出来事の「過程を経て」を表します。"
+      },
+      {
+       "t": "通过",
+       "ok": false,
+       "why": "<z>通过</z>は手段（〜を通じて）。期間を経た過程には<z>经过</z>が合います。"
+      },
+      {
+       "t": "按照",
+       "ok": false,
+       "why": "<z>按照</z>は「〜に従って」で過程の意味になりません。"
+      },
+      {
+       "t": "随着",
+       "ok": false,
+       "why": "<z>随着</z>は変化の同時進行で、この文には合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・按照",
+     "q": "空欄に入る語は？\n<z>请　这个步骤操作。</z>（この手順に従って操作して）",
+     "opts": [
+      {
+       "t": "按照",
+       "ok": true,
+       "why": "正解。<z>按照</z>は決められた手順・基準に従うこと。"
+      },
+      {
+       "t": "根据",
+       "ok": false,
+       "why": "<z>根据</z>は情報・根拠に基づく判断。手順に従う動作には<z>按照</z>が自然です。"
+      },
+      {
+       "t": "通过",
+       "ok": false,
+       "why": "<z>通过</z>は手段（〜を通じて）で文意に合いません。"
+      },
+      {
+       "t": "经过",
+       "ok": false,
+       "why": "<z>经过</z>は「〜を経て」で手順に従う意味はありません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・经过",
+     "q": "次の日本語に合う正しい文は？\n「家に帰る途中で郵便局の前を通った」",
+     "opts": [
+      {
+       "t": "回家的路上经过了邮局。",
+       "ok": true,
+       "why": "正解。場所の「前を通る・通り過ぎる」のは<z>经过</z>です。"
+      },
+      {
+       "t": "回家的路上通过了邮局。",
+       "ok": false,
+       "why": "<z>通过</z>は「（中を）通り抜ける／合格する」。場所のそばを通るのは<z>经过</z>です。"
+      },
+      {
+       "t": "回家的路上按照了邮局。",
+       "ok": false,
+       "why": "<z>按照</z>は「〜に従って」で、場所には使えません。"
+      },
+      {
+       "t": "回家的路上随着了邮局。",
+       "ok": false,
+       "why": "<z>随着</z>は「〜につれて」で文意に合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我想",
+     "通过",
+     "每天练习",
+     "提高",
+     "中文水平"
+    ],
+    "answer": "我想通过每天练习提高中文水平。",
+    "why": "<z>通过＋手段</z>＋<z>提高＋目的</z>の語順。手段を述語の前に置きます。"
+   },
+   "writing": [
+    {
+     "prompt": "ビザを申請しました。",
+     "answer": "我申请了签证。"
+    },
+    {
+     "prompt": "この手順に従って操作してください。",
+     "answer": "请按照这个步骤操作。"
+    }
+   ]
+  },
+  "41": {
+   "vocab": [
+    "进行",
+    "收拾",
+    "节约",
+    "浪费",
+    "增加"
+   ],
+   "grammar": [
+    "根据",
+    "按时准时",
+    "由负责"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>浪费</z>」の意味は？",
+     "opts": [
+      {
+       "t": "浪費する・無駄にする",
+       "ok": true,
+       "why": "正解。時間やお金を無駄遣いする意味。例：<z>别浪费时间</z>（時間を無駄にするな）。"
+      },
+      {
+       "t": "節約する",
+       "ok": false,
+       "why": "これは反対語の<z>节约</z>です。<z>浪费</z>⇔<z>节约</z>で覚えましょう。"
+      },
+      {
+       "t": "増やす・増える",
+       "ok": false,
+       "why": "これは<z>增加</z>です。"
+      },
+      {
+       "t": "片付ける",
+       "ok": false,
+       "why": "これは<z>收拾</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>收拾</z>」の意味は？",
+     "opts": [
+      {
+       "t": "片付ける・整理する",
+       "ok": true,
+       "why": "正解。部屋や荷物を整える意味。例：<z>我收拾房间</z>（部屋を片付ける）。"
+      },
+      {
+       "t": "行う・進める",
+       "ok": false,
+       "why": "これは<z>进行</z>です。"
+      },
+      {
+       "t": "増やす",
+       "ok": false,
+       "why": "これは<z>增加</z>です。"
+      },
+      {
+       "t": "節約する",
+       "ok": false,
+       "why": "これは<z>节约</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>别　时间。</z>（時間を無駄にするな）",
+     "opts": [
+      {
+       "t": "浪费",
+       "ok": true,
+       "why": "正解。時間を無駄にするのは<z>浪费时间</z>が定番です。"
+      },
+      {
+       "t": "节约",
+       "ok": false,
+       "why": "<z>节约</z>は逆の「節約する」。<z>别节约时间</z>では意味が逆になります。"
+      },
+      {
+       "t": "增加",
+       "ok": false,
+       "why": "<z>增加</z>は「増やす」で文意に合いません。"
+      },
+      {
+       "t": "收拾",
+       "ok": false,
+       "why": "<z>收拾</z>は「片付ける」で時間には使いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　天气预报，明天会下雨。</z>（天気予報によると明日は雨）",
+     "opts": [
+      {
+       "t": "根据",
+       "ok": true,
+       "why": "正解。情報・データを根拠にするのは<z>根据</z>です。"
+      },
+      {
+       "t": "按照",
+       "ok": false,
+       "why": "<z>按照</z>は手順・基準に従う動作。情報を根拠に判断する時は<z>根据</z>が自然です。"
+      },
+      {
+       "t": "通过",
+       "ok": false,
+       "why": "<z>通过</z>は手段（〜を通じて）で文意に合いません。"
+      },
+      {
+       "t": "由",
+       "ok": false,
+       "why": "<z>由</z>は担当者を示す語で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・按时准时",
+     "q": "空欄に入る語は？\n<z>请　提交报告。</z>（報告書を期限通り提出して）",
+     "opts": [
+      {
+       "t": "按时",
+       "ok": true,
+       "why": "正解。<z>按时</z>は「決められた時間・期限通りに」。<z>按时提交</z>は定番です。"
+      },
+      {
+       "t": "准时",
+       "ok": false,
+       "why": "<z>准时</z>は「時刻ぴったりに（来る等）」。期限内の提出には<z>按时</z>が自然です。"
+      },
+      {
+       "t": "根据",
+       "ok": false,
+       "why": "<z>根据</z>は「〜に基づいて」で時間の意味はありません。"
+      },
+      {
+       "t": "由",
+       "ok": false,
+       "why": "<z>由</z>は担当者を示す語で文意に合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・按时准时",
+     "q": "空欄に入る語は？\n<z>明天请　来。</z>（明日は時間通りに来てください）",
+     "opts": [
+      {
+       "t": "准时",
+       "ok": true,
+       "why": "正解。約束の時刻ちょうどに来るのは<z>准时</z>です。"
+      },
+      {
+       "t": "按时",
+       "ok": false,
+       "why": "<z>按时</z>は期限・スケジュール通りの行動。「時刻ぴったりに来る」には<z>准时</z>が自然です。"
+      },
+      {
+       "t": "正好",
+       "ok": false,
+       "why": "<z>正好</z>は「ちょうど（偶然合う）」で、指示には合いません。"
+      },
+      {
+       "t": "根据",
+       "ok": false,
+       "why": "<z>根据</z>は「〜に基づいて」で文意に合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・由负责",
+     "q": "空欄に入る語は？\n<z>这个项目　我负责。</z>（このプロジェクトは私が担当する）",
+     "opts": [
+      {
+       "t": "由",
+       "ok": true,
+       "why": "正解。<z>由＋人＋负责</z>で「〜が担当する」。担当者を示します。"
+      },
+      {
+       "t": "被",
+       "ok": false,
+       "why": "<z>被</z>は受身（〜される）。形は似ますが、担当者を示すのは<z>由</z>です。"
+      },
+      {
+       "t": "给",
+       "ok": false,
+       "why": "<z>给</z>は「〜に／〜のために」で担当を示せません。"
+      },
+      {
+       "t": "为",
+       "ok": false,
+       "why": "<z>为</z>は「〜のために」で、責任の所在を示す<z>由</z>とは別です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・根据",
+     "q": "次の日本語に合う正しい文は？\n「資料に基づいて判断します」",
+     "opts": [
+      {
+       "t": "根据资料来判断。",
+       "ok": true,
+       "why": "正解。判断の「根拠」を示すのは<z>根据</z>です。"
+      },
+      {
+       "t": "按照资料来判断。",
+       "ok": false,
+       "why": "<z>按照</z>は手順・指示に従う動作。情報を根拠に判断するなら<z>根据</z>が自然です。"
+      },
+      {
+       "t": "通过资料来判断。",
+       "ok": false,
+       "why": "<z>通过</z>は手段（〜を通じて）。判断の根拠としては<z>根据</z>が適切です。"
+      },
+      {
+       "t": "由资料来判断。",
+       "ok": false,
+       "why": "<z>由</z>は担当者を示す語で、文意に合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "这个项目",
+     "由",
+     "我",
+     "来",
+     "负责"
+    ],
+    "answer": "这个项目由我来负责。",
+    "why": "<z>由＋担当者＋（来）＋负责</z>の語順。担当者を<z>由</z>の後ろに置きます。"
+   },
+   "writing": [
+    {
+     "prompt": "水を節約しましょう。",
+     "answer": "我们要节约用水。"
+    },
+    {
+     "prompt": "天気予報によると、明日は雨です。",
+     "answer": "根据天气预报，明天会下雨。"
+    }
+   ]
+  },
+  "42": {
+   "vocab": [
+    "减少",
+    "降低",
+    "修改",
+    "说明",
+    "表示"
+   ],
+   "grammar": [
+    "为做准备",
+    "针对",
+    "以为主"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>降低</z>」の意味は？",
+     "opts": [
+      {
+       "t": "下げる・低下させる",
+       "ok": true,
+       "why": "正解。価格・温度・水準などを下げる意味。例：<z>价格降低了</z>（価格が下がった）。"
+      },
+      {
+       "t": "減らす（数量）",
+       "ok": false,
+       "why": "これは<z>减少</z>。数や量が減ること。程度・水準を下げる<z>降低</z>と使い分けます。"
+      },
+      {
+       "t": "修正する",
+       "ok": false,
+       "why": "これは<z>修改</z>です。"
+      },
+      {
+       "t": "表す・示す",
+       "ok": false,
+       "why": "これは<z>表示</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>表示</z>」の意味は？",
+     "opts": [
+      {
+       "t": "（態度・気持ちを）表す・示す",
+       "ok": true,
+       "why": "正解。例：<z>他表示同意</z>（同意を示した）。態度の表明に使います。"
+      },
+      {
+       "t": "説明する",
+       "ok": false,
+       "why": "これは<z>说明</z>。理由や内容を述べることで、態度を示す<z>表示</z>とは別です。"
+      },
+      {
+       "t": "修正する",
+       "ok": false,
+       "why": "これは<z>修改</z>です。"
+      },
+      {
+       "t": "下げる",
+       "ok": false,
+       "why": "これは<z>降低</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>公司决定　招聘的标准。</z>（会社は採用基準を下げると決めた）",
+     "opts": [
+      {
+       "t": "降低",
+       "ok": true,
+       "why": "正解。基準・水準・程度を下げるのは<z>降低</z>。<z>降低标准</z>は定番です。"
+      },
+      {
+       "t": "减少",
+       "ok": false,
+       "why": "<z>减少</z>は数や量が減ること。「基準（水準）を下げる」には<z>降低</z>を使います。"
+      },
+      {
+       "t": "修改",
+       "ok": false,
+       "why": "<z>修改</z>は「修正する」で、「下げる」という方向は表しません。"
+      },
+      {
+       "t": "表示",
+       "ok": false,
+       "why": "<z>表示</z>は「表す」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他　同意。</z>（彼は同意を示した）",
+     "opts": [
+      {
+       "t": "表示",
+       "ok": true,
+       "why": "正解。賛否などの態度を示すのは<z>表示</z>。<z>表示同意</z>は定番です。"
+      },
+      {
+       "t": "说明",
+       "ok": false,
+       "why": "<z>说明</z>は理由・内容を述べること。態度の表明には<z>表示</z>が合います。"
+      },
+      {
+       "t": "修改",
+       "ok": false,
+       "why": "<z>修改</z>は「修正する」で文意に合いません。"
+      },
+      {
+       "t": "降低",
+       "ok": false,
+       "why": "<z>降低</z>は「下げる」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・为做准备",
+     "q": "次の日本語に合う正しい文は？\n「明日の会議の準備をしています」",
+     "opts": [
+      {
+       "t": "我在为明天的会议做准备。",
+       "ok": true,
+       "why": "正解。<z>为＋対象＋做准备</z>で「〜のために準備する」。語順が決まっています。"
+      },
+      {
+       "t": "我在准备为明天的会议。",
+       "ok": false,
+       "why": "<z>为</z>句の位置が誤り。<z>为…做准备</z>の形で動詞<z>做准备</z>の前に<z>为…</z>を置きます。"
+      },
+      {
+       "t": "我为明天的会议在做准备。",
+       "ok": false,
+       "why": "<z>在</z>の位置が不自然。<z>我在为…做准备</z>が標準語順です。"
+      },
+      {
+       "t": "我做准备为明天的会议。",
+       "ok": false,
+       "why": "<z>为…</z>は動詞の前。後ろに置くこの語順は誤りです。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・针对",
+     "q": "空欄に入る語は？\n<z>　这个问题，我们再讨论一下。</z>（この問題について議論しよう）",
+     "opts": [
+      {
+       "t": "针对",
+       "ok": true,
+       "why": "正解。<z>针对</z>は特定の問題・対象に「向けて」対応する、ややフォーマルな語です。"
+      },
+      {
+       "t": "根据",
+       "ok": false,
+       "why": "<z>根据</z>は「〜に基づいて」。問題を対象に取り上げる時は<z>针对</z>が自然です。"
+      },
+      {
+       "t": "按照",
+       "ok": false,
+       "why": "<z>按照</z>は手順に従う動作で文意に合いません。"
+      },
+      {
+       "t": "为",
+       "ok": false,
+       "why": "<z>为</z>は「〜のために」で、対象を取り上げる<z>针对</z>とは別です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・以为主",
+     "q": "次の日本語に合う正しい文は？\n「今日は復習を中心にします」",
+     "opts": [
+      {
+       "t": "今天以复习为主。",
+       "ok": true,
+       "why": "正解。<z>以＋A＋为主</z>で「Aを中心にする」。"
+      },
+      {
+       "t": "今天复习为主。",
+       "ok": false,
+       "why": "<z>以</z>が抜けています。<z>以…为主</z>で1セットです。"
+      },
+      {
+       "t": "今天以主为复习。",
+       "ok": false,
+       "why": "<z>为主</z>の語順が崩れています。正しくは<z>以复习为主</z>。"
+      },
+      {
+       "t": "今天为复习以主。",
+       "ok": false,
+       "why": "語順が誤り。<z>以＋A＋为主</z>の形を崩しています。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・以为主",
+     "q": "次の日本語に合う正しい文は？\n「この授業は会話を中心にしている」",
+     "opts": [
+      {
+       "t": "这节课以会话为主。",
+       "ok": true,
+       "why": "正解。<z>以＋A＋为主</z>で「Aを中心にする」。"
+      },
+      {
+       "t": "这节课会话为主。",
+       "ok": false,
+       "why": "<z>以</z>が抜けています。<z>以…为主</z>で1セットです。"
+      },
+      {
+       "t": "这节课以为主会话。",
+       "ok": false,
+       "why": "語順が崩れています。正しくは<z>以会话为主</z>。"
+      },
+      {
+       "t": "这节课为主以会话。",
+       "ok": false,
+       "why": "語順が誤り。<z>以＋A＋为主</z>の形を崩しています。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "针对",
+     "这个问题",
+     "我们",
+     "再",
+     "讨论一下"
+    ],
+    "answer": "针对这个问题，我们再讨论一下。",
+    "why": "<z>针对＋対象</z>を文頭に置き、主節を続けます。"
+   },
+   "writing": [
+    {
+     "prompt": "彼は同意を示した。",
+     "answer": "他表示同意。"
+    },
+    {
+     "prompt": "このコースはHSK4級文法を中心にしています。",
+     "answer": "这个课程以HSK四级语法为主。"
+    }
+   ]
+  },
+  "43": {
+   "vocab": [
+    "怀疑",
+    "估计",
+    "判断",
+    "考虑",
+    "理解"
+   ],
+   "grammar": [
+    "以为例",
+    "例如",
+    "比如"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>怀疑</z>」の意味は？",
+     "opts": [
+      {
+       "t": "疑う",
+       "ok": true,
+       "why": "正解。本当かどうか信じきれない意味。例：<z>我怀疑他说谎</z>（嘘をついていると疑う）。"
+      },
+      {
+       "t": "推測する・見積もる",
+       "ok": false,
+       "why": "これは<z>估计</z>。だいたいの見当をつける語で、疑う<z>怀疑</z>とは別です。"
+      },
+      {
+       "t": "判断する",
+       "ok": false,
+       "why": "これは<z>判断</z>です。"
+      },
+      {
+       "t": "理解する",
+       "ok": false,
+       "why": "これは<z>理解</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>估计</z>」の意味は？",
+     "opts": [
+      {
+       "t": "推測する・見積もる",
+       "ok": true,
+       "why": "正解。状況からだいたいを予想する意味。例：<z>我估计他会迟到</z>（遅れると思う）。"
+      },
+      {
+       "t": "疑う",
+       "ok": false,
+       "why": "これは<z>怀疑</z>です。"
+      },
+      {
+       "t": "考慮する",
+       "ok": false,
+       "why": "これは<z>考虑</z>です。"
+      },
+      {
+       "t": "判断する",
+       "ok": false,
+       "why": "これは<z>判断</z>。根拠から結論を下す語で、見当をつける<z>估计</z>とは少し異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>让我　一下。</z>（少し考えさせて）",
+     "opts": [
+      {
+       "t": "考虑",
+       "ok": true,
+       "why": "正解。あれこれ思いめぐらして検討するのは<z>考虑</z>。<z>考虑一下</z>は定番です。"
+      },
+      {
+       "t": "理解",
+       "ok": false,
+       "why": "<z>理解</z>は「理解する」。検討する場面には<z>考虑</z>が合います。"
+      },
+      {
+       "t": "怀疑",
+       "ok": false,
+       "why": "<z>怀疑</z>は「疑う」で文意に合いません。"
+      },
+      {
+       "t": "判断",
+       "ok": false,
+       "why": "<z>判断</z>は「判断する」で、検討の<z>考虑</z>とはニュアンスが違います。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我　你的想法。</z>（あなたの考えを理解する）",
+     "opts": [
+      {
+       "t": "理解",
+       "ok": true,
+       "why": "正解。意味・気持ちを分かるのは<z>理解</z>です。"
+      },
+      {
+       "t": "考虑",
+       "ok": false,
+       "why": "<z>考虑</z>は「検討する」。相手の考えを「分かる」なら<z>理解</z>です。"
+      },
+      {
+       "t": "估计",
+       "ok": false,
+       "why": "<z>估计</z>は「推測する」で文意に合いません。"
+      },
+      {
+       "t": "怀疑",
+       "ok": false,
+       "why": "<z>怀疑</z>は「疑う」で意味が逆方向です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・比如",
+     "q": "次の日本語に合う正しい文は？\n「中国語の表現はたくさんある、例えばデリバリー注文だ」",
+     "opts": [
+      {
+       "t": "中文表达有很多，比如点外卖。",
+       "ok": true,
+       "why": "正解。例を挙げるときは<z>比如＋具体例</z>を後ろに置きます。"
+      },
+      {
+       "t": "中文表达比如有很多，点外卖。",
+       "ok": false,
+       "why": "<z>比如</z>の位置が誤り。具体例の直前に置きます。"
+      },
+      {
+       "t": "中文表达有很多点外卖比如。",
+       "ok": false,
+       "why": "<z>比如</z>は具体例の前。末尾に置くのは誤りです。"
+      },
+      {
+       "t": "中文表达有很多，以点外卖比如。",
+       "ok": false,
+       "why": "<z>比如</z>は<z>以…</z>と組みません。<z>比如点外卖</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・以为例",
+     "q": "次の日本語に合う正しい文は？\n「上海を例に説明します」",
+     "opts": [
+      {
+       "t": "以上海为例来说明。",
+       "ok": true,
+       "why": "正解。<z>以＋A＋为例</z>で「Aを例にすると」。"
+      },
+      {
+       "t": "为上海以例来说明。",
+       "ok": false,
+       "why": "語順が誤り。<z>以＋A＋为例</z>の順です。"
+      },
+      {
+       "t": "以为例上海来说明。",
+       "ok": false,
+       "why": "語順が誤り。<z>以上海为例</z>とします。"
+      },
+      {
+       "t": "上海以例为来说明。",
+       "ok": false,
+       "why": "語順が誤り。<z>以＋A＋为例</z>の形を崩しています。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・例如",
+     "q": "次の日本語に合う正しい文は？\n「例えば、上海では地下鉄に乗るのが便利です」",
+     "opts": [
+      {
+       "t": "例如，在上海坐地铁很方便。",
+       "ok": true,
+       "why": "正解。文頭で例を導入する<z>例如，…</z>の使い方です。"
+      },
+      {
+       "t": "例如在上海坐地铁，很方便。",
+       "ok": false,
+       "why": "区切りが不自然。<z>例如，</z>の後に例の文全体を続けます。"
+      },
+      {
+       "t": "在上海例如坐地铁很方便。",
+       "ok": false,
+       "why": "<z>例如</z>の位置が不自然。例を導く時は文頭が自然です。"
+      },
+      {
+       "t": "比如说例如坐地铁很方便。",
+       "ok": false,
+       "why": "<z>比如说</z>と<z>例如</z>の重複で冗長です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・比如",
+     "q": "次の日本語に合う正しい文は？\n「例えば地下鉄に乗る時に使います」",
+     "opts": [
+      {
+       "t": "比如坐地铁的时候会用。",
+       "ok": true,
+       "why": "正解。会話的に具体例を挙げる<z>比如…</z>の用法です。"
+      },
+      {
+       "t": "以坐地铁为比如会用。",
+       "ok": false,
+       "why": "<z>比如</z>は<z>为</z>と組みません。<z>以…为例</z>と混同しないように。"
+      },
+      {
+       "t": "比如说坐地铁的时候，例如会用。",
+       "ok": false,
+       "why": "<z>比如</z>と<z>例如</z>を重ねていて冗長です。"
+      },
+      {
+       "t": "坐地铁的时候比如会用。",
+       "ok": false,
+       "why": "<z>比如</z>の位置が不自然。例を導く語は前に置きます。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "例如",
+     "在上海",
+     "坐地铁",
+     "很",
+     "方便"
+    ],
+    "answer": "例如，在上海坐地铁很方便。",
+    "why": "<z>例如，</z>で例を導入し、例の文を続ける語順です。"
+   },
+   "writing": [
+    {
+     "prompt": "彼が嘘をついていると疑っています。",
+     "answer": "我怀疑他说谎。"
+    },
+    {
+     "prompt": "少し考えさせてください。",
+     "answer": "让我考虑一下。"
+    }
+   ]
+  },
+  "44": {
+   "vocab": [
+    "了解",
+    "熟悉",
+    "适应",
+    "养成",
+    "努力"
+   ],
+   "grammar": [
+    "像这样的",
+    "之类的",
+    "顺便"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>熟悉</z>」の意味は？",
+     "opts": [
+      {
+       "t": "よく知っている・詳しい",
+       "ok": true,
+       "why": "正解。慣れ親しんで詳しい状態。例：<z>我对这里很熟悉</z>（ここはよく知っている）。"
+      },
+      {
+       "t": "（事情を）把握する",
+       "ok": false,
+       "why": "これは<z>了解</z>。情報を知り把握する語で、慣れ親しむ<z>熟悉</z>とは少し異なります。"
+      },
+      {
+       "t": "適応する",
+       "ok": false,
+       "why": "これは<z>适应</z>です。"
+      },
+      {
+       "t": "努力する",
+       "ok": false,
+       "why": "これは<z>努力</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>养成</z>」の意味は？",
+     "opts": [
+      {
+       "t": "（習慣を）身につける",
+       "ok": true,
+       "why": "正解。例：<z>养成好习惯</z>（良い習慣を身につける）。<z>习惯</z>とよく結びつきます。"
+      },
+      {
+       "t": "適応する",
+       "ok": false,
+       "why": "これは<z>适应</z>です。"
+      },
+      {
+       "t": "熟知している",
+       "ok": false,
+       "why": "これは<z>熟悉</z>です。"
+      },
+      {
+       "t": "努力する",
+       "ok": false,
+       "why": "これは<z>努力</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我跟他很　，经常一起吃饭。</z>（彼と親しくよく一緒に食事する）",
+     "opts": [
+      {
+       "t": "熟悉",
+       "ok": true,
+       "why": "正解。人と気心が知れて親しいのは<z>熟悉</z>。<z>跟…熟悉</z>の形で使えます。"
+      },
+      {
+       "t": "了解",
+       "ok": false,
+       "why": "<z>了解</z>は相手の事情を「把握する」。<z>跟…了解</z>とは言えず、親しさは<z>熟悉</z>です。"
+      },
+      {
+       "t": "适应",
+       "ok": false,
+       "why": "<z>适应</z>は「環境に慣れる」で、人間関係の親しさには合いません。"
+      },
+      {
+       "t": "养成",
+       "ok": false,
+       "why": "<z>养成</z>は「習慣を身につける」で文意に合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我　了新工作。</z>（新しい仕事に慣れた）",
+     "opts": [
+      {
+       "t": "适应",
+       "ok": true,
+       "why": "正解。新しい環境・状況に慣れるのは<z>适应</z>です。"
+      },
+      {
+       "t": "熟悉",
+       "ok": false,
+       "why": "<z>熟悉</z>は「詳しくなる」。環境に「慣れる」過程は<z>适应</z>が自然です。"
+      },
+      {
+       "t": "养成",
+       "ok": false,
+       "why": "<z>养成</z>は習慣を身につける語で、仕事への適応には合いません。"
+      },
+      {
+       "t": "了解",
+       "ok": false,
+       "why": "<z>了解</z>は「把握する」で文意に合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・像这样的",
+     "q": "次の日本語に合う正しい文は？\n「上海のような都市は生活が便利です」",
+     "opts": [
+      {
+       "t": "像上海这样的城市，生活很方便。",
+       "ok": true,
+       "why": "正解。<z>像＋A＋这样的＋名詞</z>で「Aのような〜」。例示と分類に使います。"
+      },
+      {
+       "t": "像上海这样城市，生活很方便。",
+       "ok": false,
+       "why": "<z>的</z>が必要。<z>像…这样的城市</z>とします。"
+      },
+      {
+       "t": "上海像这样的城市，生活很方便。",
+       "ok": false,
+       "why": "<z>像</z>の位置が誤り。<z>像</z>は例示する名詞の前に置きます。"
+      },
+      {
+       "t": "像这样的上海城市，生活很方便。",
+       "ok": false,
+       "why": "語順が不自然。<z>像上海这样的城市</z>が正しい形です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・之类的",
+     "q": "空欄に入る語は？\n<z>我想学点外卖、打车　表达。</z>（〜のような表現）",
+     "opts": [
+      {
+       "t": "之类的",
+       "ok": true,
+       "why": "正解。例を挙げた後に「〜のたぐいの」とまとめるのが<z>之类的</z>です。"
+      },
+      {
+       "t": "像这样",
+       "ok": false,
+       "why": "<z>像这样</z>は「このような」で、列挙の後をまとめる位置には<z>之类的</z>が自然です。"
+      },
+      {
+       "t": "一样的",
+       "ok": false,
+       "why": "<z>一样的</z>は「同じ」で、同類をまとめる意味になりません。"
+      },
+      {
+       "t": "什么",
+       "ok": false,
+       "why": "口語の<z>…什么的</z>なら可ですが、単独の<z>什么</z>では不自然です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・顺便",
+     "q": "空欄に入る語は？\n<z>我下楼　买杯咖啡。</z>（下に行くついでにコーヒーを買う）",
+     "opts": [
+      {
+       "t": "顺便",
+       "ok": true,
+       "why": "正解。何かのついでに別のことをするのが<z>顺便</z>です。"
+      },
+      {
+       "t": "随便",
+       "ok": false,
+       "why": "<z>随便</z>は「勝手に・適当に」。字面が似ますが意味は全く別です。"
+      },
+      {
+       "t": "顺利",
+       "ok": false,
+       "why": "<z>顺利</z>は「順調だ」で文意に合いません。"
+      },
+      {
+       "t": "方便",
+       "ok": false,
+       "why": "<z>方便</z>は「便利だ」で、「ついでに」の意味はありません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・顺便",
+     "q": "次の日本語に合う正しい文は？\n「帰りについでに牛乳を買ってください」",
+     "opts": [
+      {
+       "t": "回来的时候顺便买牛奶。",
+       "ok": true,
+       "why": "正解。<z>…的时候顺便＋動作</z>で「〜のついでに」を表します。"
+      },
+      {
+       "t": "回来的时候随便买牛奶。",
+       "ok": false,
+       "why": "<z>随便</z>だと「適当に買って」になり意味が変わります。"
+      },
+      {
+       "t": "顺便回来的时候买牛奶。",
+       "ok": false,
+       "why": "<z>顺便</z>の位置が不自然。動作の直前に置くのが自然です。"
+      },
+      {
+       "t": "回来顺利的时候买牛奶。",
+       "ok": false,
+       "why": "<z>顺利</z>は「順調」で文意に合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我",
+     "下楼",
+     "顺便",
+     "买",
+     "杯咖啡"
+    ],
+    "answer": "我下楼顺便买杯咖啡。",
+    "why": "主語＋先の動作＋<z>顺便</z>＋ついでの動作、の語順です。"
+   },
+   "writing": [
+    {
+     "prompt": "新しい仕事に慣れました。",
+     "answer": "我适应了新工作。"
+    },
+    {
+     "prompt": "下に行くついでにコーヒーを買います。",
+     "answer": "我下楼顺便买杯咖啡。"
+    }
+   ]
+  },
+  "45": {
+   "vocab": [
+    "后悔",
+    "羡慕",
+    "感动",
+    "吃惊",
+    "害怕"
+   ],
+   "grammar": [
+    "顺便问一下",
+    "主动",
+    "靠"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>羡慕</z>」の意味は？",
+     "opts": [
+      {
+       "t": "羨む・うらやましがる",
+       "ok": true,
+       "why": "正解。例：<z>我很羡慕你</z>（あなたが羨ましい）。"
+      },
+      {
+       "t": "後悔する",
+       "ok": false,
+       "why": "これは<z>后悔</z>です。"
+      },
+      {
+       "t": "感動する",
+       "ok": false,
+       "why": "これは<z>感动</z>です。"
+      },
+      {
+       "t": "怖がる",
+       "ok": false,
+       "why": "これは<z>害怕</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>吃惊</z>」の意味は？",
+     "opts": [
+      {
+       "t": "驚く",
+       "ok": true,
+       "why": "正解。意外なことに驚く意味。例：<z>我听了很吃惊</z>（聞いて驚いた）。"
+      },
+      {
+       "t": "怖がる",
+       "ok": false,
+       "why": "これは<z>害怕</z>。恐れる感情で、驚く<z>吃惊</z>とは別です。"
+      },
+      {
+       "t": "感動する",
+       "ok": false,
+       "why": "これは<z>感动</z>です。"
+      },
+      {
+       "t": "後悔する",
+       "ok": false,
+       "why": "これは<z>后悔</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我有点　。</z>（少し後悔している）",
+     "opts": [
+      {
+       "t": "后悔",
+       "ok": true,
+       "why": "正解。済んだことを悔やむのは<z>后悔</z>です。"
+      },
+      {
+       "t": "羡慕",
+       "ok": false,
+       "why": "<z>羡慕</z>は「羨む」で、悔やむ感情とは別です。"
+      },
+      {
+       "t": "吃惊",
+       "ok": false,
+       "why": "<z>吃惊</z>は「驚く」で文意に合いません。"
+      },
+      {
+       "t": "害怕",
+       "ok": false,
+       "why": "<z>害怕</z>は「怖がる」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>你别　。</z>（怖がらないで）",
+     "opts": [
+      {
+       "t": "害怕",
+       "ok": true,
+       "why": "正解。恐れる感情を表すのは<z>害怕</z>。<z>别害怕</z>で「怖がらないで」。"
+      },
+      {
+       "t": "后悔",
+       "ok": false,
+       "why": "<z>后悔</z>は「後悔する」で文意に合いません。"
+      },
+      {
+       "t": "吃惊",
+       "ok": false,
+       "why": "<z>吃惊</z>は「驚く」で、恐れとは別の感情です。"
+      },
+      {
+       "t": "羡慕",
+       "ok": false,
+       "why": "<z>羡慕</z>は「羨む」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・顺便问一下",
+     "q": "空欄に入る語は？\n<z>　，明天几点开会？</z>（ついでに聞きますが、明日は何時に会議？）",
+     "opts": [
+      {
+       "t": "顺便问一下",
+       "ok": true,
+       "why": "正解。会話の流れで軽く質問を足すときの定番表現です。"
+      },
+      {
+       "t": "随便问一下",
+       "ok": false,
+       "why": "<z>随便</z>は「適当に」。「ついでに」の意味では<z>顺便</z>を使います。"
+      },
+      {
+       "t": "顺便说一下",
+       "ok": false,
+       "why": "<z>说一下</z>は「ちょっと言う」で、質問する文には合いません。"
+      },
+      {
+       "t": "请问一下",
+       "ok": false,
+       "why": "<z>请问一下</z>も丁寧な質問ですが、「ついでに」のニュアンスはありません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・主动",
+     "q": "空欄に入る語は？\n<z>学习语言要　开口。</z>（言語学習は自分から話す必要がある）",
+     "opts": [
+      {
+       "t": "主动",
+       "ok": true,
+       "why": "正解。<z>主动</z>は「自分から進んで〜する」。<z>主动开口</z>は定番です。"
+      },
+      {
+       "t": "被动",
+       "ok": false,
+       "why": "<z>被动</z>は「受け身・受動的」で、逆の意味になります。"
+      },
+      {
+       "t": "自动",
+       "ok": false,
+       "why": "<z>自动</z>は「自動で（機械的に）」。人の自発性には<z>主动</z>を使います。"
+      },
+      {
+       "t": "主意",
+       "ok": false,
+       "why": "<z>主意</z>は「考え・アイデア」という名詞で、文法的に合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・靠",
+     "q": "空欄に入る語は？\n<z>不要太　翻译软件。</z>（翻訳ソフトに頼りすぎないで）",
+     "opts": [
+      {
+       "t": "靠",
+       "ok": true,
+       "why": "正解。<z>靠</z>は「〜に頼る」の口語表現です。"
+      },
+      {
+       "t": "考",
+       "ok": false,
+       "why": "<z>考</z>は「試験・受ける」で全く別の語。発音も<z>kǎo</z>と異なります。"
+      },
+      {
+       "t": "相信",
+       "ok": false,
+       "why": "<z>相信</z>は「信じる」で、依存の意味にはなりません。"
+      },
+      {
+       "t": "用",
+       "ok": false,
+       "why": "<z>用</z>は「使う」。「頼りすぎる」の含意は<z>靠</z>の方が出ます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・靠",
+     "q": "次の日本語に合う正しい文は？\n「努力に頼るしかありません」",
+     "opts": [
+      {
+       "t": "只能靠努力。",
+       "ok": true,
+       "why": "正解。<z>靠＋名詞</z>で「〜に頼る／〜次第」。<z>只能靠…</z>は定番です。"
+      },
+      {
+       "t": "只能用努力。",
+       "ok": false,
+       "why": "<z>用</z>は「使う」。「〜に頼る」という依存は<z>靠</z>が自然です。"
+      },
+      {
+       "t": "只能考努力。",
+       "ok": false,
+       "why": "<z>考</z>は「試験を受ける」で全く別の意味です。"
+      },
+      {
+       "t": "只能靠着努力下。",
+       "ok": false,
+       "why": "<z>靠着…下</z>の形が不自然。<z>只能靠努力</z>が正しい言い方です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "学习",
+     "语言",
+     "要",
+     "主动",
+     "开口"
+    ],
+    "answer": "学习语言要主动开口。",
+    "why": "主題＋<z>要＋主动＋動作</z>の語順。<z>主动</z>は動作の直前に置きます。"
+   },
+   "writing": [
+    {
+     "prompt": "あなたが羨ましいです。",
+     "answer": "我很羡慕你。"
+    },
+    {
+     "prompt": "翻訳ソフトに頼りすぎないでください。",
+     "answer": "不要太靠翻译软件。"
+    }
+   ]
+  },
+  "46": {
+   "vocab": [
+    "激动",
+    "兴奋",
+    "失望",
+    "伤心",
+    "同情"
+   ],
+   "grammar": [
+    "依赖",
+    "总而言之",
+    "总之"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>失望</z>」の意味は？",
+     "opts": [
+      {
+       "t": "失望する・がっかりする",
+       "ok": true,
+       "why": "正解。期待が外れる感情。例：<z>我对结果很失望</z>（結果に失望した）。"
+      },
+      {
+       "t": "悲しむ",
+       "ok": false,
+       "why": "これは<z>伤心</z>。心を痛める感情で、期待外れの<z>失望</z>とは別です。"
+      },
+      {
+       "t": "興奮する",
+       "ok": false,
+       "why": "これは<z>激动</z>です。"
+      },
+      {
+       "t": "同情する",
+       "ok": false,
+       "why": "これは<z>同情</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>同情</z>」の意味は？",
+     "opts": [
+      {
+       "t": "同情する",
+       "ok": true,
+       "why": "正解。相手の不幸を思いやる気持ち。例：<z>我很同情他</z>（彼に同情する）。"
+      },
+      {
+       "t": "興奮する",
+       "ok": false,
+       "why": "これは<z>激动</z>です。"
+      },
+      {
+       "t": "失望する",
+       "ok": false,
+       "why": "これは<z>失望</z>です。"
+      },
+      {
+       "t": "わくわくする",
+       "ok": false,
+       "why": "これは<z>兴奋</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他　得说不出话来。</z>（彼は感激のあまり言葉も出なかった）",
+     "opts": [
+      {
+       "t": "激动",
+       "ok": true,
+       "why": "正解。<z>激动</z>は感情が激しく高ぶる状態で、感激・感動に使います。<z>激动得说不出话</z>は定番です。"
+      },
+      {
+       "t": "兴奋",
+       "ok": false,
+       "why": "<z>兴奋</z>は楽しみで気分が高まる「わくわく」。感激で言葉を失う場面は<z>激动</z>がより自然です。"
+      },
+      {
+       "t": "失望",
+       "ok": false,
+       "why": "<z>失望</z>は「がっかり」で、文意に合いません。"
+      },
+      {
+       "t": "伤心",
+       "ok": false,
+       "why": "<z>伤心</z>は「悲しむ」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>她　地哭了。</z>（彼女は悲しくて泣いた）",
+     "opts": [
+      {
+       "t": "伤心",
+       "ok": true,
+       "why": "正解。泣くほど心を痛めるのは<z>伤心</z>です。"
+      },
+      {
+       "t": "失望",
+       "ok": false,
+       "why": "<z>失望</z>は「がっかり」。泣くほどの悲しみは<z>伤心</z>が自然です。"
+      },
+      {
+       "t": "激动",
+       "ok": false,
+       "why": "<z>激动</z>は感情の高ぶりで、悲しみの涙には合いません。"
+      },
+      {
+       "t": "同情",
+       "ok": false,
+       "why": "<z>同情</z>は「同情する」で文意に合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・依赖",
+     "q": "空欄に入る語は？\n<z>不要太　手机翻译。</z>（スマホ翻訳に依存しすぎないで）",
+     "opts": [
+      {
+       "t": "依赖",
+       "ok": true,
+       "why": "正解。<z>依赖</z>は「依存する」。頼りきってしまうニュアンスが出ます。"
+      },
+      {
+       "t": "相信",
+       "ok": false,
+       "why": "<z>相信</z>は「信じる」で、依存の意味にはなりません。"
+      },
+      {
+       "t": "使用",
+       "ok": false,
+       "why": "<z>使用</z>は「使用する」。「頼りすぎ」の含意は<z>依赖</z>です。"
+      },
+      {
+       "t": "参考",
+       "ok": false,
+       "why": "<z>参考</z>は「参考にする」で、依存とは程度が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・总而言之",
+     "q": "空欄に入る語は？\n<z>　，学习语言需要坚持。</z>（要するに、言語学習には継続が必要）",
+     "opts": [
+      {
+       "t": "总而言之",
+       "ok": true,
+       "why": "正解。話をまとめて結論を述べる「要するに」です。"
+      },
+      {
+       "t": "总是",
+       "ok": false,
+       "why": "<z>总是</z>は「いつも」。字面が似ますが、まとめの意味はありません。"
+      },
+      {
+       "t": "一般来说",
+       "ok": false,
+       "why": "<z>一般来说</z>は「一般的に言えば」で、総括とは少し違います。"
+      },
+      {
+       "t": "不但",
+       "ok": false,
+       "why": "<z>不但</z>は「〜だけでなく」で、まとめの語ではありません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・总之",
+     "q": "空欄に入る語は？\n<z>　，每天学一点儿就好。</z>（とにかく毎日少し学べばいい）",
+     "opts": [
+      {
+       "t": "总之",
+       "ok": true,
+       "why": "正解。<z>总之</z>は「とにかく・要するに」と結論を短く言う語です。"
+      },
+      {
+       "t": "总共",
+       "ok": false,
+       "why": "<z>总共</z>は「合計で」。数量の合計を表し、文意に合いません。"
+      },
+      {
+       "t": "总算",
+       "ok": false,
+       "why": "<z>总算</z>は「やっと・どうにか」で、まとめの意味になりません。"
+      },
+      {
+       "t": "总是",
+       "ok": false,
+       "why": "<z>总是</z>は「いつも」で、結論を導く語ではありません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・总而言之",
+     "q": "次の日本語に合う正しい文は？\n「要するに、もっと練習が必要です」",
+     "opts": [
+      {
+       "t": "总而言之，我需要多练习。",
+       "ok": true,
+       "why": "正解。<z>总而言之，…</z>で締めくくる用法です。"
+      },
+      {
+       "t": "总是，我需要多练习。",
+       "ok": false,
+       "why": "<z>总是</z>は「いつも」で、まとめの接続にはなりません。"
+      },
+      {
+       "t": "总共，我需要多练习。",
+       "ok": false,
+       "why": "<z>总共</z>は「合計」で文意に合いません。"
+      },
+      {
+       "t": "总而言之的，我需要多练习。",
+       "ok": false,
+       "why": "<z>总而言之</z>に<z>的</z>は付けません。そのまま文頭に置きます。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "总而言之",
+     "学习",
+     "语言",
+     "需要",
+     "坚持"
+    ],
+    "answer": "总而言之，学习语言需要坚持。",
+    "why": "<z>总而言之，</z>でまとめを導き、結論の文を続けます。"
+   },
+   "writing": [
+    {
+     "prompt": "結果に失望しました。",
+     "answer": "我对结果很失望。"
+    },
+    {
+     "prompt": "要するに、言語学習には継続が必要です。",
+     "answer": "总而言之，学习语言需要坚持。"
+    }
+   ]
+  },
+  "47": {
+   "vocab": [
+    "友好",
+    "热闹",
+    "安静",
+    "活泼",
+    "诚实"
+   ],
+   "grammar": [
+    "反正",
+    "不知不觉",
+    "慢慢地"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>热闹</z>」の意味は？",
+     "opts": [
+      {
+       "t": "にぎやかだ",
+       "ok": true,
+       "why": "正解。人が多く活気がある様子。例：<z>街上很热闹</z>（通りはにぎやか）。"
+      },
+      {
+       "t": "静かだ",
+       "ok": false,
+       "why": "これは反対語の<z>安静</z>です。<z>热闹</z>⇔<z>安静</z>で覚えましょう。"
+      },
+      {
+       "t": "友好的だ",
+       "ok": false,
+       "why": "これは<z>友好</z>です。"
+      },
+      {
+       "t": "活発だ",
+       "ok": false,
+       "why": "これは<z>活泼</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>诚实</z>」の意味は？",
+     "opts": [
+      {
+       "t": "正直だ",
+       "ok": true,
+       "why": "正解。嘘をつかない性質。例：<z>他是个诚实的人</z>（彼は正直な人だ）。"
+      },
+      {
+       "t": "活発だ",
+       "ok": false,
+       "why": "これは<z>活泼</z>です。"
+      },
+      {
+       "t": "友好的だ",
+       "ok": false,
+       "why": "これは<z>友好</z>です。"
+      },
+      {
+       "t": "にぎやかだ",
+       "ok": false,
+       "why": "これは<z>热闹</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>教室很　。</z>（教室は静かだ）",
+     "opts": [
+      {
+       "t": "安静",
+       "ok": true,
+       "why": "正解。音がなく静かなのは<z>安静</z>です。"
+      },
+      {
+       "t": "热闹",
+       "ok": false,
+       "why": "<z>热闹</z>は逆の「にぎやか」で意味が反対になります。"
+      },
+      {
+       "t": "友好",
+       "ok": false,
+       "why": "<z>友好</z>は「友好的」で、場の静けさには合いません。"
+      },
+      {
+       "t": "活泼",
+       "ok": false,
+       "why": "<z>活泼</z>は「活発」で文意に合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这个孩子很　。</z>（この子は活発だ）",
+     "opts": [
+      {
+       "t": "活泼",
+       "ok": true,
+       "why": "正解。元気で動きが活発な様子は<z>活泼</z>です。"
+      },
+      {
+       "t": "诚实",
+       "ok": false,
+       "why": "<z>诚实</z>は「正直」で、活発さとは別の性質です。"
+      },
+      {
+       "t": "安静",
+       "ok": false,
+       "why": "<z>安静</z>は「静か」で、活発とは逆方向です。"
+      },
+      {
+       "t": "友好",
+       "ok": false,
+       "why": "<z>友好</z>は「友好的」で文意に合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・反正",
+     "q": "空欄に入る語は？\n<z>　不远，我们走过去吧。</z>（どうせ遠くないので歩こう）",
+     "opts": [
+      {
+       "t": "反正",
+       "ok": true,
+       "why": "正解。<z>反正</z>は「どうせ・とにかく」と理由を軽くまとめる口語です。"
+      },
+      {
+       "t": "反而",
+       "ok": false,
+       "why": "<z>反而</z>は「かえって・逆に」。字面が似ますが意味は別です。"
+      },
+      {
+       "t": "正好",
+       "ok": false,
+       "why": "<z>正好</z>は「ちょうど」で文意に合いません。"
+      },
+      {
+       "t": "反对",
+       "ok": false,
+       "why": "<z>反对</z>は「反対する」で、全く別の語です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不知不觉",
+     "q": "空欄に入る語は？\n<z>　，我在上海住了快八年了。</z>（いつの間にか8年近く住んでいる）",
+     "opts": [
+      {
+       "t": "不知不觉",
+       "ok": true,
+       "why": "正解。<z>不知不觉</z>は「気づかないうちに」。時間の経過の感想に使います。"
+      },
+      {
+       "t": "不得不",
+       "ok": false,
+       "why": "<z>不得不</z>は「せざるを得ない」で、文意が変わります。"
+      },
+      {
+       "t": "没想到",
+       "ok": false,
+       "why": "<z>没想到</z>は「思いがけず」。「いつの間にか」の継続的経過には<z>不知不觉</z>が自然です。"
+      },
+      {
+       "t": "不知道",
+       "ok": false,
+       "why": "<z>不知道</z>は「知らない」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・慢慢地",
+     "q": "空欄に入る語は？\n<z>请　说。</z>（ゆっくり話してください）",
+     "opts": [
+      {
+       "t": "慢慢",
+       "ok": true,
+       "why": "正解。動作をゆっくり行うのは<z>慢慢（地）</z>。<z>请慢慢说</z>は定番です。"
+      },
+      {
+       "t": "渐渐",
+       "ok": false,
+       "why": "<z>渐渐</z>は「徐々に変化する」。一回の動作の速度には<z>慢慢</z>が自然です。"
+      },
+      {
+       "t": "轻轻",
+       "ok": false,
+       "why": "<z>轻轻</z>は「そっと・軽く」で、速度の意味ではありません。"
+      },
+      {
+       "t": "快快",
+       "ok": false,
+       "why": "<z>快快</z>は「速く」で、逆の意味になります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不知不觉",
+     "q": "次の日本語に合う正しい文は？\n「いつの間にか中国語に慣れました」",
+     "opts": [
+      {
+       "t": "不知不觉，我习惯了中文。",
+       "ok": true,
+       "why": "正解。文頭で<z>不知不觉，…</z>と感想を導きます。"
+      },
+      {
+       "t": "不得不，我习惯了中文。",
+       "ok": false,
+       "why": "<z>不得不</z>は「せざるを得ない」で文意が変わります。"
+      },
+      {
+       "t": "不知不觉地习惯，我中文了。",
+       "ok": false,
+       "why": "語順が崩れています。<z>我习惯了中文</z>が正しい述語です。"
+      },
+      {
+       "t": "没想到不知不觉习惯了中文。",
+       "ok": false,
+       "why": "<z>没想到</z>と<z>不知不觉</z>の重複で冗長です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "不知不觉",
+     "我",
+     "在上海",
+     "住了",
+     "快八年了"
+    ],
+    "answer": "不知不觉，我在上海住了快八年了。",
+    "why": "<z>不知不觉，</z>で導き、主語＋場所＋<z>住了＋期間</z>と続けます。"
+   },
+   "writing": [
+    {
+     "prompt": "通りはとてもにぎやかです。",
+     "answer": "街上很热闹。"
+    },
+    {
+     "prompt": "だんだん上海の生活に慣れました。",
+     "answer": "我慢慢地习惯了上海生活。"
+    }
+   ]
+  },
+  "48": {
+   "vocab": [
+    "勇敢",
+    "骄傲",
+    "谦虚",
+    "粗心",
+    "性格"
+   ],
+   "grammar": [
+    "渐渐地",
+    "先别",
+    "先不用"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>谦虚</z>」の意味は？",
+     "opts": [
+      {
+       "t": "謙虚だ",
+       "ok": true,
+       "why": "正解。控えめでおごらない性質。例：<z>他很谦虚</z>（彼は謙虚だ）。"
+      },
+      {
+       "t": "高慢だ・誇りに思う",
+       "ok": false,
+       "why": "これは<z>骄傲</z>。<z>谦虚</z>⇔<z>骄傲</z>は対の関係で覚えましょう。"
+      },
+      {
+       "t": "勇敢だ",
+       "ok": false,
+       "why": "これは<z>勇敢</z>です。"
+      },
+      {
+       "t": "そそっかしい",
+       "ok": false,
+       "why": "これは<z>粗心</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>粗心</z>」の意味は？",
+     "opts": [
+      {
+       "t": "そそっかしい・不注意だ",
+       "ok": true,
+       "why": "正解。注意が足りない性質。例：<z>你太粗心了</z>（不注意すぎる）。"
+      },
+      {
+       "t": "謙虚だ",
+       "ok": false,
+       "why": "これは<z>谦虚</z>です。"
+      },
+      {
+       "t": "勇敢だ",
+       "ok": false,
+       "why": "これは<z>勇敢</z>です。"
+      },
+      {
+       "t": "性格",
+       "ok": false,
+       "why": "これは<z>性格</z>（名詞）です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他不骄傲，很　。</z>（彼は高慢でなく謙虚だ）",
+     "opts": [
+      {
+       "t": "谦虚",
+       "ok": true,
+       "why": "正解。<z>骄傲</z>（高慢）の対義として「謙虚」は<z>谦虚</z>です。"
+      },
+      {
+       "t": "骄傲",
+       "ok": false,
+       "why": "<z>骄傲</z>は逆の「高慢」。<z>不骄傲</z>と矛盾します。"
+      },
+      {
+       "t": "粗心",
+       "ok": false,
+       "why": "<z>粗心</z>は「そそっかしい」で文意に合いません。"
+      },
+      {
+       "t": "勇敢",
+       "ok": false,
+       "why": "<z>勇敢</z>は「勇敢」で、謙虚とは別の性質です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他很　，敢一个人去。</z>（彼は勇敢で一人で行ける）",
+     "opts": [
+      {
+       "t": "勇敢",
+       "ok": true,
+       "why": "正解。恐れず立ち向かうのは<z>勇敢</z>です。"
+      },
+      {
+       "t": "谦虚",
+       "ok": false,
+       "why": "<z>谦虚</z>は「謙虚」で、勇気とは別の性質です。"
+      },
+      {
+       "t": "粗心",
+       "ok": false,
+       "why": "<z>粗心</z>は「そそっかしい」で文意に合いません。"
+      },
+      {
+       "t": "骄傲",
+       "ok": false,
+       "why": "<z>骄傲</z>は「高慢」で、勇敢さとは異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・渐渐地",
+     "q": "空欄に入る語は？\n<z>我的中文　自然了。</z>（私の中国語はだんだん自然になった）",
+     "opts": [
+      {
+       "t": "渐渐",
+       "ok": true,
+       "why": "正解。<z>渐渐（地）</z>は「徐々に変化する」やや書き言葉寄りの表現です。"
+      },
+      {
+       "t": "突然",
+       "ok": false,
+       "why": "<z>突然</z>は「急に」で、徐々の変化とは逆です。"
+      },
+      {
+       "t": "赶紧",
+       "ok": false,
+       "why": "<z>赶紧</z>は「急いで」で、変化の様子には合いません。"
+      },
+      {
+       "t": "刚刚",
+       "ok": false,
+       "why": "<z>刚刚</z>は「〜したばかり」で、徐々の変化を表しません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・先别",
+     "q": "空欄に入る語は？\n<z>　急，我们慢慢说。</z>（まず焦らないで、ゆっくり話そう）",
+     "opts": [
+      {
+       "t": "先别",
+       "ok": true,
+       "why": "正解。<z>先别＋動詞</z>で「ひとまず〜しないで」。動作を一旦止める表現です。"
+      },
+      {
+       "t": "先不用",
+       "ok": false,
+       "why": "<z>先不用</z>は「今はまだ〜しなくてよい」（不要・不必要）。「焦るな」と止めるのは<z>先别</z>です。"
+      },
+      {
+       "t": "别先",
+       "ok": false,
+       "why": "語順が誤り。<z>先别</z>の順が正しいです。"
+      },
+      {
+       "t": "先没",
+       "ok": false,
+       "why": "<z>先没</z>という言い方はしません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・先不用",
+     "q": "空欄に入る語は？\n<z>你　发资料。</z>（今はまだ資料を送らなくていい）",
+     "opts": [
+      {
+       "t": "先不用",
+       "ok": true,
+       "why": "正解。<z>先不用＋動詞</z>は「今のところ〜する必要はない」。"
+      },
+      {
+       "t": "先别",
+       "ok": false,
+       "why": "<z>先别</z>は「（今は）〜しないで」と禁止寄り。「しなくてよい（不要）」は<z>先不用</z>です。"
+      },
+      {
+       "t": "不用先",
+       "ok": false,
+       "why": "語順が不自然。<z>先不用</z>の順が自然です。"
+      },
+      {
+       "t": "没用",
+       "ok": false,
+       "why": "<z>没用</z>は「役に立たない」で全く別の意味です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・先不用",
+     "q": "次の日本語に合う正しい文は？\n「今はまだ来なくていいです」",
+     "opts": [
+      {
+       "t": "你先不用来。",
+       "ok": true,
+       "why": "正解。<z>先不用＋動詞</z>で「今は〜しなくてよい」。"
+      },
+      {
+       "t": "你先别来。",
+       "ok": false,
+       "why": "<z>先别来</z>は「今は来ないで」と来訪を止める含み。「来なくてよい（不要）」なら<z>先不用来</z>です。"
+      },
+      {
+       "t": "你不用先来。",
+       "ok": false,
+       "why": "語順が不自然。<z>你先不用来</z>が自然です。"
+      },
+      {
+       "t": "你先没来。",
+       "ok": false,
+       "why": "<z>先没来</z>は「先に来なかった」で文意が変わります。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "先别",
+     "急",
+     "我们",
+     "慢慢",
+     "说"
+    ],
+    "answer": "先别急，我们慢慢说。",
+    "why": "<z>先别＋動作</z>で制止し、主語＋<z>慢慢＋動作</z>と続けます。"
+   },
+   "writing": [
+    {
+     "prompt": "彼は謙虚です。",
+     "answer": "他很谦虚。"
+    },
+    {
+     "prompt": "今はまだ資料を送らなくていいです。",
+     "answer": "你先不用发资料。"
+    }
+   ]
+  },
+  "49": {
+   "vocab": [
+    "脾气",
+    "印象",
+    "看法",
+    "意见",
+    "主意"
+   ],
+   "grammar": [
+    "我来吧",
+    "该了",
+    "不用"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>脾气</z>」の意味は？",
+     "opts": [
+      {
+       "t": "気性・気質",
+       "ok": true,
+       "why": "正解。怒りやすさなどの性質。例：<z>脾气不太好</z>（気が短い）。"
+      },
+      {
+       "t": "印象",
+       "ok": false,
+       "why": "これは<z>印象</z>です。"
+      },
+      {
+       "t": "見方・見解",
+       "ok": false,
+       "why": "これは<z>看法</z>です。"
+      },
+      {
+       "t": "意見",
+       "ok": false,
+       "why": "これは<z>意见</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>印象</z>」の意味は？",
+     "opts": [
+      {
+       "t": "印象",
+       "ok": true,
+       "why": "正解。心に残る感じ。例：<z>留下好印象</z>（良い印象を残す）。"
+      },
+      {
+       "t": "気性",
+       "ok": false,
+       "why": "これは<z>脾气</z>です。"
+      },
+      {
+       "t": "アイデア",
+       "ok": false,
+       "why": "これは<z>主意</z>です。"
+      },
+      {
+       "t": "見方",
+       "ok": false,
+       "why": "これは<z>看法</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他给我留下好　。</z>（良い印象を残した）",
+     "opts": [
+      {
+       "t": "印象",
+       "ok": true,
+       "why": "正解。<z>留下好印象</z>（良い印象を残す）の<z>印象</z>です。"
+      },
+      {
+       "t": "脾气",
+       "ok": false,
+       "why": "<z>脾气</z>は「気性」で<z>留下</z>の文脈に合いません。"
+      },
+      {
+       "t": "看法",
+       "ok": false,
+       "why": "<z>看法</z>は「見方」で意味が異なります。"
+      },
+      {
+       "t": "意见",
+       "ok": false,
+       "why": "<z>意见</z>は「意見」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他　不太好。</z>（彼は気が短い）",
+     "opts": [
+      {
+       "t": "脾气",
+       "ok": true,
+       "why": "正解。<z>脾气不好</z>（気が短い）の<z>脾气</z>です。"
+      },
+      {
+       "t": "印象",
+       "ok": false,
+       "why": "<z>印象</z>は「印象」で文意に合いません。"
+      },
+      {
+       "t": "意见",
+       "ok": false,
+       "why": "<z>意见</z>は「意見」で意味が異なります。"
+      },
+      {
+       "t": "主意",
+       "ok": false,
+       "why": "<z>主意</z>は「アイデア」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・我来吧",
+     "q": "次の日本語に合う正しい文は？\n「私が説明します」",
+     "opts": [
+      {
+       "t": "我来解释吧。",
+       "ok": true,
+       "why": "正解。<z>我来＋動詞</z>で「私が（引き受けて）〜します」。"
+      },
+      {
+       "t": "我解释来吧。",
+       "ok": false,
+       "why": "語順が誤り。<z>我来解释</z>とします。"
+      },
+      {
+       "t": "来我解释吧。",
+       "ok": false,
+       "why": "語順が誤り。<z>我来解释</z>とします。"
+      },
+      {
+       "t": "我来解释了吧。",
+       "ok": false,
+       "why": "<z>了</z>は不要です。<z>我来解释吧</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・該了",
+     "q": "次の日本語に合う正しい文は？\n「そろそろ復習する時間です」",
+     "opts": [
+      {
+       "t": "该复习了。",
+       "ok": true,
+       "why": "正解。<z>该…了</z>で「そろそろ〜する時間だ」と時が来たことを表します。"
+      },
+      {
+       "t": "该复习。",
+       "ok": false,
+       "why": "文末の<z>了</z>が必要です。<z>该复习了</z>とします。"
+      },
+      {
+       "t": "复习该了。",
+       "ok": false,
+       "why": "語順が誤り。<z>该复习了</z>とします。"
+      },
+      {
+       "t": "该了复习。",
+       "ok": false,
+       "why": "語順が誤り。<z>该复习了</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不用",
+     "q": "次の日本語に合う正しい文は？\n「今日は来なくていいです」",
+     "opts": [
+      {
+       "t": "你今天不用来。",
+       "ok": true,
+       "why": "正解。<z>不用</z>で「〜しなくてよい」と不要を表します。"
+      },
+      {
+       "t": "你今天不要来。",
+       "ok": false,
+       "why": "<z>不要来</z>は「来るな（禁止）」。「来なくていい」は<z>不用来</z>です。"
+      },
+      {
+       "t": "你今天用不来。",
+       "ok": false,
+       "why": "語順が誤り。<z>不用来</z>とします。"
+      },
+      {
+       "t": "你今天来不用。",
+       "ok": false,
+       "why": "語順が誤り。<z>不用来</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不用",
+     "q": "次の日本語に合う正しい文は？\n「心配しなくていいです」",
+     "opts": [
+      {
+       "t": "你不用担心。",
+       "ok": true,
+       "why": "正解。<z>不用＋動詞</z>で「〜しなくてよい」。"
+      },
+      {
+       "t": "你担心不用。",
+       "ok": false,
+       "why": "語順が誤り。<z>不用担心</z>とします。"
+      },
+      {
+       "t": "你用不担心。",
+       "ok": false,
+       "why": "語順が誤り。<z>不用担心</z>とします。"
+      },
+      {
+       "t": "你不用担心了吗。",
+       "ok": false,
+       "why": "<z>吗</z>が付くと意味が変わります。平叙文では不要です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "这个问题",
+     "我",
+     "来",
+     "处理",
+     "吧"
+    ],
+    "answer": "这个问题我来处理吧。",
+    "why": "<z>我来＋動詞＋吧</z>で「私が引き受けて〜します」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "彼は良い印象を残した。",
+     "answer": "他给我留下好印象。"
+    },
+    {
+     "prompt": "そろそろ会議の時間です。",
+     "answer": "该开会了。"
+    }
+   ]
+  },
+  "50": {
+   "vocab": [
+    "办法",
+    "经历",
+    "过程",
+    "效果",
+    "优点"
+   ],
+   "grammar": [
+    "不要(禁止)",
+    "別(口語禁止)",
+    "別再"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>办法</z>」の意味は？",
+     "opts": [
+      {
+       "t": "方法・手段",
+       "ok": true,
+       "why": "正解。物事を処理するやり方。例：<z>我有办法</z>（私には方法がある）。"
+      },
+      {
+       "t": "経験・体験",
+       "ok": false,
+       "why": "これは<z>经历</z>です。"
+      },
+      {
+       "t": "過程",
+       "ok": false,
+       "why": "これは<z>过程</z>です。"
+      },
+      {
+       "t": "効果",
+       "ok": false,
+       "why": "これは<z>效果</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>优点</z>」の意味は？",
+     "opts": [
+      {
+       "t": "長所・良いところ",
+       "ok": true,
+       "why": "正解。優れた点。例：<z>他有很多优点</z>（彼には長所が多い）。"
+      },
+      {
+       "t": "効果",
+       "ok": false,
+       "why": "これは<z>效果</z>です。"
+      },
+      {
+       "t": "方法",
+       "ok": false,
+       "why": "これは<z>办法</z>です。"
+      },
+      {
+       "t": "経験",
+       "ok": false,
+       "why": "これは<z>经历</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这是难忘的　。</z>（忘れられない経験）",
+     "opts": [
+      {
+       "t": "经历",
+       "ok": true,
+       "why": "正解。実際に体験したことは<z>经历</z>です。"
+      },
+      {
+       "t": "过程",
+       "ok": false,
+       "why": "<z>过程</z>は「過程」で文意に合いません。"
+      },
+      {
+       "t": "办法",
+       "ok": false,
+       "why": "<z>办法</z>は「方法」で意味が異なります。"
+      },
+      {
+       "t": "效果",
+       "ok": false,
+       "why": "<z>效果</z>は「効果」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这个方法　很好。</z>（効果が良い）",
+     "opts": [
+      {
+       "t": "效果",
+       "ok": true,
+       "why": "正解。やった結果の働きは<z>效果</z>です。"
+      },
+      {
+       "t": "优点",
+       "ok": false,
+       "why": "<z>优点</z>は「長所」で文意に合いません。"
+      },
+      {
+       "t": "经历",
+       "ok": false,
+       "why": "<z>经历</z>は「経験」で意味が異なります。"
+      },
+      {
+       "t": "过程",
+       "ok": false,
+       "why": "<z>过程</z>は「過程」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不要",
+     "q": "次の日本語に合う正しい文は？\n「あまり辛くしないでください」",
+     "opts": [
+      {
+       "t": "不要做得太辣。",
+       "ok": true,
+       "why": "正解。禁止「〜しないで」は<z>不要</z>です。"
+      },
+      {
+       "t": "不用做得太辣。",
+       "ok": false,
+       "why": "<z>不用</z>は「〜しなくてよい」。禁止は<z>不要</z>です。"
+      },
+      {
+       "t": "不要做太得辣。",
+       "ok": false,
+       "why": "語順が誤り。<z>做得太辣</z>とします。"
+      },
+      {
+       "t": "不要得做太辣。",
+       "ok": false,
+       "why": "語順が誤り。<z>做得太辣</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・別",
+     "q": "次の日本語に合う正しい文は？\n「遅刻しないでください」",
+     "opts": [
+      {
+       "t": "别迟到。",
+       "ok": true,
+       "why": "正解。口語の禁止「〜しないで」は<z>别</z>です。"
+      },
+      {
+       "t": "不用迟到。",
+       "ok": false,
+       "why": "<z>不用</z>は「〜しなくてよい」。禁止は<z>别</z>です。"
+      },
+      {
+       "t": "迟到别。",
+       "ok": false,
+       "why": "語順が誤り。<z>别迟到</z>とします。"
+      },
+      {
+       "t": "别迟到了吗。",
+       "ok": false,
+       "why": "<z>吗</z>が付くと意味が変わります。禁止では不要です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・別再",
+     "q": "次の日本語に合う正しい文は？\n「もうこのミスをしないでください」",
+     "opts": [
+      {
+       "t": "别再犯这个错误了。",
+       "ok": true,
+       "why": "正解。<z>别再…了</z>で「もう〜しないで」と繰り返しを禁じます。"
+      },
+      {
+       "t": "别犯再这个错误了。",
+       "ok": false,
+       "why": "語順が誤り。<z>别再犯</z>とします。"
+      },
+      {
+       "t": "再别犯这个错误了。",
+       "ok": false,
+       "why": "語順が誤り。<z>别再犯</z>とします。"
+      },
+      {
+       "t": "别犯这个错误再了。",
+       "ok": false,
+       "why": "語順が誤り。<z>再</z>は動詞の前に置きます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不要",
+     "q": "次の日本語に合う正しい文は？\n「パスポートを忘れないでください」",
+     "opts": [
+      {
+       "t": "不要忘记带护照。",
+       "ok": true,
+       "why": "正解。禁止「〜しないで」は<z>不要</z>です。"
+      },
+      {
+       "t": "不用忘记带护照。",
+       "ok": false,
+       "why": "<z>不用</z>は「〜しなくてよい」。禁止は<z>不要</z>です。"
+      },
+      {
+       "t": "不要带忘记护照。",
+       "ok": false,
+       "why": "語順が誤り。<z>忘记带护照</z>とします。"
+      },
+      {
+       "t": "不要忘记护照带。",
+       "ok": false,
+       "why": "語順が誤り。<z>带护照</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "你",
+     "别",
+     "再",
+     "忘记",
+     "了"
+    ],
+    "answer": "你别再忘记了。",
+    "why": "<z>别再＋動詞＋了</z>で「もう〜しないで」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "学ぶ過程が大切だ。",
+     "answer": "学习的过程很重要。"
+    },
+    {
+     "prompt": "遅刻しないでください。",
+     "answer": "别迟到。"
+    }
+   ]
+  },
+  "51": {
+   "vocab": [
+    "缺点",
+    "任务",
+    "责任",
+    "压力",
+    "危险"
+   ],
+   "grammar": [
+    "再也不(決意)",
+    "可以的話",
+    "方便的話"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>缺点</z>」の意味は？",
+     "opts": [
+      {
+       "t": "欠点・短所",
+       "ok": true,
+       "why": "正解。足りない点・悪いところ。例：<z>每个人都有缺点</z>（誰にでも欠点がある）。"
+      },
+      {
+       "t": "任務",
+       "ok": false,
+       "why": "これは<z>任务</z>です。"
+      },
+      {
+       "t": "責任",
+       "ok": false,
+       "why": "これは<z>责任</z>です。"
+      },
+      {
+       "t": "プレッシャー",
+       "ok": false,
+       "why": "これは<z>压力</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>压力</z>」の意味は？",
+     "opts": [
+      {
+       "t": "プレッシャー・ストレス",
+       "ok": true,
+       "why": "正解。精神的な負担。例：<z>工作压力很大</z>（仕事のプレッシャーが大きい）。"
+      },
+      {
+       "t": "責任",
+       "ok": false,
+       "why": "これは<z>责任</z>です。"
+      },
+      {
+       "t": "任務",
+       "ok": false,
+       "why": "これは<z>任务</z>です。"
+      },
+      {
+       "t": "危険",
+       "ok": false,
+       "why": "これは<z>危险</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这是我的　。</z>（これは私の責任だ）",
+     "opts": [
+      {
+       "t": "责任",
+       "ok": true,
+       "why": "正解。果たすべき務め・責めは<z>责任</z>です。"
+      },
+      {
+       "t": "任务",
+       "ok": false,
+       "why": "<z>任务</z>は「任務（やるべき仕事）」で意味が少し異なります。"
+      },
+      {
+       "t": "缺点",
+       "ok": false,
+       "why": "<z>缺点</z>は「欠点」で文意に合いません。"
+      },
+      {
+       "t": "压力",
+       "ok": false,
+       "why": "<z>压力</z>は「プレッシャー」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我完成了　。</z>（任務を完了した）",
+     "opts": [
+      {
+       "t": "任务",
+       "ok": true,
+       "why": "正解。与えられたやるべき仕事は<z>任务</z>です。"
+      },
+      {
+       "t": "责任",
+       "ok": false,
+       "why": "<z>责任</z>は「責任」で<z>完成</z>とは結びつきにくいです。"
+      },
+      {
+       "t": "压力",
+       "ok": false,
+       "why": "<z>压力</z>は「プレッシャー」で文意に合いません。"
+      },
+      {
+       "t": "危险",
+       "ok": false,
+       "why": "<z>危险</z>は「危険」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・再也不",
+     "q": "次の日本語に合う正しい文は？\n「二度と忘れません」",
+     "opts": [
+      {
+       "t": "我再也不忘了。",
+       "ok": true,
+       "why": "正解。主語の強い決意「二度と〜しない」は<z>再也不</z>です。"
+      },
+      {
+       "t": "我别再忘了。",
+       "ok": false,
+       "why": "<z>别再</z>は相手への禁止「もう〜しないで」。自分の決意は<z>再也不</z>です。"
+      },
+      {
+       "t": "我再也忘不了。",
+       "ok": false,
+       "why": "<z>忘不了</z>は「忘れられない」。決意は<z>再也不忘</z>です。"
+      },
+      {
+       "t": "我也再不忘了。",
+       "ok": false,
+       "why": "語順が誤り。<z>再也不</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・可以的話",
+     "q": "次の日本語に合う正しい文は？\n「できれば少し早く来てください」",
+     "opts": [
+      {
+       "t": "可以的话，请早点来。",
+       "ok": true,
+       "why": "正解。<z>可以的话</z>で「可能なら」と柔らかく依頼します。"
+      },
+      {
+       "t": "可以话的，请早点来。",
+       "ok": false,
+       "why": "語順が誤り。<z>可以的话</z>とします。"
+      },
+      {
+       "t": "的话可以，请早点来。",
+       "ok": false,
+       "why": "語順が誤り。<z>可以的话</z>とします。"
+      },
+      {
+       "t": "可以的话请早点，来。",
+       "ok": false,
+       "why": "区切りが誤り。<z>请早点来</z>とまとめます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・方便的話",
+     "q": "次の日本語に合う正しい文は？\n「都合がよければ住所を送ってください」",
+     "opts": [
+      {
+       "t": "方便的话，请把地址发给我。",
+       "ok": true,
+       "why": "正解。<z>方便的话</z>で「都合がよければ」と配慮します。"
+      },
+      {
+       "t": "方便话的，请把地址发给我。",
+       "ok": false,
+       "why": "語順が誤り。<z>方便的话</z>とします。"
+      },
+      {
+       "t": "的话方便，请把地址发给我。",
+       "ok": false,
+       "why": "語順が誤り。<z>方便的话</z>とします。"
+      },
+      {
+       "t": "方便的话请把地址，发给我。",
+       "ok": false,
+       "why": "区切りが誤り。<z>把地址发给我</z>とまとめます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・再也不",
+     "q": "次の日本語に合う正しい文は？\n「もう二度とこう言いません」",
+     "opts": [
+      {
+       "t": "我再也不这样说了。",
+       "ok": true,
+       "why": "正解。自分の決意「二度と〜しない」は<z>再也不</z>です。"
+      },
+      {
+       "t": "我别再这样说了。",
+       "ok": false,
+       "why": "<z>别再</z>は相手への禁止。自分の決意は<z>再也不</z>です。"
+      },
+      {
+       "t": "我再也这样不说了。",
+       "ok": false,
+       "why": "語順が誤り。<z>再也不这样说</z>とします。"
+      },
+      {
+       "t": "我也再不这样说了。",
+       "ok": false,
+       "why": "語順が誤り。<z>再也不</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "可以的话",
+     "今天",
+     "发",
+     "给",
+     "我"
+    ],
+    "answer": "可以的话，今天发给我。",
+    "why": "<z>可以的话</z>で条件を示し、その後に依頼を続けます。"
+   },
+   "writing": [
+    {
+     "prompt": "これは私の責任だ。",
+     "answer": "这是我的责任。"
+    },
+    {
+     "prompt": "二度と忘れません。",
+     "answer": "我再也不忘了。"
+    }
+   ]
+  },
+  "52": {
+   "vocab": [
+    "情况",
+    "标准",
+    "规定",
+    "目标",
+    "将来"
+   ],
+   "grammar": [
+    "麻煩你",
+    "不好意思",
+    "要不吧"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>情况</z>」の意味は？",
+     "opts": [
+      {
+       "t": "状況・事情",
+       "ok": true,
+       "why": "正解。物事のありさま。例：<z>情况有点复杂</z>（状況が少し複雑）。"
+      },
+      {
+       "t": "基準・標準",
+       "ok": false,
+       "why": "これは<z>标准</z>です。"
+      },
+      {
+       "t": "規定",
+       "ok": false,
+       "why": "これは<z>规定</z>です。"
+      },
+      {
+       "t": "目標",
+       "ok": false,
+       "why": "これは<z>目标</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>将来</z>」の意味は？",
+     "opts": [
+      {
+       "t": "将来・これから",
+       "ok": true,
+       "why": "正解。これから先の時。例：<z>将来我想当老师</z>（将来教師になりたい）。"
+      },
+      {
+       "t": "目標",
+       "ok": false,
+       "why": "これは<z>目标</z>です。"
+      },
+      {
+       "t": "基準",
+       "ok": false,
+       "why": "これは<z>标准</z>です。"
+      },
+      {
+       "t": "状況",
+       "ok": false,
+       "why": "これは<z>情况</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这是公司的　。</z>（会社の規則だ）",
+     "opts": [
+      {
+       "t": "规定",
+       "ok": true,
+       "why": "正解。守るべき決まりは<z>规定</z>です。"
+      },
+      {
+       "t": "标准",
+       "ok": false,
+       "why": "<z>标准</z>は「基準」で意味が少し異なります。"
+      },
+      {
+       "t": "目标",
+       "ok": false,
+       "why": "<z>目标</z>は「目標」で文意に合いません。"
+      },
+      {
+       "t": "将来",
+       "ok": false,
+       "why": "<z>将来</z>は「将来」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我的　是通过考试。</z>（目標は試験合格）",
+     "opts": [
+      {
+       "t": "目标",
+       "ok": true,
+       "why": "正解。達成を目指すものは<z>目标</z>です。"
+      },
+      {
+       "t": "标准",
+       "ok": false,
+       "why": "<z>标准</z>は「基準」で文意に合いません。"
+      },
+      {
+       "t": "规定",
+       "ok": false,
+       "why": "<z>规定</z>は「規定」で意味が異なります。"
+      },
+      {
+       "t": "情况",
+       "ok": false,
+       "why": "<z>情况</z>は「状況」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・麻煩你",
+     "q": "次の日本語に合う正しい文は？\n「お手数ですが住所を送ってください」",
+     "opts": [
+      {
+       "t": "麻烦你把地址发给我。",
+       "ok": true,
+       "why": "正解。丁寧な依頼の前置き「お手数ですが」は<z>麻烦你</z>です。"
+      },
+      {
+       "t": "麻烦你地址把发给我。",
+       "ok": false,
+       "why": "語順が誤り。<z>把地址发</z>とします。"
+      },
+      {
+       "t": "你麻烦把地址发给我。",
+       "ok": false,
+       "why": "語順が誤り。<z>麻烦你</z>とします。"
+      },
+      {
+       "t": "麻烦你把地址发我给。",
+       "ok": false,
+       "why": "語順が誤り。<z>发给我</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不好意思",
+     "q": "次の日本語に合う正しい文は？\n「すみません、少し辛さを控えてください」",
+     "opts": [
+      {
+       "t": "不好意思，请少放一点儿辣椒。",
+       "ok": true,
+       "why": "正解。声かけ・依頼の前置き「すみません」は<z>不好意思</z>です。"
+      },
+      {
+       "t": "意思不好，请少放一点儿辣椒。",
+       "ok": false,
+       "why": "語順が誤り。<z>不好意思</z>とします。"
+      },
+      {
+       "t": "不好意思，请放少一点儿辣椒。",
+       "ok": false,
+       "why": "語順が誤り。<z>少放一点儿</z>とします。"
+      },
+      {
+       "t": "不好意思请少放，一点儿辣椒。",
+       "ok": false,
+       "why": "区切りが誤り。<z>请少放一点儿辣椒</z>とまとめます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・要不吧",
+     "q": "次の日本語に合う正しい文は？\n「それなら明日話しましょう」",
+     "opts": [
+      {
+       "t": "要不我们明天再聊吧。",
+       "ok": true,
+       "why": "正解。柔らかい提案「それなら〜しましょうか」は<z>要不…吧</z>です。"
+      },
+      {
+       "t": "不要我们明天再聊吧。",
+       "ok": false,
+       "why": "<z>不要</z>は禁止。提案は<z>要不</z>です。"
+      },
+      {
+       "t": "要不我们明天聊再吧。",
+       "ok": false,
+       "why": "語順が誤り。<z>再聊</z>とします。"
+      },
+      {
+       "t": "要不我们明天再聊吗。",
+       "ok": false,
+       "why": "<z>吗</z>は疑問。柔らかい提案は<z>吧</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・麻煩你",
+     "q": "次の日本語に合う正しい文は？\n「お手数ですが、ちょっと見てもらえますか」",
+     "opts": [
+      {
+       "t": "麻烦你帮我看一下。",
+       "ok": true,
+       "why": "正解。<z>麻烦你＋依頼</z>の形です。"
+      },
+      {
+       "t": "麻烦你帮看我一下。",
+       "ok": false,
+       "why": "語順が誤り。<z>帮我看</z>とします。"
+      },
+      {
+       "t": "你麻烦帮我看一下。",
+       "ok": false,
+       "why": "語順が誤り。<z>麻烦你</z>とします。"
+      },
+      {
+       "t": "麻烦你帮我一下看。",
+       "ok": false,
+       "why": "語順が誤り。<z>看一下</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "要不",
+     "我们",
+     "坐",
+     "地铁",
+     "吧"
+    ],
+    "answer": "要不我们坐地铁吧。",
+    "why": "<z>要不＋提案＋吧</z>で「それなら〜しましょうか」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "私の目標は試験合格だ。",
+     "answer": "我的目标是通过考试。"
+    },
+    {
+     "prompt": "すみません、少し辛さを控えてください。",
+     "answer": "不好意思，请少放一点儿辣椒。"
+    }
+   ]
+  },
+  "53": {
+   "vocab": [
+    "重视",
+    "交流",
+    "合作",
+    "比赛",
+    "参加"
+   ],
+   "grammar": [
+    "算了",
+    "怪不得",
+    "其实"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>重视</z>」の意味は？",
+     "opts": [
+      {
+       "t": "重視する",
+       "ok": true,
+       "why": "正解。大切にして力を入れること。例：<z>重视质量</z>（品質を重視する）。"
+      },
+      {
+       "t": "交流する",
+       "ok": false,
+       "why": "これは<z>交流</z>です。"
+      },
+      {
+       "t": "協力する",
+       "ok": false,
+       "why": "これは<z>合作</z>です。"
+      },
+      {
+       "t": "参加する",
+       "ok": false,
+       "why": "これは<z>参加</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>合作</z>」の意味は？",
+     "opts": [
+      {
+       "t": "協力する・提携する",
+       "ok": true,
+       "why": "正解。一緒に力を合わせること。例：<z>合作得很好</z>（うまく協力できている）。"
+      },
+      {
+       "t": "交流する",
+       "ok": false,
+       "why": "これは<z>交流</z>です。"
+      },
+      {
+       "t": "参加する",
+       "ok": false,
+       "why": "これは<z>参加</z>です。"
+      },
+      {
+       "t": "重視する",
+       "ok": false,
+       "why": "これは<z>重视</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我们用中文　。</z>（中国語で交流する）",
+     "opts": [
+      {
+       "t": "交流",
+       "ok": true,
+       "why": "正解。意思や情報をやりとりするのは<z>交流</z>です。"
+      },
+      {
+       "t": "合作",
+       "ok": false,
+       "why": "<z>合作</z>は「協力する」で文意に合いません。"
+      },
+      {
+       "t": "重视",
+       "ok": false,
+       "why": "<z>重视</z>は「重視する」で意味が異なります。"
+      },
+      {
+       "t": "参加",
+       "ok": false,
+       "why": "<z>参加</z>は「参加する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我　了会议。</z>（会議に参加した）",
+     "opts": [
+      {
+       "t": "参加",
+       "ok": true,
+       "why": "正解。集まり・活動に加わるのは<z>参加</z>です。"
+      },
+      {
+       "t": "合作",
+       "ok": false,
+       "why": "<z>合作</z>は「協力する」で文意に合いません。"
+      },
+      {
+       "t": "交流",
+       "ok": false,
+       "why": "<z>交流</z>は「交流する」で意味が異なります。"
+      },
+      {
+       "t": "比赛",
+       "ok": false,
+       "why": "<z>比赛</z>は「試合」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・算了",
+     "q": "次の日本語に合う正しい文は？\n「今日は混んでいるのでやめましょう」",
+     "opts": [
+      {
+       "t": "今天人太多了，算了吧。",
+       "ok": true,
+       "why": "正解。あきらめ「もういい・やめておこう」は<z>算了吧</z>です。"
+      },
+      {
+       "t": "今天人太多了，算吧了。",
+       "ok": false,
+       "why": "語順が誤り。<z>算了吧</z>とします。"
+      },
+      {
+       "t": "今天人太多了，了算吧。",
+       "ok": false,
+       "why": "語順が誤り。<z>算了吧</z>とします。"
+      },
+      {
+       "t": "今天人太多了，算了吧吗。",
+       "ok": false,
+       "why": "<z>吗</z>は不要で、意味が変わります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・怪不得",
+     "q": "次の日本語に合う正しい文は？\n「どうりで今日は道が混んでいます」",
+     "opts": [
+      {
+       "t": "怪不得今天路上这么堵。",
+       "ok": true,
+       "why": "正解。理由が分かって納得する「どうりで〜」は<z>怪不得</z>です。"
+      },
+      {
+       "t": "不怪得今天路上这么堵。",
+       "ok": false,
+       "why": "語順が誤り。<z>怪不得</z>とします。"
+      },
+      {
+       "t": "怪得不今天路上这么堵。",
+       "ok": false,
+       "why": "語順が誤り。<z>怪不得</z>とします。"
+      },
+      {
+       "t": "怪不得今天路上这么堵吗。",
+       "ok": false,
+       "why": "納得を表す平叙文に<z>吗</z>は不要で、意味が変わります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・其实",
+     "q": "次の日本語に合う正しい文は？\n「実は少し緊張しています」",
+     "opts": [
+      {
+       "t": "其实我有点儿紧张。",
+       "ok": true,
+       "why": "正解。予想と違う事実・本音を述べる「実は」は<z>其实</z>です。"
+      },
+      {
+       "t": "实其我有点儿紧张。",
+       "ok": false,
+       "why": "語順が誤り。<z>其实</z>とします。"
+      },
+      {
+       "t": "其实有点儿我紧张。",
+       "ok": false,
+       "why": "語順が誤り。<z>我有点儿紧张</z>とします。"
+      },
+      {
+       "t": "其实我紧张有点儿。",
+       "ok": false,
+       "why": "語順が誤り。<z>有点儿紧张</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・怪不得",
+     "q": "次の日本語に合う正しい文は？\n「どうりでそんなに疲れているわけですね」",
+     "opts": [
+      {
+       "t": "怪不得你这么累。",
+       "ok": true,
+       "why": "正解。<z>怪不得＋事実</z>で「どうりで〜」と納得を表します。"
+      },
+      {
+       "t": "不怪得你这么累。",
+       "ok": false,
+       "why": "語順が誤り。<z>怪不得</z>とします。"
+      },
+      {
+       "t": "怪得不你这么累。",
+       "ok": false,
+       "why": "語順が誤り。<z>怪不得</z>とします。"
+      },
+      {
+       "t": "怪不得这么你累。",
+       "ok": false,
+       "why": "語順が誤り。<z>你这么累</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "其实",
+     "我的中文",
+     "没有",
+     "大家想象的",
+     "那么好"
+    ],
+    "answer": "其实我的中文没有大家想象的那么好。",
+    "why": "<z>其实</z>で本音を切り出し、<z>没有…那么好</z>で「〜ほど良くない」を述べます。"
+   },
+   "writing": [
+    {
+     "prompt": "私たちは品質を重視する。",
+     "answer": "我们重视质量。"
+    },
+    {
+     "prompt": "どうりで今日は道が混んでいます。",
+     "answer": "怪不得今天路上这么堵。"
+    }
+   ]
+  },
+  "54": {
+   "vocab": [
+    "举行",
+    "总结",
+    "详细",
+    "严格",
+    "严重"
+   ],
+   "grammar": [
+    "説実話",
+    "説不定",
+    "看情況"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>总结</z>」の意味は？",
+     "opts": [
+      {
+       "t": "まとめる・総括",
+       "ok": true,
+       "why": "正解。要点を整理してまとめること。例：<z>做了一个总结</z>（まとめを作った）。"
+      },
+      {
+       "t": "挙行する",
+       "ok": false,
+       "why": "これは<z>举行</z>です。"
+      },
+      {
+       "t": "詳しい",
+       "ok": false,
+       "why": "これは<z>详细</z>です。"
+      },
+      {
+       "t": "厳しい",
+       "ok": false,
+       "why": "これは<z>严格</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>严重</z>」の意味は？",
+     "opts": [
+      {
+       "t": "深刻だ・重大だ",
+       "ok": true,
+       "why": "正解。事態の程度がひどいこと。例：<z>问题很严重</z>（問題が深刻）。"
+      },
+      {
+       "t": "厳しい（規律が）",
+       "ok": false,
+       "why": "これは<z>严格</z>です。意味が異なります。"
+      },
+      {
+       "t": "詳しい",
+       "ok": false,
+       "why": "これは<z>详细</z>です。"
+      },
+      {
+       "t": "まとめる",
+       "ok": false,
+       "why": "これは<z>总结</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>老师很　。</z>（先生は厳しい）",
+     "opts": [
+      {
+       "t": "严格",
+       "ok": true,
+       "why": "正解。規律や要求が厳しいのは<z>严格</z>です。"
+      },
+      {
+       "t": "严重",
+       "ok": false,
+       "why": "<z>严重</z>は「深刻だ」で、人の厳しさには使いません。"
+      },
+      {
+       "t": "详细",
+       "ok": false,
+       "why": "<z>详细</z>は「詳しい」で文意に合いません。"
+      },
+      {
+       "t": "总结",
+       "ok": false,
+       "why": "<z>总结</z>は「まとめる」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>请　说明。</z>（詳しく説明してください）",
+     "opts": [
+      {
+       "t": "详细",
+       "ok": true,
+       "why": "正解。細かく詳しいのは<z>详细</z>です。"
+      },
+      {
+       "t": "严格",
+       "ok": false,
+       "why": "<z>严格</z>は「厳しい」で文意に合いません。"
+      },
+      {
+       "t": "严重",
+       "ok": false,
+       "why": "<z>严重</z>は「深刻だ」で意味が異なります。"
+      },
+      {
+       "t": "举行",
+       "ok": false,
+       "why": "<z>举行</z>は「挙行する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・説実話",
+     "q": "次の日本語に合う正しい文は？\n「正直、まだよく分かりません」",
+     "opts": [
+      {
+       "t": "说实话，我还不太明白。",
+       "ok": true,
+       "why": "正解。本音の前置き「正直に言うと」は<z>说实话</z>です。"
+      },
+      {
+       "t": "说话实，我还不太明白。",
+       "ok": false,
+       "why": "語順が誤り。<z>说实话</z>とします。"
+      },
+      {
+       "t": "说实话，我不太还明白。",
+       "ok": false,
+       "why": "語順が誤り。<z>还不太明白</z>とします。"
+      },
+      {
+       "t": "说实话我还不太，明白。",
+       "ok": false,
+       "why": "区切りが誤り。<z>我还不太明白</z>とまとめます。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・説不定",
+     "q": "次の日本語に合う正しい文は？\n「もしかすると彼は知っています」",
+     "opts": [
+      {
+       "t": "说不定他知道。",
+       "ok": true,
+       "why": "正解。口語の推量「もしかすると〜かも」は<z>说不定</z>です。"
+      },
+      {
+       "t": "不说定他知道。",
+       "ok": false,
+       "why": "語順が誤り。<z>说不定</z>とします。"
+      },
+      {
+       "t": "说定不他知道。",
+       "ok": false,
+       "why": "語順が誤り。<z>说不定</z>とします。"
+      },
+      {
+       "t": "说不定他知道吗。",
+       "ok": false,
+       "why": "推量の平叙文に<z>吗</z>は不要で、意味が変わります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・看情況",
+     "q": "次の日本語に合う正しい文は？\n「天気を見て決めましょう」",
+     "opts": [
+      {
+       "t": "看天气再决定吧。",
+       "ok": true,
+       "why": "正解。<z>看＋状況＋再決定</z>で「〜を見てから決める」。"
+      },
+      {
+       "t": "看天气决定再吧。",
+       "ok": false,
+       "why": "語順が誤り。<z>再决定</z>とします。"
+      },
+      {
+       "t": "天气看再决定吧。",
+       "ok": false,
+       "why": "語順が誤り。<z>看天气</z>とします。"
+      },
+      {
+       "t": "看天气再决定吗。",
+       "ok": false,
+       "why": "<z>吗</z>は疑問。提案は<z>吧</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・説不定",
+     "q": "次の日本語に合う正しい文は？\n「もしかしたら明日雨が降るかもしれません」",
+     "opts": [
+      {
+       "t": "说不定明天会下雨。",
+       "ok": true,
+       "why": "正解。<z>说不定</z>で口語的に可能性を述べます。"
+      },
+      {
+       "t": "不说定明天会下雨。",
+       "ok": false,
+       "why": "語順が誤り。<z>说不定</z>とします。"
+      },
+      {
+       "t": "说定不明天会下雨。",
+       "ok": false,
+       "why": "語順が誤り。<z>说不定</z>とします。"
+      },
+      {
+       "t": "说不定明天下雨会。",
+       "ok": false,
+       "why": "語順が誤り。<z>会下雨</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "说实话",
+     "我",
+     "还",
+     "不太",
+     "明白"
+    ],
+    "answer": "说实话，我还不太明白。",
+    "why": "<z>说实话</z>で本音を切り出し、その後に文を続けます。"
+   },
+   "writing": [
+    {
+     "prompt": "問題は深刻だ。",
+     "answer": "问题很严重。"
+    },
+    {
+     "prompt": "もしかすると彼は知っています。",
+     "answer": "说不定他知道。"
+    }
+   ]
+  },
+  "55": {
+   "vocab": [
+    "航班",
+    "行李",
+    "登机牌",
+    "出发",
+    "到达"
+   ],
+   "grammar": [
+    "回头(あとで)",
+    "一会儿(少し後)",
+    "等再"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>行李</z>」の意味は？",
+     "opts": [
+      {
+       "t": "荷物",
+       "ok": true,
+       "why": "正解。旅行などの荷物。例：<z>行李很重</z>（荷物が重い）。"
+      },
+      {
+       "t": "フライト・便",
+       "ok": false,
+       "why": "これは<z>航班</z>です。"
+      },
+      {
+       "t": "搭乗券",
+       "ok": false,
+       "why": "これは<z>登机牌</z>です。"
+      },
+      {
+       "t": "到着する",
+       "ok": false,
+       "why": "これは<z>到达</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>到达</z>」の意味は？",
+     "opts": [
+      {
+       "t": "到着する",
+       "ok": true,
+       "why": "正解。目的地に着くこと。例：<z>飞机准时到达</z>（飛行機が時間通り到着）。"
+      },
+      {
+       "t": "出発する",
+       "ok": false,
+       "why": "これは反対の<z>出发</z>です。"
+      },
+      {
+       "t": "フライト",
+       "ok": false,
+       "why": "これは<z>航班</z>です。"
+      },
+      {
+       "t": "荷物",
+       "ok": false,
+       "why": "これは<z>行李</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我的　晚点了。</z>（フライトが遅れた）",
+     "opts": [
+      {
+       "t": "航班",
+       "ok": true,
+       "why": "正解。飛行機の便は<z>航班</z>です。"
+      },
+      {
+       "t": "行李",
+       "ok": false,
+       "why": "<z>行李</z>は「荷物」で<z>晚点</z>と合いません。"
+      },
+      {
+       "t": "登机牌",
+       "ok": false,
+       "why": "<z>登机牌</z>は「搭乗券」で意味が異なります。"
+      },
+      {
+       "t": "到达",
+       "ok": false,
+       "why": "<z>到达</z>は「到着する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我们明天　。</z>（明日出発する）",
+     "opts": [
+      {
+       "t": "出发",
+       "ok": true,
+       "why": "正解。出かけ始めるのは<z>出发</z>です。"
+      },
+      {
+       "t": "到达",
+       "ok": false,
+       "why": "<z>到达</z>は「到着する」で逆の意味になります。"
+      },
+      {
+       "t": "行李",
+       "ok": false,
+       "why": "<z>行李</z>は「荷物」で文意に合いません。"
+      },
+      {
+       "t": "航班",
+       "ok": false,
+       "why": "<z>航班</z>は「フライト」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・回頭",
+     "q": "次の日本語に合う正しい文は？\n「あとで資料を送ります」",
+     "opts": [
+      {
+       "t": "我回头把资料发给你。",
+       "ok": true,
+       "why": "正解。口語の「あとで」は<z>回头</z>です。"
+      },
+      {
+       "t": "我回头把资料发你给。",
+       "ok": false,
+       "why": "語順が誤り。<z>发给你</z>とします。"
+      },
+      {
+       "t": "我回头资料把发给你。",
+       "ok": false,
+       "why": "語順が誤り。<z>把资料发</z>とします。"
+      },
+      {
+       "t": "回头我把发资料给你。",
+       "ok": false,
+       "why": "語順が誤り。<z>把资料发给你</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・一会儿",
+     "q": "次の日本語に合う正しい文は？\n「少し後で会いましょう」",
+     "opts": [
+      {
+       "t": "一会儿见。",
+       "ok": true,
+       "why": "正解。<z>一会儿见</z>で「少し後で会う」。"
+      },
+      {
+       "t": "见一会儿。",
+       "ok": false,
+       "why": "<z>见一会儿</z>は「少しの間会う」。「少し後で会う」は<z>一会儿见</z>です。"
+      },
+      {
+       "t": "一会见儿。",
+       "ok": false,
+       "why": "語順が誤り。<z>一会儿</z>とまとめます。"
+      },
+      {
+       "t": "会儿一见。",
+       "ok": false,
+       "why": "語順が誤り。<z>一会儿见</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・等再",
+     "q": "次の日本語に合う正しい文は？\n「子どもが寝てから勉強します」",
+     "opts": [
+      {
+       "t": "等孩子睡了再学习。",
+       "ok": true,
+       "why": "正解。<z>等…了再…</z>で「〜を待ってから〜する」。"
+      },
+      {
+       "t": "等孩子睡了学习再。",
+       "ok": false,
+       "why": "語順が誤り。<z>再学习</z>とします。"
+      },
+      {
+       "t": "孩子等睡了再学习。",
+       "ok": false,
+       "why": "語順が誤り。<z>等孩子睡</z>とします。"
+      },
+      {
+       "t": "等孩子睡再了学习。",
+       "ok": false,
+       "why": "語順が誤り。<z>睡了再</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・等再",
+     "q": "次の日本語に合う正しい文は？\n「マネージャーが来てから決めましょう」",
+     "opts": [
+      {
+       "t": "等经理来了再决定。",
+       "ok": true,
+       "why": "正解。<z>等…了再…</z>で「〜を待ってから決める」。"
+      },
+      {
+       "t": "等经理来了决定再。",
+       "ok": false,
+       "why": "語順が誤り。<z>再决定</z>とします。"
+      },
+      {
+       "t": "经理等来了再决定。",
+       "ok": false,
+       "why": "語順が誤り。<z>等经理来</z>とします。"
+      },
+      {
+       "t": "等经理来再了决定。",
+       "ok": false,
+       "why": "語順が誤り。<z>来了再</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我",
+     "一会儿",
+     "给你",
+     "回",
+     "电话"
+    ],
+    "answer": "我一会儿给你回电话。",
+    "why": "<z>一会儿</z>で「少し後で」を示し、<z>给你回电话</z>を続けます。"
+   },
+   "writing": [
+    {
+     "prompt": "搭乗券を見せてください。",
+     "answer": "请出示登机牌。"
+    },
+    {
+     "prompt": "あとで連絡します。",
+     "answer": "我回头联系你。"
+    }
+   ]
+  },
+  "56": {
+   "vocab": [
+    "风景",
+    "导游",
+    "门票",
+    "排队",
+    "拍照"
+   ],
+   "grammar": [
+    "让我想一下",
+    "我想确认一下",
+    "我想问一下"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>风景</z>」の意味は？",
+     "opts": [
+      {
+       "t": "風景・景色",
+       "ok": true,
+       "why": "正解。目に映る自然の眺め。例：<z>风景很美</z>（景色が美しい）。"
+      },
+      {
+       "t": "ガイド",
+       "ok": false,
+       "why": "これは<z>导游</z>です。"
+      },
+      {
+       "t": "入場券",
+       "ok": false,
+       "why": "これは<z>门票</z>です。"
+      },
+      {
+       "t": "並ぶ",
+       "ok": false,
+       "why": "これは<z>排队</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>导游</z>」の意味は？",
+     "opts": [
+      {
+       "t": "ガイド・案内人",
+       "ok": true,
+       "why": "正解。観光案内をする人。例：<z>导游带我们参观</z>（ガイドが案内する）。"
+      },
+      {
+       "t": "入場券",
+       "ok": false,
+       "why": "これは<z>门票</z>です。"
+      },
+      {
+       "t": "写真を撮る",
+       "ok": false,
+       "why": "これは<z>拍照</z>です。"
+      },
+      {
+       "t": "風景",
+       "ok": false,
+       "why": "これは<z>风景</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　多少钱？</z>（入場券はいくら）",
+     "opts": [
+      {
+       "t": "门票",
+       "ok": true,
+       "why": "正解。入場のための券は<z>门票</z>です。"
+      },
+      {
+       "t": "风景",
+       "ok": false,
+       "why": "<z>风景</z>は「景色」で文意に合いません。"
+      },
+      {
+       "t": "导游",
+       "ok": false,
+       "why": "<z>导游</z>は「ガイド」で意味が異なります。"
+      },
+      {
+       "t": "排队",
+       "ok": false,
+       "why": "<z>排队</z>は「並ぶ」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>大家在　买票。</z>（並んで切符を買う）",
+     "opts": [
+      {
+       "t": "排队",
+       "ok": true,
+       "why": "正解。列に並ぶことは<z>排队</z>です。"
+      },
+      {
+       "t": "拍照",
+       "ok": false,
+       "why": "<z>拍照</z>は「写真を撮る」で文意に合いません。"
+      },
+      {
+       "t": "门票",
+       "ok": false,
+       "why": "<z>门票</z>は「入場券」で意味が異なります。"
+      },
+      {
+       "t": "导游",
+       "ok": false,
+       "why": "<z>导游</z>は「ガイド」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・让我想一下",
+     "q": "次の日本語に合う正しい文は？\n「少し考えてから答えます」",
+     "opts": [
+      {
+       "t": "让我想一下再回答。",
+       "ok": true,
+       "why": "正解。<z>让我想一下</z>で「少し考えさせて」と前置きします。"
+      },
+      {
+       "t": "让我一下想再回答。",
+       "ok": false,
+       "why": "語順が誤り。<z>想一下</z>とします。"
+      },
+      {
+       "t": "想让我一下再回答。",
+       "ok": false,
+       "why": "語順が誤り。<z>让我想一下</z>とします。"
+      },
+      {
+       "t": "让我想一下回答再。",
+       "ok": false,
+       "why": "語順が誤り。<z>再回答</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・我想确认一下",
+     "q": "次の日本語に合う正しい文は？\n「会議時間を確認したいです」",
+     "opts": [
+      {
+       "t": "我想确认一下会议时间。",
+       "ok": true,
+       "why": "正解。<z>我想确认一下＋対象</z>で丁寧に確認します。"
+      },
+      {
+       "t": "我想一下确认会议时间。",
+       "ok": false,
+       "why": "語順が誤り。<z>确认一下</z>とします。"
+      },
+      {
+       "t": "我确认想一下会议时间。",
+       "ok": false,
+       "why": "語順が誤り。<z>想确认</z>とします。"
+      },
+      {
+       "t": "我想确认会议时间一下。",
+       "ok": false,
+       "why": "語順が誤り。<z>确认一下会议时间</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・我想问一下",
+     "q": "次の日本語に合う正しい文は？\n「少し聞いてもいいですか」",
+     "opts": [
+      {
+       "t": "我可以问一下吗？",
+       "ok": true,
+       "why": "正解。<z>可以…吗</z>で許可を尋ねます。"
+      },
+      {
+       "t": "我可以一下问吗？",
+       "ok": false,
+       "why": "語順が誤り。<z>问一下</z>とします。"
+      },
+      {
+       "t": "我问可以一下吗？",
+       "ok": false,
+       "why": "語順が誤り。<z>可以问一下</z>とします。"
+      },
+      {
+       "t": "我可以问一下吧？",
+       "ok": false,
+       "why": "<z>吧</z>は提案。許可を尋ねるのは<z>吗</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・我想确认一下",
+     "q": "次の日本語に合う正しい文は？\n「明日の予定を確認したいです」",
+     "opts": [
+      {
+       "t": "我想确认一下明天的安排。",
+       "ok": true,
+       "why": "正解。<z>我想确认一下＋対象</z>の形です。"
+      },
+      {
+       "t": "我想确认明天的安排一下。",
+       "ok": false,
+       "why": "語順が誤り。<z>确认一下明天的安排</z>とします。"
+      },
+      {
+       "t": "我确认想一下明天的安排。",
+       "ok": false,
+       "why": "語順が誤り。<z>想确认</z>とします。"
+      },
+      {
+       "t": "我想一下确认明天的安排。",
+       "ok": false,
+       "why": "語順が誤り。<z>确认一下</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我",
+     "想",
+     "确认",
+     "一下",
+     "时间"
+    ],
+    "answer": "我想确认一下时间。",
+    "why": "<z>我想确认一下＋対象</z>で「〜を確認したい」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "ここの景色は美しい。",
+     "answer": "这里的风景很美。"
+    },
+    {
+     "prompt": "どう言えばいいか少し考えさせてください。",
+     "answer": "让我想一下怎么说。"
+    }
+   ]
+  },
+  "57": {
+   "vocab": [
+    "工资",
+    "奖金",
+    "收入",
+    "招聘",
+    "面试"
+   ],
+   "grammar": [
+    "我不太确定",
+    "我不太清楚",
+    "这样说自然吗"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>工资</z>」の意味は？",
+     "opts": [
+      {
+       "t": "給料",
+       "ok": true,
+       "why": "正解。働いて毎月もらうお金。例：<z>这个月工资发了</z>（今月の給料が出た）。"
+      },
+      {
+       "t": "ボーナス",
+       "ok": false,
+       "why": "これは<z>奖金</z>です。"
+      },
+      {
+       "t": "収入",
+       "ok": false,
+       "why": "これは<z>收入</z>です。"
+      },
+      {
+       "t": "面接",
+       "ok": false,
+       "why": "これは<z>面试</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>面试</z>」の意味は？",
+     "opts": [
+      {
+       "t": "面接",
+       "ok": true,
+       "why": "正解。採用試験の面談。例：<z>明天去面试</z>（明日面接に行く）。"
+      },
+      {
+       "t": "求人・採用する",
+       "ok": false,
+       "why": "これは<z>招聘</z>です。"
+      },
+      {
+       "t": "給料",
+       "ok": false,
+       "why": "これは<z>工资</z>です。"
+      },
+      {
+       "t": "収入",
+       "ok": false,
+       "why": "これは<z>收入</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这个月　发了。</z>（今月の給料が出た）",
+     "opts": [
+      {
+       "t": "工资",
+       "ok": true,
+       "why": "正解。毎月支払われるのは<z>工资</z>です。"
+      },
+      {
+       "t": "奖金",
+       "ok": false,
+       "why": "<z>奖金</z>は臨時のボーナスで、毎月の支給とは合いません。"
+      },
+      {
+       "t": "收入",
+       "ok": false,
+       "why": "<z>收入</z>は収入全般で、<z>发了</z>とは結びつきにくいです。"
+      },
+      {
+       "t": "面试",
+       "ok": false,
+       "why": "<z>面试</z>は「面接」で文意に合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我明天去　。</z>（明日面接に行く）",
+     "opts": [
+      {
+       "t": "面试",
+       "ok": true,
+       "why": "正解。面接を受けに行くのは<z>面试</z>です。"
+      },
+      {
+       "t": "招聘",
+       "ok": false,
+       "why": "<z>招聘</z>は採用側が「募集する」ことで、受ける側とは異なります。"
+      },
+      {
+       "t": "奖金",
+       "ok": false,
+       "why": "<z>奖金</z>は「ボーナス」で文意に合いません。"
+      },
+      {
+       "t": "收入",
+       "ok": false,
+       "why": "<z>收入</z>は「収入」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・我不太确定",
+     "q": "次の日本語に合う正しい文は？\n「時間はまだ確定していません」",
+     "opts": [
+      {
+       "t": "时间还不太确定。",
+       "ok": true,
+       "why": "正解。<z>还不太确定</z>で「まだはっきりしていない」を表します。"
+      },
+      {
+       "t": "时间不太还确定。",
+       "ok": false,
+       "why": "語順が誤り。<z>还不太确定</z>とします。"
+      },
+      {
+       "t": "还时间不太确定。",
+       "ok": false,
+       "why": "語順が誤り。<z>时间还</z>とします。"
+      },
+      {
+       "t": "时间还不确定太。",
+       "ok": false,
+       "why": "語順が誤り。<z>不太确定</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・我不太清楚",
+     "q": "次の日本語に合う正しい文は？\n「住所はよく分かりません」",
+     "opts": [
+      {
+       "t": "地址我不太清楚。",
+       "ok": true,
+       "why": "正解。話題を前に出し<z>我不太清楚</z>で柔らかく言います。"
+      },
+      {
+       "t": "地址我不清楚太。",
+       "ok": false,
+       "why": "語順が誤り。<z>不太清楚</z>とします。"
+      },
+      {
+       "t": "地址不太我清楚。",
+       "ok": false,
+       "why": "語順が誤り。<z>我不太清楚</z>とします。"
+      },
+      {
+       "t": "地址我太不清楚。",
+       "ok": false,
+       "why": "語順が誤り。<z>不太</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・这样说自然吗",
+     "q": "次の日本語に合う正しい文は？\n「この文は自然ですか」",
+     "opts": [
+      {
+       "t": "这个句子自然吗？",
+       "ok": true,
+       "why": "正解。自然かどうかを尋ねる<z>…自然吗？</z>です。"
+      },
+      {
+       "t": "这个句子吗自然？",
+       "ok": false,
+       "why": "語順が誤り。<z>自然吗</z>とします。"
+      },
+      {
+       "t": "这个自然句子吗？",
+       "ok": false,
+       "why": "語順が誤り。<z>句子自然</z>とします。"
+      },
+      {
+       "t": "这个句子自然吧？",
+       "ok": false,
+       "why": "<z>吧</z>は推量・提案。質問は<z>吗</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・我不太确定",
+     "q": "次の日本語に合う正しい文は？\n「この文が正しいかあまり確信がありません」",
+     "opts": [
+      {
+       "t": "我不太确定这个句子对不对。",
+       "ok": true,
+       "why": "正解。<z>不太确定＋疑問句</z>で「〜かどうか確信がない」。"
+      },
+      {
+       "t": "我不确定太这个句子对不对。",
+       "ok": false,
+       "why": "語順が誤り。<z>不太确定</z>とします。"
+      },
+      {
+       "t": "我太不确定这个句子对不对。",
+       "ok": false,
+       "why": "語順が誤り。<z>不太确定</z>とします。"
+      },
+      {
+       "t": "我确定不太这个句子对不对。",
+       "ok": false,
+       "why": "語順が誤り。<z>不太确定</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "这个",
+     "地址",
+     "我",
+     "不太",
+     "清楚"
+    ],
+    "answer": "这个地址我不太清楚。",
+    "why": "話題を前に出し<z>我不太清楚</z>で柔らかく分からないことを伝えます。"
+   },
+   "writing": [
+    {
+     "prompt": "今月の給料が出た。",
+     "answer": "这个月工资发了。"
+    },
+    {
+     "prompt": "この状況はあまりよく分かりません。",
+     "answer": "这个情况我不太清楚。"
+    }
+   ]
+  },
+  "58": {
+   "vocab": [
+    "简历",
+    "职业",
+    "专业",
+    "知识",
+    "文章"
+   ],
+   "grammar": [
+    "应该怎么说",
+    "不太地道",
+    "口语里"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>简历</z>」の意味は？",
+     "opts": [
+      {
+       "t": "履歴書",
+       "ok": true,
+       "why": "正解。経歴をまとめた書類。例：<z>发一份简历</z>（履歴書を送る）。"
+      },
+      {
+       "t": "職業",
+       "ok": false,
+       "why": "これは<z>职业</z>です。"
+      },
+      {
+       "t": "専攻",
+       "ok": false,
+       "why": "これは<z>专业</z>です。"
+      },
+      {
+       "t": "文章",
+       "ok": false,
+       "why": "これは<z>文章</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>专业</z>」の意味は？",
+     "opts": [
+      {
+       "t": "専攻・専門",
+       "ok": true,
+       "why": "正解。大学などで学ぶ専門分野。例：<z>我的专业是法律</z>（専攻は法律）。"
+      },
+      {
+       "t": "職業",
+       "ok": false,
+       "why": "これは<z>职业</z>です。"
+      },
+      {
+       "t": "知識",
+       "ok": false,
+       "why": "これは<z>知识</z>です。"
+      },
+      {
+       "t": "履歴書",
+       "ok": false,
+       "why": "これは<z>简历</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>你的　是什么？</z>（あなたの職業は）",
+     "opts": [
+      {
+       "t": "职业",
+       "ok": true,
+       "why": "正解。生計を立てる仕事の種類は<z>职业</z>です。"
+      },
+      {
+       "t": "专业",
+       "ok": false,
+       "why": "<z>专业</z>は「専攻」で文意に合いません。"
+      },
+      {
+       "t": "简历",
+       "ok": false,
+       "why": "<z>简历</z>は「履歴書」で意味が異なります。"
+      },
+      {
+       "t": "文章",
+       "ok": false,
+       "why": "<z>文章</z>は「文章」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这篇　很长。</z>（この文章は長い）",
+     "opts": [
+      {
+       "t": "文章",
+       "ok": true,
+       "why": "正解。<z>篇</z>で数える書き物は<z>文章</z>です。"
+      },
+      {
+       "t": "知识",
+       "ok": false,
+       "why": "<z>知识</z>は「知識」で文意に合いません。"
+      },
+      {
+       "t": "简历",
+       "ok": false,
+       "why": "<z>简历</z>は「履歴書」で意味が異なります。"
+      },
+      {
+       "t": "职业",
+       "ok": false,
+       "why": "<z>职业</z>は「職業」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・应该怎么说",
+     "q": "次の日本語に合う正しい文は？\n「自然にはどう言いますか」",
+     "opts": [
+      {
+       "t": "自然一点应该怎么说？",
+       "ok": true,
+       "why": "正解。<z>应该怎么说</z>で「どう言うべきか」を尋ねます。"
+      },
+      {
+       "t": "自然一点应该说怎么？",
+       "ok": false,
+       "why": "語順が誤り。<z>怎么说</z>とします。"
+      },
+      {
+       "t": "自然一点怎么应该说？",
+       "ok": false,
+       "why": "語順が誤り。<z>应该怎么说</z>とします。"
+      },
+      {
+       "t": "自然一点应该怎么说吧？",
+       "ok": false,
+       "why": "疑問詞疑問に<z>吧</z>は不要で、意味が変わります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不太地道",
+     "q": "次の日本語に合う正しい文は？\n「もっと自然な言い方を教えてください」",
+     "opts": [
+      {
+       "t": "请告诉我更地道的说法。",
+       "ok": true,
+       "why": "正解。<z>地道</z>は「本場らしい・自然な」。<z>更地道</z>で「もっと自然な」。"
+      },
+      {
+       "t": "请告诉我地道更的说法。",
+       "ok": false,
+       "why": "語順が誤り。<z>更地道</z>とします。"
+      },
+      {
+       "t": "请我告诉更地道的说法。",
+       "ok": false,
+       "why": "語順が誤り。<z>告诉我</z>とします。"
+      },
+      {
+       "t": "请告诉我更地道说法的。",
+       "ok": false,
+       "why": "語順が誤り。<z>地道的说法</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・口语里",
+     "q": "次の日本語に合う正しい文は？\n「口語ではこう言えます」",
+     "opts": [
+      {
+       "t": "口语里可以这样说。",
+       "ok": true,
+       "why": "正解。<z>口语里</z>で「話し言葉では」と範囲を示します。"
+      },
+      {
+       "t": "口语里这样可以说。",
+       "ok": false,
+       "why": "語順が誤り。<z>可以这样说</z>とします。"
+      },
+      {
+       "t": "里口语可以这样说。",
+       "ok": false,
+       "why": "語順が誤り。<z>口语里</z>とします。"
+      },
+      {
+       "t": "口语里可以说这样。",
+       "ok": false,
+       "why": "語順が誤り。<z>这样说</z>とします。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・应该怎么说",
+     "q": "次の日本語に合う正しい文は？\n「これは中国語でどう言えばいいですか」",
+     "opts": [
+      {
+       "t": "这个用中文应该怎么说？",
+       "ok": true,
+       "why": "正解。<z>用中文应该怎么说</z>の形です。"
+      },
+      {
+       "t": "这个用中文应该说怎么？",
+       "ok": false,
+       "why": "語順が誤り。<z>怎么说</z>とします。"
+      },
+      {
+       "t": "这个中文用应该怎么说？",
+       "ok": false,
+       "why": "語順が誤り。<z>用中文</z>とします。"
+      },
+      {
+       "t": "这个用中文怎么应该说？",
+       "ok": false,
+       "why": "語順が誤り。<z>应该怎么说</z>とします。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "请",
+     "告诉我",
+     "更",
+     "地道的",
+     "说法"
+    ],
+    "answer": "请告诉我更地道的说法。",
+    "why": "<z>告诉我＋更地道的说法</z>で「もっと自然な言い方を教えて」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "私の専攻は法律だ。",
+     "answer": "我的专业是法律。"
+    },
+    {
+     "prompt": "この表現はあまり自然な中国語らしくありません。",
+     "answer": "这个表达不太地道。"
+    }
+   ]
+  },
+  "59": {
+   "vocab": [
+    "词典",
+    "成绩",
+    "及格",
+    "练习",
+    "笔记"
+   ],
+   "grammar": [
+    "书面语里",
+    "是〜的：強調",
+    "正在〜呢：進行"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>词典</z>」の意味は？",
+     "opts": [
+      {
+       "t": "辞書",
+       "ok": true,
+       "why": "正解。語の意味を調べる本。例：<z>用词典查生词</z>（辞書で新語を調べる）。"
+      },
+      {
+       "t": "成績",
+       "ok": false,
+       "why": "これは<z>成绩</z>です。"
+      },
+      {
+       "t": "練習する",
+       "ok": false,
+       "why": "これは<z>练习</z>です。"
+      },
+      {
+       "t": "ノート・メモ",
+       "ok": false,
+       "why": "これは<z>笔记</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>及格</z>」の意味は？",
+     "opts": [
+      {
+       "t": "合格する・及第する",
+       "ok": true,
+       "why": "正解。基準点に達すること。例：<z>考试及格了</z>（試験に合格した）。"
+      },
+      {
+       "t": "成績",
+       "ok": false,
+       "why": "これは<z>成绩</z>です。"
+      },
+      {
+       "t": "練習する",
+       "ok": false,
+       "why": "これは<z>练习</z>です。"
+      },
+      {
+       "t": "辞書",
+       "ok": false,
+       "why": "これは<z>词典</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他的　很好。</z>（成績が良い）",
+     "opts": [
+      {
+       "t": "成绩",
+       "ok": true,
+       "why": "正解。試験などの結果は<z>成绩</z>です。"
+      },
+      {
+       "t": "词典",
+       "ok": false,
+       "why": "<z>词典</z>は「辞書」で文意に合いません。"
+      },
+      {
+       "t": "笔记",
+       "ok": false,
+       "why": "<z>笔记</z>は「ノート」で意味が異なります。"
+      },
+      {
+       "t": "练习",
+       "ok": false,
+       "why": "<z>练习</z>は「練習する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我记了　。</z>（ノートを取った）",
+     "opts": [
+      {
+       "t": "笔记",
+       "ok": true,
+       "why": "正解。<z>记笔记</z>（ノートを取る）の<z>笔记</z>です。"
+      },
+      {
+       "t": "词典",
+       "ok": false,
+       "why": "<z>词典</z>は「辞書」で文意に合いません。"
+      },
+      {
+       "t": "成绩",
+       "ok": false,
+       "why": "<z>成绩</z>は「成績」で意味が異なります。"
+      },
+      {
+       "t": "及格",
+       "ok": false,
+       "why": "<z>及格</z>は「合格する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・书面语里",
+     "q": "<z>书面语里</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "書き言葉では",
+       "ok": true,
+       "why": "正解。文章・通知・メールで使う表現を説明できます。"
+      },
+      {
+       "t": "すでに起きたことの時・場所・方法を強調する",
+       "ok": false,
+       "why": "これは<z>是〜的：強調</z>の説明です。"
+      },
+      {
+       "t": "ちょうど〜しているところだ",
+       "ok": false,
+       "why": "これは<z>正在〜呢：進行</z>の説明です。"
+      },
+      {
+       "t": "少しも〜ない",
+       "ok": false,
+       "why": "これは<z>一点儿也不</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・是〜的：強調",
+     "q": "<z>是〜的：強調</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "すでに起きたことの時・場所・方法を強調する",
+       "ok": true,
+       "why": "正解。起きたこと自体は前提にして、「いつ・どこで・どうやって」を取り立てます。是は省けますが的は省けません。"
+      },
+      {
+       "t": "書き言葉では",
+       "ok": false,
+       "why": "これは<z>书面语里</z>の説明です。"
+      },
+      {
+       "t": "ちょうど〜しているところだ",
+       "ok": false,
+       "why": "これは<z>正在〜呢：進行</z>の説明です。"
+      },
+      {
+       "t": "〜のようなもの",
+       "ok": false,
+       "why": "これは<z>〜之类的</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・正在〜呢：進行",
+     "q": "<z>正在〜呢：進行</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "ちょうど〜しているところだ",
+       "ok": true,
+       "why": "正解。動作が進行中であることを表します。正在／在／正のいずれかを動詞の前に置き、文末に呢を添えることもあります。"
+      },
+      {
+       "t": "書き言葉では",
+       "ok": false,
+       "why": "これは<z>书面语里</z>の説明です。"
+      },
+      {
+       "t": "すでに起きたことの時・場所・方法を強調する",
+       "ok": false,
+       "why": "これは<z>是〜的：強調</z>の説明です。"
+      },
+      {
+       "t": "この言い方は自然ですか",
+       "ok": false,
+       "why": "これは<z>这样说自然吗</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・书面语里",
+     "q": "<z>书面语里</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "口語では因为の方が自然な場合があります。",
+       "ok": true,
+       "why": "正解。书面语里常用由于。"
+      },
+      {
+       "t": "これから起きることには使えません。",
+       "ok": false,
+       "why": "これは<z>是〜的：強調</z>についての注意点です。"
+      },
+      {
+       "t": "是・有・知道のような状態を表す語には使えません。",
+       "ok": false,
+       "why": "これは<z>正在〜呢：進行</z>についての注意点です。"
+      },
+      {
+       "t": "位置が違います。",
+       "ok": false,
+       "why": "これは地と得についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "来的",
+     "坐地铁",
+     "我",
+     "是"
+    ],
+    "answer": "我是坐地铁来的。",
+    "why": "手段を強調する<z>是〜的</z>。<z>是</z>は主語の後ろ、<z>的</z>は文末に置きます。"
+   },
+   "writing": [
+    {
+     "prompt": "彼の成績は良い。",
+     "answer": "他的成绩很好。"
+    },
+    {
+     "prompt": "私は先週上海に来ました。（「先週」を強調して）",
+     "answer": "我是上个星期来上海的。"
+    }
+   ]
+  },
+  "60": {
+   "vocab": [
+    "厨房",
+    "客厅",
+    "家具",
+    "沙发",
+    "窗户"
+   ],
+   "grammar": [
+    "V了＋時間量",
+    "V了＋回数",
+    "连〜也／都〜"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>厨房</z>」の意味は？",
+     "opts": [
+      {
+       "t": "台所・キッチン",
+       "ok": true,
+       "why": "正解。料理をする部屋。例：<z>在厨房做饭</z>（台所で料理する）。"
+      },
+      {
+       "t": "居間",
+       "ok": false,
+       "why": "これは<z>客厅</z>です。"
+      },
+      {
+       "t": "家具",
+       "ok": false,
+       "why": "これは<z>家具</z>です。"
+      },
+      {
+       "t": "窓",
+       "ok": false,
+       "why": "これは<z>窗户</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>客厅</z>」の意味は？",
+     "opts": [
+      {
+       "t": "居間・リビング",
+       "ok": true,
+       "why": "正解。客を迎える部屋。例：<z>客厅很宽敞</z>（居間が広い）。"
+      },
+      {
+       "t": "台所",
+       "ok": false,
+       "why": "これは<z>厨房</z>です。"
+      },
+      {
+       "t": "ソファ",
+       "ok": false,
+       "why": "これは<z>沙发</z>です。"
+      },
+      {
+       "t": "家具",
+       "ok": false,
+       "why": "これは<z>家具</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这些　很贵。</z>（家具が高い）",
+     "opts": [
+      {
+       "t": "家具",
+       "ok": true,
+       "why": "正解。机やいすなどの総称は<z>家具</z>です。"
+      },
+      {
+       "t": "沙发",
+       "ok": false,
+       "why": "<z>沙发</z>は「ソファ」一点で、総称ではありません。"
+      },
+      {
+       "t": "窗户",
+       "ok": false,
+       "why": "<z>窗户</z>は「窓」で意味が異なります。"
+      },
+      {
+       "t": "客厅",
+       "ok": false,
+       "why": "<z>客厅</z>は「居間」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>请打开　。</z>（窓を開けて）",
+     "opts": [
+      {
+       "t": "窗户",
+       "ok": true,
+       "why": "正解。開け閉めする窓は<z>窗户</z>です。"
+      },
+      {
+       "t": "沙发",
+       "ok": false,
+       "why": "<z>沙发</z>は「ソファ」で<z>打开</z>と合いません。"
+      },
+      {
+       "t": "家具",
+       "ok": false,
+       "why": "<z>家具</z>は「家具」で文意に合いません。"
+      },
+      {
+       "t": "厨房",
+       "ok": false,
+       "why": "<z>厨房</z>は「台所」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V了＋時間量",
+     "q": "<z>V了＋時間量</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "どのくらいの間〜したかを表す",
+       "ok": true,
+       "why": "正解。動詞のすぐ後ろに了を置き、その後に時間の長さを置きます。文末にもう一つ了を足すと、今も続いていることを表します。"
+      },
+      {
+       "t": "何回〜したかを表す",
+       "ok": false,
+       "why": "これは<z>V了＋回数</z>の説明です。"
+      },
+      {
+       "t": "〜さえも〜",
+       "ok": false,
+       "why": "これは<z>连〜也／都〜</z>の説明です。"
+      },
+      {
+       "t": "〜さえすれば〜",
+       "ok": false,
+       "why": "これは<z>只要〜就〜</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V了＋回数",
+     "q": "<z>V了＋回数</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "何回〜したかを表す",
+       "ok": true,
+       "why": "正解。動詞の後ろに回数を置きます。次は単なる回数、遍は最初から最後まで通した回数です。"
+      },
+      {
+       "t": "どのくらいの間〜したかを表す",
+       "ok": false,
+       "why": "これは<z>V了＋時間量</z>の説明です。"
+      },
+      {
+       "t": "〜さえも〜",
+       "ok": false,
+       "why": "これは<z>连〜也／都〜</z>の説明です。"
+      },
+      {
+       "t": "〜すればするほど〜",
+       "ok": false,
+       "why": "これは<z>越〜越〜</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・连〜也／都〜",
+     "q": "<z>连〜也／都〜</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜さえも〜",
+       "ok": true,
+       "why": "正解。極端な例を挙げて「それすらそうだ」と示します。连の後ろに取り立てる語、後半に也か都を置きます。"
+      },
+      {
+       "t": "どのくらいの間〜したかを表す",
+       "ok": false,
+       "why": "これは<z>V了＋時間量</z>の説明です。"
+      },
+      {
+       "t": "何回〜したかを表す",
+       "ok": false,
+       "why": "これは<z>V了＋回数</z>の説明です。"
+      },
+      {
+       "t": "どの程度〜するか",
+       "ok": false,
+       "why": "これは<z>程度補語：说得</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V了＋時間量",
+     "q": "<z>V了＋時間量</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "時間の長さを動詞の前に置かないこと。",
+       "ok": true,
+       "why": "正解。我学了中文 は完了、我学了三年中文了 は三年続けて今も学んでいる、です。"
+      },
+      {
+       "t": "目的語が人称代名詞のときは、回数をその後ろに置きます（等了他两次）。",
+       "ok": false,
+       "why": "これは<z>V了＋回数</z>についての注意点です。"
+      },
+      {
+       "t": "也／都を落とすと文になりません。",
+       "ok": false,
+       "why": "これは<z>连〜也／都〜</z>についての注意点です。"
+      },
+      {
+       "t": "会話で自然です。",
+       "ok": false,
+       "why": "これは<z>顺便问一下</z>についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "都没吃",
+     "他",
+     "午饭",
+     "连"
+    ],
+    "answer": "他连午饭都没吃。",
+    "why": "<z>连</z>の後ろに取り立てる語、後半に<z>都</z>を置きます。"
+   },
+   "writing": [
+    {
+     "prompt": "母は台所で料理している。",
+     "answer": "妈妈在厨房做饭。"
+    },
+    {
+     "prompt": "私は上海に8年住んでいます。",
+     "answer": "我在上海住了八年了。"
+    }
+   ]
+  },
+  "61": {
+   "vocab": [
+    "镜子",
+    "钥匙",
+    "垃圾",
+    "工具",
+    "毛巾"
+   ],
+   "grammar": [
+    "不是〜而是〜",
+    "跟〜一样",
+    "除了〜都〜"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>钥匙</z>」の意味は？",
+     "opts": [
+      {
+       "t": "鍵",
+       "ok": true,
+       "why": "正解。錠を開ける道具。例：<z>找不到钥匙</z>（鍵が見つからない）。"
+      },
+      {
+       "t": "鏡",
+       "ok": false,
+       "why": "これは<z>镜子</z>です。"
+      },
+      {
+       "t": "ゴミ",
+       "ok": false,
+       "why": "これは<z>垃圾</z>です。"
+      },
+      {
+       "t": "タオル",
+       "ok": false,
+       "why": "これは<z>毛巾</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>垃圾</z>」の意味は？",
+     "opts": [
+      {
+       "t": "ゴミ",
+       "ok": true,
+       "why": "正解。捨てるもの。例：<z>把垃圾扔掉</z>（ゴミを捨てる）。"
+      },
+      {
+       "t": "道具",
+       "ok": false,
+       "why": "これは<z>工具</z>です。"
+      },
+      {
+       "t": "タオル",
+       "ok": false,
+       "why": "これは<z>毛巾</z>です。"
+      },
+      {
+       "t": "鍵",
+       "ok": false,
+       "why": "これは<z>钥匙</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>她在照　。</z>（鏡を見ている）",
+     "opts": [
+      {
+       "t": "镜子",
+       "ok": true,
+       "why": "正解。<z>照镜子</z>（鏡を見る）の<z>镜子</z>です。"
+      },
+      {
+       "t": "钥匙",
+       "ok": false,
+       "why": "<z>钥匙</z>は「鍵」で文意に合いません。"
+      },
+      {
+       "t": "垃圾",
+       "ok": false,
+       "why": "<z>垃圾</z>は「ゴミ」で意味が異なります。"
+      },
+      {
+       "t": "毛巾",
+       "ok": false,
+       "why": "<z>毛巾</z>は「タオル」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我需要一条　。</z>（タオルが一枚要る）",
+     "opts": [
+      {
+       "t": "毛巾",
+       "ok": true,
+       "why": "正解。<z>一条毛巾</z>（タオル一枚）の<z>毛巾</z>です。"
+      },
+      {
+       "t": "钥匙",
+       "ok": false,
+       "why": "<z>钥匙</z>は「鍵」で<z>一条</z>とは数えません。"
+      },
+      {
+       "t": "工具",
+       "ok": false,
+       "why": "<z>工具</z>は「道具」で意味が異なります。"
+      },
+      {
+       "t": "镜子",
+       "ok": false,
+       "why": "<z>镜子</z>は「鏡」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不是〜而是〜",
+     "q": "<z>不是〜而是〜</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜ではなく〜だ",
+       "ok": true,
+       "why": "正解。前半で否定し、後半で正しいほうを示します。"
+      },
+      {
+       "t": "〜と同じだ",
+       "ok": false,
+       "why": "これは<z>跟〜一样</z>の説明です。"
+      },
+      {
+       "t": "〜以外はすべて〜",
+       "ok": false,
+       "why": "これは<z>除了〜都〜</z>の説明です。"
+      },
+      {
+       "t": "〜だけれども、しかし〜",
+       "ok": false,
+       "why": "これは<z>虽然〜但是〜</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・跟〜一样",
+     "q": "<z>跟〜一样</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜と同じだ",
+       "ok": true,
+       "why": "正解。跟（または和）＋比べる相手＋一样。後ろに形容詞を続けると「同じくらい〜だ」になります。"
+      },
+      {
+       "t": "〜ではなく〜だ",
+       "ok": false,
+       "why": "これは<z>不是〜而是〜</z>の説明です。"
+      },
+      {
+       "t": "〜以外はすべて〜",
+       "ok": false,
+       "why": "これは<z>除了〜都〜</z>の説明です。"
+      },
+      {
+       "t": "入ってくる/入っていく",
+       "ok": false,
+       "why": "これは<z>方向補語：进来进去</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・除了〜都〜",
+     "q": "<z>除了〜都〜</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜以外はすべて〜",
+       "ok": true,
+       "why": "正解。除了の後ろを例外として外し、残り全部を都で受けます。"
+      },
+      {
+       "t": "〜ではなく〜だ",
+       "ok": false,
+       "why": "これは<z>不是〜而是〜</z>の説明です。"
+      },
+      {
+       "t": "〜と同じだ",
+       "ok": false,
+       "why": "これは<z>跟〜一样</z>の説明です。"
+      },
+      {
+       "t": "なんだ、もともと",
+       "ok": false,
+       "why": "これは<z>原来</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不是〜而是〜",
+     "q": "<z>不是〜而是〜</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "而是のかわりに但是を使わないこと。",
+       "ok": true,
+       "why": "正解。不是〜就是〜 は「〜かさもなくば〜」で、二つのうちどちらか、の意味になります。"
+      },
+      {
+       "t": "否定は跟〜不一样で、不は一样の前に置きます。",
+       "ok": false,
+       "why": "これは<z>跟〜一样</z>についての注意点です。"
+      },
+      {
+       "t": "还と都を取り違えると意味が反対になります。",
+       "ok": false,
+       "why": "これは<z>除了〜都〜</z>についての注意点です。"
+      },
+      {
+       "t": "慢慢地より少し書き言葉です。",
+       "ok": false,
+       "why": "これは<z>渐渐地</z>についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "一样",
+     "这个方法",
+     "上次",
+     "跟"
+    ],
+    "answer": "这个方法跟上次一样。",
+    "why": "<z>跟〜一样</z>で「〜と同じだ」。比べる相手は<z>跟</z>の後ろです。"
+   },
+   "writing": [
+    {
+     "prompt": "鍵が見つからない。",
+     "answer": "我找不到钥匙。"
+    },
+    {
+     "prompt": "私が言いたいのは方法ではなく目的です。",
+     "answer": "我想说的不是方法，而是目的。"
+    }
+   ]
+  },
+  "62": {
+   "vocab": [
+    "牙膏",
+    "洗衣机",
+    "冰箱",
+    "空调",
+    "电梯"
+   ],
+   "grammar": [
+    "对于",
+    "使：〜させる",
+    "叫／给：受け身"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>冰箱</z>」の意味は？",
+     "opts": [
+      {
+       "t": "冷蔵庫",
+       "ok": true,
+       "why": "正解。食品を冷やす機器。例：<z>把牛奶放进冰箱</z>（牛乳を冷蔵庫に入れる）。"
+      },
+      {
+       "t": "洗濯機",
+       "ok": false,
+       "why": "これは<z>洗衣机</z>です。"
+      },
+      {
+       "t": "エアコン",
+       "ok": false,
+       "why": "これは<z>空调</z>です。"
+      },
+      {
+       "t": "エレベーター",
+       "ok": false,
+       "why": "これは<z>电梯</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>电梯</z>」の意味は？",
+     "opts": [
+      {
+       "t": "エレベーター",
+       "ok": true,
+       "why": "正解。階を上下する昇降機。例：<z>坐电梯上去</z>（エレベーターで上がる）。"
+      },
+      {
+       "t": "エアコン",
+       "ok": false,
+       "why": "これは<z>空调</z>です。"
+      },
+      {
+       "t": "洗濯機",
+       "ok": false,
+       "why": "これは<z>洗衣机</z>です。"
+      },
+      {
+       "t": "冷蔵庫",
+       "ok": false,
+       "why": "これは<z>冰箱</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　用完了。</z>（歯磨き粉を使い切った）",
+     "opts": [
+      {
+       "t": "牙膏",
+       "ok": true,
+       "why": "正解。少しずつ使い切る消耗品は<z>牙膏</z>です。"
+      },
+      {
+       "t": "洗衣机",
+       "ok": false,
+       "why": "<z>洗衣机</z>は機器で<z>用完</z>（使い切る）の対象になりません。"
+      },
+      {
+       "t": "冰箱",
+       "ok": false,
+       "why": "<z>冰箱</z>は機器で<z>用完</z>の対象になりません。"
+      },
+      {
+       "t": "空调",
+       "ok": false,
+       "why": "<z>空调</z>は機器で<z>用完</z>の対象になりません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>把牛奶放进　。</z>（牛乳を冷蔵庫に入れて）",
+     "opts": [
+      {
+       "t": "冰箱",
+       "ok": true,
+       "why": "正解。食品を冷やして入れるのは<z>冰箱</z>です。"
+      },
+      {
+       "t": "空调",
+       "ok": false,
+       "why": "<z>空调</z>は「エアコン」で<z>放进</z>と合いません。"
+      },
+      {
+       "t": "电梯",
+       "ok": false,
+       "why": "<z>电梯</z>は「エレベーター」で文意に合いません。"
+      },
+      {
+       "t": "洗衣机",
+       "ok": false,
+       "why": "<z>洗衣机</z>は「洗濯機」で牛乳を入れる場所ではありません。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・对于",
+     "q": "<z>对于</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜について、〜に対して",
+       "ok": true,
+       "why": "正解。話題を先に示すときに使い、文頭にも主語の後ろにも置けます。"
+      },
+      {
+       "t": "ある状態を引き起こす",
+       "ok": false,
+       "why": "これは<z>使</z>：〜させるの説明です。"
+      },
+      {
+       "t": "〜される（話し言葉）",
+       "ok": false,
+       "why": "これは<z>叫／给</z>：受け身の説明です。"
+      },
+      {
+       "t": "実は〜していない",
+       "ok": false,
+       "why": "これは<z>并没有</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・使：〜させる",
+     "q": "<z>使</z>：〜させるの使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "ある状態を引き起こす",
+       "ok": true,
+       "why": "正解。主に気持ちや状態の変化を引き起こすときに使う、書き言葉寄りの使役です。"
+      },
+      {
+       "t": "〜について、〜に対して",
+       "ok": false,
+       "why": "これは<z>对于</z>の説明です。"
+      },
+      {
+       "t": "〜される（話し言葉）",
+       "ok": false,
+       "why": "これは<z>叫／给</z>：受け身の説明です。"
+      },
+      {
+       "t": "この言い方は自然ですか",
+       "ok": false,
+       "why": "これは<z>这样说自然吗</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・叫／给：受け身",
+     "q": "<z>叫／给</z>：受け身の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜される（話し言葉）",
+       "ok": true,
+       "why": "正解。被と同じ受け身です。叫と让は動作をした人を必ず言い、给はより口語的です。"
+      },
+      {
+       "t": "〜について、〜に対して",
+       "ok": false,
+       "why": "これは<z>对于</z>の説明です。"
+      },
+      {
+       "t": "ある状態を引き起こす",
+       "ok": false,
+       "why": "これは<z>使</z>：〜させるの説明です。"
+      },
+      {
+       "t": "〜のような",
+       "ok": false,
+       "why": "これは<z>像〜这样的</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・对于",
+     "q": "<z>对于</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "人に向けた動作（对他说）には对于を使いません。",
+       "ok": true,
+       "why": "正解。对我来说 は「私にとって」、对于这个问题 は「この問題について」で、指すものが違います。"
+      },
+      {
+       "t": "話し言葉で人に頼むときは让を使います。",
+       "ok": false,
+       "why": "これは<z>使</z>：〜させるについての注意点です。"
+      },
+      {
+       "t": "叫の後ろの動作主を省略しないこと。",
+       "ok": false,
+       "why": "これは<z>叫／给</z>：受け身についての注意点です。"
+      },
+      {
+       "t": "等は条件節を作れます。",
+       "ok": false,
+       "why": "これは<z>等〜再〜</z>についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我",
+     "这个安排",
+     "没有意见",
+     "对于"
+    ],
+    "answer": "对于这个安排，我没有意见。",
+    "why": "<z>对于</z>は話題を先に示す言い方で、文頭に置けます。"
+   },
+   "writing": [
+    {
+     "prompt": "牛乳を冷蔵庫に入れて。",
+     "answer": "把牛奶放进冰箱。"
+    },
+    {
+     "prompt": "この件について、もう少し考えたいです。",
+     "answer": "对于这件事，我想再考虑一下。"
+    }
+   ]
+  },
+  "63": {
+   "vocab": [
+    "房东",
+    "租",
+    "邻居",
+    "亲戚",
+    "顾客"
+   ],
+   "grammar": [
+    "难道〜吗",
+    "到底：問い詰める",
+    "否则"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>房东</z>」の意味は？",
+     "opts": [
+      {
+       "t": "大家（家主）",
+       "ok": true,
+       "why": "正解。部屋を貸す側の人。例：<z>房东人很好</z>（大家さんが親切）。"
+      },
+      {
+       "t": "隣人",
+       "ok": false,
+       "why": "これは<z>邻居</z>です。"
+      },
+      {
+       "t": "親戚",
+       "ok": false,
+       "why": "これは<z>亲戚</z>です。"
+      },
+      {
+       "t": "顧客",
+       "ok": false,
+       "why": "これは<z>顾客</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>亲戚</z>」の意味は？",
+     "opts": [
+      {
+       "t": "親戚",
+       "ok": true,
+       "why": "正解。血縁・姻戚の人。例：<z>去看亲戚</z>（親戚を訪ねる）。"
+      },
+      {
+       "t": "隣人",
+       "ok": false,
+       "why": "これは<z>邻居</z>です。"
+      },
+      {
+       "t": "大家",
+       "ok": false,
+       "why": "これは<z>房东</z>です。"
+      },
+      {
+       "t": "顧客",
+       "ok": false,
+       "why": "これは<z>顾客</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我的　很友好。</z>（隣人が親切）",
+     "opts": [
+      {
+       "t": "邻居",
+       "ok": true,
+       "why": "正解。近所に住む人は<z>邻居</z>です。"
+      },
+      {
+       "t": "房东",
+       "ok": false,
+       "why": "<z>房东</z>は「大家」で意味が異なります。"
+      },
+      {
+       "t": "亲戚",
+       "ok": false,
+       "why": "<z>亲戚</z>は「親戚」で意味が異なります。"
+      },
+      {
+       "t": "顾客",
+       "ok": false,
+       "why": "<z>顾客</z>は「顧客」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这家店　很多。</z>（この店は客が多い）",
+     "opts": [
+      {
+       "t": "顾客",
+       "ok": true,
+       "why": "正解。店に来る客は<z>顾客</z>です。"
+      },
+      {
+       "t": "邻居",
+       "ok": false,
+       "why": "<z>邻居</z>は「隣人」で文意に合いません。"
+      },
+      {
+       "t": "亲戚",
+       "ok": false,
+       "why": "<z>亲戚</z>は「親戚」で意味が異なります。"
+      },
+      {
+       "t": "房东",
+       "ok": false,
+       "why": "<z>房东</z>は「大家」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・难道〜吗",
+     "q": "<z>难道〜吗</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "まさか〜ではないだろう（反語）",
+       "ok": true,
+       "why": "正解。答えを求めず、驚きや納得のいかない気持ちを表します。文末に吗を伴うのが普通です。"
+      },
+      {
+       "t": "いったい〜なのか",
+       "ok": false,
+       "why": "これは<z>到底</z>：問い詰めるの説明です。"
+      },
+      {
+       "t": "そうでなければ",
+       "ok": false,
+       "why": "これは<z>否则</z>の説明です。"
+      },
+      {
+       "t": "〜したまま…する",
+       "ok": false,
+       "why": "これは<z>着</z>：姿勢の持続の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・到底：問い詰める",
+     "q": "<z>到底</z>：問い詰めるの使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "いったい〜なのか",
+       "ok": true,
+       "why": "正解。疑問文に置いて「はっきりさせたい」気持ちを加えます。"
+      },
+      {
+       "t": "まさか〜ではないだろう（反語）",
+       "ok": false,
+       "why": "これは<z>难道〜吗</z>の説明です。"
+      },
+      {
+       "t": "そうでなければ",
+       "ok": false,
+       "why": "これは<z>否则</z>の説明です。"
+      },
+      {
+       "t": "かつて〜したことがある",
+       "ok": false,
+       "why": "これは<z>曾经〜过</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・否则",
+     "q": "<z>否则</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "そうでなければ",
+       "ok": true,
+       "why": "正解。前の条件が満たされない場合にどうなるかを後ろで述べます。書き言葉寄りです。"
+      },
+      {
+       "t": "まさか〜ではないだろう（反語）",
+       "ok": false,
+       "why": "これは<z>难道〜吗</z>の説明です。"
+      },
+      {
+       "t": "いったい〜なのか",
+       "ok": false,
+       "why": "これは<z>到底</z>：問い詰めるの説明です。"
+      },
+      {
+       "t": "ただし、でも",
+       "ok": false,
+       "why": "これは<z>不过</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・难道〜吗",
+     "q": "<z>难道〜吗</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "反語なので、はい／いいえで答える質問には使いません。",
+       "ok": true,
+       "why": "正解。你不知道吗 は普通の確認、难道你不知道吗 は「知らないはずがない」という含みです。"
+      },
+      {
+       "t": "到底と吗は一緒に使えません。疑問詞か反復疑問と組みます。",
+       "ok": false,
+       "why": "これは<z>到底</z>：問い詰めるについての注意点です。"
+      },
+      {
+       "t": "否则の前は、指示や条件になる文にします。",
+       "ok": false,
+       "why": "これは<z>否则</z>についての注意点です。"
+      },
+      {
+       "t": "日本人学習者が混乱しやすいポイントです。",
+       "ok": false,
+       "why": "これは<z>的地得</z>についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "否则",
+     "会影响进度",
+     "请",
+     "按时提交"
+    ],
+    "answer": "请按时提交，否则会影响进度。",
+    "why": "<z>否则</z>の前は条件になる文、後ろはそうしなかった場合の結果です。"
+   },
+   "writing": [
+    {
+     "prompt": "部屋を一つ借りた。",
+     "answer": "我租了一间房子。"
+    },
+    {
+     "prompt": "まさか彼はまだ知らないのですか。",
+     "answer": "难道他还不知道吗？"
+    }
+   ]
+  },
+  "64": {
+   "vocab": [
+    "性别",
+    "年龄",
+    "样子",
+    "帅",
+    "美丽"
+   ],
+   "grammar": [
+    "稍微〜一点儿",
+    "最好",
+    "不如"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>年龄</z>」の意味は？",
+     "opts": [
+      {
+       "t": "年齢",
+       "ok": true,
+       "why": "正解。生まれてからの年数。例：<z>年龄不大</z>（年が若い）。"
+      },
+      {
+       "t": "性別",
+       "ok": false,
+       "why": "これは<z>性别</z>です。"
+      },
+      {
+       "t": "様子・格好",
+       "ok": false,
+       "why": "これは<z>样子</z>です。"
+      },
+      {
+       "t": "美しい",
+       "ok": false,
+       "why": "これは<z>美丽</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>样子</z>」の意味は？",
+     "opts": [
+      {
+       "t": "様子・格好",
+       "ok": true,
+       "why": "正解。見た目やありさま。例：<z>样子很着急</z>（焦った様子）。"
+      },
+      {
+       "t": "性別",
+       "ok": false,
+       "why": "これは<z>性别</z>です。"
+      },
+      {
+       "t": "年齢",
+       "ok": false,
+       "why": "これは<z>年龄</z>です。"
+      },
+      {
+       "t": "かっこいい",
+       "ok": false,
+       "why": "これは<z>帅</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>请填写　。</z>（性別を記入）",
+     "opts": [
+      {
+       "t": "性别",
+       "ok": true,
+       "why": "正解。男女の区別は<z>性别</z>です。"
+      },
+      {
+       "t": "年龄",
+       "ok": false,
+       "why": "<z>年龄</z>は「年齢」で文意に合いません。"
+      },
+      {
+       "t": "样子",
+       "ok": false,
+       "why": "<z>样子</z>は「様子」で意味が異なります。"
+      },
+      {
+       "t": "美丽",
+       "ok": false,
+       "why": "<z>美丽</z>は「美しい」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这个演员很　。</z>（俳優がかっこいい）",
+     "opts": [
+      {
+       "t": "帅",
+       "ok": true,
+       "why": "正解。男性的にかっこいいのは<z>帅</z>です。"
+      },
+      {
+       "t": "美丽",
+       "ok": false,
+       "why": "<z>美丽</z>は「美しい」で、主に女性や風景に使います。"
+      },
+      {
+       "t": "年龄",
+       "ok": false,
+       "why": "<z>年龄</z>は「年齢」で文意に合いません。"
+      },
+      {
+       "t": "样子",
+       "ok": false,
+       "why": "<z>样子</z>は「様子」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・稍微〜一点儿",
+     "q": "<z>稍微〜一点儿</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "少しだけ〜",
+       "ok": true,
+       "why": "正解。稍微の後ろに形容詞や動詞を置き、一点儿や一些で受けます。"
+      },
+      {
+       "t": "〜したほうがいい",
+       "ok": false,
+       "why": "これは<z>最好</z>の説明です。"
+      },
+      {
+       "t": "〜には及ばない／〜したほうがましだ",
+       "ok": false,
+       "why": "これは<z>不如</z>の説明です。"
+      },
+      {
+       "t": "もうすぐ〜する",
+       "ok": false,
+       "why": "これは<z>就要〜了</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・最好",
+     "q": "<z>最好</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜したほうがいい",
+       "ok": true,
+       "why": "正解。勧めや助言をやわらかく述べます。否定は最好别です。"
+      },
+      {
+       "t": "少しだけ〜",
+       "ok": false,
+       "why": "これは<z>稍微〜一点儿</z>の説明です。"
+      },
+      {
+       "t": "〜には及ばない／〜したほうがましだ",
+       "ok": false,
+       "why": "これは<z>不如</z>の説明です。"
+      },
+      {
+       "t": "どう言うべきですか",
+       "ok": false,
+       "why": "これは<z>应该怎么说</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不如",
+     "q": "<z>不如</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜には及ばない／〜したほうがましだ",
+       "ok": true,
+       "why": "正解。A不如B で「AはBに及ばない」。後ろに動詞句を続けると提案になります。"
+      },
+      {
+       "t": "少しだけ〜",
+       "ok": false,
+       "why": "これは<z>稍微〜一点儿</z>の説明です。"
+      },
+      {
+       "t": "〜したほうがいい",
+       "ok": false,
+       "why": "これは<z>最好</z>の説明です。"
+      },
+      {
+       "t": "〜して初めて〜",
+       "ok": false,
+       "why": "これは<z>只有〜才〜</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・稍微〜一点儿",
+     "q": "<z>稍微〜一点儿</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "稍微だけで終わらせず、一点儿などで受けます。",
+       "ok": true,
+       "why": "正解。有点儿 は不満を含む「少し〜だ」、稍微〜一点儿 は依頼や調整に使えます。"
+      },
+      {
+       "t": "「いちばん良い」の意味だけで覚えないこと。助言で使うことが多いです。",
+       "ok": false,
+       "why": "これは<z>最好</z>についての注意点です。"
+      },
+      {
+       "t": "比べる相手を不如の後ろに置きます。順序を逆にしないこと。",
+       "ok": false,
+       "why": "これは<z>不如</z>についての注意点です。"
+      },
+      {
+       "t": "前後の関係をはっきりさせます。",
+       "ok": false,
+       "why": "これは<z>越〜越〜</z>についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "最好",
+     "确认一下",
+     "你",
+     "提前"
+    ],
+    "answer": "你最好提前确认一下。",
+    "why": "<z>最好</z>は助言。主語の後ろ、動詞の前に置きます。"
+   },
+   "writing": [
+    {
+     "prompt": "彼は年が若い。",
+     "answer": "他的年龄不大。"
+    },
+    {
+     "prompt": "少し早めに来てもらえますか。",
+     "answer": "你能稍微早一点儿来吗？"
+    }
+   ]
+  },
+  "65": {
+   "vocab": [
+    "害羞",
+    "热情",
+    "冷静",
+    "大方",
+    "友谊"
+   ],
+   "grammar": [
+    "于是",
+    "并且",
+    "其中"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>热情</z>」の意味は？",
+     "opts": [
+      {
+       "t": "親切・熱心",
+       "ok": true,
+       "why": "正解。人にあたたかく接すること。例：<z>服务员很热情</z>（店員が親切）。"
+      },
+      {
+       "t": "恥ずかしがる",
+       "ok": false,
+       "why": "これは<z>害羞</z>です。"
+      },
+      {
+       "t": "冷静",
+       "ok": false,
+       "why": "これは<z>冷静</z>です。"
+      },
+      {
+       "t": "気前が良い",
+       "ok": false,
+       "why": "これは<z>大方</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>冷静</z>」の意味は？",
+     "opts": [
+      {
+       "t": "冷静・落ち着いている",
+       "ok": true,
+       "why": "正解。感情に流されず落ち着くこと。例：<z>请保持冷静</z>（冷静さを保って）。"
+      },
+      {
+       "t": "親切・熱心",
+       "ok": false,
+       "why": "これは<z>热情</z>です。"
+      },
+      {
+       "t": "恥ずかしがる",
+       "ok": false,
+       "why": "これは<z>害羞</z>です。"
+      },
+      {
+       "t": "友情",
+       "ok": false,
+       "why": "これは<z>友谊</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>她有点　。</z>（少し恥ずかしがり屋）",
+     "opts": [
+      {
+       "t": "害羞",
+       "ok": true,
+       "why": "正解。恥ずかしがる様子は<z>害羞</z>です。"
+      },
+      {
+       "t": "热情",
+       "ok": false,
+       "why": "<z>热情</z>は「親切」で文意に合いません。"
+      },
+      {
+       "t": "冷静",
+       "ok": false,
+       "why": "<z>冷静</z>は「冷静」で意味が異なります。"
+      },
+      {
+       "t": "大方",
+       "ok": false,
+       "why": "<z>大方</z>は「気前が良い」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我们的　很深。</z>（友情が深い）",
+     "opts": [
+      {
+       "t": "友谊",
+       "ok": true,
+       "why": "正解。友としての情は<z>友谊</z>です。"
+      },
+      {
+       "t": "热情",
+       "ok": false,
+       "why": "<z>热情</z>は「親切」で文意に合いません。"
+      },
+      {
+       "t": "冷静",
+       "ok": false,
+       "why": "<z>冷静</z>は「冷静」で意味が異なります。"
+      },
+      {
+       "t": "大方",
+       "ok": false,
+       "why": "<z>大方</z>は「気前が良い」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・于是",
+     "q": "<z>于是</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "そこで、それで",
+       "ok": true,
+       "why": "正解。前の出来事を受けて、続けて起こした行動を述べます。"
+      },
+      {
+       "t": "しかも、そのうえ",
+       "ok": false,
+       "why": "これは<z>并且</z>の説明です。"
+      },
+      {
+       "t": "そのうちの",
+       "ok": false,
+       "why": "これは<z>其中</z>の説明です。"
+      },
+      {
+       "t": "目的語をどう処理したかを表す",
+       "ok": false,
+       "why": "これは<z>把構文：処理結果</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・并且",
+     "q": "<z>并且</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "しかも、そのうえ",
+       "ok": true,
+       "why": "正解。前の内容に、同じ方向の内容を足します。書き言葉でよく使います。"
+      },
+      {
+       "t": "そこで、それで",
+       "ok": false,
+       "why": "これは<z>于是</z>の説明です。"
+      },
+      {
+       "t": "そのうちの",
+       "ok": false,
+       "why": "これは<z>其中</z>の説明です。"
+      },
+      {
+       "t": "もう少し多く〜する",
+       "ok": false,
+       "why": "これは<z>多V一点儿</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・其中",
+     "q": "<z>其中</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "そのうちの",
+       "ok": true,
+       "why": "正解。前に出た集合を受けて「そのうち」と部分を取り出します。"
+      },
+      {
+       "t": "そこで、それで",
+       "ok": false,
+       "why": "これは<z>于是</z>の説明です。"
+      },
+      {
+       "t": "しかも、そのうえ",
+       "ok": false,
+       "why": "これは<z>并且</z>の説明です。"
+      },
+      {
+       "t": "もう〜しないで",
+       "ok": false,
+       "why": "これは<z>别再</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・于是",
+     "q": "<z>于是</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "因为と組にするのは所以で、于是ではありません。",
+       "ok": true,
+       "why": "正解。所以 は理由とその結果、于是 は時間の流れに沿った次の行動です。"
+      },
+      {
+       "t": "逆の内容を足すときは但是を使います。",
+       "ok": false,
+       "why": "これは<z>并且</z>についての注意点です。"
+      },
+      {
+       "t": "其中の前に、集合を示す文が必要です。",
+       "ok": false,
+       "why": "これは<z>其中</z>についての注意点です。"
+      },
+      {
+       "t": "少＋動詞＋一点儿の語順が自然です。",
+       "ok": false,
+       "why": "これは<z>少V一点儿</z>についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我们",
+     "于是",
+     "打车去了",
+     "地铁停了"
+    ],
+    "answer": "地铁停了，于是我们打车去了。",
+    "why": "<z>于是</z>は前の出来事を受けて、続けて取った行動を述べます。"
+   },
+   "writing": [
+    {
+     "prompt": "店員は親切だ。",
+     "answer": "服务员很热情。"
+    },
+    {
+     "prompt": "雨が降ってきたので、私たちは予定を変えました。",
+     "answer": "下雨了，于是我们改变了计划。"
+    }
+   ]
+  },
+  "66": {
+   "vocab": [
+    "愉快",
+    "开心",
+    "幸福",
+    "着急",
+    "烦恼"
+   ],
+   "grammar": [
+    "任何",
+    "谁都／什么都〜",
+    "是不是／V不V"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>着急</z>」の意味は？",
+     "opts": [
+      {
+       "t": "焦る・気をもむ",
+       "ok": true,
+       "why": "正解。急いで落ち着かない様子。例：<z>别着急</z>（焦らないで）。"
+      },
+      {
+       "t": "嬉しい",
+       "ok": false,
+       "why": "これは<z>开心</z>です。"
+      },
+      {
+       "t": "幸せ",
+       "ok": false,
+       "why": "これは<z>幸福</z>です。"
+      },
+      {
+       "t": "悩み",
+       "ok": false,
+       "why": "これは<z>烦恼</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>烦恼</z>」の意味は？",
+     "opts": [
+      {
+       "t": "悩み・思い煩う",
+       "ok": true,
+       "why": "正解。心配ごと。例：<z>有很多烦恼</z>（悩みが多い）。"
+      },
+      {
+       "t": "焦る",
+       "ok": false,
+       "why": "これは<z>着急</z>です。"
+      },
+      {
+       "t": "楽しい",
+       "ok": false,
+       "why": "これは<z>愉快</z>です。"
+      },
+      {
+       "t": "嬉しい",
+       "ok": false,
+       "why": "これは<z>开心</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他们生活很　。</z>（幸せに暮らす）",
+     "opts": [
+      {
+       "t": "幸福",
+       "ok": true,
+       "why": "正解。続く満ち足りた状態は<z>幸福</z>です。"
+      },
+      {
+       "t": "开心",
+       "ok": false,
+       "why": "<z>开心</z>は一時的な「嬉しい」で、暮らし全体には<z>幸福</z>が自然です。"
+      },
+      {
+       "t": "愉快",
+       "ok": false,
+       "why": "<z>愉快</z>は一時的な「楽しい」で文意に合いにくいです。"
+      },
+      {
+       "t": "着急",
+       "ok": false,
+       "why": "<z>着急</z>は「焦る」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>别　，慢慢来。</z>（焦らないで）",
+     "opts": [
+      {
+       "t": "着急",
+       "ok": true,
+       "why": "正解。急いて落ち着かない状態は<z>着急</z>です。"
+      },
+      {
+       "t": "开心",
+       "ok": false,
+       "why": "<z>开心</z>は「嬉しい」で文意に合いません。"
+      },
+      {
+       "t": "幸福",
+       "ok": false,
+       "why": "<z>幸福</z>は「幸せ」で意味が異なります。"
+      },
+      {
+       "t": "烦恼",
+       "ok": false,
+       "why": "<z>烦恼</z>は「悩み」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・任何",
+     "q": "<z>任何</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "どんな〜も",
+       "ok": true,
+       "why": "正解。名詞の前に置き、後ろに都や也を伴って全肯定や全否定にします。"
+      },
+      {
+       "t": "誰でも／何でも〜、誰も／何も〜ない",
+       "ok": false,
+       "why": "これは<z>谁都／什么都〜</z>の説明です。"
+      },
+      {
+       "t": "〜かどうか（反復疑問）",
+       "ok": false,
+       "why": "これは<z>是不是／V不V</z>の説明です。"
+      },
+      {
+       "t": "少し考えさせて",
+       "ok": false,
+       "why": "これは<z>让我想一下</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・谁都／什么都〜",
+     "q": "<z>谁都／什么都〜</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "誰でも／何でも〜、誰も／何も〜ない",
+       "ok": true,
+       "why": "正解。疑問詞に都や也を続けると「すべて」を表します。否定と組めば全否定になります。"
+      },
+      {
+       "t": "どんな〜も",
+       "ok": false,
+       "why": "これは<z>任何</z>の説明です。"
+      },
+      {
+       "t": "〜かどうか（反復疑問）",
+       "ok": false,
+       "why": "これは<z>是不是／V不V</z>の説明です。"
+      },
+      {
+       "t": "今はまだ〜しなくてよい",
+       "ok": false,
+       "why": "これは<z>先不用</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・是不是／V不V",
+     "q": "<z>是不是／V不V</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜かどうか（反復疑問）",
+       "ok": true,
+       "why": "正解。肯定形と否定形を並べて疑問にします。"
+      },
+      {
+       "t": "どんな〜も",
+       "ok": false,
+       "why": "これは<z>任何</z>の説明です。"
+      },
+      {
+       "t": "誰でも／何でも〜、誰も／何も〜ない",
+       "ok": false,
+       "why": "これは<z>谁都／什么都〜</z>の説明です。"
+      },
+      {
+       "t": "もう〜しないで",
+       "ok": false,
+       "why": "これは<z>别再</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・任何",
+     "q": "<z>任何</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "任何の後ろに量詞は要りません。",
+       "ok": true,
+       "why": "正解。什么 は疑問にも任指にも使え、任何 は書き言葉寄りの硬い言い方です。"
+      },
+      {
+       "t": "都／也を落とすと疑問文に読まれます。",
+       "ok": false,
+       "why": "これは<z>谁都／什么都〜</z>についての注意点です。"
+      },
+      {
+       "t": "吗と一緒には使えません。",
+       "ok": false,
+       "why": "これは<z>是不是／V不V</z>についての注意点です。"
+      },
+      {
+       "t": "不＋过にしないこと。",
+       "ok": false,
+       "why": "これは<z>过</z>：否定は没过についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "都可以",
+     "有任何问题",
+     "我",
+     "联系"
+    ],
+    "answer": "有任何问题都可以联系我。",
+    "why": "<z>任何</z>は後ろに<z>都</z>を伴って「どんな〜も」を表します。"
+   },
+   "writing": [
+    {
+     "prompt": "今日は嬉しい。",
+     "answer": "今天我很开心。"
+    },
+    {
+     "prompt": "どんな理由でも遅刻はできません。",
+     "answer": "任何理由都不能迟到。"
+    }
+   ]
+  },
+  "67": {
+   "vocab": [
+    "失败",
+    "成功",
+    "倒霉",
+    "遗憾",
+    "可惜"
+   ],
+   "grammar": [
+    "動詞＋人＋物：二重目的語",
+    "离合词：帮忙・见面・请假",
+    "V出来：見分ける"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>倒霉</z>」の意味は？",
+     "opts": [
+      {
+       "t": "運が悪い・ついてない",
+       "ok": true,
+       "why": "正解。不運な様子。例：<z>今天真倒霉</z>（今日はついてない）。"
+      },
+      {
+       "t": "失敗する",
+       "ok": false,
+       "why": "これは<z>失败</z>です。"
+      },
+      {
+       "t": "成功する",
+       "ok": false,
+       "why": "これは<z>成功</z>です。"
+      },
+      {
+       "t": "残念",
+       "ok": false,
+       "why": "これは<z>遗憾</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>成功</z>」の意味は？",
+     "opts": [
+      {
+       "t": "成功する",
+       "ok": true,
+       "why": "正解。目的を達成すること。例：<z>他终于成功了</z>（ついに成功した）。"
+      },
+      {
+       "t": "失敗する",
+       "ok": false,
+       "why": "これは反対の<z>失败</z>です。"
+      },
+      {
+       "t": "運が悪い",
+       "ok": false,
+       "why": "これは<z>倒霉</z>です。"
+      },
+      {
+       "t": "惜しい",
+       "ok": false,
+       "why": "これは<z>可惜</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　是成功之母。</z>（失敗は成功のもと）",
+     "opts": [
+      {
+       "t": "失败",
+       "ok": true,
+       "why": "正解。うまくいかないことは<z>失败</z>です。"
+      },
+      {
+       "t": "成功",
+       "ok": false,
+       "why": "<z>成功</z>は「成功」で文意に合いません。"
+      },
+      {
+       "t": "倒霉",
+       "ok": false,
+       "why": "<z>倒霉</z>は「運が悪い」で意味が異なります。"
+      },
+      {
+       "t": "遗憾",
+       "ok": false,
+       "why": "<z>遗憾</z>は「残念」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>太　了。</z>（実に惜しい）",
+     "opts": [
+      {
+       "t": "可惜",
+       "ok": true,
+       "why": "正解。もったいない・惜しいは<z>可惜</z>です。"
+      },
+      {
+       "t": "成功",
+       "ok": false,
+       "why": "<z>成功</z>は「成功」で文意に合いません。"
+      },
+      {
+       "t": "失败",
+       "ok": false,
+       "why": "<z>失败</z>は「失敗」で意味が異なります。"
+      },
+      {
+       "t": "倒霉",
+       "ok": false,
+       "why": "<z>倒霉</z>は「運が悪い」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・動詞＋人＋物：二重目的語",
+     "q": "<z>動詞＋人＋物：二重目的語</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜に〜を〜する",
+       "ok": true,
+       "why": "正解。给・送・教・问などは、人と物を続けて二つ取れます。"
+      },
+      {
+       "t": "2字で1語だが、間に語を挟める動詞",
+       "ok": false,
+       "why": "これは<z>离合词</z>：帮忙・见面・请假の説明です。"
+      },
+      {
+       "t": "〜して分かる、見分けがつく",
+       "ok": false,
+       "why": "これは<z>V出来</z>：見分けるの説明です。"
+      },
+      {
+       "t": "〜に従って",
+       "ok": false,
+       "why": "これは<z>按照</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・离合词：帮忙・见面・请假",
+     "q": "<z>离合词</z>：帮忙・见面・请假の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "2字で1語だが、間に語を挟める動詞",
+       "ok": true,
+       "why": "正解。帮忙・见面・请假などはもともと動詞＋目的語なので、後ろにさらに目的語を置けません。数量や修飾語は間に挟みます。"
+      },
+      {
+       "t": "〜に〜を〜する",
+       "ok": false,
+       "why": "これは<z>動詞＋人＋物：二重目的語</z>の説明です。"
+      },
+      {
+       "t": "〜して分かる、見分けがつく",
+       "ok": false,
+       "why": "これは<z>V出来</z>：見分けるの説明です。"
+      },
+      {
+       "t": "どうせ、とにかく",
+       "ok": false,
+       "why": "これは<z>反正</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・V出来：見分ける",
+     "q": "<z>V出来</z>：見分けるの使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜して分かる、見分けがつく",
+       "ok": true,
+       "why": "正解。看・听・尝などの後ろに出来を付けて、識別できたことを表します。"
+      },
+      {
+       "t": "〜に〜を〜する",
+       "ok": false,
+       "why": "これは<z>動詞＋人＋物：二重目的語</z>の説明です。"
+      },
+      {
+       "t": "2字で1語だが、間に語を挟める動詞",
+       "ok": false,
+       "why": "これは<z>离合词</z>：帮忙・见面・请假の説明です。"
+      },
+      {
+       "t": "〜を経て",
+       "ok": false,
+       "why": "これは<z>经过</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・動詞＋人＋物：二重目的語",
+     "q": "<z>動詞＋人＋物：二重目的語</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "人と物の順序を入れ替えないこと。",
+       "ok": true,
+       "why": "正解。我给他一本书 は二重目的語、我把书给他 は把構文で、処理の焦点が違います。"
+      },
+      {
+       "t": "见面他 ではなく 跟他见面 とします。",
+       "ok": false,
+       "why": "これは<z>离合词</z>：帮忙・见面・请假についての注意点です。"
+      },
+      {
+       "t": "可能形は看得出来／看不出来です。",
+       "ok": false,
+       "why": "これは<z>V出来</z>：見分けるについての注意点です。"
+      },
+      {
+       "t": "再は繰り返しを表します。",
+       "ok": false,
+       "why": "これは<z>别再</z>についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "见面",
+     "我想",
+     "跟他",
+     "明天"
+    ],
+    "answer": "我想明天跟他见面。",
+    "why": "<z>见面</z>は離合詞なので、相手は<z>跟</z>で示します。<z>见面他</z>とは言えません。"
+   },
+   "writing": [
+    {
+     "prompt": "彼はついに成功した。",
+     "answer": "他终于成功了。"
+    },
+    {
+     "prompt": "先生は私たちに中国語を教えています。",
+     "answer": "老师教我们中文。"
+    }
+   ]
+  },
+  "68": {
+   "vocab": [
+    "想念",
+    "无聊",
+    "奇怪",
+    "厉害",
+    "可怜"
+   ],
+   "grammar": [
+    "比〜＋形容詞＋得多",
+    "有时候〜有时候〜",
+    "既〜又〜"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>无聊</z>」の意味は？",
+     "opts": [
+      {
+       "t": "退屈・つまらない",
+       "ok": true,
+       "why": "正解。面白みがない様子。例：<z>这部电影很无聊</z>（この映画は退屈）。"
+      },
+      {
+       "t": "恋しく思う",
+       "ok": false,
+       "why": "これは<z>想念</z>です。"
+      },
+      {
+       "t": "不思議・変だ",
+       "ok": false,
+       "why": "これは<z>奇怪</z>です。"
+      },
+      {
+       "t": "かわいそう",
+       "ok": false,
+       "why": "これは<z>可怜</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>奇怪</z>」の意味は？",
+     "opts": [
+      {
+       "t": "不思議・変だ",
+       "ok": true,
+       "why": "正解。普通でない様子。例：<z>这件事很奇怪</z>（この件は変だ）。"
+      },
+      {
+       "t": "退屈",
+       "ok": false,
+       "why": "これは<z>无聊</z>です。"
+      },
+      {
+       "t": "すごい・ひどい",
+       "ok": false,
+       "why": "これは<z>厉害</z>です。"
+      },
+      {
+       "t": "恋しく思う",
+       "ok": false,
+       "why": "これは<z>想念</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我很　家人。</z>（家族が恋しい）",
+     "opts": [
+      {
+       "t": "想念",
+       "ok": true,
+       "why": "正解。離れた人を恋しく思うのは<z>想念</z>です。"
+      },
+      {
+       "t": "无聊",
+       "ok": false,
+       "why": "<z>无聊</z>は「退屈」で文意に合いません。"
+      },
+      {
+       "t": "奇怪",
+       "ok": false,
+       "why": "<z>奇怪</z>は「変だ」で意味が異なります。"
+      },
+      {
+       "t": "可怜",
+       "ok": false,
+       "why": "<z>可怜</z>は「かわいそう」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这只小狗很　。</z>（かわいそう）",
+     "opts": [
+      {
+       "t": "可怜",
+       "ok": true,
+       "why": "正解。気の毒な様子は<z>可怜</z>です。"
+      },
+      {
+       "t": "厉害",
+       "ok": false,
+       "why": "<z>厉害</z>は「すごい」で文意に合いません。"
+      },
+      {
+       "t": "无聊",
+       "ok": false,
+       "why": "<z>无聊</z>は「退屈」で意味が異なります。"
+      },
+      {
+       "t": "奇怪",
+       "ok": false,
+       "why": "<z>奇怪</z>は「変だ」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・比〜＋形容詞＋得多",
+     "q": "<z>比〜＋形容詞＋得多</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜よりずっと〜だ",
+       "ok": true,
+       "why": "正解。比較文の形容詞の後ろに得多・多了・一点儿・一些を置いて、差の大きさを示します。"
+      },
+      {
+       "t": "〜のときもあれば〜のときもある",
+       "ok": false,
+       "why": "これは<z>有时候〜有时候〜</z>の説明です。"
+      },
+      {
+       "t": "〜であり、そのうえ〜だ",
+       "ok": false,
+       "why": "これは<z>既〜又〜</z>の説明です。"
+      },
+      {
+       "t": "〜し終える",
+       "ok": false,
+       "why": "これは<z>結果補語：完</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・有时候〜有时候〜",
+     "q": "<z>有时候〜有时候〜</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜のときもあれば〜のときもある",
+       "ok": true,
+       "why": "正解。二つの場合を並べて、時によって変わることを示します。"
+      },
+      {
+       "t": "〜よりずっと〜だ",
+       "ok": false,
+       "why": "これは<z>比〜＋形容詞＋得多</z>の説明です。"
+      },
+      {
+       "t": "〜であり、そのうえ〜だ",
+       "ok": false,
+       "why": "これは<z>既〜又〜</z>の説明です。"
+      },
+      {
+       "t": "どう言うべきですか",
+       "ok": false,
+       "why": "これは<z>应该怎么说</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・既〜又〜",
+     "q": "<z>既〜又〜</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜であり、そのうえ〜だ",
+       "ok": true,
+       "why": "正解。同じ方向の性質を二つ並べます。書き言葉でもよく使います。"
+      },
+      {
+       "t": "〜よりずっと〜だ",
+       "ok": false,
+       "why": "これは<z>比〜＋形容詞＋得多</z>の説明です。"
+      },
+      {
+       "t": "〜のときもあれば〜のときもある",
+       "ok": false,
+       "why": "これは<z>有时候〜有时候〜</z>の説明です。"
+      },
+      {
+       "t": "〜につれて",
+       "ok": false,
+       "why": "これは<z>随着</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・比〜＋形容詞＋得多",
+     "q": "<z>比〜＋形容詞＋得多</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "比〜很好 とは言えません。很は比較文に使えません。",
+       "ok": true,
+       "why": "正解。比〜好 は差の大きさを言わず、比〜好得多 は差が大きいことを示します。"
+      },
+      {
+       "t": "偶尔 は「たまに」で頻度が低い場合。対になる二つを並べるときは有时候を使います。",
+       "ok": false,
+       "why": "これは<z>有时候〜有时候〜</z>についての注意点です。"
+      },
+      {
+       "t": "反対の性質を並べるときは虽然〜但是〜を使います。",
+       "ok": false,
+       "why": "これは<z>既〜又〜</z>についての注意点です。"
+      },
+      {
+       "t": "日本語の過去を全部了にしないこと。",
+       "ok": false,
+       "why": "これは<z>了：状態変化</z>についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "去年",
+     "今年的成绩",
+     "好得多",
+     "比"
+    ],
+    "answer": "今年的成绩比去年好得多。",
+    "why": "比較の差の大きさは、形容詞の後ろの<z>得多</z>で示します。"
+   },
+   "writing": [
+    {
+     "prompt": "この映画は退屈だ。",
+     "answer": "这部电影很无聊。"
+    },
+    {
+     "prompt": "高鉄は飛行機よりずっと便利です。",
+     "answer": "高铁比飞机方便得多。"
+    }
+   ]
+  },
+  "69": {
+   "vocab": [
+    "然而",
+    "不仅",
+    "既然",
+    "即使",
+    "万一"
+   ],
+   "grammar": [
+    "来得及／来不及",
+    "受不了",
+    "只好"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>即使</z>」の意味は？",
+     "opts": [
+      {
+       "t": "たとえ〜でも",
+       "ok": true,
+       "why": "正解。仮定の譲歩。例：<z>即使下雨我也去</z>（たとえ雨でも行く）。"
+      },
+      {
+       "t": "しかし",
+       "ok": false,
+       "why": "これは<z>然而</z>です。"
+      },
+      {
+       "t": "〜である以上",
+       "ok": false,
+       "why": "これは<z>既然</z>です。"
+      },
+      {
+       "t": "万一",
+       "ok": false,
+       "why": "これは<z>万一</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>万一</z>」の意味は？",
+     "opts": [
+      {
+       "t": "万一・もしも",
+       "ok": true,
+       "why": "正解。起きてほしくない仮定。例：<z>万一迟到怎么办</z>（万一遅れたら）。"
+      },
+      {
+       "t": "たとえ〜でも",
+       "ok": false,
+       "why": "これは<z>即使</z>です。"
+      },
+      {
+       "t": "〜だけでなく",
+       "ok": false,
+       "why": "これは<z>不仅</z>です。"
+      },
+      {
+       "t": "〜である以上",
+       "ok": false,
+       "why": "これは<z>既然</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　来了，就好好玩。</z>（来たからには）",
+     "opts": [
+      {
+       "t": "既然",
+       "ok": true,
+       "why": "正解。既成事実を受ける「〜である以上」は<z>既然</z>です。"
+      },
+      {
+       "t": "即使",
+       "ok": false,
+       "why": "<z>即使</z>は「たとえ〜でも」で文意に合いません。"
+      },
+      {
+       "t": "万一",
+       "ok": false,
+       "why": "<z>万一</z>は「万一」で意味が異なります。"
+      },
+      {
+       "t": "然而",
+       "ok": false,
+       "why": "<z>然而</z>は「しかし」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他　聪明，而且努力。</z>（賢いだけでなく）",
+     "opts": [
+      {
+       "t": "不仅",
+       "ok": true,
+       "why": "正解。<z>不仅…而且…</z>で「〜だけでなく」を表します。"
+      },
+      {
+       "t": "既然",
+       "ok": false,
+       "why": "<z>既然</z>は「〜である以上」で文意に合いません。"
+      },
+      {
+       "t": "即使",
+       "ok": false,
+       "why": "<z>即使</z>は「たとえ〜でも」で意味が異なります。"
+      },
+      {
+       "t": "万一",
+       "ok": false,
+       "why": "<z>万一</z>は「万一」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・来得及／来不及",
+     "q": "<z>来得及／来不及</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "間に合う／間に合わない",
+       "ok": true,
+       "why": "正解。時間的に間に合うかどうかを表します。後ろに動詞を続けられます。"
+      },
+      {
+       "t": "我慢できない、耐えられない",
+       "ok": false,
+       "why": "これは<z>受不了</z>の説明です。"
+      },
+      {
+       "t": "〜するしかない",
+       "ok": false,
+       "why": "これは<z>只好</z>の説明です。"
+      },
+      {
+       "t": "〜したばかりなのにすぐ〜",
+       "ok": false,
+       "why": "これは<z>刚〜就〜</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・受不了",
+     "q": "<z>受不了</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "我慢できない、耐えられない",
+       "ok": true,
+       "why": "正解。体力や気持ちが限界を超えていることを表します。肯定は受得了です。"
+      },
+      {
+       "t": "間に合う／間に合わない",
+       "ok": false,
+       "why": "これは<z>来得及／来不及</z>の説明です。"
+      },
+      {
+       "t": "〜するしかない",
+       "ok": false,
+       "why": "これは<z>只好</z>の説明です。"
+      },
+      {
+       "t": "期限通り/時間通り",
+       "ok": false,
+       "why": "これは<z>按时／准时</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・只好",
+     "q": "<z>只好</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜するしかない",
+       "ok": true,
+       "why": "正解。ほかに方法がなく、やむを得ずそうすることを表します。"
+      },
+      {
+       "t": "間に合う／間に合わない",
+       "ok": false,
+       "why": "これは<z>来得及／来不及</z>の説明です。"
+      },
+      {
+       "t": "我慢できない、耐えられない",
+       "ok": false,
+       "why": "これは<z>受不了</z>の説明です。"
+      },
+      {
+       "t": "〜に頼る、〜で",
+       "ok": false,
+       "why": "これは<z>靠</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・来得及／来不及",
+     "q": "<z>来得及／来不及</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "否定は不来得及ではなく来不及です。",
+       "ok": true,
+       "why": "正解。赶得上 は乗り物などに追いつく、来得及 は時間の余裕を言います。"
+      },
+      {
+       "t": "受不了の後ろには、耐えられない対象を置きます。",
+       "ok": false,
+       "why": "これは<z>受不了</z>についての注意点です。"
+      },
+      {
+       "t": "進んで選んだ場合には使いません。",
+       "ok": false,
+       "why": "これは<z>只好</z>についての注意点です。"
+      },
+      {
+       "t": "場面によって投げやりに聞こえることもあります。",
+       "ok": false,
+       "why": "これは<z>反正</z>についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "坐下一班",
+     "已经来不及了",
+     "吧",
+     "我们"
+    ],
+    "answer": "已经来不及了，我们坐下一班吧。",
+    "why": "<z>来不及</z>は「間に合わない」。否定形は<z>不来得及</z>ではありません。"
+   },
+   "writing": [
+    {
+     "prompt": "たとえ雨でも行く。",
+     "answer": "即使下雨我也去。"
+    },
+    {
+     "prompt": "もう間に合わないので、次の便にしましょう。",
+     "answer": "已经来不及了，我们坐下一班吧。"
+    }
+   ]
+  },
+  "70": {
+   "vocab": [
+    "总之",
+    "反正",
+    "难怪",
+    "难道",
+    "千万"
+   ],
+   "grammar": [
+    "也就是说",
+    "在我看来",
+    "正好"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>反正</z>」の意味は？",
+     "opts": [
+      {
+       "t": "どうせ・いずれにせよ",
+       "ok": true,
+       "why": "正解。結果が変わらないことを示す。例：<z>反正都一样</z>（どうせ同じ）。"
+      },
+      {
+       "t": "要するに",
+       "ok": false,
+       "why": "これは<z>总之</z>です。"
+      },
+      {
+       "t": "道理で",
+       "ok": false,
+       "why": "これは<z>难怪</z>です。"
+      },
+      {
+       "t": "くれぐれも",
+       "ok": false,
+       "why": "これは<z>千万</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>千万</z>」の意味は？",
+     "opts": [
+      {
+       "t": "くれぐれも・絶対に",
+       "ok": true,
+       "why": "正解。強い念押し。例：<z>千万别迟到</z>（くれぐれも遅れないで）。"
+      },
+      {
+       "t": "まさか〜ではあるまい",
+       "ok": false,
+       "why": "これは<z>难道</z>です。"
+      },
+      {
+       "t": "どうせ",
+       "ok": false,
+       "why": "これは<z>反正</z>です。"
+      },
+      {
+       "t": "要するに",
+       "ok": false,
+       "why": "これは<z>总之</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　，我同意。</z>（要するに賛成）",
+     "opts": [
+      {
+       "t": "总之",
+       "ok": true,
+       "why": "正解。まとめて結論を言う「要するに」は<z>总之</z>です。"
+      },
+      {
+       "t": "反正",
+       "ok": false,
+       "why": "<z>反正</z>は「どうせ」で文意に合いません。"
+      },
+      {
+       "t": "难怪",
+       "ok": false,
+       "why": "<z>难怪</z>は「道理で」で意味が異なります。"
+      },
+      {
+       "t": "难道",
+       "ok": false,
+       "why": "<z>难道</z>は「まさか」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　你忘了？</z>（まさか忘れた？）",
+     "opts": [
+      {
+       "t": "难道",
+       "ok": true,
+       "why": "正解。意外な気持ちで問う「まさか〜？」は<z>难道</z>です。"
+      },
+      {
+       "t": "千万",
+       "ok": false,
+       "why": "<z>千万</z>は「くれぐれも」で文意に合いません。"
+      },
+      {
+       "t": "总之",
+       "ok": false,
+       "why": "<z>总之</z>は「要するに」で意味が異なります。"
+      },
+      {
+       "t": "反正",
+       "ok": false,
+       "why": "<z>反正</z>は「どうせ」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・也就是说",
+     "q": "<z>也就是说</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "つまり、言い換えると",
+       "ok": true,
+       "why": "正解。前の内容を、分かりやすく言い直します。"
+      },
+      {
+       "t": "私の見たところでは",
+       "ok": false,
+       "why": "これは<z>在我看来</z>の説明です。"
+      },
+      {
+       "t": "ちょうど、都合よく",
+       "ok": false,
+       "why": "これは<z>正好</z>の説明です。"
+      },
+      {
+       "t": "それから、別に",
+       "ok": false,
+       "why": "これは<z>另外</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・在我看来",
+     "q": "<z>在我看来</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "私の見たところでは",
+       "ok": true,
+       "why": "正解。自分の見方であることを先に示してから意見を述べます。"
+      },
+      {
+       "t": "つまり、言い換えると",
+       "ok": false,
+       "why": "これは<z>也就是说</z>の説明です。"
+      },
+      {
+       "t": "ちょうど、都合よく",
+       "ok": false,
+       "why": "これは<z>正好</z>の説明です。"
+      },
+      {
+       "t": "どの程度〜するか",
+       "ok": false,
+       "why": "これは<z>程度補語：说得</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・正好",
+     "q": "<z>正好</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "ちょうど、都合よく",
+       "ok": true,
+       "why": "正解。時間・数量・タイミングがぴったり合うことを表します。"
+      },
+      {
+       "t": "つまり、言い換えると",
+       "ok": false,
+       "why": "これは<z>也就是说</z>の説明です。"
+      },
+      {
+       "t": "私の見たところでは",
+       "ok": false,
+       "why": "これは<z>在我看来</z>の説明です。"
+      },
+      {
+       "t": "〜の面で",
+       "ok": false,
+       "why": "これは<z>在〜方面</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・也就是说",
+     "q": "<z>也就是说</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "新しい情報を足すときには使いません。",
+       "ok": true,
+       "why": "正解。总之 は話をまとめる、也就是说 は同じ内容を言い換える、です。"
+      },
+      {
+       "t": "事実を述べるときには付けません。",
+       "ok": false,
+       "why": "これは<z>在我看来</z>についての注意点です。"
+      },
+      {
+       "t": "偶然そうなった場合に使い、意図して合わせた場合には使いません。",
+       "ok": false,
+       "why": "これは<z>正好</z>についての注意点です。"
+      },
+      {
+       "t": "別再は相手への禁止、再也不は主語の決意です。",
+       "ok": false,
+       "why": "これは<z>再也不</z>についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "不能",
+     "他明天出差",
+     "参加",
+     "也就是说"
+    ],
+    "answer": "他明天出差，也就是说不能参加。",
+    "why": "<z>也就是说</z>は、前の内容を言い換えて分かりやすくします。"
+   },
+   "writing": [
+    {
+     "prompt": "道理で彼は疲れている。",
+     "answer": "难怪他这么累。"
+    },
+    {
+     "prompt": "資料は明日届きます。つまり今日は確認できません。",
+     "answer": "资料明天到，也就是说今天不能确认。"
+    }
+   ]
+  },
+  "71": {
+   "vocab": [
+    "到底",
+    "至少",
+    "仍然",
+    "偶尔",
+    "重新"
+   ],
+   "grammar": [
+    "〜以上／〜以下",
+    "会：習って身につけた能力",
+    "愿意"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>偶尔</z>」の意味は？",
+     "opts": [
+      {
+       "t": "たまに・時おり",
+       "ok": true,
+       "why": "正解。ときどき起こる様子。例：<z>偶尔去看电影</z>（たまに映画を見る）。"
+      },
+      {
+       "t": "依然として",
+       "ok": false,
+       "why": "これは<z>仍然</z>です。"
+      },
+      {
+       "t": "少なくとも",
+       "ok": false,
+       "why": "これは<z>至少</z>です。"
+      },
+      {
+       "t": "改めて",
+       "ok": false,
+       "why": "これは<z>重新</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>至少</z>」の意味は？",
+     "opts": [
+      {
+       "t": "少なくとも",
+       "ok": true,
+       "why": "正解。最低限の程度。例：<z>至少要等一小时</z>（少なくとも1時間待つ）。"
+      },
+      {
+       "t": "一体・結局",
+       "ok": false,
+       "why": "これは<z>到底</z>です。"
+      },
+      {
+       "t": "たまに",
+       "ok": false,
+       "why": "これは<z>偶尔</z>です。"
+      },
+      {
+       "t": "依然として",
+       "ok": false,
+       "why": "これは<z>仍然</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他　没来。</z>（依然来ていない）",
+     "opts": [
+      {
+       "t": "仍然",
+       "ok": true,
+       "why": "正解。状態が続くことは<z>仍然</z>です。"
+      },
+      {
+       "t": "偶尔",
+       "ok": false,
+       "why": "<z>偶尔</z>は「たまに」で文意に合いません。"
+      },
+      {
+       "t": "至少",
+       "ok": false,
+       "why": "<z>至少</z>は「少なくとも」で意味が異なります。"
+      },
+      {
+       "t": "重新",
+       "ok": false,
+       "why": "<z>重新</z>は「改めて」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>请　写一遍。</z>（書き直してください）",
+     "opts": [
+      {
+       "t": "重新",
+       "ok": true,
+       "why": "正解。もう一度初めからやり直すのは<z>重新</z>です。"
+      },
+      {
+       "t": "偶尔",
+       "ok": false,
+       "why": "<z>偶尔</z>は「たまに」で文意に合いません。"
+      },
+      {
+       "t": "仍然",
+       "ok": false,
+       "why": "<z>仍然</z>は「依然として」で意味が異なります。"
+      },
+      {
+       "t": "至少",
+       "ok": false,
+       "why": "<z>至少</z>は「少なくとも」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・〜以上／〜以下",
+     "q": "<z>〜以上／〜以下</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜以上／〜以下",
+       "ok": true,
+       "why": "正解。数量の後ろに置いて範囲を示します。以上はその数を含みます。"
+      },
+      {
+       "t": "〜できる（習得して）",
+       "ok": false,
+       "why": "これは<z>会</z>：習って身につけた能力の説明です。"
+      },
+      {
+       "t": "進んで〜する、〜してもよいと思う",
+       "ok": false,
+       "why": "これは<z>愿意</z>の説明です。"
+      },
+      {
+       "t": "期限通り/時間通り",
+       "ok": false,
+       "why": "これは<z>按时／准时</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・会：習って身につけた能力",
+     "q": "<z>会</z>：習って身につけた能力の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜できる（習得して）",
+       "ok": true,
+       "why": "正解。学んで身につけた技能に使います。「〜だろう」と可能性を表す会とは別の用法です。"
+      },
+      {
+       "t": "〜以上／〜以下",
+       "ok": false,
+       "why": "これは<z>〜以上／〜以下</z>の説明です。"
+      },
+      {
+       "t": "進んで〜する、〜してもよいと思う",
+       "ok": false,
+       "why": "これは<z>愿意</z>の説明です。"
+      },
+      {
+       "t": "〜したまま…する",
+       "ok": false,
+       "why": "これは<z>着</z>：姿勢の持続の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・愿意",
+     "q": "<z>愿意</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "進んで〜する、〜してもよいと思う",
+       "ok": true,
+       "why": "正解。気持ちとして受け入れる、進んでやる意思を表します。"
+      },
+      {
+       "t": "〜以上／〜以下",
+       "ok": false,
+       "why": "これは<z>〜以上／〜以下</z>の説明です。"
+      },
+      {
+       "t": "〜できる（習得して）",
+       "ok": false,
+       "why": "これは<z>会</z>：習って身につけた能力の説明です。"
+      },
+      {
+       "t": "また〜した",
+       "ok": false,
+       "why": "これは<z>又〜了</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・〜以上／〜以下",
+     "q": "<z>〜以上／〜以下</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "数字の前ではなく後ろに置きます。",
+       "ok": true,
+       "why": "正解。超过 はその数を超える、以上 はその数を含む点が違います。"
+      },
+      {
+       "t": "力があってできるかどうかは能を使います（我能搬）。",
+       "ok": false,
+       "why": "これは<z>会</z>：習って身につけた能力についての注意点です。"
+      },
+      {
+       "t": "否定は不愿意です。",
+       "ok": false,
+       "why": "これは<z>愿意</z>についての注意点です。"
+      },
+      {
+       "t": "根据は根拠、按照は手順や基準です。",
+       "ok": false,
+       "why": "これは<z>按照</z>についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "五十人",
+     "参加的人",
+     "以上",
+     "在"
+    ],
+    "answer": "参加的人在五十人以上。",
+    "why": "<z>以上</z>は数量の後ろに置きます。数字の前ではありません。"
+   },
+   "writing": [
+    {
+     "prompt": "彼はまた遅刻しました。",
+     "answer": "他又迟到了。"
+    },
+    {
+     "prompt": "3年以上の経験が必要です。",
+     "answer": "需要三年以上的经验。"
+    }
+   ]
+  },
+  "72": {
+   "vocab": [
+    "互相",
+    "亲自",
+    "故意",
+    "专门",
+    "顺便"
+   ],
+   "grammar": [
+    "随便",
+    "是否",
+    "同时"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>故意</z>」の意味は？",
+     "opts": [
+      {
+       "t": "わざと・故意に",
+       "ok": true,
+       "why": "正解。意図してすること。例：<z>我不是故意的</z>（わざとじゃない）。"
+      },
+      {
+       "t": "互いに",
+       "ok": false,
+       "why": "これは<z>互相</z>です。"
+      },
+      {
+       "t": "自ら",
+       "ok": false,
+       "why": "これは<z>亲自</z>です。"
+      },
+      {
+       "t": "ついでに",
+       "ok": false,
+       "why": "これは<z>顺便</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>顺便</z>」の意味は？",
+     "opts": [
+      {
+       "t": "ついでに",
+       "ok": true,
+       "why": "正解。あることのついでに別のことをする。例：<z>顺便买点东西</z>（ついでに買い物）。"
+      },
+      {
+       "t": "専ら・わざわざ",
+       "ok": false,
+       "why": "これは<z>专门</z>です。"
+      },
+      {
+       "t": "わざと",
+       "ok": false,
+       "why": "これは<z>故意</z>です。"
+      },
+      {
+       "t": "互いに",
+       "ok": false,
+       "why": "これは<z>互相</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我们　帮助。</z>（助け合う）",
+     "opts": [
+      {
+       "t": "互相",
+       "ok": true,
+       "why": "正解。たがいに行うのは<z>互相</z>です。"
+      },
+      {
+       "t": "亲自",
+       "ok": false,
+       "why": "<z>亲自</z>は「自ら」で文意に合いません。"
+      },
+      {
+       "t": "故意",
+       "ok": false,
+       "why": "<z>故意</z>は「わざと」で意味が異なります。"
+      },
+      {
+       "t": "顺便",
+       "ok": false,
+       "why": "<z>顺便</z>は「ついでに」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他　来看你。</z>（わざわざ会いに来た）",
+     "opts": [
+      {
+       "t": "专门",
+       "ok": true,
+       "why": "正解。その目的のためだけにわざわざは<z>专门</z>です。"
+      },
+      {
+       "t": "顺便",
+       "ok": false,
+       "why": "<z>顺便</z>は「ついでに」で逆のニュアンスになります。"
+      },
+      {
+       "t": "故意",
+       "ok": false,
+       "why": "<z>故意</z>は「わざと」で意味が異なります。"
+      },
+      {
+       "t": "互相",
+       "ok": false,
+       "why": "<z>互相</z>は「互いに」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・随便",
+     "q": "<z>随便</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "自由に、何でもいい",
+       "ok": true,
+       "why": "正解。相手に選ばせるときや、こだわらないことを示すときに使います。"
+      },
+      {
+       "t": "〜かどうか（書き言葉）",
+       "ok": false,
+       "why": "これは<z>是否</z>の説明です。"
+      },
+      {
+       "t": "同時に、それと同時に",
+       "ok": false,
+       "why": "これは<z>同时</z>の説明です。"
+      },
+      {
+       "t": "少し考えさせて",
+       "ok": false,
+       "why": "これは<z>让我想一下</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・是否",
+     "q": "<z>是否</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜かどうか（書き言葉）",
+       "ok": true,
+       "why": "正解。是不是の書き言葉です。メールや報告書でよく使います。"
+      },
+      {
+       "t": "自由に、何でもいい",
+       "ok": false,
+       "why": "これは<z>随便</z>の説明です。"
+      },
+      {
+       "t": "同時に、それと同時に",
+       "ok": false,
+       "why": "これは<z>同时</z>の説明です。"
+      },
+      {
+       "t": "〜さえ",
+       "ok": false,
+       "why": "これは<z>甚至</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・同时",
+     "q": "<z>同时</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "同時に、それと同時に",
+       "ok": true,
+       "why": "正解。二つのことが同じ時に起きること、また話を並べて足すときに使います。"
+      },
+      {
+       "t": "自由に、何でもいい",
+       "ok": false,
+       "why": "これは<z>随便</z>の説明です。"
+      },
+      {
+       "t": "〜かどうか（書き言葉）",
+       "ok": false,
+       "why": "これは<z>是否</z>の説明です。"
+      },
+      {
+       "t": "〜である以上、〜する",
+       "ok": false,
+       "why": "これは<z>既然〜就〜</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・随便",
+     "q": "<z>随便</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "目上に対しては失礼になることがあるので、您决定吧 などに言い換えます。",
+       "ok": true,
+       "why": "正解。都可以 は「どれでも良い」、随便 は相手に任せる気持ちが強い言い方です。"
+      },
+      {
+       "t": "是否と吗は一緒に使えません。",
+       "ok": false,
+       "why": "これは<z>是否</z>についての注意点です。"
+      },
+      {
+       "t": "短い動作の同時進行は一边〜一边〜のほうが自然です。",
+       "ok": false,
+       "why": "これは<z>同时</z>についての注意点です。"
+      },
+      {
+       "t": "すでに起きたことには又が自然です。",
+       "ok": false,
+       "why": "これは<z>再</z>についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "收到",
+     "请",
+     "邮件",
+     "确认",
+     "是否"
+    ],
+    "answer": "请确认是否收到邮件。",
+    "why": "<z>是否</z>は<z>是不是</z>の書き言葉。<z>吗</z>とは併用しません。"
+   },
+   "writing": [
+    {
+     "prompt": "わざとじゃない。",
+     "answer": "我不是故意的。"
+    },
+    {
+     "prompt": "何を食べるかは何でもいいです。",
+     "answer": "吃什么都行，我随便。"
+    }
+   ]
+  },
+  "73": {
+   "vocab": [
+    "取",
+    "存",
+    "寄",
+    "扔",
+    "丢"
+   ],
+   "grammar": [
+    "不得不",
+    "结果：ところが",
+    "关键是"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>寄</z>」の意味は？",
+     "opts": [
+      {
+       "t": "郵送する・送る",
+       "ok": true,
+       "why": "正解。郵便などで送ること。例：<z>寄一封信</z>（手紙を出す）。"
+      },
+      {
+       "t": "受け取る・引き出す",
+       "ok": false,
+       "why": "これは<z>取</z>です。"
+      },
+      {
+       "t": "預ける・蓄える",
+       "ok": false,
+       "why": "これは<z>存</z>です。"
+      },
+      {
+       "t": "捨てる・投げる",
+       "ok": false,
+       "why": "これは<z>扔</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>丢</z>」の意味は？",
+     "opts": [
+      {
+       "t": "なくす・失う",
+       "ok": true,
+       "why": "正解。落として失うこと。例：<z>我丢了钱包</z>（財布をなくした）。"
+      },
+      {
+       "t": "捨てる・投げる",
+       "ok": false,
+       "why": "これは<z>扔</z>です。"
+      },
+      {
+       "t": "預ける",
+       "ok": false,
+       "why": "これは<z>存</z>です。"
+      },
+      {
+       "t": "郵送する",
+       "ok": false,
+       "why": "これは<z>寄</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我去银行　钱。</z>（お金を下ろす）",
+     "opts": [
+      {
+       "t": "取",
+       "ok": true,
+       "why": "正解。口座から引き出すのは<z>取</z>です。"
+      },
+      {
+       "t": "存",
+       "ok": false,
+       "why": "<z>存</z>は「預ける」で逆の動作になります。"
+      },
+      {
+       "t": "寄",
+       "ok": false,
+       "why": "<z>寄</z>は「郵送する」で文意に合いません。"
+      },
+      {
+       "t": "扔",
+       "ok": false,
+       "why": "<z>扔</z>は「捨てる」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>别乱　垃圾。</z>（ゴミをポイ捨てするな）",
+     "opts": [
+      {
+       "t": "扔",
+       "ok": true,
+       "why": "正解。ゴミを投げ捨てるのは<z>扔</z>です。"
+      },
+      {
+       "t": "取",
+       "ok": false,
+       "why": "<z>取</z>は「受け取る」で文意に合いません。"
+      },
+      {
+       "t": "存",
+       "ok": false,
+       "why": "<z>存</z>は「預ける」で意味が異なります。"
+      },
+      {
+       "t": "丢",
+       "ok": false,
+       "why": "<z>丢</z>は「なくす」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不得不",
+     "q": "<z>不得不</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜せざるを得ない",
+       "ok": true,
+       "why": "正解。事情があってやむを得ずそうすることを表します。二重否定で強い必要を示します。"
+      },
+      {
+       "t": "その結果、〜となった",
+       "ok": false,
+       "why": "これは<z>结果</z>：ところがの説明です。"
+      },
+      {
+       "t": "肝心なのは〜だ",
+       "ok": false,
+       "why": "これは<z>关键是</z>の説明です。"
+      },
+      {
+       "t": "〜なので、だから〜",
+       "ok": false,
+       "why": "これは<z>因为〜所以〜</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・结果：ところが",
+     "q": "<z>结果</z>：ところがの使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "その結果、〜となった",
+       "ok": true,
+       "why": "正解。前の行動を受けて、実際にどうなったかを述べます。思っていたのと違う結果にもよく使います。"
+      },
+      {
+       "t": "〜せざるを得ない",
+       "ok": false,
+       "why": "これは<z>不得不</z>の説明です。"
+      },
+      {
+       "t": "肝心なのは〜だ",
+       "ok": false,
+       "why": "これは<z>关键是</z>の説明です。"
+      },
+      {
+       "t": "もうすぐ〜になる",
+       "ok": false,
+       "why": "これは<z>快〜了</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・关键是",
+     "q": "<z>关键是</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "肝心なのは〜だ",
+       "ok": true,
+       "why": "正解。いくつかある中で、決め手になる点を取り出して示します。"
+      },
+      {
+       "t": "〜せざるを得ない",
+       "ok": false,
+       "why": "これは<z>不得不</z>の説明です。"
+      },
+      {
+       "t": "その結果、〜となった",
+       "ok": false,
+       "why": "これは<z>结果</z>：ところがの説明です。"
+      },
+      {
+       "t": "〜に従って",
+       "ok": false,
+       "why": "これは<z>按照</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・不得不",
+     "q": "<z>不得不</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "不得不の後ろは動詞句です。名詞は置けません。",
+       "ok": true,
+       "why": "正解。只好 は仕方なさの気持ち、不得不 は外の事情に迫られた感じが強いです。"
+      },
+      {
+       "t": "名詞の「結果」と同じ形なので、文の中の位置で見分けます。",
+       "ok": false,
+       "why": "これは<z>结果</z>：ところがについての注意点です。"
+      },
+      {
+       "t": "关键は名詞なので、是を落とさないようにします。",
+       "ok": false,
+       "why": "これは<z>关键是</z>についての注意点です。"
+      },
+      {
+       "t": "被动は受け身・受動的です。",
+       "ok": false,
+       "why": "これは<z>主动</z>についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "我们",
+     "因为下雨",
+     "推迟活动",
+     "不得不"
+    ],
+    "answer": "因为下雨，我们不得不推迟活动。",
+    "why": "<z>不得不</z>は二重否定で「〜せざるを得ない」。後ろは動詞句です。"
+   },
+   "writing": [
+    {
+     "prompt": "財布をなくした。",
+     "answer": "我丢了钱包。"
+    },
+    {
+     "prompt": "体調が悪く、休みを取らざるを得ませんでした。",
+     "answer": "身体不舒服，我不得不请假。"
+    }
+   ]
+  },
+  "74": {
+   "vocab": [
+    "抬",
+    "推",
+    "拉",
+    "挂",
+    "擦"
+   ],
+   "grammar": [
+    "以为",
+    "恐怕",
+    "首先〜其次〜"
+   ],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>推</z>」の意味は？",
+     "opts": [
+      {
+       "t": "押す",
+       "ok": true,
+       "why": "正解。前方へ力を加えること。例：<z>推门进来</z>（ドアを押して入る）。"
+      },
+      {
+       "t": "持ち上げる",
+       "ok": false,
+       "why": "これは<z>抬</z>です。"
+      },
+      {
+       "t": "引く",
+       "ok": false,
+       "why": "これは<z>拉</z>です。"
+      },
+      {
+       "t": "掛ける",
+       "ok": false,
+       "why": "これは<z>挂</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>擦</z>」の意味は？",
+     "opts": [
+      {
+       "t": "拭く・こする",
+       "ok": true,
+       "why": "正解。布などで拭くこと。例：<z>擦一下桌子</z>（机を拭く）。"
+      },
+      {
+       "t": "掛ける",
+       "ok": false,
+       "why": "これは<z>挂</z>です。"
+      },
+      {
+       "t": "持ち上げる",
+       "ok": false,
+       "why": "これは<z>抬</z>です。"
+      },
+      {
+       "t": "押す",
+       "ok": false,
+       "why": "これは<z>推</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>用力　绳子。</z>（綱を引く）",
+     "opts": [
+      {
+       "t": "拉",
+       "ok": true,
+       "why": "正解。手前へ引き寄せるのは<z>拉</z>です。"
+      },
+      {
+       "t": "推",
+       "ok": false,
+       "why": "<z>推</z>は「押す」で逆の動作になります。"
+      },
+      {
+       "t": "抬",
+       "ok": false,
+       "why": "<z>抬</z>は「持ち上げる」で意味が異なります。"
+      },
+      {
+       "t": "擦",
+       "ok": false,
+       "why": "<z>擦</z>は「拭く」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>把画　在墙上。</z>（絵を壁に掛ける）",
+     "opts": [
+      {
+       "t": "挂",
+       "ok": true,
+       "why": "正解。壁などに吊り下げるのは<z>挂</z>です。"
+      },
+      {
+       "t": "擦",
+       "ok": false,
+       "why": "<z>擦</z>は「拭く」で文意に合いません。"
+      },
+      {
+       "t": "抬",
+       "ok": false,
+       "why": "<z>抬</z>は「持ち上げる」で意味が異なります。"
+      },
+      {
+       "t": "拉",
+       "ok": false,
+       "why": "<z>拉</z>は「引く」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・以为",
+     "q": "<z>以为</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "〜だと思っていた（実際は違った）",
+       "ok": true,
+       "why": "正解。思い込みが事実と違っていたときに使います。"
+      },
+      {
+       "t": "おそらく〜だろう（よくない見込み）",
+       "ok": false,
+       "why": "これは<z>恐怕</z>の説明です。"
+      },
+      {
+       "t": "まず〜、次に〜",
+       "ok": false,
+       "why": "これは<z>首先〜其次〜</z>の説明です。"
+      },
+      {
+       "t": "もう〜しないで",
+       "ok": false,
+       "why": "これは<z>别再</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・恐怕",
+     "q": "<z>恐怕</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "おそらく〜だろう（よくない見込み）",
+       "ok": true,
+       "why": "正解。好ましくない可能性を控えめに述べます。断るときの前置きにも使います。"
+      },
+      {
+       "t": "〜だと思っていた（実際は違った）",
+       "ok": false,
+       "why": "これは<z>以为</z>の説明です。"
+      },
+      {
+       "t": "まず〜、次に〜",
+       "ok": false,
+       "why": "これは<z>首先〜其次〜</z>の説明です。"
+      },
+      {
+       "t": "正直に言うと",
+       "ok": false,
+       "why": "これは<z>说实话</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・首先〜其次〜",
+     "q": "<z>首先〜其次〜</z>の使い方として正しいものは？",
+     "opts": [
+      {
+       "t": "まず〜、次に〜",
+       "ok": true,
+       "why": "正解。順序立てて理由や手順を並べます。最後は最后で締めます。"
+      },
+      {
+       "t": "〜だと思っていた（実際は違った）",
+       "ok": false,
+       "why": "これは<z>以为</z>の説明です。"
+      },
+      {
+       "t": "おそらく〜だろう（よくない見込み）",
+       "ok": false,
+       "why": "これは<z>恐怕</z>の説明です。"
+      },
+      {
+       "t": "もう〜しないで",
+       "ok": false,
+       "why": "これは<z>别再</z>の説明です。"
+      }
+     ]
+    },
+    {
+     "tag": "文法・以为",
+     "q": "<z>以为</z>を使うときに気をつける点は？",
+     "opts": [
+      {
+       "t": "正しい判断を述べるときは认为や觉得を使います。",
+       "ok": true,
+       "why": "正解。认为 は今の判断、以为 は間違っていた思い込みです。"
+      },
+      {
+       "t": "良い見込みには使いません。",
+       "ok": false,
+       "why": "これは<z>恐怕</z>についての注意点です。"
+      },
+      {
+       "t": "其次は二番目に使い、三番目以降は再次や最后にします。",
+       "ok": false,
+       "why": "これは<z>首先〜其次〜</z>についての注意点です。"
+      },
+      {
+       "t": "除了の後ろだけで終わらず、还/也で追加します。",
+       "ok": false,
+       "why": "これは<z>除了〜以外，还〜</z>についての注意点です。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "要准备资料",
+     "首先",
+     "其次",
+     "要确认时间"
+    ],
+    "answer": "首先要确认时间，其次要准备资料。",
+    "why": "<z>首先〜其次〜</z>で説明の順序を示します。"
+   },
+   "writing": [
+    {
+     "prompt": "ドアを押して入って。",
+     "answer": "请推门进来。"
+    },
+    {
+     "prompt": "彼はもう知っていると思っていました。",
+     "answer": "我以为他已经知道了。"
+    }
+   ]
+  },
+  "75": {
+   "vocab": [
+    "敲",
+    "抱",
+    "摇",
+    "弹钢琴",
+    "散步",
+    "打招呼",
+    "打扰",
+    "提"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>敲</z>」の意味は？",
+     "opts": [
+      {
+       "t": "叩く・ノックする",
+       "ok": true,
+       "why": "正解。打ち当てて音を出すこと。例：<z>有人在敲门</z>（誰かがノックしている）。"
+      },
+      {
+       "t": "抱く",
+       "ok": false,
+       "why": "これは<z>抱</z>です。"
+      },
+      {
+       "t": "揺らす・振る",
+       "ok": false,
+       "why": "これは<z>摇</z>です。"
+      },
+      {
+       "t": "散歩する",
+       "ok": false,
+       "why": "これは<z>散步</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>摇</z>」の意味は？",
+     "opts": [
+      {
+       "t": "揺らす・振る",
+       "ok": true,
+       "why": "正解。左右に動かすこと。例：<z>他摇了摇头</z>（彼は首を振った）。"
+      },
+      {
+       "t": "叩く",
+       "ok": false,
+       "why": "これは<z>敲</z>です。"
+      },
+      {
+       "t": "抱く",
+       "ok": false,
+       "why": "これは<z>抱</z>です。"
+      },
+      {
+       "t": "ピアノを弾く",
+       "ok": false,
+       "why": "これは<z>弹钢琴</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>妈妈　着孩子。</z>（子を抱いている）",
+     "opts": [
+      {
+       "t": "抱",
+       "ok": true,
+       "why": "正解。腕に抱えるのは<z>抱</z>です。"
+      },
+      {
+       "t": "敲",
+       "ok": false,
+       "why": "<z>敲</z>は「叩く」で文意に合いません。"
+      },
+      {
+       "t": "摇",
+       "ok": false,
+       "why": "<z>摇</z>は「揺らす」で意味が異なります。"
+      },
+      {
+       "t": "散步",
+       "ok": false,
+       "why": "<z>散步</z>は「散歩する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>晚饭后我去　。</z>（散歩する）",
+     "opts": [
+      {
+       "t": "散步",
+       "ok": true,
+       "why": "正解。ぶらぶら歩くのは<z>散步</z>です。"
+      },
+      {
+       "t": "弹钢琴",
+       "ok": false,
+       "why": "<z>弹钢琴</z>は「ピアノを弾く」で文意に合いません。"
+      },
+      {
+       "t": "敲",
+       "ok": false,
+       "why": "<z>敲</z>は「叩く」で意味が異なります。"
+      },
+      {
+       "t": "抱",
+       "ok": false,
+       "why": "<z>抱</z>は「抱く」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>打招呼</z>」の意味は？",
+     "opts": [
+      {
+       "t": "あいさつする、声をかける",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "邪魔をする、手を止めさせる",
+       "ok": false,
+       "why": "これは<z>打扰</z>です。"
+      },
+      {
+       "t": "散歩する",
+       "ok": false,
+       "why": "これは<z>散步</z>です。"
+      },
+      {
+       "t": "揺らす・振る",
+       "ok": false,
+       "why": "これは<z>摇</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>打扰</z>」の意味は？",
+     "opts": [
+      {
+       "t": "邪魔をする、手を止めさせる",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "抱く",
+       "ok": false,
+       "why": "これは<z>抱</z>です。"
+      },
+      {
+       "t": "叩く",
+       "ok": false,
+       "why": "これは<z>敲</z>です。"
+      },
+      {
+       "t": "あいさつする、声をかける",
+       "ok": false,
+       "why": "これは<z>打招呼</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>这件事他昨天 ____ 过一次。</z>",
+     "opts": [
+      {
+       "t": "提",
+       "ok": true,
+       "why": "正解。この件は彼が昨日一度持ち出しました。"
+      },
+      {
+       "t": "弹钢琴",
+       "ok": false,
+       "why": "<z>弹钢琴</z>は「ピアノを弾く」で、ここには合いません。"
+      },
+      {
+       "t": "摇",
+       "ok": false,
+       "why": "<z>摇</z>は「揺らす・振る」で、ここには合いません。"
+      },
+      {
+       "t": "抱",
+       "ok": false,
+       "why": "<z>抱</z>は「抱く」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>在公司遇到同事要主动 ____ 。</z>",
+     "opts": [
+      {
+       "t": "打招呼",
+       "ok": true,
+       "why": "正解。会社で同僚に会ったら自分から声をかけましょう。"
+      },
+      {
+       "t": "散步",
+       "ok": false,
+       "why": "<z>散步</z>は「散歩する」で、ここには合いません。"
+      },
+      {
+       "t": "敲",
+       "ok": false,
+       "why": "<z>敲</z>は「叩く」で、ここには合いません。"
+      },
+      {
+       "t": "提",
+       "ok": false,
+       "why": "<z>提</z>は「（話を）持ち出す、提げる」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "要主动",
+     "在公司",
+     "打招呼",
+     "遇到同事"
+    ],
+    "answer": "在公司遇到同事要主动打招呼。",
+    "why": "<z>打招呼</z>は「あいさつする」。<z>主动</z>は「自分から」。"
+   },
+   "writing": [
+    {
+     "prompt": "誰かがドアをノックしている。",
+     "answer": "有人在敲门。"
+    },
+    {
+     "prompt": "お忙しいところ、お邪魔してすみません。",
+     "answer": "不好意思，打扰您了。"
+    }
+   ]
+  },
+  "76": {
+   "vocab": [
+    "锻炼",
+    "减肥",
+    "旅行",
+    "出生",
+    "长大",
+    "轻松",
+    "力气",
+    "活动"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>锻炼</z>」の意味は？",
+     "opts": [
+      {
+       "t": "鍛える・運動する",
+       "ok": true,
+       "why": "正解。体や能力を鍛えること。例：<z>锻炼身体</z>（体を鍛える）。"
+      },
+      {
+       "t": "ダイエットする",
+       "ok": false,
+       "why": "これは<z>减肥</z>です。"
+      },
+      {
+       "t": "旅行する",
+       "ok": false,
+       "why": "これは<z>旅行</z>です。"
+      },
+      {
+       "t": "生まれる",
+       "ok": false,
+       "why": "これは<z>出生</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>长大</z>」の意味は？",
+     "opts": [
+      {
+       "t": "成長する・大きくなる",
+       "ok": true,
+       "why": "正解。子どもなどが育つこと。例：<z>孩子长大了</z>（子どもが大きくなった）。"
+      },
+      {
+       "t": "生まれる",
+       "ok": false,
+       "why": "これは<z>出生</z>です。"
+      },
+      {
+       "t": "鍛える",
+       "ok": false,
+       "why": "これは<z>锻炼</z>です。"
+      },
+      {
+       "t": "旅行する",
+       "ok": false,
+       "why": "これは<z>旅行</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我正在　。</z>（ダイエット中だ）",
+     "opts": [
+      {
+       "t": "减肥",
+       "ok": true,
+       "why": "正解。体重を減らすのは<z>减肥</z>です。"
+      },
+      {
+       "t": "锻炼",
+       "ok": false,
+       "why": "<z>锻炼</z>は「鍛える」で文意に合いません。"
+      },
+      {
+       "t": "旅行",
+       "ok": false,
+       "why": "<z>旅行</z>は「旅行する」で意味が異なります。"
+      },
+      {
+       "t": "长大",
+       "ok": false,
+       "why": "<z>长大</z>は「成長する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他在北京　。</z>（北京で生まれた）",
+     "opts": [
+      {
+       "t": "出生",
+       "ok": true,
+       "why": "正解。この世に生まれるのは<z>出生</z>です。"
+      },
+      {
+       "t": "长大",
+       "ok": false,
+       "why": "<z>长大</z>は「成長する」で、生まれる瞬間とは異なります。"
+      },
+      {
+       "t": "减肥",
+       "ok": false,
+       "why": "<z>减肥</z>は「ダイエット」で文意に合いません。"
+      },
+      {
+       "t": "锻炼",
+       "ok": false,
+       "why": "<z>锻炼</z>は「鍛える」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>轻松</z>」の意味は？",
+     "opts": [
+      {
+       "t": "気楽だ、楽だ",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "活動、イベント",
+       "ok": false,
+       "why": "これは<z>活动</z>です。"
+      },
+      {
+       "t": "ダイエットする",
+       "ok": false,
+       "why": "これは<z>减肥</z>です。"
+      },
+      {
+       "t": "成長する",
+       "ok": false,
+       "why": "これは<z>长大</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>力气</z>」の意味は？",
+     "opts": [
+      {
+       "t": "力",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "ダイエットする",
+       "ok": false,
+       "why": "これは<z>减肥</z>です。"
+      },
+      {
+       "t": "生まれる",
+       "ok": false,
+       "why": "これは<z>出生</z>です。"
+      },
+      {
+       "t": "気楽だ、楽だ",
+       "ok": false,
+       "why": "これは<z>轻松</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>公司下个月有一个 ____ 。</z>",
+     "opts": [
+      {
+       "t": "活动",
+       "ok": true,
+       "why": "正解。会社は来月イベントがあります。"
+      },
+      {
+       "t": "力气",
+       "ok": false,
+       "why": "<z>力气</z>は「力」で、ここには合いません。"
+      },
+      {
+       "t": "轻松",
+       "ok": false,
+       "why": "<z>轻松</z>は「気楽だ、楽だ」で、ここには合いません。"
+      },
+      {
+       "t": "减肥",
+       "ok": false,
+       "why": "<z>减肥</z>は「ダイエットする」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>今天的工作比较 ____ 。</z>",
+     "opts": [
+      {
+       "t": "轻松",
+       "ok": true,
+       "why": "正解。今日の仕事は比較的楽です。"
+      },
+      {
+       "t": "减肥",
+       "ok": false,
+       "why": "<z>减肥</z>は「ダイエットする」で、ここには合いません。"
+      },
+      {
+       "t": "长大",
+       "ok": false,
+       "why": "<z>长大</z>は「成長する」で、ここには合いません。"
+      },
+      {
+       "t": "活动",
+       "ok": false,
+       "why": "<z>活动</z>は「活動、イベント」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "一个活动",
+     "公司",
+     "有",
+     "下个月"
+    ],
+    "answer": "公司下个月有一个活动。",
+    "why": "時間を表す語は動詞の前、<z>公司</z>の後ろに置きます。"
+   },
+   "writing": [
+    {
+     "prompt": "毎日体を鍛える。",
+     "answer": "每天锻炼身体。"
+    },
+    {
+     "prompt": "今週の仕事は先週より楽です。",
+     "answer": "这个星期的工作比上个星期轻松。"
+    }
+   ]
+  },
+  "77": {
+   "vocab": [
+    "结婚",
+    "退休",
+    "救",
+    "帮忙",
+    "照顾",
+    "请假",
+    "尊重",
+    "抱歉"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>退休</z>」の意味は？",
+     "opts": [
+      {
+       "t": "退職する・定年退職する",
+       "ok": true,
+       "why": "正解。仕事を引退すること。例：<z>父亲已经退休了</z>（父はもう退職した）。"
+      },
+      {
+       "t": "結婚する",
+       "ok": false,
+       "why": "これは<z>结婚</z>です。"
+      },
+      {
+       "t": "救う",
+       "ok": false,
+       "why": "これは<z>救</z>です。"
+      },
+      {
+       "t": "世話する",
+       "ok": false,
+       "why": "これは<z>照顾</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>照顾</z>」の意味は？",
+     "opts": [
+      {
+       "t": "世話する・面倒を見る",
+       "ok": true,
+       "why": "正解。人の面倒を見ること。例：<z>照顾老人</z>（老人の世話をする）。"
+      },
+      {
+       "t": "手伝う",
+       "ok": false,
+       "why": "これは<z>帮忙</z>です。"
+      },
+      {
+       "t": "救う",
+       "ok": false,
+       "why": "これは<z>救</z>です。"
+      },
+      {
+       "t": "退職する",
+       "ok": false,
+       "why": "これは<z>退休</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他们去年　了。</z>（去年結婚した）",
+     "opts": [
+      {
+       "t": "结婚",
+       "ok": true,
+       "why": "正解。夫婦になるのは<z>结婚</z>です。"
+      },
+      {
+       "t": "退休",
+       "ok": false,
+       "why": "<z>退休</z>は「退職する」で文意に合いません。"
+      },
+      {
+       "t": "帮忙",
+       "ok": false,
+       "why": "<z>帮忙</z>は「手伝う」で意味が異なります。"
+      },
+      {
+       "t": "照顾",
+       "ok": false,
+       "why": "<z>照顾</z>は「世話する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>你能　个忙吗？</z>（手伝ってくれる？）",
+     "opts": [
+      {
+       "t": "帮",
+       "ok": true,
+       "why": "正解。<z>帮忙</z>は「帮＋（個）＋忙」と離して使えます。"
+      },
+      {
+       "t": "救",
+       "ok": false,
+       "why": "<z>救</z>は「救う」で文意に合いません。"
+      },
+      {
+       "t": "照顾",
+       "ok": false,
+       "why": "<z>照顾</z>は「世話する」で意味が異なります。"
+      },
+      {
+       "t": "退休",
+       "ok": false,
+       "why": "<z>退休</z>は「退職する」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>请假</z>」の意味は？",
+     "opts": [
+      {
+       "t": "休みを取る",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "救う",
+       "ok": false,
+       "why": "これは<z>救</z>です。"
+      },
+      {
+       "t": "手伝う",
+       "ok": false,
+       "why": "これは<z>帮忙</z>です。"
+      },
+      {
+       "t": "尊重する",
+       "ok": false,
+       "why": "これは<z>尊重</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>尊重</z>」の意味は？",
+     "opts": [
+      {
+       "t": "尊重する",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "退職する",
+       "ok": false,
+       "why": "これは<z>退休</z>です。"
+      },
+      {
+       "t": "申し訳なく思う",
+       "ok": false,
+       "why": "これは<z>抱歉</z>です。"
+      },
+      {
+       "t": "世話する",
+       "ok": false,
+       "why": "これは<z>照顾</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>很 ____ ，让您久等了。</z>",
+     "opts": [
+      {
+       "t": "抱歉",
+       "ok": true,
+       "why": "正解。大変申し訳ありません、お待たせしました。"
+      },
+      {
+       "t": "结婚",
+       "ok": false,
+       "why": "<z>结婚</z>は「結婚する」で、ここには合いません。"
+      },
+      {
+       "t": "请假",
+       "ok": false,
+       "why": "<z>请假</z>は「休みを取る」で、ここには合いません。"
+      },
+      {
+       "t": "尊重",
+       "ok": false,
+       "why": "<z>尊重</z>は「尊重する」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>他因为感冒 ____ 了。</z>",
+     "opts": [
+      {
+       "t": "请假",
+       "ok": true,
+       "why": "正解。彼は風邪で休みを取りました。"
+      },
+      {
+       "t": "救",
+       "ok": false,
+       "why": "<z>救</z>は「救う」で、ここには合いません。"
+      },
+      {
+       "t": "尊重",
+       "ok": false,
+       "why": "<z>尊重</z>は「尊重する」で、ここには合いません。"
+      },
+      {
+       "t": "照顾",
+       "ok": false,
+       "why": "<z>照顾</z>は「世話する」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "尊重",
+     "我们",
+     "别人的意见",
+     "应该"
+    ],
+    "answer": "我们应该尊重别人的意见。",
+    "why": "<z>尊重</z>は「尊重する」。助動詞<z>应该</z>は動詞の前です。"
+   },
+   "writing": [
+    {
+     "prompt": "医者が彼を救った。",
+     "answer": "医生救了他。"
+    },
+    {
+     "prompt": "明日、半日休みを取りたいです。",
+     "answer": "我明天想请半天假。"
+    }
+   ]
+  },
+  "78": {
+   "vocab": [
+    "富",
+    "穷",
+    "厚",
+    "深",
+    "空",
+    "超过",
+    "许多",
+    "完全"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>穷</z>」の意味は？",
+     "opts": [
+      {
+       "t": "貧しい",
+       "ok": true,
+       "why": "正解。お金がない状態。例：<z>以前他很穷</z>（以前彼は貧しかった）。"
+      },
+      {
+       "t": "豊か・金持ち",
+       "ok": false,
+       "why": "これは反対の<z>富</z>です。"
+      },
+      {
+       "t": "厚い",
+       "ok": false,
+       "why": "これは<z>厚</z>です。"
+      },
+      {
+       "t": "深い",
+       "ok": false,
+       "why": "これは<z>深</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>空</z>」の意味は？",
+     "opts": [
+      {
+       "t": "空っぽ・中身がない",
+       "ok": true,
+       "why": "正解。中に何もないこと。例：<z>瓶子是空的</z>（瓶は空だ）。"
+      },
+      {
+       "t": "深い",
+       "ok": false,
+       "why": "これは<z>深</z>です。"
+      },
+      {
+       "t": "厚い",
+       "ok": false,
+       "why": "これは<z>厚</z>です。"
+      },
+      {
+       "t": "貧しい",
+       "ok": false,
+       "why": "これは<z>穷</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这本书很　。</z>（この本は厚い）",
+     "opts": [
+      {
+       "t": "厚",
+       "ok": true,
+       "why": "正解。物の厚みは<z>厚</z>です。"
+      },
+      {
+       "t": "深",
+       "ok": false,
+       "why": "<z>深</z>は「深い」で、本の厚みには使いません。"
+      },
+      {
+       "t": "空",
+       "ok": false,
+       "why": "<z>空</z>は「空っぽ」で意味が異なります。"
+      },
+      {
+       "t": "富",
+       "ok": false,
+       "why": "<z>富</z>は「豊か」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这条河很　。</z>（この川は深い）",
+     "opts": [
+      {
+       "t": "深",
+       "ok": true,
+       "why": "正解。底までの距離が大きいのは<z>深</z>です。"
+      },
+      {
+       "t": "厚",
+       "ok": false,
+       "why": "<z>厚</z>は「厚い」で、川には使いません。"
+      },
+      {
+       "t": "穷",
+       "ok": false,
+       "why": "<z>穷</z>は「貧しい」で文意に合いません。"
+      },
+      {
+       "t": "空",
+       "ok": false,
+       "why": "<z>空</z>は「空っぽ」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>超过</z>」の意味は？",
+     "opts": [
+      {
+       "t": "超える、上回る",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "貧しい",
+       "ok": false,
+       "why": "これは<z>穷</z>です。"
+      },
+      {
+       "t": "豊か・金持ち",
+       "ok": false,
+       "why": "これは<z>富</z>です。"
+      },
+      {
+       "t": "多くの",
+       "ok": false,
+       "why": "これは<z>许多</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>许多</z>」の意味は？",
+     "opts": [
+      {
+       "t": "多くの",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "超える、上回る",
+       "ok": false,
+       "why": "これは<z>超过</z>です。"
+      },
+      {
+       "t": "空っぽ",
+       "ok": false,
+       "why": "これは<z>空</z>です。"
+      },
+      {
+       "t": "完全に、まったく",
+       "ok": false,
+       "why": "これは<z>完全</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>我 ____ 同意你的看法。</z>",
+     "opts": [
+      {
+       "t": "完全",
+       "ok": true,
+       "why": "正解。あなたの見方に完全に同意します。"
+      },
+      {
+       "t": "穷",
+       "ok": false,
+       "why": "<z>穷</z>は「貧しい」で、ここには合いません。"
+      },
+      {
+       "t": "空",
+       "ok": false,
+       "why": "<z>空</z>は「空っぽ」で、ここには合いません。"
+      },
+      {
+       "t": "深",
+       "ok": false,
+       "why": "<z>深</z>は「深い」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>这次的费用 ____ 了预算。</z>",
+     "opts": [
+      {
+       "t": "超过",
+       "ok": true,
+       "why": "正解。今回の費用は予算を超えました。"
+      },
+      {
+       "t": "完全",
+       "ok": false,
+       "why": "<z>完全</z>は「完全に、まったく」で、ここには合いません。"
+      },
+      {
+       "t": "穷",
+       "ok": false,
+       "why": "<z>穷</z>は「貧しい」で、ここには合いません。"
+      },
+      {
+       "t": "富",
+       "ok": false,
+       "why": "<z>富</z>は「豊か・金持ち」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "预算",
+     "这次的",
+     "超过了",
+     "费用"
+    ],
+    "answer": "这次的费用超过了预算。",
+    "why": "<z>超过</z>は「〜を超える」。超えた対象を後ろに置きます。"
+   },
+   "writing": [
+    {
+     "prompt": "以前彼は貧しかった。",
+     "answer": "以前他很穷。"
+    },
+    {
+     "prompt": "参加者は100人を超えました。",
+     "answer": "参加的人超过了一百人。"
+    }
+   ]
+  },
+  "79": {
+   "vocab": [
+    "干燥",
+    "凉快",
+    "暖和",
+    "温度",
+    "轻",
+    "气候",
+    "空气",
+    "停"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>干燥</z>」の意味は？",
+     "opts": [
+      {
+       "t": "乾燥している",
+       "ok": true,
+       "why": "正解。湿気がない状態。例：<z>冬天空气很干燥</z>（冬は空気が乾燥している）。"
+      },
+      {
+       "t": "涼しい",
+       "ok": false,
+       "why": "これは<z>凉快</z>です。"
+      },
+      {
+       "t": "暖かい",
+       "ok": false,
+       "why": "これは<z>暖和</z>です。"
+      },
+      {
+       "t": "軽い",
+       "ok": false,
+       "why": "これは<z>轻</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>暖和</z>」の意味は？",
+     "opts": [
+      {
+       "t": "暖かい",
+       "ok": true,
+       "why": "正解。気候などが暖かいこと。例：<z>春天很暖和</z>（春は暖かい）。"
+      },
+      {
+       "t": "涼しい",
+       "ok": false,
+       "why": "これは<z>凉快</z>です。"
+      },
+      {
+       "t": "温度",
+       "ok": false,
+       "why": "これは<z>温度</z>です。"
+      },
+      {
+       "t": "乾燥している",
+       "ok": false,
+       "why": "これは<z>干燥</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>今天很　。</z>（今日は涼しい）",
+     "opts": [
+      {
+       "t": "凉快",
+       "ok": true,
+       "why": "正解。心地よい涼しさは<z>凉快</z>です。"
+      },
+      {
+       "t": "暖和",
+       "ok": false,
+       "why": "<z>暖和</z>は「暖かい」で逆の意味になります。"
+      },
+      {
+       "t": "干燥",
+       "ok": false,
+       "why": "<z>干燥</z>は「乾燥している」で意味が異なります。"
+      },
+      {
+       "t": "轻",
+       "ok": false,
+       "why": "<z>轻</z>は「軽い」で文意に合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这个包很　。</z>（このかばんは軽い）",
+     "opts": [
+      {
+       "t": "轻",
+       "ok": true,
+       "why": "正解。重さが小さいのは<z>轻</z>です。"
+      },
+      {
+       "t": "温度",
+       "ok": false,
+       "why": "<z>温度</z>は「温度」で文意に合いません。"
+      },
+      {
+       "t": "凉快",
+       "ok": false,
+       "why": "<z>凉快</z>は「涼しい」で意味が異なります。"
+      },
+      {
+       "t": "暖和",
+       "ok": false,
+       "why": "<z>暖和</z>は「暖かい」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>气候</z>」の意味は？",
+     "opts": [
+      {
+       "t": "気候",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "乾燥している",
+       "ok": false,
+       "why": "これは<z>干燥</z>です。"
+      },
+      {
+       "t": "空気",
+       "ok": false,
+       "why": "これは<z>空气</z>です。"
+      },
+      {
+       "t": "止まる、止める",
+       "ok": false,
+       "why": "これは<z>停</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>空气</z>」の意味は？",
+     "opts": [
+      {
+       "t": "空気",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "止まる、止める",
+       "ok": false,
+       "why": "これは<z>停</z>です。"
+      },
+      {
+       "t": "涼しい",
+       "ok": false,
+       "why": "これは<z>凉快</z>です。"
+      },
+      {
+       "t": "乾燥している",
+       "ok": false,
+       "why": "これは<z>干燥</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>雨 ____ 了，我们出发吧。</z>",
+     "opts": [
+      {
+       "t": "停",
+       "ok": true,
+       "why": "正解。雨がやんだので、出発しましょう。"
+      },
+      {
+       "t": "温度",
+       "ok": false,
+       "why": "<z>温度</z>は「温度」で、ここには合いません。"
+      },
+      {
+       "t": "干燥",
+       "ok": false,
+       "why": "<z>干燥</z>は「乾燥している」で、ここには合いません。"
+      },
+      {
+       "t": "气候",
+       "ok": false,
+       "why": "<z>气候</z>は「気候」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>上海的 ____ 比较湿润。</z>",
+     "opts": [
+      {
+       "t": "气候",
+       "ok": true,
+       "why": "正解。上海の気候は比較的湿っています。"
+      },
+      {
+       "t": "凉快",
+       "ok": false,
+       "why": "<z>凉快</z>は「涼しい」で、ここには合いません。"
+      },
+      {
+       "t": "暖和",
+       "ok": false,
+       "why": "<z>暖和</z>は「暖かい」で、ここには合いません。"
+      },
+      {
+       "t": "温度",
+       "ok": false,
+       "why": "<z>温度</z>は「温度」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "比较",
+     "上海的",
+     "湿润",
+     "气候"
+    ],
+    "answer": "上海的气候比较湿润。",
+    "why": "<z>气候</z>は「気候」。程度を表す<z>比较</z>は形容詞の前です。"
+   },
+   "writing": [
+    {
+     "prompt": "春は暖かい。",
+     "answer": "春天很暖和。"
+    },
+    {
+     "prompt": "雨がやんだら、すぐ出発しましょう。",
+     "answer": "雨停了我们就出发吧。"
+    }
+   ]
+  },
+  "80": {
+   "vocab": [
+    "圆",
+    "直",
+    "假",
+    "真正",
+    "普通",
+    "准确",
+    "直接",
+    "肯定"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>假</z>」の意味は？",
+     "opts": [
+      {
+       "t": "偽物・にせの",
+       "ok": true,
+       "why": "正解。本物でないこと。例：<z>这是假的</z>（これは偽物だ）。"
+      },
+      {
+       "t": "丸い",
+       "ok": false,
+       "why": "これは<z>圆</z>です。"
+      },
+      {
+       "t": "まっすぐ",
+       "ok": false,
+       "why": "これは<z>直</z>です。"
+      },
+      {
+       "t": "普通の",
+       "ok": false,
+       "why": "これは<z>普通</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>真正</z>」の意味は？",
+     "opts": [
+      {
+       "t": "本当の・真の",
+       "ok": true,
+       "why": "正解。名実ともに本物であること。例：<z>真正的朋友</z>（本当の友）。"
+      },
+      {
+       "t": "偽物",
+       "ok": false,
+       "why": "これは反対の<z>假</z>です。"
+      },
+      {
+       "t": "普通の",
+       "ok": false,
+       "why": "これは<z>普通</z>です。"
+      },
+      {
+       "t": "丸い",
+       "ok": false,
+       "why": "これは<z>圆</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>月亮是　的。</z>（月は丸い）",
+     "opts": [
+      {
+       "t": "圆",
+       "ok": true,
+       "why": "正解。円い形は<z>圆</z>です。"
+      },
+      {
+       "t": "直",
+       "ok": false,
+       "why": "<z>直</z>は「まっすぐ」で意味が異なります。"
+      },
+      {
+       "t": "假",
+       "ok": false,
+       "why": "<z>假</z>は「偽物」で文意に合いません。"
+      },
+      {
+       "t": "普通",
+       "ok": false,
+       "why": "<z>普通</z>は「普通の」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>一直往前　。</z>（ずっとまっすぐ進む）",
+     "opts": [
+      {
+       "t": "直",
+       "ok": true,
+       "why": "正解。<z>一直往前</z>と組み「まっすぐ進む」を表します。"
+      },
+      {
+       "t": "圆",
+       "ok": false,
+       "why": "<z>圆</z>は「丸い」で文意に合いません。"
+      },
+      {
+       "t": "假",
+       "ok": false,
+       "why": "<z>假</z>は「偽物」で意味が異なります。"
+      },
+      {
+       "t": "真正",
+       "ok": false,
+       "why": "<z>真正</z>は「本当の」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>准确</z>」の意味は？",
+     "opts": [
+      {
+       "t": "正確だ",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "普通の",
+       "ok": false,
+       "why": "これは<z>普通</z>です。"
+      },
+      {
+       "t": "本当の",
+       "ok": false,
+       "why": "これは<z>真正</z>です。"
+      },
+      {
+       "t": "直接、じかに",
+       "ok": false,
+       "why": "これは<z>直接</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>直接</z>」の意味は？",
+     "opts": [
+      {
+       "t": "直接、じかに",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "偽物",
+       "ok": false,
+       "why": "これは<z>假</z>です。"
+      },
+      {
+       "t": "正確だ",
+       "ok": false,
+       "why": "これは<z>准确</z>です。"
+      },
+      {
+       "t": "丸い",
+       "ok": false,
+       "why": "これは<z>圆</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>他 ____ 已经出发了。</z>",
+     "opts": [
+      {
+       "t": "肯定",
+       "ok": true,
+       "why": "正解。彼は間違いなくもう出発しています。"
+      },
+      {
+       "t": "假",
+       "ok": false,
+       "why": "<z>假</z>は「偽物」で、ここには合いません。"
+      },
+      {
+       "t": "准确",
+       "ok": false,
+       "why": "<z>准确</z>は「正確だ」で、ここには合いません。"
+      },
+      {
+       "t": "圆",
+       "ok": false,
+       "why": "<z>圆</z>は「丸い」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>这个数字不太 ____ ，我再确认一下。</z>",
+     "opts": [
+      {
+       "t": "准确",
+       "ok": true,
+       "why": "正解。この数字はあまり正確でないので、確認し直します。"
+      },
+      {
+       "t": "普通",
+       "ok": false,
+       "why": "<z>普通</z>は「普通の」で、ここには合いません。"
+      },
+      {
+       "t": "真正",
+       "ok": false,
+       "why": "<z>真正</z>は「本当の」で、ここには合いません。"
+      },
+      {
+       "t": "肯定",
+       "ok": false,
+       "why": "<z>肯定</z>は「確かに、間違いなく」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "直接",
+     "有问题",
+     "联系",
+     "跟我",
+     "可以"
+    ],
+    "answer": "有问题可以直接跟我联系。",
+    "why": "<z>直接</z>は「じかに」。<z>跟〜联系</z>で「〜に連絡する」。"
+   },
+   "writing": [
+    {
+     "prompt": "これは偽物だ。",
+     "answer": "这是假的。"
+    },
+    {
+     "prompt": "この数字は正確ではないと思います。",
+     "answer": "我觉得这个数字不准确。"
+    }
+   ]
+  },
+  "81": {
+   "vocab": [
+    "全部",
+    "部分",
+    "整个",
+    "大约",
+    "也许",
+    "平时",
+    "期间",
+    "号码"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>整个</z>」の意味は？",
+     "opts": [
+      {
+       "t": "全体・まるごと",
+       "ok": true,
+       "why": "正解。ひとまとまりの全部。例：<z>整个城市</z>（街全体）。"
+      },
+      {
+       "t": "全部",
+       "ok": false,
+       "why": "<z>全部</z>に近いですが、まるごと一体を指すのは<z>整个</z>です。"
+      },
+      {
+       "t": "一部",
+       "ok": false,
+       "why": "これは<z>部分</z>です。"
+      },
+      {
+       "t": "およそ",
+       "ok": false,
+       "why": "これは<z>大约</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>也许</z>」の意味は？",
+     "opts": [
+      {
+       "t": "もしかすると・たぶん",
+       "ok": true,
+       "why": "正解。推量を表す。例：<z>他也许不来了</z>（彼は来ないかもしれない）。"
+      },
+      {
+       "t": "およそ",
+       "ok": false,
+       "why": "これは<z>大约</z>です。"
+      },
+      {
+       "t": "全部",
+       "ok": false,
+       "why": "これは<z>全部</z>です。"
+      },
+      {
+       "t": "一部",
+       "ok": false,
+       "why": "これは<z>部分</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我　都懂了。</z>（全部わかった）",
+     "opts": [
+      {
+       "t": "全部",
+       "ok": true,
+       "why": "正解。残らず全ては<z>全部</z>です。"
+      },
+      {
+       "t": "部分",
+       "ok": false,
+       "why": "<z>部分</z>は「一部」で逆の意味になります。"
+      },
+      {
+       "t": "大约",
+       "ok": false,
+       "why": "<z>大约</z>は「およそ」で文意に合いません。"
+      },
+      {
+       "t": "也许",
+       "ok": false,
+       "why": "<z>也许</z>は「もしかすると」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　有十个人。</z>（およそ10人いる）",
+     "opts": [
+      {
+       "t": "大约",
+       "ok": true,
+       "why": "正解。数量の概算は<z>大约</z>です。"
+      },
+      {
+       "t": "全部",
+       "ok": false,
+       "why": "<z>全部</z>は「全部」で文意に合いません。"
+      },
+      {
+       "t": "整个",
+       "ok": false,
+       "why": "<z>整个</z>は「全体」で意味が異なります。"
+      },
+      {
+       "t": "部分",
+       "ok": false,
+       "why": "<z>部分</z>は「一部」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>平时</z>」の意味は？",
+     "opts": [
+      {
+       "t": "普段、いつもは",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "もしかすると",
+       "ok": false,
+       "why": "これは<z>也许</z>です。"
+      },
+      {
+       "t": "一部",
+       "ok": false,
+       "why": "これは<z>部分</z>です。"
+      },
+      {
+       "t": "番号",
+       "ok": false,
+       "why": "これは<z>号码</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>期间</z>」の意味は？",
+     "opts": [
+      {
+       "t": "期間、〜の間",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "全部",
+       "ok": false,
+       "why": "これは<z>全部</z>です。"
+      },
+      {
+       "t": "もしかすると",
+       "ok": false,
+       "why": "これは<z>也许</z>です。"
+      },
+      {
+       "t": "およそ",
+       "ok": false,
+       "why": "これは<z>大约</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>你的手机 ____ 是多少？</z>",
+     "opts": [
+      {
+       "t": "号码",
+       "ok": true,
+       "why": "正解。携帯番号は何番ですか。"
+      },
+      {
+       "t": "大约",
+       "ok": false,
+       "why": "<z>大约</z>は「およそ」で、ここには合いません。"
+      },
+      {
+       "t": "期间",
+       "ok": false,
+       "why": "<z>期间</z>は「期間、〜の間」で、ここには合いません。"
+      },
+      {
+       "t": "也许",
+       "ok": false,
+       "why": "<z>也许</z>は「もしかすると」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>我 ____ 六点半起床。</z>",
+     "opts": [
+      {
+       "t": "平时",
+       "ok": true,
+       "why": "正解。私は普段6時半に起きます。"
+      },
+      {
+       "t": "全部",
+       "ok": false,
+       "why": "<z>全部</z>は「全部」で、ここには合いません。"
+      },
+      {
+       "t": "期间",
+       "ok": false,
+       "why": "<z>期间</z>は「期間、〜の間」で、ここには合いません。"
+      },
+      {
+       "t": "号码",
+       "ok": false,
+       "why": "<z>号码</z>は「番号」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "一直开着",
+     "出差期间",
+     "手机",
+     "我会"
+    ],
+    "answer": "出差期间我会一直开着手机。",
+    "why": "<z>期间</z>は「〜の間」。時を表すまとまりを文頭に置けます。"
+   },
+   "writing": [
+    {
+     "prompt": "会社に着くとすぐ会議です。",
+     "answer": "我一到公司就开会。"
+    },
+    {
+     "prompt": "普段は何時に寝ますか。",
+     "answer": "你平时几点睡觉？"
+    }
+   ]
+  },
+  "82": {
+   "vocab": [
+    "实在",
+    "确实",
+    "难得",
+    "值得",
+    "舍不得",
+    "好处",
+    "合适",
+    "优秀"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>值得</z>」の意味は？",
+     "opts": [
+      {
+       "t": "〜する価値がある",
+       "ok": true,
+       "why": "正解。それだけの値打ちがあること。例：<z>这本书值得读</z>（読む価値がある）。"
+      },
+      {
+       "t": "確かに",
+       "ok": false,
+       "why": "これは<z>确实</z>です。"
+      },
+      {
+       "t": "めったにない",
+       "ok": false,
+       "why": "これは<z>难得</z>です。"
+      },
+      {
+       "t": "手放すのが惜しい",
+       "ok": false,
+       "why": "これは<z>舍不得</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>舍不得</z>」の意味は？",
+     "opts": [
+      {
+       "t": "手放すのが惜しい・名残惜しい",
+       "ok": true,
+       "why": "正解。手放したくない気持ち。例：<z>我舍不得离开</z>（離れるのが名残惜しい）。"
+      },
+      {
+       "t": "〜する価値がある",
+       "ok": false,
+       "why": "これは<z>值得</z>です。"
+      },
+      {
+       "t": "本当に・実に",
+       "ok": false,
+       "why": "これは<z>实在</z>です。"
+      },
+      {
+       "t": "確かに",
+       "ok": false,
+       "why": "これは<z>确实</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这是　的机会。</z>（めったにない機会だ）",
+     "opts": [
+      {
+       "t": "难得",
+       "ok": true,
+       "why": "正解。得がたく貴重なのは<z>难得</z>です。"
+      },
+      {
+       "t": "确实",
+       "ok": false,
+       "why": "<z>确实</z>は「確かに」で文意に合いません。"
+      },
+      {
+       "t": "实在",
+       "ok": false,
+       "why": "<z>实在</z>は「本当に」で意味が異なります。"
+      },
+      {
+       "t": "值得",
+       "ok": false,
+       "why": "<z>值得</z>は「価値がある」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这　是个好主意。</z>（確かに良い考えだ）",
+     "opts": [
+      {
+       "t": "确实",
+       "ok": true,
+       "why": "正解。事実を認める「確かに」は<z>确实</z>です。"
+      },
+      {
+       "t": "难得",
+       "ok": false,
+       "why": "<z>难得</z>は「めったにない」で文意に合いません。"
+      },
+      {
+       "t": "舍不得",
+       "ok": false,
+       "why": "<z>舍不得</z>は「名残惜しい」で意味が異なります。"
+      },
+      {
+       "t": "值得",
+       "ok": false,
+       "why": "<z>值得</z>は「価値がある」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>好处</z>」の意味は？",
+     "opts": [
+      {
+       "t": "良い点、メリット",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "手放すのが惜しい",
+       "ok": false,
+       "why": "これは<z>舍不得</z>です。"
+      },
+      {
+       "t": "ちょうどよい、ふさわしい",
+       "ok": false,
+       "why": "これは<z>合适</z>です。"
+      },
+      {
+       "t": "確かに",
+       "ok": false,
+       "why": "これは<z>确实</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>合适</z>」の意味は？",
+     "opts": [
+      {
+       "t": "ちょうどよい、ふさわしい",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "確かに",
+       "ok": false,
+       "why": "これは<z>确实</z>です。"
+      },
+      {
+       "t": "得難い・めったにない",
+       "ok": false,
+       "why": "これは<z>难得</z>です。"
+      },
+      {
+       "t": "本当に・実に",
+       "ok": false,
+       "why": "これは<z>实在</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>他是我们组最 ____ 的同事。</z>",
+     "opts": [
+      {
+       "t": "优秀",
+       "ok": true,
+       "why": "正解。彼は私たちのチームで最も優秀な同僚です。"
+      },
+      {
+       "t": "实在",
+       "ok": false,
+       "why": "<z>实在</z>は「本当に・実に」で、ここには合いません。"
+      },
+      {
+       "t": "值得",
+       "ok": false,
+       "why": "<z>值得</z>は「…する価値がある」で、ここには合いません。"
+      },
+      {
+       "t": "舍不得",
+       "ok": false,
+       "why": "<z>舍不得</z>は「手放すのが惜しい」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>每天走路对身体有 ____ 。</z>",
+     "opts": [
+      {
+       "t": "好处",
+       "ok": true,
+       "why": "正解。毎日歩くのは体に良いです。"
+      },
+      {
+       "t": "难得",
+       "ok": false,
+       "why": "<z>难得</z>は「得難い・めったにない」で、ここには合いません。"
+      },
+      {
+       "t": "实在",
+       "ok": false,
+       "why": "<z>实在</z>は「本当に・実に」で、ここには合いません。"
+      },
+      {
+       "t": "值得",
+       "ok": false,
+       "why": "<z>值得</z>は「…する価値がある」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "对身体",
+     "每天",
+     "有好处",
+     "走路"
+    ],
+    "answer": "每天走路对身体有好处。",
+    "why": "<z>对〜有好处</z>で「〜に良い」。"
+   },
+   "writing": [
+    {
+     "prompt": "離れるのが名残惜しい。",
+     "answer": "我舍不得离开。"
+    },
+    {
+     "prompt": "早起きには良い点がたくさんあります。",
+     "answer": "早起有很多好处。"
+    }
+   ]
+  },
+  "83": {
+   "vocab": [
+    "来自",
+    "属于",
+    "等于",
+    "包括",
+    "缺少",
+    "成为",
+    "出现",
+    "引起"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>属于</z>」の意味は？",
+     "opts": [
+      {
+       "t": "〜に属する・〜のものだ",
+       "ok": true,
+       "why": "正解。所属を表す。例：<z>这本书属于我</z>（この本は私のものだ）。"
+      },
+      {
+       "t": "〜から来る",
+       "ok": false,
+       "why": "これは<z>来自</z>です。"
+      },
+      {
+       "t": "〜に等しい",
+       "ok": false,
+       "why": "これは<z>等于</z>です。"
+      },
+      {
+       "t": "含む",
+       "ok": false,
+       "why": "これは<z>包括</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>包括</z>」の意味は？",
+     "opts": [
+      {
+       "t": "含む・包含する",
+       "ok": true,
+       "why": "正解。中に入れて含むこと。例：<z>价格包括早餐</z>（値段は朝食込み）。"
+      },
+      {
+       "t": "不足する",
+       "ok": false,
+       "why": "これは<z>缺少</z>です。"
+      },
+      {
+       "t": "〜に等しい",
+       "ok": false,
+       "why": "これは<z>等于</z>です。"
+      },
+      {
+       "t": "〜に属する",
+       "ok": false,
+       "why": "これは<z>属于</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>他　上海。</z>（彼は上海出身だ）",
+     "opts": [
+      {
+       "t": "来自",
+       "ok": true,
+       "why": "正解。出どころを示す「〜から来る」は<z>来自</z>です。"
+      },
+      {
+       "t": "属于",
+       "ok": false,
+       "why": "<z>属于</z>は「〜に属する」で文意に合いません。"
+      },
+      {
+       "t": "等于",
+       "ok": false,
+       "why": "<z>等于</z>は「〜に等しい」で意味が異なります。"
+      },
+      {
+       "t": "包括",
+       "ok": false,
+       "why": "<z>包括</z>は「含む」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我们　时间。</z>（時間が足りない）",
+     "opts": [
+      {
+       "t": "缺少",
+       "ok": true,
+       "why": "正解。足りないことは<z>缺少</z>です。"
+      },
+      {
+       "t": "包括",
+       "ok": false,
+       "why": "<z>包括</z>は「含む」で文意に合いません。"
+      },
+      {
+       "t": "等于",
+       "ok": false,
+       "why": "<z>等于</z>は「〜に等しい」で意味が異なります。"
+      },
+      {
+       "t": "来自",
+       "ok": false,
+       "why": "<z>来自</z>は「〜から来る」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>成为</z>」の意味は？",
+     "opts": [
+      {
+       "t": "〜になる",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "含む",
+       "ok": false,
+       "why": "これは<z>包括</z>です。"
+      },
+      {
+       "t": "…に属する",
+       "ok": false,
+       "why": "これは<z>属于</z>です。"
+      },
+      {
+       "t": "不足する",
+       "ok": false,
+       "why": "これは<z>缺少</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>出现</z>」の意味は？",
+     "opts": [
+      {
+       "t": "現れる、生じる",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "引き起こす、（注意を）引く",
+       "ok": false,
+       "why": "これは<z>引起</z>です。"
+      },
+      {
+       "t": "…に属する",
+       "ok": false,
+       "why": "これは<z>属于</z>です。"
+      },
+      {
+       "t": "…に等しい",
+       "ok": false,
+       "why": "これは<z>等于</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>这个消息 ____ 了大家的注意。</z>",
+     "opts": [
+      {
+       "t": "引起",
+       "ok": true,
+       "why": "正解。この知らせはみんなの注目を集めました。"
+      },
+      {
+       "t": "缺少",
+       "ok": false,
+       "why": "<z>缺少</z>は「不足する」で、ここには合いません。"
+      },
+      {
+       "t": "等于",
+       "ok": false,
+       "why": "<z>等于</z>は「…に等しい」で、ここには合いません。"
+      },
+      {
+       "t": "成为",
+       "ok": false,
+       "why": "<z>成为</z>は「〜になる」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>他 ____ 了这个项目的负责人。</z>",
+     "opts": [
+      {
+       "t": "成为",
+       "ok": true,
+       "why": "正解。彼はこのプロジェクトの責任者になりました。"
+      },
+      {
+       "t": "引起",
+       "ok": false,
+       "why": "<z>引起</z>は「引き起こす、（注意を）引く」で、ここには合いません。"
+      },
+      {
+       "t": "属于",
+       "ok": false,
+       "why": "<z>属于</z>は「…に属する」で、ここには合いません。"
+      },
+      {
+       "t": "等于",
+       "ok": false,
+       "why": "<z>等于</z>は「…に等しい」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "大家",
+     "这个消息",
+     "的注意",
+     "引起了"
+    ],
+    "answer": "这个消息引起了大家的注意。",
+    "why": "<z>引起注意</z>で「注目を集める」。"
+   },
+   "writing": [
+    {
+     "prompt": "値段は朝食込みだ。",
+     "answer": "价格包括早餐。"
+    },
+    {
+     "prompt": "彼は3年で部長になりました。",
+     "answer": "他三年就成为了经理。"
+    }
+   ]
+  },
+  "84": {
+   "vocab": [
+    "节日",
+    "春节",
+    "礼物",
+    "红包",
+    "祝贺",
+    "免费",
+    "座位",
+    "打印"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>红包</z>」の意味は？",
+     "opts": [
+      {
+       "t": "お年玉・ご祝儀",
+       "ok": true,
+       "why": "正解。お金を入れた赤い袋。例：<z>孩子收到了红包</z>（子どもはお年玉をもらった）。"
+      },
+      {
+       "t": "プレゼント",
+       "ok": false,
+       "why": "これは<z>礼物</z>です。"
+      },
+      {
+       "t": "祝日",
+       "ok": false,
+       "why": "これは<z>节日</z>です。"
+      },
+      {
+       "t": "祝う",
+       "ok": false,
+       "why": "これは<z>祝贺</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>祝贺</z>」の意味は？",
+     "opts": [
+      {
+       "t": "祝う・祝賀する",
+       "ok": true,
+       "why": "正解。めでたいことを祝う。例：<z>祝贺你毕业</z>（卒業おめでとう）。"
+      },
+      {
+       "t": "お年玉",
+       "ok": false,
+       "why": "これは<z>红包</z>です。"
+      },
+      {
+       "t": "プレゼント",
+       "ok": false,
+       "why": "これは<z>礼物</z>です。"
+      },
+      {
+       "t": "春節",
+       "ok": false,
+       "why": "これは<z>春节</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这是给你的　。</z>（これは君へのプレゼントだ）",
+     "opts": [
+      {
+       "t": "礼物",
+       "ok": true,
+       "why": "正解。贈り物は<z>礼物</z>です。"
+      },
+      {
+       "t": "红包",
+       "ok": false,
+       "why": "<z>红包</z>はお金を入れた袋で、一般の贈り物とは異なります。"
+      },
+      {
+       "t": "节日",
+       "ok": false,
+       "why": "<z>节日</z>は「祝日」で文意に合いません。"
+      },
+      {
+       "t": "祝贺",
+       "ok": false,
+       "why": "<z>祝贺</z>は「祝う」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>春节是重要的　。</z>（春節は大切な祝日だ）",
+     "opts": [
+      {
+       "t": "节日",
+       "ok": true,
+       "why": "正解。祝い事の日は<z>节日</z>です。"
+      },
+      {
+       "t": "礼物",
+       "ok": false,
+       "why": "<z>礼物</z>は「プレゼント」で文意に合いません。"
+      },
+      {
+       "t": "红包",
+       "ok": false,
+       "why": "<z>红包</z>は「お年玉」で意味が異なります。"
+      },
+      {
+       "t": "祝贺",
+       "ok": false,
+       "why": "<z>祝贺</z>は「祝う」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>免费</z>」の意味は？",
+     "opts": [
+      {
+       "t": "無料",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "祝う",
+       "ok": false,
+       "why": "これは<z>祝贺</z>です。"
+      },
+      {
+       "t": "お年玉・ご祝儀",
+       "ok": false,
+       "why": "これは<z>红包</z>です。"
+      },
+      {
+       "t": "プレゼント",
+       "ok": false,
+       "why": "これは<z>礼物</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>座位</z>」の意味は？",
+     "opts": [
+      {
+       "t": "座席",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "春節",
+       "ok": false,
+       "why": "これは<z>春节</z>です。"
+      },
+      {
+       "t": "プレゼント",
+       "ok": false,
+       "why": "これは<z>礼物</z>です。"
+      },
+      {
+       "t": "お年玉・ご祝儀",
+       "ok": false,
+       "why": "これは<z>红包</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>请把这份资料 ____ 三份。</z>",
+     "opts": [
+      {
+       "t": "打印",
+       "ok": true,
+       "why": "正解。この資料を3部印刷してください。"
+      },
+      {
+       "t": "祝贺",
+       "ok": false,
+       "why": "<z>祝贺</z>は「祝う」で、ここには合いません。"
+      },
+      {
+       "t": "座位",
+       "ok": false,
+       "why": "<z>座位</z>は「座席」で、ここには合いません。"
+      },
+      {
+       "t": "节日",
+       "ok": false,
+       "why": "<z>节日</z>は「祝日」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>这个应用可以 ____ 使用。</z>",
+     "opts": [
+      {
+       "t": "免费",
+       "ok": true,
+       "why": "正解。このアプリは無料で使えます。"
+      },
+      {
+       "t": "春节",
+       "ok": false,
+       "why": "<z>春节</z>は「春節」で、ここには合いません。"
+      },
+      {
+       "t": "节日",
+       "ok": false,
+       "why": "<z>节日</z>は「祝日」で、ここには合いません。"
+      },
+      {
+       "t": "祝贺",
+       "ok": false,
+       "why": "<z>祝贺</z>は「祝う」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "打印",
+     "请把",
+     "三份",
+     "这份资料"
+    ],
+    "answer": "请把这份资料打印三份。",
+    "why": "把構文。処理した結果や数量を動詞の後ろに置きます。"
+   },
+   "writing": [
+    {
+     "prompt": "卒業おめでとう。",
+     "answer": "祝贺你毕业。"
+    },
+    {
+     "prompt": "席をもう一つ取っておいてください。",
+     "answer": "请再留一个座位。"
+    }
+   ]
+  },
+  "85": {
+   "vocab": [
+    "传统",
+    "文化",
+    "历史",
+    "艺术",
+    "音乐",
+    "精彩",
+    "理想",
+    "流行"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>传统</z>」の意味は？",
+     "opts": [
+      {
+       "t": "伝統",
+       "ok": true,
+       "why": "正解。古くから受け継がれるもの。例：<z>中国的传统</z>（中国の伝統）。"
+      },
+      {
+       "t": "文化",
+       "ok": false,
+       "why": "これは<z>文化</z>です。"
+      },
+      {
+       "t": "歴史",
+       "ok": false,
+       "why": "これは<z>历史</z>です。"
+      },
+      {
+       "t": "芸術",
+       "ok": false,
+       "why": "これは<z>艺术</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>历史</z>」の意味は？",
+     "opts": [
+      {
+       "t": "歴史",
+       "ok": true,
+       "why": "正解。過去の出来事の積み重ね。例：<z>历史悠久</z>（歴史が長い）。"
+      },
+      {
+       "t": "芸術",
+       "ok": false,
+       "why": "これは<z>艺术</z>です。"
+      },
+      {
+       "t": "音楽",
+       "ok": false,
+       "why": "これは<z>音乐</z>です。"
+      },
+      {
+       "t": "伝統",
+       "ok": false,
+       "why": "これは<z>传统</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我对中国　感兴趣。</z>（中国文化に興味がある）",
+     "opts": [
+      {
+       "t": "文化",
+       "ok": true,
+       "why": "正解。生活様式や価値観の総体は<z>文化</z>です。"
+      },
+      {
+       "t": "历史",
+       "ok": false,
+       "why": "<z>历史</z>は「歴史」で、ここでは<z>文化</z>が自然です。"
+      },
+      {
+       "t": "音乐",
+       "ok": false,
+       "why": "<z>音乐</z>は「音楽」で意味が異なります。"
+      },
+      {
+       "t": "传统",
+       "ok": false,
+       "why": "<z>传统</z>は「伝統」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我喜欢听　。</z>（音楽を聴くのが好きだ）",
+     "opts": [
+      {
+       "t": "音乐",
+       "ok": true,
+       "why": "正解。聴くものは<z>音乐</z>です。"
+      },
+      {
+       "t": "艺术",
+       "ok": false,
+       "why": "<z>艺术</z>は「芸術」全般で、<z>听</z>の対象としては<z>音乐</z>が自然です。"
+      },
+      {
+       "t": "历史",
+       "ok": false,
+       "why": "<z>历史</z>は「歴史」で文意に合いません。"
+      },
+      {
+       "t": "传统",
+       "ok": false,
+       "why": "<z>传统</z>は「伝統」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>精彩</z>」の意味は？",
+     "opts": [
+      {
+       "t": "素晴らしい、見事だ",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "文化",
+       "ok": false,
+       "why": "これは<z>文化</z>です。"
+      },
+      {
+       "t": "音楽",
+       "ok": false,
+       "why": "これは<z>音乐</z>です。"
+      },
+      {
+       "t": "伝統",
+       "ok": false,
+       "why": "これは<z>传统</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>理想</z>」の意味は？",
+     "opts": [
+      {
+       "t": "理想、理想的だ",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "素晴らしい、見事だ",
+       "ok": false,
+       "why": "これは<z>精彩</z>です。"
+      },
+      {
+       "t": "歴史",
+       "ok": false,
+       "why": "これは<z>历史</z>です。"
+      },
+      {
+       "t": "伝統",
+       "ok": false,
+       "why": "これは<z>传统</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>这首歌最近很 ____ 。</z>",
+     "opts": [
+      {
+       "t": "流行",
+       "ok": true,
+       "why": "正解。この歌は最近とても流行しています。"
+      },
+      {
+       "t": "历史",
+       "ok": false,
+       "why": "<z>历史</z>は「歴史」で、ここには合いません。"
+      },
+      {
+       "t": "音乐",
+       "ok": false,
+       "why": "<z>音乐</z>は「音楽」で、ここには合いません。"
+      },
+      {
+       "t": "艺术",
+       "ok": false,
+       "why": "<z>艺术</z>は「芸術」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>昨天的表演非常 ____ 。</z>",
+     "opts": [
+      {
+       "t": "精彩",
+       "ok": true,
+       "why": "正解。昨日の公演はとても素晴らしかったです。"
+      },
+      {
+       "t": "流行",
+       "ok": false,
+       "why": "<z>流行</z>は「流行する」で、ここには合いません。"
+      },
+      {
+       "t": "历史",
+       "ok": false,
+       "why": "<z>历史</z>は「歴史」で、ここには合いません。"
+      },
+      {
+       "t": "艺术",
+       "ok": false,
+       "why": "<z>艺术</z>は「芸術」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "表演",
+     "昨天的",
+     "精彩",
+     "非常"
+    ],
+    "answer": "昨天的表演非常精彩。",
+    "why": "<z>精彩</z>は催しや演技が「見事だ」。"
+   },
+   "writing": [
+    {
+     "prompt": "これは中国の伝統だ。",
+     "answer": "这是中国的传统。"
+    },
+    {
+     "prompt": "昨日の試合はとても見事でした。",
+     "answer": "昨天的比赛非常精彩。"
+    }
+   ]
+  },
+  "86": {
+   "vocab": [
+    "乐器",
+    "绘画",
+    "作品",
+    "展览",
+    "节目",
+    "材料",
+    "修理",
+    "使用"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>乐器</z>」の意味は？",
+     "opts": [
+      {
+       "t": "楽器",
+       "ok": true,
+       "why": "正解。音を奏でる道具。例：<z>你会弹什么乐器？</z>（どんな楽器が弾ける？）。"
+      },
+      {
+       "t": "絵画",
+       "ok": false,
+       "why": "これは<z>绘画</z>です。"
+      },
+      {
+       "t": "作品",
+       "ok": false,
+       "why": "これは<z>作品</z>です。"
+      },
+      {
+       "t": "展覧会",
+       "ok": false,
+       "why": "これは<z>展览</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>展览</z>」の意味は？",
+     "opts": [
+      {
+       "t": "展覧会・展示",
+       "ok": true,
+       "why": "正解。作品などを並べて見せる催し。例：<z>这个展览很有名</z>（この展覧会は有名だ）。"
+      },
+      {
+       "t": "番組・演目",
+       "ok": false,
+       "why": "これは<z>节目</z>です。"
+      },
+      {
+       "t": "作品",
+       "ok": false,
+       "why": "これは<z>作品</z>です。"
+      },
+      {
+       "t": "楽器",
+       "ok": false,
+       "why": "これは<z>乐器</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这是他的新　。</z>（これは彼の新作だ）",
+     "opts": [
+      {
+       "t": "作品",
+       "ok": true,
+       "why": "正解。創作物は<z>作品</z>です。"
+      },
+      {
+       "t": "节目",
+       "ok": false,
+       "why": "<z>节目</z>は「番組・演目」で文意に合いません。"
+      },
+      {
+       "t": "乐器",
+       "ok": false,
+       "why": "<z>乐器</z>は「楽器」で意味が異なります。"
+      },
+      {
+       "t": "展览",
+       "ok": false,
+       "why": "<z>展览</z>は「展覧会」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这个　很有意思。</z>（この番組は面白い）",
+     "opts": [
+      {
+       "t": "节目",
+       "ok": true,
+       "why": "正解。テレビ・舞台の演目は<z>节目</z>です。"
+      },
+      {
+       "t": "绘画",
+       "ok": false,
+       "why": "<z>绘画</z>は「絵画」で文意に合いません。"
+      },
+      {
+       "t": "作品",
+       "ok": false,
+       "why": "<z>作品</z>は「作品」で、番組そのものは<z>节目</z>が自然です。"
+      },
+      {
+       "t": "乐器",
+       "ok": false,
+       "why": "<z>乐器</z>は「楽器」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>材料</z>」の意味は？",
+     "opts": [
+      {
+       "t": "材料、書類一式",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "絵画",
+       "ok": false,
+       "why": "これは<z>绘画</z>です。"
+      },
+      {
+       "t": "番組・演目",
+       "ok": false,
+       "why": "これは<z>节目</z>です。"
+      },
+      {
+       "t": "修理する",
+       "ok": false,
+       "why": "これは<z>修理</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>修理</z>」の意味は？",
+     "opts": [
+      {
+       "t": "修理する",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "番組・演目",
+       "ok": false,
+       "why": "これは<z>节目</z>です。"
+      },
+      {
+       "t": "展覧会",
+       "ok": false,
+       "why": "これは<z>展览</z>です。"
+      },
+      {
+       "t": "作品",
+       "ok": false,
+       "why": "これは<z>作品</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z> ____ 前请先看说明。</z>",
+     "opts": [
+      {
+       "t": "使用",
+       "ok": true,
+       "why": "正解。使用する前に説明をお読みください。"
+      },
+      {
+       "t": "绘画",
+       "ok": false,
+       "why": "<z>绘画</z>は「絵画」で、ここには合いません。"
+      },
+      {
+       "t": "作品",
+       "ok": false,
+       "why": "<z>作品</z>は「作品」で、ここには合いません。"
+      },
+      {
+       "t": "修理",
+       "ok": false,
+       "why": "<z>修理</z>は「修理する」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>请把面试的 ____ 准备好。</z>",
+     "opts": [
+      {
+       "t": "材料",
+       "ok": true,
+       "why": "正解。面接の書類を準備しておいてください。"
+      },
+      {
+       "t": "展览",
+       "ok": false,
+       "why": "<z>展览</z>は「展覧会」で、ここには合いません。"
+      },
+      {
+       "t": "使用",
+       "ok": false,
+       "why": "<z>使用</z>は「使用する」で、ここには合いません。"
+      },
+      {
+       "t": "节目",
+       "ok": false,
+       "why": "<z>节目</z>は「番組・演目」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "找人",
+     "空调坏了",
+     "修理",
+     "需要"
+    ],
+    "answer": "空调坏了，需要找人修理。",
+    "why": "<z>找人修理</z>で「人に頼んで直してもらう」。"
+   },
+   "writing": [
+    {
+     "prompt": "前に5分歩けば着きます。",
+     "answer": "你往前走五分钟就到了。"
+    },
+    {
+     "prompt": "このアプリは使う前に登録が必要です。",
+     "answer": "这个应用使用前需要登记。"
+    }
+   ]
+  },
+  "87": {
+   "vocab": [
+    "报纸",
+    "杂志",
+    "广告",
+    "广播",
+    "网站",
+    "调查",
+    "证明",
+    "保证"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>广播</z>」の意味は？",
+     "opts": [
+      {
+       "t": "放送・ラジオ",
+       "ok": true,
+       "why": "正解。音声で流す放送。例：<z>我在听广播</z>（ラジオを聴いている）。"
+      },
+      {
+       "t": "広告",
+       "ok": false,
+       "why": "これは<z>广告</z>です。"
+      },
+      {
+       "t": "雑誌",
+       "ok": false,
+       "why": "これは<z>杂志</z>です。"
+      },
+      {
+       "t": "新聞",
+       "ok": false,
+       "why": "これは<z>报纸</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>网站</z>」の意味は？",
+     "opts": [
+      {
+       "t": "ウェブサイト",
+       "ok": true,
+       "why": "正解。ネット上のサイト。例：<z>这个网站很有用</z>（このサイトは役立つ）。"
+      },
+      {
+       "t": "放送",
+       "ok": false,
+       "why": "これは<z>广播</z>です。"
+      },
+      {
+       "t": "広告",
+       "ok": false,
+       "why": "これは<z>广告</z>です。"
+      },
+      {
+       "t": "雑誌",
+       "ok": false,
+       "why": "これは<z>杂志</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>我每天看　。</z>（毎日新聞を読む）",
+     "opts": [
+      {
+       "t": "报纸",
+       "ok": true,
+       "why": "正解。日刊の紙媒体は<z>报纸</z>です。"
+      },
+      {
+       "t": "广播",
+       "ok": false,
+       "why": "<z>广播</z>は「放送」で<z>看</z>の対象になりません。"
+      },
+      {
+       "t": "网站",
+       "ok": false,
+       "why": "<z>网站</z>は「ウェブサイト」で意味が異なります。"
+      },
+      {
+       "t": "广告",
+       "ok": false,
+       "why": "<z>广告</z>は「広告」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>电视上有很多　。</z>（テレビには広告が多い）",
+     "opts": [
+      {
+       "t": "广告",
+       "ok": true,
+       "why": "正解。商品などの宣伝は<z>广告</z>です。"
+      },
+      {
+       "t": "报纸",
+       "ok": false,
+       "why": "<z>报纸</z>は「新聞」で文意に合いません。"
+      },
+      {
+       "t": "杂志",
+       "ok": false,
+       "why": "<z>杂志</z>は「雑誌」で意味が異なります。"
+      },
+      {
+       "t": "网站",
+       "ok": false,
+       "why": "<z>网站</z>は「ウェブサイト」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>调查</z>」の意味は？",
+     "opts": [
+      {
+       "t": "調査する",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "証明する、裏づける",
+       "ok": false,
+       "why": "これは<z>证明</z>です。"
+      },
+      {
+       "t": "広告",
+       "ok": false,
+       "why": "これは<z>广告</z>です。"
+      },
+      {
+       "t": "新聞",
+       "ok": false,
+       "why": "これは<z>报纸</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>证明</z>」の意味は？",
+     "opts": [
+      {
+       "t": "証明する、裏づける",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "広告",
+       "ok": false,
+       "why": "これは<z>广告</z>です。"
+      },
+      {
+       "t": "新聞",
+       "ok": false,
+       "why": "これは<z>报纸</z>です。"
+      },
+      {
+       "t": "放送",
+       "ok": false,
+       "why": "これは<z>广播</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>我不能 ____ 今天做完。</z>",
+     "opts": [
+      {
+       "t": "保证",
+       "ok": true,
+       "why": "正解。今日中に終わるとは保証できません。"
+      },
+      {
+       "t": "广播",
+       "ok": false,
+       "why": "<z>广播</z>は「放送」で、ここには合いません。"
+      },
+      {
+       "t": "广告",
+       "ok": false,
+       "why": "<z>广告</z>は「広告」で、ここには合いません。"
+      },
+      {
+       "t": "报纸",
+       "ok": false,
+       "why": "<z>报纸</z>は「新聞」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>我们做了一个用户 ____ 。</z>",
+     "opts": [
+      {
+       "t": "调查",
+       "ok": true,
+       "why": "正解。ユーザー調査を行いました。"
+      },
+      {
+       "t": "保证",
+       "ok": false,
+       "why": "<z>保证</z>は「保証する、請け合う」で、ここには合いません。"
+      },
+      {
+       "t": "报纸",
+       "ok": false,
+       "why": "<z>报纸</z>は「新聞」で、ここには合いません。"
+      },
+      {
+       "t": "广告",
+       "ok": false,
+       "why": "<z>广告</z>は「広告」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "今天",
+     "我",
+     "做完",
+     "不能",
+     "保证"
+    ],
+    "answer": "我不能保证今天做完。",
+    "why": "<z>保证</z>は「請け合う」。後ろに文を続けられます。"
+   },
+   "writing": [
+    {
+     "prompt": "機の上にコーヒーが一杯あります。",
+     "answer": "桌子上有一杯咖啡。"
+    },
+    {
+     "prompt": "私たちは市場調査をしました。",
+     "answer": "我们做了一个市场调查。"
+    }
+   ]
+  },
+  "88": {
+   "vocab": [
+    "网络",
+    "密码",
+    "下载",
+    "信息",
+    "科学",
+    "研究",
+    "基础",
+    "积累"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>下载</z>」の意味は？",
+     "opts": [
+      {
+       "t": "ダウンロードする",
+       "ok": true,
+       "why": "正解。データを取り込むこと。例：<z>我下载了一个软件</z>（ソフトをダウンロードした）。"
+      },
+      {
+       "t": "パスワード",
+       "ok": false,
+       "why": "これは<z>密码</z>です。"
+      },
+      {
+       "t": "情報",
+       "ok": false,
+       "why": "これは<z>信息</z>です。"
+      },
+      {
+       "t": "ネットワーク",
+       "ok": false,
+       "why": "これは<z>网络</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>密码</z>」の意味は？",
+     "opts": [
+      {
+       "t": "パスワード・暗証番号",
+       "ok": true,
+       "why": "正解。認証用の符号。例：<z>请输入密码</z>（パスワードを入力してください）。"
+      },
+      {
+       "t": "情報",
+       "ok": false,
+       "why": "これは<z>信息</z>です。"
+      },
+      {
+       "t": "科学",
+       "ok": false,
+       "why": "これは<z>科学</z>です。"
+      },
+      {
+       "t": "ダウンロードする",
+       "ok": false,
+       "why": "これは<z>下载</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这条　很重要。</z>（この情報は重要だ）",
+     "opts": [
+      {
+       "t": "信息",
+       "ok": true,
+       "why": "正解。知らせ・情報は<z>信息</z>です。"
+      },
+      {
+       "t": "密码",
+       "ok": false,
+       "why": "<z>密码</z>は「パスワード」で文意に合いません。"
+      },
+      {
+       "t": "网络",
+       "ok": false,
+       "why": "<z>网络</z>は「ネットワーク」で意味が異なります。"
+      },
+      {
+       "t": "科学",
+       "ok": false,
+       "why": "<z>科学</z>は「科学」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　很慢。</z>（ネットが遅い）",
+     "opts": [
+      {
+       "t": "网络",
+       "ok": true,
+       "why": "正解。通信回線の速さは<z>网络</z>です。"
+      },
+      {
+       "t": "信息",
+       "ok": false,
+       "why": "<z>信息</z>は「情報」で文意に合いません。"
+      },
+      {
+       "t": "密码",
+       "ok": false,
+       "why": "<z>密码</z>は「パスワード」で意味が異なります。"
+      },
+      {
+       "t": "下载",
+       "ok": false,
+       "why": "<z>下载</z>は「ダウンロードする」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>研究</z>」の意味は？",
+     "opts": [
+      {
+       "t": "研究する、検討する",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "積み重ねる",
+       "ok": false,
+       "why": "これは<z>积累</z>です。"
+      },
+      {
+       "t": "ダウンロードする",
+       "ok": false,
+       "why": "これは<z>下载</z>です。"
+      },
+      {
+       "t": "情報",
+       "ok": false,
+       "why": "これは<z>信息</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>基础</z>」の意味は？",
+     "opts": [
+      {
+       "t": "基礎、土台",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "情報",
+       "ok": false,
+       "why": "これは<z>信息</z>です。"
+      },
+      {
+       "t": "積み重ねる",
+       "ok": false,
+       "why": "これは<z>积累</z>です。"
+      },
+      {
+       "t": "パスワード",
+       "ok": false,
+       "why": "これは<z>密码</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>词汇要一点一点地 ____ 。</z>",
+     "opts": [
+      {
+       "t": "积累",
+       "ok": true,
+       "why": "正解。語彙は少しずつ積み重ねるものです。"
+      },
+      {
+       "t": "信息",
+       "ok": false,
+       "why": "<z>信息</z>は「情報」で、ここには合いません。"
+      },
+      {
+       "t": "密码",
+       "ok": false,
+       "why": "<z>密码</z>は「パスワード」で、ここには合いません。"
+      },
+      {
+       "t": "科学",
+       "ok": false,
+       "why": "<z>科学</z>は「科学」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>这个方案我们再 ____ 一下。</z>",
+     "opts": [
+      {
+       "t": "研究",
+       "ok": true,
+       "why": "正解。この案はもう少し検討しましょう。"
+      },
+      {
+       "t": "积累",
+       "ok": false,
+       "why": "<z>积累</z>は「積み重ねる」で、ここには合いません。"
+      },
+      {
+       "t": "科学",
+       "ok": false,
+       "why": "<z>科学</z>は「科学」で、ここには合いません。"
+      },
+      {
+       "t": "信息",
+       "ok": false,
+       "why": "<z>信息</z>は「情報」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "学中文",
+     "语法",
+     "的基础",
+     "是"
+    ],
+    "answer": "语法是学中文的基础。",
+    "why": "<z>基础</z>は「土台」。<z>A是B的基础</z>の形です。"
+   },
+   "writing": [
+    {
+     "prompt": "スマホでデリバリーを注文します。",
+     "answer": "我用手机点外卖。"
+    },
+    {
+     "prompt": "この件はもう少し検討させてください。",
+     "answer": "这件事让我们再研究一下。"
+    }
+   ]
+  },
+  "89": {
+   "vocab": [
+    "技术",
+    "发展",
+    "工业",
+    "农业",
+    "社会",
+    "交通",
+    "教育",
+    "竞争"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>技术</z>」の意味は？",
+     "opts": [
+      {
+       "t": "技術",
+       "ok": true,
+       "why": "正解。物事を行う技。例：<z>这项技术很先进</z>（この技術は進んでいる）。"
+      },
+      {
+       "t": "発展する",
+       "ok": false,
+       "why": "これは<z>发展</z>です。"
+      },
+      {
+       "t": "工業",
+       "ok": false,
+       "why": "これは<z>工业</z>です。"
+      },
+      {
+       "t": "社会",
+       "ok": false,
+       "why": "これは<z>社会</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>发展</z>」の意味は？",
+     "opts": [
+      {
+       "t": "発展する・発展",
+       "ok": true,
+       "why": "正解。規模や水準が伸びること。例：<z>城市发展得很快</z>（都市の発展は速い）。"
+      },
+      {
+       "t": "技術",
+       "ok": false,
+       "why": "これは<z>技术</z>です。"
+      },
+      {
+       "t": "農業",
+       "ok": false,
+       "why": "これは<z>农业</z>です。"
+      },
+      {
+       "t": "工業",
+       "ok": false,
+       "why": "これは<z>工业</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>这里　发达。</z>（ここは工業が発達している）",
+     "opts": [
+      {
+       "t": "工业",
+       "ok": true,
+       "why": "正解。ものづくりの産業は<z>工业</z>です。"
+      },
+      {
+       "t": "农业",
+       "ok": false,
+       "why": "<z>农业</z>は「農業」で、文意では<z>工业</z>が適切です。"
+      },
+      {
+       "t": "技术",
+       "ok": false,
+       "why": "<z>技术</z>は「技術」で意味が異なります。"
+      },
+      {
+       "t": "社会",
+       "ok": false,
+       "why": "<z>社会</z>は「社会」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　在不断变化。</z>（社会は常に変化している）",
+     "opts": [
+      {
+       "t": "社会",
+       "ok": true,
+       "why": "正解。人々の共同体は<z>社会</z>です。"
+      },
+      {
+       "t": "工业",
+       "ok": false,
+       "why": "<z>工业</z>は「工業」で文意に合いません。"
+      },
+      {
+       "t": "农业",
+       "ok": false,
+       "why": "<z>农业</z>は「農業」で意味が異なります。"
+      },
+      {
+       "t": "技术",
+       "ok": false,
+       "why": "<z>技术</z>は「技術」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>交通</z>」の意味は？",
+     "opts": [
+      {
+       "t": "交通",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "発展する",
+       "ok": false,
+       "why": "これは<z>发展</z>です。"
+      },
+      {
+       "t": "競争する、競争",
+       "ok": false,
+       "why": "これは<z>竞争</z>です。"
+      },
+      {
+       "t": "工業",
+       "ok": false,
+       "why": "これは<z>工业</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>教育</z>」の意味は？",
+     "opts": [
+      {
+       "t": "教育",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "技術",
+       "ok": false,
+       "why": "これは<z>技术</z>です。"
+      },
+      {
+       "t": "交通",
+       "ok": false,
+       "why": "これは<z>交通</z>です。"
+      },
+      {
+       "t": "工業",
+       "ok": false,
+       "why": "これは<z>工业</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>这个行业的 ____ 很激烈。</z>",
+     "opts": [
+      {
+       "t": "竞争",
+       "ok": true,
+       "why": "正解。この業界は競争が激しいです。"
+      },
+      {
+       "t": "技术",
+       "ok": false,
+       "why": "<z>技术</z>は「技術」で、ここには合いません。"
+      },
+      {
+       "t": "发展",
+       "ok": false,
+       "why": "<z>发展</z>は「発展する」で、ここには合いません。"
+      },
+      {
+       "t": "交通",
+       "ok": false,
+       "why": "<z>交通</z>は「交通」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>这里的 ____ 很方便。</z>",
+     "opts": [
+      {
+       "t": "交通",
+       "ok": true,
+       "why": "正解。ここは交通が便利です。"
+      },
+      {
+       "t": "社会",
+       "ok": false,
+       "why": "<z>社会</z>は「社会」で、ここには合いません。"
+      },
+      {
+       "t": "发展",
+       "ok": false,
+       "why": "<z>发展</z>は「発展する」で、ここには合いません。"
+      },
+      {
+       "t": "技术",
+       "ok": false,
+       "why": "<z>技术</z>は「技術」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "很",
+     "这个行业",
+     "激烈",
+     "的竞争"
+    ],
+    "answer": "这个行业的竞争很激烈。",
+    "why": "<z>竞争</z>は名詞にも動詞にもなります。ここは名詞です。"
+   },
+   "writing": [
+    {
+     "prompt": "中国文化にとても興味があります。",
+     "answer": "我对中国文化很有兴趣。"
+    },
+    {
+     "prompt": "地下鉄ができてから、ここの交通は便利になりました。",
+     "answer": "有了地铁以后，这里的交通方便多了。"
+    }
+   ]
+  },
+  "90": {
+   "vocab": [
+    "经济",
+    "政府",
+    "法律",
+    "环保",
+    "节能",
+    "作用",
+    "积极",
+    "禁止"
+   ],
+   "grammar": [],
+   "mc": [
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>法律</z>」の意味は？",
+     "opts": [
+      {
+       "t": "法律",
+       "ok": true,
+       "why": "正解。国が定める決まり。例：<z>我们要遵守法律</z>（法律を守らねばならない）。"
+      },
+      {
+       "t": "政府",
+       "ok": false,
+       "why": "これは<z>政府</z>です。"
+      },
+      {
+       "t": "経済",
+       "ok": false,
+       "why": "これは<z>经济</z>です。"
+      },
+      {
+       "t": "環境保護",
+       "ok": false,
+       "why": "これは<z>环保</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>节能</z>」の意味は？",
+     "opts": [
+      {
+       "t": "省エネ・エネルギー節約",
+       "ok": true,
+       "why": "正解。エネルギーを節約すること。例：<z>这种灯很节能</z>（この照明は省エネだ）。"
+      },
+      {
+       "t": "環境保護",
+       "ok": false,
+       "why": "これは<z>环保</z>です。"
+      },
+      {
+       "t": "政府",
+       "ok": false,
+       "why": "これは<z>政府</z>です。"
+      },
+      {
+       "t": "法律",
+       "ok": false,
+       "why": "これは<z>法律</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　发布了新政策。</z>（政府は新政策を発表した）",
+     "opts": [
+      {
+       "t": "政府",
+       "ok": true,
+       "why": "正解。政策を出す行政機関は<z>政府</z>です。"
+      },
+      {
+       "t": "法律",
+       "ok": false,
+       "why": "<z>法律</z>は「法律」で、発表する主体ではありません。"
+      },
+      {
+       "t": "经济",
+       "ok": false,
+       "why": "<z>经济</z>は「経済」で意味が異なります。"
+      },
+      {
+       "t": "节能",
+       "ok": false,
+       "why": "<z>节能</z>は「省エネ」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に最も適切な語は？\n<z>　发展很快。</z>（経済の発展は速い）",
+     "opts": [
+      {
+       "t": "经济",
+       "ok": true,
+       "why": "正解。生産や消費の活動は<z>经济</z>です。"
+      },
+      {
+       "t": "环保",
+       "ok": false,
+       "why": "<z>环保</z>は「環境保護」で文意に合いません。"
+      },
+      {
+       "t": "法律",
+       "ok": false,
+       "why": "<z>法律</z>は「法律」で意味が異なります。"
+      },
+      {
+       "t": "政府",
+       "ok": false,
+       "why": "<z>政府</z>は「政府」で意味が異なります。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>作用</z>」の意味は？",
+     "opts": [
+      {
+       "t": "働き、役割",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "積極的だ、前向きだ",
+       "ok": false,
+       "why": "これは<z>积极</z>です。"
+      },
+      {
+       "t": "政府",
+       "ok": false,
+       "why": "これは<z>政府</z>です。"
+      },
+      {
+       "t": "省エネ",
+       "ok": false,
+       "why": "これは<z>节能</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・意味",
+     "q": "「<z>积极</z>」の意味は？",
+     "opts": [
+      {
+       "t": "積極的だ、前向きだ",
+       "ok": true,
+       "why": "正解。"
+      },
+      {
+       "t": "省エネ",
+       "ok": false,
+       "why": "これは<z>节能</z>です。"
+      },
+      {
+       "t": "法律",
+       "ok": false,
+       "why": "これは<z>法律</z>です。"
+      },
+      {
+       "t": "働き、役割",
+       "ok": false,
+       "why": "これは<z>作用</z>です。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>这里 ____ 拍照。</z>",
+     "opts": [
+      {
+       "t": "禁止",
+       "ok": true,
+       "why": "正解。ここは撮影禁止です。"
+      },
+      {
+       "t": "作用",
+       "ok": false,
+       "why": "<z>作用</z>は「働き、役割」で、ここには合いません。"
+      },
+      {
+       "t": "环保",
+       "ok": false,
+       "why": "<z>环保</z>は「環境保護」で、ここには合いません。"
+      },
+      {
+       "t": "积极",
+       "ok": false,
+       "why": "<z>积极</z>は「積極的だ、前向きだ」で、ここには合いません。"
+      }
+     ]
+    },
+    {
+     "tag": "語彙・使い分け",
+     "q": "空欄に入る語は？\n<z>这个功能起到了很大的 ____ 。</z>",
+     "opts": [
+      {
+       "t": "作用",
+       "ok": true,
+       "why": "正解。この機能は大きな役割を果たしました。"
+      },
+      {
+       "t": "禁止",
+       "ok": false,
+       "why": "<z>禁止</z>は「禁止する」で、ここには合いません。"
+      },
+      {
+       "t": "经济",
+       "ok": false,
+       "why": "<z>经济</z>は「経済」で、ここには合いません。"
+      },
+      {
+       "t": "积极",
+       "ok": false,
+       "why": "<z>积极</z>は「積極的だ、前向きだ」で、ここには合いません。"
+      }
+     ]
+    }
+   ],
+   "drag": {
+    "words": [
+     "参加了",
+     "大家都",
+     "讨论",
+     "很积极地"
+    ],
+    "answer": "大家都很积极地参加了讨论。",
+    "why": "<z>积极</z>＋<z>地</z>で動詞を修飾します。"
+   },
+   "writing": [
+    {
+     "prompt": "この照明は省エネだ。",
+     "answer": "这种灯很节能。"
+    },
+    {
+     "prompt": "図書館では大きな声で話すことが禁止されています。",
+     "answer": "图书馆禁止大声说话。"
+    }
+   ]
+  }
+ },
+ "listening": {
+  "8": {
+   "audio": "audio/day8.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "F",
+     "zh": "你在整理什么呢？",
+     "pinyin": "Nǐ zài zhěnglǐ shénme ne?",
+     "ja": "何を整理しているの？"
+    },
+    {
+     "spk": "M",
+     "zh": "我在准备下周的计划，一边检查资料一边整理笔记。",
+     "pinyin": "Wǒ zài zhǔnbèi xiàzhōu de jìhuà, yìbiān jiǎnchá zīliào yìbiān zhěnglǐ bǐjì.",
+     "ja": "来週の計画を準備していて、資料をチェックしながらノートを整理してるんだ。"
+    },
+    {
+     "spk": "F",
+     "zh": "因为时间比较紧，所以你打算怎么选择重点？",
+     "pinyin": "Yīnwèi shíjiān bǐjiào jǐn, suǒyǐ nǐ dǎsuàn zěnme xuǎnzé zhòngdiǎn?",
+     "ja": "時間が結構タイトだから、どうやって重点を選ぶつもり？"
+    },
+    {
+     "spk": "M",
+     "zh": "虽然时间不多，但是我打算先把最重要的部分检查完，剩下的以后再说。",
+     "pinyin": "Suīrán shíjiān bù duō, dànshì wǒ dǎsuàn xiān bǎ zuì zhòngyào de bùfen jiǎnchá wán, shèngxià de yǐhòu zài shuō.",
+     "ja": "時間は多くないけど、まず一番重要な部分をチェックし終えて、残りは後で考えるつもりだよ。"
+    }
+   ],
+   "q": {
+    "zh": "男的现在在做什么？",
+    "pinyin": "Nán de xiànzài zài zuò shénme?",
+    "ja": "（質問）男性は今、何をしていますか？"
+   },
+   "opts": [
+    "一边检查资料一边整理笔记",
+    "一边开会一边写计划",
+    "已经把所有资料都整理完了",
+    "决定不做这个计划了"
+   ],
+   "answerIdx": 0,
+   "explain": "冒頭で男性が「一边检查资料一边整理笔记」と説明しています。「一边〜一边〜」は同時に行う動作を表す構文です。"
+  },
+  "9": {
+   "audio": "audio/day9.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "最近工作比较忙，我都想放弃学中文了。",
+     "pinyin": "Zuìjìn gōngzuò bǐjiào máng, wǒ dōu xiǎng fàngqì xué Zhōngwén le.",
+     "ja": "最近仕事が結構忙しくて、中国語の勉強を諦めたいくらいだよ。"
+    },
+    {
+     "spk": "F",
+     "zh": "别放弃啊，只要你坚持每天学一点，就能看到进步。",
+     "pinyin": "Bié fàngqì a, zhǐyào nǐ jiānchí měitiān xué yìdiǎn, jiù néng kàndào jìnbù.",
+     "ja": "諦めないで、毎日少しずつ続けさえすれば、進歩が見えてくるよ。"
+    },
+    {
+     "spk": "M",
+     "zh": "可是如果太忙的话，我就没时间尝试新的学习方法了。",
+     "pinyin": "Kěshì rúguǒ tài máng dehuà, wǒ jiù méi shíjiān chángshì xīn de xuéxí fāngfǎ le.",
+     "ja": "でももし忙しすぎたら、新しい勉強法を試す時間がなくなっちゃうよ。"
+    },
+    {
+     "spk": "F",
+     "zh": "只有坚持下去，才能有比较好的效果，加油！",
+     "pinyin": "Zhǐyǒu jiānchí xiàqù, cái néng yǒu bǐjiào hǎo de xiàoguǒ, jiāyóu!",
+     "ja": "続けてこそ、まあまあの効果が出るんだよ、頑張って！"
+    }
+   ],
+   "q": {
+    "zh": "女的建议男的怎么做？",
+    "pinyin": "Nǚ de jiànyì nán de zěnme zuò?",
+    "ja": "（質問）女性は男性にどうするよう勧めていますか？"
+   },
+   "opts": [
+    "放弃学中文",
+    "坚持每天学习",
+    "换一个新的学习方法",
+    "先把工作辞掉"
+   ],
+   "answerIdx": 1,
+   "explain": "女性は繰り返し「坚持」を勧めています（只要坚持…／只有坚持下去…）。新しい方法を試す話は男性の発言で、女性の助言ではありません。"
+  },
+  "10": {
+   "audio": "audio/day10.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "关于这次的项目，我想提醒大家几点。",
+     "pinyin": "Guānyú zhè cì de xiàngmù, wǒ xiǎng tíxǐng dàjiā jǐ diǎn.",
+     "ja": "今回のプロジェクトについて、皆さんにいくつか注意してほしい点があります。"
+    },
+    {
+     "spk": "M",
+     "zh": "第一，做事情要根据客户的要求来安排计划，不能只按照自己的想法做。",
+     "pinyin": "Dì yī, zuò shìqing yào gēnjù kèhù de yāoqiú lái ānpái jìhuà, bù néng zhǐ ànzhào zìjǐ de xiǎngfǎ zuò.",
+     "ja": "第一に、物事は客の要求に基づいて計画を立てるべきで、自分の考えだけで進めてはいけません。"
+    },
+    {
+     "spk": "M",
+     "zh": "第二，不管遇到什么困难，都要先跟同事讨论，不要自己一个人解决。",
+     "pinyin": "Dì èr, bùguǎn yù dào shénme kùnnan, dōu yào xiān gēn tóngshì tǎolùn, búyào zìjǐ yí ge rén jiějué.",
+     "ja": "第二に、どんな困難にぶつかっても、まず同僚と話し合うべきで、自分一人で解決してはいけません。"
+    },
+    {
+     "spk": "M",
+     "zh": "第三，这个项目不但是一次工作，而且是大家积累经验的好机会。",
+     "pinyin": "Dì sān, zhège xiàngmù búdàn shì yí cì gōngzuò, érqiě shì dàjiā jīlěi jīngyàn de hǎo jīhuì.",
+     "ja": "第三に、このプロジェクトは単なる仕事であるだけでなく、皆にとって経験を積む良い機会でもあります。"
+    },
+    {
+     "spk": "M",
+     "zh": "除了完成任务以外，还要注意跟客户保持联系，及时解决问题。",
+     "pinyin": "Chúle wánchéng rènwu yǐwài, hái yào zhùyì gēn kèhù bǎochí liánxì, jíshí jiějué wèntí.",
+     "ja": "タスクを完了させること以外に、客との連絡を保ち、タイムリーに問題を解決することにも注意してください。"
+    }
+   ],
+   "q": {
+    "zh": "下面哪一点不是说话人的要求？",
+    "pinyin": "Xiàmiàn nǎ yì diǎn bú shì shuōhuàrén de yāoqiú?",
+    "ja": "（質問）次のうち、話し手の要求ではないものはどれですか？"
+   },
+   "opts": [
+    "根据客户的要求做计划",
+    "遇到困难要自己解决，不用讨论",
+    "把这次项目当作积累经验的机会",
+    "除了完成任务，还要及时解决问题、保持联系"
+   ],
+   "answerIdx": 1,
+   "explain": "話し手は「不管遇到什么困难，都要先跟同事讨论，不要自己一个人解决」と言っており、B はちょうどその逆の内容です。他の3つはすべて話し手が実際に述べた要求です。"
+  },
+  "11": {
+   "audio": "audio/day11.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "我下个月就要换工作了，新公司的工作环境和条件都不错。",
+     "pinyin": "Wǒ xià ge yuè jiùyào huàn gōngzuò le, xīn gōngsī de gōngzuò huánjìng hé tiáojiàn dōu búcuò.",
+     "ja": "私は来月転職することになっていて、新しい会社の仕事環境や条件はどちらも悪くありません。"
+    },
+    {
+     "zh": "虽然我对新的工作内容很有兴趣，但还不太了解具体的目的是什么，所以打算先了解清楚，再决定怎么安排时间。",
+     "pinyin": "Suīrán wǒ duì xīn de gōngzuò nèiróng hěn yǒu xìngqù, dàn hái bú tài liǎojiě jùtǐ de mùdì shì shénme, suǒyǐ dǎsuàn xiān liǎojiě qīngchu, zài juédìng zěnme ānpái shíjiān.",
+     "ja": "新しい仕事の内容にはとても興味がありますが、具体的な目的がまだあまり分かっていないので、まず詳しく理解してから、時間の使い方を決めるつもりです。"
+    }
+   ],
+   "judge": {
+    "zh": "他现在还不清楚新工作具体的目的。",
+    "pinyin": "Tā xiànzài hái bù qīngchu xīn gōngzuò jùtǐ de mùdì.",
+    "ja": "（言い換え）彼は今、新しい仕事の具体的な目的がまだはっきり分かっていない。"
+   },
+   "answer": true,
+   "explain": "「还不太了解具体的目的是什么」とはっきり言っています。「快〜了」ではなく「就要〜了」（来月にはもう転職）である点にも注意。"
+  },
+  "12": {
+   "audio": "audio/day12.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "F",
+     "zh": "你看了我发的报告内容了吗？",
+     "pinyin": "Nǐ kàn le wǒ fā de bàogào nèiróng le ma?",
+     "ja": "私が送った報告書の内容、もう見ましたか？"
+    },
+    {
+     "spk": "M",
+     "zh": "刚才看了，写得不错，但是重点不太清楚，跟结论的关系有点儿乱。",
+     "pinyin": "Gāngcái kàn le, xiě de búcuò, dànshì zhòngdiǎn bú tài qīngchu, gēn jiélùn de guānxì yǒudiǎnr luàn.",
+     "ja": "さっき見ました、よく書けていますが、要点があまりはっきりせず、結論との関係が少し分かりにくいです。"
+    },
+    {
+     "spk": "F",
+     "zh": "是吗？我刚发出去就发现少了一部分原因分析，又改了一次。",
+     "pinyin": "Shì ma? Wǒ gāng fā chūqù jiù fāxiàn shǎo le yí bùfen yuányīn fēnxī, yòu gǎi le yí cì.",
+     "ja": "そうですか？送ったばかりのときに、原因分析の一部が抜けているのに気づいて、もう一度直したんです。"
+    },
+    {
+     "spk": "M",
+     "zh": "那你把新版本再发我一下吧。",
+     "pinyin": "Nà nǐ bǎ xīn bǎnběn zài fā wǒ yíxià ba.",
+     "ja": "では新しいバージョンをもう一度送ってください。"
+    }
+   ],
+   "q": {
+    "zh": "男的觉得报告有什么问题？",
+    "pinyin": "Nán de juéde bàogào yǒu shénme wèntí?",
+    "ja": "（質問）男性は報告書にどんな問題があると思っていますか？"
+   },
+   "opts": [
+    "内容太少",
+    "重点不太清楚",
+    "发得太晚",
+    "语法错误太多"
+   ],
+   "answerIdx": 1,
+   "explain": "男性は「重点不太清楚，跟结论的关系有点儿乱」と言っています。原因分析が抜けていたのは女性が自分で直した点です。"
+  },
+  "13": {
+   "audio": "audio/day13.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "经理对我这个月的工作态度和能力怎么评价？",
+     "pinyin": "Jīnglǐ duì wǒ zhège yuè de gōngzuò tàidu hé nénglì zěnme píngjià?",
+     "ja": "マネージャーは、今月の私の仕事の姿勢や能力についてどう評価していましたか？"
+    },
+    {
+     "spk": "F",
+     "zh": "他说你做事的速度不错，但是质量还是需要提高，方法上可以再试试新的。",
+     "pinyin": "Tā shuō nǐ zuòshì de sùdù búcuò, dànshì zhìliàng háishi xūyào tígāo, fāngfǎ shàng kěyǐ zài shìshi xīn de.",
+     "ja": "仕事のスピードは悪くないけれど、質はまだ向上させる必要があって、やり方も新しいものを試してみたらいいと言っていました。"
+    },
+    {
+     "spk": "M",
+     "zh": "那我应该先改进速度还是质量？",
+     "pinyin": "Nà wǒ yīnggāi xiān gǎijìn sùdù háishi zhìliàng?",
+     "ja": "では私はまずスピードと質、どちらを改善すべきですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "先把质量做好，才能真正让客户满意。",
+     "pinyin": "Xiān bǎ zhìliàng zuò hǎo, cái néng zhēnzhèng ràng kèhù mǎnyì.",
+     "ja": "まず質をしっかりさせてこそ、初めて本当にお客様を満足させられます。"
+    }
+   ],
+   "q": {
+    "zh": "经理认为他应该先做什么？",
+    "pinyin": "Jīnglǐ rènwéi tā yīnggāi xiān zuò shénme?",
+    "ja": "（質問）マネージャーは彼がまず何をすべきだと考えていますか？"
+   },
+   "opts": [
+    "先提高速度",
+    "先改进方法",
+    "先提高质量",
+    "先改变态度"
+   ],
+   "answerIdx": 2,
+   "explain": "「先把质量做好，才能真正让客户满意」という「才」構文がポイントです。「质を先に」という結論を導いています。"
+  },
+  "14": {
+   "audio": "audio/day14.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "这家餐厅的服务很好，价格也不算贵，可是菜里放的辣椒有点儿多，味道有点儿辣。",
+     "pinyin": "Zhè jiā cāntīng de fúwù hěn hǎo, jiàgé yě bú suàn guì, kěshì cài lǐ fàng de làjiāo yǒudiǎnr duō, wèidào yǒudiǎnr là.",
+     "ja": "このレストランはサービスが良く、値段もそれほど高くありませんが、料理に入っている唐辛子が少し多くて、味が少し辛いです。"
+    },
+    {
+     "zh": "我跟服务员说了以后，他们很快就帮我调整了，换了一份不辣的。",
+     "pinyin": "Wǒ gēn fúwùyuán shuō le yǐhòu, tāmen hěn kuài jiù bāng wǒ tiáozhěng le, huàn le yí fèn bú là de.",
+     "ja": "店員に伝えたら、すぐに調整してくれて、辛くないものに換えてくれました。"
+    }
+   ],
+   "judge": {
+    "zh": "服务员没有帮他调整菜的味道。",
+    "pinyin": "Fúwùyuán méiyǒu bāng tā tiáozhěng cài de wèidào.",
+    "ja": "（言い換え）店員は彼の料理の味を調整してくれなかった。"
+   },
+   "answer": false,
+   "explain": "「他们很快就帮我调整了」と、すぐに対応してくれたと言っています。「就」は「すぐに」という早さを表します。"
+  },
+  "15": {
+   "audio": "audio/day15.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "客户已经到会议室了，资料你准备好了吗？",
+     "pinyin": "Kèhù yǐjīng dào huìyìshì le, zīliào nǐ zhǔnbèi hǎo le ma?",
+     "ja": "お客様はもう会議室に着きましたが、資料は準備できましたか？"
+    },
+    {
+     "spk": "F",
+     "zh": "差点儿忘了，好像还有一份放在同事那里，我现在去拿。",
+     "pinyin": "Chàdiǎnr wàng le, hǎoxiàng hái yǒu yí fèn fàng zài tóngshì nàlǐ, wǒ xiànzài qù ná.",
+     "ja": "危うく忘れるところでした、まだ1部同僚のところにあるみたいなので、今取りに行きます。"
+    },
+    {
+     "spk": "M",
+     "zh": "快点儿，经理一点儿也不喜欢客户等太久。",
+     "pinyin": "Kuài diǎnr, jīnglǐ yìdiǎnr yě bù xǐhuan kèhù děng tài jiǔ.",
+     "ja": "早くしてください、マネージャーはお客様を長く待たせるのが少しも好きではありません。"
+    },
+    {
+     "spk": "F",
+     "zh": "好，我马上回来。",
+     "pinyin": "Hǎo, wǒ mǎshàng huílái.",
+     "ja": "分かりました、すぐ戻ります。"
+    }
+   ],
+   "q": {
+    "zh": "女的现在要去做什么？",
+    "pinyin": "Nǚ de xiànzài yào qù zuò shénme?",
+    "ja": "（質問）女性は今、何をしに行きますか？"
+   },
+   "opts": [
+    "去接客户",
+    "去拿资料",
+    "去找经理",
+    "去开会议室的门"
+   ],
+   "answerIdx": 1,
+   "explain": "「还有一份放在同事那里，我现在去拿」と言っています。忘れそうになっていたのは資料自体です。"
+  },
+  "16": {
+   "audio": "audio/day16.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "F",
+     "zh": "办签证的时候，是不是必须带护照和身份证？",
+     "pinyin": "Bàn qiānzhèng de shíhou, shì bu shì bìxū dài hùzhào hé shēnfènzhèng?",
+     "ja": "ビザを申請するとき、パスポートと身分証明書を必ず持っていく必要がありますか？"
+    },
+    {
+     "spk": "M",
+     "zh": "对，你得带这两样，另外可能还要一份地址证明。",
+     "pinyin": "Duì, nǐ děi dài zhè liǎng yàng, lìngwài kěnéng hái yào yí fèn dìzhǐ zhèngmíng.",
+     "ja": "はい、この2つは持っていかないといけません、それから住所証明も1部必要かもしれません。"
+    },
+    {
+     "spk": "F",
+     "zh": "那合同和报告需要吗？",
+     "pinyin": "Nà hétong hé bàogào xūyào ma?",
+     "ja": "では契約書や報告書は必要ですか？"
+    },
+    {
+     "spk": "M",
+     "zh": "那个不需要，你应该不用带工作上的资料去。",
+     "pinyin": "Nàge bù xūyào, nǐ yīnggāi bú yòng dài gōngzuò shàng de zīliào qù.",
+     "ja": "それは不要です、仕事の資料は持っていく必要はないはずです。"
+    }
+   ],
+   "q": {
+    "zh": "根据男的说的，办签证一定要带什么？",
+    "pinyin": "Gēnjù nán de shuō de, bàn qiānzhèng yídìng yào dài shénme?",
+    "ja": "（質問）男性の話によると、ビザ申請には必ず何を持っていく必要がありますか？"
+   },
+   "opts": [
+    "合同和报告",
+    "护照和身份证",
+    "只要身份证",
+    "只要地址证明"
+   ],
+   "answerIdx": 1,
+   "explain": "「你得带这两样」＝護照と身分証のことです。合同・報告は不要と言っています。"
+  },
+  "17": {
+   "audio": "audio/day17.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "我今天想点外卖，可是手机的定位让我很麻烦，一直找不到准确的地址。",
+     "pinyin": "Wǒ jīntiān xiǎng diǎn wàimài, kěshì shǒujī de dìngwèi ràng wǒ hěn máfan, yìzhí zhǎo bu dào zhǔnquè de dìzhǐ.",
+     "ja": "今日デリバリーを頼みたかったのですが、携帯の位置情報のせいで面倒なことになり、ずっと正確な住所が見つかりませんでした。"
+    },
+    {
+     "zh": "后来我扫了二维码，把地址直接给了外卖员，他很快就把餐送到了。",
+     "pinyin": "Hòulái wǒ sǎo le èrwéimǎ, bǎ dìzhǐ zhíjiē gěi le wàimàiyuán, tā hěn kuài jiù bǎ cān sòngdào le.",
+     "ja": "その後QRコードをスキャンして、住所を直接配達員に渡したら、彼はすぐに料理を届けてくれました。"
+    }
+   ],
+   "judge": {
+    "zh": "外卖员根据地址把餐送到了他那里。",
+    "pinyin": "Wàimàiyuán gēnjù dìzhǐ bǎ cān sòngdào le tā nàlǐ.",
+    "ja": "（言い換え）配達員は住所に基づいて料理を彼のところに届けた。"
+   },
+   "answer": true,
+   "explain": "「把地址直接给了外卖员，他很快就把餐送到了」とその通りの流れです。「让」は使役（位置情報のせいで面倒になった）を表します。"
+  },
+  "18": {
+   "audio": "audio/day18.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "你今天怎么迟到了？",
+     "pinyin": "Nǐ jīntiān zěnme chídào le?",
+     "ja": "今日はどうして遅刻したんですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "我打车过来，路上堵车堵了半个小时。对我来说，这种早上真是太麻烦了。",
+     "pinyin": "Wǒ dǎchē guòlái, lùshang dǔchē dǔ le bàn ge xiǎoshí. Duì wǒ lái shuō, zhè zhǒng zǎoshang zhēnshi tài máfan le.",
+     "ja": "タクシーで来たのですが、途中で30分渋滞にはまりました。私にとって、こういう朝は本当に面倒です。"
+    },
+    {
+     "spk": "M",
+     "zh": "关于这件事，你可以跟经理说一下，看看能不能晚一点开会。",
+     "pinyin": "Guānyú zhè jiàn shì, nǐ kěyǐ gēn jīnglǐ shuō yíxià, kànkan néng bu néng wǎn yìdiǎn kāihuì.",
+     "ja": "この件について、マネージャーに話して、会議を少し遅く始められないか聞いてみてもいいですよ。"
+    },
+    {
+     "spk": "F",
+     "zh": "好，那我现在就去跟她说。",
+     "pinyin": "Hǎo, nà wǒ xiànzài jiù qù gēn tā shuō.",
+     "ja": "分かりました、では今すぐ彼女に話しに行きます。"
+    }
+   ],
+   "q": {
+    "zh": "女的今天为什么迟到？",
+    "pinyin": "Nǚ de jīntiān wèishénme chídào?",
+    "ja": "（質問）女性は今日どうして遅刻したのですか？"
+   },
+   "opts": [
+    "加班太晚",
+    "出差没赶上车",
+    "堵车",
+    "忘了开会时间"
+   ],
+   "answerIdx": 2,
+   "explain": "「路上堵车堵了半个小时」とはっきり言っています。"
+  },
+  "19": {
+   "audio": "audio/day19.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "F",
+     "zh": "你报名参加下个月的考试了吗？",
+     "pinyin": "Nǐ bàomíng cānjiā xià ge yuè de kǎoshì le ma?",
+     "ja": "来月の試験に申し込みましたか？"
+    },
+    {
+     "spk": "M",
+     "zh": "报了。为了考好，我最近每天都复习，还提前预习新的内容。",
+     "pinyin": "Bào le. Wèile kǎo hǎo, wǒ zuìjìn měitiān dōu fùxí, hái tíqián yùxí xīn de nèiróng.",
+     "ja": "申し込みました。良い結果を出すために、最近毎日復習していて、新しい内容も前もって予習しています。"
+    },
+    {
+     "spk": "F",
+     "zh": "由于你的发音一直不错，听力和口语应该没问题。",
+     "pinyin": "Yóuyú nǐ de fāyīn yìzhí búcuò, tīnglì hé kǒuyǔ yīnggāi méi wèntí.",
+     "ja": "あなたの発音はずっと悪くないので、リスニングと会話は問題ないはずです。"
+    },
+    {
+     "spk": "M",
+     "zh": "因此我现在主要练习写作部分。",
+     "pinyin": "Yīncǐ wǒ xiànzài zhǔyào liànxí xiězuò bùfen.",
+     "ja": "だから今は主に作文の部分を練習しています。"
+    }
+   ],
+   "q": {
+    "zh": "男的现在主要在练习什么？",
+    "pinyin": "Nán de xiànzài zhǔyào zài liànxí shénme?",
+    "ja": "（質問）男性は今、主に何を練習していますか？"
+   },
+   "opts": [
+    "发音",
+    "听力",
+    "写作",
+    "预习新内容"
+   ],
+   "answerIdx": 2,
+   "explain": "「因此我现在主要练习写作部分」とはっきり言っています。発音・聴解はすでに大丈夫と言われた部分です。"
+  },
+  "20": {
+   "audio": "audio/day20.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "很多人学习中文的时候，只重视语法和词语，不过阅读和听力也一样重要。",
+     "pinyin": "Hěn duō rén xuéxí Zhōngwén de shíhou, zhǐ zhòngshì yǔfǎ hé cíyǔ, búguò yuèdú hé tīnglì yě yíyàng zhòngyào.",
+     "ja": "多くの人は中国語を勉強するとき、文法と語句だけを重視しますが、読解とリスニングも同じくらい重要です。"
+    },
+    {
+     "spk": "M",
+     "zh": "做阅读的时候，要注意句子的意思，而且要多留意常见的词语搭配。",
+     "pinyin": "Zuò yuèdú de shíhou, yào zhùyì jùzi de yìsi, érqiě yào duō liúyì chángjiàn de cíyǔ dāpèi.",
+     "ja": "読解問題をやるときは、文の意味に注意し、さらによく使われる語句の組み合わせにも気を配る必要があります。"
+    },
+    {
+     "spk": "M",
+     "zh": "听力部分，光靠语法知识是不够的，得多听多练。",
+     "pinyin": "Tīnglì bùfen, guāng kào yǔfǎ zhīshi shì bú gòu de, děi duō tīng duō liàn.",
+     "ja": "リスニングの部分は、文法知識だけに頼るのでは不十分で、たくさん聞いてたくさん練習しなければなりません。"
+    },
+    {
+     "spk": "M",
+     "zh": "另外，考试前不要只做新题，也要把以前错过的题目再看一遍。",
+     "pinyin": "Lìngwài, kǎoshì qián búyào zhǐ zuò xīn tí, yě yào bǎ yǐqián cuòguo de tímù zài kàn yí biàn.",
+     "ja": "それから、試験前は新しい問題だけをやるのではなく、以前間違えた問題ももう一度見返す必要があります。"
+    }
+   ],
+   "q": {
+    "zh": "关于这段话，下面哪一点是正确的？",
+    "pinyin": "Guānyú zhè duàn huà, xiàmiàn nǎ yì diǎn shì zhèngquè de?",
+    "ja": "（質問）この話について、次のうち正しいのはどれですか？"
+   },
+   "opts": [
+    "只要学好语法就够了",
+    "阅读只需要看懂句子结构",
+    "听力不能只靠语法知识",
+    "考试前不用再看以前的错题"
+   ],
+   "answerIdx": 2,
+   "explain": "「光靠语法知识是不够的，得多听多练」とはっきり言っています。他の3つは話の内容と逆です。"
+  },
+  "21": {
+   "audio": "audio/day21.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "翻译这份文件的时候，我觉得有些句子的意思很难理解，甚至查了字典也想象不出正确的翻译。",
+     "pinyin": "Fānyì zhè fèn wénjiàn de shíhou, wǒ juéde yǒuxiē jùzi de yìsi hěn nán lǐjiě, shènzhì chá le zìdiǎn yě xiǎngxiàng bu chū zhèngquè de fānyì.",
+     "ja": "この資料を翻訳しているとき、いくつかの文の意味がとても理解しにくく、辞書を調べてさえも正しい訳が思い浮かびませんでした。"
+    },
+    {
+     "zh": "尤其是最后一段，我犹豫了很久才写出来，但结果并不是很满意。",
+     "pinyin": "Yóuqí shì zuìhòu yí duàn, wǒ yóuyù le hěn jiǔ cái xiě chūlái, dàn jiéguǒ bìng bú shì hěn mǎnyì.",
+     "ja": "特に最後の段落は、長い間迷ってからやっと書き上げましたが、結果は決してあまり満足のいくものではありませんでした。"
+    }
+   ],
+   "judge": {
+    "zh": "他犹豫了很久才把最后一段翻译完。",
+    "pinyin": "Tā yóuyù le hěn jiǔ cái bǎ zuìhòu yí duàn fānyì wán.",
+    "ja": "（言い換え）彼は長い間迷って、やっと最後の段落を訳し終えた。"
+   },
+   "answer": true,
+   "explain": "「犹豫了很久才写出来」とそのまま一致します。「甚至」は「〜さえ」、「并不是」は「必ずしも〜ではない」を表します。"
+  },
+  "22": {
+   "audio": "audio/day22.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "F",
+     "zh": "你现在做事比以前主动多了，这个变化很明显。",
+     "pinyin": "Nǐ xiànzài zuòshì bǐ yǐqián zhǔdòng duō le, zhège biànhuà hěn míngxiǎn.",
+     "ja": "あなたは今、以前より物事に対して主体的になりましたね、この変化ははっきり分かります。"
+    },
+    {
+     "spk": "M",
+     "zh": "谢谢，以前我太依赖同事帮忙了，其实并没有必要什么都问别人。",
+     "pinyin": "Xièxie, yǐqián wǒ tài yīlài tóngshì bāngmáng le, qíshí bìng méiyǒu bìyào shénme dōu wèn biéren.",
+     "ja": "ありがとうございます、以前は同僚の助けに頼りすぎていました、実はなんでも人に聞く必要はなかったんです。"
+    },
+    {
+     "spk": "F",
+     "zh": "对了，这次的临时任务，是不是非你不可？",
+     "pinyin": "Duì le, zhè cì de línshí rènwu, shì bu shì fēi nǐ bùkě?",
+     "ja": "そういえば、今回の臨時タスクは、どうしてもあなたじゃないとダメなんですか？"
+    },
+    {
+     "spk": "M",
+     "zh": "也不是，不过经理一交代，我一听就答应了。",
+     "pinyin": "Yě bú shì, búguò jīnglǐ yì jiāodài, wǒ yì tīng jiù dāying le.",
+     "ja": "そういうわけでもないですが、マネージャーに言われて、聞いてすぐ引き受けたんです。"
+    }
+   ],
+   "q": {
+    "zh": "男的以前工作上有什么问题？",
+    "pinyin": "Nán de yǐqián gōngzuò shàng yǒu shénme wèntí?",
+    "ja": "（質問）男性は以前、仕事上どんな問題がありましたか？"
+   },
+   "opts": [
+    "做事不认真",
+    "太依赖同事",
+    "经常迟到",
+    "不喜欢临时任务"
+   ],
+   "answerIdx": 1,
+   "explain": "「以前我太依赖同事帮忙了」とはっきり言っています。臨時任務については「非你不可」ではないと否定しています。"
+  },
+  "23": {
+   "audio": "audio/day23.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "你昨天开会的时候好像突然不说话了，怎么回事？",
+     "pinyin": "Nǐ zuótiān kāihuì de shíhou hǎoxiàng tūrán bù shuōhuà le, zěnme huí shì?",
+     "ja": "昨日会議のとき、突然話さなくなったみたいでしたが、どうしたんですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "首先是电脑突然黑屏了，后来我才发现，原来是网络的问题。",
+     "pinyin": "Shǒuxiān shì diànnǎo tūrán hēipíng le, hòulái wǒ cái fāxiàn, yuánlái shì wǎngluò de wèntí.",
+     "ja": "まずパソコンが突然真っ暗になって、その後になってやっと、実はネットワークの問題だったと気づいたんです。"
+    },
+    {
+     "spk": "M",
+     "zh": "那你怎么继续说下去的？",
+     "pinyin": "Nà nǐ zěnme jìxù shuō xiàqù de?",
+     "ja": "それでどうやって話し続けたんですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "我先把重点记下来，等电脑修好了，最后再详细说明。",
+     "pinyin": "Wǒ xiān bǎ zhòngdiǎn jì xiàlái, děng diànnǎo xiū hǎo le, zuìhòu zài xiángxì shuōmíng.",
+     "ja": "まず要点を書き留めておいて、パソコンが直ってから、最後に詳しく説明しました。"
+    }
+   ],
+   "q": {
+    "zh": "女的昨天开会时遇到了什么问题？",
+    "pinyin": "Nǚ de zuótiān kāihuì shí yù dào le shénme wèntí?",
+    "ja": "（質問）女性は昨日、会議のときにどんな問題に遭いましたか？"
+   },
+   "opts": [
+    "忘了带电脑",
+    "电脑突然黑屏",
+    "说错了内容",
+    "会议室没有网络"
+   ],
+   "answerIdx": 1,
+   "explain": "「首先是电脑突然黑屏了」とはっきり言っています。ネットワークの問題だと分かったのはその後のことです。"
+  },
+  "24": {
+   "audio": "audio/day24.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "我今天写邮件的时候写错了一个词，而且没有说清楚意思，甚至同事看了也看不懂我想表达什么。",
+     "pinyin": "Wǒ jīntiān xiě yóujiàn de shíhou xiěcuò le yí ge cí, érqiě méiyǒu shuō qīngchu yìsi, shènzhì tóngshì kàn le yě kàn bu dǒng wǒ xiǎng biǎodá shénme.",
+     "ja": "今日メールを書いているときに単語を1つ書き間違えて、しかも意味をはっきり説明できておらず、同僚が読んでも私が何を伝えたいのか分からないほどでした。"
+    },
+    {
+     "zh": "不过我马上又发了一封，另外还打了个电话解释。",
+     "pinyin": "Búguò wǒ mǎshàng yòu fā le yì fēng, lìngwài hái dǎ le ge diànhuà jiěshì.",
+     "ja": "でもすぐにもう一通送って、さらに電話もかけて説明しました。"
+    }
+   ],
+   "judge": {
+    "zh": "他发现问题以后，只发了一封邮件，没有再做别的。",
+    "pinyin": "Tā fāxiàn wèntí yǐhòu, zhǐ fā le yì fēng yóujiàn, méiyǒu zài zuò biéde.",
+    "ja": "（言い換え）彼は問題に気づいた後、メールを1通送っただけで、他には何もしなかった。"
+   },
+   "answer": false,
+   "explain": "実際は「另外还打了个电话解释」と、メールだけでなく電話でも説明しています。"
+  },
+  "25": {
+   "audio": "audio/day25.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "F",
+     "zh": "由于时间不够，你的报告讲得有点儿快，因此大家没听清楚重点。",
+     "pinyin": "Yóuyú shíjiān bú gòu, nǐ de bàogào jiǎng de yǒudiǎnr kuài, yīncǐ dàjiā méi tīng qīngchu zhòngdiǎn.",
+     "ja": "時間が足りなかったせいで、あなたの報告は少し早口で、そのため皆さん要点を聞き取れませんでした。"
+    },
+    {
+     "spk": "M",
+     "zh": "是吗？那下次我应该多讲一点儿细节吗？",
+     "pinyin": "Shì ma? Nà xiàcì wǒ yīnggāi duō jiǎng yìdiǎnr xìjié ma?",
+     "ja": "そうですか？では次回はもう少し詳しく話した方がいいですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "不用，你只要说得慢一点儿就行，否则内容太多反而更乱。",
+     "pinyin": "Búyòng, nǐ zhǐyào shuō de màn yìdiǎnr jiù xíng, fǒuzé nèiróng tài duō fǎn'ér gèng luàn.",
+     "ja": "その必要はありません、ゆっくり話しさえすれば大丈夫です、さもないと内容が多すぎてかえって分かりにくくなります。"
+    },
+    {
+     "spk": "M",
+     "zh": "好，无论时间够不够，我都会注意速度。",
+     "pinyin": "Hǎo, wúlùn shíjiān gòu bu gòu, wǒ dōu huì zhùyì sùdù.",
+     "ja": "分かりました、時間が足りていようといまいと、スピードには気をつけます。"
+    }
+   ],
+   "q": {
+    "zh": "女的建议男的下次怎么做？",
+    "pinyin": "Nǚ de jiànyì nán de xiàcì zěnme zuò?",
+    "ja": "（質問）女性は男性に次回どうするよう勧めていますか？"
+   },
+   "opts": [
+    "多讲一点儿细节",
+    "说得慢一点儿",
+    "少讲一点儿内容",
+    "提前准备更多资料"
+   ],
+   "answerIdx": 1,
+   "explain": "「你只要说得慢一点儿就行」とはっきり言っています。細かい話を増やすのは男性が提案し、女性が不要と答えた案です。"
+  },
+  "26": {
+   "audio": "audio/day26.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "你到公司附近了吗？入口在哪里，我看一下地图。",
+     "pinyin": "Nǐ dào gōngsī fùjìn le ma? Rùkǒu zài nǎlǐ, wǒ kàn yíxià dìtú.",
+     "ja": "会社の近くまで来ましたか？入口はどこですか、地図をちょっと見てみます。"
+    },
+    {
+     "spk": "F",
+     "zh": "我在周围找着找着，找了半天才看到，其实入口离地铁站的距离很近。",
+     "pinyin": "Wǒ zài zhōuwéi zhǎozhe zhǎozhe, zhǎo le bàntiān cái kàndào, qíshí rùkǒu lí dìtiězhàn de jùlí hěn jìn.",
+     "ja": "周りを探しているうちに、しばらくしてやっと見つけました、実は入口は地下鉄駅からの距離がとても近いんです。"
+    },
+    {
+     "spk": "M",
+     "zh": "那出口呢？",
+     "pinyin": "Nà chūkǒu ne?",
+     "ja": "では出口は？"
+    },
+    {
+     "spk": "F",
+     "zh": "出口在另一边，你等我一下，我发个定位给你。",
+     "pinyin": "Chūkǒu zài lìng yì biān, nǐ děng wǒ yíxià, wǒ fā ge dìngwèi gěi nǐ.",
+     "ja": "出口は反対側です、ちょっと待ってください、位置情報を送りますね。"
+    }
+   ],
+   "q": {
+    "zh": "女的花了很长时间才找到什么？",
+    "pinyin": "Nǚ de huā le hěn cháng shíjiān cái zhǎodào shénme?",
+    "ja": "（質問）女性は長い時間をかけてやっと何を見つけましたか？"
+   },
+   "opts": [
+    "出口",
+    "入口",
+    "地铁站",
+    "会议室"
+   ],
+   "answerIdx": 1,
+   "explain": "「找着找着，找了半天才看到」の対象は入口です。「V着V着」は「〜しているうちに」を表します。"
+  },
+  "27": {
+   "audio": "audio/day27.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "我们公司从一楼到三楼都是办公室，会议室在二楼，离电梯很近。",
+     "pinyin": "Wǒmen gōngsī cóng yī lóu dào sān lóu dōu shì bàngōngshì, huìyìshì zài èr lóu, lí diàntī hěn jìn.",
+     "ja": "私たちの会社は1階から3階までがオフィスで、会議室は2階にあり、エレベーターからとても近いです。"
+    },
+    {
+     "zh": "你从大门进来以后，往里面走，会议室就在楼梯旁边，对面是洗手间。",
+     "pinyin": "Nǐ cóng dàmén jìnlái yǐhòu, wǎng lǐmiàn zǒu, huìyìshì jiù zài lóutī pángbiān, duìmiàn shì xǐshǒujiān.",
+     "ja": "正面玄関から入ったら、奥の方へ進んでください、会議室は階段のすぐそばにあり、向かいはお手洗いです。"
+    }
+   ],
+   "judge": {
+    "zh": "会议室离电梯很近，对面是洗手间。",
+    "pinyin": "Huìyìshì lí diàntī hěn jìn, duìmiàn shì xǐshǒujiān.",
+    "ja": "（言い換え）会議室はエレベーターから近く、向かいはお手洗いである。"
+   },
+   "answer": true,
+   "explain": "「会议室在二楼，离电梯很近」「对面是洗手间」とそのまま一致します。「楼梯旁边」（階段のそば）という位置も正確に押さえておきましょう。"
+  },
+  "28": {
+   "audio": "audio/day28.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "F",
+     "zh": "外面好像有很奇怪的声音，你听到了吗？",
+     "pinyin": "Wàimiàn hǎoxiàng yǒu hěn qíguài de shēngyīn, nǐ tīngdào le ma?",
+     "ja": "外で何か変な音がしているみたいですけど、聞こえましたか？"
+    },
+    {
+     "spk": "M",
+     "zh": "听到了，不过先别管，你的手机上有一条新消息，好像是客户发的邮件。",
+     "pinyin": "Tīngdào le, búguò xiān bié guǎn, nǐ de shǒujī shàng yǒu yì tiáo xīn xiāoxi, hǎoxiàng shì kèhù fā de yóujiàn.",
+     "ja": "聞こえました、でもまずそれは気にしないで、あなたの携帯に新着メッセージがありますよ、お客様からのメールみたいです。"
+    },
+    {
+     "spk": "F",
+     "zh": "那我先看看，电话就在桌子上，麻烦你帮我拿一下。",
+     "pinyin": "Nà wǒ xiān kànkan, diànhuà jiù zài zhuōzi shàng, máfan nǐ bāng wǒ ná yíxià.",
+     "ja": "じゃあまず見てみます、電話は机の上にあるので、悪いけど取ってもらえますか。"
+    },
+    {
+     "spk": "M",
+     "zh": "好，电话在这儿，你先回消息吧。",
+     "pinyin": "Hǎo, diànhuà zài zhèr, nǐ xiān huí xiāoxi ba.",
+     "ja": "はい、電話はここです、まずメッセージに返信してください。"
+    }
+   ],
+   "q": {
+    "zh": "男的提醒女的先做什么？",
+    "pinyin": "Nán de tíxǐng nǚ de xiān zuò shénme?",
+    "ja": "（質問）男性は女性にまず何をするよう伝えましたか？"
+   },
+   "opts": [
+    "先出去看看声音",
+    "先看客户的消息",
+    "先打电话给客户",
+    "先关掉电话"
+   ],
+   "answerIdx": 1,
+   "explain": "「先别管[声音]…你的手机上有一条新消息」と、まずメッセージを見るよう伝えています。"
+  },
+  "29": {
+   "audio": "audio/day29.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "那份表格你是用手机做的，还是用电脑做的？",
+     "pinyin": "Nà fèn biǎogé nǐ shì yòng shǒujī zuò de, háishi yòng diànnǎo zuò de?",
+     "ja": "あの表はスマホで作ったんですか、それともパソコンで作ったんですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "我今天早上在办公室用电脑做的，文件已经用微信发给你了。",
+     "pinyin": "Wǒ jīntiān zǎoshang zài bàngōngshì yòng diànnǎo zuò de, wénjiàn yǐjīng yòng Wēixìn fā gěi nǐ le.",
+     "ja": "今日の朝、オフィスでパソコンを使って作りました、ファイルはもうWeChatで送りましたよ。"
+    },
+    {
+     "spk": "M",
+     "zh": "我没看到，是不是发错了？",
+     "pinyin": "Wǒ méi kàndào, shì bu shì fācuò le?",
+     "ja": "見当たらないんですが、送り間違えたんじゃないですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "不会，我特意用中文写了文件名，你再找找看。",
+     "pinyin": "Bú huì, wǒ tèyì yòng Zhōngwén xiě le wénjiànmíng, nǐ zài zhǎozhao kàn.",
+     "ja": "そんなはずないです、わざわざ中国語でファイル名を書いたので、もう一度探してみてください。"
+    }
+   ],
+   "q": {
+    "zh": "女的是什么时候、在哪里做的表格？",
+    "pinyin": "Nǚ de shì shénme shíhou, zài nǎlǐ zuò de biǎogé?",
+    "ja": "（質問）女性はいつ、どこで表を作りましたか？"
+   },
+   "opts": [
+    "昨天晚上、在家里",
+    "今天早上、在办公室",
+    "今天下午、在路上",
+    "昨天早上、在公司外面"
+   ],
+   "answerIdx": 1,
+   "explain": "「我今天早上在办公室用电脑做的」とはっきり言っています。「時間→場所→動作」の語順もポイントです。"
+  },
+  "30": {
+   "audio": "audio/day30.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "在工作中，对客户要有礼貌，说话的时候也要有耐心，不能因为忙就马虎地回答问题。",
+     "pinyin": "Zài gōngzuò zhōng, duì kèhù yào yǒu lǐmào, shuōhuà de shíhou yě yào yǒu nàixīn, bù néng yīnwèi máng jiù mǎhu de huídá wèntí.",
+     "ja": "仕事の中では、お客様に対して礼儀正しくあるべきで、話すときも辛抱強くあるべきで、忙しいからといっていい加減に質問に答えてはいけません。"
+    },
+    {
+     "spk": "M",
+     "zh": "检查资料的时候，一定要仔细，认真地看清楚每一个数字，不要出错。",
+     "pinyin": "Jiǎnchá zīliào de shíhou, yídìng yào zǐxì, rènzhēn de kàn qīngchu měi yí ge shùzì, búyào chūcuò.",
+     "ja": "資料をチェックするときは、必ず丁寧に、真面目に一つ一つの数字をはっきり確認し、間違えないようにしなければなりません。"
+    },
+    {
+     "spk": "M",
+     "zh": "如果同事有困难，可以主动帮他一下，或者替他做一些简单的事情。",
+     "pinyin": "Rúguǒ tóngshì yǒu kùnnan, kěyǐ zhǔdòng bāng tā yíxià, huòzhě tì tā zuò yìxiē jiǎndān de shìqing.",
+     "ja": "もし同僚が困っていたら、自分から少し手伝ってあげたり、簡単な仕事を代わりにやってあげたりしてもいいでしょう。"
+    },
+    {
+     "spk": "M",
+     "zh": "对工作有兴趣，才能一直做得好。",
+     "pinyin": "Duì gōngzuò yǒu xìngqù, cái néng yìzhí zuò de hǎo.",
+     "ja": "仕事に興味を持ってこそ、ずっと良い成果を出し続けられます。"
+    }
+   ],
+   "q": {
+    "zh": "关于这段话，下面哪一点是错误的？",
+    "pinyin": "Guānyú zhè duàn huà, xiàmiàn nǎ yì diǎn shì cuòwù de?",
+    "ja": "（質問）この話について、次のうち間違っているのはどれですか？"
+   },
+   "opts": [
+    "对客户说话要有礼貌和耐心",
+    "检查资料的时候可以马虎一点儿",
+    "同事有困难时可以主动帮忙",
+    "对工作有兴趣才能做得好"
+   ],
+   "answerIdx": 1,
+   "explain": "話の中では「不能因为忙就马虎地回答问题」「一定要仔细」と、马虎（いい加減）であってはいけないと言っています。Bはその内容と正反対です。"
+  },
+  "31": {
+   "audio": "audio/day31.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "这次的培训内容其实并不简单，有些地方讲得不太清楚，也遇到了一些困难。",
+     "pinyin": "Zhè cì de péixùn nèiróng qíshí bìng bù jiǎndān, yǒuxiē dìfang jiǎng de bú tài qīngchu, yě yù dào le yìxiē kùnnan.",
+     "ja": "今回の研修内容は実は決して簡単ではなく、いくつかの部分の説明があまりはっきりせず、いくつか難しい点にもぶつかりました。"
+    },
+    {
+     "zh": "不过在实际应用方面，对我工作还是很有帮助的，主要学到了新的方法，整体来说我对这次培训是满意的。",
+     "pinyin": "Búguò zài shíjì yìngyòng fāngmiàn, duì wǒ gōngzuò háishi hěn yǒu bāngzhù de, zhǔyào xué dào le xīn de fāngfǎ, zhěngtǐ láishuō wǒ duì zhè cì péixùn shì mǎnyì de.",
+     "ja": "でも実際の応用面では、私の仕事にとってやはりとても役に立ちました、主に新しいやり方を学べたことです。全体として、今回の研修には満足しています。"
+    }
+   ],
+   "judge": {
+    "zh": "虽然培训中有一些不清楚、困难的地方，但他整体还是满意的。",
+    "pinyin": "Suīrán péixùn zhōng yǒu yìxiē bù qīngchu, kùnnan de dìfang, dàn tā zhěngtǐ háishi mǎnyì de.",
+    "ja": "（言い換え）研修の中にははっきりしない点や難しい点もあったが、彼は全体としてはやはり満足している。"
+   },
+   "answer": true,
+   "explain": "1文目の「讲得不太清楚」「遇到了一些困难」と、2文目の「对这次培训是满意的」を合わせた言い換えです。「対〜満足」「在〜方面」という今日の文法がどちらも使われています。"
+  },
+  "32": {
+   "audio": "audio/day32.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "F",
+     "zh": "你最近写作文的时候，是不是一般都用同样的句型？",
+     "pinyin": "Nǐ zuìjìn xiě zuòwén de shíhou, shì bu shì yìbān dōu yòng tóngyàng de jùxíng?",
+     "ja": "最近作文を書くとき、だいたいいつも同じ文型を使っていませんか？"
+    },
+    {
+     "spk": "M",
+     "zh": "对，我平时没有系统地学习语法，所以有时候用得不太正确。",
+     "pinyin": "Duì, wǒ píngshí méiyǒu xìtǒng de xuéxí yǔfǎ, suǒyǐ yǒu shíhou yòng de bú tài zhèngquè.",
+     "ja": "そうなんです、普段文法を体系的に勉強していないので、時々使い方があまり正しくないんです。"
+    },
+    {
+     "spk": "F",
+     "zh": "那你应该特别注意一下\"的、地、得\"这三个字的区别，实际考试里经常考。",
+     "pinyin": "Nà nǐ yīnggāi tèbié zhùyì yíxià \"de, de, de\" zhè sān ge zì de qūbié, shíjì kǎoshì lǐ jīngcháng kǎo.",
+     "ja": "それなら「的・地・得」この3つの字の違いに特に注意した方がいいですよ、実際の試験でもよく出題されます。"
+    },
+    {
+     "spk": "M",
+     "zh": "好，我这就去认真复习，免得再出现错误。",
+     "pinyin": "Hǎo, wǒ zhè jiù qù rènzhēn fùxí, miǎnde zài chūxiàn cuòwù.",
+     "ja": "分かりました、今すぐ真面目に復習しに行きます、また間違えないように。"
+    }
+   ],
+   "q": {
+    "zh": "女的建议男的特别注意什么？",
+    "pinyin": "Nǚ de jiànyì nán de tèbié zhùyì shénme?",
+    "ja": "（質問）女性は男性に特に何に注意するよう勧めていますか？"
+   },
+   "opts": [
+    "句型的多样性",
+    "\"的、地、得\"的区别",
+    "写作的速度",
+    "语法书的选择"
+   ],
+   "answerIdx": 1,
+   "explain": "「特别注意一下\"的、地、得\"这三个字的区别」とはっきり言っています。"
+  },
+  "33": {
+   "audio": "audio/day33.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "面试之前你是不是特别紧张？",
+     "pinyin": "Miànshì zhīqián nǐ shì bu shì tèbié jǐnzhāng?",
+     "ja": "面接の前は特に緊張していたのではないですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "是啊，一开始很担心自己表现不好，经理会生气。",
+     "pinyin": "Shì a, yì kāishǐ hěn dānxīn zìjǐ biǎoxiàn bù hǎo, jīnglǐ huì shēngqì.",
+     "ja": "そうなんです、最初は自分の出来が悪くて、マネージャーが怒るんじゃないかとても心配でした。"
+    },
+    {
+     "spk": "M",
+     "zh": "后来呢？",
+     "pinyin": "Hòulái ne?",
+     "ja": "それからは？"
+    },
+    {
+     "spk": "F",
+     "zh": "面试的时候慢慢放心了，结束以后，对自己的表现还挺满意的。",
+     "pinyin": "Miànshì de shíhou mànman fàngxīn le, jiéshù yǐhòu, duì zìjǐ de biǎoxiàn hái tǐng mǎnyì de.",
+     "ja": "面接の間に少しずつ安心してきて、終わった後は、自分の出来にもけっこう満足しています。"
+    }
+   ],
+   "q": {
+    "zh": "女的面试以后，心情怎么样？",
+    "pinyin": "Nǚ de miànshì yǐhòu, xīnqíng zěnmeyàng?",
+    "ja": "（質問）女性は面接の後、どんな気持ちでしたか？"
+   },
+   "opts": [
+    "很紧张",
+    "很担心",
+    "挺满意",
+    "有点儿生气"
+   ],
+   "answerIdx": 2,
+   "explain": "「结束以后，对自己的表现还挺满意的」とはっきり言っています。緊張・心配は面接前のことです。"
+  },
+  "34": {
+   "audio": "audio/day34.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "我从来没发过这么高的烧，身体一点儿都不舒服。",
+     "pinyin": "Wǒ cónglái méi fā guo zhème gāo de shāo, shēntǐ yìdiǎnr dōu bù shūfu.",
+     "ja": "私はこれまでこんなに高い熱を出したことがなく、体が全くだるいです。"
+    },
+    {
+     "zh": "以前我曾经感冒过，但没有这次这么严重，医生让我多休息，多注意健康。",
+     "pinyin": "Yǐqián wǒ céngjīng gǎnmào guo, dàn méiyǒu zhè cì zhème yánzhòng, yīshēng ràng wǒ duō xiūxi, duō zhùyì jiànkāng.",
+     "ja": "以前風邪をひいたことはありましたが、今回ほどひどくはありませんでした。医者はもっと休んで、健康にもっと気をつけるよう言いました。"
+    },
+    {
+     "zh": "没想到这次生病让我开始重视运动了。",
+     "pinyin": "Méi xiǎngdào zhè cì shēngbìng ràng wǒ kāishǐ zhòngshì yùndòng le.",
+     "ja": "思いがけず、今回の病気がきっかけで運動を重視するようになりました。"
+    }
+   ],
+   "judge": {
+    "zh": "他以前发烧的次数很多。",
+    "pinyin": "Tā yǐqián fāshāo de cìshù hěn duō.",
+    "ja": "（言い換え）彼は以前、熱を出した回数が多い。"
+   },
+   "answer": false,
+   "explain": "「从来没发过这么高的烧」と、これほど高い熱は初めてだと言っています。「曾经感冒过」はありましたが、今回ほど深刻ではありませんでした。"
+  },
+  "35": {
+   "audio": "audio/day35.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "F",
+     "zh": "听说这几天天气要变冷了，你出门带伞了吗？",
+     "pinyin": "Tīngshuō zhè jǐ tiān tiānqì yào biàn lěng le, nǐ chūmén dài sǎn le ma?",
+     "ja": "ここ数日で天気が寒くなるらしいですが、出かけるとき傘は持ちましたか？"
+    },
+    {
+     "spk": "M",
+     "zh": "带了，据说下午会下雨。看来这个季节真是说变就变。",
+     "pinyin": "Dài le, jùshuō xiàwǔ huì xiàyǔ. Kànlái zhège jìjié zhēnshi shuō biàn jiù biàn.",
+     "ja": "持ちました、午後は雨が降るそうです。どうやらこの季節は本当に変わりやすいですね。"
+    },
+    {
+     "spk": "F",
+     "zh": "是啊，早上还挺热的，现在看来已经变凉快了。",
+     "pinyin": "Shì a, zǎoshang hái tǐng rè de, xiànzài kànlái yǐjīng biàn liángkuai le.",
+     "ja": "そうですね、朝はまだけっこう暑かったのに、今はもう涼しくなったみたいです。"
+    },
+    {
+     "spk": "M",
+     "zh": "对，我们这就回去拿件外套吧。",
+     "pinyin": "Duì, wǒmen zhè jiù huíqù ná jiàn wàitào ba.",
+     "ja": "そうですね、今すぐ戻って上着を取りに行きましょう。"
+    }
+   ],
+   "q": {
+    "zh": "关于今天的天气，下面哪个是对的？",
+    "pinyin": "Guānyú jīntiān de tiānqì, xiàmiàn nǎge shì duì de?",
+    "ja": "（質問）今日の天気について、次のうち正しいのはどれですか？"
+   },
+   "opts": [
+    "一直很热",
+    "早上热，后来变凉",
+    "一直在下雨",
+    "傍晚会变热"
+   ],
+   "answerIdx": 1,
+   "explain": "「早上还挺热的，现在看来已经变凉快了」とはっきり言っています。"
+  },
+  "36": {
+   "audio": "audio/day36.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "你们家本来是在小城市生活的，后来怎么搬到这儿来了？",
+     "pinyin": "Nǐmen jiā běnlái shì zài xiǎo chéngshì shēnghuó de, hòulái zěnme bān dào zhèr lái le?",
+     "ja": "あなたのご家族はもともと小さな都市で暮らしていたのに、その後どうしてこちらに引っ越して来たんですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "本来是因为我工作调动，后来考虑到孩子上学、家庭生活，就一起搬过来了。",
+     "pinyin": "Běnlái shì yīnwèi wǒ gōngzuò diàodòng, hòulái kǎolǜ dào háizi shàngxué, jiātíng shēnghuó, jiù yìqǐ bān guòlái le.",
+     "ja": "もともとは私の転勤が理由でしたが、その後子どもの通学や家庭生活のことも考えて、一緒に引っ越して来たんです。"
+    },
+    {
+     "spk": "M",
+     "zh": "原来是这样，搬过来差不多多久了？",
+     "pinyin": "Yuánlái shì zhèyàng, bān guòlái chàbuduō duō jiǔ le?",
+     "ja": "なるほどそうだったんですね、引っ越してきてからだいたいどのくらいですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "差不多两年了，现在生活已经习惯了。",
+     "pinyin": "Chàbuduō liǎng nián le, xiànzài shēnghuó yǐjīng xíguàn le.",
+     "ja": "だいたい2年になります、今はもう生活に慣れました。"
+    }
+   ],
+   "q": {
+    "zh": "他们家为什么搬到现在的城市？",
+    "pinyin": "Tāmen jiā wèishénme bān dào xiànzài de chéngshì?",
+    "ja": "（質問）彼らの家族はなぜ今の都市に引っ越しましたか？"
+   },
+   "opts": [
+    "因为孩子想来",
+    "因为工作调动",
+    "因为原来的城市变化太大",
+    "因为家庭反对"
+   ],
+   "answerIdx": 1,
+   "explain": "「本来是因为我工作调动」とはっきり言っています。子どもや家庭生活は後から考慮に入れた点です。"
+  },
+  "37": {
+   "audio": "audio/day37.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "公司下个月大概会举办一个庆祝活动，邀请了不少客户来参观。",
+     "pinyin": "Gōngsī xià ge yuè dàgài huì jǔbàn yí ge qìngzhù huódòng, yāoqǐng le bù shǎo kèhù lái cānguān.",
+     "ja": "会社は来月だいたいお祝いのイベントを開催する予定で、多くの客を招待して見学に来てもらいます。"
+    },
+    {
+     "zh": "听说每个部门都要接受这个安排，参加的人数大概是五十人左右。",
+     "pinyin": "Tīngshuō měi ge bùmén dōu yào jiēshòu zhège ānpái, cānjiā de rénshù dàgài shì wǔshí rén zuǒyòu.",
+     "ja": "どの部門もこの手配を受け入れる必要があるそうで、参加人数はだいたい50人前後です。"
+    }
+   ],
+   "judge": {
+    "zh": "这次活动的客人里，除了公司同事，也有被邀请来的客户。",
+    "pinyin": "Zhè cì huódòng de kèrén lǐ, chúle gōngsī tóngshì, yě yǒu bèi yāoqǐng lái de kèhù.",
+    "ja": "（言い換え）今回のイベントの来場者には、社員だけでなく、招待された客も含まれている。"
+   },
+   "answer": true,
+   "explain": "「邀请了不少客户来参观」と一致します。「每〜都〜」（どの部門も対応が必要）や「大概〜左右」（だいたいの人数）も今日のポイントです。"
+  },
+  "38": {
+   "audio": "audio/day38.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "F",
+     "zh": "经理对新同事的表现，有的表扬，有的提了建议，对你有什么印象？",
+     "pinyin": "Jīnglǐ duì xīn tóngshì de biǎoxiàn, yǒude biǎoyáng, yǒude tí le jiànyì, duì nǐ yǒu shénme yìnxiàng?",
+     "ja": "マネージャーは新しい同僚たちの様子について、褒める人もいれば、提案する人もいましたが、あなたにはどんな印象でしたか？"
+    },
+    {
+     "spk": "M",
+     "zh": "他表扬我做事又快又认真，还给我介绍了一些学习资源，鼓励我多尝试。",
+     "pinyin": "Tā biǎoyáng wǒ zuòshì yòu kuài yòu rènzhēn, hái gěi wǒ jièshào le yìxiē xuéxí zīyuán, gǔlì wǒ duō chángshì.",
+     "ja": "私のことは仕事が速くて真面目だと褒めてくれて、さらに学習リソースも紹介してくれて、もっと挑戦するよう励ましてくれました。"
+    },
+    {
+     "spk": "F",
+     "zh": "那太好了，他给你推荐什么方法了吗？",
+     "pinyin": "Nà tài hǎo le, tā gěi nǐ tuījiàn shénme fāngfǎ le ma?",
+     "ja": "それはよかったですね、何か方法を勧めてくれましたか？"
+    },
+    {
+     "spk": "M",
+     "zh": "既然他这么信任我，我就打算按照他的建议去做。",
+     "pinyin": "Jìrán tā zhème xìnrèn wǒ, wǒ jiù dǎsuàn ànzhào tā de jiànyì qù zuò.",
+     "ja": "彼がこれほど信頼してくれている以上、彼の助言に従ってやってみるつもりです。"
+    }
+   ],
+   "q": {
+    "zh": "经理对男的的评价是什么？",
+    "pinyin": "Jīnglǐ duì nán de de píngjià shì shénme?",
+    "ja": "（質問）マネージャーは男性についてどう評価していますか？"
+   },
+   "opts": [
+    "做事又快又认真",
+    "需要更努力",
+    "缺少经验",
+    "不太主动"
+   ],
+   "answerIdx": 0,
+   "explain": "「他表扬我做事又快又认真」とはっきり言っています。"
+  },
+  "39": {
+   "audio": "audio/day39.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "你对这个新计划是支持还是反对？",
+     "pinyin": "Nǐ duì zhège xīn jìhuà shì zhīchí háishi fǎnduì?",
+     "ja": "あなたはこの新しい計画について、支持しますか、それとも反対ですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "我基本支持，不过随着情况变化，即使计划再好，也可能需要调整。",
+     "pinyin": "Wǒ jīběn zhīchí, búguò suízhe qíngkuàng biànhuà, jíshǐ jìhuà zài hǎo, yě kěnéng xūyào tiáozhěng.",
+     "ja": "基本的には支持しますが、状況の変化に伴って、たとえ計画がどんなに良くても、調整が必要になるかもしれません。"
+    },
+    {
+     "spk": "M",
+     "zh": "经理会不会批评我们改得太多？",
+     "pinyin": "Jīnglǐ huì bu huì pīpíng wǒmen gǎi de tài duō?",
+     "ja": "マネージャーは、私たちが変更しすぎだと叱ったりしないでしょうか？"
+    },
+    {
+     "spk": "F",
+     "zh": "哪怕他不太满意，我们也应该先跟他商量一下，好好谈谈。",
+     "pinyin": "Nǎpà tā bú tài mǎnyì, wǒmen yě yīnggāi xiān gēn tā shāngliáng yíxià, hǎohāo tántan.",
+     "ja": "たとえ彼があまり満足しなくても、私たちはまず彼と相談して、しっかり話し合うべきです。"
+    }
+   ],
+   "q": {
+    "zh": "女的对这个计划的态度是什么？",
+    "pinyin": "Nǚ de duì zhège jìhuà de tàidu shì shénme?",
+    "ja": "（質問）女性はこの計画に対してどんな態度ですか？"
+   },
+   "opts": [
+    "完全反对",
+    "基本支持，但认为可能需要调整",
+    "不关心",
+    "认为不用跟经理谈"
+   ],
+   "answerIdx": 1,
+   "explain": "「我基本支持，不过...也可能需要调整」とはっきり言っています。"
+  },
+  "40": {
+   "audio": "audio/day40.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "关于这次的项目申请，公司刚刚发了通知，大家要按照规定的流程登记信息。",
+     "pinyin": "Guānyú zhè cì de xiàngmù shēnqǐng, gōngsī gānggāng fā le tōngzhī, dàjiā yào ànzhào guīdìng de liúchéng dēngjì xìnxī.",
+     "ja": "今回のプロジェクトの申請について、会社がちょうど通知を出しました、皆さんは規定の流れに従って情報を登録する必要があります。"
+    },
+    {
+     "spk": "M",
+     "zh": "通过公司的系统提交材料以后，会有专人提供帮助，解答大家的问题。",
+     "pinyin": "Tōngguò gōngsī de xìtǒng tíjiāo cáiliào yǐhòu, huì yǒu zhuānrén tígōng bāngzhù, jiědá dàjiā de wèntí.",
+     "ja": "会社のシステムを通じて資料を提出した後、専門の担当者がサポートを提供し、皆さんの質問に答えます。"
+    },
+    {
+     "spk": "M",
+     "zh": "经过审核，通过的人才能正式开始这个项目。",
+     "pinyin": "Jīngguò shěnhé, tōngguò de rén cái néng zhèngshì kāishǐ zhège xiàngmù.",
+     "ja": "審査を経て、通過した人だけが正式にこのプロジェクトを始められます。"
+    },
+    {
+     "spk": "M",
+     "zh": "请大家在这周之内完成登记，不要错过时间。",
+     "pinyin": "Qǐng dàjiā zài zhè zhōu zhī nèi wánchéng dēngjì, búyào cuòguo shíjiān.",
+     "ja": "皆さん、今週中に登録を完了してください、時間に遅れないように。"
+    }
+   ],
+   "q": {
+    "zh": "关于这次申请，下面哪一点是正确的？",
+    "pinyin": "Guānyú zhè cì shēnqǐng, xiàmiàn nǎ yì diǎn shì zhèngquè de?",
+    "ja": "（質問）今回の申請について、次のうち正しいのはどれですか？"
+   },
+   "opts": [
+    "不需要登记，直接开始",
+    "需要按照流程登记，经过审核",
+    "只有经理才能申请",
+    "这周之内不用完成任何事"
+   ],
+   "answerIdx": 1,
+   "explain": "「按照规定的流程登记信息…经过审核，通过的人才能正式开始」とはっきり言っています。"
+  },
+  "41": {
+   "audio": "audio/day41.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "公司最近在进行一次办公室收拾活动，根据规定，大家都要节约用纸，不要浪费。",
+     "pinyin": "Gōngsī zuìjìn zài jìnxíng yí cì bàngōngshì shōushi huódòng, gēnjù guīdìng, dàjiā dōu yào jiéyuē yòng zhǐ, búyào làngfèi.",
+     "ja": "会社は最近オフィスの片付け活動を行っていて、規定に基づいて、皆さん紙を節約し、無駄にしないようにする必要があります。"
+    },
+    {
+     "zh": "这件事由行政部负责，要求大家按时完成，不能增加额外的垃圾。",
+     "pinyin": "Zhè jiàn shì yóu xíngzhèngbù fùzé, yāoqiú dàjiā ànshí wánchéng, bù néng zēngjiā éwài de lājī.",
+     "ja": "この件は総務部が担当していて、皆さんに期限通りに終わらせるよう求めており、余計なゴミを増やしてはいけません。"
+    }
+   ],
+   "judge": {
+    "zh": "这次活动跟节约用纸没有关系。",
+    "pinyin": "Zhè cì huódòng gēn jiéyuē yòng zhǐ méiyǒu guānxì.",
+    "ja": "（言い換え）今回の活動は紙の節約とは関係がない。"
+   },
+   "answer": false,
+   "explain": "「大家都要节约用纸，不要浪费」とはっきり関係があると言っています。「由〜负责」は総務部が担当するという意味です。"
+  },
+  "42": {
+   "audio": "audio/day42.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "F",
+     "zh": "经理针对成本问题，让我们修改一下计划，说明怎么减少开支。",
+     "pinyin": "Jīnglǐ zhēnduì chéngběn wèntí, ràng wǒmen xiūgǎi yíxià jìhuà, shuōmíng zěnme jiǎnshǎo kāizhī.",
+     "ja": "マネージャーはコストの問題に対して、私たちに計画を修正させ、どう支出を減らすか説明するよう言いました。"
+    },
+    {
+     "spk": "M",
+     "zh": "好，那我们是不是要以降低价格为主？",
+     "pinyin": "Hǎo, nà wǒmen shì bu shì yào yǐ jiàngdī jiàgé wéi zhǔ?",
+     "ja": "分かりました、では私たちは価格を下げることを中心にすべきですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "不完全是，他表示希望以提高效率为主，顺便也降低一点儿成本。",
+     "pinyin": "Bù wánquán shì, tā biǎoshì xīwàng yǐ tígāo xiàolǜ wéi zhǔ, shùnbiàn yě jiàngdī yìdiǎnr chéngběn.",
+     "ja": "完全にそうではなく、彼は効率を上げることを中心にしたい、ついでにコストも少し下げたいと言っていました。"
+    },
+    {
+     "spk": "M",
+     "zh": "明白了，我现在就开始为下周的会议做准备。",
+     "pinyin": "Míngbai le, wǒ xiànzài jiù kāishǐ wèi xiàzhōu de huìyì zuò zhǔnbèi.",
+     "ja": "分かりました、今すぐ来週の会議のために準備を始めます。"
+    }
+   ],
+   "q": {
+    "zh": "经理希望这次修改以什么为主？",
+    "pinyin": "Jīnglǐ xīwàng zhè cì xiūgǎi yǐ shénme wéi zhǔ?",
+    "ja": "（質問）マネージャーは今回の修正で何を中心にしたいと考えていますか？"
+   },
+   "opts": [
+    "降低价格",
+    "提高效率",
+    "增加人手",
+    "换新的供应商"
+   ],
+   "answerIdx": 1,
+   "explain": "「他表示希望以提高效率为主」とはっきり言っています。価格を下げるのは男性が最初に考えた案です。"
+  },
+  "43": {
+   "audio": "audio/day43.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "这个数据我有点儿怀疑，你估计是哪里出了问题？",
+     "pinyin": "Zhège shùjù wǒ yǒudiǎnr huáiyí, nǐ gūjì shì nǎlǐ chū le wèntí?",
+     "ja": "このデータ、私は少し疑わしいと思っているんですが、どこに問題があると思いますか？"
+    },
+    {
+     "spk": "F",
+     "zh": "让我判断一下，比如说，是不是有些客户的信息重复了？",
+     "pinyin": "Ràng wǒ pànduàn yíxià, bǐrú shuō, shì bu shì yǒuxiē kèhù de xìnxī chóngfù le?",
+     "ja": "ちょっと判断させてください、例えば、一部の客の情報が重複しているんじゃないでしょうか？"
+    },
+    {
+     "spk": "M",
+     "zh": "有可能，以上个月的数据为例，好像确实有重复的地方。",
+     "pinyin": "Yǒu kěnéng, yǐ shàng ge yuè de shùjù wéi lì, hǎoxiàng quèshí yǒu chóngfù de dìfang.",
+     "ja": "あり得ますね、先月のデータを例にすると、確かに重複している部分があるみたいです。"
+    },
+    {
+     "spk": "F",
+     "zh": "那我们要考虑一下，是不是得重新理解这份报告的意思。",
+     "pinyin": "Nà wǒmen yào kǎolǜ yíxià, shì bu shì děi chóngxīn lǐjiě zhè fèn bàogào de yìsi.",
+     "ja": "では私たちはこの報告書の意味をもう一度理解し直す必要があるか、考えないといけませんね。"
+    }
+   ],
+   "q": {
+    "zh": "女的觉得数据可能出了什么问题？",
+    "pinyin": "Nǚ de juéde shùjù kěnéng chū le shénme wèntí?",
+    "ja": "（質問）女性はデータにどんな問題が起きた可能性があると考えていますか？"
+   },
+   "opts": [
+    "数字算错了",
+    "客户信息重复",
+    "报告没有写完",
+    "时间记录错了"
+   ],
+   "answerIdx": 1,
+   "explain": "「是不是有些客户的信息重复了」とはっきり言っています。"
+  },
+  "44": {
+   "audio": "audio/day44.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "我来这家公司才一个月，还不太熟悉这里的工作流程，正在努力适应。",
+     "pinyin": "Wǒ lái zhè jiā gōngsī cái yí ge yuè, hái bú tài shúxī zhèlǐ de gōngzuò liúchéng, zhèngzài nǔlì shìyìng.",
+     "ja": "私はこの会社に来てまだ1ヶ月で、ここの仕事の流れにまだあまり慣れておらず、努力して適応しているところです。"
+    },
+    {
+     "zh": "像开会记录、整理资料之类的事情，我都在慢慢养成习惯。",
+     "pinyin": "Xiàng kāihuì jìlù, zhěnglǐ zīliào zhīlèi de shìqing, wǒ dōu zài mànman yǎngchéng xíguàn.",
+     "ja": "会議の記録や資料の整理のようなことは、少しずつ習慣にしているところです。"
+    },
+    {
+     "zh": "今天顺便也了解了一下公司的其他部门。",
+     "pinyin": "Jīntiān shùnbiàn yě liǎojiě le yíxià gōngsī de qítā bùmén.",
+     "ja": "今日はついでに会社の他の部門についても少し理解しました。"
+    }
+   ],
+   "judge": {
+    "zh": "他已经完全熟悉这里的工作流程了。",
+    "pinyin": "Tā yǐjīng wánquán shúxī zhèlǐ de gōngzuò liúchéng le.",
+    "ja": "（言い換え）彼はもうここの仕事の流れに完全に慣れている。"
+   },
+   "answer": false,
+   "explain": "「还不太熟悉这里的工作流程，正在努力适应」と、まだ慣れていないと言っています。"
+  },
+  "45": {
+   "audio": "audio/day45.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "F",
+     "zh": "顺便问一下，你后悔当初主动申请调到这个部门吗？",
+     "pinyin": "Shùnbiàn wèn yíxià, nǐ hòuhuǐ dāngchū zhǔdòng shēnqǐng diào dào zhège bùmén ma?",
+     "ja": "ついでに聞きますが、当初自分からこの部署への異動を申請したこと、後悔していますか？"
+    },
+    {
+     "spk": "M",
+     "zh": "一点儿也不后悔，虽然一开始有点儿害怕，但同事们都很友好，我很感动。",
+     "pinyin": "Yìdiǎnr yě bù hòuhuǐ, suīrán yì kāishǐ yǒudiǎnr hàipà, dàn tóngshìmen dōu hěn yǒuhǎo, wǒ hěn gǎndòng.",
+     "ja": "少しも後悔していません、最初は少し怖かったですが、同僚たちがみんな友好的で、とても感動しました。"
+    },
+    {
+     "spk": "F",
+     "zh": "我还挺羡慕你的，靠自己的努力做出了这样的选择。",
+     "pinyin": "Wǒ hái tǐng xiànmù nǐ de, kào zìjǐ de nǔlì zuò chū le zhèyàng de xuǎnzé.",
+     "ja": "私はあなたのことがけっこう羨ましいです、自分の努力でこういう選択をしたんですね。"
+    },
+    {
+     "spk": "M",
+     "zh": "说实话，我自己也有点儿吃惊，没想到结果这么好。",
+     "pinyin": "Shuō shíhuà, wǒ zìjǐ yě yǒudiǎnr chījīng, méi xiǎngdào jiéguǒ zhème hǎo.",
+     "ja": "正直に言うと、自分でも少し驚いています、結果がこんなに良いとは思いませんでした。"
+    }
+   ],
+   "q": {
+    "zh": "男的对自己当初的选择有什么感觉？",
+    "pinyin": "Nán de duì zìjǐ dāngchū de xuǎnzé yǒu shénme gǎnjué?",
+    "ja": "（質問）男性は自分の当初の選択についてどう感じていますか？"
+   },
+   "opts": [
+    "很后悔",
+    "一点儿也不后悔",
+    "完全不记得了",
+    "还没有决定"
+   ],
+   "answerIdx": 1,
+   "explain": "「一点儿也不后悔」とはっきり言っています。"
+  },
+  "46": {
+   "audio": "audio/day46.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "听到项目通过的消息，你是不是特别激动？",
+     "pinyin": "Tīngdào xiàngmù tōngguò de xiāoxi, nǐ shì bu shì tèbié jīdòng?",
+     "ja": "プロジェクトが通ったという知らせを聞いて、すごく興奮しているんじゃないですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "是啊，一开始挺兴奋的，不过后来发现预算被减少了，有点儿失望。",
+     "pinyin": "Shì a, yì kāishǐ tǐng xīngfèn de, búguò hòulái fāxiàn yùsuàn bèi jiǎnshǎo le, yǒudiǎnr shīwàng.",
+     "ja": "そうですね、最初はけっこうわくわくしていたんですが、その後予算が減らされたことが分かって、少しがっかりしました。"
+    },
+    {
+     "spk": "M",
+     "zh": "别伤心，总而言之结果还是好的，不用太依赖预算多少。",
+     "pinyin": "Bié shāngxīn, zǒng éryán zhī jiéguǒ háishi hǎo de, búyòng tài yīlài yùsuàn duōshao.",
+     "ja": "悲しまないで、要するに結果は良かったんだから、予算の多さにそんなに頼る必要はないですよ。"
+    },
+    {
+     "spk": "F",
+     "zh": "总之我们继续努力，争取下次做得更好。",
+     "pinyin": "Zǒngzhī wǒmen jìxù nǔlì, zhēngqǔ xiàcì zuò de gèng hǎo.",
+     "ja": "とにかく私たちは努力を続けて、次はもっと良くできるようがんばりましょう。"
+    }
+   ],
+   "q": {
+    "zh": "女的听到消息以后，心情有什么变化？",
+    "pinyin": "Nǚ de tīngdào xiāoxi yǐhòu, xīnqíng yǒu shénme biànhuà?",
+    "ja": "（質問）女性は知らせを聞いた後、気持ちにどんな変化がありましたか？"
+   },
+   "opts": [
+    "一直很兴奋",
+    "兴奋后来变得有点儿失望",
+    "一直很伤心",
+    "从失望变成兴奋"
+   ],
+   "answerIdx": 1,
+   "explain": "「一开始挺兴奋的，不过后来...有点儿失望」とはっきり言っています。"
+  },
+  "47": {
+   "audio": "audio/day47.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "新来的同事性格很活泼，也很友好，办公室因为她变得更热闹了。",
+     "pinyin": "Xīn lái de tóngshì xìnggé hěn huópō, yě hěn yǒuhǎo, bàngōngshì yīnwèi tā biàn de gèng rènào le.",
+     "ja": "新しく来た同僚は性格がとても活発で、友好的でもあり、オフィスは彼女のせいでもっと賑やかになりました。"
+    },
+    {
+     "zh": "不知不觉大家都跟她熟悉起来，反正她很诚实，说话也慢慢地让人放心了。",
+     "pinyin": "Bùzhībùjué dàjiā dōu gēn tā shúxī qǐlái, fǎnzhèng tā hěn chéngshí, shuōhuà yě mànman de ràng rén fàngxīn le.",
+     "ja": "いつの間にか皆彼女と親しくなっていて、とにかく彼女はとても正直で、話し方も次第に人を安心させるようになりました。"
+    }
+   ],
+   "judge": {
+    "zh": "新同事让办公室变得更安静了。",
+    "pinyin": "Xīn tóngshì ràng bàngōngshì biàn de gèng ānjìng le.",
+    "ja": "（言い換え）新しい同僚はオフィスをより静かにした。"
+   },
+   "answer": false,
+   "explain": "実際は「变得更热闹了」（賑やかになった）と正反対です。「安静」と「热闹」は対になる形容詞として覚えておきましょう。"
+  },
+  "48": {
+   "audio": "audio/day48.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "F",
+     "zh": "你这次报告写得不错，不过性格上是不是有点儿粗心？",
+     "pinyin": "Nǐ zhè cì bàogào xiě de búcuò, búguò xìnggé shàng shì bu shì yǒudiǎnr cūxīn?",
+     "ja": "今回の報告書はよく書けていますが、性格的に少しそそっかしいところがあるんじゃないですか？"
+    },
+    {
+     "spk": "M",
+     "zh": "是的，不过我渐渐地在改，希望不要太骄傲，也不要太谦虚。",
+     "pinyin": "Shì de, búguò wǒ jiànjiàn de zài gǎi, xīwàng búyào tài jiāoào, yě búyào tài qiānxū.",
+     "ja": "そうなんです、でも少しずつ直していっていて、驕りすぎず、謙虚すぎもしないようにしたいです。"
+    },
+    {
+     "spk": "F",
+     "zh": "先别担心太多，这次先不用改太大，慢慢调整就好。",
+     "pinyin": "Xiān bié dānxīn tài duō, zhè cì xiān bú yòng gǎi tài dà, mànman tiáozhěng jiù hǎo.",
+     "ja": "まずあまり心配しないでください、今回はまだ大きく直す必要はなく、ゆっくり調整すればいいです。"
+    },
+    {
+     "spk": "M",
+     "zh": "好，谢谢你，我会更勇敢地面对这些问题。",
+     "pinyin": "Hǎo, xièxie nǐ, wǒ huì gèng yǒnggǎn de miànduì zhèxiē wèntí.",
+     "ja": "分かりました、ありがとうございます、もっと勇敢にこれらの問題に向き合います。"
+    }
+   ],
+   "q": {
+    "zh": "女的觉得男的这次需要怎么做？",
+    "pinyin": "Nǚ de juéde nán de zhè cì xūyào zěnme zuò?",
+    "ja": "（質問）女性は男性が今回どうする必要があると思っていますか？"
+   },
+   "opts": [
+    "马上大改",
+    "先不用改太大，慢慢调整",
+    "完全不用改",
+    "从头重写"
+   ],
+   "answerIdx": 1,
+   "explain": "「先不用改太大，慢慢调整就好」とはっきり言っています。"
+  },
+  "49": {
+   "audio": "audio/day49.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "这件事你有什么看法？我对这个客户的印象不太好，脾气好像很急。",
+     "pinyin": "Zhè jiàn shì nǐ yǒu shénme kànfǎ? Wǒ duì zhège kèhù de yìnxiàng bú tài hǎo, píqì hǎoxiàng hěn jí.",
+     "ja": "この件についてどう思いますか？私はこの客の印象があまり良くなくて、気性がせっかちみたいです。"
+    },
+    {
+     "spk": "F",
+     "zh": "别担心，我来吧，我对他还有一点儿了解，你不用太紧张。",
+     "pinyin": "Bié dānxīn, wǒ lái ba, wǒ duì tā hái yǒu yìdiǎnr liǎojiě, nǐ búyòng tài jǐnzhāng.",
+     "ja": "心配しないで、私がやります、彼のことは少し分かっているので、あなたはそんなに緊張しなくていいです。"
+    },
+    {
+     "spk": "M",
+     "zh": "好，那你有什么好主意吗？",
+     "pinyin": "Hǎo, nà nǐ yǒu shénme hǎo zhǔyi ma?",
+     "ja": "分かりました、では何か良いアイデアはありますか？"
+    },
+    {
+     "spk": "F",
+     "zh": "我觉得该准备一份详细的说明了，你的意见也可以一起加进去。",
+     "pinyin": "Wǒ juéde gāi zhǔnbèi yí fèn xiángxì de shuōmíng le, nǐ de yìjiàn yě kěyǐ yìqǐ jiā jìnqù.",
+     "ja": "そろそろ詳しい説明を準備すべきだと思います、あなたの意見も一緒に加えていいですよ。"
+    }
+   ],
+   "q": {
+    "zh": "女的打算怎么处理这件事？",
+    "pinyin": "Nǚ de dǎsuàn zěnme chǔlǐ zhè jiàn shì?",
+    "ja": "（質問）女性はこの件をどう処理するつもりですか？"
+   },
+   "opts": [
+    "让男的自己处理",
+    "由她来处理，准备详细说明",
+    "拒绝跟这个客户合作",
+    "让经理来处理"
+   ],
+   "answerIdx": 1,
+   "explain": "「我来吧」「该准备一份详细的说明了」とはっきり言っています。"
+  },
+  "50": {
+   "audio": "audio/day50.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "每个人在工作中都会遇到困难，重要的是找到解决问题的办法，而不是一直后悔。",
+     "pinyin": "Měi ge rén zài gōngzuò zhōng dōu huì yù dào kùnnan, zhòngyào de shì zhǎodào jiějué wèntí de bànfǎ, ér bú shì yìzhí hòuhuǐ.",
+     "ja": "誰でも仕事の中で困難にぶつかるものですが、大切なのは問題を解決する方法を見つけることであって、ずっと後悔し続けることではありません。"
+    },
+    {
+     "spk": "M",
+     "zh": "回顾这段经历，虽然过程很不容易，但效果还是不错的。",
+     "pinyin": "Huígù zhè duàn jīnglì, suīrán guòchéng hěn bù róngyì, dàn xiàoguǒ háishi búcuò de.",
+     "ja": "この経験を振り返ると、過程は簡単ではありませんでしたが、効果はやはり悪くありませんでした。"
+    },
+    {
+     "spk": "M",
+     "zh": "以后遇到问题，不要总是怀疑自己，也别把注意力都放在缺点上，多看看自己的优点。",
+     "pinyin": "Yǐhòu yù dào wèntí, búyào zǒngshì huáiyí zìjǐ, yě bié bǎ zhùyìlì dōu fàng zài quēdiǎn shàng, duō kànkan zìjǐ de yōudiǎn.",
+     "ja": "これから問題にぶつかったら、いつも自分を疑うのではなく、注意を全部欠点に向けるのでもなく、もっと自分の長所を見てください。"
+    },
+    {
+     "spk": "M",
+     "zh": "别再因为一次失败就放弃，那样反而没有好处。",
+     "pinyin": "Bié zài yīnwèi yí cì shībài jiù fàngqì, nàyàng fǎn'ér méiyǒu hǎochu.",
+     "ja": "一度の失敗のせいでもう諦めることはやめてください、そのほうがかえって良くありません。"
+    }
+   ],
+   "q": {
+    "zh": "关于这段话，说话人最想告诉大家的是什么？",
+    "pinyin": "Guānyú zhè duàn huà, shuōhuàrén zuì xiǎng gàosu dàjiā de shì shénme?",
+    "ja": "（質問）この話について、話し手が皆に最も伝えたいことは何ですか？"
+   },
+   "opts": [
+    "不要遇到困难",
+    "遇到困难不要轻易放弃",
+    "工作过程不重要",
+    "优点比缺点少"
+   ],
+   "answerIdx": 1,
+   "explain": "話全体を通して「重要的是找到解决问题的办法」「别再因为一次失败就放弃」と、諦めないことを伝えています。"
+  },
+  "51": {
+   "audio": "audio/day51.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "这次的任务责任很大，我压力也很大。",
+     "pinyin": "Zhè cì de rènwu zérèn hěn dà, wǒ yālì yě hěn dà.",
+     "ja": "今回の任務は責任が重く、プレッシャーもとても大きいです。"
+    },
+    {
+     "zh": "因为太紧张，我忘了检查设备，差点儿出现危险。",
+     "pinyin": "Yīnwèi tài jǐnzhāng, wǒ wàng le jiǎnchá shèbèi, chàdiǎnr chūxiàn wēixiǎn.",
+     "ja": "緊張しすぎて設備の点検を忘れてしまい、もう少しで危険な事態になるところでした。"
+    },
+    {
+     "zh": "这是我的缺点，以后我再也不会这么大意了。",
+     "pinyin": "Zhè shì wǒ de quēdiǎn, yǐhòu wǒ zài yě bú huì zhème dàyi le.",
+     "ja": "これは私の欠点です。今後はもう二度とこんなに不注意にはなりません。"
+    }
+   ],
+   "judge": {
+    "zh": "他觉得没检查设备是自己的一个缺点。",
+    "pinyin": "Tā juéde méi jiǎnchá shèbèi shì zìjǐ de yí ge quēdiǎn.",
+    "ja": "（言い換え）彼は設備を点検しなかったことを自分の欠点だと思っている。"
+   },
+   "answer": true,
+   "explain": "最後の文「这是我的缺点」が指しているのは前の文の「忘了检查设备」なので、内容が一致しています。"
+  },
+  "52": {
+   "audio": "audio/day52.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "公司新规定，业绩要达到新标准才能算完成目标。",
+     "pinyin": "Gōngsī xīn guīdìng, yèjì yào dádào xīn biāozhǔn cái néng suàn wánchéng mùbiāo.",
+     "ja": "会社の新しい規定では、業績が新しい基準に達して初めて目標達成とみなされます。"
+    },
+    {
+     "spk": "F",
+     "zh": "这个标准比以前高不少，我们目前的情况可能达不到。",
+     "pinyin": "Zhège biāozhǔn bǐ yǐqián gāo bù shǎo, wǒmen mùqián de qíngkuàng kěnéng dá bu dào.",
+     "ja": "この基準は以前よりだいぶ高くて、私たちの今の状況では届かないかもしれません。"
+    },
+    {
+     "spk": "M",
+     "zh": "那怎么办？将来考核会越来越严吧。",
+     "pinyin": "Nà zěnme bàn? Jiānglái kǎohé huì yuèláiyuè yán ba.",
+     "ja": "それならどうしましょう？今後、評価はますます厳しくなりそうですね。"
+    },
+    {
+     "spk": "F",
+     "zh": "不好意思，我这边资料还没整理好，要不我们明天再讨论吧？",
+     "pinyin": "Bù hǎoyìsi, wǒ zhè biān zīliào hái méi zhěnglǐ hǎo, yàobù wǒmen míngtiān zài tǎolùn ba?",
+     "ja": "すみません、こちらの資料がまだ整理できていないので、明日改めて話し合いませんか？"
+    }
+   ],
+   "q": {
+    "zh": "女的建议怎么办？",
+    "pinyin": "Nǚ de jiànyì zěnme bàn?",
+    "ja": "（質問）女性はどうしようと提案していますか？"
+   },
+   "opts": [
+    "明天再讨论",
+    "现在马上讨论",
+    "不用讨论了",
+    "请经理来决定"
+   ],
+   "answerIdx": 0,
+   "explain": "女性は最後に「要不我们明天再讨论吧」と言い、明日改めて話し合おうと提案しています。"
+  },
+  "53": {
+   "audio": "audio/day53.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "听说你们部门很重视这次比赛，是真的吗？",
+     "pinyin": "Tīngshuō nǐmen bùmén hěn zhòngshì zhè cì bǐsài, shì zhēn de ma?",
+     "ja": "聞くところでは、あなたたちの部署は今回の試合をとても重視しているそうですが、本当ですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "对，经理特别重视，还安排我们多和别的部门交流合作。",
+     "pinyin": "Duì, jīnglǐ tèbié zhòngshì, hái ānpái wǒmen duō hé bié de bùmén jiāoliú hézuò.",
+     "ja": "はい、マネージャーがとても重視していて、私たちに他の部署ともっと交流・協力するよう手配しています。"
+    },
+    {
+     "spk": "M",
+     "zh": "怪不得这几天你总是很忙。你也会参加比赛吗？",
+     "pinyin": "Guàibude zhè jǐ tiān nǐ zǒngshì hěn máng. Nǐ yě huì cānjiā bǐsài ma?",
+     "ja": "どうりでここ数日ずっと忙しそうにしているわけですね。あなたも試合に参加するのですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "其实我本来不想参加，但经理让我负责联系，只好参加了。",
+     "pinyin": "Qíshí wǒ běnlái bù xiǎng cānjiā, dàn jīnglǐ ràng wǒ fùzé liánxì, zhǐhǎo cānjiā le.",
+     "ja": "実は最初は参加したくなかったのですが、マネージャーが私に連絡担当をさせたので、参加するしかありませんでした。"
+    }
+   ],
+   "q": {
+    "zh": "女的为什么会参加这次比赛？",
+    "pinyin": "Nǚ de wèishénme huì cānjiā zhè cì bǐsài?",
+    "ja": "（質問）女性はなぜ今回の試合に参加するのですか？"
+   },
+   "opts": [
+    "她自己很想参加",
+    "经理让她负责联系",
+    "别的部门邀请她",
+    "比赛规则要求她参加"
+   ],
+   "answerIdx": 1,
+   "explain": "「其实我本来不想参加，但经理让我负责联系，只好参加了」と言っているので、参加した理由はマネージャーの指示です。"
+  },
+  "54": {
+   "audio": "audio/day54.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "下周公司要举行一个总结会，老板要求特别严格。",
+     "pinyin": "Xià zhōu gōngsī yào jǔxíng yí ge zǒngjié huì, lǎobǎn yāoqiú tèbié yángé.",
+     "ja": "来週会社で総括会議が開かれる予定で、社長の要求はとても厳しいです。"
+    },
+    {
+     "zh": "如果报告不够详细，问题可能会变得更严重。",
+     "pinyin": "Rúguǒ bàogào bú gòu xiángxì, wèntí kěnéng huì biàn de gèng yánzhòng.",
+     "ja": "もし報告が十分詳しくなければ、問題はもっと深刻になるかもしれません。"
+    },
+    {
+     "zh": "说实话，我还没准备好，心里有点儿紧张。",
+     "pinyin": "Shuōshíhuà, wǒ hái méi zhǔnbèi hǎo, xīnli yǒudiǎnr jǐnzhāng.",
+     "ja": "正直に言うと、まだ準備ができておらず、少し緊張しています。"
+    },
+    {
+     "zh": "说不定明天要加班到很晚，具体几点下班还要看情况。",
+     "pinyin": "Shuōbudìng míngtiān yào jiābān dào hěn wǎn, jùtǐ jǐ diǎn xiàbān hái yào kàn qíngkuàng.",
+     "ja": "もしかすると明日は遅くまで残業になるかもしれず、具体的に何時に終わるかは状況次第です。"
+    }
+   ],
+   "judge": {
+    "zh": "他觉得报告不够详细的话，问题会更麻烦。",
+    "pinyin": "Tā juéde bàogào bú gòu xiángxì dehuà, wèntí huì gèng máfan.",
+    "ja": "（言い換え）彼は、報告が十分詳しくなければ問題がもっと厄介になると思っている。"
+   },
+   "answer": true,
+   "explain": "「如果报告不够详细，问题可能会变得更严重」と一致する内容です。「更麻烦」は「更严重」の言い換えです。"
+  },
+  "55": {
+   "audio": "audio/day55.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "你的航班几点出发？行李都收拾好了吗？",
+     "pinyin": "Nǐ de hángbān jǐ diǎn chūfā? Xíngli dōu shōushi hǎo le ma?",
+     "ja": "あなたの便は何時に出発するの？荷物はもう準備できた？"
+    },
+    {
+     "spk": "F",
+     "zh": "航班九点出发，行李已经收拾好了，就差登机牌还没打印。",
+     "pinyin": "Hángbān jiǔ diǎn chūfā, xíngli yǐjīng shōushi hǎo le, jiù chà dēngjīpái hái méi dǎyìn.",
+     "ja": "便は9時出発で、荷物はもう準備できていて、あとは搭乗券がまだ印刷できていないだけです。"
+    },
+    {
+     "spk": "M",
+     "zh": "一会儿我陪你去机场吧，等你到达了再给我发消息。",
+     "pinyin": "Yíhuìr wǒ péi nǐ qù jīchǎng ba, děng nǐ dàodá le zài gěi wǒ fā xiāoxi.",
+     "ja": "少し後で一緒に空港まで送るよ、着いたらメッセージちょうだいね。"
+    },
+    {
+     "spk": "F",
+     "zh": "好，谢谢你，我回头请你吃饭。",
+     "pinyin": "Hǎo, xièxie nǐ, wǒ huítóu qǐng nǐ chīfàn.",
+     "ja": "うん、ありがとう、あとでご飯おごるね。"
+    }
+   ],
+   "q": {
+    "zh": "女的现在还差什么没准备好？",
+    "pinyin": "Nǚ de xiànzài hái chà shénme méi zhǔnbèi hǎo?",
+    "ja": "（質問）女性は今何がまだ準備できていませんか？"
+   },
+   "opts": [
+    "航班时间",
+    "登机牌",
+    "行李",
+    "去机场的车"
+   ],
+   "answerIdx": 1,
+   "explain": "女性は「行李已经收拾好了，就差登机牌还没打印」と言っているので、まだ準備できていないのは搭乗券です。"
+  },
+  "56": {
+   "audio": "audio/day56.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "我想确认一下，明天去看风景区的门票买了吗？",
+     "pinyin": "Wǒ xiǎng quèrèn yíxià, míngtiān qù kàn fēngjǐngqū de ménpiào mǎi le ma?",
+     "ja": "確認したいんだけど、明日見に行く景勝地のチケットはもう買った？"
+    },
+    {
+     "spk": "F",
+     "zh": "买了，导游说人很多，可能要排队才能进去。",
+     "pinyin": "Mǎi le, dǎoyóu shuō rén hěn duō, kěnéng yào páiduì cái néng jìnqù.",
+     "ja": "買ったよ、ガイドさんが人が多くて並ばないと入れないかもって言ってた。"
+    },
+    {
+     "spk": "M",
+     "zh": "那我们早点儿出发吧，我还想在门口拍照留念呢。",
+     "pinyin": "Nà wǒmen zǎo diǎnr chūfā ba, wǒ hái xiǎng zài ménkǒu pāizhào liúniàn ne.",
+     "ja": "それなら早めに出発しよう、入り口で記念写真も撮りたいし。"
+    },
+    {
+     "spk": "F",
+     "zh": "好啊，让我想一下几点集合比较合适。",
+     "pinyin": "Hǎo a, ràng wǒ xiǎng yíxià jǐ diǎn jíhé bǐjiào héshì.",
+     "ja": "いいよ、何時に集合するのがいいか少し考えさせて。"
+    }
+   ],
+   "q": {
+    "zh": "关于明天的安排，可以知道什么？",
+    "pinyin": "Guānyú míngtiān de ānpái, kěyǐ zhīdào shénme?",
+    "ja": "（質問）明日の予定について、何が分かりますか？"
+   },
+   "opts": [
+    "门票还没买",
+    "要提前出发排队",
+    "导游不能来了",
+    "不能拍照"
+   ],
+   "answerIdx": 1,
+   "explain": "男性が「早点儿出发吧」と言い、女性も人が多くて並ぶ可能性に触れているので、早めに出発して並ぶ必要があることが分かります。"
+  },
+  "57": {
+   "audio": "audio/day57.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "这家公司在招聘新员工，我打算去面试。",
+     "pinyin": "Zhè jiā gōngsī zài zhāopìn xīn yuángōng, wǒ dǎsuàn qù miànshì.",
+     "ja": "この会社は新しい社員を募集していて、私は面接に行くつもりです。"
+    },
+    {
+     "zh": "我不太清楚这份工作的工资和奖金怎么算。",
+     "pinyin": "Wǒ bú tài qīngchu zhè fèn gōngzuò de gōngzī hé jiǎngjīn zěnme suàn.",
+     "ja": "この仕事の給料とボーナスがどう計算されるのか、あまりよく分かりません。"
+    },
+    {
+     "zh": "我不太确定自己的收入会不会比现在高。",
+     "pinyin": "Wǒ bú tài quèdìng zìjǐ de shōurù huì bu huì bǐ xiànzài gāo.",
+     "ja": "自分の収入が今より高くなるかどうか、あまり確信がありません。"
+    }
+   ],
+   "judge": {
+    "zh": "他对这份新工作的工资很清楚。",
+    "pinyin": "Tā duì zhè fèn xīn gōngzuò de gōngzī hěn qīngchu.",
+    "ja": "（言い換え）彼はこの新しい仕事の給料についてよく分かっている。"
+   },
+   "answer": false,
+   "explain": "本文では「我不太清楚这份工作的工资和奖金怎么算」と言っており、よく分かっていないので内容と逆です。"
+  },
+  "58": {
+   "audio": "audio/day58.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "你的简历写得不错，专业知识也很扎实。",
+     "pinyin": "Nǐ de jiǎnlì xiě de búcuò, zhuānyè zhīshi yě hěn zhāshi.",
+     "ja": "あなたの履歴書はよく書けていて、専門知識もしっかりしていますね。"
+    },
+    {
+     "spk": "F",
+     "zh": "谢谢，不过里面有一篇文章，我不确定用词应该怎么说才对。",
+     "pinyin": "Xièxie, búguò lǐmiàn yǒu yì piān wénzhāng, wǒ bú quèdìng yòngcí yīnggāi zěnme shuō cái duì.",
+     "ja": "ありがとう、でも中に文章が一つあって、言葉遣いがどう言えば正しいのか自信がないの。"
+    },
+    {
+     "spk": "M",
+     "zh": "我看看……这句话不太地道，口语里一般不这么说。",
+     "pinyin": "Wǒ kànkan…… zhè jù huà bú tài dìdao, kǒuyǔ lǐ yìbān bù zhème shuō.",
+     "ja": "ちょっと見せて……この一文はあまりネイティブらしくないね、口語では普通こう言わないよ。"
+    },
+    {
+     "spk": "F",
+     "zh": "那你帮我改一下吧，谢谢你。",
+     "pinyin": "Nà nǐ bāng wǒ gǎi yíxià ba, xièxie nǐ.",
+     "ja": "じゃあ直すの手伝って、ありがとう。"
+    }
+   ],
+   "q": {
+    "zh": "男的觉得简历里的文章怎么样？",
+    "pinyin": "Nán de juéde jiǎnlì lǐ de wénzhāng zěnmeyàng?",
+    "ja": "（質問）男性は履歴書の中の文章についてどう思っていますか？"
+   },
+   "opts": [
+    "专业知识不够",
+    "有一句话不太地道",
+    "职业写错了",
+    "写得非常完美"
+   ],
+   "answerIdx": 1,
+   "explain": "男性は「这句话不太地道」と指摘しているので、ある一文の言い方が不自然だと感じています。"
+  },
+  "59": {
+   "audio": "audio/day59.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "你这次考试成绩怎么样？及格了吗？",
+     "pinyin": "Nǐ zhè cì kǎoshì chéngjì zěnmeyàng? Jígé le ma?",
+     "ja": "今回の試験の成績はどうだった？合格した？"
+    },
+    {
+     "spk": "F",
+     "zh": "及格了，多亏我每天认真做练习、记笔记。",
+     "pinyin": "Jígé le, duōkuī wǒ měitiān rènzhēn zuò liànxí, jì bǐjì.",
+     "ja": "合格したよ、毎日ちゃんと練習してノートを取っていたおかげ。"
+    },
+    {
+     "spk": "M",
+     "zh": "你的笔记是怎么做的？能借我看看吗？",
+     "pinyin": "Nǐ de bǐjì shì zěnme zuò de? Néng jiè wǒ kànkan ma?",
+     "ja": "あなたのノートはどうやって作ったの？ちょっと見せてもらえる？"
+    },
+    {
+     "spk": "F",
+     "zh": "可以，不过我正在整理呢，等一下发给你，里面还写了一些词典上没有的书面语用法。",
+     "pinyin": "Kěyǐ, búguò wǒ zhèngzài zhěnglǐ ne, děng yíxià fā gěi nǐ, lǐmiàn hái xiěle yìxiē cídiǎn shàng méiyǒu de shūmiànyǔ yòngfǎ.",
+     "ja": "いいよ、でも今ちょうど整理しているところだから、あとで送るね。中には辞書に載っていない書き言葉の使い方も書いてあるよ。"
+    }
+   ],
+   "q": {
+    "zh": "女的现在正在做什么？",
+    "pinyin": "Nǚ de xiànzài zhèngzài zuò shénme?",
+    "ja": "（質問）女性は今何をしているところですか？"
+   },
+   "opts": [
+    "查词典",
+    "整理笔记",
+    "准备考试",
+    "参加比赛"
+   ],
+   "answerIdx": 1,
+   "explain": "女性は最後に「我正在整理呢」と言っています。「呢」は進行を表す語気助詞で、ノートを整理している最中だという意味です。"
+  },
+  "60": {
+   "audio": "audio/day60.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "说到搬家，我最近才搬了一个星期，家具还没买齐。",
+     "pinyin": "Shuōdào bānjiā, wǒ zuìjìn cái bān le yí ge xīngqī, jiājù hái méi mǎi qí.",
+     "ja": "引っ越しと言えば、私は最近引っ越してまだ1週間しか経っておらず、家具もまだ揃っていません。"
+    },
+    {
+     "spk": "M",
+     "zh": "客厅里连一个沙发都没有，只有几把椅子。",
+     "pinyin": "Kètīng lǐ lián yí ge shāfā dōu méiyǒu, zhǐyǒu jǐ bǎ yǐzi.",
+     "ja": "リビングにはソファすらまだなく、椅子が数脚あるだけです。"
+    },
+    {
+     "spk": "M",
+     "zh": "厨房的窗户正对着公园，风景很不错。",
+     "pinyin": "Chúfáng de chuānghu zhèng duì zhe gōngyuán, fēngjǐng hěn búcuò.",
+     "ja": "台所の窓はちょうど公園に面していて、景色がなかなかいいです。"
+    },
+    {
+     "spk": "M",
+     "zh": "虽然现在东西不齐全，但想到以后能有一个自己喜欢的家，还是很开心的。",
+     "pinyin": "Suīrán xiànzài dōngxi bù qíquán, dàn xiǎngdào yǐhòu néng yǒu yí ge zìjǐ xǐhuan de jiā, háishi hěn kāixīn de.",
+     "ja": "今は物がまだ揃っていませんが、これから自分の好きな家が持てると思うと、やはりうれしいです。"
+    }
+   ],
+   "q": {
+    "zh": "关于说话人的新家，可以知道什么？",
+    "pinyin": "Guānyú shuōhuàrén de xīn jiā, kěyǐ zhīdào shénme?",
+    "ja": "（質問）話し手の新しい家について、何が分かりますか？"
+   },
+   "opts": [
+    "客厅里已经有沙发了",
+    "家具已经买齐了",
+    "厨房的窗户对着公园",
+    "他不喜欢现在的家"
+   ],
+   "answerIdx": 2,
+   "explain": "話し手は「厨房的窗户正对着公园，风景很不错」と言っているので、Cが正解です。他の内容は本文と矛盾しています。"
+  },
+  "61": {
+   "audio": "audio/day61.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "早上出门的时候，我发现钥匙不见了，找了半天。",
+     "pinyin": "Zǎoshang chūmén de shíhou, wǒ fāxiàn yàoshi bú jiàn le, zhǎo le bàntiān.",
+     "ja": "朝出かける時、鍵が見当たらないことに気づき、しばらく探しました。"
+    },
+    {
+     "zh": "后来发现钥匙不是在包里，而是在镜子前面的桌子上。",
+     "pinyin": "Hòulái fāxiàn yàoshi bú shì zài bāo lǐ, ér shì zài jìngzi qiánmiàn de zhuōzi shàng.",
+     "ja": "その後、鍵はカバンの中ではなく、鏡の前の机の上にあることに気づきました。"
+    },
+    {
+     "zh": "顺便我还把垃圾拿出去扔了，用工具把门口打扫了一下，最后拿毛巾擦了擦桌子。",
+     "pinyin": "Shùnbiàn wǒ hái bǎ lājī ná chūqù rēng le, yòng gōngjù bǎ ménkǒu dǎsǎo le yíxià, zuìhòu ná máojīn cā le cā zhuōzi.",
+     "ja": "ついでにゴミも出して捨て、道具を使って玄関を少し掃除し、最後にタオルで机を拭きました。"
+    }
+   ],
+   "judge": {
+    "zh": "钥匙其实一直都在包里。",
+    "pinyin": "Yàoshi qíshí yìzhí dōu zài bāo lǐ.",
+    "ja": "（言い換え）鍵は実はずっとカバンの中にあった。"
+   },
+   "answer": false,
+   "explain": "本文では「钥匙不是在包里，而是在镜子前面的桌子上」と言っているので、カバンの中ではありません。"
+  },
+  "62": {
+   "audio": "audio/day62.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "对于新房子，你还满意吗？",
+     "pinyin": "Duìyú xīn fángzi, nǐ hái mǎnyì ma?",
+     "ja": "新しい家について、まだ満足していますか？"
+    },
+    {
+     "spk": "F",
+     "zh": "挺满意的，就是电梯有点儿旧，昨天等了好久，差点儿使我上班迟到。",
+     "pinyin": "Tǐng mǎnyì de, jiùshì diàntī yǒudiǎnr jiù, zuótiān děng le hǎojiǔ, chàdiǎnr shǐ wǒ shàngbān chídào.",
+     "ja": "かなり満足しています、ただエレベーターが少し古くて、昨日はずいぶん待って、危うく出勤に遅れるところでした。"
+    },
+    {
+     "spk": "M",
+     "zh": "那洗衣机、冰箱这些呢？",
+     "pinyin": "Nà xǐyījī, bīngxiāng zhèxiē ne?",
+     "ja": "それじゃ洗濯機や冷蔵庫はどうですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "都还好，不过空调好像坏了，对了，我出门前忘拿牙膏了，得去楼下小店买一个。",
+     "pinyin": "Dōu hái hǎo, búguò kōngtiáo hǎoxiàng huài le, duì le, wǒ chūmén qián wàng ná yágāo le, děi qù lóuxià xiǎodiàn mǎi yí ge.",
+     "ja": "どちらも大丈夫です、でもエアコンが壊れているみたいで。そういえば出かける前に歯磨き粉を持つのを忘れたので、下の売店で買わないと。"
+    }
+   ],
+   "q": {
+    "zh": "女的觉得新房子哪里不太好？",
+    "pinyin": "Nǚ de juéde xīn fángzi nǎlǐ bú tài hǎo?",
+    "ja": "（質問）女性は新しい家のどこがあまり良くないと思っていますか？"
+   },
+   "opts": [
+    "洗衣机坏了",
+    "电梯旧、空调好像坏了",
+    "冰箱声音太大",
+    "没有地方买牙膏"
+   ],
+   "answerIdx": 1,
+   "explain": "女性は「电梯有点儿旧」「空调好像坏了」と言っているので、Bが正解です。洗衣机と冰箱は「都还好」と言っています。"
+  },
+  "63": {
+   "audio": "audio/day63.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "你这个店面是租的吗？房东人怎么样？",
+     "pinyin": "Nǐ zhège diànmiàn shì zū de ma? Fángdōng rén zěnmeyàng?",
+     "ja": "このお店は借りているんですか？大家さんはどんな人ですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "是租的，房东人挺好的，很随和。",
+     "pinyin": "Shì zū de, fángdōng rén tǐng hǎo de, hěn suíhe.",
+     "ja": "借りています、大家さんはとてもいい人で、気さくです。"
+    },
+    {
+     "spk": "M",
+     "zh": "生意怎么样？顾客多吗？",
+     "pinyin": "Shēngyi zěnmeyàng? Gùkè duō ma?",
+     "ja": "商売はどうですか？お客さんは多いですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "还可以，附近的邻居和亲戚都常来捧场，但我到底能不能一直保持这个生意，还不好说，所以每天都不敢放松，否则顾客很快就会变少。",
+     "pinyin": "Hái kěyǐ, fùjìn de línjū hé qīnqi dōu cháng lái pěngchǎng, dàn wǒ dàodǐ néng bu néng yìzhí bǎochí zhège shēngyi, hái bù hǎoshuō, suǒyǐ měitiān dōu bù gǎn fàngsōng, fǒuzé gùkè hěn kuài jiù huì biàn shǎo.",
+     "ja": "まあまあです、近所の人や親戚がよく応援に来てくれますが、この商売をずっと続けられるかどうかはまだ何とも言えないので、毎日気を抜かないようにしています、そうしないとお客さんはすぐに減ってしまいますから。"
+    }
+   ],
+   "q": {
+    "zh": "关于女的的店，可以知道什么？",
+    "pinyin": "Guānyú nǚ de de diàn, kěyǐ zhīdào shénme?",
+    "ja": "（質問）女性のお店について、何が分かりますか？"
+   },
+   "opts": [
+    "房东不太好说话",
+    "顾客主要是邻居和亲戚",
+    "她已经决定不租了",
+    "店面不用付房租"
+   ],
+   "answerIdx": 1,
+   "explain": "女性は「附近的邻居和亲戚都常来捧场」と言っているので、Bが正解です。房东は「挺好的」と言っており、Aとは矛盾します。"
+  },
+  "64": {
+   "audio": "audio/day64.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "填这张表的时候，需要写性别和年龄，还要贴一张照片。",
+     "pinyin": "Tián zhè zhāng biǎo de shíhou, xūyào xiě xìngbié hé niánlíng, hái yào tiē yì zhāng zhàopiàn.",
+     "ja": "この表に記入する時、性別と年齢を書く必要があり、写真も一枚貼らなければなりません。"
+    },
+    {
+     "zh": "我照片里的样子跟本人稍微有点儿不一样，最好换一张新的。",
+     "pinyin": "Wǒ zhàopiàn lǐ de yàngzi gēn běnrén shāowēi yǒudiǎnr bù yíyàng, zuìhǎo huàn yì zhāng xīn de.",
+     "ja": "写真の中の様子は本人と少し違うので、新しいものに変えたほうがいいです。"
+    },
+    {
+     "zh": "朋友说，证件照最好显得精神一点儿，男生要帅，女生要美丽，这样才好看。",
+     "pinyin": "Péngyou shuō, zhèngjiànzhào zuìhǎo xiǎnde jīngshen yìdiǎnr, nánshēng yào shuài, nǚshēng yào měilì, zhèyàng cái hǎokàn.",
+     "ja": "友達は、証明写真はできれば少し元気な感じに見えたほうがいい、男性はかっこよく、女性は美しく写ったほうが見栄えがいいと言いました。"
+    },
+    {
+     "zh": "不过我觉得不如自然一点儿，微笑一下就可以了。",
+     "pinyin": "Búguò wǒ juéde bùrú zìrán yìdiǎnr, wéixiào yíxià jiù kěyǐ le.",
+     "ja": "でも私は、自然な感じのほうがよくて、少し微笑むだけでいいと思います。"
+    }
+   ],
+   "judge": {
+    "zh": "他觉得证件照应该尽量自然，不用特意装出精神的样子。",
+    "pinyin": "Tā juéde zhèngjiànzhào yīnggāi jǐnliàng zìrán, búyòng tèyì zhuāng chū jīngshen de yàngzi.",
+    "ja": "（言い換え）彼は証明写真はできるだけ自然にすべきで、わざと元気な様子を装う必要はないと思っている。"
+   },
+   "answer": true,
+   "explain": "最後の「不如自然一点儿」と一致する内容です。"
+  },
+  "65": {
+   "audio": "audio/day65.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "新来的同事看起来有点儿害羞，不太爱说话。",
+     "pinyin": "Xīn lái de tóngshì kànqǐlai yǒudiǎnr hàixiū, bú tài ài shuōhuà.",
+     "ja": "新しく来た同僚は少し恥ずかしがり屋に見えて、あまり話すのが好きではなさそうです。"
+    },
+    {
+     "spk": "F",
+     "zh": "是啊，不过她其实很热情，于是我主动跟她聊了聊，并且约她一起吃饭。",
+     "pinyin": "Shì a, búguò tā qíshí hěn rèqíng, yúshì wǒ zhǔdòng gēn tā liáo le liáo, bìngqiě yuē tā yìqǐ chīfàn.",
+     "ja": "そうですね、でも実は彼女はとても親切で、それで私から話しかけて、そのうえ一緒に食事に誘いました。"
+    },
+    {
+     "spk": "M",
+     "zh": "那挺好的，多交流才能建立友谊。",
+     "pinyin": "Nà tǐng hǎo de, duō jiāoliú cái néng jiànlì yǒuyì.",
+     "ja": "それはいいですね、たくさん交流してこそ友情が築けますから。"
+    },
+    {
+     "spk": "F",
+     "zh": "对，而且她遇到问题的时候很冷静，也很大方，其中让我印象最深的是她主动承认自己的错误。",
+     "pinyin": "Duì, érqiě tā yù dào wèntí de shíhou hěn lěngjìng, yě hěn dàfang, qízhōng ràng wǒ yìnxiàng zuì shēn de shì tā zhǔdòng chéngrèn zìjǐ de cuòwù.",
+     "ja": "そうです、しかも彼女は問題にぶつかった時とても冷静で、気前も良くて、その中でも一番印象に残ったのは、彼女が自分の間違いを自分から認めたことです。"
+    }
+   ],
+   "q": {
+    "zh": "女的觉得新同事是个什么样的人？",
+    "pinyin": "Nǚ de juéde xīn tóngshì shì ge shénmeyàng de rén?",
+    "ja": "（質問）女性は新しい同僚をどんな人だと思っていますか？"
+   },
+   "opts": [
+    "害羞、不爱交流",
+    "冷静又大方",
+    "很小气",
+    "经常出错"
+   ],
+   "answerIdx": 1,
+   "explain": "女性は「她遇到问题的时候很冷静，也很大方」と言っているので、Bが正解です。"
+  },
+  "66": {
+   "audio": "audio/day66.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "你最近是不是有什么烦恼？看起来不太开心。",
+     "pinyin": "Nǐ zuìjìn shì bu shì yǒu shénme fánnǎo? Kànqǐlai bú tài kāixīn.",
+     "ja": "最近何か悩みがあるんじゃない？あまり嬉しそうに見えないよ。"
+    },
+    {
+     "spk": "F",
+     "zh": "有一点儿，最近工作上有任何小事都让我着急，压力挺大的。",
+     "pinyin": "Yǒu yìdiǎnr, zuìjìn gōngzuò shàng yǒu rènhé xiǎoshì dōu ràng wǒ zhāojí, yālì tǐng dà de.",
+     "ja": "少しね、最近仕事でどんな小さなことでも焦ってしまって、プレッシャーがかなり大きいの。"
+    },
+    {
+     "spk": "M",
+     "zh": "别太紧张，谁都会遇到这种时候，慢慢调整就好。",
+     "pinyin": "Bié tài jǐnzhāng, shéi dōu huì yù dào zhè zhǒng shíhou, mànman tiáozhěng jiù hǎo.",
+     "ja": "あまり緊張しないで、誰でもこういう時があるから、少しずつ調整すればいいよ。"
+    },
+    {
+     "spk": "F",
+     "zh": "谢谢你，跟你聊完心情愉快多了，其实我知道自己挺幸福的，只是有时候忘了。",
+     "pinyin": "Xièxie nǐ, gēn nǐ liáo wán xīnqíng yúkuài duō le, qíshí wǒ zhīdào zìjǐ tǐng xìngfú de, zhǐshì yǒushíhou wàng le.",
+     "ja": "ありがとう、あなたと話したら気分がずいぶん楽しくなった、実は自分が結構幸せだって分かってるんだけど、時々忘れちゃうだけなの。"
+    }
+   ],
+   "q": {
+    "zh": "女的最近为什么不太开心？",
+    "pinyin": "Nǚ de zuìjìn wèishénme bú tài kāixīn?",
+    "ja": "（質問）女性は最近なぜあまり嬉しくないのですか？"
+   },
+   "opts": [
+    "跟朋友吵架了",
+    "工作上的小事让她着急",
+    "家里出了问题",
+    "身体不舒服"
+   ],
+   "answerIdx": 1,
+   "explain": "女性は「工作上有任何小事都让我着急」と言っているので、Bが正解です。"
+  },
+  "67": {
+   "audio": "audio/day67.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "这次项目最后失败了，大家都觉得很遗憾。",
+     "pinyin": "Zhè cì xiàngmù zuìhòu shībài le, dàjiā dōu juéde hěn yíhàn.",
+     "ja": "今回のプロジェクトは最後は失敗してしまい、みんなとても残念に思っています。"
+    },
+    {
+     "zh": "经理给了我们一个新任务，说这次没成功挺倒霉的，但不用太在意。",
+     "pinyin": "Jīnglǐ gěi le wǒmen yí ge xīn rènwu, shuō zhè cì méi chénggōng tǐng dǎoméi de, dàn búyòng tài zàiyì.",
+     "ja": "マネージャーは私たちに新しい任務をくれて、今回成功しなかったのは運が悪かったが、あまり気にしなくていいと言いました。"
+    },
+    {
+     "zh": "我从他的话里听出来，他其实也觉得挺可惜的。",
+     "pinyin": "Wǒ cóng tā de huà lǐ tīng chūlái, tā qíshí yě juéde tǐng kěxī de.",
+     "ja": "彼の話から、彼も実はとても惜しいと思っていることが聞き取れました。"
+    }
+   ],
+   "judge": {
+    "zh": "经理觉得这次失败没什么可惜的。",
+    "pinyin": "Jīnglǐ juéde zhè cì shībài méi shénme kěxī de.",
+    "ja": "（言い換え）マネージャーは今回の失敗を特に惜しいとは思っていない。"
+   },
+   "answer": false,
+   "explain": "最後の文で「他其实也觉得挺可惜的」と言っているので、内容と逆です。"
+  },
+  "68": {
+   "audio": "audio/day68.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "最近在国外工作，是不是有点儿想念家里？",
+     "pinyin": "Zuìjìn zài guówài gōngzuò, shì bu shì yǒudiǎnr xiǎngniàn jiā lǐ?",
+     "ja": "最近海外で働いていて、少し家が恋しいんじゃない？"
+    },
+    {
+     "spk": "F",
+     "zh": "是啊，有时候特别想家，有时候忙起来就好一点儿，不过一个人在外面还是挺无聊的。",
+     "pinyin": "Shì a, yǒushíhou tèbié xiǎng jiā, yǒushíhou máng qǐlái jiù hǎo yìdiǎnr, búguò yí ge rén zài wàimiàn háishi tǐng wúliáo de.",
+     "ja": "そうなの、時々すごく家が恋しくなるし、時々忙しくなると少しましになるけど、一人で外にいるのはやっぱり結構退屈だよ。"
+    },
+    {
+     "spk": "M",
+     "zh": "你朋友小李更可怜，他既要工作又要带孩子，比你忙得多。",
+     "pinyin": "Nǐ péngyou Xiǎo Lǐ gèng kělián, tā jì yào gōngzuò yòu yào dài háizi, bǐ nǐ máng de duō.",
+     "ja": "あなたの友達の小李のほうがもっと大変だよ、仕事もしなければならないし子供の世話もしなければならなくて、あなたよりずっと忙しいから。"
+    },
+    {
+     "spk": "F",
+     "zh": "是挺厉害的，不过说起来也挺奇怪，他反而看起来比谁都开心。",
+     "pinyin": "Shì tǐng lìhai de, búguò shuō qǐlái yě tǐng qíguài, tā fǎn'ér kànqǐlai bǐ shéi dōu kāixīn.",
+     "ja": "確かにすごいよね、でも言われてみると不思議なことに、彼はかえって誰よりも楽しそうに見えるの。"
+    }
+   ],
+   "q": {
+    "zh": "关于小李，可以知道什么？",
+    "pinyin": "Guānyú Xiǎo Lǐ, kěyǐ zhīdào shénme?",
+    "ja": "（質問）小李について、何が分かりますか？"
+   },
+   "opts": [
+    "工作很轻松",
+    "既要工作又要带孩子",
+    "经常感到无聊",
+    "比女的更想家"
+   ],
+   "answerIdx": 1,
+   "explain": "男性は「他既要工作又要带孩子」と言っているので、Bが正解です。"
+  },
+  "69": {
+   "audio": "audio/day69.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "飞机还有一个小时起飞，现在出发来得及吗？",
+     "pinyin": "Fēijī hái yǒu yí ge xiǎoshí qǐfēi, xiànzài chūfā láidejí ma?",
+     "ja": "飛行機はあと1時間で離陸するけど、今出発すれば間に合う？"
+    },
+    {
+     "spk": "F",
+     "zh": "应该来得及，不仅路上不堵车，而且机场离这儿也不远。",
+     "pinyin": "Yīnggāi láidejí, bùjǐn lùshang bù dǔchē, érqiě jīchǎng lí zhèr yě bù yuǎn.",
+     "ja": "間に合うはずだよ、道が渋滞していないだけでなく、空港もここから遠くないし。"
+    },
+    {
+     "spk": "M",
+     "zh": "万一堵车呢？即使只堵十分钟，我们也可能来不及。",
+     "pinyin": "Wànyī dǔchē ne? Jíshǐ zhǐ dǔ shí fēnzhōng, wǒmen yě kěnéng láibují.",
+     "ja": "もし渋滞したら？たとえ10分渋滞しただけでも、間に合わないかもしれないよ。"
+    },
+    {
+     "spk": "F",
+     "zh": "说得也是，既然你这么担心，那我们只好现在就出发，然而在路上我真是受不了这么急。",
+     "pinyin": "Shuō de yě shì, jìrán nǐ zhème dānxīn, nà wǒmen zhǐhǎo xiànzài jiù chūfā, rán'ér zài lùshang wǒ zhēnshi shòubuliǎo zhème jí.",
+     "ja": "それもそうね、あなたがそんなに心配するなら、もう今すぐ出発するしかないね、でも道中こんなに急ぐのはちょっと耐えられないな。"
+    }
+   ],
+   "q": {
+    "zh": "女的对现在出发有什么感觉？",
+    "pinyin": "Nǚ de duì xiànzài chūfā yǒu shénme gǎnjué?",
+    "ja": "（質問）女性は今出発することについてどう感じていますか？"
+   },
+   "opts": [
+    "觉得完全没必要着急",
+    "虽然不情愿，但只能这样",
+    "觉得肯定来不及了",
+    "不担心堵车"
+   ],
+   "answerIdx": 1,
+   "explain": "女性は最後に「只好现在就出发，然而...我真是受不了这么急」と言っており、不本意ながらもそうするしかないという気持ちを表しています。"
+  },
+  "70": {
+   "audio": "audio/day70.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "这段时间我发现，工作中遇到困难的时候，抱怨是没有用的。",
+     "pinyin": "Zhè duàn shíjiān wǒ fāxiàn, gōngzuò zhōng yù dào kùnnan de shíhou, bàoyuàn shì méiyǒu yòng de.",
+     "ja": "この期間、仕事で困難にぶつかった時、不満を言っても無駄だということに気づきました。"
+    },
+    {
+     "spk": "M",
+     "zh": "反正问题已经出现了，难道抱怨几句问题就能解决吗？在我看来，不如冷静想办法。",
+     "pinyin": "Fǎnzhèng wèntí yǐjīng chūxiàn le, nándào bàoyuàn jǐ jù wèntí jiù néng jiějué ma? Zài wǒ kànlái, bùrú lěngjìng xiǎng bànfǎ.",
+     "ja": "どうせ問題はもう起きているのだから、まさか少し不満を言えば問題が解決するわけでもないでしょう。私が思うに、冷静に方法を考えたほうがいいです。"
+    },
+    {
+     "spk": "M",
+     "zh": "难怪有经验的同事总是很冷静，原来他们早就习惯了这样处理问题。",
+     "pinyin": "Nánguài yǒu jīngyàn de tóngshì zǒngshì hěn lěngjìng, yuánlái tāmen zǎojiù xíguàn le zhèyàng chǔlǐ wèntí.",
+     "ja": "経験豊富な同僚がいつも冷静なのも道理で、彼らはとっくにこうやって問題を処理することに慣れていたのです。"
+    },
+    {
+     "spk": "M",
+     "zh": "总之，遇到问题千万不要慌，也就是说，先冷静下来，正好也能想得更清楚。",
+     "pinyin": "Zǒngzhī, yù dào wèntí qiānwàn búyào huāng, yě jiùshì shuō, xiān lěngjìng xiàlai, zhènghǎo yě néng xiǎng de gèng qīngchu.",
+     "ja": "要するに、問題にぶつかってもくれぐれも慌てないこと、つまり、まず冷静になれば、ちょうどより明確に考えることもできるということです。"
+    }
+   ],
+   "q": {
+    "zh": "关于这段话，说话人最想告诉大家的是什么？",
+    "pinyin": "Guānyú zhè duàn huà, shuōhuàrén zuì xiǎng gàosu dàjiā de shì shénme?",
+    "ja": "（質問）この話について、話し手が皆に最も伝えたいことは何ですか？"
+   },
+   "opts": [
+    "遇到问题应该多抱怨",
+    "冷静思考比抱怨更有用",
+    "经验不重要",
+    "问题都无法解决"
+   ],
+   "answerIdx": 1,
+   "explain": "話し手は一貫して「冷静に方法を考えたほうがいい」「慌てず冷静に」と伝えているので、Bが正解です。"
+  },
+  "71": {
+   "audio": "audio/day71.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "这个问题到底应该怎么解决，大家讨论了很久也没有结果。",
+     "pinyin": "Zhège wèntí dàodǐ yīnggāi zěnme jiějué, dàjiā tǎolùn le hěn jiǔ yě méiyǒu jiéguǒ.",
+     "ja": "この問題を一体どう解決すべきか、みんな長い間話し合いましたが結論が出ませんでした。"
+    },
+    {
+     "zh": "至少要有一个人愿意重新整理一下资料，仍然按原来的计划推进。",
+     "pinyin": "Zhìshǎo yào yǒu yí ge rén yuànyì chóngxīn zhěnglǐ yíxià zīliào, réngrán àn yuánlái de jìhuà tuījìn.",
+     "ja": "少なくとも誰か一人は資料を改めて整理する気があって、依然として元の計画通りに進めるべきです。"
+    },
+    {
+     "zh": "我偶尔会主动去问问进展，免得到时候来不及。",
+     "pinyin": "Wǒ ǒu'ěr huì zhǔdòng qù wènwen jìnzhǎn, miǎnde dào shíhou láibují.",
+     "ja": "私はたまに自分から進捗を聞きに行くようにしています、間に合わなくならないように。"
+    }
+   ],
+   "judge": {
+    "zh": "大家已经决定放弃原来的计划。",
+    "pinyin": "Dàjiā yǐjīng juédìng fàngqì yuánlái de jìhuà.",
+    "ja": "（言い換え）みんなはすでに元の計画を放棄することを決めた。"
+   },
+   "answer": false,
+   "explain": "「仍然按原来的计划推进」と言っているので、計画は放棄されていません。"
+  },
+  "72": {
+   "audio": "audio/day72.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "这次的活动是经理亲自安排的，看得出来他很重视。",
+     "pinyin": "Zhè cì de huódòng shì jīnglǐ qīnzì ānpái de, kàndechūlái tā hěn zhòngshì.",
+     "ja": "今回のイベントはマネージャーが自ら手配したもので、彼がとても重視しているのが分かります。"
+    },
+    {
+     "spk": "F",
+     "zh": "对，同事们也互相帮忙准备，进展挺顺利的。",
+     "pinyin": "Duì, tóngshìmen yě hùxiāng bāngmáng zhǔnbèi, jìnzhǎn tǐng shùnlì de.",
+     "ja": "そうです、同僚たちもお互いに助け合って準備していて、進み具合はかなり順調です。"
+    },
+    {
+     "spk": "M",
+     "zh": "是否需要我专门做一个流程表？",
+     "pinyin": "Shìfǒu xūyào wǒ zhuānmén zuò yí ge liúchéngbiǎo?",
+     "ja": "私がわざわざ流れ表を作る必要はありますか？"
+    },
+    {
+     "spk": "F",
+     "zh": "不用那么麻烦，顺便提一句，小王好像故意迟到了，你注意一下。",
+     "pinyin": "Búyòng nàme máfan, shùnbiàn tí yí jù, Xiǎo Wáng hǎoxiàng gùyì chídào le, nǐ zhùyì yíxià.",
+     "ja": "そこまで面倒にしなくていいです、ついでに言っておくと、王さんはわざと遅刻したみたいなので、注意しておいてください。"
+    }
+   ],
+   "q": {
+    "zh": "关于这次活动，可以知道什么？",
+    "pinyin": "Guānyú zhè cì de huódòng, kěyǐ zhīdào shénme?",
+    "ja": "（質問）今回のイベントについて、何が分かりますか？"
+   },
+   "opts": [
+    "是经理亲自安排的",
+    "大家互相不帮忙",
+    "流程表已经做好了",
+    "小王故意提前到了"
+   ],
+   "answerIdx": 0,
+   "explain": "女性は「这次的活动是经理亲自安排的」と言っているので、Aが正解です。"
+  },
+  "73": {
+   "audio": "audio/day73.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "我钱包丢了，里面还有一张银行卡。",
+     "pinyin": "Wǒ qiánbāo diū le, lǐmiàn hái yǒu yì zhāng yínhángkǎ.",
+     "ja": "財布をなくしました、中に銀行カードが一枚入っていました。"
+    },
+    {
+     "spk": "F",
+     "zh": "那你赶紧去银行挂失，要不然存在里面的钱不安全。",
+     "pinyin": "Nà nǐ gǎnjǐn qù yínháng guàshī, yàobùrán cún zài lǐmiàn de qián bù ānquán.",
+     "ja": "それならすぐ銀行に紛失届を出しに行って、そうしないと中に預けているお金が危ないよ。"
+    },
+    {
+     "spk": "M",
+     "zh": "好，我这就去，顺便把要寄的包裹也取回来处理一下。",
+     "pinyin": "Hǎo, wǒ zhè jiù qù, shùnbiàn bǎ yào jì de bāoguǒ yě qǔ huílai chǔlǐ yíxià.",
+     "ja": "分かった、今すぐ行くよ、ついでに送る予定の荷物も引き取って処理しておく。"
+    },
+    {
+     "spk": "F",
+     "zh": "关键是先把卡挂失，结果你要是先去寄包裹，反而更麻烦，别把顺序搞反了，也别把重要的东西随便扔了。",
+     "pinyin": "Guānjiàn shì xiān bǎ kǎ guàshī, jiéguǒ nǐ yàoshi xiān qù jì bāoguǒ, fǎn'ér gèng máfan, bié bǎ shùnxù gǎo fǎn le, yě bié bǎ zhòngyào de dōngxi suíbiàn rēng le.",
+     "ja": "肝心なのはまずカードの紛失手続きをすることで、もし先に荷物を送りに行ったら、かえって面倒なことになるから、順番を逆にしないで、それに大事なものを勝手に捨てたりしないでね。"
+    }
+   ],
+   "q": {
+    "zh": "男的现在最应该先做什么？",
+    "pinyin": "Nán de xiànzài zuì yīnggāi xiān zuò shénme?",
+    "ja": "（質問）男性は今、最初に何をすべきですか？"
+   },
+   "opts": [
+    "寄包裹",
+    "取包裹",
+    "去银行挂失",
+    "把东西扔了"
+   ],
+   "answerIdx": 2,
+   "explain": "女性は「关键是先把卡挂失」と言っているので、まず銀行カードの紛失手続きをするべきです。"
+  },
+  "74": {
+   "audio": "audio/day74.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "我以为这张桌子很轻，一个人就能抬起来，结果发现根本推不动。",
+     "pinyin": "Wǒ yǐwéi zhè zhāng zhuōzi hěn qīng, yí ge rén jiù néng tái qǐlai, jiéguǒ fāxiàn gēnběn tuī bu dòng.",
+     "ja": "このテーブルはとても軽くて一人で持ち上げられると思っていたのですが、結局まったく押しても動かないことに気づきました。"
+    },
+    {
+     "zh": "首先我叫同事一起拉，其次又把墙上的画摘下来擦了擦，方便挂回原来的位置。",
+     "pinyin": "Shǒuxiān wǒ jiào tóngshì yìqǐ lā, qícì yòu bǎ qiáng shàng de huà zhāi xiàlai cā le cā, fāngbiàn guà huí yuánlái de wèizhi.",
+     "ja": "まず同僚に一緒に引っ張ってもらい、次に壁の絵を外して拭いて、元の位置に掛け直しやすくしました。"
+    },
+    {
+     "zh": "恐怕还得再找一个人才能把桌子完全搬好。",
+     "pinyin": "Kǒngpà hái děi zài zhǎo yí ge rén cái néng bǎ zhuōzi wánquán bān hǎo.",
+     "ja": "おそらくもう一人探さないと、テーブルを完全に運び終えることはできないでしょう。"
+    }
+   ],
+   "judge": {
+    "zh": "他一个人顺利地把桌子搬好了。",
+    "pinyin": "Tā yí ge rén shùnlì de bǎ zhuōzi bān hǎo le.",
+    "ja": "（言い換え）彼は一人でスムーズにテーブルを運び終えた。"
+   },
+   "answer": false,
+   "explain": "本文では一人では動かせず、さらに「恐怕还得再找一个人」と言っているので、一人では完了していません。"
+  },
+  "75": {
+   "audio": "audio/day75.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "不好意思打扰你了，我敲了半天门你都没听见。",
+     "pinyin": "Bù hǎoyìsi dǎrǎo nǐ le, wǒ qiāo le bàntiān mén nǐ dōu méi tīngjiàn.",
+     "ja": "邪魔してごめんね、しばらくドアをノックしてたのに全然気づかなかったね。"
+    },
+    {
+     "spk": "F",
+     "zh": "抱歉，我刚才在弹钢琴，没注意到。你有事吗？",
+     "pinyin": "Bàoqiàn, wǒ gāngcái zài tán gāngqín, méi zhùyìdào. Nǐ yǒu shì ma?",
+     "ja": "ごめん、さっきピアノを弾いてて気づかなかった。何か用事？"
+    },
+    {
+     "spk": "M",
+     "zh": "没什么大事，就是想问问，晚饭后要不要一起去散步？路上碰到邻居可以打个招呼。",
+     "pinyin": "Méi shénme dàshì, jiùshì xiǎng wènwen, wǎnfàn hòu yào bu yào yìqǐ qù sànbù? Lùshang pèngdào línjū kěyǐ dǎ ge zhāohu.",
+     "ja": "大したことじゃないけど、夕食後に一緒に散歩に行かないかと思って。途中で近所の人に会ったら挨拶できるし。"
+    },
+    {
+     "spk": "F",
+     "zh": "好啊，对了，我一直想跟你提一件事，我家小狗最近总喜欢摇尾巴，特别可爱，我常常抱着它玩。",
+     "pinyin": "Hǎo a, duì le, wǒ yìzhí xiǎng gēn nǐ tí yí jiàn shì, wǒ jiā xiǎogǒu zuìjìn zǒng xǐhuan yáo wěiba, tèbié kě'ài, wǒ chángcháng bàozhe tā wán.",
+     "ja": "いいよ、そういえば、ずっとあなたに話したいことがあったの、うちの子犬が最近よく尻尾を振っていてすごく可愛くて、よく抱っこして遊んでるの。"
+    }
+   ],
+   "q": {
+    "zh": "关于男的敲门，可以知道什么？",
+    "pinyin": "Guānyú nán de qiāomén, kěyǐ zhīdào shénme?",
+    "ja": "（質問）男性がドアをノックしたことについて、何が分かりますか？"
+   },
+   "opts": [
+    "女的马上就开门了",
+    "女的在弹钢琴没听见",
+    "女的故意不理他",
+    "女的不在家"
+   ],
+   "answerIdx": 1,
+   "explain": "女性は「我刚才在弹钢琴，没注意到」と言っているので、Bが正解です。"
+  },
+  "76": {
+   "audio": "audio/day76.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "你最近怎么每天都去锻炼？是打算减肥吗？",
+     "pinyin": "Nǐ zuìjìn zěnme měitiān dōu qù duànliàn? Shì dǎsuàn jiǎnféi ma?",
+     "ja": "最近どうして毎日運動しに行ってるの？ダイエットするつもり？"
+    },
+    {
+     "spk": "F",
+     "zh": "也不完全是，主要是想让身体轻松一点儿，多一点儿力气。",
+     "pinyin": "Yě bù wánquán shì, zhǔyào shì xiǎng ràng shēntǐ qīngsōng yìdiǎnr, duō yìdiǎnr lìqi.",
+     "ja": "完全にそうでもなくて、主に体を少し楽にしたくて、もう少し力をつけたいの。"
+    },
+    {
+     "spk": "M",
+     "zh": "那正好，公司下个月有个户外活动，还安排了一次短途旅行。",
+     "pinyin": "Nà zhènghǎo, gōngsī xià ge yuè yǒu ge hùwài huódòng, hái ānpái le yí cì duǎntú lǚxíng.",
+     "ja": "それならちょうどいいね、会社が来月屋外イベントをやるんだけど、近場の旅行も予定されているんだ。"
+    },
+    {
+     "spk": "F",
+     "zh": "太好了，我从出生到长大都很喜欢这种活动，一定要参加。",
+     "pinyin": "Tài hǎo le, wǒ cóng chūshēng dào zhǎngdà dōu hěn xǐhuan zhè zhǒng huódòng, yídìng yào cānjiā.",
+     "ja": "やった、私は生まれてからずっとこういうイベントが好きだから、絶対参加する。"
+    }
+   ],
+   "q": {
+    "zh": "女的最近锻炼身体主要是为了什么？",
+    "pinyin": "Nǚ de zuìjìn duànliàn shēntǐ zhǔyào shì wèile shénme?",
+    "ja": "（質問）女性は最近、主に何のために体を鍛えているのですか？"
+   },
+   "opts": [
+    "只是为了减肥",
+    "让身体更轻松、有力气",
+    "准备参加比赛",
+    "为了出去旅行"
+   ],
+   "answerIdx": 1,
+   "explain": "女性は「主要是想让身体轻松一点儿，多一点儿力气」と言っているので、Bが正解です。"
+  },
+  "77": {
+   "audio": "audio/day77.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "我同事下个月要结婚了，她父亲刚退休，特别高兴能帮忙准备婚礼。",
+     "pinyin": "Wǒ tóngshì xià ge yuè yào jiéhūn le, tā fùqin gāng tuìxiū, tèbié gāoxìng néng bāngmáng zhǔnbèi hūnlǐ.",
+     "ja": "私の同僚は来月結婚するのですが、彼女の父親はちょうど退職したばかりで、結婚式の準備を手伝えることをとても喜んでいます。"
+    },
+    {
+     "zh": "不过她妈妈前几天生病住院，医生把她救了过来，现在还需要人照顾。",
+     "pinyin": "Búguò tā māma qián jǐ tiān shēngbìng zhùyuàn, yīshēng bǎ tā jiù le guòlái, xiànzài hái xūyào rén zhàogù.",
+     "ja": "でも彼女の母親は数日前に病気で入院し、医者が彼女を救ってくれましたが、今もまだ誰かの世話が必要です。"
+    },
+    {
+     "zh": "她只好请假回家照顾妈妈，大家都很尊重她的决定，没有人说什么。",
+     "pinyin": "Tā zhǐhǎo qǐngjià huí jiā zhàogù māma, dàjiā dōu hěn zūnzhòng tā de juédìng, méiyǒu rén shuō shénme.",
+     "ja": "彼女は仕方なく休みを取って家に帰り母親の世話をすることにし、みんな彼女の決定をとても尊重していて、何も言う人はいませんでした。"
+    },
+    {
+     "zh": "她跟经理说很抱歉这段时间不能全力工作。",
+     "pinyin": "Tā gēn jīnglǐ shuō hěn bàoqiàn zhè duàn shíjiān bù néng quánlì gōngzuò.",
+     "ja": "彼女はマネージャーに、この期間全力で仕事ができず申し訳ないと言いました。"
+    }
+   ],
+   "judge": {
+    "zh": "同事请假的事让大家很不满意。",
+    "pinyin": "Tóngshì qǐngjià de shì ràng dàjiā hěn bù mǎnyì.",
+    "ja": "（言い換え）同僚が休みを取ったことでみんなは不満に思っている。"
+   },
+   "answer": false,
+   "explain": "本文では「大家都很尊重她的决定」と言っているので、不満ではなく尊重しています。"
+  },
+  "78": {
+   "audio": "audio/day78.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "这本书特别厚，讲的是一个从穷变富的故事，很多人都说完全不一样的人生。",
+     "pinyin": "Zhè běn shū tèbié hòu, jiǎng de shì yí ge cóng qióng biàn fù de gùshi, hěn duō rén dōu shuō wánquán bù yíyàng de rénshēng.",
+     "ja": "この本はとても厚くて、貧乏から金持ちになった話で、多くの人がまったく違う人生だと言っています。"
+    },
+    {
+     "spk": "F",
+     "zh": "是吗？故事背景是什么？",
+     "pinyin": "Shì ma? Gùshi bèijǐng shì shénme?",
+     "ja": "そうなんだ？物語の舞台は？"
+    },
+    {
+     "spk": "M",
+     "zh": "讲一个海边小镇，那里海很深，也有许多渔民，收入超过了周围其他地方。",
+     "pinyin": "Jiǎng yí ge hǎibiān xiǎozhèn, nàlǐ hǎi hěn shēn, yě yǒu xǔduō yúmín, shōurù chāoguò le zhōuwéi qítā dìfang.",
+     "ja": "海辺の小さな町の話で、そこは海がとても深くて、漁師もたくさんいて、収入は周りの他の地域を上回っています。"
+    },
+    {
+     "spk": "F",
+     "zh": "听起来挺有意思，我最近书架都空了，正好可以借来看看。",
+     "pinyin": "Tīng qǐlai tǐng yǒuyìsi, wǒ zuìjìn shūjià dōu kōng le, zhènghǎo kěyǐ jiè lái kànkan.",
+     "ja": "面白そうだね、私最近本棚が空っぽになってきたから、ちょうど借りて読んでみようかな。"
+    }
+   ],
+   "q": {
+    "zh": "关于这本书，可以知道什么？",
+    "pinyin": "Guānyú zhè běn shū, kěyǐ zhīdào shénme?",
+    "ja": "（質問）この本について、何が分かりますか？"
+   },
+   "opts": [
+    "讲的是城市生活",
+    "主人公一直很穷",
+    "故事发生在海边小镇",
+    "书的内容很少"
+   ],
+   "answerIdx": 2,
+   "explain": "男性は「讲一个海边小镇」と言っているので、Cが正解です。"
+  },
+  "79": {
+   "audio": "audio/day79.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "这边气候怎么样？听说比较干燥。",
+     "pinyin": "Zhè biān qìhòu zěnmeyàng? Tīngshuō bǐjiào gānzào.",
+     "ja": "こちらの気候はどうですか？わりと乾燥していると聞きましたが。"
+    },
+    {
+     "spk": "F",
+     "zh": "对，白天温度不低，但风一停，晚上就很凉快，跟我老家完全不一样，那边一直很暖和。",
+     "pinyin": "Duì, báitiān wēndù bù dī, dàn fēng yì tíng, wǎnshang jiù hěn liángkuai, gēn wǒ lǎojiā wánquán bù yíyàng, nàbiān yìzhí hěn nuǎnhuo.",
+     "ja": "そうです、昼間は気温が低くないですが、風が止むと夜はとても涼しくなります。私の田舎とはまったく違って、あちらはずっと暖かいです。"
+    },
+    {
+     "spk": "M",
+     "zh": "那空气质量呢？",
+     "pinyin": "Nà kōngqì zhìliàng ne?",
+     "ja": "それじゃ空気の質はどうですか？"
+    },
+    {
+     "spk": "F",
+     "zh": "挺好的，穿轻一点儿的衣服出门就很舒服。",
+     "pinyin": "Tǐng hǎo de, chuān qīng yìdiǎnr de yīfu chūmén jiù hěn shūfu.",
+     "ja": "とても良いです、少し軽めの服を着て出かければ快適です。"
+    }
+   ],
+   "q": {
+    "zh": "关于这里的气候，可以知道什么？",
+    "pinyin": "Guānyú zhèlǐ de qìhòu, kěyǐ zhīdào shénme?",
+    "ja": "（質問）ここの気候について、何が分かりますか？"
+   },
+   "opts": [
+    "非常潮湿",
+    "晚上比较凉快",
+    "一年四季都很暖和",
+    "空气不太好"
+   ],
+   "answerIdx": 1,
+   "explain": "女性は「风一停，晚上就很凉快」と言っているので、Bが正解です。"
+  },
+  "80": {
+   "audio": "audio/day80.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "说到判断信息真假，很多人觉得只要消息说得肯定，就是真正准确的。",
+     "pinyin": "Shuōdào pànduàn xìnxī zhēnjiǎ, hěn duō rén juéde zhǐyào xiāoxi shuō de kěndìng, jiù shì zhēnzhèng zhǔnquè de.",
+     "ja": "情報の真偽を判断することについて、多くの人はメッセージの言い方が断定的でさえあれば、それが本当に正確なものだと思ってしまいます。"
+    },
+    {
+     "spk": "M",
+     "zh": "但其实普通人也可能说得很直接、很肯定，却完全是假的。",
+     "pinyin": "Dàn qíshí pǔtōng rén yě kěnéng shuō de hěn zhíjiē, hěn kěndìng, què wánquán shì jiǎ de.",
+     "ja": "しかし実際には、普通の人でもとても直接的で断定的に話すことがありますが、それがまったくの嘘であることもあります。"
+    },
+    {
+     "spk": "M",
+     "zh": "我觉得不管一个圆看起来多标准，一条线看起来多直，都需要自己再确认一下。",
+     "pinyin": "Wǒ juéde bùguǎn yí ge yuán kànqǐlai duō biāozhǔn, yì tiáo xiàn kànqǐlai duō zhí, dōu xūyào zìjǐ zài quèrèn yíxià.",
+     "ja": "どんなに円が標準的に見えても、線がまっすぐに見えても、自分でもう一度確認する必要があると思います。"
+    },
+    {
+     "spk": "M",
+     "zh": "只有多方面确认过的消息，才能算是真正准确的信息。",
+     "pinyin": "Zhǐyǒu duō fāngmiàn quèrèn guò de xiāoxi, cái néng suàn shì zhēnzhèng zhǔnquè de xìnxī.",
+     "ja": "多方面から確認した情報だけが、本当に正確な情報だと言えるのです。"
+    }
+   ],
+   "q": {
+    "zh": "关于这段话，说话人最想告诉大家的是什么？",
+    "pinyin": "Guānyú zhè duàn huà, shuōhuàrén zuì xiǎng gàosu dàjiā de shì shénme?",
+    "ja": "（質問）この話について、話し手が皆に最も伝えたいことは何ですか？"
+   },
+   "opts": [
+    "说得肯定的话就是真的",
+    "不能只听语气就相信信息",
+    "普通人说的话都是假的",
+    "圆和直线不重要"
+   ],
+   "answerIdx": 1,
+   "explain": "話し手は一貫して、言い方が断定的でも嘘の可能性があり、自分で確認すべきだと伝えているので、Bが正解です。"
+  },
+  "81": {
+   "audio": "audio/day81.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "平时我大约整理一次通讯录，把号码全部检查一遍。",
+     "pinyin": "Píngshí wǒ dàyuē zhěnglǐ yí cì tōngxùnlù, bǎ hàomǎ quánbù jiǎnchá yí biàn.",
+     "ja": "普段私はだいたい一回連絡先を整理して、番号を全部チェックします。"
+    },
+    {
+     "zh": "这次假期期间，我发现整个手机里有一部分号码已经打不通了。",
+     "pinyin": "Zhè cì jiàqī qījiān, wǒ fāxiàn zhěnggè shǒujī lǐ yǒu yí bùfen hàomǎ yǐjīng dǎ bu tōng le.",
+     "ja": "今回の休暇期間中に、携帯電話全体の中で一部の番号がすでにつながらなくなっていることに気づきました。"
+    },
+    {
+     "zh": "也许是对方换了新号码，我打算重新确认一下。",
+     "pinyin": "Yěxǔ shì duìfāng huàn le xīn hàomǎ, wǒ dǎsuàn chóngxīn quèrèn yíxià.",
+     "ja": "もしかすると相手が新しい番号に変えたのかもしれないので、改めて確認するつもりです。"
+    }
+   ],
+   "judge": {
+    "zh": "他发现所有号码都还能打通。",
+    "pinyin": "Tā fāxiàn suǒyǒu hàomǎ dōu hái néng dǎtōng.",
+    "ja": "（言い換え）彼はすべての番号がまだつながることに気づいた。"
+   },
+   "answer": false,
+   "explain": "「有一部分号码已经打不通了」と言っているので、全部ではなく一部がつながりません。"
+  },
+  "82": {
+   "audio": "audio/day82.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "这份工作机会实在难得，条件也确实不错。",
+     "pinyin": "Zhè fèn gōngzuò jīhuì shízài nándé, tiáojiàn yě quèshí búcuò.",
+     "ja": "この仕事のチャンスは本当に得難くて、条件も確かに悪くないね。"
+    },
+    {
+     "spk": "F",
+     "zh": "是啊，虽然舍不得离开现在的团队，但换个环境也有好处，值得试试。",
+     "pinyin": "Shì a, suīrán shěbude líkāi xiànzài de tuánduì, dàn huàn ge huánjìng yě yǒu hǎochu, zhídé shìshi.",
+     "ja": "そうだね、今のチームを離れるのは名残惜しいけど、環境を変えるのにもメリットがあるし、試す価値はあるね。"
+    },
+    {
+     "spk": "M",
+     "zh": "而且新公司很看重优秀的人才，这个岗位挺合适你的。",
+     "pinyin": "Érqiě xīn gōngsī hěn kànzhòng yōuxiù de réncái, zhège gǎngwèi tǐng héshì nǐ de.",
+     "ja": "それに新しい会社は優秀な人材をとても重視していて、このポジションはあなたにぴったりだよ。"
+    },
+    {
+     "spk": "F",
+     "zh": "谢谢你这么说，我再考虑一下。",
+     "pinyin": "Xièxie nǐ zhème shuō, wǒ zài kǎolǜ yíxià.",
+     "ja": "そう言ってくれてありがとう、もう少し考えてみるね。"
+    }
+   ],
+   "q": {
+    "zh": "女的对这个新机会是什么态度？",
+    "pinyin": "Nǚ de duì zhège xīn jīhuì shì shénme tàidu?",
+    "ja": "（質問）女性はこの新しいチャンスについてどんな態度ですか？"
+   },
+   "opts": [
+    "完全不考虑",
+    "觉得难得但有些犹豫",
+    "立刻就答应了",
+    "觉得条件不好"
+   ],
+   "answerIdx": 1,
+   "explain": "女性は「虽然舍不得离开现在的团队，但...值得试试」「我再考虑一下」と言っているので、Bが正解です。"
+  },
+  "83": {
+   "audio": "audio/day83.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "这次调查的数据来自不同城市，问题主要出现在中小企业。",
+     "pinyin": "Zhè cì diàochá de shùjù láizì bùtóng chéngshì, wèntí zhǔyào chūxiàn zài zhōngxiǎo qǐyè.",
+     "ja": "今回の調査データはさまざまな都市から来ていて、問題は主に中小企業に現れています。"
+    },
+    {
+     "spk": "F",
+     "zh": "是吗？具体包括哪些方面？",
+     "pinyin": "Shì ma? Jùtǐ bāokuò nǎxiē fāngmiàn?",
+     "ja": "そうなんだ？具体的にどんな面が含まれているの？"
+    },
+    {
+     "spk": "M",
+     "zh": "主要是缺少专业人才，这个问题已经引起不少企业的重视。",
+     "pinyin": "Zhǔyào shì quēshǎo zhuānyè réncái, zhège wèntí yǐjīng yǐnqǐ bù shǎo qǐyè de zhòngshì.",
+     "ja": "主に専門人材が不足していることで、この問題はすでに多くの企業の注目を引いています。"
+    },
+    {
+     "spk": "F",
+     "zh": "那要成为真正的解决方案，恐怕不能只靠一个部门，等于说需要大家一起努力，这不属于个人能解决的问题。",
+     "pinyin": "Nà yào chéngwéi zhēnzhèng de jiějué fāng'àn, kǒngpà bù néng zhǐ kào yí ge bùmén, děngyú shuō xūyào dàjiā yìqǐ nǔlì, zhè bù shǔyú gèrén néng jiějué de wèntí.",
+     "ja": "それが本当の解決策になるには、おそらく一つの部門だけに頼ることはできず、つまりみんなで努力する必要があるということで、これは個人が解決できる問題には属さないね。"
+    }
+   ],
+   "q": {
+    "zh": "这次调查发现的主要问题是什么？",
+    "pinyin": "Zhè cì diàochá fāxiàn de zhǔyào wèntí shì shénme?",
+    "ja": "（質問）今回の調査で分かった主な問題は何ですか？"
+   },
+   "opts": [
+    "城市之间数据不一样",
+    "中小企业缺少专业人才",
+    "没有人重视这个问题",
+    "问题已经解决了"
+   ],
+   "answerIdx": 1,
+   "explain": "男性は「主要是缺少专业人才」と言っているので、Bが正解です。"
+  },
+  "84": {
+   "audio": "audio/day84.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "春节是中国最重要的节日，家人会互相祝贺新年。",
+     "pinyin": "Chūnjié shì Zhōngguó zuì zhòngyào de jiérì, jiārén huì hùxiāng zhùhè xīnnián.",
+     "ja": "春節は中国で最も重要な祝日で、家族はお互いに新年を祝います。"
+    },
+    {
+     "zh": "长辈通常会给孩子红包，年轻人也会准备礼物送给父母。",
+     "pinyin": "Zhǎngbèi tōngcháng huì gěi háizi hóngbāo, niánqīngrén yě huì zhǔnbèi lǐwù sòng gěi fùmǔ.",
+     "ja": "目上の人は普段子供にお年玉をあげ、若者も両親にプレゼントを用意します。"
+    },
+    {
+     "zh": "我打算坐火车回老家，已经在网上订好了座位，还打印了车票，听说今年学生票免费。",
+     "pinyin": "Wǒ dǎsuàn zuò huǒchē huí lǎojiā, yǐjīng zài wǎngshàng dìng hǎo le zuòwèi, hái dǎyìn le chēpiào, tīngshuō jīnnián xuésheng piào miǎnfèi.",
+     "ja": "私は電車で実家に帰るつもりで、もうネットで座席を予約して、切符も印刷しました。今年は学生の切符が無料だそうです。"
+    }
+   ],
+   "judge": {
+    "zh": "他要坐火车回家过春节，票已经订好了。",
+    "pinyin": "Tā yào zuò huǒchē huí jiā guò Chūnjié, piào yǐjīng dìng hǎo le.",
+    "ja": "（言い換え）彼は電車に乗って実家に帰り春節を過ごすつもりで、切符はもう予約済みだ。"
+   },
+   "answer": true,
+   "explain": "「打算坐火车回老家，已经...订好了座位」と一致する内容です。"
+  },
+  "85": {
+   "audio": "audio/day85.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "这个展览介绍中国传统文化和历史，还有一些艺术作品。",
+     "pinyin": "Zhège zhǎnlǎn jièshào Zhōngguó chuántǒng wénhuà hé lìshǐ, hái yǒu yìxiē yìshù zuòpǐn.",
+     "ja": "この展覧会は中国の伝統文化と歴史を紹介していて、芸術作品もいくつかあります。"
+    },
+    {
+     "spk": "F",
+     "zh": "我听说里面还有一场音乐表演，很精彩，是最近很流行的曲子。",
+     "pinyin": "Wǒ tīngshuō lǐmiàn hái yǒu yì chǎng yīnyuè biǎoyǎn, hěn jīngcǎi, shì zuìjìn hěn liúxíng de qǔzi.",
+     "ja": "中には音楽公演もあると聞いたよ、とても素晴らしくて、最近流行っている曲だって。"
+    },
+    {
+     "spk": "M",
+     "zh": "那正好，这也是我理想中的周末安排。",
+     "pinyin": "Nà zhènghǎo, zhè yě shì wǒ lǐxiǎng zhōng de zhōumò ānpái.",
+     "ja": "それはちょうどいいね、これは私の理想の週末の過ごし方でもあるよ。"
+    },
+    {
+     "spk": "F",
+     "zh": "好，那我们一起去吧，正好也了解一下历史背景。",
+     "pinyin": "Hǎo, nà wǒmen yìqǐ qù ba, zhènghǎo yě liǎojiě yíxià lìshǐ bèijǐng.",
+     "ja": "いいね、それなら一緒に行こう、ついでに歴史的背景も知っておこう。"
+    }
+   ],
+   "q": {
+    "zh": "关于这个展览，可以知道什么？",
+    "pinyin": "Guānyú zhège zhǎnlǎn, kěyǐ zhīdào shénme?",
+    "ja": "（質問）この展覧会について、何が分かりますか？"
+   },
+   "opts": [
+    "只有绘画作品",
+    "跟传统文化、历史有关，还有音乐表演",
+    "门票很贵",
+    "已经结束了"
+   ],
+   "answerIdx": 1,
+   "explain": "会話から、伝統文化・歴史に関する展示に加え音楽公演もあることが分かるので、Bが正解です。"
+  },
+  "86": {
+   "audio": "audio/day86.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "这次展览里有很多乐器和绘画作品，你去看了吗？",
+     "pinyin": "Zhè cì zhǎnlǎn lǐ yǒu hěn duō yuèqì hé huìhuà zuòpǐn, nǐ qù kàn le ma?",
+     "ja": "今回の展覧会には楽器や絵画作品がたくさんあるけど、見に行った？"
+    },
+    {
+     "spk": "F",
+     "zh": "去了，还有一个节目专门介绍这些乐器怎么使用，挺有意思的。",
+     "pinyin": "Qù le, hái yǒu yí ge jiémù zhuānmén jièshào zhèxiē yuèqì zěnme shǐyòng, tǐng yǒuyìsi de.",
+     "ja": "行ったよ、これらの楽器の使い方を専門に紹介する番組もあって、なかなか面白かった。"
+    },
+    {
+     "spk": "M",
+     "zh": "那些材料是从哪儿找来的？",
+     "pinyin": "Nàxiē cáiliào shì cóng nǎr zhǎo lái de?",
+     "ja": "それらの材料はどこから見つけてきたの？"
+    },
+    {
+     "spk": "F",
+     "zh": "有的是借的，有的坏了还专门修理过，为了展览花了不少心思。",
+     "pinyin": "Yǒude shì jiè de, yǒude huài le hái zhuānmén xiūlǐ guò, wèile zhǎnlǎn huā le bù shǎo xīnsi.",
+     "ja": "借りたものもあれば、壊れていたのをわざわざ修理したものもあって、展覧会のためにかなり工夫したみたい。"
+    }
+   ],
+   "q": {
+    "zh": "关于这次展览，可以知道什么？",
+    "pinyin": "Guānyú zhè cì zhǎnlǎn, kěyǐ zhīdào shénme?",
+    "ja": "（質問）今回の展覧会について、何が分かりますか？"
+   },
+   "opts": [
+    "只展出绘画",
+    "乐器都是新买的",
+    "有节目介绍乐器的使用方法",
+    "材料都没有修理过"
+   ],
+   "answerIdx": 2,
+   "explain": "女性は「有一个节目专门介绍这些乐器怎么使用」と言っているので、Cが正解です。"
+  },
+  "87": {
+   "audio": "audio/day87.mp3",
+   "type": "tf",
+   "narrator": [
+    {
+     "zh": "昨天我在报纸和杂志上都看到了同一个广告。",
+     "pinyin": "Zuótiān wǒ zài bàozhǐ hé zázhì shàng dōu kàndào le tóng yí ge guǎnggào.",
+     "ja": "昨日、新聞と雑誌の両方で同じ広告を見かけました。"
+    },
+    {
+     "zh": "广播里也提到这家公司的网站做过一次调查，说产品质量很好。",
+     "pinyin": "Guǎngbō lǐ yě tídào zhè jiā gōngsī de wǎngzhàn zuò guo yí cì diàochá, shuō chǎnpǐn zhìliàng hěn hǎo.",
+     "ja": "ラジオでもこの会社のウェブサイトが一度調査をして、製品の品質がとても良いと言っていたと触れていました。"
+    },
+    {
+     "zh": "不过广告说得再好，也不能证明质量真的没问题，公司应该拿出真正的保证。",
+     "pinyin": "Búguò guǎnggào shuō de zài hǎo, yě bù néng zhèngmíng zhìliàng zhēn de méi wèntí, gōngsī yīnggāi ná chū zhēnzhèng de bǎozhèng.",
+     "ja": "でも広告がどんなに良く言っていても、品質に本当に問題がないことを証明できるわけではなく、会社は本当の保証を出すべきです。"
+    }
+   ],
+   "judge": {
+    "zh": "他觉得只靠广告说得好听，不能证明产品真的没问题。",
+    "pinyin": "Tā juéde zhǐ kào guǎnggào shuō de hǎotīng, bù néng zhèngmíng chǎnpǐn zhēn de méi wèntí.",
+    "ja": "（言い換え）彼は広告がうまく言っているだけでは、製品に本当に問題がないことを証明できないと思っている。"
+   },
+   "answer": true,
+   "explain": "最後の文「广告说得再好，也不能证明质量真的没问题」と一致する内容です。"
+  },
+  "88": {
+   "audio": "audio/day88.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "我想下载一个新软件，但网络有点儿慢。",
+     "pinyin": "Wǒ xiǎng xiàzài yí ge xīn ruǎnjiàn, dàn wǎngluò yǒudiǎnr màn.",
+     "ja": "新しいソフトをダウンロードしたいんだけど、ネットワークがちょっと遅いんだ。"
+    },
+    {
+     "spk": "F",
+     "zh": "是吗？你先检查一下密码有没有输错，另外这个软件涉及不少个人信息，要小心。",
+     "pinyin": "Shì ma? Nǐ xiān jiǎnchá yíxià mìmǎ yǒu méiyǒu shū cuò, lìngwài zhège ruǎnjiàn shèjí bù shǎo gèrén xìnxī, yào xiǎoxīn.",
+     "ja": "そうなの？まずパスワードを間違って入力していないか確認して、それにこのソフトは個人情報にかなり関わるから、気をつけてね。"
+    },
+    {
+     "spk": "M",
+     "zh": "好的，我平时对这方面研究不多，基础不太好。",
+     "pinyin": "Hǎo de, wǒ píngshí duì zhè fāngmiàn yánjiū bù duō, jīchǔ bú tài hǎo.",
+     "ja": "分かった、普段こういう方面はあまり研究していなくて、基礎があまり良くないんだ。"
+    },
+    {
+     "spk": "F",
+     "zh": "没关系，慢慢积累经验就行，这也算是学科学的一部分。",
+     "pinyin": "Méi guānxi, mànman jīlěi jīngyàn jiù xíng, zhè yě suàn shì xué kēxué de yí bùfen.",
+     "ja": "大丈夫、少しずつ経験を積んでいけばいいよ、これも科学を学ぶことの一部だと言えるから。"
+    }
+   ],
+   "q": {
+    "zh": "女的提醒男的要注意什么？",
+    "pinyin": "Nǚ de tíxǐng nán de yào zhùyì shénme?",
+    "ja": "（質問）女性は男性に何に気をつけるよう注意していますか？"
+   },
+   "opts": [
+    "网络速度",
+    "个人信息安全",
+    "软件价格",
+    "下载时间"
+   ],
+   "answerIdx": 1,
+   "explain": "女性は「这个软件涉及不少个人信息，要小心」と言っているので、Bが正解です。"
+  },
+  "89": {
+   "audio": "audio/day89.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "这些年技术发展得很快，工业和农业都受到很大影响。",
+     "pinyin": "Zhè xiē nián jìshù fāzhǎn de hěn kuài, gōngyè hé nóngyè dōu shòudào hěn dà yǐngxiǎng.",
+     "ja": "ここ数年、技術はとても速く発展していて、工業も農業も大きな影響を受けています。"
+    },
+    {
+     "spk": "F",
+     "zh": "对，交通也方便多了，教育资源也比以前更容易获得。",
+     "pinyin": "Duì, jiāotōng yě fāngbiàn duō le, jiàoyù zīyuán yě bǐ yǐqián gèng róngyì huòdé.",
+     "ja": "そうですね、交通もずいぶん便利になって、教育資源も以前よりずっと手に入りやすくなりました。"
+    },
+    {
+     "spk": "M",
+     "zh": "不过竞争也更激烈了，整个社会的压力好像更大了。",
+     "pinyin": "Búguò jìngzhēng yě gèng jīliè le, zhěnggè shèhuì de yālì hǎoxiàng gèng dà le.",
+     "ja": "でも競争もより激しくなって、社会全体のプレッシャーも大きくなったようです。"
+    },
+    {
+     "spk": "F",
+     "zh": "是啊，发展总是有好有坏，关键是怎么适应变化。",
+     "pinyin": "Shì a, fāzhǎn zǒngshì yǒu hǎo yǒu huài, guānjiàn shì zěnme shìyìng biànhuà.",
+     "ja": "そうですね、発展にはいつも良い面と悪い面があって、大事なのは変化にどう適応するかですね。"
+    }
+   ],
+   "q": {
+    "zh": "关于社会的变化，男的提到了什么？",
+    "pinyin": "Guānyú shèhuì de biànhuà, nán de tídào le shénme?",
+    "ja": "（質問）社会の変化について、男性は何に触れましたか？"
+   },
+   "opts": [
+    "交通变得不方便了",
+    "竞争更激烈，压力更大",
+    "教育资源变少了",
+    "农业没有受到影响"
+   ],
+   "answerIdx": 1,
+   "explain": "男性は「竞争也更激烈了，整个社会的压力好像更大了」と言っているので、Bが正解です。"
+  },
+  "90": {
+   "audio": "audio/day90.mp3",
+   "type": "mc",
+   "lines": [
+    {
+     "spk": "M",
+     "zh": "最近政府出台了不少新法律，主要目的是保护环境、支持经济发展。",
+     "pinyin": "Zuìjìn zhèngfǔ chūtái le bù shǎo xīn fǎlǜ, zhǔyào mùdì shì bǎohù huánjìng, zhīchí jīngjì fāzhǎn.",
+     "ja": "最近、政府はたくさんの新しい法律を打ち出しましたが、主な目的は環境を保護し、経済発展を支えることです。"
+    },
+    {
+     "spk": "M",
+     "zh": "比如禁止使用一些不环保的材料，鼓励大家节能，这些政策的作用正在慢慢显现。",
+     "pinyin": "Bǐrú jìnzhǐ shǐyòng yìxiē bù huánbǎo de cáiliào, gǔlì dàjiā jiénéng, zhèxiē zhèngcè de zuòyòng zhèngzài mànman xiǎnxiàn.",
+     "ja": "例えば環境に良くない材料の使用を禁止し、皆に省エネを奨励するといったことで、これらの政策の効果は少しずつ現れてきています。"
+    },
+    {
+     "spk": "M",
+     "zh": "不过法律和政策只是一方面，更重要的是每个人都能积极参与，而不是把责任都推给政府。",
+     "pinyin": "Búguò fǎlǜ hé zhèngcè zhǐshì yì fāngmiàn, gèng zhòngyào de shì měi ge rén dōu néng jījí cānyù, ér búshì bǎ zérèn dōu tuī gěi zhèngfǔ.",
+     "ja": "しかし法律や政策は一つの側面にすぎず、より重要なのは一人ひとりが積極的に参加できることであって、責任をすべて政府に押し付けることではありません。"
+    },
+    {
+     "spk": "M",
+     "zh": "只有大家一起努力，经济发展和环境保护才能真正地同时实现。",
+     "pinyin": "Zhǐyǒu dàjiā yìqǐ nǔlì, jīngjì fāzhǎn hé huánjìng bǎohù cái néng zhēnzhèng de tóngshí shíxiàn.",
+     "ja": "みんなが一緒に努力してこそ、経済発展と環境保護を本当に同時に実現することができるのです。"
+    }
+   ],
+   "q": {
+    "zh": "关于这段话，说话人最想告诉大家的是什么？",
+    "pinyin": "Guānyú zhè duàn huà, shuōhuàrén zuì xiǎng gàosu dàjiā de shì shénme?",
+    "ja": "（質問）この話について、話し手が皆に最も伝えたいことは何ですか？"
+   },
+   "opts": [
+    "保护环境只是政府的责任",
+    "经济发展和环保没有关系",
+    "每个人的积极参与很重要",
+    "新法律没有什么作用"
+   ],
+   "answerIdx": 2,
+   "explain": "話し手は「更重要的是每个人都能积极参与」「只有大家一起努力」と伝えているので、Cが正解です。"
+  }
+ }
+};

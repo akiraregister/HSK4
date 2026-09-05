@@ -13,22 +13,24 @@ HSK4級を90日で目指す、日本語話者向けの学習アプリ。GitHub P
 
 | ファイル | 中身 |
 |---|---|
-| `index.html` | **アプリ全体（約900KB / 7,400行）**。CSS・JS・学習データすべて内包 |
+| `index.html` | **アプリ全体**。CSS・JS・学習データ（Day1-7のみ）を内包。Day8-90は `worker-paywall/` が購入済みユーザーにだけ配る |
 | `lp/index.html` | 告知用ランディングページ。アプリと同じトークンを複製し、復習カードと並べ替えを実際に触れるデモとして載せている |
 | `lp/og.png` | SNS共有用の画像。`lp/og-source.html` を1200×630で撮ったもの |
 | `sw.js` | Service Worker。**更新したら `CACHE_VERSION` を1つ上げる**（ファイル冒頭の規約） |
-| `audio/dayN.mp3` | リスニング問題の音声（Day 1〜90、全日実装済み。Google Cloud TTS生成）。台本は `index.html` の `LISTENING`。模試には未収録（SRS復習・模試の対象外） |
+| `audio/dayN.mp3` | リスニング問題の音声（Day 1〜90、全日実装済み。Google Cloud TTS生成）。台本はDay1-7が `index.html` の `LISTENING`、Day8-90が `worker-paywall/src/content-bundle.js`。模試には未収録（SRS復習・模試の対象外） |
 | `tests/` | 実ブラウザで画面を操作するテスト。`tests/README.md` 参照 |
-| `worker/` | 作文のAI採点Worker（Cloudflare）。ソースはここが本体、`hsk4-grader.hsk4test.workers.dev` は配置先。作文の内容を変えたら `worker/README.md` の手順で作り直して配置し直すこと |
+| `worker/` | 作文のAI採点Worker（Cloudflare）。ソースはここが本体、`hsk4-grader.hsk4test.workers.dev` は配置先。作文の内容を変えたら `worker/README.md` の手順で作り直して配置し直すこと。`writing-bank.js` はDay1-7（`index.html`）とDay8-90（`worker-paywall/src/content-bundle.js`）をマージして作る |
 | `legal/` | 利用規約・プライバシーポリシー・特定商取引法に基づく表記。設定画面とLPのフッターからリンク。特商法ページの事業者情報は**未定のまま**なので、販売開始前に確定させること |
-| `worker-paywall/` | 購入・権限管理Worker（Cloudflare）。Stripe決済とFirebase uidごとの購入済み判定を担当。作文採点Workerとはあえて別Workerにしてある（理由は `worker-paywall/README.md`）。**まだ配置していない・`GET /content`（Day8-90本体の配信）も未実装** |
+| `worker-paywall/` | 購入・権限管理Worker（Cloudflare）。Stripe決済とFirebase uidごとの購入済み判定、Day8-90本体（`GET /content`）の配信を担当。作文採点Workerとはあえて別Workerにしてある（理由は `worker-paywall/README.md`）。**まだCloudflareに配置していない**（コードとしては完成、アカウント側の作業＝KV/Stripe設定が未了） |
 
 ### index.html の中の地図
 
 | 位置の目安 | 何があるか |
 |---|---|
-| 499行目 | `const LESSONS` — 90日分。語彙498（重複なし）・文法222（重複なし） |
-| 508行目 | `const BANK` — 90日分のミニテスト986問。毎日ここから5問が選ばれる。**画面に出るのはこちらで、`LESSONS[].test` は使われていない** |
+| 522行目 | `const LESSONS` — **Day1-7のみ**（無料お試し分）。Day8-90は `worker-paywall/src/content-bundle.js` |
+| 531行目 | `const BANK` — Day1-7のミニテスト。毎日ここから5問が選ばれる。**画面に出るのはこちらで、`LESSONS[].test` は使われていない** |
+| 2140行目 | `const LISTENING` — Day1-7のリスニング問題 |
+| 2400行目付近 | 有料コンテンツ（Day8-90）の読み込み。`TOTAL_DAYS`（固定90。`LESSONS.length`とは別物）、`mergePaidContent()`／`restorePaidContentCache()`（起動時にlocalStorageキャッシュを復元）、`fetchPaidContent()`（`hsk4-paywall`の`/content`を取得）、`startCheckout()`（`/checkout`を呼んでStripeへ）、`lockedDayHTML()`（Day8以降が未取得のときの画面） |
 | 320-430行目 | Firebase（遅延読み込み。落ちてもアプリ本体は動く） |
 | 中盤 | `track()` / 背面シェイプ / 各画面の `render*()` |
 | 終盤 | SRS（SM-2）、模擬試験、級診断、マイ単語 |
@@ -47,6 +49,11 @@ HSK4級を90日で目指す、日本語話者向けの学習アプリ。GitHub P
 **`#settingsPanel` は常時DOMにある。** Firebase 側が `loginBtn` などのIDを直接引くため、
 再描画で作り直さず、表示だけ切り替えている。セレクタを書くときは `#content` に限定しないと
 別画面のボタンに当たる。
+
+**`LESSONS.length` は「今読み込めている日数」であって「全90日」ではない。** Day8-90は
+未購入だと存在しないので、カリキュラム全体の日数が要る場所（進捗%、Day一覧、
+`setDay()`のクランプ等）は必ず`TOTAL_DAYS`（固定90）を使うこと。`LESSONS.length`を
+使っていいのは「今読み込めている中から探す」場面（`cwLookupApp`等）だけ。
 
 **ブックマークはオブジェクトで格納する。** `state.bookmarks[id] = true` ではなく
 `toggleBookmark()` と同じ `{id, type, title, sub, day, pinyin, example, ...}` の形。
@@ -73,10 +80,13 @@ node tests/run.mjs        # 全103項目＋Service Workerチェック
 
 有料化に進む場合の前提。詳細はマネタイズ提案書（下記）に。
 
-- **コンテンツがクライアントに全部ある** — `LESSONS`/`BANK` が `index.html` 内にあるため、
-  クライアント側のpaywallは原理的に成立しない。有料化するなら最初に解く問題。
-  設計は決定済み（下記「paywallの設計」）だが、Day8-90の切り出しと配信自体は未着手
-- **Firestoreルールは確認済み・健全** — `users/{uid}/hsk4/{docId}` のみ、本人以外は読み書き不可、期限切れも無し。ただし将来 entitlement を足すなら**同じドキュメントの中に置かない**こと（利用者が自分で書き換えられる）→ 実際には entitlement はFirestoreではなくCloudflare KVに持たせる方針にした
+- **Cloudflareへの配置がまだ** — `worker-paywall/`はコードとしては完成（Day8-90の切り出し・
+  `/checkout`・`/webhook`・`/entitlement`・`/content`すべて実装済み）だが、実際にCloudflareへ
+  配置してURLを得るところ、KV名前空間の作成、Stripeでの商品・価格作成、Webhook登録が未了。
+  手順は`worker-paywall/README.md`参照。配置するまでは`startCheckout()`は失敗する
+- **決済後の自動反映が無い** — Stripeから戻ってきても`fetchPaidContent()`は自動で呼ばれない。
+  利用者がロック画面の「購入済みの内容を確認する」を手で押す必要がある
+- **Firestoreルールは確認済み・健全** — `users/{uid}/hsk4/{docId}` のみ、本人以外は読み書き不可、期限切れも無し。entitlementはFirestoreではなくCloudflare KVに持たせる方針にした（実装済み）ので、この境界は既に守られている
 - **特商法ページの事業者情報が未定** — `legal/tokushoho.html` の会社名・所在地・電話番号・メール・決済方法が仮のまま。販売開始前に確定させること
 
 ## 決まっていること
@@ -86,18 +96,20 @@ node tests/run.mjs        # 全103項目＋Service Workerチェック
 - **paywall位置** Day 8。間隔反復が効き目を体感させるのに最低1週間かかるため
 - **HSK5以上の人** 正直に「易しすぎる」と伝え、関心の人数だけ数える（メールは取らない）
 
-## paywallの設計（決定済み・実装中）
+## paywallの設計（コードは実装済み・配置は未了）
 
 - **決済** Stripe Checkout（買い切り、1回払い）
-- **権限管理** Firebaseのuidをキーに、Cloudflare KVに購入済みフラグを保存。
-  Firestoreは使わない（Admin SDKがWorkerで扱いにくい／entitlementを利用者が
-  書き換えられる木に置きたくない、の両方が理由）
-- **Worker構成** `hsk4-grader`（作文採点）とは別に、新しく `worker-paywall/`
-  （`hsk4-paywall`）を作った。役目を混ぜない方針（`worker-paywall/README.md` 参照）
-- **未着手** Day8-90の `LESSONS`/`BANK`/`LISTENING` を `index.html` から切り出して
-  `GET /content` 経由で配る部分、`index.html` 側の購入導線（ログイン→Checkout→
-  戻ってきたら`/entitlement`確認）、`hsk4-grader` 側への認証追加
-- **未着手（アカウント側の作業）** Cloudflare KV名前空間の作成、Stripeでの商品・
+- **権限管理** Firebaseのuidをキーに、Cloudflare KVに購入済みフラグを保存
+- **Worker構成** `hsk4-grader`（作文採点）とは別に `worker-paywall/`（`hsk4-paywall`）
+  を作った。役目を混ぜない方針（`worker-paywall/README.md` 参照）
+- **Day8-90の切り出し** `worker-paywall/build-content.mjs` が `index.html` の
+  `LESSONS`/`BANK`/`LISTENING` からDay8-90を `worker-paywall/src/content-bundle.js`
+  に分離し、`index.html` にはDay1-7だけを残す（実装済み。詳細は`worker-paywall/README.md`）
+- **index.html側の導線** `startCheckout()`（購入）、`fetchPaidContent()`（取得・
+  localStorageへキャッシュ）、`lockedDayHTML()`（未購入時のDay8以降の画面）まで実装済み
+- **未着手** `hsk4-grader` 側への認証追加（別タスク）、決済後に`fetchPaidContent()`を
+  自動で呼ぶ導線（現状は手動ボタン）
+- **未着手（アカウント側の作業）** Cloudflareへの配置、KV名前空間の作成、Stripeでの商品・
   価格作成、StripeのWebhook登録とシークレット設定 — いずれも実際のアカウントが
   必要なため、`worker-paywall/README.md` の手順を見ながら利用者自身が行うこと
 

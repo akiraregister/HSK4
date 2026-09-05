@@ -28,25 +28,47 @@ Workerとして作った。
 | `POST /checkout` | Firebase IDトークン（`Authorization: Bearer ...`） | Stripe Checkout Sessionを作り、決済ページのURLを返す |
 | `POST /webhook` | Stripeの署名（`Stripe-Signature`） | 決済完了イベントを受け、KVに購入済みを記録する |
 | `GET /entitlement` | Firebase IDトークン | ログイン中ユーザーが購入済みかを `{purchased: true/false}` で返す |
-| `GET /content` | （未実装） | Day8-90本体の配信。下記「まだやっていないこと」参照 |
+| `GET /content` | Firebase IDトークン + 購入済み | Day8-90本体（`src/content-bundle.js`）をそのまま返す |
 
 `/checkout` と `/entitlement` はFirebaseの署名付きIDトークンで本人確認する
 （Admin SDK無しで、Googleの公開鍵と照合するだけ。詳しくは `src/firebase-verify.js`
 の冒頭コメント参照）。uidを直接送らせる方式にはしていない。送らせると、
 他人のuidを名乗って購入状態を聞いたり書き換えたりできてしまうため。
 
+## Day8-90の切り出し方（実装済み）
+
+`worker-paywall/build-content.mjs` が `index.html` の `LESSONS`/`BANK`/`LISTENING`
+を読み、Day1-7だけを `index.html` に残し、Day8-90を `src/content-bundle.js`
+（このWorkerが`GET /content`でそのまま返す）に書き出す。
+
+```bash
+node worker-paywall/build-content.mjs
+```
+
+`index.html` の学習データ（Day1-7分も含む）を変更したら、必ずこれを実行し直すこと。
+実行後は `node tests/run.mjs` を通すこと（テストは `tests/browser.mjs` の
+`seedFullContent()` で全90日分をlocalStorageに仕込んで動かしているので、
+Workerを配置していなくてもテストは動く）。
+
+`index.html`側は、起動時に `hsk4-paid-content-v1`（localStorage）のキャッシュを
+`LESSONS`/`BANK`/`LISTENING` へ復元し（`restorePaidContentCache()`）、
+ログイン中ユーザーは `fetchPaidContent()` でこのWorkerの `/content` を呼んで
+補充・キャッシュする。購入導線は `startCheckout()`（`/checkout` を呼び、
+返ってきたURLへ遷移）。Day8以降でコンテンツが無い場合は `lockedDayHTML()` の
+ロック画面を表示する。
+
 ## まだやっていないこと（次のフェーズ）
 
-- **`GET /content` の実装** — Day8-90の `LESSONS`/`BANK`/`LISTENING` を
-  `index.html` から切り出し、購入済みユーザーにだけこのWorker経由で返す部分。
-  現状は501を返すだけ。切り出し方（1本のJSONにまとめるか、Day単位にするか、
-  既存のオフライン動作=Service Workerキャッシュとどう共存させるか）を
-  詰めてから着手する。
-- **`index.html` 側の統合** — ログイン→`/checkout`呼び出し→Stripe決済ページへ遷移
-  →戻ってきたら`/entitlement`を確認、という一連の導線がまだ無い。
 - **`hsk4-grader`（作文採点）側の認証追加** — 現状は誰でも呼べる。将来は
   こちらのFirebase検証の仕組みを流用し、有料ユーザーのみ・回数制限付きに
   する想定（別タスク）。
+- **決済後の自動反映** — 現状はStripe決済から戻ってきたら手動で「購入済みの内容を
+  確認する」ボタンを押す必要がある。`success_url`のクエリパラメータを見て
+  自動的に`fetchPaidContent()`を呼ぶ導線は未実装。
+- **`worker/build-bank.mjs`との連携** — 作文採点Workerの `writing-bank.js` は
+  Day1-7（`index.html`）とDay8-90（`content-bundle.js`）の両方をマージして
+  作るように更新済み。`content-bundle.js`を作り直したら、`worker/build-bank.mjs`
+  も実行し直すこと。
 
 ## 初めて配置するとき
 
