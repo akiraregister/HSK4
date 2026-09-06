@@ -433,10 +433,15 @@ async function initFirebase(){
         // Stripeの決済ページから戻ってきた直後（成功）なら、購入済みの内容を
         // 自動で取得する。ログイン確認後でないとfetchPaidContent()できないため、
         // ここ（onAuthStateChanged内）で処理する。
-        var purchaseParam=null;
-        try{ purchaseParam=new URLSearchParams(location.search).get('purchase'); }catch(e){}
+        var purchaseParam=null, purchaseSessionId=null;
+        try{
+          var qs=new URLSearchParams(location.search);
+          purchaseParam=qs.get('purchase');
+          purchaseSessionId=qs.get('session_id');
+        }catch(e){}
         if(purchaseParam==='success'){
           try{ history.replaceState(null,'',location.pathname); }catch(e){}
+          if(purchaseSessionId) await confirmPurchase(purchaseSessionId);
           var got=await fetchPaidContent();
           _toast(got?'購入ありがとうございます！Day8以降が使えるようになりました。':'購入の確認に少し時間がかかっています。少し待ってから「購入済みの内容を確認する」をお試しください。');
           if(got) render();
@@ -25937,6 +25942,22 @@ function mergePaidContent(data){
     }
   }catch(e){}
 })();
+// 決済から戻ってきたときの購入確定。Webhookが届かなかった場合でも、
+// Stripeが付けてくれたsession_idを渡せばWorker側が本人の支払いか照会して確定できる。
+async function confirmPurchase(sessionId){
+  if(!firebaseReady || !auth || !auth.currentUser) return false;
+  try{
+    var token=await auth.currentUser.getIdToken();
+    var res=await fetch(paywallUrl()+'/confirm', {
+      method:'POST',
+      headers:{ 'Authorization':'Bearer '+token, 'Content-Type':'application/json' },
+      body:JSON.stringify({ session_id: sessionId })
+    });
+    if(!res.ok) return false;
+    var data=await res.json();
+    return !!(data && data.purchased);
+  }catch(e){ return false; }
+}
 async function fetchPaidContent(){
   if(!firebaseReady || !auth || !auth.currentUser) return false;
   try{

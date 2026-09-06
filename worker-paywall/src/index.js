@@ -13,7 +13,7 @@
 // （src/firebase-verify.js でGoogleの公開鍵と照合して検証する）。
 
 import { verifyFirebaseIdToken } from './firebase-verify.js';
-import { verifyStripeSignature, createCheckoutSession } from './stripe.js';
+import { verifyStripeSignature, createCheckoutSession, isSessionPaidBy } from './stripe.js';
 import { PAID_CONTENT } from './content-bundle.js';
 
 const ALLOWED_ORIGINS = [
@@ -107,6 +107,25 @@ export default {
       const session = await createCheckoutSession(env, uid, coupon);
       if (!session || !session.url) return json({ error: '決済ページの作成に失敗しました' }, 502, origin);
       return json({ url: session.url }, 200, origin);
+    }
+
+    // 決済完了後にアプリが戻ってきたときの購入確定。Webhookが届かなかった場合の
+    // second sourceであり、Webhookが先に通っていれば同じ内容を上書きするだけ。
+    if (url.pathname === '/confirm' && request.method === 'POST') {
+      const uid = await requireUid(request);
+      if (!uid) return json({ error: 'ログインしてください' }, 401, origin);
+      let sessionId = '';
+      try { sessionId = (await request.json()).session_id || ''; } catch {}
+      if (!sessionId) return json({ error: 'session_idが必要です' }, 400, origin);
+      if (!(await isSessionPaidBy(env, sessionId, uid))) {
+        return json({ purchased: false }, 200, origin);
+      }
+      await env.ENTITLEMENTS.put(uid, JSON.stringify({
+        purchased: true,
+        purchasedAt: Date.now(),
+        sessionId,
+      }));
+      return json({ purchased: true }, 200, origin);
     }
 
     if (url.pathname === '/entitlement' && request.method === 'GET') {

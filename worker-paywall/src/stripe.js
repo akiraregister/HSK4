@@ -45,7 +45,9 @@ export async function createCheckoutSession(env, uid, coupon) {
   body.set('client_reference_id', uid);
   body.set('line_items[0][price]', env.STRIPE_PRICE_ID);
   body.set('line_items[0][quantity]', '1');
-  body.set('success_url', `${env.APP_ORIGIN}/?purchase=success`);
+  // {CHECKOUT_SESSION_ID}はStripeが実際のIDへ置換する。戻ってきたアプリが
+  // これを/confirmへ渡すことで、Webhookが届かなくても購入を確定できる。
+  body.set('success_url', `${env.APP_ORIGIN}/?purchase=success&session_id={CHECKOUT_SESSION_ID}`);
   body.set('cancel_url', `${env.APP_ORIGIN}/?purchase=cancel`);
 
   // クーポンコードが指定されていれば適用
@@ -66,4 +68,19 @@ export async function createCheckoutSession(env, uid, coupon) {
     return null;
   }
   return resp.json();
+}
+
+// 決済完了ページから戻ってきたセッションIDが、本当に支払い済みで、かつ
+// 本人（Firebaseで検証済みのuid）のものかをStripeに直接問い合わせて確かめる。
+// 他人のセッションIDを持ち込まれてもclient_reference_idが一致せず弾かれる。
+export async function isSessionPaidBy(env, sessionId, uid) {
+  const resp = await fetch(`https://api.stripe.com/v1/checkout/sessions/${encodeURIComponent(sessionId)}`, {
+    headers: { Authorization: `Bearer ${env.STRIPE_SECRET_KEY}` },
+  });
+  if (!resp.ok) {
+    console.error('stripe session fetch error', resp.status, (await resp.text().catch(() => '')).slice(0, 500));
+    return false;
+  }
+  const session = await resp.json();
+  return session.payment_status === 'paid' && session.client_reference_id === uid;
 }
