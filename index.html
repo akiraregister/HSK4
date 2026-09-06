@@ -269,7 +269,7 @@ body.fs-lg .zh{font-size:24px}body.fs-lg .pinyin{font-size:17px}body.fs-lg .ja{f
 .hsk-pop{animation:hsk-pop .45s ease}.hsk-checkpulse{animation:hsk-checkpulse .5s ease}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media (prefers-reduced-motion: reduce){.hsk-pop,.hsk-checkpulse{animation:none}}
-.fs-global{display:flex;align-items:center;gap:6px;margin-top:2px;justify-content:flex-end}
+.fs-global{display:flex;align-items:center;gap:6px;margin-top:2px;width:275px;justify-content:space-between}
 .fs-global .fs-label{font-size:11px;color:var(--ink);font-weight:700;margin-right:2px}
 /* ===== D-4「背面シェイプ」: 色はカードではなく地が持つ。カードは常に白＋黒枠 ===== */
 #bgShapes{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
@@ -289,7 +289,8 @@ h1,h2,h3,.badge,.zh,.vrow-zh,.fc-prompt,.tc-title,.tc-count,.daybtn,.set-label,
 .settings-panel.active{display:block}
 .set-label{font-size:13px;font-weight:900;color:var(--muted);letter-spacing:.05em;margin:18px 0 8px}
 .set-label:first-of-type{margin-top:10px}
-.set-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+.set-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.set-row.seg{width:275px;justify-content:space-between}
 /* 「今日」画面：新規／復習の2カード */
 .today-actions{display:grid;gap:12px;margin-top:12px}
 @media(min-width:640px){.today-actions{grid-template-columns:1fr 1fr}}
@@ -3889,7 +3890,7 @@ function renderSettings(){
   var dl=(typeof state.srsDueLimit==='number')?state.srsDueLimit:30;
   var dir=(state.srsDir==='ja2zh')?'ja2zh':'zh2ja';
   function seg(opts, cur, fn){
-    return '<div class="set-row">'+opts.map(function(o){
+    return '<div class="set-row seg">'+opts.map(function(o){
       return '<button type="button" class="chip-toggle '+(cur===o.v?'on':'')+'" onclick="'+fn(o.v)+'">'+o.t+'</button>';
     }).join('')+'</div>';
   }
