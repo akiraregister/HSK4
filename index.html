@@ -426,6 +426,10 @@ async function initFirebase(){
       if(user){
         setSyncStatus('warn','ログイン済み：同期準備中...',user.email||'');
         await loadCloudState();
+        // loadCloudState()が再描画するのは「クラウド側が新しくて読み込んだ」ときだけ。
+        // ログインの有無自体が表示を変える箇所（lockedDayHTML()のボタン文言など）が
+        // あるので、ここで必ず一度描き直す。
+        render();
         // Stripeの決済ページから戻ってきた直後（成功）なら、購入済みの内容を
         // 自動で取得する。ログイン確認後でないとfetchPaidContent()できないため、
         // ここ（onAuthStateChanged内）で処理する。
@@ -25973,8 +25977,8 @@ function lockedDayHTML(day){
   return '<div class="card">'
     +'<div class="section-title"><h2>Day '+day+'</h2><span class="badge">未購入</span></div>'
     +'<div class="small" style="margin:10px 0 16px">Day8以降は購入後に使えるようになります。Day1-7は引き続き無料でお試しいただけます。</div>'
-    +'<div style="margin-bottom:12px"><input id="couponInput" type="text" placeholder="クーポンコード（お持ちの場合）" style="width:100%;padding:8px;box-sizing:border-box;border:1px solid var(--border);border-radius:4px;font-size:14px"></div>'
-    +'<button class="primary" style="width:100%" onclick="startCheckout()">'+(loggedIn?'購入する':'ログインして購入する')+'</button>'
+    +'<input id="couponInput" type="text" placeholder="クーポンコード（お持ちの場合）">'
+    +'<button class="primary" style="width:100%;margin-top:10px" onclick="startCheckout()">'+(loggedIn?'購入する':'ログインして購入する')+'</button>'
     +'<button style="width:100%;margin-top:10px" onclick="fetchPaidContent().then(function(ok){ if(ok){ render(); } else { alert(\'まだ購入が確認できませんでした。\'); } })">購入済みの内容を確認する</button>'
     +'<button style="width:100%;margin-top:10px" onclick="showDay(1)">Day1-7に戻る</button>'
     +'</div>';
