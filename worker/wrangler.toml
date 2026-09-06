@@ -9,7 +9,7 @@ compatibility_date = "2026-08-24"
 # 繋がなければ制限なしで動く。手順は README.md を参照。
 # [[kv_namespaces]]
 # binding = "RATE_LIMIT"
-# id = "1373b4b05d19cc43bef4dffe1e1b1bdf"
+# id = "ここにKV名前空間のIDを貼る"
 
 # Day8以降の採点を購入済みユーザーに限定するためのKV。
 # worker-paywall/wrangler.toml の ENTITLEMENTS と「同じ id」を指定すること
@@ -17,4 +17,4 @@ compatibility_date = "2026-08-24"
 # 繋がないとDay8以降は常に403になる（安全側のデフォルト）。手順はREADME.md参照。
 [[kv_namespaces]]
 binding = "ENTITLEMENTS"
-id = "1373b4b05d19cc43bef4dffe1e1b1bdf"
+id = "1373b4b05d194c43bef4dffefe1b1bdf"

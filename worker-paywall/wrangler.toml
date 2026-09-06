@@ -8,8 +8,6 @@ APP_ORIGIN = "https://akiraregister.github.io/HSK4"
 # Stripeの価格ID（ダッシュボードの商品ページに price_ から始まる文字列で表示される）
 # 秘密情報ではないが、初回配置までは空のままでよい。
 STRIPE_PRICE_ID = ""
-# 直接金額指定を使う場合の金額（JPY、単位はセント）。STRIPE_PRICE_IDを使わない場合に使用。
-DEFAULT_AMOUNT_JPY = "4800"
 
 # 以下はsecretとして置く（このファイルには書かない。手順はREADME.md参照）
 #   npx wrangler secret put STRIPE_SECRET_KEY
@@ -18,4 +16,4 @@ DEFAULT_AMOUNT_JPY = "4800"
 # 購入済みフラグを保存するKV。作成手順はREADME.md参照。
 [[kv_namespaces]]
 binding = "ENTITLEMENTS"
-id = "1373b4b05d19cc43bef4dffe1e1b1bdf"
+id = "1373b4b05d194c43bef4dffefe1b1bdf"
