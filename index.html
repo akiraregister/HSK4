@@ -269,7 +269,7 @@ body.fs-lg .zh{font-size:24px}body.fs-lg .pinyin{font-size:17px}body.fs-lg .ja{f
 .hsk-pop{animation:hsk-pop .45s ease}.hsk-checkpulse{animation:hsk-checkpulse .5s ease}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media (prefers-reduced-motion: reduce){.hsk-pop,.hsk-checkpulse{animation:none}}
-.fs-global{display:flex;align-items:center;gap:6px;margin-top:2px}
+.fs-global{display:flex;align-items:center;gap:6px;margin-top:2px;justify-content:flex-end}
 .fs-global .fs-label{font-size:11px;color:var(--ink);font-weight:700;margin-right:2px}
 /* ===== D-4「背面シェイプ」: 色はカードではなく地が持つ。カードは常に白＋黒枠 ===== */
 #bgShapes{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
@@ -289,7 +289,7 @@ h1,h2,h3,.badge,.zh,.vrow-zh,.fc-prompt,.tc-title,.tc-count,.daybtn,.set-label,
 .settings-panel.active{display:block}
 .set-label{font-size:13px;font-weight:900;color:var(--muted);letter-spacing:.05em;margin:18px 0 8px}
 .set-label:first-of-type{margin-top:10px}
-.set-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.set-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
 /* 「今日」画面：新規／復習の2カード */
 .today-actions{display:grid;gap:12px;margin-top:12px}
 @media(min-width:640px){.today-actions{grid-template-columns:1fr 1fr}}
@@ -308,7 +308,7 @@ h1,h2,h3,.badge,.zh,.vrow-zh,.fc-prompt,.tc-title,.tc-count,.daybtn,.set-label,
 .day-list-details>summary::after{content:"＋";font-size:16px;color:var(--ink)}
 .day-list-details[open]>summary::after{content:"−"}
 .day-list-details .dl-body{padding:0 14px 14px}
-.fs-btn{padding:8px 17px;font-size:12.5px;font-weight:900;border:var(--bw) solid #CFC6B6;background:#fff;color:var(--muted);border-radius:999px;line-height:1.4;touch-action:manipulation;cursor:pointer;min-height:36px}
+.fs-btn{padding:9px 16px;font-size:14px;font-weight:900;border:var(--bw) solid #CFC6B6;background:rgba(255,255,255,.8);color:var(--muted);border-radius:999px;line-height:1.4;touch-action:manipulation;cursor:pointer}
 .fs-btn.on{background:var(--stroke);color:var(--bg);border-color:var(--stroke)}
 .g-details{margin-top:8px;border:1px dashed #DCD3C6;border-radius:14px;background:#FBF7F0;overflow:hidden}
 .g-details>summary{list-style:none;cursor:pointer;padding:10px 12px;font-size:14px;font-weight:700;color:var(--ink);display:flex;align-items:center;justify-content:space-between;touch-action:manipulation}
@@ -366,7 +366,7 @@ h1.brand{display:flex;align-items:center;justify-content:flex-start;gap:10px}.br
     <button class="force-btn" id="forceUploadBtn" type="button" style="display:none">↑ 端末→クラウド</button>
     <button class="force-btn force-dl" id="forceDownloadBtn" type="button" style="display:none">↓ クラウド→端末</button>
   </div>
-  <div class="small muted" style="margin-top:6px">ログインすると、進捗を他の端末とも同期します。</div>
+  <div class="small muted" style="margin-top:6px">ログインすると、進捗を他の端末とも<span style="white-space:nowrap">同期します。</span></div>
 
   <div class="set-label">文字サイズ</div>
   <div class="fs-global" role="group" aria-label="文字サイズの調整">
@@ -3896,16 +3896,16 @@ function renderSettings(){
   var h='';
   h+='<div class="set-label">復習の出題範囲</div>'
    + seg([{v:'all',t:'すべて'},{v:'bm',t:'ブックマークのみ'}], scope, function(v){ return "revSetScope('"+v+"')"; })
-   + '<div class="small muted" style="margin-top:6px">すべて＝完了分の単語・文法＋ブックマーク＋マイ単語。</div>';
+   + '<div class="small muted" style="margin-top:6px">すべて＝完了分の単語・文法＋ブックマーク＋<span style="white-space:nowrap">マイ単語。</span></div>';
   h+='<div class="set-label">1日の新規問数</div>'
    + seg([{v:0,t:'なし'},{v:8,t:'8'},{v:16,t:'16'},{v:-1,t:'制限なし'}], nl, function(v){ return 'srsSetNewLimit('+v+')'; })
    + '<div class="small muted" style="margin-top:6px">新しく学ぶ語の上限。多いほど復習が増えます。</div>';
   h+='<div class="set-label">1日の復習上限</div>'
    + seg([{v:20,t:'20'},{v:30,t:'30'},{v:50,t:'50'},{v:-1,t:'制限なし'}], dl, function(v){ return 'srsSetDueLimit('+v+')'; })
-   + '<div class="small muted" style="margin-top:6px">復習が溜まっても一気に出さないための上限です。超えた分は翌日以降に回します。</div>';
+   + '<div class="small muted" style="margin-top:6px">復習が溜まっても一気に出さないための上限<span style="white-space:nowrap">です。</span>超えた分は翌日以降に回します。</div>';
   h+='<div class="set-label">出題の向き</div>'
    + seg([{v:'zh2ja',t:'中文 → 日本語'},{v:'ja2zh',t:'日本語 → 中文'}], dir, function(v){ return "srsSetDir('"+v+"')"; })
-   + '<div class="small muted" style="margin-top:6px">中文→日本語は意味を、日本語→中文は中文を答える練習です。</div>';
+   + '<div class="small muted" style="margin-top:6px">中文→日本語は意味を、日本語→中文は中文を<span style="white-space:nowrap">答える練習です。</span></div>';
 
   h+='<div class="set-label">受験予定日</div>'
    + '<div class="small muted" style="margin-bottom:8px">設定すると、今日画面に残り日数が出ます。</div>'
@@ -3913,7 +3913,7 @@ function renderSettings(){
    + (examDate()? '<button style="width:100%;margin-top:8px" onclick="setExamDate(\'\')">日付を消す</button>' : '');
 
   h+='<div class="set-label">模擬試験</div>'
-   + '<div class="small muted" style="margin-bottom:8px">完了したDayの範囲から40問・30分。<b>听力は含みません</b>。</div>'
+   + '<div class="small muted" style="margin-bottom:8px">完了したDayの範囲から40問・30分。<b style="white-space:nowrap">听力は含みません。</b></div>'
    + '<button style="width:100%" onclick="showMock()">模擬試験へ</button>';
 
   h+='<div class="set-label">レベル診断</div>'
