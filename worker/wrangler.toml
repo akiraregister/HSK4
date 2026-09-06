@@ -17,4 +17,4 @@ compatibility_date = "2026-08-24"
 # 繋がないとDay8以降は常に403になる（安全側のデフォルト）。手順はREADME.md参照。
 # [[kv_namespaces]]
 # binding = "ENTITLEMENTS"
-# id = "worker-paywallと同じKV名前空間のIDを貼る"
+# id = "1373b4b05d19cc43bef4dffe1e1b1bdf"
