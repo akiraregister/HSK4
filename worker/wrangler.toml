@@ -15,6 +15,6 @@ compatibility_date = "2026-08-24"
 # worker-paywall/wrangler.toml の ENTITLEMENTS と「同じ id」を指定すること
 # （購入済みフラグを書くのはworker-paywall、ここは読むだけ）。
 # 繋がないとDay8以降は常に403になる（安全側のデフォルト）。手順はREADME.md参照。
-# [[kv_namespaces]]
-# binding = "ENTITLEMENTS"
-# id = "1373b4b05d19cc43bef4dffe1e1b1bdf"
+[[kv_namespaces]]
+binding = "ENTITLEMENTS"
+id = "1373b4b05d19cc43bef4dffe1e1b1bdf"
