@@ -38,7 +38,8 @@ export async function verifyStripeSignature(rawBody, sigHeader, secret) {
 // Checkout Session（買い切り、1回払い）を作成する。
 // client_reference_id にFirebaseのuidを入れておき、Webhookで受け取ったときに
 // 「誰が買ったか」をここから復元する。
-export async function createCheckoutSession(env, uid) {
+// coupon が指定されていれば、クーポンコードを discounts に追加する。
+export async function createCheckoutSession(env, uid, coupon) {
   const body = new URLSearchParams();
   body.set('mode', 'payment');
   body.set('client_reference_id', uid);
@@ -46,6 +47,11 @@ export async function createCheckoutSession(env, uid) {
   body.set('line_items[0][quantity]', '1');
   body.set('success_url', `${env.APP_ORIGIN}/?purchase=success`);
   body.set('cancel_url', `${env.APP_ORIGIN}/?purchase=cancel`);
+
+  // クーポンコードが指定されていれば適用
+  if (coupon) {
+    body.set('discounts[0][coupon]', coupon);
+  }
 
   const resp = await fetch('https://api.stripe.com/v1/checkout/sessions', {
     method: 'POST',

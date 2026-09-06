@@ -99,7 +99,12 @@ export default {
       if (!env.STRIPE_SECRET_KEY || !env.STRIPE_PRICE_ID) {
         return json({ error: 'サーバー側の決済設定が未完了です' }, 500, origin);
       }
-      const session = await createCheckoutSession(env, uid);
+      let coupon;
+      try {
+        const body = await request.json();
+        coupon = body.coupon;
+      } catch {}
+      const session = await createCheckoutSession(env, uid, coupon);
       if (!session || !session.url) return json({ error: '決済ページの作成に失敗しました' }, 502, origin);
       return json({ url: session.url }, 200, origin);
     }

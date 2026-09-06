@@ -25950,7 +25950,11 @@ async function startCheckout(){
   if(!auth || !auth.currentUser){ window.hsk4GoogleLogin(); return; }
   try{
     var token=await auth.currentUser.getIdToken();
-    var res=await fetch(paywallUrl()+'/checkout', { method:'POST', headers:{ 'Authorization':'Bearer '+token } });
+    var coupon='';
+    var couponInput=document.getElementById('couponInput');
+    if(couponInput){ coupon=couponInput.value.trim(); }
+    var body={ coupon: coupon || undefined };
+    var res=await fetch(paywallUrl()+'/checkout', { method:'POST', headers:{ 'Authorization':'Bearer '+token, 'Content-Type':'application/json' }, body:JSON.stringify(body) });
     var data=await res.json().catch(function(){ return null; });
     if(data && data.url){ location.href=data.url; }
     else{ alert('決済ページを開けませんでした。しばらくしてからお試しください。'); }
@@ -25969,6 +25973,7 @@ function lockedDayHTML(day){
   return '<div class="card">'
     +'<div class="section-title"><h2>Day '+day+'</h2><span class="badge">未購入</span></div>'
     +'<div class="small" style="margin:10px 0 16px">Day8以降は購入後に使えるようになります。Day1-7は引き続き無料でお試しいただけます。</div>'
+    +'<div style="margin-bottom:12px"><input id="couponInput" type="text" placeholder="クーポンコード（お持ちの場合）" style="width:100%;padding:8px;box-sizing:border-box;border:1px solid var(--border);border-radius:4px;font-size:14px"></div>'
     +'<button class="primary" style="width:100%" onclick="startCheckout()">'+(loggedIn?'購入する':'ログインして購入する')+'</button>'
     +'<button style="width:100%;margin-top:10px" onclick="fetchPaidContent().then(function(ok){ if(ok){ render(); } else { alert(\'まだ購入が確認できませんでした。\'); } })">購入済みの内容を確認する</button>'
     +'<button style="width:100%;margin-top:10px" onclick="showDay(1)">Day1-7に戻る</button>'
