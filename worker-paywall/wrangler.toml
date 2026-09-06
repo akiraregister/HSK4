@@ -16,4 +16,4 @@ STRIPE_PRICE_ID = ""
 # 購入済みフラグを保存するKV。作成手順はREADME.md参照。
 [[kv_namespaces]]
 binding = "ENTITLEMENTS"
-id = "ここにKV名前空間のIDを貼る"
+id = "1373b4b05d19cc43bef4dffe1e1b1bdf"
