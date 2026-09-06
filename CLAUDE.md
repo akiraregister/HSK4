@@ -7,13 +7,31 @@ HSK4級を90日で目指す、日本語話者向けの学習アプリ。GitHub P
 - 本体 https://akiraregister.github.io/HSK4/
 - LP　 https://akiraregister.github.io/HSK4/lp/
 
+## ⚠️ 販売開始前に必ず確認（今の状態）
+
+このリポジトリは**公開（Public）**。公開リポジトリに入っているファイルは、GitHub Pagesの
+設定に関係なく`github.com`から誰でも読める（`worker-paywall/src/content-bundle.js`に
+Day8-90を分離しても、リポジトリ自体が公開なら閲覧を防げない）。この問題が見つかった時点で
+「まだ告知・販売開始前だから誰が見てもよい」との判断により、**Day8-90の制限は一時的に解除中**
+（`node worker-paywall/restore-full-content.mjs`で`index.html`に全90日を書き戻し済み）。
+
+**販売を始める前に、この順番で対応すること：**
+1. リポジトリをPrivateにする（`github.com/akiraregister/HSK4/settings` の Danger Zone。
+   GitHub Pagesを維持するにはGitHub Pro等への加入が必要になる場合がある）
+2. `node worker-paywall/build-content.mjs` を実行してDay8-90を`index.html`から切り出す
+3. `worker-paywall/README.md`／`worker/README.md`の手順でCloudflare/Stripeを設定する
+4. `node tests/run.mjs` を通してから配置・マージする
+
+①をやらないまま②だけ実行しても、切り出した`content-bundle.js`自体が公開リポジトリに
+残るので実質的な保護にはならない。①が先。
+
 ## 構成
 
 ビルドもフレームワークも無い。全部が素のファイル。
 
 | ファイル | 中身 |
 |---|---|
-| `index.html` | **アプリ全体**。CSS・JS・学習データ（Day1-7のみ）を内包。Day8-90は `worker-paywall/` が購入済みユーザーにだけ配る |
+| `index.html` | **アプリ全体**。CSS・JS・学習データを内包。**いまは全90日分が入っている**（未告知・未販売のあいだ、Day8-90の制限を一時解除中。下記「⚠️ 販売開始前に必ず確認」参照） |
 | `lp/index.html` | 告知用ランディングページ。アプリと同じトークンを複製し、復習カードと並べ替えを実際に触れるデモとして載せている |
 | `lp/og.png` | SNS共有用の画像。`lp/og-source.html` を1200×630で撮ったもの |
 | `sw.js` | Service Worker。**更新したら `CACHE_VERSION` を1つ上げる**（ファイル冒頭の規約） |
@@ -21,16 +39,16 @@ HSK4級を90日で目指す、日本語話者向けの学習アプリ。GitHub P
 | `tests/` | 実ブラウザで画面を操作するテスト。`tests/README.md` 参照 |
 | `worker/` | 作文のAI採点Worker（Cloudflare）。ソースはここが本体、`hsk4-grader.hsk4test.workers.dev` は配置先。作文の内容を変えたら `worker/README.md` の手順で作り直して配置し直すこと。`writing-bank.js` はDay1-7（`index.html`）とDay8-90（`worker-paywall/src/content-bundle.js`）をマージして作る。Day8以降の採点はFirebaseログイン＋購入済み（`worker-paywall`と同じKVを読む）が必要 |
 | `legal/` | 利用規約・プライバシーポリシー・特定商取引法に基づく表記。設定画面とLPのフッターからリンク。特商法ページの事業者情報は**未定のまま**なので、販売開始前に確定させること |
-| `worker-paywall/` | 購入・権限管理Worker（Cloudflare）。Stripe決済とFirebase uidごとの購入済み判定、Day8-90本体（`GET /content`）の配信を担当。作文採点Workerとはあえて別Workerにしてある（理由は `worker-paywall/README.md`）。**まだCloudflareに配置していない**（コードとしては完成、アカウント側の作業＝KV/Stripe設定が未了） |
+| `worker-paywall/` | 購入・権限管理Worker（Cloudflare）。Stripe決済とFirebase uidごとの購入済み判定、Day8-90本体（`GET /content`）の配信を担当。作文採点Workerとはあえて別Workerにしてある（理由は `worker-paywall/README.md`）。**まだCloudflareに配置していない**（コードとしては完成、アカウント側の作業＝KV/Stripe設定が未了）。`build-content.mjs`（Day8-90を切り出してindex.htmlから外す）と`restore-full-content.mjs`（その逆＝index.htmlへ全90日を書き戻す）の両方がある |
 
-### index.html の中の地図
+### index.html の中の地図（現在は全90日入り。行番号は目安）
 
 | 位置の目安 | 何があるか |
 |---|---|
-| 522行目 | `const LESSONS` — **Day1-7のみ**（無料お試し分）。Day8-90は `worker-paywall/src/content-bundle.js` |
-| 531行目 | `const BANK` — Day1-7のミニテスト。毎日ここから5問が選ばれる。**画面に出るのはこちらで、`LESSONS[].test` は使われていない** |
-| 2140行目 | `const LISTENING` — Day1-7のリスニング問題 |
-| 2400行目付近 | 有料コンテンツ（Day8-90）の読み込み。`TOTAL_DAYS`（固定90。`LESSONS.length`とは別物）、`mergePaidContent()`／`restorePaidContentCache()`（起動時にlocalStorageキャッシュを復元）、`fetchPaidContent()`（`hsk4-paywall`の`/content`を取得）、`startCheckout()`（`/checkout`を呼んでStripeへ）、`lockedDayHTML()`（Day8以降が未取得のときの画面） |
+| 551行目 | `const LESSONS` — 現在90日分。販売開始前にDay8-90を切り出すと7日分に減る |
+| 560行目 | `const BANK` — ミニテスト。毎日ここから5問が選ばれる。**画面に出るのはこちらで、`LESSONS[].test` は使われていない** |
+| 22459行目 | `const LISTENING` — リスニング問題 |
+| 25900行目付近 | 有料コンテンツ機構（Day8-90を切り出したときだけ効く）。`TOTAL_DAYS`（固定90。`LESSONS.length`とは別物）、`mergePaidContent()`／`restorePaidContentCache()`（起動時にlocalStorageキャッシュを復元）、`fetchPaidContent()`（`hsk4-paywall`の`/content`を取得）、`startCheckout()`（`/checkout`を呼んでStripeへ）、`lockedDayHTML()`（Day8以降が未取得のときの画面）。**いまはLESSONSに全90日あるのでこの経路は使われず休眠中** |
 | `initFirebase()`内の`onAuthStateChanged` | ログイン確認後の処理。`?purchase=success`ならここで`fetchPaidContent()`を自動で呼びトースト表示、`?purchase=cancel`はURLだけ掃除（それぞれのタイミングは`restorePaidContentCache()`の直後／`onAuthStateChanged`内） |
 | 320-430行目 | Firebase（遅延読み込み。落ちてもアプリ本体は動く） |
 | 中盤 | `track()` / 背面シェイプ / 各画面の `render*()` |
@@ -81,6 +99,9 @@ node tests/run.mjs        # 全109項目＋Service Workerチェック
 
 有料化に進む場合の前提。詳細はマネタイズ提案書（下記）に。
 
+- **リポジトリがPublicのまま** — 上記「⚠️ 販売開始前に必ず確認」参照。これが最優先
+- **Day8-90が`index.html`に戻っている** — `restore-full-content.mjs`で一時的に戻した状態。
+  販売開始前に`build-content.mjs`で切り出し直すこと
 - **Cloudflareへの配置がまだ** — `worker-paywall/`はコードとしては完成（Day8-90の切り出し・
   `/checkout`・`/webhook`・`/entitlement`・`/content`すべて実装済み）だが、実際にCloudflareへ
   配置してURLを得るところ、KV名前空間の作成、Stripeでの商品・価格作成、Webhook登録が未了。
