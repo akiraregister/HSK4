@@ -419,6 +419,10 @@ async function initFirebase(){
     auth=getAuth(firebaseApp);
     db=getFirestore(firebaseApp);
     provider=new GoogleAuthProvider();
+    // 毎回アカウント選択画面を出す。これが無いとGoogle側にセッションが残っている
+    // 限り同じアカウントで自動ログインされ、選び直せない（複数アカウント運用や
+    // テスト時に困る）。
+    provider.setCustomParameters({ prompt: 'select_account' });
     firebaseReady=true;
     getRedirectResult(auth).catch(e=>console.warn('Redirect result error',e));
     onAuthStateChanged(auth, async (user)=>{
