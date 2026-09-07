@@ -447,7 +447,7 @@ async function initFirebase(){
           try{ history.replaceState(null,'',location.pathname); }catch(e){}
           if(purchaseSessionId) await confirmPurchase(purchaseSessionId);
           var got=await fetchPaidContent();
-          _toast(got?'購入ありがとうございます！Day8以降が使えるようになりました。':'購入の確認に少し時間がかかっています。少し待ってから「購入済みの内容を確認する」をお試しください。');
+          _toast(got?'購入ありがとうございます！Day8以降が使えるようになりました。':'購入の確認に少し時間がかかっています。少し待ってから「購入済みの内容を確認する」をお試しください。', 9000);
           if(got) render();
         } else if(LESSONS.length<TOTAL_DAYS){
           // 別端末で購入済みの場合などに備え、ログインのたびに一度だけ確認する。
@@ -26977,12 +26977,14 @@ function _revRender(c){
     '<div class="row" style="margin-top:12px"><button class="primary" onclick="revStart()">続けて復習</button><button onclick="revEnd()">復習ホームへ</button></div></div>';
   _rev=null;
 }
-function _toast(msg){
+// ms を渡すと表示時間を延ばせる。既定の3.6秒は「操作の直後に目で追える」前提の
+// 長さなので、購入完了のように画面から目を離している間に出るものには短すぎる。
+function _toast(msg, ms){
   try{
     var t=document.createElement('div'); t.className='hsk-toast'; t.textContent=msg;
     document.body.appendChild(t);
     setTimeout(function(){ t.classList.add('show'); }, 10);
-    setTimeout(function(){ t.classList.remove('show'); setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 320); }, 3600);
+    setTimeout(function(){ t.classList.remove('show'); setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 320); }, ms||3600);
   }catch(e){}
 }
 
