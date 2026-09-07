@@ -54,6 +54,14 @@ const lessonsSplit = splitByDay(LESSONS, true);
 const bankSplit = splitByDay(BANK, false);
 const listeningSplit = splitByDay(LISTENING, false);
 
+// 二重実行の防止。切り出し済みのindex.htmlをもう一度食わせると、有料分が
+// 0件のままcontent-bundle.jsを上書きしてDay8-90を消してしまう（実際に起きた）。
+if (lessonsSplit.paid.length === 0) {
+  console.log(`index.html に Day${FREE_DAYS + 1} 以降が無い。すでに切り出し済みなので何もしなかった。`);
+  console.log('全90日に戻すには node worker-paywall/restore-full-content.mjs');
+  process.exit(0);
+}
+
 // index.html を書き換える。後ろのブロックから置換して、前のブロックのオフセットを壊さないようにする。
 let out = src;
 function replaceBlock(s, block, replacement) {

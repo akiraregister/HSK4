@@ -39,7 +39,10 @@ export async function verifyStripeSignature(rawBody, sigHeader, secret) {
 // client_reference_id にFirebaseのuidを入れておき、Webhookで受け取ったときに
 // 「誰が買ったか」をここから復元する。
 // coupon が指定されていれば、クーポンコードを discounts に追加する。
-export async function createCheckoutSession(env, uid, coupon) {
+// backTo は決済後の戻り先。ローカル開発中だけ呼び出し元のオリジンを渡す
+// （省略時は本番＝env.APP_ORIGIN）。
+export async function createCheckoutSession(env, uid, coupon, backTo) {
+  const appOrigin = backTo || env.APP_ORIGIN;
   const body = new URLSearchParams();
   body.set('mode', 'payment');
   body.set('client_reference_id', uid);
@@ -47,8 +50,8 @@ export async function createCheckoutSession(env, uid, coupon) {
   body.set('line_items[0][quantity]', '1');
   // {CHECKOUT_SESSION_ID}はStripeが実際のIDへ置換する。戻ってきたアプリが
   // これを/confirmへ渡すことで、Webhookが届かなくても購入を確定できる。
-  body.set('success_url', `${env.APP_ORIGIN}/?purchase=success&session_id={CHECKOUT_SESSION_ID}`);
-  body.set('cancel_url', `${env.APP_ORIGIN}/?purchase=cancel`);
+  body.set('success_url', `${appOrigin}/?purchase=success&session_id={CHECKOUT_SESSION_ID}`);
+  body.set('cancel_url', `${appOrigin}/?purchase=cancel`);
 
   // クーポンコードが指定されていれば適用
   if (coupon) {

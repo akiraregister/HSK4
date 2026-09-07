@@ -104,7 +104,10 @@ export default {
         const body = await request.json();
         coupon = body.coupon;
       } catch {}
-      const session = await createCheckoutSession(env, uid, coupon);
+      // ローカルで動かしているときは決済後もそこへ戻す。本番のAPP_ORIGINは
+      // パス（/HSK4）を含みOriginヘッダーからは復元できないので、そのまま使う。
+      const backTo = LOCAL_ORIGIN.test(origin) ? origin : null;
+      const session = await createCheckoutSession(env, uid, coupon, backTo);
       if (!session || !session.url) return json({ error: '決済ページの作成に失敗しました' }, 502, origin);
       return json({ url: session.url }, 200, origin);
     }
