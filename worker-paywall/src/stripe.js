@@ -67,8 +67,12 @@ export async function createCheckoutSession(env, uid, coupon, backTo) {
     body,
   });
   if (!resp.ok) {
-    console.error('stripe checkout create error', resp.status, (await resp.text().catch(() => '')).slice(0, 500));
-    return null;
+    const detail = await resp.text().catch(() => '');
+    console.error('stripe checkout create error', resp.status, detail.slice(0, 500));
+    // クーポンが存在しない・失効している場合だけは利用者自身が直せる失敗なので、
+    // 「サーバーの不調」と混ぜずに区別できるようにする（Stripeはこのとき
+    // エラーのparamにcouponを含めて返す）。
+    return { failed: /coupon/i.test(detail) ? 'coupon' : 'other' };
   }
   return resp.json();
 }

@@ -25985,8 +25985,10 @@ async function startCheckout(){
     var body={ coupon: coupon || undefined };
     var res=await fetch(paywallUrl()+'/checkout', { method:'POST', headers:{ 'Authorization':'Bearer '+token, 'Content-Type':'application/json' }, body:JSON.stringify(body) });
     var data=await res.json().catch(function(){ return null; });
+    // Worker側が返す文言はすべて利用者向けに書いてある（クーポンの入力ミス等）ので、
+    // あればそのまま見せる。無ければ汎用の文言にする。
     if(data && data.url){ location.href=data.url; }
-    else{ alert('決済ページを開けませんでした。しばらくしてからお試しください。'); }
+    else{ alert((data && data.error) || '決済ページを開けませんでした。しばらくしてからお試しください。'); }
   }catch(e){ alert('決済ページを開けませんでした。しばらくしてからお試しください。'); }
 }
 function daySelectOptionsHTML(selectedDay){

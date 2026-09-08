@@ -108,7 +108,12 @@ export default {
       // パス（/HSK4）を含みOriginヘッダーからは復元できないので、そのまま使う。
       const backTo = LOCAL_ORIGIN.test(origin) ? origin : null;
       const session = await createCheckoutSession(env, uid, coupon, backTo);
-      if (!session || !session.url) return json({ error: '決済ページの作成に失敗しました' }, 502, origin);
+      if (!session || !session.url) {
+        if (session && session.failed === 'coupon') {
+          return json({ error: 'クーポンコードが正しくありません。入力をご確認ください。' }, 400, origin);
+        }
+        return json({ error: '決済ページの作成に失敗しました' }, 502, origin);
+      }
       return json({ url: session.url }, 200, origin);
     }
 
