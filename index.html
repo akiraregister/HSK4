@@ -26915,33 +26915,11 @@ function revReveal(){ if(_rev){ _rev.revealed=true; renderTestScreen(); } }
 function revGrade(q){
   if(!_rev) return;
   var id=_rev.queue[_rev.idx];
-  // 直前の1手だけ取り消せるようにする。srsGradeは state.srs[id] のオブジェクトを
-  // その場で書き換えるので、参照を持つだけでは戻せない。複製して控える。
-  _rev.undo={
-    idx:_rev.idx, id:id,
-    srs: state.srs[id]?JSON.parse(JSON.stringify(state.srs[id])):null,
-    queueLen:_rev.queue.length,
-    again:_rev.again, hard:_rev.hard, good:_rev.good, easy:_rev.easy, reviewed:_rev.reviewed
-  };
   srsGrade(id, q);
   if(q===2) _rev.again++; else if(q===3) _rev.hard++; else if(q===4) _rev.good++; else _rev.easy++;
   _rev.reviewed++;
   if(q===2) _rev.queue.push(id); // もう一度→このセッションの最後に再登場
   _rev.idx++; _rev.revealed=false;
-  renderTestScreen();
-}
-// 手応えを押し間違えたときに1枚だけ戻る。次回の出題日はもう書き換わっているので、
-// SRSの状態・セッションの集計・「もう一度」で積み直した分まで戻してから描き直す。
-function revUndo(){
-  if(!_rev || !_rev.undo) return;
-  var u=_rev.undo;
-  if(u.srs) state.srs[u.id]=u.srs; else delete state.srs[u.id];
-  if(_rev.queue.length>u.queueLen) _rev.queue.length=u.queueLen;
-  _rev.idx=u.idx;
-  _rev.again=u.again; _rev.hard=u.hard; _rev.good=u.good; _rev.easy=u.easy; _rev.reviewed=u.reviewed;
-  _rev.revealed=true; // 選び直すのが目的なので、答えが見えた状態で戻す
-  _rev.undo=null;
-  save();
   renderTestScreen();
 }
 function revEnd(){ trackSrsEnd('button'); _rev=null; renderTestScreen(); window.scrollTo({top:0,behavior:'smooth'}); }
@@ -26993,7 +26971,7 @@ function _revRender(c){
     }
     h+='</div>';
     h+='<div class="fc-progress">手応えで次回の出題日が決まります（もう一度→今日中にまた／簡単→ぐっと先送り）。</div>';
-    h+='<div class="row" style="margin-top:10px">'+(_rev.undo?'<button onclick="revUndo()">← 前の1枚をやり直す</button>':'')+'<button onclick="revEnd()">復習を終了</button></div>';
+    h+='<div class="row" style="margin-top:10px"><button onclick="revEnd()">復習を終了</button></div>';
     h+='</div>';
     c.innerHTML=h; return;
   }
@@ -27717,7 +27695,6 @@ window.revStart = revStart;
 window.revReveal = revReveal;
 window.revGrade = revGrade;
 window.revEnd = revEnd;
-window.revUndo = revUndo;
 window.revSetScope = revSetScope;
 window.srsSetNewLimit = srsSetNewLimit;
 window.srsSetDueLimit = srsSetDueLimit;
