@@ -1,0 +1,195 @@
+<!doctype html>
+<!-- 炎アイコン 第3ラウンド。朱（中国＝赤の記号）から離れ、暖色（アンバー・柿・山吹・黄）で振る。
+     アプリの現ブランド色がアンバー #F2A227 なので、そこへ戻す意味もある。
+     最後に、UIのアクセント色を替えた場合の見え方も並べた。 -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>加油 — 炎アイコン 第3ラウンド（朱から離れる）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--maru:'Zen Maru Gothic',sans-serif;--kaku:'Zen Kaku Gothic New',sans-serif;--mincho:'Noto Serif JP',serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#DEDAD2;color:#2A2724;font-family:var(--kaku);line-height:1.7;padding:22px 16px 60px}
+.wrap{max-width:1400px;margin:0 auto}
+.lede{background:#2A2724;color:#FCF9F2;border-radius:18px;padding:16px 20px;font-size:13.5px;line-height:1.8;margin-bottom:20px}
+.lede b{color:#F2A227}
+h1{font-family:var(--maru);font-size:26px;font-weight:900;margin-bottom:6px}
+.sub{font-size:13.5px;color:#5C5249;margin-bottom:18px;max-width:64em}
+h2.sec{font-family:var(--maru);font-size:19px;font-weight:900;margin:30px 0 10px}
+.pal{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.pal div{background:#fff;border:1.5px solid #2A2724;border-radius:12px;padding:8px 12px 9px;font-size:11.5px;text-align:center}
+.pal i{display:block;width:74px;height:26px;border-radius:6px;margin-bottom:5px}
+.pal b{font-family:var(--maru);font-size:12px;display:block}
+.pal span{color:#8F8C82;font-size:10.5px}
+.icons{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(244px,1fr))}
+.icard{background:#fff;border:1.5px solid #2A2724;border-radius:18px;padding:16px;display:flex;flex-direction:column}
+.icard.ref{background:#F4F1E9;border-style:dashed}
+.icard .tag{font-family:var(--maru);font-size:11px;font-weight:900;background:#F0EBE0;border-radius:6px;padding:2px 9px;align-self:flex-start}
+.icard h3{font-family:var(--maru);font-size:16px;font-weight:900;margin:8px 0 3px}
+.icard p{font-size:12.5px;color:#5C5249;line-height:1.75}
+.sizes{display:flex;align-items:flex-end;gap:14px;margin:14px 0 10px}
+.tile{display:block;box-shadow:0 6px 16px -8px rgba(0,0,0,.4)}
+.sizes .lab{font-size:10.5px;color:#8F8C82;text-align:center;font-family:var(--maru);font-weight:700;margin-top:3px}
+.pc{margin-top:auto;padding-top:10px;border-top:1px solid #EFE9DD;font-size:12px;line-height:1.7}
+.pc b{color:#4E7A3C}.pc.con b{color:#B0561F}
+.home{border-radius:18px;padding:20px 16px;margin-top:14px;display:flex;gap:22px;flex-wrap:wrap;justify-content:center}
+.home.dark{background:linear-gradient(160deg,#5C6B52,#3E4A39)}
+.home.light{background:linear-gradient(160deg,#E9E4D8,#CFC8B8)}
+.home .a{width:74px;text-align:center}
+.home .a span{display:block;font-size:11px;margin-top:6px}
+.home.dark .a span{color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.home.light .a span{color:#2A2724}
+.inapp{background:#FCFBF8;border:1.5px solid #2A2724;border-radius:16px;padding:16px 20px;margin-top:14px;
+  display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+.inapp .r{display:flex;align-items:center;gap:9px;font-family:var(--mincho);font-weight:600;font-size:17px;letter-spacing:.34em}
+
+/* UIアクセント比較 */
+.uis{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.ui{background:#FCFBF8;border:1.5px solid #2A2724;border-radius:16px;padding:16px 18px;font-family:var(--mincho)}
+.ui h4{font-family:var(--maru);font-size:13.5px;font-weight:900;margin-bottom:10px;letter-spacing:.04em}
+.ui .row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:.5px solid #E5E1D6;font-size:13px}
+.ui .row .v{font-size:18px;font-weight:500}
+.ui .row .go{margin-left:auto;font-size:10.5px;letter-spacing:.16em;border:1px solid #15150F;padding:4px 9px}
+.ui .big{font-size:26px;font-weight:500;margin:12px 0 9px}
+.ui .big .sl{font-size:14px;color:#8F8C82;margin:0 2px}
+.ui .grid{display:grid;grid-template-columns:repeat(15,1fr);gap:2.5px}
+.ui .grid i{display:block;aspect-ratio:1;border:.5px solid #DDD8CA}
+.ui .grid i.on{background:#15150F;border-color:#15150F}
+.ui .cap{font-size:10.5px;color:#8F8C82;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lede"><b>朱から離れて、暖色で振りました。</b>
+  そもそも<b>アプリの現ブランド色はアンバー <code style="color:#F2A227">#F2A227</code></b> なので、そこへ戻す意味もあります。
+  炎は本来オレンジ〜黄なので、赤より<b>literal（素直）</b>でもあります。
+  最後に、<b>UIのアクセント色も替えた場合</b>の見え方を並べました。</div>
+  <h1>加油 — 炎アイコン 第3ラウンド（朱から離れる）</h1>
+  <p class="sub">左端は比較用に第2ラウンドの R2（朱地）を残しています。
+  紙・墨・明朝という案Xの骨格はそのままに、<b>差し色だけ</b>を替えています。</p>
+
+  <h2 class="sec">使った色</h2>
+  <div class="pal" id="pal"></div>
+
+  <h2 class="sec">候補</h2>
+  <div class="icons" id="icons"></div>
+
+  <h2 class="sec">ホーム画面（60px）— 明るい壁紙</h2>
+  <div class="home light" id="home2"></div>
+  <h2 class="sec">ホーム画面（60px）— 暗い壁紙</h2>
+  <div class="home dark" id="home1"></div>
+  <h2 class="sec">アプリ内ヘッダー（22px）</h2>
+  <div class="inapp" id="inapp"></div>
+
+  <h2 class="sec">UIのアクセント色も替える場合</h2>
+  <p class="sub">今日画面の「復習の行」と「90マスの今日」に使っている色です。
+  案Xは<b>墨＋差し色1色</b>で組んでいるので、差し色を替えるだけで画面全体の印象が変わります。</p>
+  <div class="uis" id="uis"></div>
+</div>
+<script>
+const INK='#15150F', PAPER='#F6F2E6';
+const C={
+  shu:  ['#A8352A','朱','第2ラウンドまでの色'],
+  amber:['#E8981F','アンバー','いまのブランド色を少し沈めた'],
+  kaki: ['#DC6011','柿','橙寄り。日本の伝統色'],
+  yama: ['#E5A500','山吹','黄寄り。黄表紙の系統'],
+  ki:   ['#F0C33C','黄','最も明るい。地にも使える'],
+  kohaku:['#C88A1E','琥珀','沈んだ金色。紙と馴染む'],
+};
+const F='M52 8 C 62 31, 79 43, 79 64 A 29 29 0 1 1 21 64 C 21 46, 33 41, 41 29 C 44 41, 50 45, 50 37 C 50 27, 47 17, 52 8 Z';
+const SLIM='M53 4 C 58 26, 73 38, 73 60 A 23 23 0 1 1 27 60 C 27 44, 39 38, 45 24 C 47 37, 52 41, 52 33 C 52 23, 50 14, 53 4 Z';
+let uid=0;
+
+document.getElementById('pal').innerHTML=Object.values(C).map(([hex,n,d])=>
+  `<div><i style="background:${hex}"></i><b>${n}</b><span>${hex}</span><span>${d}</span></div>`).join('');
+
+const ICONS=[
+ {ref:1,n:'基準',t:'朱地（R2）',d:'第2ラウンドの最有力',
+  pro:'存在感は最大',con:'<b>中国＝赤</b>の記号になり、正誤の朱ともぶつかる',
+  f:()=>`<rect width="100" height="100" fill="${C.shu[0]}"/><path d="${F}" fill="${PAPER}"/>`},
+
+ {n:'O1',t:'アンバー地',d:'R2の色替え。地をアンバーに',
+  pro:'<b>いまのブランド色に戻れる。</b>赤の記号から外れつつ、存在感はR2とほぼ同じ。炎の色としても素直',
+  con:'明るいぶん、白い壁紙では朱より輪郭が弱い',
+  f:()=>`<rect width="100" height="100" fill="${C.amber[0]}"/><path d="${F}" fill="${PAPER}"/>`},
+
+ {n:'O2',t:'墨地にアンバーの炎',d:'地は墨、炎をアンバーで塗る',
+  pro:'<b>コントラストは全案で最大。</b>どの壁紙でも沈まず、22pxでも形が残る。夜も昼も強い',
+  con:'墨地なので「夜のアプリ」寄りに見える。紙の明るさとは繋がらない',
+  f:()=>`<rect width="100" height="100" fill="${INK}"/><path d="${F}" fill="${C.amber[0]}"/>
+    <rect x="30" y="88" width="40" height="2" fill="${PAPER}"/>`},
+
+ {n:'O3',t:'柿色のベタ炎',d:'生成り地に柿色（橙寄り）の面',
+  pro:'赤と黄の中間で、<b>炎として最も自然</b>。日本の伝統色なので紙の地とも喧嘩しない',
+  con:'生成り地なので<b>明るい壁紙では溶ける</b>',
+  f:()=>`<rect width="100" height="100" fill="${PAPER}"/><path d="${F}" fill="${C.kaki[0]}"/>
+    <rect x="28" y="88" width="44" height="2" fill="${INK}"/>`},
+
+ {n:'O4',t:'黄地に墨の炎',d:'地を黄に、炎を墨で抜く',
+  pro:'<b>最も明度差が大きく、小さくても読める。</b>黄表紙（江戸の黄色い表紙本）の系統で、辞書の世界観とも繋がる。<b>他社にほぼ無い配色</b>',
+  con:'黄は注意・警告の色でもあり、<b>人によっては落ち着かない</b>',
+  f:()=>`<rect width="100" height="100" fill="${C.ki[0]}"/><path d="${F}" fill="${INK}"/>`},
+
+ {n:'O5',t:'山吹地に墨の炎',d:'O4より少し沈めた黄',
+  pro:'O4の読みやすさを保ったまま<b>落ち着きが出る</b>。紙・墨との相性はこちらが上',
+  con:'明るい壁紙では O4 ほど飛び出さない',
+  f:()=>`<rect width="100" height="100" fill="${C.yama[0]}"/><path d="${F}" fill="${INK}"/>`},
+
+ {n:'O6',t:'墨地に山吹の細身',d:'墨地＋細身の輪郭＋山吹',
+  pro:'<b>コントラストと品の両取り。</b>細身の輪郭は明朝の縦長の字面と呼吸が合う',
+  con:'細いぶん、28pxでの塊としての強さは O2・O4 に劣る',
+  f:()=>`<rect width="100" height="100" fill="${INK}"/><path d="${SLIM}" fill="${C.yama[0]}"/>
+    <rect x="32" y="90" width="36" height="2" fill="${PAPER}"/>`},
+
+ {n:'O7',t:'二段の炎',d:'下を柿、上を山吹に。境目は炎に沿わせた曲線',
+  pro:'色が2つ入り、<b>単色のベタより奥行きが出る</b>。グラデーションを使わないので印刷の体裁を保てる',
+  con:'28pxでは2段が1色に潰れる。塗り分けの境界を作り込む必要がある',
+  f:()=>{const id='g'+(++uid);return `<defs><clipPath id="${id}"><path d="${F}"/></clipPath></defs>
+    <rect width="100" height="100" fill="${PAPER}"/>
+    <g clip-path="url(#${id})"><rect x="0" y="0" width="100" height="100" fill="${C.yama[0]}"/>
+      <path d="M0 52 C 18 64, 34 48, 52 56 C 70 64, 84 50, 100 58 L100 100 L0 100 Z" fill="${C.kaki[0]}"/></g>
+    <rect x="28" y="88" width="44" height="2" fill="${INK}"/>`}},
+
+ {n:'O8',t:'琥珀の版ずれ',d:'第2ラウンドR7の色替え。墨＋琥珀',
+  pro:'印刷物の意匠はそのまま、<b>赤の記号から外せる</b>。琥珀は沈んだ金色で紙と馴染む',
+  con:'生成り地なので明るい壁紙で溶ける。ずれが意図だと伝わらない恐れも残る',
+  f:()=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <g transform="translate(4.5 4)"><path d="${F}" fill="${C.kohaku[0]}"/></g>
+    <path d="${F}" fill="none" stroke="${INK}" stroke-width="3.2" stroke-linejoin="round"/>`},
+
+ {n:'O9',t:'アンバー地・細身',d:'O1の輪郭を細身に差し替え',
+  pro:'アンバー地の存在感に、細身の<b>品</b>が乗る。ブランド色との連続性も保てる',
+  con:'炎の面積が減るぶん、O1より遠目の強さは落ちる',
+  f:()=>`<rect width="100" height="100" fill="${C.amber[0]}"/><path d="${SLIM}" fill="${PAPER}"/>`},
+];
+
+const svg=(i,px)=>`<svg class="tile" viewBox="0 0 100 100" width="${px}" height="${px}"
+  style="border-radius:${px>40?22:26}%;overflow:hidden">${i.f()}</svg>`;
+document.getElementById('icons').innerHTML=ICONS.map(i=>`
+  <div class="icard${i.ref?' ref':''}"><span class="tag">${i.n}</span><h3>${i.t}</h3><p>${i.d}</p>
+    <div class="sizes">
+      <div><div>${svg(i,120)}</div><div class="lab">120</div></div>
+      <div><div>${svg(i,56)}</div><div class="lab">56</div></div>
+      <div><div>${svg(i,28)}</div><div class="lab">28</div></div>
+    </div>
+    <div class="pc"><b>◎</b> ${i.pro}</div><div class="pc con"><b>△</b> ${i.con}</div></div>`).join('');
+for(const id of ['home1','home2'])
+  document.getElementById(id).innerHTML=ICONS.map(i=>`<div class="a">${svg(i,60)}<span>加油</span></div>`).join('');
+document.getElementById('inapp').innerHTML=ICONS.map(i=>`<div class="r">${svg(i,22)}加油</div>`).join('');
+
+// UIアクセント比較
+const cells=n=>Array.from({length:90},(_,k)=>`<i class="${k<12?'on':''}" ${k===12?`style="background:${n};border-color:${n}"`:''}></i>`).join('');
+document.getElementById('uis').innerHTML=[['shu','朱（いまの案X）'],['amber','アンバー'],['kaki','柿'],['yama','山吹']]
+ .map(([k,label])=>{const c=C[k][0];return `<div class="ui"><h4>${label}　<span style="color:${c}">${c}</span></h4>
+   <div class="row"><span>復習</span><span class="v">18</span><span style="font-size:11px;color:#8F8C82">期限13 ＋ 新規5</span>
+     <span class="go" style="border-color:${c};color:${c}">復習する</span></div>
+   <div class="big">12<span class="sl">/</span>90</div>
+   <div class="grid">${cells(c)}</div>
+   <div class="cap">■ 完了　□ これから　<span style="color:${c}">■</span> 今日</div></div>`;}).join('');
+</script>
+</body>
+</html>
