@@ -1,0 +1,417 @@
+<!doctype html>
+<!-- 販売開始版LPのモックアップ。
+     いまの lp/index.html は「全機能無料・価格は検討中」のまま。これはその置き換え案で、
+     ¥4,800の買い切り／Day1-7無料／リスニング入りを前提に、構成と文言を組み直したもの。
+     まだ本番へは入れていない。良ければ lp/index.html へ反映する。
+     画面写真は ../shots/*.png（アプリを実際に操作して撮ったもの）。
+     書き出し: node marketing/capture-sheets.mjs lp -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>加油 — 90日でHSK4に届く中国語アプリ</title>
+<meta name="description" content="HSK4級を90日で。頻出498語と文法222項目を1日15分。間隔反復・全90日のネイティブ音声・986問のミニテスト・模擬試験つき。Day1-7は無料、以降は¥4,800の買い切り。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Yomogi&display=swap" rel="stylesheet">
+<style>
+/* アプリ本体（../../index.html）と同じトークン。ブランドを1つに保つため値を共有する */
+:root{
+  --bg:#FCF9F2;--card:#fff;--ink:#2A2724;--ink-2:#4A443C;--muted:#8A8377;--line:#E4DCCB;
+  --brand:#F2A227;--good:#4E7A3C;--bad:#B0561F;--gray:#F0EBE0;--paper:#FBF6EA;
+  --sage:#D5E4C8;--apricot:#FBE0BC;--blush:#F6D9D2;
+  --stroke:#2A2724;--bw:1.5px;
+  --font-display:'Zen Maru Gothic','Hiragino Maru Gothic ProN',sans-serif;
+  --font-body:'Zen Kaku Gothic New','Hiragino Sans','Yu Gothic',sans-serif;
+  --font-hand:'Yomogi','Hiragino Maru Gothic ProN',cursive;
+  --zh-font:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.85;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+a{color:var(--bad)}
+h1,h2,h3,.num,.btn,.badge,.price .amount{font-family:var(--font-display)}
+.hand{font-family:var(--font-hand);font-weight:400}
+.zh{font-family:var(--zh-font);font-weight:700}
+
+#bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+#bg svg{width:100%;height:100%;min-width:900px}
+
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+.band{border-top:var(--bw) solid var(--line);padding:46px 0 8px}
+.band:first-of-type{border-top:none}
+.eyebrow{display:flex;align-items:center;gap:11px;margin:0 0 12px;
+  font-family:var(--font-hand);font-size:13px;color:var(--muted);line-height:1.6}
+.eyebrow::after{content:"";flex:1;height:1.5px;background:var(--line)}
+h2{font-size:clamp(21px,4.6vw,29px);line-height:1.42;margin:0 0 8px;font-weight:900;text-wrap:balance}
+.sec-lead{color:var(--ink-2);font-size:14.5px;margin:0 0 24px;line-height:1.85;max-width:38em}
+.card{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:20px;padding:20px 22px}
+
+/* ヘッダー */
+.top{padding:20px 0 0}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-word{font-size:24px;font-weight:900;letter-spacing:.04em;font-family:var(--font-display)}
+.brand-sub{font-family:var(--font-hand);font-size:12px;color:var(--muted);align-self:flex-end;padding-bottom:3px}
+
+/* ファーストビュー */
+.hero{padding:30px 0 8px}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:30px;align-items:center}
+@media(min-width:860px){.hero-grid{grid-template-columns:1.04fr .96fr;gap:40px}}
+h1{font-size:clamp(31px,7.4vw,48px);line-height:1.32;margin:0 0 16px;font-weight:900;text-wrap:balance}
+h1 .em{color:var(--bad)}
+.lead{font-size:clamp(15.5px,3.8vw,17px);line-height:1.9;margin:0 0 10px;max-width:34em}
+.squiggle{display:block;height:10px;margin:2px 0 18px;overflow:visible}
+.squiggle path{stroke:var(--brand);stroke-width:4.5;fill:none;stroke-linecap:round}
+.who-line{display:inline-block;background:var(--apricot);border:var(--bw) solid var(--stroke);
+  border-radius:999px;padding:6px 15px;font-size:13.5px;font-weight:700;margin:0 0 18px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--stroke);color:var(--bg);border:var(--bw) solid var(--stroke);border-radius:999px;
+  padding:17px 30px;font-size:17px;font-weight:900;text-decoration:none;min-height:56px;cursor:pointer}
+.btn.ghost{background:#fff;color:var(--ink)}
+.btn.amber{background:var(--brand);color:var(--ink)}
+.cta-row{display:flex;flex-direction:column;gap:10px;align-items:stretch;margin-top:18px}
+@media(min-width:600px){.cta-row{flex-direction:row;align-items:center}.cta-row .btn{flex:0 0 auto}}
+.cta-note{font-size:13px;color:var(--muted);line-height:1.7;flex:1 1 15em;min-width:14em}
+.cta-note b{white-space:nowrap}
+
+/* 端末写真 */
+.shot{border:var(--bw) solid var(--stroke);border-radius:30px;background:#fff;padding:8px;
+  box-shadow:0 18px 34px -22px rgba(42,39,36,.5)}
+.shot img{display:block;width:100%;border-radius:24px}
+.hero .shot{max-width:320px;margin:0 auto}
+
+/* 数字 */
+.nums{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:620px){.nums{grid-template-columns:repeat(5,1fr)}}
+.numbox{background:#fff;border:var(--bw) solid var(--stroke);border-radius:18px;padding:15px 10px;text-align:center}
+.num{font-size:27px;font-weight:900;line-height:1.15;display:block}
+.numlabel{font-size:12px;color:var(--muted);margin-top:3px;display:block;line-height:1.5}
+
+/* 向いている人 */
+.who4{display:grid;gap:12px}
+@media(min-width:660px){.who4{grid-template-columns:1fr 1fr}}
+.who4 .card{padding:17px 19px}
+.who4 h3{font-size:16px;margin:0 0 4px;font-weight:900}
+.who4 p{font-size:13.5px;margin:0;color:var(--ink-2);line-height:1.8}
+
+/* 3ステップ */
+.steps{display:grid;gap:14px}
+@media(min-width:720px){.steps{grid-template-columns:repeat(3,1fr)}}
+.step{background:#fff;border:var(--bw) solid var(--stroke);border-radius:20px;padding:18px 20px}
+.step .n{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:999px;
+  background:var(--sage);border:var(--bw) solid var(--stroke);font-family:var(--font-display);font-weight:900;font-size:15px;margin-bottom:10px}
+.step h3{font-size:17px;margin:0 0 6px;font-weight:900}
+.step p{font-size:14px;margin:0;line-height:1.8;color:var(--ink-2)}
+
+/* 特徴：画面写真と文の交互組み */
+.feat{display:grid;gap:22px;align-items:center;margin:0 0 42px}
+@media(min-width:760px){
+  .feat{grid-template-columns:.86fr 1.14fr;gap:36px}
+  .feat.rev .f-shot{order:2}
+}
+.f-shot{max-width:290px;margin:0 auto;width:100%}
+/* 端末写真は縦に長い。上から一定の高さで切り、下端をぼかして「続きがある」ことを示す */
+.feat .shot{position:relative;max-height:520px;overflow:hidden}
+.feat .shot::after{content:"";position:absolute;left:8px;right:8px;bottom:8px;height:110px;pointer-events:none;
+  border-radius:0 0 24px 24px;background:linear-gradient(to bottom,rgba(255,255,255,0),#fff 78%)}
+.f-body h3{font-size:clamp(19px,4vw,24px);margin:0 0 10px;font-weight:900;line-height:1.4}
+.f-body p{font-size:14.5px;line-height:1.85;margin:0 0 10px;color:var(--ink-2)}
+.f-tag{display:inline-block;font-size:11.5px;font-weight:900;background:var(--gray);
+  border:var(--bw) solid var(--stroke);border-radius:999px;padding:3px 11px;margin-bottom:10px;font-family:var(--font-display)}
+
+/* 例文 */
+.who{display:grid;gap:12px}
+@media(min-width:660px){.who{grid-template-columns:1fr 1fr}}
+.who h3{font-size:16.5px;margin:0 0 8px;font-weight:900}
+.who ul{margin:0;padding-left:1.2em;font-size:14px;line-height:1.85}
+
+/* 正直な但し書き */
+.honest{background:var(--paper);border:var(--bw) dashed #DFD2B8;border-radius:20px;padding:20px 22px}
+.honest dt{font-weight:700;font-size:14.5px;margin-top:14px}
+.honest dt:first-of-type{margin-top:0}
+.honest dd{margin:4px 0 0;font-size:14px;color:var(--ink-2);line-height:1.8}
+
+/* 価格 */
+.price{background:var(--apricot);border:var(--bw) solid var(--stroke);border-radius:22px;padding:26px 24px}
+.price .tag{font-family:var(--font-hand);font-size:14px;color:#8A5A18}
+.price .amount{font-size:40px;font-weight:900;line-height:1.2;margin:6px 0 2px}
+.price .amount small{font-size:15px;font-weight:700}
+.price ul{margin:14px 0 0;padding-left:1.2em;font-size:14px;line-height:1.9}
+.price .fine{font-size:12.5px;color:#7A6446;margin-top:12px;line-height:1.75}
+
+/* FAQ */
+.faq details{background:#fff;border:var(--bw) solid var(--stroke);border-radius:18px;margin-bottom:10px;overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:16px 20px;font-weight:700;font-size:15.5px;display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"＋";font-size:17px;color:var(--muted);flex:none}
+.faq details[open] summary::after{content:"−"}
+.faq .a{padding:0 20px 17px;font-size:14.5px;line-height:1.85;color:var(--ink-2);margin:0}
+
+footer{border-top:var(--bw) solid var(--line);margin-top:36px;padding:24px 0 48px;font-size:13px;color:var(--muted);line-height:1.8}
+
+/* モックアップである旨の帯。本番へ入れるときは消す */
+.mockbar{background:var(--stroke);color:var(--bg);font-size:12.5px;padding:8px 20px;text-align:center;line-height:1.6}
+.mockbar b{color:var(--brand)}
+</style>
+</head>
+<body>
+
+<div class="mockbar"><b>モックアップ</b>　販売開始版LPの案です（価格・Day1-7無料・リスニング入りを前提に構成し直したもの）。本番の <code>lp/index.html</code> はまだ差し替えていません。</div>
+
+<div id="bg" aria-hidden="true">
+  <svg viewBox="0 0 390 1600" preserveAspectRatio="xMidYMin slice">
+    <path d="M-40 120 C 60 74, 150 100, 236 80 C 322 60, 386 86, 430 58 L 430 300 C 350 338, 250 300, 160 320 C 70 338, 10 314, -40 334 Z" fill="#FBE0BC"></path>
+    <path d="M-30 620 C 70 584, 170 624, 264 600 C 340 580, 392 600, 430 584 L 430 820 C 344 852, 236 816, 146 838 C 70 856, 14 836, -30 850 Z" fill="#D5E4C8"></path>
+    <path d="M-30 1160 C 84 1126, 180 1162, 272 1138 C 348 1118, 396 1138, 430 1122 L 430 1600 L -30 1600 Z" fill="#F6D9D2"></path>
+  </svg>
+</div>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M52 6 C 62 30, 80 42, 80 64 A 30 30 0 1 1 20 64 C 20 46, 33 41, 41 28 C 44 41, 50 45, 50 37 C 50 26, 47 16, 52 6 Z" fill="#F2A227" stroke="#2A2724" stroke-width="4.5" stroke-linejoin="round"></path>
+        <circle cx="41" cy="63" r="3.6" fill="#2A2724"></circle><circle cx="59" cy="63" r="3.6" fill="#2A2724"></circle>
+        <path d="M43 73 Q 50 79 57 73" stroke="#2A2724" stroke-width="3.8" fill="none" stroke-linecap="round"></path>
+      </svg>
+      <span class="brand-word">加油</span>
+      <span class="brand-sub">ジャーヨウ／がんばれ</span>
+    </div>
+  </header>
+
+  <!-- ファーストビュー：誰のためか→何が起きるか→いくらか、をここだけで判断できるようにする -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <span class="who-line">中国語を仕事と生活で使う、日本語話者へ</span>
+        <h1>90日で、<br>HSK4に<span class="em">届く</span>。</h1>
+        <svg class="squiggle" width="210" viewBox="0 0 210 10" aria-hidden="true"><path d="M3 7 Q 28 1 53 6 T 103 6 T 153 6 T 203 5"/></svg>
+        <p class="lead">頻出<b>498語</b>と文法<b>222項目</b>を、1日15分・単語5個ずつ。忘れる頃にもう一度出るので、覚えたことが抜けていきません。</p>
+        <p class="lead">例文は、上海の会議室でも街角の食堂でも実際に口に出す場面から選んでいます。</p>
+        <div class="cta-row">
+          <a class="btn amber" href="../../index.html">Day 1-7 を無料で試す</a>
+          <span class="cta-note">登録もインストールも不要。<br>続けたくなったら <b>¥4,800の買い切り</b>で全90日。</span>
+        </div>
+      </div>
+      <div class="shot"><img src="../shots/home.png" alt="今日やること画面。90日のうち12日完了、Day 13と復習18問が並んでいる"></div>
+    </div>
+  </section>
+
+  <section style="padding:28px 0 6px">
+    <div class="nums">
+      <div class="numbox"><span class="num">498</span><span class="numlabel">頻出単語<br>（重複なし）</span></div>
+      <div class="numbox"><span class="num">222</span><span class="numlabel">文法項目</span></div>
+      <div class="numbox"><span class="num">90</span><span class="numlabel">日ぶんの<br>カリキュラム</span></div>
+      <div class="numbox"><span class="num">986</span><span class="numlabel">問の<br>ミニテスト</span></div>
+      <div class="numbox"><span class="num">90</span><span class="numlabel">本の<br>リスニング音声</span></div>
+    </div>
+  </section>
+
+  <!-- 誰のためか。ここで自分ごとにならない人は、そもそも合わない -->
+  <section class="band">
+    <p class="eyebrow">こういう人のために作りました</p>
+    <h2>毎日15分を、90日ぶん<br>置いておける人へ。</h2>
+    <p class="sec-lead">逆に、今週末の試験に間に合わせたい人には向きません。積み上がるまでに時間がかかる作りです。</p>
+    <div class="who4">
+      <div class="card">
+        <h3>駐在・出張で中国語を使う人</h3>
+        <p>会議と生活の両方の語彙が要る。例文を仕事の場面から選んでいるので、覚えたその日に使えます。</p>
+      </div>
+      <div class="card">
+        <h3>HSK3に受かって、次を探している人</h3>
+        <p>HSK4は累計1200語。3から600語増えるところを、90日に割ってあります。</p>
+      </div>
+      <div class="card">
+        <h3>独学で、続かなかった人</h3>
+        <p>単語帳のどこまでやったかを覚えておく必要がありません。開けば今日ぶんだけが出ています。</p>
+      </div>
+      <div class="card">
+        <h3>昔かじって、やり直す人</h3>
+        <p>最初の級診断（20問・約7分）で、いまの位置から始められます。スキップもできます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <p class="eyebrow">毎日の15分</p>
+    <h2>やることは、毎日ひとつだけ</h2>
+    <p class="sec-lead">「今日は何をやるんだっけ」で止まらないように作りました。</p>
+    <div class="steps">
+      <div class="step">
+        <span class="n">1</span>
+        <h3>開くと今日ぶんが出ている</h3>
+        <p>新しく覚える5語と、思い出す番が来た語。この2つが1画面に並びます。探す手間がありません。</p>
+      </div>
+      <div class="step">
+        <span class="n">2</span>
+        <h3>聞いて、解いて、書く</h3>
+        <p>ネイティブ音声のリスニング1問と、ミニテスト5問。選択・並べ替え・作文で、その日の語をすぐ使わせます。</p>
+      </div>
+      <div class="step">
+        <span class="n">3</span>
+        <h3>忘れる頃に、また出る</h3>
+        <p>手応えを4段階で答えるだけ。間隔反復が次に出す日を決めるので、覚えた語が静かに抜けていくのを防ぎます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 特徴。画面写真を左右交互に置き、文は「何が起きるか」だけ書く -->
+  <section class="band">
+    <p class="eyebrow">中身</p>
+    <h2>4つの仕掛けで、<br>90日ぶんを持たせる。</h2>
+    <p class="sec-lead">どれも実際の画面です。</p>
+
+    <div class="feat">
+      <div class="shot f-shot"><img src="../shots/review.png" alt="復習カード。単語の意味と例文が表示され、もう一度／難しい／普通／簡単の4つのボタンが並ぶ"></div>
+      <div class="f-body">
+        <span class="f-tag">間隔反復（SM-2）</span>
+        <h3>覚えた語が、<br>静かに抜けていかない。</h3>
+        <p>1回目に正解すると翌日、2回目で6日後、3回目で15日後——正解のたびに出題の間隔が開いていきます。「もう一度」を押した語だけが近い間隔で出続けます。</p>
+        <p>どの語をいつ出すかはアプリが持つので、覚える対象を自分で管理する必要がありません。</p>
+      </div>
+    </div>
+
+    <div class="feat rev">
+      <div class="shot f-shot"><img src="../shots/screen-listening.png" alt="リスニング画面。会話のあとの質問と4つの選択肢が表示されている"></div>
+      <div class="f-body">
+        <span class="f-tag">リスニング・全90日</span>
+        <h3>耳は、あとから<br>足せません。</h3>
+        <p>HSK4は听力45問・阅读40問・书写15問。听力が約3分の1を占めます。全90日ぶんにネイティブ音声の会話を用意しました。</p>
+        <p>音声が流れるのは<b>1回だけ</b>で、聞き終えるまで中国語の文字は出ません。答え合わせのあとに台本・拼音・和訳が出るので、聞き取れなかった場所がその場で分かります。</p>
+      </div>
+    </div>
+
+    <div class="feat">
+      <div class="shot f-shot"><img src="../shots/screen-writing.png" alt="ミニテストの作文問題。日本語の課題文と入力欄、採点してもらうボタン"></div>
+      <div class="f-body">
+        <span class="f-tag">ミニテスト・986問</span>
+        <h3>知っているか、ではなく<br>組み立てられるか。</h3>
+        <p>1日の終わりに5問。選択が4問と、並べ替えか作文が1問です。並べ替えは、語の意味を覚えていても語順が身についていないと通りません。</p>
+        <p>作文は<b>AIが採点</b>します。書いた中文に点数と「自然な言い方」が返るので、通じるけれど不自然な言い回しがそのまま固まりません。</p>
+      </div>
+    </div>
+
+    <div class="feat rev">
+      <div class="shot f-shot"><img src="../shots/mock-result.png" alt="模試の結果画面。33/40、正答率83%、分野ごとの正答率が並ぶ"></div>
+      <div class="f-body">
+        <span class="f-tag">模擬試験・40問30分</span>
+        <h3>いまの位置が、<br>点数で見える。</h3>
+        <p>10日ぶん終えると、そこまでの範囲から40問・30分の模試を受けられます。分野ごとの正答率が出て、間違えた範囲の語はそのまま復習へ送れます。</p>
+        <p class="cta-note">※ 模試に听力は含みません。本番の点数の目安にはならない旨を、アプリ内にも明記しています。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <p class="eyebrow">例文の選び方</p>
+    <h2>ビジネスでも、暮らしでも</h2>
+    <p class="sec-lead">例文は、実際に口に出す場面から選んでいます。</p>
+    <div class="who">
+      <div class="card">
+        <h3>仕事の場面</h3>
+        <ul>
+          <li><span class="zh">我已经安排好了明天的会议。</span>／明日の会議はすでに手配してあります</li>
+          <li><span class="zh">这个问题比我想象的复杂。</span>／この問題は思っていたより複雑です</li>
+          <li>会議・出張・メールで使う語彙を厚めに</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>暮らしの場面</h3>
+        <ul>
+          <li><span class="zh">我已经习惯在上海生活了。</span>／もう上海での生活に慣れました</li>
+          <li><span class="zh">地铁停了，我只好打车回家。</span>／地下鉄が止まったので、仕方なくタクシーで帰りました</li>
+          <li>買い物・移動・人づきあいの言い回しも</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <p class="eyebrow">先に、正直なところを</p>
+    <div class="honest">
+      <dl>
+        <dt>498語は、HSK4の全範囲ではありません</dt>
+        <dd>HSK4の出題範囲は累計1200語（HSK3から新たに増えるのが600語）です。このアプリはそのうち<b>頻出の498語</b>を扱います。骨格を作るには足りますが、範囲の全部ではありません。</dd>
+        <dt>合格を保証するものではありません</dt>
+        <dd>用意しているのは、90日ぶんに割った語彙・文法・音声と、その定着のための間隔反復です。1日15分を90日続けたときに、語彙と文法の骨格ができている——そこまでが役割です。</dd>
+        <dt>HSK5以上の人には易しすぎます</dt>
+        <dd>最初の級診断でHSK5以上と出た場合は、正直にそうお伝えします。買う前に、無料のDay 1-7で確かめてください。</dd>
+        <dt>大きな会社の製品ではありません</dt>
+        <dd>法人が運営しています。使ってみて合わなければ、それで構いません。</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="band">
+    <p class="eyebrow">価格</p>
+    <h2>買い切り。月額はありません。</h2>
+    <p class="sec-lead">90日で終わる教材に、毎月の課金は合わないと考えました。</p>
+    <div class="price">
+      <span class="tag">全90日ぶん・買い切り</span>
+      <div class="amount">¥4,800 <small>（税込）</small></div>
+      <ul>
+        <li><b>Day 1-7 は無料</b>。登録もインストールも要りません</li>
+        <li>買うと Day 8-90 が開き、以後の追加費用はありません</li>
+        <li>単語498語・文法222項目・ミニテスト986問・リスニング90本・模擬試験・AI作文採点、すべて込み</li>
+        <li>Googleアカウントでログインすると、進捗と復習予定を端末間で同期できます</li>
+      </ul>
+      <div class="cta-row">
+        <a class="btn" href="../../index.html">まず Day 1-7 を無料で試す</a>
+        <a class="btn ghost" href="../../index.html">購入して全90日を開く</a>
+      </div>
+      <p class="fine">決済はStripe。カード情報はこのサイトを通りません。特定商取引法に基づく表記は<a href="../../legal/tokushoho.html">こちら</a>。</p>
+    </div>
+  </section>
+
+  <section class="band faq">
+    <p class="eyebrow">よくある質問</p>
+    <h2>先に答えておきます</h2>
+    <details>
+      <summary>本当に90日で受かりますか</summary>
+      <p class="a">保証はできません。用意しているのは、90日ぶんに割った頻出498語・文法222項目・全90日のリスニング音声と、その定着のための間隔反復です。听力の設問形式は本番と完全に同じではないので、直前期は公式の過去問との併用をおすすめします。</p>
+    </details>
+    <details>
+      <summary>1日どのくらい時間がかかりますか</summary>
+      <p class="a">新しく覚えるぶんが単語5個・文法3つ・リスニング1問・ミニテスト5問で、10〜15分ほど。これに復習が加わりますが、枚数は日によって変わります。多すぎると感じたら、1日の新規問数を減らすか「なし」にして復習だけに絞れます。</p>
+    </details>
+    <details>
+      <summary>途中で何日か空けてしまったら</summary>
+      <p class="a">復習の期限が来た語がたまりますが、1日の新規問数を「なし」にすれば、新しい語を増やさず復習だけを消化できます。まず溜まったぶんを片付けてから再開するのが楽です。</p>
+    </details>
+    <details>
+      <summary>自分のレベルがHSK4か分かりません</summary>
+      <p class="a">最初に級診断（20問・約7分）が出ます。HSK3相当と出た場合も、HSK4の1200語にはHSK1〜3の語彙が含まれるので、少し背伸びですが同じ教材で進められます。HSK5以上と出た場合は<b>この教材では易しすぎる</b>と正直にお伝えします。診断はスキップもできます。</p>
+    </details>
+    <details>
+      <summary>買う前に中身を確かめられますか</summary>
+      <p class="a">Day 1-7 が無料です。単語・文法・リスニング・ミニテスト・間隔反復まで、有料部分と同じ作りのものを1週間ぶん使えます。合うかどうかはそこで判断できます。</p>
+    </details>
+    <details>
+      <summary>アプリのインストールは必要ですか</summary>
+      <p class="a">不要です。ブラウザで開くだけで使えます。ホーム画面に追加すると、アプリのように起動でき、オフラインでも学習できます。iPhoneなら共有ボタンから「ホーム画面に追加」です。</p>
+    </details>
+    <details>
+      <summary>学習データはどこに保存されますか</summary>
+      <p class="a">既定では使っている端末の中だけです。Googleアカウントでログインすると、進捗・ブックマーク・復習スケジュールを端末間で同期できます。</p>
+    </details>
+  </section>
+
+  <section class="band" style="border-top:none;padding-top:10px">
+    <div class="card" style="text-align:center">
+      <h2 style="margin-bottom:10px">まず1日ぶん、やってみてください</h2>
+      <p style="font-size:14.5px;color:var(--ink-2);margin:0 0 18px">合わなければ閉じるだけです。Day 1-7 に支払いは発生しません。</p>
+      <a class="btn amber" href="../../index.html" style="width:100%;max-width:340px">無料で始める</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>加油（ジャーヨウ）は、HSK4級を目指す日本語話者のための学習アプリです。法人が運営しています。<br>
+    ご意見・不具合のご連絡は <a href="https://github.com/akiraregister/HSK4/issues">GitHub</a> へどうぞ。</p>
+    <p><a href="../../legal/terms.html">利用規約</a>　<a href="../../legal/privacy.html">プライバシーポリシー</a>　<a href="../../legal/tokushoho.html">特定商取引法に基づく表記</a></p>
+  </footer>
+</div>
+</body>
+</html>
