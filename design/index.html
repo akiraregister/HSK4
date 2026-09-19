@@ -1,0 +1,540 @@
+<!doctype html>
+<!-- 改修案のモックアップ（案A＝土台を整える／案C＝有料商品として見せる）。
+     実装前に画面の形と流れを確かめるためのもので、アプリ本体（../index.html）には
+     まだ一切手を入れていない。色・書体はアプリと同じトークンを共有している。
+     「いま」の側は design/current/*.png（アプリを実際に操作して撮ったもの）。
+     撮り直し: node design/capture-current.mjs -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>加油 — 改修案モックアップ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Yomogi&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FCF9F2;--card:#fff;--ink:#2A2724;--ink-2:#4A443C;--muted:#8A8377;--line:#E4DCCB;
+  --brand:#F2A227;--brand-2:#D98A16;--good:#4E7A3C;--bad:#B0561F;--gray:#F0EBE0;--paper:#FBF6EA;
+  --sage:#D5E4C8;--apricot:#FBE0BC;--blush:#F6D9D2;--stroke:#2A2724;--bw:1.5px;
+  --font-display:'Zen Maru Gothic','Hiragino Maru Gothic ProN',sans-serif;
+  --font-body:'Zen Kaku Gothic New','Hiragino Sans','Yu Gothic',sans-serif;
+  --font-hand:'Yomogi','Hiragino Maru Gothic ProN',cursive;
+  --zh:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#E8E2D6;color:var(--ink);font-family:var(--font-body);line-height:1.7;
+     padding:22px 16px 60px;-webkit-font-smoothing:antialiased}
+a{color:var(--bad)}
+
+/* ── 台紙 ───────────────────────────── */
+.wrap{max-width:1120px;margin:0 auto}
+.lede{background:var(--stroke);color:var(--bg);border-radius:18px;padding:16px 20px;font-size:13.5px;line-height:1.8;margin-bottom:20px}
+.lede b{color:var(--brand)}
+h1{font-family:var(--font-display);font-size:26px;font-weight:900;margin-bottom:6px}
+.sub{font-size:13.5px;color:#5C5249;margin-bottom:18px}
+
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.seg{display:inline-flex;background:#fff;border:var(--bw) solid var(--stroke);border-radius:999px;padding:4px;gap:4px}
+.seg button{font:inherit;font-weight:900;font-size:13.5px;border:0;background:transparent;color:var(--muted);
+  padding:8px 18px;border-radius:999px;cursor:pointer;font-family:var(--font-display)}
+.seg button.on{background:var(--stroke);color:var(--bg)}
+.picker{display:flex;flex-wrap:wrap;gap:7px}
+.picker button{font:inherit;font-family:var(--font-display);font-weight:700;font-size:13px;cursor:pointer;
+  border:var(--bw) solid #CFC6B6;background:rgba(255,255,255,.75);color:#5C5249;border-radius:999px;padding:8px 15px}
+.picker button.on{background:var(--brand);border-color:var(--stroke);color:var(--ink);font-weight:900}
+.picker button.c{border-style:dashed}
+
+.stage{display:grid;gap:26px;grid-template-columns:1fr;align-items:start}
+@media(min-width:900px){.stage{grid-template-columns:392px 1fr}}
+
+/* 端末 */
+.phone{width:392px;flex:none;border:10px solid var(--stroke);border-radius:46px;background:#fff;padding:9px;
+       box-shadow:0 28px 50px -26px rgba(42,39,36,.55);position:relative;justify-self:center}
+.screen{width:100%;height:844px;border-radius:37px;overflow:hidden;background:var(--bg);position:relative}
+.screen img{display:block;width:100%}
+.screen .scroll{position:absolute;inset:0;overflow:auto;-webkit-overflow-scrolling:touch}
+
+/* 解説 */
+.notes{background:#fff;border:var(--bw) solid var(--stroke);border-radius:20px;padding:18px 20px}
+.notes h2{font-family:var(--font-display);font-size:18px;font-weight:900;margin-bottom:4px}
+.notes .tag{display:inline-block;font-family:var(--font-display);font-size:11.5px;font-weight:900;
+  border:var(--bw) solid var(--stroke);border-radius:999px;padding:2px 10px;margin-bottom:10px}
+.notes .tag.a{background:var(--sage)} .notes .tag.c{background:var(--apricot)}
+.notes ul{margin:10px 0 0 0;padding-left:1.15em;font-size:14px;line-height:1.85}
+.notes li{margin-bottom:7px}
+.notes li b{font-weight:700}
+.notes .why{margin-top:14px;background:var(--paper);border:var(--bw) dashed #DFD2B8;border-radius:14px;
+  padding:12px 14px;font-size:13.5px;line-height:1.8;color:var(--ink-2)}
+
+/* ══ ここから下は「アプリの中身」のモック ══ */
+.app{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);font-size:15px}
+.app .body{flex:1;overflow:auto;padding:14px 16px 18px}
+.app .body.center{display:flex;flex-direction:column;justify-content:center}
+.app .zh{font-family:var(--zh)}
+
+/* 細いヘッダー（4タブをやめ、縦を返す） */
+.top{flex:none;display:flex;align-items:center;justify-content:space-between;gap:10px;
+     padding:16px 16px 12px;background:rgba(252,249,242,.94);border-bottom:var(--bw) solid var(--line)}
+.top.bare{border-bottom:0;padding-bottom:4px}
+.top .brand{display:flex;align-items:center;gap:7px;font-family:var(--font-display);font-weight:900;font-size:18px;letter-spacing:.04em}
+.streak{display:inline-flex;align-items:center;gap:5px;background:var(--apricot);border:var(--bw) solid var(--stroke);
+  border-radius:999px;padding:4px 12px;font-family:var(--font-display);font-weight:900;font-size:13.5px}
+.top .back{font-family:var(--font-display);font-weight:900;font-size:15px;background:none;border:0;cursor:pointer;color:var(--ink)}
+
+/* 下タブ */
+.tabs{flex:none;display:flex;background:rgba(252,249,242,.96);border-top:var(--bw) solid var(--stroke);
+      padding:8px 10px 14px}
+.tabs button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;
+  font:inherit;font-family:var(--font-display);font-weight:700;font-size:11px;color:var(--muted);cursor:pointer;padding:4px 0}
+.tabs button.on{color:var(--ink);font-weight:900}
+.tabs .ic{width:22px;height:22px;display:block}
+
+h2.screen-h{font-family:var(--font-display);font-size:21px;font-weight:900;margin:2px 0 3px}
+.hand{font-family:var(--font-hand);font-size:13px;color:var(--bad)}
+
+/* 主役カード：1画面に1つだけ大きく置く */
+.hero{background:#fff;border:var(--bw) solid var(--stroke);border-radius:22px;padding:18px;margin-top:12px}
+.hero .eye{font-family:var(--font-display);font-size:12.5px;font-weight:900;color:var(--good);letter-spacing:.04em}
+.hero .t{font-family:var(--font-display);font-size:30px;font-weight:900;line-height:1.2;margin:2px 0 4px}
+.hero .m{font-size:13.5px;color:var(--ink-2);line-height:1.7}
+.big{display:block;width:100%;margin-top:14px;background:var(--stroke);color:var(--bg);border:var(--bw) solid var(--stroke);
+  border-radius:999px;padding:16px;font-family:var(--font-display);font-weight:900;font-size:17px;cursor:pointer}
+.big.amber{background:var(--brand);color:var(--ink)}
+.big.ghost{background:#fff;color:var(--ink)}
+.mini{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+
+/* 副次カード：主役より明確に小さく */
+.subs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:11px}
+.subcard{background:#fff;border:var(--bw) solid var(--stroke);border-radius:16px;padding:11px 13px}
+.subcard .e{font-size:11px;color:var(--muted);font-family:var(--font-display);font-weight:700}
+.subcard .n{font-family:var(--font-display);font-size:19px;font-weight:900;line-height:1.2;margin:1px 0 2px}
+.subcard .b{display:block;width:100%;margin-top:7px;background:#fff;border:var(--bw) solid var(--stroke);
+  border-radius:999px;padding:7px;font-family:var(--font-display);font-weight:900;font-size:12.5px;cursor:pointer}
+
+/* 週の帯＋進捗 */
+.week{display:flex;gap:6px;margin-top:14px}
+.week div{flex:1;text-align:center;font-size:10.5px;color:var(--muted);font-family:var(--font-display);font-weight:700}
+.week .dot{display:block;width:100%;aspect-ratio:1;border-radius:999px;border:var(--bw) solid var(--stroke);
+  background:#fff;margin-bottom:3px}
+.week .dot.done{background:var(--sage)}
+.week .dot.today{background:var(--brand)}
+.week .dot.off{border-style:dashed;border-color:#CFC6B6;background:transparent}
+.bar{height:9px;border-radius:999px;background:var(--gray);overflow:hidden;margin-top:12px;border:1px solid var(--line)}
+.bar span{display:block;height:100%;background:var(--stroke)}
+.barlabel{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);margin-top:5px}
+
+/* 学習ステップ */
+.steps{flex:none;display:flex;gap:5px;padding:10px 16px 12px;background:rgba(252,249,242,.94);border-bottom:var(--bw) solid var(--line)}
+.steps i{flex:1;height:5px;border-radius:999px;background:var(--gray);display:block}
+.steps i.on{background:var(--stroke)}
+.steplabel{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px}
+.steplabel b{font-family:var(--font-display);font-size:16px;font-weight:900}
+.steplabel span{font-size:12px;color:var(--muted)}
+.wordcard{background:#fff;border:var(--bw) solid var(--stroke);border-radius:20px;padding:20px 18px;text-align:center}
+.wordcard .w{font-family:var(--zh);font-size:40px;font-weight:700;line-height:1.25}
+.wordcard .p{font-size:17px;color:#5C5249;margin-top:2px}
+.wordcard .j{font-size:17px;font-weight:700;margin-top:8px}
+.wordcard .ex{background:var(--paper);border-radius:14px;padding:11px 13px;margin-top:14px;text-align:left;font-size:13.5px;line-height:1.75}
+.wordcard .ex .s{color:var(--muted);font-size:12.5px}
+.dots{display:flex;gap:5px;justify-content:center;margin-top:12px}
+.dots i{width:7px;height:7px;border-radius:999px;background:#D8CFBE}
+.dots i.on{background:var(--stroke)}
+.footbar{flex:none;padding:10px 16px calc(14px);background:rgba(252,249,242,.96);border-top:var(--bw) solid var(--line)}
+
+/* ミニテスト */
+.q{font-size:15.5px;font-weight:700;line-height:1.7;margin-bottom:10px}
+.bank{min-height:56px;background:var(--paper);border:var(--bw) dashed #DFD2B8;border-radius:14px;padding:9px;
+      display:flex;flex-wrap:wrap;gap:7px;align-content:flex-start}
+.slot{min-height:56px;background:#fff;border:var(--bw) solid var(--line);border-radius:14px;padding:9px;margin-top:9px;
+      display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-family:var(--zh);font-size:16px;font-weight:700;background:#fff;border:var(--bw) solid var(--stroke);
+  border-radius:12px;padding:8px 13px;cursor:pointer}
+.chip.used{background:var(--gray);color:#A29A8E;border-color:var(--line);text-decoration:line-through}
+.chip.in{background:var(--stroke);color:var(--bg)}
+
+/* 完了 */
+.done-wrap{text-align:center;padding:26px 6px 0}
+.done-mark{width:96px;height:96px;border-radius:999px;background:var(--sage);border:3px solid var(--stroke);
+  display:flex;align-items:center;justify-content:center;font-size:44px;margin:0 auto 16px}
+.done-wrap h3{font-family:var(--font-display);font-size:26px;font-weight:900;margin-bottom:4px}
+.tally{background:#fff;border:var(--bw) solid var(--stroke);border-radius:18px;padding:14px 16px;margin-top:18px;text-align:left}
+.tally div{display:flex;justify-content:space-between;font-size:14px;padding:5px 0}
+.tally div+div{border-top:1px solid var(--line)}
+
+/* 価格 */
+.pricehead{background:var(--stroke);color:var(--bg);margin:-14px -16px 0;padding:24px 20px 22px;text-align:center}
+.pricehead .e{font-family:var(--font-hand);font-size:13px;color:var(--brand)}
+.pricehead h3{font-family:var(--font-display);font-size:25px;font-weight:900;line-height:1.35;margin:6px 0 8px}
+.pricehead p{font-size:13.5px;color:rgba(252,249,242,.82);line-height:1.75}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;margin-top:16px;font-size:13px;background:#fff;
+     border:var(--bw) solid var(--stroke);border-radius:16px;overflow:hidden}
+.cmp th,.cmp td{padding:9px 10px;text-align:center;border-bottom:1px solid var(--line)}
+.cmp th{font-family:var(--font-display);font-weight:900;font-size:12.5px;background:var(--gray)}
+.cmp td:first-child,.cmp th:first-child{text-align:left}
+.cmp tr:last-child td{border-bottom:0}
+.cmp .yes{color:var(--good);font-weight:900}
+.cmp .no{color:#B9B0A2}
+.pricebox{background:var(--apricot);border:var(--bw) solid var(--stroke);border-radius:18px;padding:16px;margin-top:14px;text-align:center}
+.pricebox .amt{font-family:var(--font-display);font-size:34px;font-weight:900;line-height:1.2}
+.pricebox .amt small{font-size:14px;font-weight:700}
+.pricebox .note{font-size:12.5px;color:#7A6446;margin-top:2px}
+.fine{font-size:12px;color:var(--muted);text-align:center;margin-top:12px;line-height:1.8}
+.fine a{color:var(--muted);text-decoration:underline}
+details.coupon{margin-top:12px;font-size:13px}
+details.coupon summary{cursor:pointer;color:var(--muted);font-size:12.5px;list-style:none}
+details.coupon summary::-webkit-details-marker{display:none}
+details.coupon input{width:100%;border:var(--bw) solid var(--line);border-radius:12px;padding:10px;margin-top:8px;font:inherit}
+
+/* 設定（整理後） */
+.group{margin-top:16px}
+.group>h4{font-family:var(--font-display);font-size:12.5px;font-weight:900;color:var(--muted);
+  letter-spacing:.06em;margin:0 0 7px 4px}
+.rows{background:#fff;border:var(--bw) solid var(--stroke);border-radius:16px;overflow:hidden}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 15px;font-size:14.5px}
+.row+.row{border-top:1px solid var(--line)}
+.row .v{color:var(--muted);font-size:13.5px}
+.row .chev{color:#C4BAAA}
+.moved{background:var(--sage);border:var(--bw) dashed var(--stroke);border-radius:14px;padding:11px 13px;
+  font-size:12.5px;line-height:1.75;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="lede">
+    <b>これはモックアップです。</b>アプリ本体（<code>index.html</code>）にはまだ一切手を入れていません。
+    画面の形と流れを実装前に確かめるためのもので、色・書体はアプリと同じトークンを使っています。<br>
+    <b>案A</b>＝土台を整える（ナビ・情報の優先順位・学習のステップ化）／<b>案C</b>＝有料商品として見せる（価格画面・無料の区切り）。
+  </div>
+
+  <h1>加油 — 改修案モックアップ</h1>
+  <p class="sub">画面を選び、「いま / 改善案」を切り替えて見比べてください。改善案の側はボタンが実際に動きます。</p>
+
+  <div class="controls">
+    <div class="seg" id="seg">
+      <button data-mode="now">いま</button>
+      <button data-mode="new" class="on">改善案</button>
+    </div>
+    <div class="picker" id="picker"></div>
+  </div>
+
+  <div class="stage">
+    <div class="phone"><div class="screen" id="screen"></div></div>
+    <div class="notes" id="notes"></div>
+  </div>
+</div>
+
+<script type="module">
+// 絵文字ではなく線のアイコン。アプリの線画（枠線1.5px）と調子を合わせる
+const IC = {
+  today:'<path d="M4 7h16v13H4z"/><path d="M4 11h16"/><path d="M8 3v4M16 3v4"/>',
+  study:'<path d="M4 5h7v15H4z"/><path d="M13 5h7v15h-7z"/><path d="M11 5v15"/>',
+  vocab:'<path d="M5 19V6a2 2 0 0 1 2-2h12v16H7a2 2 0 0 0-2 2"/><path d="M9 8h7M9 12h5"/>',
+  settings:'<circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.2M12 18.8V21M21 12h-2.2M5.2 12H3M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6M18.4 18.4l-1.6-1.6M7.2 7.2 5.6 5.6"/>',
+};
+const icon = k => `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
+const TABS = (on) => `
+  <div class="tabs">
+    <button class="${on==='today'?'on':''}" data-go="today">${icon('today')}今日</button>
+    <button class="${on==='study'?'on':''}" data-go="study">${icon('study')}学習</button>
+    <button>${icon('vocab')}単語</button>
+    <button class="${on==='settings'?'on':''}" data-go="settings">${icon('settings')}設定</button>
+  </div>`;
+
+const HEAD = `<div class="top">
+    <span class="brand">🔥 加油</span>
+    <span class="streak">🔥 12日連続</span>
+  </div>`;
+
+const SCREENS = {
+  today: {
+    label:'今日', plan:'A', current:'today.png',
+    title:'今日（ホーム）',
+    points:[
+      '<b>主役を1つに絞る。</b>いまは「Day 13」と「まだありません／18問」が同じ大きさで並んでいる。学習カードだけを大きく、復習と模試は小さい2枚に落とす',
+      '<b>模試を設定タブから救い出す</b>。売りの機能が設定の奥にあるのは損',
+      '<b>連続日数と今週の帯</b>を足す。90日完走が商品なのに、続けた証が0%リングだけだった',
+      '<b>4タブを下へ移す</b>。上ヘッダー約300pxを返し、その分を中身に使う',
+      '所要時間（15分）をボタンの下に出し、「いま始められるか」を判断させる',
+    ],
+    why:'いちばん見られる画面なので、ここだけは「今日ひとつ」をやり切らせることに全振りする。他の導線は小さくてよい。',
+    render:()=>`<div class="app">
+      ${HEAD}
+      <div class="body">
+        <h2 class="screen-h">今日やること <span class="hand">あと78日！</span></h2>
+        <div class="hero">
+          <span class="eye">あたらしく覚える</span>
+          <div class="t">Day 13</div>
+          <div class="m">単語5個・文法3つ・音声1問・ミニテスト5問</div>
+          <button class="big" data-go="study">学習を始める</button>
+          <div class="mini">だいたい15分</div>
+        </div>
+        <div class="subs">
+          <div class="subcard">
+            <span class="e">思い出す</span>
+            <div class="n">18問</div>
+            <span class="e">期限13＋新規5</span>
+            <button class="b">復習する</button>
+          </div>
+          <div class="subcard">
+            <span class="e">腕試し</span>
+            <div class="n">模擬試験</div>
+            <span class="e">40問・30分</span>
+            <button class="b">受ける</button>
+          </div>
+        </div>
+        <div class="week">
+          <div><span class="dot done"></span>月</div><div><span class="dot done"></span>火</div>
+          <div><span class="dot done"></span>水</div><div><span class="dot done"></span>木</div>
+          <div><span class="dot today"></span>金</div><div><span class="dot off"></span>土</div>
+          <div><span class="dot off"></span>日</div>
+        </div>
+        <div class="bar"><span style="width:13%"></span></div>
+        <div class="barlabel"><span>90日のうち 12日</span><span>13%</span></div>
+      </div>
+      ${TABS('today')}
+    </div>`
+  },
+
+  study: {
+    label:'学習（ステップ）', plan:'A', current:'day.png',
+    title:'Day学習 — 1本のスクロールをやめる',
+    points:[
+      '<b>4ステップに割る</b>（単語→文法→聞く→解く）。上の進捗バーで「いまどこか・あとどれだけか」が常に見える',
+      '<b>下のボタンは「次へ」1つだけ</b>。いまは 前の日／Day選択／次の日 と 前／完了／次 が同居していて、同じ機能が3箇所にある',
+      '単語は1語ずつ大きく。5語を一度に並べず、めくって進む',
+      '拼音・和訳の表示切替は必要なときだけ出す（常時2つのボタンを置かない）',
+      '左上は「✕ 今日へ戻る」。Day移動は学習中に要らない',
+    ],
+    why:'1日15分の商品なので、始めてから終わるまで迷いなく流れることが最優先。途中で「あと何をすれば終わるのか」が分からないのが、いまの最大の摩擦。',
+    render:(st)=>{
+      const V=[{w:'方法',p:'fāngfǎ',j:'方法',e:'这个方法很适合我。',ep:'Zhège fāngfǎ hěn shìhé wǒ.',ej:'この方法は私に合っています。'}];
+      const v=V[0];
+      return `<div class="app">
+      <div class="top bare"><button class="back" data-go="today">✕ 今日へ</button><span class="v" style="font-size:13px;color:#8A8377">Day 13</span></div>
+      <div class="steps"><i class="on"></i><i></i><i></i><i></i></div>
+      <div class="body center">
+        <div class="steplabel"><b>単語をおぼえる</b><span>ステップ 1 / 4</span></div>
+        <div class="wordcard">
+          <div class="w zh">${v.w}</div>
+          <div class="p">${v.p}</div>
+          <div class="j">${v.j}</div>
+          <div class="ex"><span class="zh">${v.e}</span><br><span class="s">${v.ep}</span><br>${v.ej}</div>
+        </div>
+        <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+        <div class="mini">1 / 5語　　タップでめくる</div>
+      </div>
+      <div class="footbar"><button class="big" data-go="test">次へ</button></div>
+    </div>`;}
+  },
+
+  test: {
+    label:'ミニテスト', plan:'A', current:'day.png',
+    title:'ミニテスト — 同じ枠の中の最終ステップ',
+    points:[
+      '進捗バーは4本目が満ちた状態。<b>「終わりが見えている」状態で解かせる</b>',
+      '画面には問題だけ。カードの入れ子（カード＞カード＞カード）をやめる',
+      '答え合わせのあと、そのまま完了画面へ流す',
+    ],
+    why:'ここが1日の終点。解き終わった瞬間に「終わった」と分かる導線にしておくと、翌日の再訪につながる。',
+    render:()=>`<div class="app">
+      <div class="top bare"><button class="back" data-go="today">✕ 今日へ</button><span style="font-size:13px;color:#8A8377">Day 13</span></div>
+      <div class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      <div class="body center">
+        <div class="steplabel"><b>ミニテスト</b><span>問 5 / 5</span></div>
+        <p class="q">語句を正しい順番にタップしてください。</p>
+        <div class="slot"><span class="chip in zh">他</span><span class="chip in zh">十点</span></div>
+        <div class="bank">
+          <span class="chip used zh">他</span><span class="chip zh">才</span>
+          <span class="chip used zh">十点</span><span class="chip zh">到</span><span class="chip zh">公司</span>
+        </div>
+      </div>
+      <div class="footbar"><button class="big" data-go="done">答え合わせ</button></div>
+    </div>`
+  },
+
+  done: {
+    label:'完了', plan:'A', current:null,
+    title:'Day完了 — いまは何も起きない',
+    points:[
+      '<b>完了の手応えを作る。</b>いまは完了ボタンの色が変わるだけで、終わった実感がない',
+      '連続日数をここで伸ばして見せる（習慣アプリの中核）',
+      'その日やったことを数字で3行だけ',
+      '次の行動は「復習を続ける」か「今日はここまで」の2択。<b>次のDayへは進ませない</b>（1日1Dayが商品の形）',
+    ],
+    why:'ここは案B（習慣ドリブン）の入口でもある。まずこの1画面だけ先に作っておくと、後でストリーク・通知を足すときの受け皿になる。',
+    render:()=>`<div class="app">
+      ${HEAD}
+      <div class="body">
+        <div class="done-wrap">
+          <div class="done-mark">✓</div>
+          <h3>Day 13 完了</h3>
+          <p style="font-size:14px;color:#4A443C">13日つづきました。明日もこの調子で。</p>
+          <div class="tally">
+            <div><span>おぼえた単語</span><b>5語</b></div>
+            <div><span>文法</span><b>3つ</b></div>
+            <div><span>ミニテスト</span><b>4 / 5問</b></div>
+          </div>
+          <button class="big" style="margin-top:18px">復習を続ける（18問）</button>
+          <button class="big ghost" style="margin-top:9px" data-go="today">今日はここまで</button>
+        </div>
+      </div>
+      ${TABS('today')}
+    </div>`
+  },
+
+  price: {
+    label:'価格', plan:'C', current:null,
+    title:'価格画面 — いまは存在しない',
+    points:[
+      '<b>いまは値段がアプリ内に一度も出ない。</b>Day一覧の🔒を押すと、そのままGoogleログイン→Stripeへ飛ぶ',
+      '<b>無料と有料の比較表</b>を置く。「何が増えるのか」を1画面で',
+      '<b>買い切りであることを価格の真横に</b>。月額ではないのは強い売りなのに、どこにも書いていない',
+      '<b>クーポン欄は折りたたむ。</b>いまは購入ボタンより上にあり、全員に「割引があるらしい」と気づかせてコードを探しに行かせている',
+      '<b>「購入を復元」を常設</b>。機種変・再インストールのときにここへ辿り着けないと問い合わせになる',
+    ],
+    why:'価格を見せずに決済画面へ飛ばすのは、買う気のある人まで止める。ここを作るだけで転換率は変わる。ログインを購入の前提にしない設計にできると、さらに効く。',
+    render:()=>`<div class="app">
+      <div class="top"><button class="back" data-go="today">‹ 戻る</button><span style="font-size:13px;color:#8A8377">Day 8</span></div>
+      <div class="body">
+        <div class="pricehead">
+          <span class="e">Day 8 からが本編です</span>
+          <h3>のこり83日分を、<br>まとめて開きます。</h3>
+          <p>Day 1-7 はこれからも無料のままです。</p>
+        </div>
+        <table class="cmp">
+          <tr><th>　</th><th>無料</th><th>全90日</th></tr>
+          <tr><td>学習できる日数</td><td>7日</td><td class="yes">90日</td></tr>
+          <tr><td>単語</td><td>35語</td><td class="yes">498語</td></tr>
+          <tr><td>リスニング音声</td><td>7本</td><td class="yes">90本</td></tr>
+          <tr><td>ミニテスト</td><td>77問</td><td class="yes">986問</td></tr>
+          <tr><td>AI添削つき作文</td><td>14問</td><td class="yes">180問</td></tr>
+          <tr><td>模擬試験</td><td class="no">—</td><td class="yes">あり</td></tr>
+        </table>
+        <div class="pricebox">
+          <div class="amt">¥4,800 <small>（税込）</small></div>
+          <div class="note">買い切り・月額なし・追加費用なし</div>
+        </div>
+        <button class="big" style="margin-top:14px">購入して全90日を開く</button>
+        <details class="coupon"><summary>クーポンコードをお持ちの方</summary>
+          <input type="text" placeholder="コードを入力"></details>
+        <p class="fine"><a href="#">購入を復元</a>　·　<a href="#">特定商取引法に基づく表記</a></p>
+      </div>
+    </div>`
+  },
+
+  free_end: {
+    label:'無料の区切り', plan:'C', current:null,
+    title:'Day 7 完了時 — いまは何も起きない',
+    points:[
+      '<b>無料の終わりに区切りを作る。</b>いまはDay7を終えても、次にDay8の🔒に当たって初めて壁に気づく',
+      '1週間やり切ったことを先に認める。売り込みはその後',
+      '<b>Day 8 の中身を実際に見せる</b>（ぼかした予告ではなく、単語1語と例文を本物で）',
+      'ここから価格画面へ1タップ。押さない人は「復習を続ける」で戻れる',
+    ],
+    why:'paywallは「壁」ではなく「予告」にしたほうが通る。7日続けた直後は、いちばん価値を実感している瞬間なので、ここが最良の提示タイミング。',
+    render:()=>`<div class="app">
+      ${HEAD}
+      <div class="body">
+        <div class="done-wrap">
+          <div class="done-mark">🎉</div>
+          <h3>1週間、続きました</h3>
+          <p style="font-size:14px;color:#4A443C">無料で試せるのはここまでです。<br>単語35語と文法21項目を終えました。</p>
+        </div>
+        <div class="hero" style="margin-top:20px">
+          <span class="eye">Day 8 でやること</span>
+          <div class="t" style="font-size:22px">虽然〜但是〜</div>
+          <div class="m"><span class="zh">虽然很累，但是很开心。</span><br>疲れましたが、楽しかったです。</div>
+          <button class="big amber" data-go="price">続きを見る（全90日）</button>
+          <div class="mini">¥4,800の買い切り・月額なし</div>
+        </div>
+        <button class="big ghost" style="margin-top:10px" data-go="today">いまは復習を続ける</button>
+      </div>
+      ${TABS('today')}
+    </div>`
+  },
+
+  settings: {
+    label:'設定', plan:'A', current:'settings.png',
+    title:'設定 — 平らな1枚をやめる',
+    points:[
+      '<b>4つのグループに割る</b>（アカウント／学習／表示／その他）。いまは同じ調子の設定が1枚に10個並んでいる',
+      '<b>模試と級診断を今日画面へ移す。</b>設定の奥は、売りの機能の置き場所ではない',
+      '<b>「購入を復元」を常設</b>',
+      '選択肢は行に畳む。4択チップを常時展開しておく必要はない',
+      '受験予定日は <code>mm/dd/yyyy</code> のまま出ている（ロケール未指定の date 入力）',
+    ],
+    why:'設定は毎日触る画面ではないので、探しやすさだけあればよい。いまは「毎日触る機能（模試）」が混ざっているのが問題。',
+    render:()=>`<div class="app">
+      ${HEAD}
+      <div class="body">
+        <h2 class="screen-h">設定</h2>
+        <div class="group"><h4>アカウント</h4><div class="rows">
+          <div class="row"><span>ログイン</span><span class="v">未ログイン ›</span></div>
+          <div class="row"><span>購入を復元</span><span class="chev">›</span></div>
+          <div class="row"><span>購入状況</span><span class="v">Day 1-7（無料）</span></div>
+        </div></div>
+        <div class="group"><h4>学習</h4><div class="rows">
+          <div class="row"><span>1日の新規問数</span><span class="v">8 ›</span></div>
+          <div class="row"><span>1日の復習上限</span><span class="v">30 ›</span></div>
+          <div class="row"><span>出題の向き</span><span class="v">中文 → 日本語 ›</span></div>
+          <div class="row"><span>復習の出題範囲</span><span class="v">すべて ›</span></div>
+          <div class="row"><span>受験予定日</span><span class="v">未設定 ›</span></div>
+        </div></div>
+        <div class="group"><h4>表示</h4><div class="rows">
+          <div class="row"><span>文字サイズ</span><span class="v">中 ›</span></div>
+        </div></div>
+        <div class="group"><h4>その他</h4><div class="rows">
+          <div class="row"><span>利用規約</span><span class="chev">›</span></div>
+          <div class="row"><span>プライバシーポリシー</span><span class="chev">›</span></div>
+          <div class="row"><span>特定商取引法に基づく表記</span><span class="chev">›</span></div>
+        </div></div>
+        <div class="moved">模擬試験と級診断は、設定から<b>今日画面</b>へ移しました。毎日そこから入れます。</div>
+      </div>
+      ${TABS('settings')}
+    </div>`
+  },
+};
+
+const ORDER = ['today','study','test','done','free_end','price','settings'];
+let mode = 'new', cur = 'today';
+
+const picker = document.getElementById('picker');
+picker.innerHTML = ORDER.map(k =>
+  `<button data-k="${k}" class="${SCREENS[k].plan==='C'?'c':''}">${SCREENS[k].label}${SCREENS[k].plan==='C'?' ※案C':''}</button>`).join('');
+
+function draw(){
+  const s = SCREENS[cur];
+  [...picker.children].forEach(b => b.classList.toggle('on', b.dataset.k === cur));
+  [...document.querySelectorAll('#seg button')].forEach(b => b.classList.toggle('on', b.dataset.mode === mode));
+
+  const screen = document.getElementById('screen');
+  if (mode === 'now') {
+    screen.innerHTML = s.current
+      ? `<div class="scroll"><img src="current/${s.current}" alt=""></div>`
+      : `<div style="display:flex;height:100%;align-items:center;justify-content:center;padding:32px;text-align:center;
+           font-size:14.5px;line-height:1.9;color:#8A8377">この画面は<br><b style="color:#2A2724">いまのアプリには無い</b><br>ので、比較できません。</div>`;
+  } else {
+    screen.innerHTML = s.render();
+  }
+
+  document.getElementById('notes').innerHTML =
+    `<span class="tag ${s.plan==='C'?'c':'a'}">案${s.plan}</span>
+     <h2>${s.title}</h2>
+     <ul>${s.points.map(p=>`<li>${p}</li>`).join('')}</ul>
+     <div class="why"><b>なぜ：</b>${s.why}</div>`;
+}
+
+picker.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; cur = b.dataset.k; draw(); });
+document.getElementById('seg').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; mode = b.dataset.mode; draw(); });
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-go]'); if (!b) return;
+  const go = b.dataset.go;
+  if (SCREENS[go]) { cur = go; mode = 'new'; draw(); }
+});
+draw();
+</script>
+</body>
+</html>
