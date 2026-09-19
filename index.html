@@ -25984,7 +25984,7 @@ async function fetchPaidContent(){
   }catch(e){ return false; }
 }
 async function startCheckout(){
-  if(!firebaseReady){ alert('クラウド同期は現在利用できません。しばらくしてからお試しください。'); return; }
+  if(!firebaseReady){ _toast('クラウド同期は現在利用できません。しばらくしてからお試しください。', 6000); return; }
   if(!auth || !auth.currentUser){ window.hsk4GoogleLogin(); return; }
   try{
     var token=await auth.currentUser.getIdToken();
@@ -25997,8 +25997,8 @@ async function startCheckout(){
     // Worker側が返す文言はすべて利用者向けに書いてある（クーポンの入力ミス等）ので、
     // あればそのまま見せる。無ければ汎用の文言にする。
     if(data && data.url){ location.href=data.url; }
-    else{ alert((data && data.error) || '決済ページを開けませんでした。しばらくしてからお試しください。'); }
-  }catch(e){ alert('決済ページを開けませんでした。しばらくしてからお試しください。'); }
+    else{ _toast((data && data.error) || '決済ページを開けませんでした。しばらくしてからお試しください。', 6000); }
+  }catch(e){ _toast('決済ページを開けませんでした。しばらくしてからお試しください。', 6000); }
 }
 function daySelectOptionsHTML(selectedDay){
   let out='';
@@ -26015,7 +26015,7 @@ function lockedDayHTML(day){
     +'<div class="small" style="margin:10px 0 16px">Day8以降は購入後に使えるようになります。Day1-7は引き続き無料でお試しいただけます。</div>'
     +'<input id="couponInput" type="text" placeholder="クーポンコード（お持ちの場合）">'
     +'<button class="primary" style="width:100%;margin-top:10px" onclick="startCheckout()">'+(loggedIn?'購入する':'ログインして購入する')+'</button>'
-    +'<button style="width:100%;margin-top:10px" onclick="fetchPaidContent().then(function(ok){ if(ok){ render(); } else { alert(\'まだ購入が確認できませんでした。\'); } })">購入済みの内容を確認する</button>'
+    +'<button style="width:100%;margin-top:10px" onclick="fetchPaidContent().then(function(ok){ if(ok){ render(); } else { _toast(\'まだ購入が確認できませんでした。\', 6000); } })">購入済みの内容を確認する</button>'
     +'<button style="width:100%;margin-top:10px" onclick="showDay(1)">Day1-7に戻る</button>'
     +'</div>';
 }
@@ -26082,7 +26082,11 @@ function fmtBmItem(b){
   h+='<span class="badge">'+esc(b.type)+'</span><span class="badge">Day '+b.day+'</span>';
   h+='<div class="zh">'+esc(b.title)+' <button class="speak-btn" onclick="speakZh(\''+esc(b.title)+'\')"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div>';
   if(pin) h+='<div class="pinyin">'+esc(pin)+'</div>';
-  h+='<div class="small">'+esc(b.sub||'')+'</div>';
+  // 以前は単語の sub に「拼音｜和訳」をまとめて入れていたため、拼音の行と二重に出ていた。
+  // 保存済みのブックマークは作り直せないので、表示側で先頭の拼音を落とす。
+  var sub=String(b.sub||'');
+  if(pin && sub.indexOf(pin+'｜')===0) sub=sub.slice(pin.length+1);
+  h+='<div class="small">'+esc(sub)+'</div>';
   h+=lvControl(b.id);
   h+='</div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">';
   h+='<button class="bookmark active" data-action="removeBookmark" data-id="'+b.id+'">★</button>';
@@ -26286,13 +26290,17 @@ function render(){
  if(currentView==='review'){ if($('bottomNav')) $('bottomNav').style.display='none'; renderTestScreen(); return; }
  if(currentView==='today'){ renderHome(); return; }
  save(); initSelect(); renderBookmarkPanel();
- if($('bottomNav')) $('bottomNav').style.display='flex';
- const l=lesson(); const c=$('content');
+ const c=$('content');
+ // ブックマークはDay画面ではないので下ナビ（前・完了・次）は出さない。
+ // 以前はこの手前で display='flex' してから bookmark で早期リターンしていたため、
+ // ブックマークタブに下ナビが残り、無関係なDayの完了状態を変えられてしまっていた。
  if(currentView==='bookmark'){
+   if($('bottomNav')) $('bottomNav').style.display='none';
    c.style.display='none';
-   updateCompleteButtons();
    return;
  }
+ if($('bottomNav')) $('bottomNav').style.display='flex';
+ const l=lesson();
  c.style.display='';
  c.className=showAnswers?'show-answers':'';
  if(!l){
@@ -26320,7 +26328,7 @@ function render(){
    <div class="vocab">${l.vocab.map((v,i)=>`
     <div class="vitem lv-${state.levels[v.id]||0}">
      <div class="item-head"><div><div class="zh">${i+1}. ${esc(v.zh)} <button class="speak-btn" onclick="speakZh('${esc(v.zh)}')" title="発音"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div><div class="pinyin">${esc(v.pinyin)}</div><div class="ja">${esc(v.ja)}</div>${lvControl(v.id)}</div>
-     <button class="bookmark ${isBookmarked(v.id)?'active':''}" onclick="toggleBookmark('${v.id}','単語','${esc(v.zh)}','${esc(v.pinyin)}｜${esc(v.ja)}')">${isBookmarked(v.id)?'★':'☆'}</button></div>
+     <button class="bookmark ${isBookmarked(v.id)?'active':''}" onclick="toggleBookmark('${v.id}','単語','${esc(v.zh)}','${esc(v.ja)}','${esc(v.pinyin)}')">${isBookmarked(v.id)?'★':'☆'}</button></div>
      <div class="ex"><span class="cw-ex" data-ex="${esc(v.example)}" data-exp="${esc(v.exPinyin)}" data-exj="${esc(v.exJa)}">${esc(v.example)}</span> <button class="speak-btn" onclick="speakZh('${esc(v.example)}')" title="例文を聞く"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div><div class="pinyin expinyin">${esc(v.exPinyin)}</div><div class="ja exja">${esc(v.exJa)}</div>${v.contrast?`<div class="note"><span class="label">違い・注意：</span>${esc(v.contrast)}</div>`:''}
     </div>`).join('')}</div>
   </div>
@@ -27667,6 +27675,7 @@ function startAiChallenge(){
 
 // モジュールスコープの関数をグローバルに公開（onclick属性から呼び出せるように）
 window.startCheckout = startCheckout;
+window._toast = _toast;   // lockedDayHTML() の onclick から呼ぶため
 window.fetchPaidContent = fetchPaidContent;
 window.startAiChallenge = startAiChallenge;
 window.mtSaveGraderUrl = mtSaveGraderUrl;
@@ -27919,7 +27928,7 @@ function lcStartHtml(){
     + '<div class="lc-nav">'
     + (hasOnboarded()
         ? '<button class="lc-btn flex" data-lc-action="back">ホームへ戻る</button>'
-        : '<button class="lc-btn flex" data-lc-action="skip">スキップして始める</button>')
+        : '<button class="lc-btn flex" data-lc-action="skip">スキップ</button>')
     + '<button class="lc-btn primary flex" data-lc-action="start">テストを始める</button>'
     + '</div></div>';
 }
