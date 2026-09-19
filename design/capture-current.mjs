@@ -1,8 +1,12 @@
 // 改修案と見比べるための「いまの画面」を撮る。
 //   node design/capture-current.mjs
-// 出力: design/current/*.png（390x844・deviceScaleFactor 2）
+// 出力: design/current/*.png（390x844・deviceScaleFactor 1.5）
+//   ＋ design/index.html の中へ data URI として埋め込み直す。
+// 埋め込むのは、モックをファイル単体で開いても（Finderから・プレビューパネル内・
+// メールに添付して）画像が出るようにするため。隣のPNGを読みに行く作りだと、
+// そういう開き方のときだけ画像が欠ける。
 import { createServer } from 'http';
-import { readFile, mkdir } from 'fs/promises';
+import { readFile, writeFile, mkdir } from 'fs/promises';
 import { existsSync, readdirSync } from 'fs';
 import { extname, join, normalize } from 'path';
 import { chromium } from 'playwright';
@@ -54,7 +58,7 @@ function seed() {
 await mkdir(OUT, { recursive: true });
 srv.listen(PORT, '127.0.0.1', async () => {
   const b = await chromium.launch({ executablePath: findChromium() });
-  const c = await b.newContext({ viewport:{width:390,height:844}, deviceScaleFactor:2,
+  const c = await b.newContext({ viewport:{width:390,height:844}, deviceScaleFactor:1.5,
     isMobile:true, hasTouch:true, locale:'ja-JP', reducedMotion:'reduce' });
   const p = await c.newPage();
   await p.addInitScript(st => { try {
@@ -72,11 +76,28 @@ srv.listen(PORT, '127.0.0.1', async () => {
   await p.evaluate(() => window.showBookmarks()); await p.waitForTimeout(700); await shot('bookmark');
 
   // 初回起動（級診断）は別コンテキストで
-  const c2 = await b.newContext({ viewport:{width:390,height:844}, deviceScaleFactor:2, isMobile:true, hasTouch:true, locale:'ja-JP' });
+  const c2 = await b.newContext({ viewport:{width:390,height:844}, deviceScaleFactor:1.5, isMobile:true, hasTouch:true, locale:'ja-JP' });
   const p2 = await c2.newPage();
   await p2.goto(`http://127.0.0.1:${PORT}/`, { waitUntil: 'load' }); await p2.waitForTimeout(1000);
   await p2.screenshot({ path: join(OUT, 'first-run.png') }); console.log('  ✓ first-run');
 
   await b.close(); srv.close();
   console.log('出力先:', OUT);
+
+  // index.html の中の SHOT ブロックを、撮ったばかりの画像で置き換える
+  const names = ['today','day','settings','bookmark','first-run'];
+  const entries = [];
+  for (const n of names) {
+    const buf = await readFile(join(OUT, n + '.png'));
+    entries.push(`  '${n}.png': '` + 'data:image/png;base64,' + buf.toString('base64') + `'`);
+  }
+  const idx = join(ROOT, 'design', 'index.html');
+  let html = await readFile(idx, 'utf8');
+  const S = '/* CURRENT-SHOTS:START */', E = '/* CURRENT-SHOTS:END */';
+  const a = html.indexOf(S), z = html.indexOf(E);
+  if (a < 0 || z < 0) { console.log('! index.html に CURRENT-SHOTS の目印が無い'); return; }
+  html = html.slice(0, a + S.length) + '\nconst SHOT = {\n' + entries.join(',\n') + '\n};\n' + html.slice(z);
+  await writeFile(idx, html);
+  const kb = Math.round(Buffer.byteLength(html) / 1024);
+  console.log('  ✓ design/index.html へ埋め込み（' + kb + 'KB）');
 });
