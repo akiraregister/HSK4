@@ -1,0 +1,166 @@
+<!doctype html>
+<!-- 案5（罫の炎）をベースにした派生案。案X（辞書・新聞）の色＝墨・朱・生成りの中で振っている。
+     アプリ本体にはまだ手を入れていない。 -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>加油 — 炎アイコンの派生案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Serif+JP:wght@500;600;700&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--maru:'Zen Maru Gothic',sans-serif;--kaku:'Zen Kaku Gothic New',sans-serif;
+  --mincho:'Noto Serif JP',serif;--song:'Noto Serif SC',serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#DEDAD2;color:#2A2724;font-family:var(--kaku);line-height:1.7;padding:22px 16px 60px}
+.wrap{max-width:1400px;margin:0 auto}
+.lede{background:#2A2724;color:#FCF9F2;border-radius:18px;padding:16px 20px;font-size:13.5px;line-height:1.8;margin-bottom:20px}
+.lede b{color:#F2A227}
+h1{font-family:var(--maru);font-size:26px;font-weight:900;margin-bottom:6px}
+.sub{font-size:13.5px;color:#5C5249;margin-bottom:18px;max-width:62em}
+h2.sec{font-family:var(--maru);font-size:19px;font-weight:900;margin:30px 0 10px}
+.icons{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(244px,1fr))}
+.icard{background:#fff;border:1.5px solid #2A2724;border-radius:18px;padding:16px;display:flex;flex-direction:column}
+.icard .tag{font-family:var(--maru);font-size:11px;font-weight:900;background:#F0EBE0;border-radius:6px;padding:2px 9px;align-self:flex-start}
+.icard h3{font-family:var(--maru);font-size:16px;font-weight:900;margin:8px 0 3px}
+.icard p{font-size:12.5px;color:#5C5249;line-height:1.75}
+.sizes{display:flex;align-items:flex-end;gap:14px;margin:14px 0 10px}
+.tile{border-radius:22%;overflow:hidden;display:block;box-shadow:0 6px 16px -8px rgba(0,0,0,.4)}
+.sizes .lab{font-size:10.5px;color:#8F8C82;text-align:center;font-family:var(--maru);font-weight:700;margin-top:3px}
+.pc{margin-top:auto;padding-top:10px;border-top:1px solid #EFE9DD;font-size:12px;line-height:1.7}
+.pc b{color:#4E7A3C}.pc.con b{color:#B0561F}
+.home{background:linear-gradient(160deg,#5C6B52,#3E4A39);border-radius:18px;padding:20px 16px;margin-top:20px;
+  display:flex;gap:24px;flex-wrap:wrap;justify-content:center}
+.home .a{width:74px;text-align:center}
+.home .a span{display:block;color:#fff;font-size:11px;margin-top:6px;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.inapp{background:#FCFBF8;border:1.5px solid #2A2724;border-radius:16px;padding:16px 20px;margin-top:18px;
+  display:flex;gap:26px;flex-wrap:wrap;align-items:center}
+.inapp .r{display:flex;align-items:center;gap:9px;font-family:var(--mincho);font-weight:600;font-size:17px;letter-spacing:.34em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lede"><b>案5（炎）を軸にした派生案です。</b>案X（辞書・新聞）の色＝墨・朱・生成りの中だけで振っています。
+  ホーム画面では60px前後でしか見えないので、小さいサイズでの見え方を基準に選んでください。</div>
+  <h1>加油 — 炎アイコンの派生案</h1>
+  <p class="sub">元案（案5）は「生成りの地に、墨の線画の炎＋下に朱の1本罫」でした。
+  ここでは <b>地の色／炎の描き方／漢字との組み合わせ</b> の3軸で振っています。</p>
+
+  <h2 class="sec">派生案</h2>
+  <div class="icons" id="icons"></div>
+
+  <h2 class="sec">ホーム画面での見え方（60px）</h2>
+  <div class="home" id="home"></div>
+
+  <h2 class="sec">アプリ内ヘッダーでの見え方（22px）</h2>
+  <div class="inapp" id="inapp"></div>
+</div>
+<script>
+const INK='#15150F', RED='#A8352A', PAPER='#F6F2E6', CREAM='#EFE9DA';
+// 元の炎（アプリの現アイコン）と同じ輪郭。内側の巻きが「加油」らしさを作っている
+const FLAME='M52 8 C 62 31, 79 43, 79 64 A 29 29 0 1 1 21 64 C 21 46, 33 41, 41 29 C 44 41, 50 45, 50 37 C 50 27, 47 17, 52 8 Z';
+// 一筆書き（書）の炎。太→細のひと画
+const BRUSH='M57 8 C 50 27, 61 35, 66 48 C 73 65, 65 82, 47 88 C 60 73, 55 59, 45 49 C 36 40, 38 23, 57 8 Z';
+let uid=0;
+
+const ICONS=[
+ {n:'元案', t:'罫の炎（案5）',
+  d:'生成りの地に墨の線画。下に朱の1本罫',
+  pro:'抜けが良く、線が細いぶん上品',
+  con:'ホーム画面で<b>地の色が周囲に溶ける</b>。線が細く28pxで消えかける',
+  f:()=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <path d="${FLAME}" fill="none" stroke="${INK}" stroke-width="3.4" stroke-linejoin="round"/>
+    <rect x="30" y="84" width="40" height="2.5" fill="${RED}"/>`},
+
+ {n:'派生1', t:'朱のベタ炎',
+  d:'線ではなく朱の面で塗る。基線は墨の細罫',
+  pro:'<b>28pxでも形が完全に残る</b>。朱が効いて中国語アプリだと分かる。元案の弱点（細さ）を直接つぶした案',
+  con:'線画の上品さは失われる。炎アイコン自体の既視感は残る',
+  f:()=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <path d="${FLAME}" fill="${RED}"/>
+    <rect x="28" y="88" width="44" height="2" fill="${INK}"/>`},
+
+ {n:'派生2', t:'墨地・生成りの炎',
+  d:'地を墨に反転。炎は生成りの線、基線は朱',
+  pro:'<b>ホーム画面で沈まない。</b>白背景のアプリが並ぶ中で一番目立つ。線画の上品さも残る',
+  con:'アプリを開いたときの明るい紙面と印象が繋がりにくい',
+  f:()=>`<rect width="100" height="100" fill="${INK}"/>
+    <path d="${FLAME}" fill="none" stroke="${PAPER}" stroke-width="3.6" stroke-linejoin="round"/>
+    <rect x="30" y="84" width="40" height="2.5" fill="${RED}"/>`},
+
+ {n:'派生3', t:'角印の炎',
+  d:'朱の角印に炎を白抜き。印章シリーズと形を揃える',
+  pro:'<b>「辞書・新聞」の世界観に最も忠実。</b>漢字を使わずに中国語らしさが出る。印なので傾けると紙に押した感じになる',
+  con:'印の枠のぶん炎が小さくなる。28pxでは炎が塊に見える',
+  f:()=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <g transform="rotate(-6 50 50)"><rect x="20" y="20" width="60" height="60" rx="4" fill="${RED}"/>
+    <g transform="translate(50 52) scale(.64) translate(-50 -50)">
+      <path d="${FLAME}" fill="${PAPER}"/></g></g>`},
+
+ {n:'派生4', t:'罫で組んだ炎',
+  d:'炎の面を、水平の細罫だけで埋める。新聞の網点の代わり',
+  pro:'<b>案Xの語彙（罫）だけで作れている。</b>他社と絶対にかぶらない。120pxでの佇まいが良い',
+  con:'<b>28pxでは罫が潰れて、ただのベタに見える</b>。印刷物では強いがアイコン向きではない',
+  f:()=>{const id='r'+(++uid);return `<defs><pattern id="${id}" width="7" height="7" patternUnits="userSpaceOnUse">
+      <rect width="7" height="3" fill="${INK}"/></pattern></defs>
+    <rect width="100" height="100" fill="${PAPER}"/>
+    <path d="${FLAME}" fill="url(#${id})"/>
+    <path d="${FLAME}" fill="none" stroke="${INK}" stroke-width="2.2" stroke-linejoin="round"/>
+    <rect x="30" y="88" width="40" height="2" fill="${RED}"/>`}},
+
+ {n:'派生5', t:'一筆の炎',
+  d:'毛筆のひと画。太→細のかすれた線として描く',
+  pro:'<b>明朝・宋体と最も相性が良い。</b>書の記号なので「語学・漢字」の文脈に直結する。人の手の気配が残る',
+  con:'形が抽象的で<b>炎だと分かりにくい</b>。小さいと単なる爪の形に見える',
+  f:()=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <path d="${BRUSH}" fill="${INK}"/>
+    <rect x="34" y="90" width="32" height="1.8" fill="${RED}"/>`},
+
+ {n:'派生6', t:'炎に「油」',
+  d:'朱の炎に「油」を白抜き。炎と漢字を1つにまとめる',
+  pro:'<b>炎の既視感を漢字が打ち消す。</b>名前とも繋がり、中国語アプリだと即座に分かる',
+  con:'要素が2つぶん入るので<b>28pxで文字が潰れる</b>',
+  f:()=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <path d="${FLAME}" fill="${RED}"/>
+    <text x="50" y="62" text-anchor="middle" dominant-baseline="central" fill="${PAPER}"
+      font-family="Noto Serif SC, serif" font-weight="600" font-size="30">油</text>`},
+
+ {n:'派生7', t:'炎と油の滴',
+  d:'炎の上から朱の滴が落ちる。「油を注ぐ＝加油」の直喩',
+  pro:'<b>名前の意味がそのまま絵になっている</b>唯一の案。説明が要らない',
+  con:'滴が小さく、<b>28pxでは消える</b>。炎＋滴で要素が増える',
+  f:()=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <path d="M50 6 C 54 14, 58 17, 58 21 A 8 8 0 1 1 42 21 C 42 17, 46 14, 50 6 Z" fill="${RED}"/>
+    <g transform="translate(50 60) scale(.84) translate(-50 -58)">
+      <path d="${FLAME}" fill="none" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/></g>`},
+
+ {n:'派生8', t:'炎と九十',
+  d:'炎の下に「九十」。90日完結を記号にする',
+  pro:'<b>商品の芯（90日で終わる）がアイコンに入る</b>。漢数字なので中国語らしさも出る',
+  con:'2要素で情報が多い。28pxでは文字が潰れる。級や日数を変えると作り直し',
+  f:()=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <g transform="translate(50 42) scale(.72) translate(-50 -50)">
+      <path d="${FLAME}" fill="${RED}"/></g>
+    <text x="50" y="84" text-anchor="middle" dominant-baseline="central" fill="${INK}"
+      font-family="Noto Serif JP, serif" font-weight="600" font-size="20" letter-spacing="1">九十</text>`},
+];
+
+const svg=(i,px)=>`<svg class="tile" viewBox="0 0 100 100" width="${px}" height="${px}"
+  style="border-radius:${px>40?22:26}%">${i.f()}</svg>`;
+
+document.getElementById('icons').innerHTML=ICONS.map(i=>`
+  <div class="icard"><span class="tag">${i.n}</span><h3>${i.t}</h3><p>${i.d}</p>
+    <div class="sizes">
+      <div><div>${svg(i,120)}</div><div class="lab">120</div></div>
+      <div><div>${svg(i,56)}</div><div class="lab">56</div></div>
+      <div><div>${svg(i,28)}</div><div class="lab">28</div></div>
+    </div>
+    <div class="pc"><b>◎</b> ${i.pro}</div><div class="pc con"><b>△</b> ${i.con}</div></div>`).join('');
+document.getElementById('home').innerHTML=ICONS.map(i=>
+  `<div class="a">${svg(i,60)}<span>加油</span></div>`).join('');
+document.getElementById('inapp').innerHTML=ICONS.map(i=>
+  `<div class="r">${svg(i,22)}加油</div>`).join('');
+</script>
+</body>
+</html>
