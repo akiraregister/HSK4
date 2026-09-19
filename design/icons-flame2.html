@@ -1,0 +1,158 @@
+<!doctype html>
+<!-- 炎アイコン 第2ラウンド。第1ラウンドで分かったこと
+     （小さいサイズで生き残るのは「面で塗る」「地とのコントラストが高い」「要素が1つ」）
+     を踏まえ、色の反転・輪郭そのもの・印刷の意匠の3方向で振った。
+     アプリ本体にはまだ手を入れていない。 -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>加油 — 炎アイコン 第2ラウンド</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Serif+JP:wght@500;600;700&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--maru:'Zen Maru Gothic',sans-serif;--kaku:'Zen Kaku Gothic New',sans-serif;--mincho:'Noto Serif JP',serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#DEDAD2;color:#2A2724;font-family:var(--kaku);line-height:1.7;padding:22px 16px 60px}
+.wrap{max-width:1400px;margin:0 auto}
+.lede{background:#2A2724;color:#FCF9F2;border-radius:18px;padding:16px 20px;font-size:13.5px;line-height:1.8;margin-bottom:20px}
+.lede b{color:#F2A227}
+h1{font-family:var(--maru);font-size:26px;font-weight:900;margin-bottom:6px}
+.sub{font-size:13.5px;color:#5C5249;margin-bottom:18px;max-width:64em}
+h2.sec{font-family:var(--maru);font-size:19px;font-weight:900;margin:30px 0 10px}
+.icons{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(244px,1fr))}
+.icard{background:#fff;border:1.5px solid #2A2724;border-radius:18px;padding:16px;display:flex;flex-direction:column}
+.icard.ref{background:#F4F1E9;border-style:dashed}
+.icard .tag{font-family:var(--maru);font-size:11px;font-weight:900;background:#F0EBE0;border-radius:6px;padding:2px 9px;align-self:flex-start}
+.icard.ref .tag{background:#DED8CC}
+.icard h3{font-family:var(--maru);font-size:16px;font-weight:900;margin:8px 0 3px}
+.icard p{font-size:12.5px;color:#5C5249;line-height:1.75}
+.sizes{display:flex;align-items:flex-end;gap:14px;margin:14px 0 10px}
+.tile{display:block;box-shadow:0 6px 16px -8px rgba(0,0,0,.4)}
+.sizes .lab{font-size:10.5px;color:#8F8C82;text-align:center;font-family:var(--maru);font-weight:700;margin-top:3px}
+.pc{margin-top:auto;padding-top:10px;border-top:1px solid #EFE9DD;font-size:12px;line-height:1.7}
+.pc b{color:#4E7A3C}.pc.con b{color:#B0561F}
+.home{background:linear-gradient(160deg,#5C6B52,#3E4A39);border-radius:18px;padding:20px 16px;margin-top:18px;
+  display:flex;gap:22px;flex-wrap:wrap;justify-content:center}
+.home .a{width:74px;text-align:center}
+.home .a span{display:block;color:#fff;font-size:11px;margin-top:6px;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.home.light{background:linear-gradient(160deg,#E9E4D8,#CFC8B8)}
+.home.light .a span{color:#2A2724;text-shadow:none}
+.inapp{background:#FCFBF8;border:1.5px solid #2A2724;border-radius:16px;padding:16px 20px;margin-top:16px;
+  display:flex;gap:26px;flex-wrap:wrap;align-items:center}
+.inapp .r{display:flex;align-items:center;gap:9px;font-family:var(--mincho);font-weight:600;font-size:17px;letter-spacing:.34em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lede"><b>第2ラウンドです。</b>前回で分かったのは、
+  小さいサイズで生き残るのは<b>「面で塗る」「地とのコントラストが高い」「要素が1つ」</b>の3条件でした。
+  それを踏まえて、<b>色の反転／炎の輪郭そのもの／印刷の意匠</b>の3方向で振っています。</div>
+  <h1>加油 — 炎アイコン 第2ラウンド</h1>
+  <p class="sub">左の2枚（点線の枠）は前回の派生1・2で、比較の基準です。
+  ホーム画面は<b>暗い壁紙と明るい壁紙の両方</b>で確認できるようにしました。地の色が溶けるかどうかは壁紙で変わるためです。</p>
+
+  <h2 class="sec">候補</h2>
+  <div class="icons" id="icons"></div>
+
+  <h2 class="sec">ホーム画面（60px）— 暗い壁紙</h2>
+  <div class="home" id="home1"></div>
+  <h2 class="sec">ホーム画面（60px）— 明るい壁紙</h2>
+  <div class="home light" id="home2"></div>
+  <h2 class="sec">アプリ内ヘッダー（22px）</h2>
+  <div class="inapp" id="inapp"></div>
+</div>
+<script>
+const INK='#15150F', RED='#A8352A', DEEP='#8E2B22', PAPER='#F6F2E6';
+// 現行アプリと同じ輪郭（丸みがあり、やや寸胴）
+const F='M52 8 C 62 31, 79 43, 79 64 A 29 29 0 1 1 21 64 C 21 46, 33 41, 41 29 C 44 41, 50 45, 50 37 C 50 27, 47 17, 52 8 Z';
+// 細身・背の高い輪郭。先端を尖らせ、肩を落とした
+const SLIM='M53 4 C 58 26, 73 38, 73 60 A 23 23 0 1 1 27 60 C 27 44, 39 38, 45 24 C 47 37, 52 41, 52 33 C 52 23, 50 14, 53 4 Z';
+// 三画の炎（「火」の字に寄せる）：中央の大きな火と、左右の小さな火
+const F3C='M52 14 C 60 33, 72 42, 72 58 A 20 20 0 1 1 32 58 C 32 45, 42 40, 47 28 C 49 39, 52 42, 52 35 C 52 27, 50 21, 52 14 Z';
+const F3L='M24 46 C 28 54, 32 57, 32 63 A 8 8 0 1 1 16 63 C 16 57, 21 54, 24 46 Z';
+const F3R='M76 46 C 80 54, 84 57, 84 63 A 8 8 0 1 1 68 63 C 68 57, 73 54, 76 46 Z';
+let uid=0;
+
+const ICONS=[
+ {ref:1,n:'前回・派生1',t:'朱のベタ炎',d:'比較の基準',
+  pro:'28pxでも形が完全に残る',con:'明るい壁紙だと地の生成りが溶ける',
+  f:()=>`<rect width="100" height="100" fill="${PAPER}"/><path d="${F}" fill="${RED}"/>
+    <rect x="28" y="88" width="44" height="2" fill="${INK}"/>`},
+ {ref:1,n:'前回・派生2',t:'墨地・生成りの炎',d:'比較の基準',
+  pro:'どんな壁紙でも沈まない',con:'開いたときの明るい紙面と印象が繋がりにくい',
+  f:()=>`<rect width="100" height="100" fill="${INK}"/>
+    <path d="${F}" fill="none" stroke="${PAPER}" stroke-width="3.6" stroke-linejoin="round"/>
+    <rect x="30" y="84" width="40" height="2.5" fill="${RED}"/>`},
+
+ {n:'R1',t:'墨地に朱の炎',d:'地は墨のまま、炎を朱の面で塗る',
+  pro:'<b>コントラストと朱の両取り。</b>どの壁紙でも沈まず、中国語アプリだと一目で分かる。22pxでも形が残る',
+  con:'墨地は「夜のアプリ」に見えやすく、紙の明るさとは繋がらない',
+  f:()=>`<rect width="100" height="100" fill="${INK}"/><path d="${F}" fill="${RED}"/>
+    <rect x="30" y="88" width="40" height="2" fill="${PAPER}"/>`},
+
+ {n:'R2',t:'朱地に生成りの炎',d:'タイル全面を朱に。炎を地の色で抜く',
+  pro:'<b>存在感は全案で最大。</b>印を全面に拡大したのと同じで、世界観にも合う。壁紙の明暗に左右されない',
+  con:'朱の面積が大きく<b>主張が強い</b>。他の朱（正誤の色）と役割がぶつかる恐れ',
+  f:()=>`<rect width="100" height="100" fill="${RED}"/><path d="${F}" fill="${PAPER}"/>`},
+
+ {n:'R3',t:'細身の炎',d:'輪郭そのものを作り直す。背を高く、先端を尖らせる',
+  pro:'<b>いまの寸胴な形より品がある。</b>明朝の縦長の字面と呼吸が合う。炎らしさは保たれる',
+  con:'細いぶん、28pxでの塊としての強さは R1・R2 に劣る',
+  f:()=>`<rect width="100" height="100" fill="${PAPER}"/><path d="${SLIM}" fill="${RED}"/>
+    <rect x="30" y="90" width="40" height="2" fill="${INK}"/>`},
+
+ {n:'R4',t:'三画の炎（火）',d:'中央の炎と左右の小さな炎。漢字の「火」に寄せる',
+  pro:'<b>炎でありながら「火」の字にも見える。</b>語学アプリの文脈に接続でき、既視感のある単独の炎から離れられる',
+  con:'要素が3つに増える。<b>28pxでは左右の点が潰れて団子に見える</b>',
+  f:()=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <path d="${F3C}" fill="${RED}"/><path d="${F3L}" fill="${INK}"/><path d="${F3R}" fill="${INK}"/>`},
+
+ {n:'R5',t:'枠のある炎',d:'朱のベタ炎に、墨の細い枠（書票の罫）を重ねる',
+  pro:'<b>前回の派生1と派生3（角印）の中間。</b>枠が地を切るのでホーム画面で溶けにくく、辞書の体裁も保てる',
+  con:'枠は28pxで消える。結局その時は派生1と同じ見え方になる',
+  f:()=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <rect x="7" y="7" width="86" height="86" fill="none" stroke="${INK}" stroke-width="2.4"/>
+    <g transform="translate(50 52) scale(.78) translate(-50 -50)"><path d="${F}" fill="${RED}"/></g>`},
+
+ {n:'R6',t:'罫を抜いた炎',d:'朱のベタ炎に、生成りの細罫を2本通す',
+  pro:'<b>前回の「罫で組んだ炎」を小さくても生き残る形に直した案。</b>面で塗ってあるので潰れず、罫の語彙も残る',
+  con:'罫は28pxで見えなくなる。120pxでの表情のための装飾と割り切る必要がある',
+  f:()=>{const id='c'+(++uid);return `<defs><clipPath id="${id}"><path d="${F}"/></clipPath></defs>
+    <rect width="100" height="100" fill="${PAPER}"/><path d="${F}" fill="${RED}"/>
+    <g clip-path="url(#${id})"><rect x="0" y="58" width="100" height="3.4" fill="${PAPER}"/>
+      <rect x="0" y="70" width="100" height="3.4" fill="${PAPER}"/></g>`}},
+
+ {n:'R7',t:'版ずれの炎',d:'墨と朱を少しずらして2色で刷ったように見せる',
+  pro:'<b>印刷物の意匠そのもの。</b>他社と絶対にかぶらず、案Xの世界観と最も深く噛み合う。小さくても2色が残る',
+  con:'「ずれている」ことが意図だと伝わらないと、<b>単なる不備に見える</b>',
+  f:()=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <g transform="translate(4.5 4)"><path d="${F}" fill="${RED}"/></g>
+    <path d="${F}" fill="none" stroke="${INK}" stroke-width="3.2" stroke-linejoin="round"/>`},
+
+ {n:'R8',t:'炎と「一」',d:'基線を漢字の「一」にする。1日目からの積み上げを示す',
+  pro:'炎の下の罫に<b>意味が乗る</b>。明朝の「一」なので辞書の体裁とも合う',
+  con:'「一」が罫と見分けにくく、<b>意図が伝わらない可能性が高い</b>。実質は派生1と同じ見え方',
+  f:()=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <g transform="translate(50 46) scale(.84) translate(-50 -50)"><path d="${F}" fill="${RED}"/></g>
+    <text x="50" y="88" text-anchor="middle" dominant-baseline="central" fill="${INK}"
+      font-family="Noto Serif JP, serif" font-weight="600" font-size="22">一</text>`},
+];
+
+const svg=(i,px)=>`<svg class="tile" viewBox="0 0 100 100" width="${px}" height="${px}"
+  style="border-radius:${px>40?22:26}%;overflow:hidden">${i.f()}</svg>`;
+document.getElementById('icons').innerHTML=ICONS.map(i=>`
+  <div class="icard${i.ref?' ref':''}"><span class="tag">${i.n}</span><h3>${i.t}</h3><p>${i.d}</p>
+    <div class="sizes">
+      <div><div>${svg(i,120)}</div><div class="lab">120</div></div>
+      <div><div>${svg(i,56)}</div><div class="lab">56</div></div>
+      <div><div>${svg(i,28)}</div><div class="lab">28</div></div>
+    </div>
+    <div class="pc"><b>◎</b> ${i.pro}</div><div class="pc con"><b>△</b> ${i.con}</div></div>`).join('');
+for(const id of ['home1','home2'])
+  document.getElementById(id).innerHTML=ICONS.map(i=>`<div class="a">${svg(i,60)}<span>加油</span></div>`).join('');
+document.getElementById('inapp').innerHTML=ICONS.map(i=>`<div class="r">${svg(i,22)}加油</div>`).join('');
+</script>
+</body>
+</html>
