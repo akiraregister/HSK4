@@ -34,7 +34,7 @@ button{border:var(--bw) solid var(--stroke);background:#fff;border-radius:999px;
 button.complete.active{background:var(--goodbg);color:#2E8B62;border-color:var(--goodline)}button.toggle.off{background:#fff;color:var(--ink)}button.toggle.on{background:var(--gray);color:#5C5249}
 button.bookmark{padding:7px 9px;border-radius:999px;background:#fff;color:#A29A8E}button.bookmark.active{background:#FBF4E8;border-color:#E8D9C4;color:#94621C}
 .card{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:20px;padding:16px;margin:12px 0}.section-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.section-title h2{font-size:18px;margin:0}.badge{display:inline-flex;border-radius:999px;background:var(--gray);color:#5C5249;padding:4px 10px;font-size:13px;font-weight:900}
-.vocab{display:grid;gap:10px}.vitem{border:var(--bw) solid var(--stroke);border-radius:18px;padding:13px 15px;background:#fff}.item-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.zh{font-size:20px;font-weight:800}.pinyin{color:#5C5249;margin-top:2px;font-size:20px}.ja{color:#463F37;margin-top:4px}.ex{margin-top:10px;line-height:1.75}
+.vocab{display:grid;gap:10px}.vitem{border:var(--bw) solid var(--stroke);border-radius:18px;padding:13px 15px;background:#fff}.item-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.zh{font-size:20px;font-weight:800}.pinyin{color:#5C5249;margin-top:2px;font-size:19px}.ja{color:#463F37;margin-top:4px}.ex{margin-top:10px;line-height:1.75}
 .gitem{border:var(--bw) solid var(--stroke);border-radius:18px;padding:15px 17px;margin:10px 0;background:#fff}.gitem h3{margin:0 0 6px;font-size:17px}.label{font-weight:800;color:#463F37}.note{background:var(--paper);border:var(--bw) dashed #DFD2B8;border-radius:14px;padding:12px 14px;margin-top:8px;line-height:1.75}
 .testq{border-top:1px solid var(--line);padding:14px 0}.testq:first-child{border-top:0}.opts{display:grid;gap:8px;margin-top:8px}.opt{display:flex;gap:8px;align-items:flex-start;border:1px solid var(--line);border-radius:14px;padding:10px;background:#fff}
 textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:8px;background:#fff;min-height:44px}textarea{min-height:88px;resize:vertical}
@@ -260,8 +260,8 @@ body.fs-lg .vrow-zh{font-size:23px}body.fs-lg .vrow-py{font-size:17px}body.fs-lg
 .mt-spin{display:inline-block;width:14px;height:14px;border:2px solid #DCD3C6;border-top-color:var(--ink);border-radius:50%;animation:mtsp .8s linear infinite;vertical-align:-2px}@keyframes mtsp{to{transform:rotate(360deg)}}
 /* 声調記号は細いと潰れる。とくに第3声のˇは第2声のと見分けがつかなくなるので、
    少し太らせ、字間を空けて記号が隣の字に寄らないようにする。 */
-body.fs-sm .zh{font-size:17px}body.fs-sm .pinyin{font-size:17px}body.fs-sm .ja{font-size:14px}body.fs-sm .ex{font-size:14px}body.fs-sm .note{font-size:14px}body.fs-sm .expinyin{font-size:17px}body.fs-sm .exja{font-size:14px}body.fs-sm .testq{font-size:14px}
-body.fs-lg .zh{font-size:24px}body.fs-lg .pinyin{font-size:22px}body.fs-lg .ja{font-size:18px}body.fs-lg .ex{font-size:18px}body.fs-lg .note{font-size:17px}body.fs-lg .expinyin{font-size:22px}body.fs-lg .exja{font-size:18px}body.fs-lg .testq{font-size:18px}
+body.fs-sm .zh{font-size:17px}body.fs-sm .pinyin{font-size:16px}body.fs-sm .ja{font-size:14px}body.fs-sm .ex{font-size:14px}body.fs-sm .note{font-size:14px}body.fs-sm .expinyin{font-size:16px}body.fs-sm .exja{font-size:14px}body.fs-sm .testq{font-size:14px}
+body.fs-lg .zh{font-size:24px}body.fs-lg .pinyin{font-size:21px}body.fs-lg .ja{font-size:18px}body.fs-lg .ex{font-size:18px}body.fs-lg .note{font-size:17px}body.fs-lg .expinyin{font-size:21px}body.fs-lg .exja{font-size:18px}body.fs-lg .testq{font-size:18px}
 .fontsize-seg{display:flex;gap:6px;align-items:center;margin-top:12px}.fontsize-seg .label-inline{font-size:13px;color:var(--muted);margin-right:2px}.fontsize-seg button{padding:6px 12px}
 
 
@@ -289,7 +289,7 @@ h1,h2,h3,.badge,.zh,.vrow-zh,.fc-prompt,.tc-title,.tc-count,.daybtn,.set-label,
 .pinyin,.expinyin,.vrow-py{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:500;letter-spacing:.025em}
 /* .expinyin は復習カードでは .small（14.5px）の中に置かれるため、基準サイズを
    持たないと Day画面の21pxと食い違う。同じ詳細度なので .small より後に置くこと。 */
-.expinyin{font-size:20px}
+.expinyin{font-size:19px}
 /* 見出しの下の squiggle。各画面に1本だけ */
 .squiggle{display:block;margin-top:1px;height:9px;overflow:visible}
 .squiggle path{stroke:var(--brand);stroke-width:4;fill:none;stroke-linecap:round}
