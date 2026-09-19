@@ -38,14 +38,25 @@ export async function verifyStripeSignature(rawBody, sigHeader, secret) {
 // Checkout Session（買い切り、1回払い）を作成する。
 // client_reference_id にFirebaseのuidを入れておき、Webhookで受け取ったときに
 // 「誰が買ったか」をここから復元する。
-export async function createCheckoutSession(env, uid) {
+// coupon が指定されていれば、クーポンコードを discounts に追加する。
+// backTo は決済後の戻り先。ローカル開発中だけ呼び出し元のオリジンを渡す
+// （省略時は本番＝env.APP_ORIGIN）。
+export async function createCheckoutSession(env, uid, coupon, backTo) {
+  const appOrigin = backTo || env.APP_ORIGIN;
   const body = new URLSearchParams();
   body.set('mode', 'payment');
   body.set('client_reference_id', uid);
   body.set('line_items[0][price]', env.STRIPE_PRICE_ID);
   body.set('line_items[0][quantity]', '1');
-  body.set('success_url', `${env.APP_ORIGIN}/?purchase=success`);
-  body.set('cancel_url', `${env.APP_ORIGIN}/?purchase=cancel`);
+  // {CHECKOUT_SESSION_ID}はStripeが実際のIDへ置換する。戻ってきたアプリが
+  // これを/confirmへ渡すことで、Webhookが届かなくても購入を確定できる。
+  body.set('success_url', `${appOrigin}/?purchase=success&session_id={CHECKOUT_SESSION_ID}`);
+  body.set('cancel_url', `${appOrigin}/?purchase=cancel`);
+
+  // クーポンコードが指定されていれば適用
+  if (coupon) {
+    body.set('discounts[0][coupon]', coupon);
+  }
 
   const resp = await fetch('https://api.stripe.com/v1/checkout/sessions', {
     method: 'POST',
@@ -56,8 +67,27 @@ export async function createCheckoutSession(env, uid) {
     body,
   });
   if (!resp.ok) {
-    console.error('stripe checkout create error', resp.status, (await resp.text().catch(() => '')).slice(0, 500));
-    return null;
+    const detail = await resp.text().catch(() => '');
+    console.error('stripe checkout create error', resp.status, detail.slice(0, 500));
+    // クーポンが存在しない・失効している場合だけは利用者自身が直せる失敗なので、
+    // 「サーバーの不調」と混ぜずに区別できるようにする（Stripeはこのとき
+    // エラーのparamにcouponを含めて返す）。
+    return { failed: /coupon/i.test(detail) ? 'coupon' : 'other' };
   }
   return resp.json();
+}
+
+// 決済完了ページから戻ってきたセッションIDが、本当に支払い済みで、かつ
+// 本人（Firebaseで検証済みのuid）のものかをStripeに直接問い合わせて確かめる。
+// 他人のセッションIDを持ち込まれてもclient_reference_idが一致せず弾かれる。
+export async function isSessionPaidBy(env, sessionId, uid) {
+  const resp = await fetch(`https://api.stripe.com/v1/checkout/sessions/${encodeURIComponent(sessionId)}`, {
+    headers: { Authorization: `Bearer ${env.STRIPE_SECRET_KEY}` },
+  });
+  if (!resp.ok) {
+    console.error('stripe session fetch error', resp.status, (await resp.text().catch(() => '')).slice(0, 500));
+    return false;
+  }
+  const session = await resp.json();
+  return session.payment_status === 'paid' && session.client_reference_id === uid;
 }

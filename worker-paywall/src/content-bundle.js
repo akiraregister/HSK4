@@ -390,10 +390,10 @@ export const PAID_CONTENT = {
     {
      "id": "d12-v0",
      "zh": "关系",
-     "pinyin": "guānxì",
+     "pinyin": "guānxi",
      "ja": "関係",
      "example": "这件事和我没有关系。",
-     "exPinyin": "Zhè jiàn shì hé wǒ méiyǒu guānxì.",
+     "exPinyin": "Zhè jiàn shì hé wǒ méiyǒu guānxi.",
      "exJa": "この件は私とは関係ありません。"
     },
     {
@@ -1058,7 +1058,7 @@ export const PAID_CONTENT = {
      "pinyin": "bàomíng",
      "ja": "申し込む",
      "example": "我打算报名参加HSK四级考试。",
-     "exPinyin": "Wǒ dǎsuàn bàomíng cānjiā HSK sì jí kǎoshì.",
+     "exPinyin": "Wǒ dǎsuan bàomíng cānjiā HSK sì jí kǎoshì.",
      "exJa": "HSK4級試験に申し込むつもりです。"
     },
     {
@@ -2768,7 +2768,7 @@ export const PAID_CONTENT = {
      "pinyin": "yāoqǐng",
      "ja": "招待する",
      "example": "我邀请朋友来家里。",
-     "exPinyin": "Wǒ yāo qǐng péng yǒu lái jiā lǐ。",
+     "exPinyin": "Wǒ yāoqǐng péngyou lái jiālǐ.",
      "exJa": "友達を家に招待します。"
     },
     {
@@ -2777,7 +2777,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiēshòu",
      "ja": "受け入れる",
      "example": "他接受了我的建议。",
-     "exPinyin": "Tā jiē shòu le wǒ de jiàn yì。",
+     "exPinyin": "Tā jiēshòu le wǒ de jiànyì.",
      "exJa": "彼は私の提案を受け入れた。"
     },
     {
@@ -2786,7 +2786,7 @@ export const PAID_CONTENT = {
      "pinyin": "cānguān",
      "ja": "見学する",
      "example": "我们去参观工厂。",
-     "exPinyin": "Wǒ men qù cān guān gōng chǎng。",
+     "exPinyin": "Wǒmen qù cānguān gōngchǎng.",
      "exJa": "私たちは工場を見学します。"
     },
     {
@@ -2795,7 +2795,7 @@ export const PAID_CONTENT = {
      "pinyin": "jǔbàn",
      "ja": "開催する",
      "example": "公司举办了活动。",
-     "exPinyin": "Gōng sī jǔ bàn le huó dòng。",
+     "exPinyin": "Gōngsī jǔbàn le huódòng.",
      "exJa": "会社はイベントを開催した。"
     },
     {
@@ -2804,7 +2804,7 @@ export const PAID_CONTENT = {
      "pinyin": "qìngzhù",
      "ja": "祝う",
      "example": "大家一起庆祝生日。",
-     "exPinyin": "Dà jiā yì qǐ qìng zhù shēng rì。",
+     "exPinyin": "Dàjiā yìqǐ qìngzhù shēngrì.",
      "exJa": "みんなで誕生日を祝う。"
     }
    ],
@@ -2863,7 +2863,7 @@ export const PAID_CONTENT = {
      "pinyin": "tuījiàn",
      "ja": "勧める",
      "example": "我推荐这本书。",
-     "exPinyin": "Wǒ tuī jiàn zhè běn shū。",
+     "exPinyin": "Wǒ tuījiàn zhè běn shū.",
      "exJa": "私はこの本を勧めます。"
     },
     {
@@ -2872,7 +2872,7 @@ export const PAID_CONTENT = {
      "pinyin": "jièshào",
      "ja": "紹介する",
      "example": "请介绍一下你自己。",
-     "exPinyin": "Qǐng jiè shào yí xià nǐ zì jǐ。",
+     "exPinyin": "Qǐng jièshào yíxià nǐ zìjǐ.",
      "exJa": "自己紹介してください。"
     },
     {
@@ -2881,7 +2881,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiànyì",
      "ja": "助言・提案",
      "example": "我有一个建议。",
-     "exPinyin": "Wǒ yǒu yí gè jiàn yì。",
+     "exPinyin": "Wǒ yǒu yí gè jiànyì.",
      "exJa": "一つ提案があります。"
     },
     {
@@ -2890,7 +2890,7 @@ export const PAID_CONTENT = {
      "pinyin": "gǔlì",
      "ja": "励ます",
      "example": "老师鼓励学生。",
-     "exPinyin": "Lǎo shī gǔ lì xué shēng。",
+     "exPinyin": "Lǎoshī gǔlì xuéshēng.",
      "exJa": "先生は生徒を励ます。"
     },
     {
@@ -2899,7 +2899,7 @@ export const PAID_CONTENT = {
      "pinyin": "biǎoyáng",
      "ja": "褒める",
      "example": "经理表扬了他。",
-     "exPinyin": "Jīng lǐ biǎo yáng le tā。",
+     "exPinyin": "Jīnglǐ biǎoyáng le tā.",
      "exJa": "マネージャーは彼を褒めた。"
     }
    ],
@@ -2958,7 +2958,7 @@ export const PAID_CONTENT = {
      "pinyin": "pīpíng",
      "ja": "叱る・批判する",
      "example": "他被老师批评了。",
-     "exPinyin": "Tā bèi lǎo shī pī píng le。",
+     "exPinyin": "Tā bèi lǎoshī pīpíng le.",
      "exJa": "彼は先生に叱られた。"
     },
     {
@@ -2967,7 +2967,7 @@ export const PAID_CONTENT = {
      "pinyin": "fǎnduì",
      "ja": "反対する",
      "example": "我反对这个计划。",
-     "exPinyin": "Wǒ fǎn duì zhè ge jì huà。",
+     "exPinyin": "Wǒ fǎnduì zhège jìhuà.",
      "exJa": "私はこの計画に反対です。"
     },
     {
@@ -2976,7 +2976,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhīchí",
      "ja": "支持する",
      "example": "我支持你的决定。",
-     "exPinyin": "Wǒ zhī chí nǐ de jué dìng。",
+     "exPinyin": "Wǒ zhīchí nǐ de juédìng.",
      "exJa": "あなたの決定を支持します。"
     },
     {
@@ -2985,7 +2985,7 @@ export const PAID_CONTENT = {
      "pinyin": "shāngliáng",
      "ja": "相談する",
      "example": "这件事我们再商量。",
-     "exPinyin": "Zhè jiàn shì wǒ men zài shāng liáng。",
+     "exPinyin": "Zhè jiàn shì wǒmen zài shāngliáng.",
      "exJa": "この件はまた相談しましょう。"
     },
     {
@@ -2994,7 +2994,7 @@ export const PAID_CONTENT = {
      "pinyin": "tán",
      "ja": "話し合う",
      "example": "我们谈谈这个问题。",
-     "exPinyin": "Wǒ men tán tán zhè ge wèn tí。",
+     "exPinyin": "Wǒmen tántán zhège wèntí.",
      "exJa": "この問題について話しましょう。"
     }
    ],
@@ -3053,7 +3053,7 @@ export const PAID_CONTENT = {
      "pinyin": "tōngzhī",
      "ja": "知らせる",
      "example": "请通知大家开会。",
-     "exPinyin": "Qǐng tōng zhī dà jiā kāi huì。",
+     "exPinyin": "Qǐng tōngzhī dàjiā kāihuì.",
      "exJa": "会議をみんなに知らせてください。"
     },
     {
@@ -3062,7 +3062,7 @@ export const PAID_CONTENT = {
      "pinyin": "tígōng",
      "ja": "提供する",
      "example": "酒店提供早餐。",
-     "exPinyin": "Jiǔ diàn tí gōng zǎo cān。",
+     "exPinyin": "Jiǔdiàn tígōng zǎocān.",
      "exJa": "ホテルは朝食を提供する。"
     },
     {
@@ -3071,7 +3071,7 @@ export const PAID_CONTENT = {
      "pinyin": "shēnqǐng",
      "ja": "申請する",
      "example": "我申请了签证。",
-     "exPinyin": "Wǒ shēn qǐng le qiān zhèng。",
+     "exPinyin": "Wǒ shēnqǐng le qiānzhèng.",
      "exJa": "ビザを申請した。"
     },
     {
@@ -3080,7 +3080,7 @@ export const PAID_CONTENT = {
      "pinyin": "dēngjì",
      "ja": "登録する",
      "example": "请在前台登记。",
-     "exPinyin": "Qǐng zài qián tái dēng jì。",
+     "exPinyin": "Qǐng zài qiántái dēngjì.",
      "exJa": "フロントで登録してください。"
     },
     {
@@ -3089,7 +3089,7 @@ export const PAID_CONTENT = {
      "pinyin": "wánchéng",
      "ja": "やり遂げる",
      "example": "我完成了作业。",
-     "exPinyin": "Wǒ wán chéng le zuò yè。",
+     "exPinyin": "Wǒ wánchéng le zuòyè.",
      "exJa": "宿題を終えました。"
     }
    ],
@@ -3148,7 +3148,7 @@ export const PAID_CONTENT = {
      "pinyin": "jìnxíng",
      "ja": "行う",
      "example": "会议正在进行。",
-     "exPinyin": "Huì yì zhèng zài jìn xíng。",
+     "exPinyin": "Huìyì zhèngzài jìnxíng.",
      "exJa": "会議が行われている。"
     },
     {
@@ -3157,7 +3157,7 @@ export const PAID_CONTENT = {
      "pinyin": "shōushí",
      "ja": "片付ける",
      "example": "我收拾房间。",
-     "exPinyin": "Wǒ shōu shí fáng jiān。",
+     "exPinyin": "Wǒ shōushí fángjiān.",
      "exJa": "部屋を片付けます。"
     },
     {
@@ -3166,7 +3166,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiéyuē",
      "ja": "節約する",
      "example": "我们要节约用水。",
-     "exPinyin": "Wǒ men yào jié yuē yòng shuǐ。",
+     "exPinyin": "Wǒmen yào jiéyuē yòng shuǐ.",
      "exJa": "水を節約しよう。"
     },
     {
@@ -3175,7 +3175,7 @@ export const PAID_CONTENT = {
      "pinyin": "làngfèi",
      "ja": "浪費する",
      "example": "别浪费时间。",
-     "exPinyin": "Bié làng fèi shí jiān。",
+     "exPinyin": "Bié làngfèi shíjiān.",
      "exJa": "時間を無駄にするな。"
     },
     {
@@ -3184,7 +3184,7 @@ export const PAID_CONTENT = {
      "pinyin": "zēngjiā",
      "ja": "増える・増やす",
      "example": "工资增加了。",
-     "exPinyin": "Gōng zī zēng jiā le。",
+     "exPinyin": "Gōngzī zēngjiā le.",
      "exJa": "給料が増えた。"
     }
    ],
@@ -3243,7 +3243,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiǎnshǎo",
      "ja": "減らす",
      "example": "减少压力很重要。",
-     "exPinyin": "Jiǎn shǎo yā lì hěn zhòng yào。",
+     "exPinyin": "Jiǎnshǎo yālì hěn zhòngyào.",
      "exJa": "ストレスを減らすことは大切だ。"
     },
     {
@@ -3252,7 +3252,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiàngdī",
      "ja": "下げる",
      "example": "价格降低了。",
-     "exPinyin": "Jià gé jiàng dī le。",
+     "exPinyin": "Jiàgé jiàngdī le.",
      "exJa": "価格が下がった。"
     },
     {
@@ -3261,7 +3261,7 @@ export const PAID_CONTENT = {
      "pinyin": "xiūgǎi",
      "ja": "修正する",
      "example": "请修改这个句子。",
-     "exPinyin": "Qǐng xiū gǎi zhè ge jù zi。",
+     "exPinyin": "Qǐng xiūgǎi zhège jùzi.",
      "exJa": "この文を直してください。"
     },
     {
@@ -3270,7 +3270,7 @@ export const PAID_CONTENT = {
      "pinyin": "shuōmíng",
      "ja": "説明する",
      "example": "他说明了原因。",
-     "exPinyin": "Tā shuō míng le yuán yīn。",
+     "exPinyin": "Tā shuōmíng le yuányīn.",
      "exJa": "彼は理由を説明した。"
     },
     {
@@ -3279,7 +3279,7 @@ export const PAID_CONTENT = {
      "pinyin": "biǎoshì",
      "ja": "表す",
      "example": "他表示同意。",
-     "exPinyin": "Tā biǎo shì tóng yì。",
+     "exPinyin": "Tā biǎoshì tóngyì.",
      "exJa": "彼は同意を示した。"
     }
    ],
@@ -3338,7 +3338,7 @@ export const PAID_CONTENT = {
      "pinyin": "huáiyí",
      "ja": "疑う",
      "example": "我怀疑他说谎。",
-     "exPinyin": "Wǒ huái yí tā shuō huǎng。",
+     "exPinyin": "Wǒ huáiyí tā shuōhuǎng.",
      "exJa": "彼が嘘をついていると疑う。"
     },
     {
@@ -3347,7 +3347,7 @@ export const PAID_CONTENT = {
      "pinyin": "gūjì",
      "ja": "推測する",
      "example": "我估计他会迟到。",
-     "exPinyin": "Wǒ gū jì tā huì chí dào。",
+     "exPinyin": "Wǒ gūjì tā huì chídào.",
      "exJa": "彼は遅れると思う。"
     },
     {
@@ -3356,7 +3356,7 @@ export const PAID_CONTENT = {
      "pinyin": "pànduàn",
      "ja": "判断する",
      "example": "很难判断对错。",
-     "exPinyin": "Hěn nán pàn duàn duì cuò。",
+     "exPinyin": "Hěn nán pànduàn duì cuò.",
      "exJa": "正誤を判断するのは難しい。"
     },
     {
@@ -3365,7 +3365,7 @@ export const PAID_CONTENT = {
      "pinyin": "kǎolǜ",
      "ja": "考慮する",
      "example": "让我考虑一下。",
-     "exPinyin": "Ràng wǒ kǎo lǜ yí xià。",
+     "exPinyin": "Ràng wǒ kǎolǜ yíxià.",
      "exJa": "少し考えさせて。"
     },
     {
@@ -3374,7 +3374,7 @@ export const PAID_CONTENT = {
      "pinyin": "lǐjiě",
      "ja": "理解する",
      "example": "我理解你的想法。",
-     "exPinyin": "Wǒ lǐ jiě nǐ de xiǎng fǎ。",
+     "exPinyin": "Wǒ lǐjiě nǐ de xiǎngfǎ.",
      "exJa": "あなたの考えを理解します。"
     }
    ],
@@ -3433,7 +3433,7 @@ export const PAID_CONTENT = {
      "pinyin": "liǎojiě",
      "ja": "把握する",
      "example": "我不太了解情况。",
-     "exPinyin": "Wǒ bú tài liǎo jiě qíng kuàng。",
+     "exPinyin": "Wǒ bú tài liǎojiě qíngkuàng.",
      "exJa": "状況がよくわからない。"
     },
     {
@@ -3442,7 +3442,7 @@ export const PAID_CONTENT = {
      "pinyin": "shúxī",
      "ja": "熟知している",
      "example": "我对这里很熟悉。",
-     "exPinyin": "Wǒ duì zhè lǐ hěn shú xī。",
+     "exPinyin": "Wǒ duì zhèlǐ hěn shúxī.",
      "exJa": "ここはよく知っている。"
     },
     {
@@ -3451,7 +3451,7 @@ export const PAID_CONTENT = {
      "pinyin": "shìyìng",
      "ja": "適応する",
      "example": "我适应了新工作。",
-     "exPinyin": "Wǒ shì yìng le xīn gōng zuò。",
+     "exPinyin": "Wǒ shìyìng le xīn gōngzuò.",
      "exJa": "新しい仕事に慣れた。"
     },
     {
@@ -3460,7 +3460,7 @@ export const PAID_CONTENT = {
      "pinyin": "yǎngchéng",
      "ja": "身につける",
      "example": "养成好习惯很重要。",
-     "exPinyin": "Yǎng chéng hǎo xí guàn hěn zhòng yào。",
+     "exPinyin": "Yǎngchéng hǎo xíguàn hěn zhòngyào.",
      "exJa": "良い習慣を身につけるのは大切だ。"
     },
     {
@@ -3469,7 +3469,7 @@ export const PAID_CONTENT = {
      "pinyin": "nǔlì",
      "ja": "努力する",
      "example": "他很努力地学习。",
-     "exPinyin": "Tā hěn nǔ lì dì xué xí。",
+     "exPinyin": "Tā hěn nǔlì de xuéxí.",
      "exJa": "彼は一生懸命勉強する。"
     }
    ],
@@ -3528,7 +3528,7 @@ export const PAID_CONTENT = {
      "pinyin": "hòuhuǐ",
      "ja": "後悔する",
      "example": "我有点后悔。",
-     "exPinyin": "Wǒ yǒu diǎn hòu huǐ。",
+     "exPinyin": "Wǒ yǒudiǎn hòuhuǐ.",
      "exJa": "少し後悔している。"
     },
     {
@@ -3537,7 +3537,7 @@ export const PAID_CONTENT = {
      "pinyin": "xiànmù",
      "ja": "羨む",
      "example": "我很羡慕你。",
-     "exPinyin": "Wǒ hěn xiàn mù nǐ。",
+     "exPinyin": "Wǒ hěn xiànmù nǐ.",
      "exJa": "あなたが羨ましい。"
     },
     {
@@ -3546,7 +3546,7 @@ export const PAID_CONTENT = {
      "pinyin": "gǎndòng",
      "ja": "感動する",
      "example": "这个故事很感动。",
-     "exPinyin": "Zhè ge gù shì hěn gǎn dòng。",
+     "exPinyin": "Zhège gùshi hěn gǎndòng.",
      "exJa": "この話は感動的だ。"
     },
     {
@@ -3555,7 +3555,7 @@ export const PAID_CONTENT = {
      "pinyin": "chījīng",
      "ja": "驚く",
      "example": "我听了很吃惊。",
-     "exPinyin": "Wǒ tīng le hěn chī jīng。",
+     "exPinyin": "Wǒ tīng le hěn chījīng.",
      "exJa": "聞いて驚いた。"
     },
     {
@@ -3564,7 +3564,7 @@ export const PAID_CONTENT = {
      "pinyin": "hàipà",
      "ja": "怖がる",
      "example": "你别害怕。",
-     "exPinyin": "Nǐ bié hài pà。",
+     "exPinyin": "Nǐ bié hàipà.",
      "exJa": "怖がらないで。"
     }
    ],
@@ -3623,7 +3623,7 @@ export const PAID_CONTENT = {
      "pinyin": "jīdòng",
      "ja": "興奮する",
      "example": "他激动得说不出话。",
-     "exPinyin": "Tā jī dòng dé shuō bù chū huà。",
+     "exPinyin": "Tā jīdòng de shuō bù chū huà.",
      "exJa": "彼は興奮して言葉が出ない。"
     },
     {
@@ -3632,7 +3632,7 @@ export const PAID_CONTENT = {
      "pinyin": "xīngfèn",
      "ja": "わくわくする",
      "example": "我很兴奋。",
-     "exPinyin": "Wǒ hěn xīng fèn。",
+     "exPinyin": "Wǒ hěn xīngfèn.",
      "exJa": "とてもわくわくしている。"
     },
     {
@@ -3641,7 +3641,7 @@ export const PAID_CONTENT = {
      "pinyin": "shīwàng",
      "ja": "失望する",
      "example": "我对结果很失望。",
-     "exPinyin": "Wǒ duì jié guǒ hěn shī wàng。",
+     "exPinyin": "Wǒ duì jiéguǒ hěn shīwàng.",
      "exJa": "結果に失望した。"
     },
     {
@@ -3650,7 +3650,7 @@ export const PAID_CONTENT = {
      "pinyin": "shāngxīn",
      "ja": "悲しむ",
      "example": "她伤心地哭了。",
-     "exPinyin": "Tā shāng xīn dì kū le。",
+     "exPinyin": "Tā shāngxīn de kū le.",
      "exJa": "彼女は悲しくて泣いた。"
     },
     {
@@ -3659,7 +3659,7 @@ export const PAID_CONTENT = {
      "pinyin": "tóngqíng",
      "ja": "同情する",
      "example": "我很同情他。",
-     "exPinyin": "Wǒ hěn tóng qíng tā。",
+     "exPinyin": "Wǒ hěn tóngqíng tā.",
      "exJa": "彼に同情する。"
     }
    ],
@@ -3718,16 +3718,16 @@ export const PAID_CONTENT = {
      "pinyin": "yǒuhǎo",
      "ja": "友好的",
      "example": "这里的人很友好。",
-     "exPinyin": "Zhè lǐ de rén hěn yǒu hǎo。",
+     "exPinyin": "Zhèlǐ de rén hěn yǒuhǎo.",
      "exJa": "ここの人は親切だ。"
     },
     {
      "id": "d47-v1",
      "zh": "热闹",
-     "pinyin": "rènào",
+     "pinyin": "rènao",
      "ja": "にぎやか",
      "example": "街上很热闹。",
-     "exPinyin": "Jiē shàng hěn rè nào。",
+     "exPinyin": "Jiē shàng hěn rènao.",
      "exJa": "通りはにぎやかだ。"
     },
     {
@@ -3736,7 +3736,7 @@ export const PAID_CONTENT = {
      "pinyin": "ānjìng",
      "ja": "静か",
      "example": "教室很安静。",
-     "exPinyin": "Jiào shì hěn ān jìng。",
+     "exPinyin": "Jiàoshì hěn ānjìng.",
      "exJa": "教室は静かだ。"
     },
     {
@@ -3745,7 +3745,7 @@ export const PAID_CONTENT = {
      "pinyin": "huópō",
      "ja": "活発",
      "example": "这个孩子很活泼。",
-     "exPinyin": "Zhè ge hái zi hěn huó pō。",
+     "exPinyin": "Zhège háizi hěn huópō.",
      "exJa": "この子は活発だ。"
     },
     {
@@ -3754,7 +3754,7 @@ export const PAID_CONTENT = {
      "pinyin": "chéngshí",
      "ja": "正直",
      "example": "他是个诚实的人。",
-     "exPinyin": "Tā shì gè chéng shí de rén。",
+     "exPinyin": "Tā shì gè chéngshí de rén.",
      "exJa": "彼は正直な人だ。"
     }
    ],
@@ -3813,7 +3813,7 @@ export const PAID_CONTENT = {
      "pinyin": "yǒnggǎn",
      "ja": "勇敢",
      "example": "他很勇敢。",
-     "exPinyin": "Tā hěn yǒng gǎn。",
+     "exPinyin": "Tā hěn yǒnggǎn.",
      "exJa": "彼は勇敢だ。"
     },
     {
@@ -3822,7 +3822,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiāoào",
      "ja": "誇りに思う・高慢",
      "example": "我为你骄傲。",
-     "exPinyin": "Wǒ wèi nǐ jiāo ào。",
+     "exPinyin": "Wǒ wèi nǐ jiāo'ào.",
      "exJa": "あなたを誇りに思う。"
     },
     {
@@ -3831,7 +3831,7 @@ export const PAID_CONTENT = {
      "pinyin": "qiānxū",
      "ja": "謙虚",
      "example": "他很谦虚。",
-     "exPinyin": "Tā hěn qiān xū。",
+     "exPinyin": "Tā hěn qiānxū.",
      "exJa": "彼は謙虚だ。"
     },
     {
@@ -3840,7 +3840,7 @@ export const PAID_CONTENT = {
      "pinyin": "cūxīn",
      "ja": "そそっかしい",
      "example": "你太粗心了。",
-     "exPinyin": "Nǐ tài cū xīn le。",
+     "exPinyin": "Nǐ tài cūxīn le.",
      "exJa": "君は不注意すぎる。"
     },
     {
@@ -3849,7 +3849,7 @@ export const PAID_CONTENT = {
      "pinyin": "xìnggé",
      "ja": "性格",
      "example": "她的性格很好。",
-     "exPinyin": "Tā de xìng gé hěn hǎo。",
+     "exPinyin": "Tā de xìnggé hěn hǎo.",
      "exJa": "彼女は性格が良い。"
     }
    ],
@@ -3905,10 +3905,10 @@ export const PAID_CONTENT = {
     {
      "id": "d49-v0",
      "zh": "脾气",
-     "pinyin": "píqì",
+     "pinyin": "píqi",
      "ja": "気性",
      "example": "他脾气不太好。",
-     "exPinyin": "Tā pí qì bú tài hǎo。",
+     "exPinyin": "Tā píqi bú tài hǎo.",
      "exJa": "彼は気が短い。"
     },
     {
@@ -3917,7 +3917,7 @@ export const PAID_CONTENT = {
      "pinyin": "yìnxiàng",
      "ja": "印象",
      "example": "他给我留下好印象。",
-     "exPinyin": "Tā gěi wǒ liú xià hǎo yìn xiàng。",
+     "exPinyin": "Tā gěi wǒ liúxià hǎo yìnxiàng.",
      "exJa": "彼は良い印象を残した。"
     },
     {
@@ -3926,7 +3926,7 @@ export const PAID_CONTENT = {
      "pinyin": "kànfǎ",
      "ja": "見方",
      "example": "我有不同的看法。",
-     "exPinyin": "Wǒ yǒu bù tóng de kàn fǎ。",
+     "exPinyin": "Wǒ yǒu bùtóng de kànfǎ.",
      "exJa": "私は違う見方がある。"
     },
     {
@@ -3935,7 +3935,7 @@ export const PAID_CONTENT = {
      "pinyin": "yìjiàn",
      "ja": "意見",
      "example": "大家有什么意见？",
-     "exPinyin": "Dà jiā yǒu shén me yì jiàn？",
+     "exPinyin": "Dàjiā yǒu shénme yìjiàn?",
      "exJa": "皆さん意見は？"
     },
     {
@@ -3944,7 +3944,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhǔyì",
      "ja": "アイデア",
      "example": "这是个好主意。",
-     "exPinyin": "Zhè shì gè hǎo zhǔ yì。",
+     "exPinyin": "Zhè shì gè hǎo zhǔyì.",
      "exJa": "それは良い考えだ。"
     }
    ],
@@ -4003,7 +4003,7 @@ export const PAID_CONTENT = {
      "pinyin": "bànfǎ",
      "ja": "方法・手段",
      "example": "我有办法。",
-     "exPinyin": "Wǒ yǒu bàn fǎ。",
+     "exPinyin": "Wǒ yǒu bànfǎ.",
      "exJa": "私には方法がある。"
     },
     {
@@ -4012,7 +4012,7 @@ export const PAID_CONTENT = {
      "pinyin": "jīnglì",
      "ja": "経験・体験",
      "example": "这是难忘的经历。",
-     "exPinyin": "Zhè shì nán wàng de jīng lì。",
+     "exPinyin": "Zhè shì nánwàng de jīnglì.",
      "exJa": "忘れられない経験だ。"
     },
     {
@@ -4021,7 +4021,7 @@ export const PAID_CONTENT = {
      "pinyin": "guòchéng",
      "ja": "過程",
      "example": "学习的过程很重要。",
-     "exPinyin": "Xué xí de guò chéng hěn zhòng yào。",
+     "exPinyin": "Xuéxí de guòchéng hěn zhòngyào.",
      "exJa": "学ぶ過程が大切だ。"
     },
     {
@@ -4030,7 +4030,7 @@ export const PAID_CONTENT = {
      "pinyin": "xiàoguǒ",
      "ja": "効果",
      "example": "这个方法效果很好。",
-     "exPinyin": "Zhè ge fāng fǎ xiào guǒ hěn hǎo。",
+     "exPinyin": "Zhège fāngfǎ xiàoguǒ hěn hǎo.",
      "exJa": "この方法は効果的だ。"
     },
     {
@@ -4039,7 +4039,7 @@ export const PAID_CONTENT = {
      "pinyin": "yōudiǎn",
      "ja": "長所",
      "example": "他有很多优点。",
-     "exPinyin": "Tā yǒu hěn duō yōu diǎn。",
+     "exPinyin": "Tā yǒu hěn duō yōudiǎn.",
      "exJa": "彼には長所が多い。"
     }
    ],
@@ -4098,7 +4098,7 @@ export const PAID_CONTENT = {
      "pinyin": "quēdiǎn",
      "ja": "欠点",
      "example": "每个人都有缺点。",
-     "exPinyin": "Měi gè rén dōu yǒu quē diǎn。",
+     "exPinyin": "Měi gè rén dōu yǒu quēdiǎn.",
      "exJa": "誰にでも欠点がある。"
     },
     {
@@ -4107,7 +4107,7 @@ export const PAID_CONTENT = {
      "pinyin": "rènwu",
      "ja": "任務",
      "example": "我完成了任务。",
-     "exPinyin": "Wǒ wán chéng le rèn wu。",
+     "exPinyin": "Wǒ wánchéng le rènwu.",
      "exJa": "任務を完了した。"
     },
     {
@@ -4116,7 +4116,7 @@ export const PAID_CONTENT = {
      "pinyin": "zérèn",
      "ja": "責任",
      "example": "这是我的责任。",
-     "exPinyin": "Zhè shì wǒ de zé rèn。",
+     "exPinyin": "Zhè shì wǒ de zérèn.",
      "exJa": "これは私の責任だ。"
     },
     {
@@ -4125,7 +4125,7 @@ export const PAID_CONTENT = {
      "pinyin": "yālì",
      "ja": "プレッシャー",
      "example": "工作压力很大。",
-     "exPinyin": "Gōng zuò yā lì hěn dà。",
+     "exPinyin": "Gōngzuò yālì hěn dà.",
      "exJa": "仕事のプレッシャーが大きい。"
     },
     {
@@ -4134,7 +4134,7 @@ export const PAID_CONTENT = {
      "pinyin": "wēixiǎn",
      "ja": "危険",
      "example": "这里很危险。",
-     "exPinyin": "Zhè lǐ hěn wēi xiǎn。",
+     "exPinyin": "Zhèlǐ hěn wēixiǎn.",
      "exJa": "ここは危険だ。"
     }
    ],
@@ -4193,7 +4193,7 @@ export const PAID_CONTENT = {
      "pinyin": "qíngkuàng",
      "ja": "状況",
      "example": "情况有点复杂。",
-     "exPinyin": "Qíng kuàng yǒu diǎn fù zá。",
+     "exPinyin": "Qíngkuàng yǒudiǎn fùzá.",
      "exJa": "状況は少し複雑だ。"
     },
     {
@@ -4202,7 +4202,7 @@ export const PAID_CONTENT = {
      "pinyin": "biāozhǔn",
      "ja": "基準・標準",
      "example": "这是标准答案。",
-     "exPinyin": "Zhè shì biāo zhǔn dá àn。",
+     "exPinyin": "Zhè shì biāozhǔn dá'àn.",
      "exJa": "これは標準的な答えだ。"
     },
     {
@@ -4211,7 +4211,7 @@ export const PAID_CONTENT = {
      "pinyin": "guīdìng",
      "ja": "規定",
      "example": "这是公司的规定。",
-     "exPinyin": "Zhè shì gōng sī de guī dìng。",
+     "exPinyin": "Zhè shì gōngsī de guīdìng.",
      "exJa": "これは会社の規則だ。"
     },
     {
@@ -4220,7 +4220,7 @@ export const PAID_CONTENT = {
      "pinyin": "mùbiāo",
      "ja": "目標",
      "example": "我的目标是通过考试。",
-     "exPinyin": "Wǒ de mù biāo shì tōng guò kǎo shì。",
+     "exPinyin": "Wǒ de mùbiāo shì tōngguò kǎoshì.",
      "exJa": "私の目標は試験合格だ。"
     },
     {
@@ -4229,7 +4229,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiānglái",
      "ja": "将来",
      "example": "将来我想当老师。",
-     "exPinyin": "Jiāng lái wǒ xiǎng dāng lǎo shī。",
+     "exPinyin": "Jiānglái wǒ xiǎng dāng lǎoshī.",
      "exJa": "将来教師になりたい。"
     }
    ],
@@ -4288,7 +4288,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhòngshì",
      "ja": "重視する",
      "example": "我们重视质量。",
-     "exPinyin": "Wǒ men zhòng shì zhì liàng。",
+     "exPinyin": "Wǒmen zhòngshì zhìliàng.",
      "exJa": "私たちは品質を重視する。"
     },
     {
@@ -4297,7 +4297,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiāoliú",
      "ja": "交流する",
      "example": "我们用中文交流。",
-     "exPinyin": "Wǒ men yòng zhōng wén jiāo liú。",
+     "exPinyin": "Wǒmen yòng Zhōngwén jiāoliú.",
      "exJa": "中国語で交流する。"
     },
     {
@@ -4306,7 +4306,7 @@ export const PAID_CONTENT = {
      "pinyin": "hézuò",
      "ja": "協力する",
      "example": "我们合作得很好。",
-     "exPinyin": "Wǒ men hé zuò dé hěn hǎo。",
+     "exPinyin": "Wǒmen hézuò de hěn hǎo.",
      "exJa": "うまく協力できている。"
     },
     {
@@ -4315,7 +4315,7 @@ export const PAID_CONTENT = {
      "pinyin": "bǐsài",
      "ja": "試合",
      "example": "明天有足球比赛。",
-     "exPinyin": "Míng tiān yǒu zú qiú bǐ sài。",
+     "exPinyin": "Míngtiān yǒu zúqiú bǐsài.",
      "exJa": "明日サッカーの試合がある。"
     },
     {
@@ -4324,7 +4324,7 @@ export const PAID_CONTENT = {
      "pinyin": "cānjiā",
      "ja": "参加する",
      "example": "我参加了会议。",
-     "exPinyin": "Wǒ cān jiā le huì yì。",
+     "exPinyin": "Wǒ cānjiā le huìyì.",
      "exJa": "会議に参加した。"
     }
    ],
@@ -4383,7 +4383,7 @@ export const PAID_CONTENT = {
      "pinyin": "jǔxíng",
      "ja": "挙行する",
      "example": "学校举行运动会。",
-     "exPinyin": "Xué xiào jǔ xíng yùn dòng huì。",
+     "exPinyin": "Xuéxiào jǔxíng yùndònghuì.",
      "exJa": "学校は運動会を開く。"
     },
     {
@@ -4392,7 +4392,7 @@ export const PAID_CONTENT = {
      "pinyin": "zǒngjié",
      "ja": "まとめる",
      "example": "我做了一个总结。",
-     "exPinyin": "Wǒ zuò le yí gè zǒng jié。",
+     "exPinyin": "Wǒ zuò le yí gè zǒngjié.",
      "exJa": "まとめを作った。"
     },
     {
@@ -4401,7 +4401,7 @@ export const PAID_CONTENT = {
      "pinyin": "xiángxì",
      "ja": "詳しい",
      "example": "请详细说明。",
-     "exPinyin": "Qǐng xiáng xì shuō míng。",
+     "exPinyin": "Qǐng xiángxì shuōmíng.",
      "exJa": "詳しく説明してください。"
     },
     {
@@ -4410,7 +4410,7 @@ export const PAID_CONTENT = {
      "pinyin": "yángé",
      "ja": "厳しい",
      "example": "老师很严格。",
-     "exPinyin": "Lǎo shī hěn yán gé。",
+     "exPinyin": "Lǎoshī hěn yángé.",
      "exJa": "先生は厳しい。"
     },
     {
@@ -4419,7 +4419,7 @@ export const PAID_CONTENT = {
      "pinyin": "yánzhòng",
      "ja": "深刻",
      "example": "问题很严重。",
-     "exPinyin": "Wèn tí hěn yán zhòng。",
+     "exPinyin": "Wèntí hěn yánzhòng.",
      "exJa": "問題は深刻だ。"
     }
    ],
@@ -4478,7 +4478,7 @@ export const PAID_CONTENT = {
      "pinyin": "hángbān",
      "ja": "フライト・便",
      "example": "我的航班晚点了。",
-     "exPinyin": "Wǒ de háng bān wǎn diǎn le。",
+     "exPinyin": "Wǒ de hángbān wǎndiǎn le.",
      "exJa": "私のフライトは遅れた。"
     },
     {
@@ -4487,7 +4487,7 @@ export const PAID_CONTENT = {
      "pinyin": "xíngli",
      "ja": "荷物",
      "example": "我的行李很重。",
-     "exPinyin": "Wǒ de xíng li hěn zhòng。",
+     "exPinyin": "Wǒ de xíngli hěn zhòng.",
      "exJa": "私の荷物は重い。"
     },
     {
@@ -4496,7 +4496,7 @@ export const PAID_CONTENT = {
      "pinyin": "dēngjīpái",
      "ja": "搭乗券",
      "example": "请出示登机牌。",
-     "exPinyin": "Qǐng chū shì dēng jī pái。",
+     "exPinyin": "Qǐng chūshì dēngjīpái.",
      "exJa": "搭乗券を見せてください。"
     },
     {
@@ -4505,7 +4505,7 @@ export const PAID_CONTENT = {
      "pinyin": "chūfā",
      "ja": "出発する",
      "example": "我们明天出发。",
-     "exPinyin": "Wǒ men míng tiān chū fā。",
+     "exPinyin": "Wǒmen míngtiān chūfā.",
      "exJa": "私たちは明日出発する。"
     },
     {
@@ -4514,7 +4514,7 @@ export const PAID_CONTENT = {
      "pinyin": "dàodá",
      "ja": "到着する",
      "example": "飞机准时到达。",
-     "exPinyin": "Fēi jī zhǔn shí dào dá。",
+     "exPinyin": "Fēijī zhǔnshí dàodá.",
      "exJa": "飛行機は時間通り到着した。"
     }
    ],
@@ -4573,7 +4573,7 @@ export const PAID_CONTENT = {
      "pinyin": "fēngjǐng",
      "ja": "風景",
      "example": "这里的风景很美。",
-     "exPinyin": "Zhè lǐ de fēng jǐng hěn měi。",
+     "exPinyin": "Zhèlǐ de fēngjǐng hěn měi.",
      "exJa": "ここの景色は美しい。"
     },
     {
@@ -4582,7 +4582,7 @@ export const PAID_CONTENT = {
      "pinyin": "dǎoyóu",
      "ja": "ガイド",
      "example": "导游带我们参观。",
-     "exPinyin": "Dǎo yóu dài wǒ men cān guān。",
+     "exPinyin": "Dǎoyóu dài wǒmen cānguān.",
      "exJa": "ガイドが案内してくれた。"
     },
     {
@@ -4591,7 +4591,7 @@ export const PAID_CONTENT = {
      "pinyin": "ménpiào",
      "ja": "入場券",
      "example": "门票多少钱？",
-     "exPinyin": "Mén piào duō shǎo qián？",
+     "exPinyin": "Ménpiào duōshao qián?",
      "exJa": "入場券はいくら？"
     },
     {
@@ -4600,7 +4600,7 @@ export const PAID_CONTENT = {
      "pinyin": "páiduì",
      "ja": "並ぶ",
      "example": "大家在排队买票。",
-     "exPinyin": "Dà jiā zài pái duì mǎi piào。",
+     "exPinyin": "Dàjiā zài páiduì mǎipiào.",
      "exJa": "みんな切符を買うため並んでいる。"
     },
     {
@@ -4609,7 +4609,7 @@ export const PAID_CONTENT = {
      "pinyin": "pāizhào",
      "ja": "写真を撮る",
      "example": "我们一起拍照吧。",
-     "exPinyin": "Wǒ men yì qǐ pāi zhào ba。",
+     "exPinyin": "Wǒmen yìqǐ pāizhào ba.",
      "exJa": "一緒に写真を撮ろう。"
     }
    ],
@@ -4668,7 +4668,7 @@ export const PAID_CONTENT = {
      "pinyin": "gōngzī",
      "ja": "給料",
      "example": "这个月工资发了。",
-     "exPinyin": "Zhè ge yuè gōng zī fā le。",
+     "exPinyin": "Zhège yuè gōngzī fā le.",
      "exJa": "今月の給料が出た。"
     },
     {
@@ -4677,7 +4677,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiǎngjīn",
      "ja": "ボーナス",
      "example": "年底有奖金。",
-     "exPinyin": "Nián dǐ yǒu jiǎng jīn。",
+     "exPinyin": "Niándǐ yǒu jiǎngjīn.",
      "exJa": "年末にボーナスがある。"
     },
     {
@@ -4686,7 +4686,7 @@ export const PAID_CONTENT = {
      "pinyin": "shōurù",
      "ja": "収入",
      "example": "他的收入很高。",
-     "exPinyin": "Tā de shōu rù hěn gāo。",
+     "exPinyin": "Tā de shōurù hěn gāo.",
      "exJa": "彼の収入は高い。"
     },
     {
@@ -4695,7 +4695,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhāopìn",
      "ja": "求人・採用する",
      "example": "公司在招聘新人。",
-     "exPinyin": "Gōng sī zài zhāo pìn xīn rén。",
+     "exPinyin": "Gōngsī zài zhāopìn xīnrén.",
      "exJa": "会社は新人を募集している。"
     },
     {
@@ -4704,7 +4704,7 @@ export const PAID_CONTENT = {
      "pinyin": "miànshì",
      "ja": "面接",
      "example": "我明天去面试。",
-     "exPinyin": "Wǒ míng tiān qù miàn shì。",
+     "exPinyin": "Wǒ míngtiān qù miànshì.",
      "exJa": "明日面接に行く。"
     }
    ],
@@ -4763,7 +4763,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiǎnlì",
      "ja": "履歴書",
      "example": "请发一份简历。",
-     "exPinyin": "Qǐng fā yí fèn jiǎn lì。",
+     "exPinyin": "Qǐng fā yí fèn jiǎnlì.",
      "exJa": "履歴書を送ってください。"
     },
     {
@@ -4772,7 +4772,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhíyè",
      "ja": "職業",
      "example": "你的职业是什么？",
-     "exPinyin": "Nǐ de zhí yè shì shén me？",
+     "exPinyin": "Nǐ de zhíyè shì shénme?",
      "exJa": "あなたの職業は？"
     },
     {
@@ -4781,7 +4781,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhuānyè",
      "ja": "専攻",
      "example": "我的专业是法律。",
-     "exPinyin": "Wǒ de zhuān yè shì fǎ lǜ。",
+     "exPinyin": "Wǒ de zhuānyè shì fǎlǜ.",
      "exJa": "私の専攻は法律だ。"
     },
     {
@@ -4790,7 +4790,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhīshi",
      "ja": "知識",
      "example": "学习新知识很有趣。",
-     "exPinyin": "Xué xí xīn zhī shi hěn yǒu qù。",
+     "exPinyin": "Xuéxí xīn zhīshi hěn yǒuqù.",
      "exJa": "新しい知識を学ぶのは楽しい。"
     },
     {
@@ -4799,7 +4799,7 @@ export const PAID_CONTENT = {
      "pinyin": "wénzhāng",
      "ja": "文章",
      "example": "这篇文章很长。",
-     "exPinyin": "Zhè piān wén zhāng hěn cháng。",
+     "exPinyin": "Zhè piān wénzhāng hěn cháng.",
      "exJa": "この文章は長い。"
     }
    ],
@@ -4858,7 +4858,7 @@ export const PAID_CONTENT = {
      "pinyin": "cídiǎn",
      "ja": "辞書",
      "example": "我用词典查生词。",
-     "exPinyin": "Wǒ yòng cí diǎn chá shēng cí。",
+     "exPinyin": "Wǒ yòng cídiǎn chá shēngcí.",
      "exJa": "辞書で新出単語を調べる。"
     },
     {
@@ -4867,7 +4867,7 @@ export const PAID_CONTENT = {
      "pinyin": "chéngjì",
      "ja": "成績",
      "example": "他的成绩很好。",
-     "exPinyin": "Tā de chéng jì hěn hǎo。",
+     "exPinyin": "Tā de chéngjì hěn hǎo.",
      "exJa": "彼の成績は良い。"
     },
     {
@@ -4876,7 +4876,7 @@ export const PAID_CONTENT = {
      "pinyin": "jígé",
      "ja": "合格する",
      "example": "我考试及格了。",
-     "exPinyin": "Wǒ kǎo shì jí gé le。",
+     "exPinyin": "Wǒ kǎoshì jígé le.",
      "exJa": "試験に合格した。"
     },
     {
@@ -4885,7 +4885,7 @@ export const PAID_CONTENT = {
      "pinyin": "liànxí",
      "ja": "練習する",
      "example": "每天练习汉语。",
-     "exPinyin": "Měi tiān liàn xí hàn yǔ。",
+     "exPinyin": "Měitiān liànxí Hànyǔ.",
      "exJa": "毎日中国語を練習する。"
     },
     {
@@ -4894,7 +4894,7 @@ export const PAID_CONTENT = {
      "pinyin": "bǐjì",
      "ja": "ノート・メモ",
      "example": "我记了笔记。",
-     "exPinyin": "Wǒ jì le bǐ jì。",
+     "exPinyin": "Wǒ jì le bǐjì.",
      "exJa": "ノートを取った。"
     }
    ],
@@ -4953,7 +4953,7 @@ export const PAID_CONTENT = {
      "pinyin": "chúfáng",
      "ja": "台所",
      "example": "妈妈在厨房做饭。",
-     "exPinyin": "Mā ma zài chú fáng zuò fàn。",
+     "exPinyin": "Māma zài chúfáng zuò fàn.",
      "exJa": "母は台所で料理している。"
     },
     {
@@ -4962,7 +4962,7 @@ export const PAID_CONTENT = {
      "pinyin": "kètīng",
      "ja": "居間",
      "example": "客厅很宽敞。",
-     "exPinyin": "Kè tīng hěn kuān chǎng。",
+     "exPinyin": "Kètīng hěn kuānchǎng.",
      "exJa": "居間は広い。"
     },
     {
@@ -4971,7 +4971,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiājù",
      "ja": "家具",
      "example": "这些家具很贵。",
-     "exPinyin": "Zhè xiē jiā jù hěn guì。",
+     "exPinyin": "Zhèxiē jiājù hěn guì.",
      "exJa": "これらの家具は高い。"
     },
     {
@@ -4980,16 +4980,16 @@ export const PAID_CONTENT = {
      "pinyin": "shāfā",
      "ja": "ソファ",
      "example": "他坐在沙发上。",
-     "exPinyin": "Tā zuò zài shā fā shàng。",
+     "exPinyin": "Tā zuò zài shāfā shàng.",
      "exJa": "彼はソファに座っている。"
     },
     {
      "id": "d60-v4",
      "zh": "窗户",
-     "pinyin": "chuānghù",
+     "pinyin": "chuānghu",
      "ja": "窓",
      "example": "请打开窗户。",
-     "exPinyin": "Qǐng dǎ kāi chuāng hù。",
+     "exPinyin": "Qǐng dǎkāi chuānghu.",
      "exJa": "窓を開けてください。"
     }
    ],
@@ -5048,7 +5048,7 @@ export const PAID_CONTENT = {
      "pinyin": "jìngzi",
      "ja": "鏡",
      "example": "她在照镜子。",
-     "exPinyin": "Tā zài zhào jìng zi。",
+     "exPinyin": "Tā zài zhào jìngzi.",
      "exJa": "彼女は鏡を見ている。"
     },
     {
@@ -5057,7 +5057,7 @@ export const PAID_CONTENT = {
      "pinyin": "yàoshi",
      "ja": "鍵",
      "example": "我找不到钥匙。",
-     "exPinyin": "Wǒ zhǎo bú dào yào shi。",
+     "exPinyin": "Wǒ zhǎo bú dào yàoshi.",
      "exJa": "鍵が見つからない。"
     },
     {
@@ -5066,7 +5066,7 @@ export const PAID_CONTENT = {
      "pinyin": "lājī",
      "ja": "ゴミ",
      "example": "请把垃圾扔掉。",
-     "exPinyin": "Qǐng bǎ lā jī rēng diào。",
+     "exPinyin": "Qǐng bǎ lājī rēngdiào.",
      "exJa": "ゴミを捨ててください。"
     },
     {
@@ -5075,7 +5075,7 @@ export const PAID_CONTENT = {
      "pinyin": "gōngjù",
      "ja": "道具",
      "example": "这是修理工具。",
-     "exPinyin": "Zhè shì xiū lǐ gōng jù。",
+     "exPinyin": "Zhè shì xiūlǐ gōngjù.",
      "exJa": "これは修理道具だ。"
     },
     {
@@ -5084,7 +5084,7 @@ export const PAID_CONTENT = {
      "pinyin": "máojīn",
      "ja": "タオル",
      "example": "我需要一条毛巾。",
-     "exPinyin": "Wǒ xū yào yì tiáo máo jīn。",
+     "exPinyin": "Wǒ xūyào yì tiáo máojīn.",
      "exJa": "タオルが一枚要る。"
     }
    ],
@@ -5143,7 +5143,7 @@ export const PAID_CONTENT = {
      "pinyin": "yágāo",
      "ja": "歯磨き粉",
      "example": "牙膏用完了。",
-     "exPinyin": "Yá gāo yòng wán le。",
+     "exPinyin": "Yágāo yòng wán le.",
      "exJa": "歯磨き粉を使い切った。"
     },
     {
@@ -5152,7 +5152,7 @@ export const PAID_CONTENT = {
      "pinyin": "xǐyījī",
      "ja": "洗濯機",
      "example": "洗衣机坏了。",
-     "exPinyin": "Xǐ yī jī huài le。",
+     "exPinyin": "Xǐyījī huài le.",
      "exJa": "洗濯機が壊れた。"
     },
     {
@@ -5161,7 +5161,7 @@ export const PAID_CONTENT = {
      "pinyin": "bīngxiāng",
      "ja": "冷蔵庫",
      "example": "把牛奶放进冰箱。",
-     "exPinyin": "Bǎ niú nǎi fàng jìn bīng xiāng。",
+     "exPinyin": "Bǎ niúnǎi fàng jìn bīngxiāng.",
      "exJa": "牛乳を冷蔵庫に入れて。"
     },
     {
@@ -5170,7 +5170,7 @@ export const PAID_CONTENT = {
      "pinyin": "kōngtiáo",
      "ja": "エアコン",
      "example": "请打开空调。",
-     "exPinyin": "Qǐng dǎ kāi kōng tiáo。",
+     "exPinyin": "Qǐng dǎkāi kōngtiáo.",
      "exJa": "エアコンをつけて。"
     },
     {
@@ -5179,7 +5179,7 @@ export const PAID_CONTENT = {
      "pinyin": "diàntī",
      "ja": "エレベーター",
      "example": "我们坐电梯上去。",
-     "exPinyin": "Wǒ men zuò diàn tī shàng qù。",
+     "exPinyin": "Wǒmen zuò diàntī shàngqù.",
      "exJa": "エレベーターで上がろう。"
     }
    ],
@@ -5238,7 +5238,7 @@ export const PAID_CONTENT = {
      "pinyin": "fángdōng",
      "ja": "大家（おおや）",
      "example": "房东人很好。",
-     "exPinyin": "Fáng dōng rén hěn hǎo。",
+     "exPinyin": "Fángdōng rén hěn hǎo.",
      "exJa": "大家さんは親切だ。"
     },
     {
@@ -5247,7 +5247,7 @@ export const PAID_CONTENT = {
      "pinyin": "zū",
      "ja": "借りる・賃借",
      "example": "我租了一间房子。",
-     "exPinyin": "Wǒ zū le yì jiān fáng zi。",
+     "exPinyin": "Wǒ zū le yì jiān fángzi.",
      "exJa": "部屋を一つ借りた。"
     },
     {
@@ -5256,7 +5256,7 @@ export const PAID_CONTENT = {
      "pinyin": "línjū",
      "ja": "隣人",
      "example": "我的邻居很友好。",
-     "exPinyin": "Wǒ de lín jū hěn yǒu hǎo。",
+     "exPinyin": "Wǒ de línjū hěn yǒuhǎo.",
      "exJa": "隣人は親切だ。"
     },
     {
@@ -5265,7 +5265,7 @@ export const PAID_CONTENT = {
      "pinyin": "qīnqi",
      "ja": "親戚",
      "example": "春节我去看亲戚。",
-     "exPinyin": "Chūn jié wǒ qù kàn qīn qi。",
+     "exPinyin": "Chūnjié wǒ qù kàn qīnqi.",
      "exJa": "春節に親戚を訪ねる。"
     },
     {
@@ -5274,7 +5274,7 @@ export const PAID_CONTENT = {
      "pinyin": "gùkè",
      "ja": "顧客",
      "example": "这家店顾客很多。",
-     "exPinyin": "Zhè jiā diàn gù kè hěn duō。",
+     "exPinyin": "Zhè jiā diàn gùkè hěn duō.",
      "exJa": "この店は客が多い。"
     }
    ],
@@ -5333,7 +5333,7 @@ export const PAID_CONTENT = {
      "pinyin": "xìngbié",
      "ja": "性別",
      "example": "请填写性别。",
-     "exPinyin": "Qǐng tián xiě xìng bié。",
+     "exPinyin": "Qǐng tiánxiě xìngbié.",
      "exJa": "性別を記入してください。"
     },
     {
@@ -5342,7 +5342,7 @@ export const PAID_CONTENT = {
      "pinyin": "niánlíng",
      "ja": "年齢",
      "example": "他的年龄不大。",
-     "exPinyin": "Tā de nián líng bú dà。",
+     "exPinyin": "Tā de niánlíng bú dà.",
      "exJa": "彼は年が若い。"
     },
     {
@@ -5351,7 +5351,7 @@ export const PAID_CONTENT = {
      "pinyin": "yàngzi",
      "ja": "様子・格好",
      "example": "他的样子很着急。",
-     "exPinyin": "Tā de yàng zi hěn zháo jí。",
+     "exPinyin": "Tā de yàngzi hěn zháojí.",
      "exJa": "彼は焦った様子だ。"
     },
     {
@@ -5360,7 +5360,7 @@ export const PAID_CONTENT = {
      "pinyin": "shuài",
      "ja": "かっこいい",
      "example": "这个演员很帅。",
-     "exPinyin": "Zhè ge yǎn yuán hěn shuài。",
+     "exPinyin": "Zhège yǎnyuán hěn shuài.",
      "exJa": "この俳優はかっこいい。"
     },
     {
@@ -5369,7 +5369,7 @@ export const PAID_CONTENT = {
      "pinyin": "měilì",
      "ja": "美しい",
      "example": "这是个美丽的城市。",
-     "exPinyin": "Zhè shì gè měi lì de chéng shì。",
+     "exPinyin": "Zhè shì gè měilì de chéngshì.",
      "exJa": "美しい街だ。"
     }
    ],
@@ -5428,7 +5428,7 @@ export const PAID_CONTENT = {
      "pinyin": "hàixiū",
      "ja": "恥ずかしがる",
      "example": "她有点害羞。",
-     "exPinyin": "Tā yǒu diǎn hài xiū。",
+     "exPinyin": "Tā yǒudiǎn hàixiū.",
      "exJa": "彼女は少し恥ずかしがり屋だ。"
     },
     {
@@ -5437,7 +5437,7 @@ export const PAID_CONTENT = {
      "pinyin": "rèqíng",
      "ja": "親切・熱心",
      "example": "服务员很热情。",
-     "exPinyin": "Fú wù yuán hěn rè qíng。",
+     "exPinyin": "Fúwùyuán hěn rèqíng.",
      "exJa": "店員は親切だ。"
     },
     {
@@ -5446,7 +5446,7 @@ export const PAID_CONTENT = {
      "pinyin": "lěngjìng",
      "ja": "冷静",
      "example": "请保持冷静。",
-     "exPinyin": "Qǐng bǎo chí lěng jìng。",
+     "exPinyin": "Qǐng bǎochí lěngjìng.",
      "exJa": "冷静さを保って。"
     },
     {
@@ -5455,7 +5455,7 @@ export const PAID_CONTENT = {
      "pinyin": "dàfāng",
      "ja": "気前が良い・上品",
      "example": "他很大方。",
-     "exPinyin": "Tā hěn dà fāng。",
+     "exPinyin": "Tā hěn dàfāng.",
      "exJa": "彼は気前が良い。"
     },
     {
@@ -5464,7 +5464,7 @@ export const PAID_CONTENT = {
      "pinyin": "yǒuyì",
      "ja": "友情",
      "example": "我们的友谊很深。",
-     "exPinyin": "Wǒ men de yǒu yì hěn shēn。",
+     "exPinyin": "Wǒmen de yǒuyì hěn shēn.",
      "exJa": "私たちの友情は深い。"
     }
    ],
@@ -5523,7 +5523,7 @@ export const PAID_CONTENT = {
      "pinyin": "yúkuài",
      "ja": "楽しい",
      "example": "祝你旅途愉快。",
-     "exPinyin": "Zhù nǐ lǚ tú yú kuài。",
+     "exPinyin": "Zhù nǐ lǚtú yúkuài.",
      "exJa": "楽しい旅を。"
     },
     {
@@ -5532,7 +5532,7 @@ export const PAID_CONTENT = {
      "pinyin": "kāixīn",
      "ja": "嬉しい",
      "example": "今天我很开心。",
-     "exPinyin": "Jīn tiān wǒ hěn kāi xīn。",
+     "exPinyin": "Jīntiān wǒ hěn kāixīn.",
      "exJa": "今日は嬉しい。"
     },
     {
@@ -5541,7 +5541,7 @@ export const PAID_CONTENT = {
      "pinyin": "xìngfú",
      "ja": "幸せ",
      "example": "他们生活很幸福。",
-     "exPinyin": "Tā men shēng huó hěn xìng fú。",
+     "exPinyin": "Tāmen shēnghuó hěn xìngfú.",
      "exJa": "彼らは幸せに暮らしている。"
     },
     {
@@ -5550,7 +5550,7 @@ export const PAID_CONTENT = {
      "pinyin": "zháojí",
      "ja": "焦る",
      "example": "别着急，慢慢来。",
-     "exPinyin": "Bié zháo jí， màn màn lái。",
+     "exPinyin": "Bié zháojí, mànmàn lái.",
      "exJa": "焦らず、ゆっくり。"
     },
     {
@@ -5559,7 +5559,7 @@ export const PAID_CONTENT = {
      "pinyin": "fánnǎo",
      "ja": "悩み",
      "example": "他有很多烦恼。",
-     "exPinyin": "Tā yǒu hěn duō fán nǎo。",
+     "exPinyin": "Tā yǒu hěn duō fánnǎo.",
      "exJa": "彼には悩みが多い。"
     }
    ],
@@ -5618,7 +5618,7 @@ export const PAID_CONTENT = {
      "pinyin": "shībài",
      "ja": "失敗する",
      "example": "失败是成功之母。",
-     "exPinyin": "Shī bài shì chéng gōng zhī mǔ。",
+     "exPinyin": "Shībài shì chénggōng zhī mǔ.",
      "exJa": "失敗は成功のもと。"
     },
     {
@@ -5627,7 +5627,7 @@ export const PAID_CONTENT = {
      "pinyin": "chénggōng",
      "ja": "成功する",
      "example": "他终于成功了。",
-     "exPinyin": "Tā zhōng yú chéng gōng le。",
+     "exPinyin": "Tā zhōngyú chénggōng le.",
      "exJa": "彼はついに成功した。"
     },
     {
@@ -5636,7 +5636,7 @@ export const PAID_CONTENT = {
      "pinyin": "dǎoméi",
      "ja": "運が悪い",
      "example": "今天真倒霉。",
-     "exPinyin": "Jīn tiān zhēn dǎo méi。",
+     "exPinyin": "Jīntiān zhēn dǎoméi.",
      "exJa": "今日はついてない。"
     },
     {
@@ -5645,7 +5645,7 @@ export const PAID_CONTENT = {
      "pinyin": "yíhàn",
      "ja": "残念",
      "example": "很遗憾你不能来。",
-     "exPinyin": "Hěn yí hàn nǐ bù néng lái。",
+     "exPinyin": "Hěn yíhàn nǐ bùnéng lái.",
      "exJa": "来られなくて残念。"
     },
     {
@@ -5654,7 +5654,7 @@ export const PAID_CONTENT = {
      "pinyin": "kěxī",
      "ja": "惜しい",
      "example": "太可惜了。",
-     "exPinyin": "Tài kě xī le。",
+     "exPinyin": "Tài kěxī le.",
      "exJa": "実に惜しい。"
     }
    ],
@@ -5668,7 +5668,7 @@ export const PAID_CONTENT = {
      "contrast": "我给他一本书 は二重目的語、我把书给他 は把構文で、処理の焦点が違います。",
      "mistake": "人と物の順序を入れ替えないこと。",
      "example": "经理给了我一个新任务。",
-     "exPinyin": "Jīnglǐ gěi le wǒ yí ge xīn rènwù.",
+     "exPinyin": "Jīnglǐ gěi le wǒ yí ge xīn rènwu.",
      "exJa": "部長は私に新しい仕事をくれました。",
      "test": "先生は私たちに中国語を教えています。",
      "answer": "老师教我们中文。"
@@ -5713,7 +5713,7 @@ export const PAID_CONTENT = {
      "pinyin": "xiǎngniàn",
      "ja": "恋しく思う",
      "example": "我很想念家人。",
-     "exPinyin": "Wǒ hěn xiǎng niàn jiā rén。",
+     "exPinyin": "Wǒ hěn xiǎngniàn jiārén.",
      "exJa": "家族が恋しい。"
     },
     {
@@ -5722,7 +5722,7 @@ export const PAID_CONTENT = {
      "pinyin": "wúliáo",
      "ja": "退屈",
      "example": "这部电影很无聊。",
-     "exPinyin": "Zhè bù diàn yǐng hěn wú liáo。",
+     "exPinyin": "Zhè bù diànyǐng hěn wúliáo.",
      "exJa": "この映画は退屈だ。"
     },
     {
@@ -5731,7 +5731,7 @@ export const PAID_CONTENT = {
      "pinyin": "qíguài",
      "ja": "不思議・変だ",
      "example": "这件事很奇怪。",
-     "exPinyin": "Zhè jiàn shì hěn qí guài。",
+     "exPinyin": "Zhè jiàn shì hěn qíguài.",
      "exJa": "この件は変だ。"
     },
     {
@@ -5740,7 +5740,7 @@ export const PAID_CONTENT = {
      "pinyin": "lìhài",
      "ja": "すごい・ひどい",
      "example": "他汉语说得很厉害。",
-     "exPinyin": "Tā hàn yǔ shuō dé hěn lì hài。",
+     "exPinyin": "Tā Hànyǔ shuō de hěn lìhài.",
      "exJa": "彼は中国語がすごく上手い。"
     },
     {
@@ -5749,7 +5749,7 @@ export const PAID_CONTENT = {
      "pinyin": "kělián",
      "ja": "かわいそう",
      "example": "这只小狗很可怜。",
-     "exPinyin": "Zhè zhī xiǎo gǒu hěn kě lián。",
+     "exPinyin": "Zhè zhī xiǎogǒu hěn kělián.",
      "exJa": "この子犬はかわいそうだ。"
     }
    ],
@@ -5817,7 +5817,7 @@ export const PAID_CONTENT = {
      "pinyin": "bùjǐn",
      "ja": "…だけでなく",
      "example": "他不仅聪明，而且努力。",
-     "exPinyin": "Tā bù jǐn cōng ming， ér qiě nǔ lì。",
+     "exPinyin": "Tā bùjǐn cōngming, érqiě nǔlì.",
      "exJa": "彼は賢いだけでなく努力家だ。"
     },
     {
@@ -5826,7 +5826,7 @@ export const PAID_CONTENT = {
      "pinyin": "jìrán",
      "ja": "…である以上",
      "example": "既然来了，就好好玩。",
-     "exPinyin": "Jì rán lái le， jiù hǎo hǎo wán。",
+     "exPinyin": "Jìrán lái le, jiù hǎohǎo wán.",
      "exJa": "来たからにはしっかり楽しもう。"
     },
     {
@@ -5835,7 +5835,7 @@ export const PAID_CONTENT = {
      "pinyin": "jíshǐ",
      "ja": "たとえ…でも",
      "example": "即使下雨我也去。",
-     "exPinyin": "Jí shǐ xià yǔ wǒ yě qù。",
+     "exPinyin": "Jíshǐ xiàyǔ wǒ yě qù.",
      "exJa": "たとえ雨でも行く。"
     },
     {
@@ -5844,7 +5844,7 @@ export const PAID_CONTENT = {
      "pinyin": "wànyī",
      "ja": "万一",
      "example": "万一迟到怎么办？",
-     "exPinyin": "Wàn yī chí dào zěn me bàn？",
+     "exPinyin": "Wànyī chídào zěnme bàn?",
      "exJa": "万一遅れたらどうする？"
     }
    ],
@@ -5903,7 +5903,7 @@ export const PAID_CONTENT = {
      "pinyin": "zǒngzhī",
      "ja": "要するに",
      "example": "总之，我同意。",
-     "exPinyin": "Zǒng zhī， wǒ tóng yì。",
+     "exPinyin": "Zǒngzhī, wǒ tóngyì.",
      "exJa": "要するに、賛成だ。"
     },
     {
@@ -5912,7 +5912,7 @@ export const PAID_CONTENT = {
      "pinyin": "fǎnzhèng",
      "ja": "どうせ",
      "example": "反正都一样。",
-     "exPinyin": "Fǎn zhèng dōu yí yàng。",
+     "exPinyin": "Fǎnzhèng dōu yíyàng.",
      "exJa": "どうせ同じだ。"
     },
     {
@@ -5921,7 +5921,7 @@ export const PAID_CONTENT = {
      "pinyin": "nánguài",
      "ja": "道理で",
      "example": "难怪他这么累。",
-     "exPinyin": "Nán guài tā zhè me lèi。",
+     "exPinyin": "Nánguài tā zhème lèi.",
      "exJa": "道理で彼は疲れている。"
     },
     {
@@ -5930,7 +5930,7 @@ export const PAID_CONTENT = {
      "pinyin": "nándào",
      "ja": "まさか…ではあるまい",
      "example": "难道你忘了？",
-     "exPinyin": "Nán dào nǐ wàng le？",
+     "exPinyin": "Nándào nǐ wàng le?",
      "exJa": "まさか忘れたの？"
     },
     {
@@ -5939,7 +5939,7 @@ export const PAID_CONTENT = {
      "pinyin": "qiānwàn",
      "ja": "くれぐれも",
      "example": "你千万别迟到。",
-     "exPinyin": "Nǐ qiān wàn bié chí dào。",
+     "exPinyin": "Nǐ qiānwàn bié chídào.",
      "exJa": "くれぐれも遅れないで。"
     }
    ],
@@ -5998,7 +5998,7 @@ export const PAID_CONTENT = {
      "pinyin": "dàodǐ",
      "ja": "一体・結局",
      "example": "你到底想说什么？",
-     "exPinyin": "Nǐ dào dǐ xiǎng shuō shén me？",
+     "exPinyin": "Nǐ dàodǐ xiǎng shuō shénme?",
      "exJa": "一体何が言いたいの？"
     },
     {
@@ -6007,7 +6007,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhìshǎo",
      "ja": "少なくとも",
      "example": "至少要等一小时。",
-     "exPinyin": "Zhì shǎo yào děng yì xiǎo shí。",
+     "exPinyin": "Zhìshǎo yào děng yì xiǎoshí.",
      "exJa": "少なくとも1時間待つ。"
     },
     {
@@ -6016,7 +6016,7 @@ export const PAID_CONTENT = {
      "pinyin": "réngrán",
      "ja": "依然として",
      "example": "他仍然没来。",
-     "exPinyin": "Tā réng rán méi lái。",
+     "exPinyin": "Tā réngrán méi lái.",
      "exJa": "彼は依然来ていない。"
     },
     {
@@ -6025,7 +6025,7 @@ export const PAID_CONTENT = {
      "pinyin": "ǒuěr",
      "ja": "たまに",
      "example": "我偶尔去看电影。",
-     "exPinyin": "Wǒ ǒu ěr qù kàn diàn yǐng。",
+     "exPinyin": "Wǒ ǒu'ěr qù kàn diànyǐng.",
      "exJa": "たまに映画を見に行く。"
     },
     {
@@ -6034,7 +6034,7 @@ export const PAID_CONTENT = {
      "pinyin": "chóngxīn",
      "ja": "改めて",
      "example": "请重新写一遍。",
-     "exPinyin": "Qǐng chóng xīn xiě yí biàn。",
+     "exPinyin": "Qǐng chóngxīn xiě yíbiàn.",
      "exJa": "書き直してください。"
     }
    ],
@@ -6093,7 +6093,7 @@ export const PAID_CONTENT = {
      "pinyin": "hùxiāng",
      "ja": "互いに",
      "example": "我们互相帮助。",
-     "exPinyin": "Wǒ men hù xiāng bāng zhù。",
+     "exPinyin": "Wǒmen hùxiāng bāngzhù.",
      "exJa": "私たちは助け合う。"
     },
     {
@@ -6102,7 +6102,7 @@ export const PAID_CONTENT = {
      "pinyin": "qīnzì",
      "ja": "自ら",
      "example": "他亲自来道歉。",
-     "exPinyin": "Tā qīn zì lái dào qiàn。",
+     "exPinyin": "Tā qīnzì lái dàoqiàn.",
      "exJa": "彼は自ら謝りに来た。"
     },
     {
@@ -6111,7 +6111,7 @@ export const PAID_CONTENT = {
      "pinyin": "gùyì",
      "ja": "わざと",
      "example": "我不是故意的。",
-     "exPinyin": "Wǒ bú shì gù yì de。",
+     "exPinyin": "Wǒ bú shì gùyì de.",
      "exJa": "わざとじゃない。"
     },
     {
@@ -6120,7 +6120,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhuānmén",
      "ja": "専ら・わざわざ",
      "example": "他专门来看你。",
-     "exPinyin": "Tā zhuān mén lái kàn nǐ。",
+     "exPinyin": "Tā zhuānmén lái kàn nǐ.",
      "exJa": "彼はわざわざ会いに来た。"
     },
     {
@@ -6129,7 +6129,7 @@ export const PAID_CONTENT = {
      "pinyin": "shùnbiàn",
      "ja": "ついでに",
      "example": "顺便买点东西。",
-     "exPinyin": "Shùn biàn mǎi diǎn dōng xī。",
+     "exPinyin": "Shùnbiàn mǎi diǎn dōngxi.",
      "exJa": "ついでに買い物する。"
     }
    ],
@@ -6188,7 +6188,7 @@ export const PAID_CONTENT = {
      "pinyin": "qǔ",
      "ja": "受け取る・引き出す",
      "example": "我去银行取钱。",
-     "exPinyin": "Wǒ qù yín háng qǔ qián。",
+     "exPinyin": "Wǒ qù yínháng qǔ qián.",
      "exJa": "銀行へお金を下ろしに行く。"
     },
     {
@@ -6197,7 +6197,7 @@ export const PAID_CONTENT = {
      "pinyin": "cún",
      "ja": "預ける・蓄える",
      "example": "我想存钱。",
-     "exPinyin": "Wǒ xiǎng cún qián。",
+     "exPinyin": "Wǒ xiǎng cún qián.",
      "exJa": "お金を貯めたい。"
     },
     {
@@ -6206,7 +6206,7 @@ export const PAID_CONTENT = {
      "pinyin": "jì",
      "ja": "郵送する",
      "example": "我要寄一封信。",
-     "exPinyin": "Wǒ yào jì yì fēng xìn。",
+     "exPinyin": "Wǒ yào jì yì fēng xìn.",
      "exJa": "手紙を出したい。"
     },
     {
@@ -6215,7 +6215,7 @@ export const PAID_CONTENT = {
      "pinyin": "rēng",
      "ja": "捨てる・投げる",
      "example": "别乱扔垃圾。",
-     "exPinyin": "Bié luàn rēng lā jī。",
+     "exPinyin": "Bié luàn rēng lājī.",
      "exJa": "ゴミをポイ捨てするな。"
     },
     {
@@ -6224,7 +6224,7 @@ export const PAID_CONTENT = {
      "pinyin": "diū",
      "ja": "なくす",
      "example": "我丢了钱包。",
-     "exPinyin": "Wǒ diū le qián bāo。",
+     "exPinyin": "Wǒ diū le qiánbāo.",
      "exJa": "財布をなくした。"
     }
    ],
@@ -6283,7 +6283,7 @@ export const PAID_CONTENT = {
      "pinyin": "tái",
      "ja": "持ち上げる",
      "example": "我们一起抬桌子。",
-     "exPinyin": "Wǒ men yì qǐ tái zhuō zi。",
+     "exPinyin": "Wǒmen yìqǐ tái zhuōzi.",
      "exJa": "一緒に机を運ぼう。"
     },
     {
@@ -6292,7 +6292,7 @@ export const PAID_CONTENT = {
      "pinyin": "tuī",
      "ja": "押す",
      "example": "请推门进来。",
-     "exPinyin": "Qǐng tuī mén jìn lái。",
+     "exPinyin": "Qǐng tuī mén jìnlái.",
      "exJa": "ドアを押して入って。"
     },
     {
@@ -6301,7 +6301,7 @@ export const PAID_CONTENT = {
      "pinyin": "lā",
      "ja": "引く",
      "example": "用力拉绳子。",
-     "exPinyin": "Yòng lì lā shéng zi。",
+     "exPinyin": "Yònglì lā shéngzi.",
      "exJa": "力を入れて綱を引く。"
     },
     {
@@ -6310,7 +6310,7 @@ export const PAID_CONTENT = {
      "pinyin": "guà",
      "ja": "掛ける",
      "example": "把画挂在墙上。",
-     "exPinyin": "Bǎ huà guà zài qiáng shàng。",
+     "exPinyin": "Bǎ huà guà zài qiáng shàng.",
      "exJa": "絵を壁に掛ける。"
     },
     {
@@ -6319,7 +6319,7 @@ export const PAID_CONTENT = {
      "pinyin": "cā",
      "ja": "拭く",
      "example": "请擦一下桌子。",
-     "exPinyin": "Qǐng cā yí xià zhuō zi。",
+     "exPinyin": "Qǐng cā yíxià zhuōzi.",
      "exJa": "机を拭いて。"
     }
    ],
@@ -6378,7 +6378,7 @@ export const PAID_CONTENT = {
      "pinyin": "qiāo",
      "ja": "叩く",
      "example": "有人在敲门。",
-     "exPinyin": "Yǒu rén zài qiāo mén。",
+     "exPinyin": "Yǒu rén zài qiāomén.",
      "exJa": "誰かがドアをノックしている。"
     },
     {
@@ -6387,7 +6387,7 @@ export const PAID_CONTENT = {
      "pinyin": "bào",
      "ja": "抱く",
      "example": "妈妈抱着孩子。",
-     "exPinyin": "Mā ma bào zhe hái zi。",
+     "exPinyin": "Māma bào zhe háizi.",
      "exJa": "母は子を抱いている。"
     },
     {
@@ -6396,7 +6396,7 @@ export const PAID_CONTENT = {
      "pinyin": "yáo",
      "ja": "揺らす・振る",
      "example": "他摇了摇头。",
-     "exPinyin": "Tā yáo le yáo tóu。",
+     "exPinyin": "Tā yáo le yáo tóu.",
      "exJa": "彼は首を振った。"
     },
     {
@@ -6405,7 +6405,7 @@ export const PAID_CONTENT = {
      "pinyin": "tángāngqín",
      "ja": "ピアノを弾く",
      "example": "她会弹钢琴。",
-     "exPinyin": "Tā huì tán gāng qín。",
+     "exPinyin": "Tā huì tán gāngqín.",
      "exJa": "彼女はピアノが弾ける。"
     },
     {
@@ -6414,7 +6414,7 @@ export const PAID_CONTENT = {
      "pinyin": "sànbù",
      "ja": "散歩する",
      "example": "晚饭后我去散步。",
-     "exPinyin": "Wǎn fàn hòu wǒ qù sàn bù。",
+     "exPinyin": "Wǎnfàn hòu wǒ qù sànbù.",
      "exJa": "夕食後に散歩する。"
     },
     {
@@ -6457,7 +6457,7 @@ export const PAID_CONTENT = {
      "pinyin": "duànliàn",
      "ja": "鍛える",
      "example": "每天锻炼身体。",
-     "exPinyin": "Měi tiān duàn liàn shēn tǐ。",
+     "exPinyin": "Měitiān duànliàn shēntǐ.",
      "exJa": "毎日体を鍛える。"
     },
     {
@@ -6466,7 +6466,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiǎnféi",
      "ja": "ダイエットする",
      "example": "我正在减肥。",
-     "exPinyin": "Wǒ zhèng zài jiǎn féi。",
+     "exPinyin": "Wǒ zhèngzài jiǎnféi.",
      "exJa": "ダイエット中だ。"
     },
     {
@@ -6475,7 +6475,7 @@ export const PAID_CONTENT = {
      "pinyin": "lǚxíng",
      "ja": "旅行する",
      "example": "暑假我去旅行。",
-     "exPinyin": "Shǔ jià wǒ qù lǚ xíng。",
+     "exPinyin": "Shǔjià wǒ qù lǚxíng.",
      "exJa": "夏休みに旅行する。"
     },
     {
@@ -6484,7 +6484,7 @@ export const PAID_CONTENT = {
      "pinyin": "chūshēng",
      "ja": "生まれる",
      "example": "他在北京出生。",
-     "exPinyin": "Tā zài běi jīng chū shēng。",
+     "exPinyin": "Tā zài Běijīng chūshēng.",
      "exJa": "彼は北京で生まれた。"
     },
     {
@@ -6493,7 +6493,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhǎngdà",
      "ja": "成長する",
      "example": "孩子长大了。",
-     "exPinyin": "Hái zi zhǎng dà le。",
+     "exPinyin": "Háizi zhǎngdà le.",
      "exJa": "子どもが大きくなった。"
     },
     {
@@ -6536,7 +6536,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiéhūn",
      "ja": "結婚する",
      "example": "他们去年结婚了。",
-     "exPinyin": "Tā men qù nián jié hūn le。",
+     "exPinyin": "Tāmen qùnián jiéhūn le.",
      "exJa": "彼らは去年結婚した。"
     },
     {
@@ -6545,7 +6545,7 @@ export const PAID_CONTENT = {
      "pinyin": "tuìxiū",
      "ja": "退職する",
      "example": "父亲已经退休了。",
-     "exPinyin": "Fù qīn yǐ jīng tuì xiū le。",
+     "exPinyin": "Fùqīn yǐjīng tuìxiū le.",
      "exJa": "父はもう退職した。"
     },
     {
@@ -6554,7 +6554,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiù",
      "ja": "救う",
      "example": "医生救了他。",
-     "exPinyin": "Yī shēng jiù le tā。",
+     "exPinyin": "Yīshēng jiù le tā.",
      "exJa": "医者が彼を救った。"
     },
     {
@@ -6563,7 +6563,7 @@ export const PAID_CONTENT = {
      "pinyin": "bāngmáng",
      "ja": "手伝う",
      "example": "你能帮个忙吗？",
-     "exPinyin": "Nǐ néng bāng gè máng ma？",
+     "exPinyin": "Nǐ néng bāng gè máng ma?",
      "exJa": "手伝ってくれる？"
     },
     {
@@ -6572,7 +6572,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhàogù",
      "ja": "世話する",
      "example": "她照顾老人。",
-     "exPinyin": "Tā zhào gù lǎo rén。",
+     "exPinyin": "Tā zhàogù lǎorén.",
      "exJa": "彼女は老人の世話をする。"
     },
     {
@@ -6615,7 +6615,7 @@ export const PAID_CONTENT = {
      "pinyin": "fù",
      "ja": "豊か・金持ち",
      "example": "他家很富。",
-     "exPinyin": "Tā jiā hěn fù。",
+     "exPinyin": "Tā jiā hěn fù.",
      "exJa": "彼の家は裕福だ。"
     },
     {
@@ -6624,7 +6624,7 @@ export const PAID_CONTENT = {
      "pinyin": "qióng",
      "ja": "貧しい",
      "example": "以前他很穷。",
-     "exPinyin": "Yǐ qián tā hěn qióng。",
+     "exPinyin": "Yǐqián tā hěn qióng.",
      "exJa": "以前彼は貧しかった。"
     },
     {
@@ -6633,7 +6633,7 @@ export const PAID_CONTENT = {
      "pinyin": "hòu",
      "ja": "厚い",
      "example": "这本书很厚。",
-     "exPinyin": "Zhè běn shū hěn hòu。",
+     "exPinyin": "Zhè běn shū hěn hòu.",
      "exJa": "この本は厚い。"
     },
     {
@@ -6642,7 +6642,7 @@ export const PAID_CONTENT = {
      "pinyin": "shēn",
      "ja": "深い",
      "example": "这条河很深。",
-     "exPinyin": "Zhè tiáo hé hěn shēn。",
+     "exPinyin": "Zhè tiáo hé hěn shēn.",
      "exJa": "この川は深い。"
     },
     {
@@ -6651,7 +6651,7 @@ export const PAID_CONTENT = {
      "pinyin": "kōng",
      "ja": "空っぽ",
      "example": "瓶子是空的。",
-     "exPinyin": "Píng zi shì kōng de。",
+     "exPinyin": "Píngzi shì kōng de.",
      "exJa": "瓶は空だ。"
     },
     {
@@ -6694,7 +6694,7 @@ export const PAID_CONTENT = {
      "pinyin": "gānzào",
      "ja": "乾燥している",
      "example": "冬天空气很干燥。",
-     "exPinyin": "Dōng tiān kōng qì hěn gān zào。",
+     "exPinyin": "Dōngtiān kōngqì hěn gānzào.",
      "exJa": "冬は空気が乾燥している。"
     },
     {
@@ -6703,7 +6703,7 @@ export const PAID_CONTENT = {
      "pinyin": "liángkuai",
      "ja": "涼しい",
      "example": "今天很凉快。",
-     "exPinyin": "Jīn tiān hěn liáng kuai。",
+     "exPinyin": "Jīntiān hěn liángkuai.",
      "exJa": "今日は涼しい。"
     },
     {
@@ -6712,7 +6712,7 @@ export const PAID_CONTENT = {
      "pinyin": "nuǎnhuo",
      "ja": "暖かい",
      "example": "春天很暖和。",
-     "exPinyin": "Chūn tiān hěn nuǎn huo。",
+     "exPinyin": "Chūntiān hěn nuǎnhuo.",
      "exJa": "春は暖かい。"
     },
     {
@@ -6721,7 +6721,7 @@ export const PAID_CONTENT = {
      "pinyin": "wēndù",
      "ja": "温度",
      "example": "今天温度很高。",
-     "exPinyin": "Jīn tiān wēn dù hěn gāo。",
+     "exPinyin": "Jīntiān wēndù hěn gāo.",
      "exJa": "今日は気温が高い。"
     },
     {
@@ -6730,7 +6730,7 @@ export const PAID_CONTENT = {
      "pinyin": "qīng",
      "ja": "軽い",
      "example": "这个包很轻。",
-     "exPinyin": "Zhè ge bāo hěn qīng。",
+     "exPinyin": "Zhège bāo hěn qīng.",
      "exJa": "このかばんは軽い。"
     },
     {
@@ -6773,7 +6773,7 @@ export const PAID_CONTENT = {
      "pinyin": "yuán",
      "ja": "丸い",
      "example": "月亮是圆的。",
-     "exPinyin": "Yuè liàng shì yuán de。",
+     "exPinyin": "Yuèliang shì yuán de.",
      "exJa": "月は丸い。"
     },
     {
@@ -6782,7 +6782,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhí",
      "ja": "まっすぐ",
      "example": "一直往前走。",
-     "exPinyin": "Yì zhí wǎng qián zǒu。",
+     "exPinyin": "Yìzhí wǎng qián zǒu.",
      "exJa": "ずっとまっすぐ進む。"
     },
     {
@@ -6791,7 +6791,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiǎ",
      "ja": "偽物",
      "example": "这是假的。",
-     "exPinyin": "Zhè shì jiǎ de。",
+     "exPinyin": "Zhè shì jiǎ de.",
      "exJa": "これは偽物だ。"
     },
     {
@@ -6800,7 +6800,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhēnzhèng",
      "ja": "本当の",
      "example": "这是真正的朋友。",
-     "exPinyin": "Zhè shì zhēn zhèng de péng yǒu。",
+     "exPinyin": "Zhè shì zhēnzhèng de péngyou.",
      "exJa": "これこそ本当の友だ。"
     },
     {
@@ -6809,7 +6809,7 @@ export const PAID_CONTENT = {
      "pinyin": "pǔtōng",
      "ja": "普通の",
      "example": "我是个普通人。",
-     "exPinyin": "Wǒ shì gè pǔ tōng rén。",
+     "exPinyin": "Wǒ shì gè pǔtōng rén.",
      "exJa": "私は普通の人間だ。"
     },
     {
@@ -6852,7 +6852,7 @@ export const PAID_CONTENT = {
      "pinyin": "quánbù",
      "ja": "全部",
      "example": "我全部都懂了。",
-     "exPinyin": "Wǒ quán bù dōu dǒng le。",
+     "exPinyin": "Wǒ quánbù dōu dǒng le.",
      "exJa": "全部わかった。"
     },
     {
@@ -6861,7 +6861,7 @@ export const PAID_CONTENT = {
      "pinyin": "bùfen",
      "ja": "一部",
      "example": "一部分人同意。",
-     "exPinyin": "Yí bù fen rén tóng yì。",
+     "exPinyin": "Yí bùfen rén tóngyì.",
      "exJa": "一部の人は賛成だ。"
     },
     {
@@ -6870,7 +6870,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhěnggè",
      "ja": "全体・まるごと",
      "example": "整个城市都很安静。",
-     "exPinyin": "Zhěng gè chéng shì dōu hěn ān jìng。",
+     "exPinyin": "Zhěnggè chéngshì dōu hěn ānjìng.",
      "exJa": "街全体が静かだ。"
     },
     {
@@ -6879,7 +6879,7 @@ export const PAID_CONTENT = {
      "pinyin": "dàyuē",
      "ja": "およそ",
      "example": "大约有十个人。",
-     "exPinyin": "Dà yuē yǒu shí gè rén。",
+     "exPinyin": "Dàyuē yǒu shí gè rén.",
      "exJa": "およそ10人いる。"
     },
     {
@@ -6888,7 +6888,7 @@ export const PAID_CONTENT = {
      "pinyin": "yěxǔ",
      "ja": "もしかすると",
      "example": "他也许不来了。",
-     "exPinyin": "Tā yě xǔ bù lái le。",
+     "exPinyin": "Tā yěxǔ bù lái le.",
      "exJa": "彼は来ないかもしれない。"
     },
     {
@@ -6931,7 +6931,7 @@ export const PAID_CONTENT = {
      "pinyin": "shízài",
      "ja": "本当に・実に",
      "example": "我实在太累了。",
-     "exPinyin": "Wǒ shí zài tài lèi le。",
+     "exPinyin": "Wǒ shízài tài lèi le.",
      "exJa": "本当に疲れた。"
     },
     {
@@ -6940,7 +6940,7 @@ export const PAID_CONTENT = {
      "pinyin": "quèshí",
      "ja": "確かに",
      "example": "这确实是个好主意。",
-     "exPinyin": "Zhè què shí shì gè hǎo zhǔ yì。",
+     "exPinyin": "Zhè quèshí shì gè hǎo zhǔyì.",
      "exJa": "確かに良い考えだ。"
     },
     {
@@ -6949,7 +6949,7 @@ export const PAID_CONTENT = {
      "pinyin": "nándé",
      "ja": "得難い・めったにない",
      "example": "这是难得的机会。",
-     "exPinyin": "Zhè shì nán dé de jī huì。",
+     "exPinyin": "Zhè shì nándé de jīhuì.",
      "exJa": "めったにない機会だ。"
     },
     {
@@ -6958,7 +6958,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhídé",
      "ja": "…する価値がある",
      "example": "这本书值得读。",
-     "exPinyin": "Zhè běn shū zhí dé dú。",
+     "exPinyin": "Zhè běn shū zhídé dú.",
      "exJa": "この本は読む価値がある。"
     },
     {
@@ -6967,7 +6967,7 @@ export const PAID_CONTENT = {
      "pinyin": "shèbùdé",
      "ja": "手放すのが惜しい",
      "example": "我舍不得离开。",
-     "exPinyin": "Wǒ shè bù dé lí kāi。",
+     "exPinyin": "Wǒ shèbùdé líkāi.",
      "exJa": "離れるのが名残惜しい。"
     },
     {
@@ -7010,7 +7010,7 @@ export const PAID_CONTENT = {
      "pinyin": "láizì",
      "ja": "…から来る",
      "example": "他来自上海。",
-     "exPinyin": "Tā lái zì shàng hǎi。",
+     "exPinyin": "Tā láizì Shànghǎi.",
      "exJa": "彼は上海出身だ。"
     },
     {
@@ -7019,7 +7019,7 @@ export const PAID_CONTENT = {
      "pinyin": "shǔyú",
      "ja": "…に属する",
      "example": "这本书属于我。",
-     "exPinyin": "Zhè běn shū shǔ yú wǒ。",
+     "exPinyin": "Zhè běn shū shǔyú wǒ.",
      "exJa": "この本は私のものだ。"
     },
     {
@@ -7028,7 +7028,7 @@ export const PAID_CONTENT = {
      "pinyin": "děngyú",
      "ja": "…に等しい",
      "example": "二加二等于四。",
-     "exPinyin": "Èr jiā èr děng yú sì。",
+     "exPinyin": "Èr jiā èr děngyú sì.",
      "exJa": "2足す2は4。"
     },
     {
@@ -7037,7 +7037,7 @@ export const PAID_CONTENT = {
      "pinyin": "bāokuò",
      "ja": "含む",
      "example": "价格包括早餐。",
-     "exPinyin": "Jià gé bāo kuò zǎo cān。",
+     "exPinyin": "Jiàgé bāokuò zǎocān.",
      "exJa": "値段は朝食込みだ。"
     },
     {
@@ -7046,7 +7046,7 @@ export const PAID_CONTENT = {
      "pinyin": "quēshǎo",
      "ja": "不足する",
      "example": "我们缺少时间。",
-     "exPinyin": "Wǒ men quē shǎo shí jiān。",
+     "exPinyin": "Wǒmen quēshǎo shíjiān.",
      "exJa": "時間が足りない。"
     },
     {
@@ -7089,7 +7089,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiérì",
      "ja": "祝日",
      "example": "春节是重要的节日。",
-     "exPinyin": "Chūn jié shì zhòng yào de jié rì。",
+     "exPinyin": "Chūnjié shì zhòngyào de jiérì.",
      "exJa": "春節は大切な祝日だ。"
     },
     {
@@ -7098,7 +7098,7 @@ export const PAID_CONTENT = {
      "pinyin": "chūnjié",
      "ja": "春節",
      "example": "春节全家团聚。",
-     "exPinyin": "Chūn jié quán jiā tuán jù。",
+     "exPinyin": "Chūnjié quán jiā tuánjù.",
      "exJa": "春節は家族が集まる。"
     },
     {
@@ -7107,7 +7107,7 @@ export const PAID_CONTENT = {
      "pinyin": "lǐwù",
      "ja": "プレゼント",
      "example": "这是给你的礼物。",
-     "exPinyin": "Zhè shì gěi nǐ de lǐ wù。",
+     "exPinyin": "Zhè shì gěi nǐ de lǐwù.",
      "exJa": "これは君へのプレゼントだ。"
     },
     {
@@ -7116,7 +7116,7 @@ export const PAID_CONTENT = {
      "pinyin": "hóngbāo",
      "ja": "お年玉・ご祝儀",
      "example": "孩子收到了红包。",
-     "exPinyin": "Hái zi shōu dào le hóng bāo。",
+     "exPinyin": "Háizi shōudào le hóngbāo.",
      "exJa": "子どもはお年玉をもらった。"
     },
     {
@@ -7125,7 +7125,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhùhè",
      "ja": "祝う",
      "example": "祝贺你毕业。",
-     "exPinyin": "Zhù hè nǐ bì yè。",
+     "exPinyin": "Zhùhè nǐ bìyè.",
      "exJa": "卒業おめでとう。"
     },
     {
@@ -7168,7 +7168,7 @@ export const PAID_CONTENT = {
      "pinyin": "chuántǒng",
      "ja": "伝統",
      "example": "这是中国的传统。",
-     "exPinyin": "Zhè shì zhōng guó de chuán tǒng。",
+     "exPinyin": "Zhè shì Zhōngguó de chuántǒng.",
      "exJa": "これは中国の伝統だ。"
     },
     {
@@ -7177,7 +7177,7 @@ export const PAID_CONTENT = {
      "pinyin": "wénhuà",
      "ja": "文化",
      "example": "我对中国文化感兴趣。",
-     "exPinyin": "Wǒ duì zhōng guó wén huà gǎn xìng qù。",
+     "exPinyin": "Wǒ duì Zhōngguó wénhuà gǎn xìngqù.",
      "exJa": "中国文化に興味がある。"
     },
     {
@@ -7186,7 +7186,7 @@ export const PAID_CONTENT = {
      "pinyin": "lìshǐ",
      "ja": "歴史",
      "example": "这座城市历史悠久。",
-     "exPinyin": "Zhè zuò chéng shì lì shǐ yōu jiǔ。",
+     "exPinyin": "Zhè zuò chéngshì lìshǐ yōujiǔ.",
      "exJa": "この街は歴史が長い。"
     },
     {
@@ -7195,7 +7195,7 @@ export const PAID_CONTENT = {
      "pinyin": "yìshù",
      "ja": "芸術",
      "example": "他热爱艺术。",
-     "exPinyin": "Tā rè ài yì shù。",
+     "exPinyin": "Tā rè'ài yìshù.",
      "exJa": "彼は芸術を愛している。"
     },
     {
@@ -7204,7 +7204,7 @@ export const PAID_CONTENT = {
      "pinyin": "yīnyuè",
      "ja": "音楽",
      "example": "我喜欢听音乐。",
-     "exPinyin": "Wǒ xǐ huan tīng yīn yuè。",
+     "exPinyin": "Wǒ xǐhuan tīng yīnyuè.",
      "exJa": "音楽を聴くのが好きだ。"
     },
     {
@@ -7247,7 +7247,7 @@ export const PAID_CONTENT = {
      "pinyin": "yuèqì",
      "ja": "楽器",
      "example": "你会弹什么乐器？",
-     "exPinyin": "Nǐ huì tán shén me yuè qì？",
+     "exPinyin": "Nǐ huì tán shénme yuèqì?",
      "exJa": "どんな楽器が弾ける？"
     },
     {
@@ -7256,7 +7256,7 @@ export const PAID_CONTENT = {
      "pinyin": "huìhuà",
      "ja": "絵画",
      "example": "她喜欢绘画。",
-     "exPinyin": "Tā xǐ huan huì huà。",
+     "exPinyin": "Tā xǐhuan huìhuà.",
      "exJa": "彼女は絵を描くのが好きだ。"
     },
     {
@@ -7265,7 +7265,7 @@ export const PAID_CONTENT = {
      "pinyin": "zuòpǐn",
      "ja": "作品",
      "example": "这是他的新作品。",
-     "exPinyin": "Zhè shì tā de xīn zuò pǐn。",
+     "exPinyin": "Zhè shì tā de xīn zuòpǐn.",
      "exJa": "これは彼の新作だ。"
     },
     {
@@ -7274,7 +7274,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhǎnlǎn",
      "ja": "展覧会",
      "example": "这个展览很有名。",
-     "exPinyin": "Zhè ge zhǎn lǎn hěn yǒu míng。",
+     "exPinyin": "Zhège zhǎnlǎn hěn yǒumíng.",
      "exJa": "この展覧会は有名だ。"
     },
     {
@@ -7283,7 +7283,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiémù",
      "ja": "番組・演目",
      "example": "这个节目很有意思。",
-     "exPinyin": "Zhè ge jié mù hěn yǒu yì sī。",
+     "exPinyin": "Zhège jiémù hěn yǒu yìsi.",
      "exJa": "この番組は面白い。"
     },
     {
@@ -7326,7 +7326,7 @@ export const PAID_CONTENT = {
      "pinyin": "bàozhǐ",
      "ja": "新聞",
      "example": "我每天看报纸。",
-     "exPinyin": "Wǒ měi tiān kàn bào zhǐ。",
+     "exPinyin": "Wǒ měitiān kàn bàozhǐ.",
      "exJa": "毎日新聞を読む。"
     },
     {
@@ -7335,7 +7335,7 @@ export const PAID_CONTENT = {
      "pinyin": "zázhì",
      "ja": "雑誌",
      "example": "我买了一本杂志。",
-     "exPinyin": "Wǒ mǎi le yì běn zá zhì。",
+     "exPinyin": "Wǒ mǎi le yì běn zázhì.",
      "exJa": "雑誌を一冊買った。"
     },
     {
@@ -7344,7 +7344,7 @@ export const PAID_CONTENT = {
      "pinyin": "guǎnggào",
      "ja": "広告",
      "example": "电视上有很多广告。",
-     "exPinyin": "Diàn shì shàng yǒu hěn duō guǎng gào。",
+     "exPinyin": "Diànshì shàng yǒu hěn duō guǎnggào.",
      "exJa": "テレビには広告が多い。"
     },
     {
@@ -7353,7 +7353,7 @@ export const PAID_CONTENT = {
      "pinyin": "guǎngbō",
      "ja": "放送",
      "example": "我在听广播。",
-     "exPinyin": "Wǒ zài tīng guǎng bō。",
+     "exPinyin": "Wǒ zài tīng guǎngbō.",
      "exJa": "ラジオを聴いている。"
     },
     {
@@ -7362,7 +7362,7 @@ export const PAID_CONTENT = {
      "pinyin": "wǎngzhàn",
      "ja": "ウェブサイト",
      "example": "这个网站很有用。",
-     "exPinyin": "Zhè ge wǎng zhàn hěn yǒu yòng。",
+     "exPinyin": "Zhège wǎngzhàn hěn yǒuyòng.",
      "exJa": "このサイトは役立つ。"
     },
     {
@@ -7405,7 +7405,7 @@ export const PAID_CONTENT = {
      "pinyin": "wǎngluò",
      "ja": "ネットワーク",
      "example": "网络很慢。",
-     "exPinyin": "Wǎng luò hěn màn。",
+     "exPinyin": "Wǎngluò hěn màn.",
      "exJa": "ネットが遅い。"
     },
     {
@@ -7414,7 +7414,7 @@ export const PAID_CONTENT = {
      "pinyin": "mìmǎ",
      "ja": "パスワード",
      "example": "请输入密码。",
-     "exPinyin": "Qǐng shū rù mì mǎ。",
+     "exPinyin": "Qǐng shūrù mìmǎ.",
      "exJa": "パスワードを入力してください。"
     },
     {
@@ -7423,7 +7423,7 @@ export const PAID_CONTENT = {
      "pinyin": "xiàzài",
      "ja": "ダウンロードする",
      "example": "我下载了一个软件。",
-     "exPinyin": "Wǒ xià zài le yí gè ruǎn jiàn。",
+     "exPinyin": "Wǒ xiàzài le yí gè ruǎnjiàn.",
      "exJa": "ソフトをダウンロードした。"
     },
     {
@@ -7432,7 +7432,7 @@ export const PAID_CONTENT = {
      "pinyin": "xìnxī",
      "ja": "情報",
      "example": "这条信息很重要。",
-     "exPinyin": "Zhè tiáo xìn xī hěn zhòng yào。",
+     "exPinyin": "Zhè tiáo xìnxī hěn zhòngyào.",
      "exJa": "この情報は重要だ。"
     },
     {
@@ -7441,7 +7441,7 @@ export const PAID_CONTENT = {
      "pinyin": "kēxué",
      "ja": "科学",
      "example": "他研究科学。",
-     "exPinyin": "Tā yán jiū kē xué。",
+     "exPinyin": "Tā yánjiū kēxué.",
      "exJa": "彼は科学を研究している。"
     },
     {
@@ -7484,7 +7484,7 @@ export const PAID_CONTENT = {
      "pinyin": "jìshù",
      "ja": "技術",
      "example": "这项技术很先进。",
-     "exPinyin": "Zhè xiàng jì shù hěn xiān jìn。",
+     "exPinyin": "Zhè xiàng jìshù hěn xiānjìn.",
      "exJa": "この技術は進んでいる。"
     },
     {
@@ -7493,7 +7493,7 @@ export const PAID_CONTENT = {
      "pinyin": "fāzhǎn",
      "ja": "発展する",
      "example": "城市发展得很快。",
-     "exPinyin": "Chéng shì fā zhǎn dé hěn kuài。",
+     "exPinyin": "Chéngshì fāzhǎn de hěn kuài.",
      "exJa": "都市の発展は速い。"
     },
     {
@@ -7502,7 +7502,7 @@ export const PAID_CONTENT = {
      "pinyin": "gōngyè",
      "ja": "工業",
      "example": "这里工业发达。",
-     "exPinyin": "Zhè lǐ gōng yè fā dá。",
+     "exPinyin": "Zhèlǐ gōngyè fādá.",
      "exJa": "ここは工業が発達している。"
     },
     {
@@ -7511,7 +7511,7 @@ export const PAID_CONTENT = {
      "pinyin": "nóngyè",
      "ja": "農業",
      "example": "农业很重要。",
-     "exPinyin": "Nóng yè hěn zhòng yào。",
+     "exPinyin": "Nóngyè hěn zhòngyào.",
      "exJa": "農業は重要だ。"
     },
     {
@@ -7520,7 +7520,7 @@ export const PAID_CONTENT = {
      "pinyin": "shèhuì",
      "ja": "社会",
      "example": "社会在不断变化。",
-     "exPinyin": "Shè huì zài bú duàn biàn huà。",
+     "exPinyin": "Shèhuì zài búduàn biànhuà.",
      "exJa": "社会は常に変化している。"
     },
     {
@@ -7563,7 +7563,7 @@ export const PAID_CONTENT = {
      "pinyin": "jīngjì",
      "ja": "経済",
      "example": "经济发展很快。",
-     "exPinyin": "Jīng jì fā zhǎn hěn kuài。",
+     "exPinyin": "Jīngjì fāzhǎn hěn kuài.",
      "exJa": "経済の発展は速い。"
     },
     {
@@ -7572,7 +7572,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhèngfǔ",
      "ja": "政府",
      "example": "政府发布了新政策。",
-     "exPinyin": "Zhèng fǔ fā bù le xīn zhèng cè。",
+     "exPinyin": "Zhèngfǔ fābù le xīn zhèngcè.",
      "exJa": "政府は新政策を発表した。"
     },
     {
@@ -7581,7 +7581,7 @@ export const PAID_CONTENT = {
      "pinyin": "fǎlǜ",
      "ja": "法律",
      "example": "我们要遵守法律。",
-     "exPinyin": "Wǒ men yào zūn shǒu fǎ lǜ。",
+     "exPinyin": "Wǒmen yào zūnshǒu fǎlǜ.",
      "exJa": "法律を守らねばならない。"
     },
     {
@@ -7590,7 +7590,7 @@ export const PAID_CONTENT = {
      "pinyin": "huánbǎo",
      "ja": "環境保護",
      "example": "环保很重要。",
-     "exPinyin": "Huán bǎo hěn zhòng yào。",
+     "exPinyin": "Huánbǎo hěn zhòngyào.",
      "exJa": "環境保護は大切だ。"
     },
     {
@@ -7599,7 +7599,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiénéng",
      "ja": "省エネ",
      "example": "这种灯很节能。",
-     "exPinyin": "Zhè zhǒng dēng hěn jié néng。",
+     "exPinyin": "Zhè zhǒng dēng hěn jiénéng.",
      "exJa": "この照明は省エネだ。"
     },
     {
@@ -27945,13 +27945,13 @@ export const PAID_CONTENT = {
     {
      "spk": "F",
      "zh": "因为时间比较紧，所以你打算怎么选择重点？",
-     "pinyin": "Yīnwèi shíjiān bǐjiào jǐn, suǒyǐ nǐ dǎsuàn zěnme xuǎnzé zhòngdiǎn?",
+     "pinyin": "Yīnwèi shíjiān bǐjiào jǐn, suǒyǐ nǐ dǎsuan zěnme xuǎnzé zhòngdiǎn?",
      "ja": "時間が結構タイトだから、どうやって重点を選ぶつもり？"
     },
     {
      "spk": "M",
      "zh": "虽然时间不多，但是我打算先把最重要的部分检查完，剩下的以后再说。",
-     "pinyin": "Suīrán shíjiān bù duō, dànshì wǒ dǎsuàn xiān bǎ zuì zhòngyào de bùfen jiǎnchá wán, shèngxià de yǐhòu zài shuō.",
+     "pinyin": "Suīrán shíjiān bù duō, dànshì wǒ dǎsuan xiān bǎ zuì zhòngyào de bùfen jiǎnchá wán, shèngxià de yǐhòu zài shuō.",
      "ja": "時間は多くないけど、まず一番重要な部分をチェックし終えて、残りは後で考えるつもりだよ。"
     }
    ],
@@ -28072,7 +28072,7 @@ export const PAID_CONTENT = {
     },
     {
      "zh": "虽然我对新的工作内容很有兴趣，但还不太了解具体的目的是什么，所以打算先了解清楚，再决定怎么安排时间。",
-     "pinyin": "Suīrán wǒ duì xīn de gōngzuò nèiróng hěn yǒu xìngqù, dàn hái bú tài liǎojiě jùtǐ de mùdì shì shénme, suǒyǐ dǎsuàn xiān liǎojiě qīngchu, zài juédìng zěnme ānpái shíjiān.",
+     "pinyin": "Suīrán wǒ duì xīn de gōngzuò nèiróng hěn yǒu xìngqù, dàn hái bú tài liǎojiě jùtǐ de mùdì shì shénme, suǒyǐ dǎsuan xiān liǎojiě qīngchu, zài juédìng zěnme ānpái shíjiān.",
      "ja": "新しい仕事の内容にはとても興味がありますが、具体的な目的がまだあまり分かっていないので、まず詳しく理解してから、時間の使い方を決めるつもりです。"
     }
    ],
@@ -28097,7 +28097,7 @@ export const PAID_CONTENT = {
     {
      "spk": "M",
      "zh": "刚才看了，写得不错，但是重点不太清楚，跟结论的关系有点儿乱。",
-     "pinyin": "Gāngcái kàn le, xiě de búcuò, dànshì zhòngdiǎn bú tài qīngchu, gēn jiélùn de guānxì yǒudiǎnr luàn.",
+     "pinyin": "Gāngcái kàn le, xiě de búcuò, dànshì zhòngdiǎn bú tài qīngchu, gēn jiélùn de guānxi yǒudiǎnr luàn.",
      "ja": "さっき見ました、よく書けていますが、要点があまりはっきりせず、結論との関係が少し分かりにくいです。"
     },
     {
@@ -29072,7 +29072,7 @@ export const PAID_CONTENT = {
     {
      "spk": "M",
      "zh": "既然他这么信任我，我就打算按照他的建议去做。",
-     "pinyin": "Jìrán tā zhème xìnrèn wǒ, wǒ jiù dǎsuàn ànzhào tā de jiànyì qù zuò.",
+     "pinyin": "Jìrán tā zhème xìnrèn wǒ, wǒ jiù dǎsuan ànzhào tā de jiànyì qù zuò.",
      "ja": "彼がこれほど信頼してくれている以上、彼の助言に従ってやってみるつもりです。"
     }
    ],
@@ -29193,7 +29193,7 @@ export const PAID_CONTENT = {
    ],
    "judge": {
     "zh": "这次活动跟节约用纸没有关系。",
-    "pinyin": "Zhè cì huódòng gēn jiéyuē yòng zhǐ méiyǒu guānxì.",
+    "pinyin": "Zhè cì huódòng gēn jiéyuē yòng zhǐ méiyǒu guānxi.",
     "ja": "（言い換え）今回の活動は紙の節約とは関係がない。"
    },
    "answer": false,
@@ -29405,7 +29405,7 @@ export const PAID_CONTENT = {
    "narrator": [
     {
      "zh": "新来的同事性格很活泼，也很友好，办公室因为她变得更热闹了。",
-     "pinyin": "Xīn lái de tóngshì xìnggé hěn huópō, yě hěn yǒuhǎo, bàngōngshì yīnwèi tā biàn de gèng rènào le.",
+     "pinyin": "Xīn lái de tóngshì xìnggé hěn huópō, yě hěn yǒuhǎo, bàngōngshì yīnwèi tā biàn de gèng rènao le.",
      "ja": "新しく来た同僚は性格がとても活発で、友好的でもあり、オフィスは彼女のせいでもっと賑やかになりました。"
     },
     {
@@ -29472,7 +29472,7 @@ export const PAID_CONTENT = {
     {
      "spk": "M",
      "zh": "这件事你有什么看法？我对这个客户的印象不太好，脾气好像很急。",
-     "pinyin": "Zhè jiàn shì nǐ yǒu shénme kànfǎ? Wǒ duì zhège kèhù de yìnxiàng bú tài hǎo, píqì hǎoxiàng hěn jí.",
+     "pinyin": "Zhè jiàn shì nǐ yǒu shénme kànfǎ? Wǒ duì zhège kèhù de yìnxiàng bú tài hǎo, píqi hǎoxiàng hěn jí.",
      "ja": "この件についてどう思いますか？私はこの客の印象があまり良くなくて、気性がせっかちみたいです。"
     },
     {
@@ -29496,7 +29496,7 @@ export const PAID_CONTENT = {
    ],
    "q": {
     "zh": "女的打算怎么处理这件事？",
-    "pinyin": "Nǚ de dǎsuàn zěnme chǔlǐ zhè jiàn shì?",
+    "pinyin": "Nǚ de dǎsuan zěnme chǔlǐ zhè jiàn shì?",
     "ja": "（質問）女性はこの件をどう処理するつもりですか？"
    },
    "opts": [
@@ -29790,7 +29790,7 @@ export const PAID_CONTENT = {
    "narrator": [
     {
      "zh": "这家公司在招聘新员工，我打算去面试。",
-     "pinyin": "Zhè jiā gōngsī zài zhāopìn xīn yuángōng, wǒ dǎsuàn qù miànshì.",
+     "pinyin": "Zhè jiā gōngsī zài zhāopìn xīn yuángōng, wǒ dǎsuan qù miànshì.",
      "ja": "この会社は新しい社員を募集していて、私は面接に行くつもりです。"
     },
     {
@@ -30523,7 +30523,7 @@ export const PAID_CONTENT = {
     {
      "spk": "M",
      "zh": "你最近怎么每天都去锻炼？是打算减肥吗？",
-     "pinyin": "Nǐ zuìjìn zěnme měitiān dōu qù duànliàn? Shì dǎsuàn jiǎnféi ma?",
+     "pinyin": "Nǐ zuìjìn zěnme měitiān dōu qù duànliàn? Shì dǎsuan jiǎnféi ma?",
      "ja": "最近どうして毎日運動しに行ってるの？ダイエットするつもり？"
     },
     {
@@ -30737,7 +30737,7 @@ export const PAID_CONTENT = {
     },
     {
      "zh": "也许是对方换了新号码，我打算重新确认一下。",
-     "pinyin": "Yěxǔ shì duìfāng huàn le xīn hàomǎ, wǒ dǎsuàn chóngxīn quèrèn yíxià.",
+     "pinyin": "Yěxǔ shì duìfāng huàn le xīn hàomǎ, wǒ dǎsuan chóngxīn quèrèn yíxià.",
      "ja": "もしかすると相手が新しい番号に変えたのかもしれないので、改めて確認するつもりです。"
     }
    ],
@@ -30851,7 +30851,7 @@ export const PAID_CONTENT = {
     },
     {
      "zh": "我打算坐火车回老家，已经在网上订好了座位，还打印了车票，听说今年学生票免费。",
-     "pinyin": "Wǒ dǎsuàn zuò huǒchē huí lǎojiā, yǐjīng zài wǎngshàng dìng hǎo le zuòwèi, hái dǎyìn le chēpiào, tīngshuō jīnnián xuésheng piào miǎnfèi.",
+     "pinyin": "Wǒ dǎsuan zuò huǒchē huí lǎojiā, yǐjīng zài wǎngshàng dìng hǎo le zuòwèi, hái dǎyìn le chēpiào, tīngshuō jīnnián xuésheng piào miǎnfèi.",
      "ja": "私は電車で実家に帰るつもりで、もうネットで座席を予約して、切符も印刷しました。今年は学生の切符が無料だそうです。"
     }
    ],

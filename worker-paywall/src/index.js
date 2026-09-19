@@ -13,7 +13,7 @@
 // （src/firebase-verify.js でGoogleの公開鍵と照合して検証する）。
 
 import { verifyFirebaseIdToken } from './firebase-verify.js';
-import { verifyStripeSignature, createCheckoutSession } from './stripe.js';
+import { verifyStripeSignature, createCheckoutSession, isSessionPaidBy } from './stripe.js';
 import { PAID_CONTENT } from './content-bundle.js';
 
 const ALLOWED_ORIGINS = [
@@ -99,9 +99,41 @@ export default {
       if (!env.STRIPE_SECRET_KEY || !env.STRIPE_PRICE_ID) {
         return json({ error: 'サーバー側の決済設定が未完了です' }, 500, origin);
       }
-      const session = await createCheckoutSession(env, uid);
-      if (!session || !session.url) return json({ error: '決済ページの作成に失敗しました' }, 502, origin);
+      let coupon;
+      try {
+        const body = await request.json();
+        coupon = body.coupon;
+      } catch {}
+      // ローカルで動かしているときは決済後もそこへ戻す。本番のAPP_ORIGINは
+      // パス（/HSK4）を含みOriginヘッダーからは復元できないので、そのまま使う。
+      const backTo = LOCAL_ORIGIN.test(origin) ? origin : null;
+      const session = await createCheckoutSession(env, uid, coupon, backTo);
+      if (!session || !session.url) {
+        if (session && session.failed === 'coupon') {
+          return json({ error: 'クーポンコードが正しくありません。入力をご確認ください。' }, 400, origin);
+        }
+        return json({ error: '決済ページの作成に失敗しました' }, 502, origin);
+      }
       return json({ url: session.url }, 200, origin);
+    }
+
+    // 決済完了後にアプリが戻ってきたときの購入確定。Webhookが届かなかった場合の
+    // second sourceであり、Webhookが先に通っていれば同じ内容を上書きするだけ。
+    if (url.pathname === '/confirm' && request.method === 'POST') {
+      const uid = await requireUid(request);
+      if (!uid) return json({ error: 'ログインしてください' }, 401, origin);
+      let sessionId = '';
+      try { sessionId = (await request.json()).session_id || ''; } catch {}
+      if (!sessionId) return json({ error: 'session_idが必要です' }, 400, origin);
+      if (!(await isSessionPaidBy(env, sessionId, uid))) {
+        return json({ purchased: false }, 200, origin);
+      }
+      await env.ENTITLEMENTS.put(uid, JSON.stringify({
+        purchased: true,
+        purchasedAt: Date.now(),
+        sessionId,
+      }));
+      return json({ purchased: true }, 200, origin);
     }
 
     if (url.pathname === '/entitlement' && request.method === 'GET') {

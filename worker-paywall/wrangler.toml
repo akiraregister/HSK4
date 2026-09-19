@@ -7,7 +7,7 @@ compatibility_date = "2026-08-30"
 APP_ORIGIN = "https://akiraregister.github.io/HSK4"
 # Stripeの価格ID（ダッシュボードの商品ページに price_ から始まる文字列で表示される）
 # 秘密情報ではないが、初回配置までは空のままでよい。
-STRIPE_PRICE_ID = ""
+STRIPE_PRICE_ID = "price_1UCeb2RrROjIBSdfzvdom33y"
 
 # 以下はsecretとして置く（このファイルには書かない。手順はREADME.md参照）
 #   npx wrangler secret put STRIPE_SECRET_KEY
@@ -16,4 +16,4 @@ STRIPE_PRICE_ID = ""
 # 購入済みフラグを保存するKV。作成手順はREADME.md参照。
 [[kv_namespaces]]
 binding = "ENTITLEMENTS"
-id = "ここにKV名前空間のIDを貼る"
+id = "1373b4b05d194c43bef4dffefe1b1bdf"

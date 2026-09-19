@@ -25,10 +25,23 @@ Workerとして作った。
 
 | エンドポイント | 認証 | 内容 |
 |---|---|---|
-| `POST /checkout` | Firebase IDトークン（`Authorization: Bearer ...`） | Stripe Checkout Sessionを作り、決済ページのURLを返す |
+| `POST /checkout` | Firebase IDトークン（`Authorization: Bearer ...`） | Stripe Checkout Sessionを作り、決済ページのURLを返す。bodyの`coupon`でクーポン適用 |
 | `POST /webhook` | Stripeの署名（`Stripe-Signature`） | 決済完了イベントを受け、KVに購入済みを記録する |
+| `POST /confirm` | Firebase IDトークン | bodyの`session_id`をStripeへ照会し、支払い済みかつ本人のものならKVに購入済みを記録する（Webhookが届かない場合の代替経路） |
 | `GET /entitlement` | Firebase IDトークン | ログイン中ユーザーが購入済みかを `{purchased: true/false}` で返す |
 | `GET /content` | Firebase IDトークン + 購入済み | Day8-90本体（`src/content-bundle.js`）をそのまま返す |
+
+### なぜ `/confirm` があるか
+
+Webhookだけに頼ると、届かなかったときに購入が永久に反映されない。実際に
+「決済も`checkout.session.completed`の発生も成功しているのにWebhookだけ来ない」
+状態に遭遇したため、Stripe公式も推奨する二重化を入れた。
+
+`success_url`に`session_id={CHECKOUT_SESSION_ID}`を付けておき、戻ってきたアプリが
+それを`/confirm`へ渡す。Workerは**Stripeへ直接問い合わせて**
+`payment_status === 'paid'` かつ `client_reference_id` がFirebaseで検証済みのuidと
+一致することを確かめてからKVに書く。session_idは推測不可能なうえ、他人のものを
+持ち込んでもuidが一致せず弾かれる。
 
 `/checkout` と `/entitlement` はFirebaseの署名付きIDトークンで本人確認する
 （Admin SDK無しで、Googleの公開鍵と照合するだけ。詳しくは `src/firebase-verify.js`
@@ -57,20 +70,47 @@ Workerを配置していなくてもテストは動く）。
 返ってきたURLへ遷移）。Day8以降でコンテンツが無い場合は `lockedDayHTML()` の
 ロック画面を表示する。
 
-Stripeの`success_url`（`?purchase=success`）で戻ってきたときは、ログイン確認後に
-`index.html`の`onAuthStateChanged`内で自動的に`fetchPaidContent()`を呼び、成功なら
-トースト表示のうえ再描画する（`?purchase=cancel`はURLだけ掃除）。ログインのたびに
-未購入分が無いか一度だけ確認もするので、別端末で購入した場合もログインすれば反映される。
+Stripeの`success_url`（`?purchase=success&session_id=...`）で戻ってきたときは、
+ログイン確認後に`index.html`の`onAuthStateChanged`内で`confirmPurchase(session_id)`
+→`fetchPaidContent()`の順に呼び、成功ならトースト表示（9秒。既定の3.6秒だと
+決済直後の待ち時間中に出て消え、気づけなかった）のうえ再描画する
+（`?purchase=cancel`はURLだけ掃除）。ログインのたびに未購入分が無いか一度だけ
+確認もするので、別端末で購入した場合もログインすれば反映される。
 
 ## まだやっていないこと（次のフェーズ）
 
-- **`hsk4-grader`（作文採点）側の認証追加** — 現状は誰でも呼べる。将来は
-  こちらのFirebase検証の仕組みを流用し、有料ユーザーのみ・回数制限付きに
-  する想定（別タスク）。
+- **Stripeの本番モードへの切り替え** — いまはサンドボックス。`sk_live_...`の
+  APIキー、本番のWebhook署名シークレット、本番の価格IDに差し替えて再配置する。
+- **Webhookが届かない件の調査** — 上記「既知の問題」参照。`/confirm`があるので
+  購入自体は反映されるが、返金・チャージバックを扱うなら必要になる。
+- **クーポンの動作確認** — `FRIEND2024`／`EARLYBIRD`は作成済みだが、実際に
+  適用した決済はまだ試していない。
 - **`worker/build-bank.mjs`との連携** — 作文採点Workerの `writing-bank.js` は
   Day1-7（`index.html`）とDay8-90（`content-bundle.js`）の両方をマージして
   作るように更新済み。`content-bundle.js`を作り直したら、`worker/build-bank.mjs`
   も実行し直すこと。
+
+## 現在の配置状況（2026年9月）
+
+**配置済み・テストモードで通し動作確認済み。**
+
+| 項目 | 値 |
+|---|---|
+| Worker | `https://hsk4-paywall.hsk4test.workers.dev` |
+| KV名前空間 | `1373b4b05d194c43bef4dffefe1b1bdf` |
+| 価格ID（サンドボックス） | `price_1UCeb2RrROjIBSdfzvdom33y`（¥4,800） |
+| クーポン | `FRIEND2024`（100%オフ・無期限）、`EARLYBIRD`（50%オフ） |
+| Stripe環境 | サンドボックス（テストモード）。**本番切り替えは未実施** |
+
+### 既知の問題：Webhookが届かない
+
+決済も`checkout.session.completed`の発生も成功しているのに、`POST /webhook`に
+Stripeからの配信が来ない。Worker自体は生きている（署名なしのリクエストには400を返す）。
+Stripe CLIで`webhook_endpoints`（v1 API）を使って登録したが、サンドボックスでは
+v2の`event_destinations`でないと配信されない可能性がある（未検証）。
+
+`/confirm`が代わりに機能しているため購入は反映される。返金やチャージバックを
+扱うようになったらWebhookが要るので、そのときに調べ直すこと。
 
 ## 初めて配置するとき
 
@@ -91,9 +131,25 @@ npx wrangler kv namespace create ENTITLEMENTS
 
 ### 2. Stripeで商品・価格を作る
 
-Stripeダッシュボードで商品（例：「加油 HSK4 90日プラン」）と、買い切り用の
-価格（One time、¥7,800など）を作り、価格ID（`price_...`）を控える。
-それを `wrangler.toml` の `STRIPE_PRICE_ID` に貼る。
+Stripeダッシュボードの「サンドボックス」環境は画面構成が通常のテストモードと違い、
+商品カタログやクーポンのメニューが見つからないことがある。**ワークベンチの「Shell」
+タブ**（ブラウザ上でStripe CLIが動く）でコマンドを打つのが確実。実際に使ったのは
+これ。商品と価格が同時に作られ、`price_...`が返る。
+
+```
+stripe prices create --unit-amount=4800 --currency=jpy -d "product_data[name]=加油 HSK4 90日プラン"
+```
+
+返ってきた `"id": "price_..."` を `wrangler.toml` の `STRIPE_PRICE_ID` に貼る。
+
+クーポンも同じくShellから作れる。
+
+```
+stripe coupons create -d "id=FRIEND2024" -d "percent_off=100" -d "duration=once"
+```
+
+`duration` は `once` / `repeating` / `forever` のいずれか（`limited`などは通らない）。
+期限を付ける場合の `redeem_by` は**未来のUNIX時刻**でないと弾かれる。
 
 ### 3. StripeのAPIキーとWebhook署名シークレットを設定する
 
@@ -112,16 +168,34 @@ npx wrangler secret put STRIPE_WEBHOOK_SECRET
 npx wrangler deploy
 ```
 
-`hsk4-paywall.<アカウント名>.workers.dev` のようなURLが出る。Stripeダッシュボードの
-「Webhook」設定で、このURLの末尾に `/webhook` を付けたものを登録し、
-イベントは `checkout.session.completed` を選ぶ。登録すると署名シークレットが
-発行されるので、それを上のステップ3で設定する。
+`hsk4-paywall.<アカウント名>.workers.dev` のようなURLが出る。Webhookの登録も
+Shellから1コマンドでできる（画面のウィザードを辿るより速い）。
+
+```
+stripe webhook_endpoints create -d "url=https://hsk4-paywall.hsk4test.workers.dev/webhook" -d "enabled_events[]=checkout.session.completed"
+```
+
+返ってきたJSONの `"secret": "whsec_..."` を、ステップ3の `STRIPE_WEBHOOK_SECRET`
+に設定する。**この値が返るのは作成時だけ**なので、その場でコピーすること。
 
 ### 5. まずテストモードで確認する
 
-Stripeのテストモード（`sk_test_...` のキー、テスト用カード番号 `4242 4242 4242 4242`）
-で一連の流れ（`/checkout` → 決済 → Webhook → `/entitlement`）を確認してから、
-本番キーに切り替えること。
+テスト用カードは `4242 4242 4242 4242`（有効期限は任意の未来、CVCは任意の3桁）。
+
+購入画面を出すには `build-content.mjs` でDay8以降を切り出しておく必要がある。
+確認が済んだら `git checkout -- index.html worker-paywall/src/content-bundle.js`
+で元に戻せる。
+
+`/checkout` は呼び出し元が `localhost` のときだけ戻り先をそのlocalhostにするので、
+`python3 -m http.server 8000` で開いたページから決済すれば手元に戻ってくる。
+
+**確認できたと判断してよいのは、`localStorage`を消した新しいセッション
+（プライベートウインドウを開き直す）でログインしてDay8が解放されたとき。**
+`/content` はKVを読んで購入済みでなければ403を返すので、解放されたなら
+KVには確実に書かれている。
+
+⚠️ `npx wrangler kv key list` は**結果整合性**で、書き込み直後は空に見える。
+これを見て「購入できていない」と誤診しかけた。アプリ側の解放状況で判断すること。
 
 ## 動作確認（ローカル）
 
