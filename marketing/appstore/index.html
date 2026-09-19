@@ -30,50 +30,65 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#DDD6C8;font-family:var(--font-body);display:flex;flex-wrap:wrap;gap:40px;padding:40px}
 
-.sheet{width:1290px;height:2796px;position:relative;overflow:hidden;background:var(--bg);flex:none}
-.sheet svg.bg{position:absolute;inset:0;width:1290px;height:2796px}
+.sheet{width:1290px;height:2796px;position:relative;overflow:hidden;background:var(--bg);flex:none;
+       display:flex;flex-direction:column}
 
-/* ── 上のことば ───────────────────────────── */
-.head{position:relative;display:flex;flex-direction:column;align-items:center;padding:92px 76px 0;text-align:center}
-.mark{display:flex;align-items:center;gap:13px;margin-bottom:40px}
+/* 上の色帯。App Storeの一覧で埋もれないよう、ここだけベタで塗る。
+   色はアプリのボタンと同じ2色（墨とアンバー）だけを交互に使う。 */
+.band{position:relative;flex:none;min-height:930px;padding:92px 62px 0;text-align:center;
+      display:flex;flex-direction:column;align-items:center;justify-content:center}
+.band.ink{background:var(--stroke);color:#FCF9F2}
+.band.amber{background:var(--brand);color:var(--ink)}
+/* 帯の下端は手書きの波で切る（アプリの背面シェイプと同じ語彙） */
+.wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:132px;display:block}
+
+.mark{display:flex;align-items:center;gap:13px;margin-bottom:34px}
 .mark .w{font-family:var(--font-display);font-weight:900;font-size:42px;letter-spacing:.06em}
-.mark .s{font-family:var(--font-hand);font-size:23px;color:var(--muted);align-self:flex-end;padding-bottom:6px}
-.eyebrow{font-family:var(--font-hand);font-size:33px;color:var(--bad);letter-spacing:.03em;margin-bottom:16px}
-h1{font-family:var(--font-display);font-weight:900;font-size:98px;line-height:1.3;letter-spacing:.004em;color:var(--ink);text-wrap:balance}
-h1.sm{font-size:74px;line-height:1.34}
-h1 em{font-style:normal;color:var(--bad)}
-.squiggle{display:block;height:18px;margin:20px 0 0;overflow:visible}
-.squiggle path{stroke:var(--brand);stroke-width:11;fill:none;stroke-linecap:round}
-.sub{font-size:36px;line-height:1.7;color:var(--ink-2);margin-top:24px;max-width:24em;text-wrap:balance}
+.mark .s{font-family:var(--font-hand);font-size:23px;opacity:.62;align-self:flex-end;padding-bottom:6px}
 
-/* ── 絵 ─────────────────────────────────── */
-.stage{position:relative;flex:1;margin-top:56px}
+.eyebrow{font-family:var(--font-display);font-weight:700;font-size:32px;letter-spacing:.06em;
+         margin-bottom:22px;padding:9px 26px;border-radius:999px;line-height:1.5}
+.ink .eyebrow{background:rgba(252,249,242,.14);color:#FBE0BC}
+.amber .eyebrow{background:rgba(42,39,36,.10);color:#6B4A14}
 
-/* 端末。アプリと同じ「太い黒枠＋大きな丸み」。下端は枠の外へ流して余白を作らない */
-.phone{position:absolute;border:9px solid var(--stroke);border-radius:80px;background:#fff;padding:15px;
-       box-shadow:0 34px 60px -30px rgba(42,39,36,.45)}
-.phone img{display:block;width:100%;border-radius:66px}
-/* type A：中央に大きく */
-.a .phone{left:50%;transform:translateX(-50%);bottom:-40px;width:930px}
+h1{font-family:var(--font-display);font-weight:900;font-size:106px;line-height:1.26;letter-spacing:.002em;text-wrap:balance}
+h1.sm{font-size:80px;line-height:1.32}
+.ink h1 em{font-style:normal;color:var(--brand)}
+.amber h1 em{font-style:normal;color:#8C3F0F}
+.squiggle{display:block;height:20px;margin:22px 0 0;overflow:visible}
+.ink .squiggle path{stroke:var(--brand)}
+.amber .squiggle path{stroke:var(--stroke)}
+.squiggle path{stroke-width:12;fill:none;stroke-linecap:round}
+.sub{font-size:35px;line-height:1.66;margin-top:24px;max-width:24em;text-wrap:balance;padding-bottom:148px}
+.ink .sub{color:rgba(252,249,242,.82)}
+.amber .sub{color:rgba(42,39,36,.78)}
+
+/* 絵。端末は帯の上へ食い込ませて奥行きを出す。
+   カード主役の型（C・D）は中身の高さが読めないので食い込ませない（見出しを隠してしまう）。 */
+.stage{position:relative;flex:1;margin-top:-172px;z-index:2}
+.c .stage,.d .stage{margin-top:-24px}
+
+.phone{position:absolute;border:11px solid var(--stroke);border-radius:84px;background:#fff;padding:16px;
+       box-shadow:0 46px 90px -34px rgba(42,39,36,.62)}
+.phone img{display:block;width:100%;border-radius:68px}
+.a .phone{left:50%;transform:translateX(-50%);bottom:-40px;width:940px}
 .a.tilt .phone{transform:translateX(-50%) rotate(-1.6deg)}
-/* type B：端末は枠内に収め、下に抜き出したカードを重ねる */
-.b .phone{left:50%;transform:translateX(-50%);top:0;width:700px;border-radius:66px;border-width:8px;padding:12px}
-.b .phone img{border-radius:53px}
+.b .phone{left:50%;transform:translateX(-50%);top:152px;width:700px;border-radius:68px;border-width:9px;padding:13px}
+.b .phone img{border-radius:54px}
 .b .card{left:50%;transform:translateX(-50%) rotate(-1.6deg);bottom:150px;width:1150px}
 
 /* 抜き出したカード。アプリの中のカードをそのまま大きくしたもの */
-.card{position:absolute;background:#fff;border:7px solid var(--stroke);border-radius:44px;overflow:hidden;
-      box-shadow:0 44px 80px -26px rgba(42,39,36,.58)}
+.card{position:absolute;background:#fff;border:9px solid var(--stroke);border-radius:46px;overflow:hidden;
+      box-shadow:0 50px 90px -30px rgba(42,39,36,.64)}
 .card img{display:block;width:100%}
 /* type C：端末枠を使わず、カードだけを大きく中央に */
 .c .stage{display:flex;align-items:center;justify-content:center}
-.c .card{position:static;width:1040px;transform:rotate(-1.1deg);max-height:100%}
-/* type D：2枚を重ねて、前 → 後 の流れを見せる。
-   カードの高さは中身によって変わるので、縦に積んで負のマージンで必ず重ねる。 */
+.c .card{position:static;width:1060px;transform:rotate(-1.1deg);max-height:100%}
+/* type D：2枚を重ねて、前 → 後 の流れを見せる */
 .d .stage{display:flex;flex-direction:column;align-items:center;justify-content:center}
 .d .card{position:static}
-.d .card.back {width:880px;transform:rotate(2.2deg);margin-left:220px;z-index:1}
-.d .card.front{width:1000px;transform:rotate(-2deg);margin-top:-46px;margin-right:170px;z-index:2}
+.d .card.back {width:820px;transform:rotate(2.2deg);margin-left:230px;z-index:1}
+.d .card.front{width:940px;transform:rotate(-2deg);margin-top:-46px;margin-right:180px;z-index:2}
 /* 長いカードは下を切って、ぼかして「続きがある」ことを示す */
 .card.clip img{margin-bottom:-2px}
 .card.clip::after{content:"";position:absolute;left:0;right:0;bottom:0;height:210px;
@@ -81,7 +96,6 @@ h1 em{font-style:normal;color:var(--bad)}
 
 /* 端末側の「ここの話です」を示す手書き風の丸 */
 .ring{position:absolute;pointer-events:none;z-index:3}
-.ring ellipse{fill:none;stroke:var(--brand);stroke-width:7;stroke-linecap:round;stroke-dasharray:46 15}
 </style>
 </head>
 <body>
@@ -92,55 +106,60 @@ const LOGO = `<svg width="58" height="58" viewBox="0 0 100 100" aria-hidden="tru
   <path d="M43 73 Q 50 79 57 73" stroke="#2A2724" stroke-width="3.8" fill="none" stroke-linecap="round"></path>
 </svg>`;
 
-// 背面シェイプ。アプリと同じ3色（セージ／アプリコット／ブラッシュ）だけを使い回す
-const SHAPE = {
-  apricot: ['#FBE0BC','M-40 300 C 200 190, 430 262, 660 200 C 890 140, 1120 200, 1330 130 L1330 600 C 1100 700, 850 600, 620 650 C 390 700, 160 640, -40 700 Z'],
-  sage:    ['#D5E4C8','M-40 280 C 210 180, 440 260, 680 200 C 920 140, 1130 210, 1330 150 L1330 620 C 1110 700, 860 620, 620 670 C 380 720, 160 660, -40 710 Z'],
-  blush:   ['#F6D9D2','M-40 260 C 180 170, 420 250, 650 190 C 880 130, 1120 200, 1330 140 L1330 640 C 1120 720, 880 640, 640 690 C 400 740, 170 680, -40 730 Z'],
-  footSage:    ['#D5E4C8','M-40 2020 C 230 1930, 460 2030, 700 1970 C 940 1912, 1140 1980, 1330 1930 L1330 2860 L-40 2860 Z'],
-  footApricot: ['#FBE0BC','M-40 2100 C 260 2010, 510 2110, 770 2050 C 1000 1998, 1180 2060, 1330 2020 L1330 2860 L-40 2860 Z'],
-  footBlush:   ['#F6D9D2','M-40 2080 C 250 1990, 500 2090, 760 2030 C 990 1978, 1180 2040, 1330 2000 L1330 2860 L-40 2860 Z'],
+// 帯の色は2つだけ（アプリのボタンと同じ墨とアンバー）。交互に並べてリズムを作る。
+// クリーム側には淡い3色（セージ／アプリコット／ブラッシュ）を1つだけ敷く。
+const FOOT = {
+  sage:    ['#D5E4C8','M-40 300 C 250 210, 500 310, 760 250 C 990 198, 1180 260, 1330 220 L1330 1200 L-40 1200 Z'],
+  apricot: ['#FBE0BC','M-40 340 C 260 250, 510 350, 770 290 C 1000 238, 1180 300, 1330 260 L1330 1200 L-40 1200 Z'],
+  blush:   ['#F6D9D2','M-40 320 C 240 230, 490 330, 750 270 C 980 218, 1170 280, 1330 240 L1330 1200 L-40 1200 Z'],
 };
+// 帯の下端の波。枚ごとに形を変えて、同じ絵に見えないようにする。
+const WAVES = [
+  'M0,54 C 210,6 430,104 650,58 C 870,12 1080,96 1290,52 L1290,132 L0,132 Z',
+  'M0,76 C 240,20 400,110 660,70 C 900,34 1090,104 1290,62 L1290,132 L0,132 Z',
+  'M0,48 C 180,102 420,14 640,62 C 880,114 1070,28 1290,74 L1290,132 L0,132 Z',
+  'M0,68 C 260,110 460,22 700,58 C 920,90 1110,30 1290,66 L1290,132 L0,132 Z',
+];
 
 const SHEETS = [
-  { n:'01', type:'a', shapes:['apricot','footSage'],
+  { n:'01', type:'a', band:'ink',   foot:'apricot', logo:true,
     eyebrow:'日本語話者のためのHSK4対策',
     h:'HSK4に特化。<br><em>90日完結</em>。',
     sub:'頻出498語と文法222項目を、90日ぶんに。',
     phone:'../shots/home.png' },
 
-  { n:'02', type:'b', shapes:['sage','footApricot'], small:true,
+  { n:'02', type:'b', band:'amber', foot:'sage', small:true,
     eyebrow:'これ1本で足りる',
     h:'毎日15分だけ。<br>単語も、文法も、<br>リスニングも、ミニテストも。',
     sub:'単語5個・文法3つ・音声1問・テスト5問。',
     phone:'../shots/day.png', card:'../shots/card-day.png',
     ring:{ shot:'day', key:'summary' } },
 
-  { n:'03', type:'d', shapes:['blush','footApricot'],
+  { n:'03', type:'d', band:'ink',   foot:'blush',
     eyebrow:'間隔反復（SM-2）',
     h:'忘れる頃に、<br>もう一度出題して、<br><em>効果的に復習</em>。',
     sub:'手応えを4段階で押すだけ。あとは自動です。',
     back:'../shots/card-flashcard-front.png', front:'../shots/card-flashcard.png' },
 
-  { n:'04', type:'c', shapes:['sage','footBlush'],
+  { n:'04', type:'c', band:'amber', foot:'sage',
     eyebrow:'文法222項目すべてに',
     h:'日本人が<br>間違えやすいところを<br><em>独自解説</em>。',
     sub:'例：日本語の過去を、全部 了 にしないこと。',
     card:'../shots/card-grammar.png', clip:true },
 
-  { n:'05', type:'d', shapes:['apricot','footSage'],
+  { n:'05', type:'d', band:'ink',   foot:'apricot',
     eyebrow:'本番は听力が約3分の1',
     h:'90日分の音声を<br><em>全部カバー</em>。',
     sub:'再生は1回だけ。聞き終えるまで文字は出ません。',
     back:'../shots/listening-ready.png', front:'../shots/card-listening.png' },
 
-  { n:'06', type:'c', shapes:['blush','footSage'],
+  { n:'06', type:'c', band:'amber', foot:'blush',
     eyebrow:'作文180問',
     h:'<em>AI</em>による添削。',
     sub:'点数と「自然な言い方」が返ります。',
-    card:'../shots/card-writing.png', cardW:1190 },
+    card:'../shots/card-writing.png', cardW:1240 },
 
-  { n:'07', type:'a', tilt:true, shapes:['sage','footBlush'],
+  { n:'07', type:'a', tilt:true, band:'ink', foot:'sage',
     eyebrow:'40問30分',
     h:'模擬試験で、<br><em>苦手な分野</em>が見える。',
     sub:'間違えた範囲は、そのまま復習に送れます。',
@@ -149,25 +168,30 @@ const SHEETS = [
 
 const REGIONS = await fetch('../shots/regions.json').then(r => r.json());
 
-document.body.innerHTML = SHEETS.map(s => {
-  const bg = s.shapes.map(k => `<path d="${SHAPE[k][1]}" fill="${SHAPE[k][0]}"></path>`).join('');
+document.body.innerHTML = SHEETS.map((s, i) => {
+  const [fc, fd] = FOOT[s.foot];
+  const wave = WAVES[i % WAVES.length];
   return `
   <section class="sheet ${s.type}${s.tilt ? ' tilt' : ''}" id="sheet-${s.n}">
-    <svg class="bg" viewBox="0 0 1290 2796" aria-hidden="true">${bg}</svg>
-    <div style="position:relative;height:100%;display:flex;flex-direction:column">
-      <div class="head">
-        <div class="mark">${LOGO}<span class="w">加油</span><span class="s">ジャーヨウ</span></div>
-        <p class="eyebrow">${s.eyebrow}</p>
-        <h1${s.small ? ' class="sm"' : ''}>${s.h}</h1>
-        <svg class="squiggle" width="280" viewBox="0 0 280 12" aria-hidden="true"><path d="M5 8 Q 40 2 75 7 T 145 7 T 215 7 T 275 6"/></svg>
-        <p class="sub">${s.sub}</p>
-      </div>
-      <div class="stage">
-        ${s.phone ? `<div class="phone"><img src="${s.phone}" alt=""></div>` : ''}
-        ${s.card ? `<div class="card${s.clip ? ' clip' : ''}"${s.cardW ? ` style="width:${s.cardW}px"` : ''}><img src="${s.card}" alt=""></div>` : ''}
-        ${s.back ? `<div class="card back"><img src="${s.back}" alt=""></div>` : ''}
-        ${s.front ? `<div class="card front"><img src="${s.front}" alt=""></div>` : ''}
-      </div>
+    <svg class="bg" viewBox="0 0 1290 1200" preserveAspectRatio="none"
+         style="position:absolute;left:0;bottom:0;width:1290px;height:1200px" aria-hidden="true">
+      <path d="${fd}" fill="${fc}"></path>
+    </svg>
+    <div class="band ${s.band}">
+      ${s.logo ? `<div class="mark">${LOGO}<span class="w">加油</span><span class="s">ジャーヨウ</span></div>` : ''}
+      <p class="eyebrow">${s.eyebrow}</p>
+      <h1${s.small ? ' class="sm"' : ''}>${s.h}</h1>
+      <svg class="squiggle" width="300" viewBox="0 0 300 13" aria-hidden="true"><path d="M6 9 Q 43 2 80 8 T 154 8 T 228 8 T 294 7"/></svg>
+      <p class="sub">${s.sub}</p>
+      <svg class="wave" viewBox="0 0 1290 132" preserveAspectRatio="none" aria-hidden="true">
+        <path d="${wave}" fill="#FCF9F2"></path>
+      </svg>
+    </div>
+    <div class="stage">
+      ${s.phone ? `<div class="phone"><img src="${s.phone}" alt=""></div>` : ''}
+      ${s.card ? `<div class="card${s.clip ? ' clip' : ''}"${s.cardW ? ` style="width:${s.cardW}px"` : ''}><img src="${s.card}" alt=""></div>` : ''}
+      ${s.back ? `<div class="card back"><img src="${s.back}" alt=""></div>` : ''}
+      ${s.front ? `<div class="card front"><img src="${s.front}" alt=""></div>` : ''}
     </div>
   </section>`;
 }).join('');
@@ -192,9 +216,10 @@ for (const s of SHEETS) {
   const cy = (ir.top - sr.top) + (reg.y + h / 2) * k;
   const rx = reg.w / 2 * k + 26, ry = h / 2 * k + 26;
   const pad = 18;
-  sheet.querySelector('.stage').insertAdjacentHTML('beforeend',
-    `<svg class="ring" style="left:${cx - rx - pad - (sheet.querySelector('.stage').getBoundingClientRect().left - sr.left)}px;` +
-    `top:${cy - ry - pad - (sheet.querySelector('.stage').getBoundingClientRect().top - sr.top)}px"` +
+  const st = sheet.querySelector('.stage'), str = st.getBoundingClientRect();
+  st.insertAdjacentHTML('beforeend',
+    `<svg class="ring" style="left:${cx - rx - pad - (str.left - sr.left)}px;` +
+    `top:${cy - ry - pad - (str.top - sr.top)}px"` +
     ` width="${(rx + pad) * 2}" height="${(ry + pad) * 2}">` +
     `<ellipse cx="${rx + pad}" cy="${ry + pad}" rx="${rx}" ry="${ry}"` +
     ` fill="none" stroke="#F2A227" stroke-width="7" stroke-linecap="round" stroke-dasharray="46 15"></ellipse></svg>`);
