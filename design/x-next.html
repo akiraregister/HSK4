@@ -1,0 +1,286 @@
+<!doctype html>
+<!-- 案X（辞書・新聞）で進める前提の、次の2つ。
+     ① アプリアイコンの候補6案　② 今日画面の改善（タップできることを示す／進捗を主役にする）
+     アプリ本体にはまだ手を入れていない。 -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>加油 — アイコン候補と今日画面の改善</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;600;700;900&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--maru:'Zen Maru Gothic',sans-serif;--kaku:'Zen Kaku Gothic New',sans-serif;
+  --mincho:'Noto Serif JP',serif;--song:'Noto Serif SC',serif;
+  --ink:#15150F;--red:#A8352A;--paper:#FCFBF8;--cream:#F3EFE4;--hair:#E5E1D6;--muted:#8F8C82}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#DEDAD2;color:#2A2724;font-family:var(--kaku);line-height:1.7;padding:22px 16px 60px}
+.wrap{max-width:1360px;margin:0 auto}
+.lede{background:#2A2724;color:#FCF9F2;border-radius:18px;padding:16px 20px;font-size:13.5px;line-height:1.8;margin-bottom:20px}
+.lede b{color:#F2A227}
+h1{font-family:var(--maru);font-size:26px;font-weight:900;margin-bottom:6px}
+h2.sec{font-family:var(--maru);font-size:20px;font-weight:900;margin:34px 0 4px}
+.sub{font-size:13.5px;color:#5C5249;margin-bottom:18px;max-width:60em}
+
+/* アイコン一覧 */
+.icons{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(236px,1fr))}
+.icard{background:#fff;border:1.5px solid #2A2724;border-radius:18px;padding:16px;display:flex;flex-direction:column}
+.icard .tag{font-family:var(--maru);font-size:11px;font-weight:900;background:#F0EBE0;border-radius:6px;padding:2px 9px;align-self:flex-start}
+.icard h3{font-family:var(--maru);font-size:16px;font-weight:900;margin:8px 0 3px}
+.icard p{font-size:12.5px;color:#5C5249;line-height:1.75}
+.sizes{display:flex;align-items:flex-end;gap:14px;margin:14px 0 10px}
+.tile{border-radius:22%;overflow:hidden;display:block;box-shadow:0 6px 16px -8px rgba(0,0,0,.4)}
+.t120{width:120px;height:120px}.t56{width:56px;height:56px;border-radius:24%}.t28{width:28px;height:28px;border-radius:26%}
+.sizes .lab{font-size:10.5px;color:var(--muted);text-align:center;font-family:var(--maru);font-weight:700}
+.pc{margin-top:auto;padding-top:10px;border-top:1px solid #EFE9DD;font-size:12px;line-height:1.7}
+.pc b{color:#4E7A3C}.pc.con b{color:#B0561F}
+.home{background:linear-gradient(160deg,#5C6B52,#3E4A39);border-radius:18px;padding:18px 16px;margin-top:20px;
+  display:flex;gap:22px;flex-wrap:wrap;justify-content:center}
+.home .app{width:72px;text-align:center}
+.home .app span{display:block;color:#fff;font-size:11px;margin-top:6px;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+
+/* 今日画面 前後 */
+.cols{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(310px,430px));justify-content:center}
+.colhead{margin-bottom:9px;display:flex;align-items:baseline;gap:8px}
+.colhead .n{font-family:var(--maru);font-size:11px;font-weight:900;background:#fff;border:1.5px solid #2A2724;border-radius:999px;padding:2px 10px}
+.colhead .n.after{background:#F2A227}
+.colhead h3{font-family:var(--maru);font-size:15.5px;font-weight:900}
+.ph{width:408px;max-width:100%;margin:0 auto;border:9px solid #2A2724;border-radius:42px;background:#fff;padding:8px;box-shadow:0 22px 44px -26px rgba(42,39,36,.55)}
+.scr{width:100%;height:790px;border-radius:34px;overflow:hidden;position:relative}
+.notes{background:#fff;border:1.5px solid #2A2724;border-radius:16px;padding:16px 18px;margin-top:16px;font-size:13.5px;line-height:1.9}
+.notes h4{font-family:var(--maru);font-size:15px;font-weight:900;margin-bottom:6px}
+.notes ul{padding-left:1.2em;margin:0}
+.notes li{margin-bottom:5px}
+.notes .k{display:inline-block;font-family:var(--maru);font-size:10.5px;font-weight:900;background:#F0EBE0;border-radius:5px;padding:1px 7px;margin-right:6px}
+
+/* ══ 案X（洗練後）の画面 ══ */
+.x{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--paper);color:var(--ink);
+   font-family:var(--mincho);font-size:14px}
+.x .body{flex:1;overflow:hidden;padding:20px 20px 22px;display:flex;flex-direction:column}
+.x .zh{font-family:var(--song)}
+.x .top{flex:none;display:flex;align-items:center;justify-content:space-between;padding:18px 20px 13px;border-bottom:1px solid var(--hair)}
+.x .brand{font-weight:600;font-size:16px;letter-spacing:.34em;display:flex;align-items:center;gap:9px}
+.x .brand .mk{width:22px;height:22px;flex:none}
+.x .streak{font-size:11.5px;color:var(--muted);font-weight:500}
+.x .streak b{font-size:14px;color:var(--ink);font-weight:600}
+.x h2{font-size:17px;font-weight:600;letter-spacing:.14em}
+.x .hero{border-top:1px solid var(--ink);padding:16px 0 0;margin-top:14px}
+.x .eye{font-size:10.5px;font-weight:500;color:var(--muted);letter-spacing:.24em}
+.x .day{font-weight:500;line-height:1;margin:8px 0}
+.x .day .l{font-size:14px;letter-spacing:.06em;color:#46443C}
+.x .day .n{font-size:40px;letter-spacing:-.02em;margin-left:6px}
+.x .m{font-size:12.5px;color:#46443C}
+.x .btn{display:block;width:100%;margin-top:14px;background:transparent;color:var(--ink);border:1px solid var(--ink);
+  border-radius:0;padding:14px;font-family:var(--mincho);font-weight:600;font-size:15px;letter-spacing:.22em;cursor:pointer}
+.x .btn .s{display:block;font-size:11px;font-weight:400;letter-spacing:0;color:var(--muted);margin-top:3px}
+
+/* 前：罫だけの2列 */
+.x .subs-old{display:grid;grid-template-columns:1fr 1fr;border-top:.5px solid var(--hair);border-bottom:.5px solid var(--hair);margin-top:18px}
+.x .subs-old>div{padding:14px 0;border-right:.5px solid var(--hair)}
+.x .subs-old>div:last-child{border-right:0;padding-left:14px}
+.x .subs-old .e{font-size:11px;color:var(--muted);letter-spacing:.06em}
+.x .subs-old .n{font-size:19px;font-weight:500;line-height:1.15}
+.x .subs-old .n .u{font-size:11px;color:var(--muted);margin-left:2px}
+
+/* 後：押せることが分かる行 */
+.x .rows{margin-top:18px;border-top:.5px solid var(--hair)}
+.x .row{display:flex;align-items:center;gap:12px;padding:13px 2px;border-bottom:.5px solid var(--hair);
+  background:transparent;border-left:0;border-right:0;width:100%;text-align:left;cursor:pointer;font-family:var(--mincho);color:var(--ink)}
+.x .row .lab{font-size:13px;letter-spacing:.1em;flex:none;width:3.6em;color:#46443C}
+.x .row .val{font-size:20px;font-weight:500;line-height:1}
+.x .row .val .u{font-size:11px;color:var(--muted);margin-left:2px}
+.x .row .memo{font-size:11px;color:var(--muted);flex:1}
+.x .row .go{flex:none;font-size:11px;letter-spacing:.18em;border:1px solid var(--ink);padding:5px 11px}
+
+/* 進捗 */
+.x .prog-old{margin-top:auto}
+.x .prog-old .week{display:flex;gap:5px}
+.x .prog-old .week div{flex:1;text-align:center;font-size:10px;color:var(--muted)}
+.x .prog-old .week .d{display:block;height:3px;background:#EDE9DE;margin-bottom:6px}
+.x .prog-old .week .d.on{background:var(--ink)}
+.x .prog-old .week .d.now{background:var(--red)}
+.x .prog-old .bar{height:1px;background:#EDE9DE;margin-top:14px}
+.x .prog-old .bar span{display:block;height:100%;background:var(--ink)}
+.x .prog-old .lbl{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:5px}
+
+.x .prog{margin-top:auto;border-top:1px solid var(--ink);padding-top:14px}
+.x .prog .head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:11px}
+.x .prog .big{font-size:30px;font-weight:500;line-height:1;letter-spacing:-.01em}
+.x .prog .big .sl{font-size:16px;color:var(--muted);margin:0 3px}
+.x .prog .big .u{font-size:12px;color:var(--muted);margin-left:3px;letter-spacing:.06em}
+.x .prog .rest{font-size:11.5px;color:var(--muted);letter-spacing:.06em}
+/* 90マス＝原稿用紙の格子。完了＝墨、今日＝朱、これから＝空マス */
+.x .grid{display:grid;grid-template-columns:repeat(15,1fr);gap:2.5px}
+.x .grid i{display:block;aspect-ratio:1;border:.5px solid #DDD8CA;background:transparent}
+.x .grid i.on{background:var(--ink);border-color:var(--ink)}
+.x .grid i.now{background:var(--red);border-color:var(--red)}
+.x .cap{font-size:10.5px;color:var(--muted);letter-spacing:.06em;margin-top:8px;text-align:right}
+
+.x .tabs{flex:none;display:flex;padding:9px 12px 15px;border-top:1px solid var(--hair)}
+.x .tabs button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;
+  font-family:var(--mincho);font-weight:500;font-size:10px;color:var(--muted);padding:3px 0}
+.x .tabs button.on{color:var(--ink);font-weight:600}
+.x .tabs svg{width:20px;height:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lede"><b>案X（辞書・新聞）で進める前提のものです。</b>
+  ①アプリアイコンの候補6案　②今日画面の改善（押せることを示す／進捗を主役にする）。アプリ本体にはまだ手を入れていません。</div>
+  <h1>加油 — アイコン候補と今日画面の改善</h1>
+
+  <h2 class="sec">① アプリアイコンの候補</h2>
+  <p class="sub">案Xの世界観（墨と朱、明朝と宋体）に合わせています。
+  ホーム画面では <b>60px 前後</b>でしか見えないので、小さいサイズでの読みやすさを基準に選んでください。
+  各案は 120 / 56 / 28px の3サイズで並べています。</p>
+  <div class="icons" id="icons"></div>
+  <div class="home" id="home"></div>
+
+  <h2 class="sec">② 今日画面の改善</h2>
+  <p class="sub">「復習」「模試」が押せると分からない点と、進捗が進捗に見えない点を直しました。</p>
+  <div class="cols" id="cols"></div>
+  <div class="notes">
+    <h4>変えたこと</h4>
+    <ul>
+      <li><span class="k">押せる</span><b>2列の罫組みをやめ、行（リスト）にした。</b>行の右端に<b>罫で囲んだ「復習する」「受ける」</b>を置いて、押せることを明示。数字は左に残して一覧性を保っています</li>
+      <li><span class="k">進捗</span><b>90日を90マスの格子にした。</b>原稿用紙の升目です。<b>完了＝墨のベタ、今日＝朱、これから＝空マス</b>。1本のバーより「残りの量」が体感できます</li>
+      <li><span class="k">進捗</span><b>「12 / 90」を30pxで置いた。</b>以前は 11px の脚注でした。進捗は脚注ではなく見出しです</li>
+      <li><span class="k">進捗</span><b>週の帯をやめた。</b>90マスが週も月も含んでいるので、週だけを別に出す必要がありません。要素が1つ減ります</li>
+      <li><span class="k">構造</span>進捗の塊を<b>太罫で区切って画面下端に固定</b>。上＝今日やること／下＝これまで、と役割が分かれます</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const INK='#15150F', RED='#A8352A', PAPER='#F6F2E6', CREAM='#EFE9DA';
+
+// 各案は関数で返す（サイズを変えても崩れないよう viewBox 固定）
+const ICONS=[
+ {n:'案1',t:'朱印「油」',
+  d:'生成りの地に、朱の角印。白抜きで「油」。加油の芯だけを取り出した印章',
+  pro:'辞書・新聞の世界観に完全に一致。<b>小さくても形が残る</b>。漢字文化の記号として強い',
+  con:'「油」単体だと意味が伝わりにくい。篆書風に作字するなら別途デザインが要る',
+  svg:s=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <g transform="rotate(-6 50 50)"><rect x="22" y="22" width="56" height="56" rx="4" fill="${RED}"/>
+    <text x="50" y="52" text-anchor="middle" dominant-baseline="central" fill="${PAPER}"
+      font-family="Noto Serif SC, serif" font-weight="600" font-size="40">油</text></g>`},
+
+ {n:'案2',t:'朱印「加油」',
+  d:'2文字を縦に組んだ落款。名前がそのまま印になる',
+  pro:'<b>名前が一目で出る</b>。印章として最も正統。中国語アプリだと即座に分かる',
+  con:'60pxでは2文字が潰れやすい。画数が多く、線が細ると読めなくなる',
+  svg:s=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <g transform="rotate(-5 50 50)"><rect x="24" y="16" width="52" height="68" rx="4" fill="${RED}"/>
+    <text x="50" y="36" text-anchor="middle" dominant-baseline="central" fill="${PAPER}"
+      font-family="Noto Serif SC, serif" font-weight="600" font-size="29">加</text>
+    <text x="50" y="65" text-anchor="middle" dominant-baseline="central" fill="${PAPER}"
+      font-family="Noto Serif SC, serif" font-weight="600" font-size="29">油</text></g>`},
+
+ {n:'案3',t:'活字の「加」',
+  d:'墨の地に生成りの「加」。活字の凸版を1本の罫で囲った体裁',
+  pro:'<b>1文字なので最も大きく置ける＝最も読みやすい</b>。辞書の register。墨地なのでホーム画面で沈まない',
+  con:'「加」単体は意味が弱く、足し算に見える可能性。中国語らしさは案1・2より弱い',
+  svg:s=>`<rect width="100" height="100" fill="${INK}"/>
+    <rect x="9" y="9" width="82" height="82" fill="none" stroke="${PAPER}" stroke-width="1" opacity=".5"/>
+    <text x="50" y="53" text-anchor="middle" dominant-baseline="central" fill="${PAPER}"
+      font-family="Noto Serif JP, serif" font-weight="500" font-size="54">加</text>`},
+
+ {n:'案4',t:'朱の丸印「四」',
+  d:'朱の丸印に白抜きの「四」。HSK4に特化していることを記号にする',
+  pro:'<b>「HSK4のアプリ」だと一目で分かる</b>。丸印は角印より小さいサイズで強い。数字は潰れにくい',
+  con:'ブランド名と繋がらない。将来HSK5を出すと使えない。<b>商品を狭く固定する</b>',
+  svg:s=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <circle cx="50" cy="50" r="30" fill="${RED}"/>
+    <text x="50" y="52" text-anchor="middle" dominant-baseline="central" fill="${PAPER}"
+      font-family="Noto Serif SC, serif" font-weight="600" font-size="34">四</text>`},
+
+ {n:'案5',t:'罫の炎',
+  d:'いまの炎を、線画へ抽象化。下に朱の1本罫',
+  pro:'<b>いまのアイコンとの連続性がある</b>。言語に依存しないので海外でも通じる。抜けが良い',
+  con:'炎アイコンは世の中に無数にあり<b>差別化が弱い</b>。中国語アプリだと分からない',
+  svg:s=>`<rect width="100" height="100" fill="${PAPER}"/>
+    <path d="M54 22 C 62 40, 74 48, 74 62 A 24 24 0 1 1 26 62 C 26 50, 37 46, 43 35 C 46 46, 52 49, 52 41 C 52 32, 50 28, 54 22 Z"
+      fill="none" stroke="${INK}" stroke-width="3.4" stroke-linejoin="round"/>
+    <rect x="30" y="84" width="40" height="2.5" fill="${RED}"/>`},
+
+ {n:'案6',t:'書票',
+  d:'二重罫の枠に縦組みの「加油」。下に朱で「九十日」。蔵書票の体裁',
+  pro:'<b>90日完結という売りまで入る</b>。本の世界観そのもので、教材らしさが最も強い',
+  con:'要素が多く<b>28pxでは完全に潰れる</b>。アイコンというより小さなポスター',
+  svg:s=>`<rect width="100" height="100" fill="${CREAM}"/>
+    <rect x="12" y="12" width="76" height="76" fill="none" stroke="${INK}" stroke-width="2.6"/>
+    <rect x="17" y="17" width="66" height="66" fill="none" stroke="${INK}" stroke-width=".9"/>
+    <text x="50" y="40" text-anchor="middle" dominant-baseline="central" fill="${INK}"
+      font-family="Noto Serif SC, serif" font-weight="600" font-size="23">加</text>
+    <text x="50" y="62" text-anchor="middle" dominant-baseline="central" fill="${INK}"
+      font-family="Noto Serif SC, serif" font-weight="600" font-size="23">油</text>
+    <rect x="34" y="73" width="32" height="1.6" fill="${RED}"/>`},
+];
+const svg=(i,px)=>`<svg class="tile t${px}" viewBox="0 0 100 100" width="${px}" height="${px}">${i.svg()}</svg>`;
+document.getElementById('icons').innerHTML=ICONS.map(i=>`
+  <div class="icard"><span class="tag">${i.n}</span><h3>${i.t}</h3><p>${i.d}</p>
+    <div class="sizes">
+      <div><div>${svg(i,120)}</div><div class="lab">120</div></div>
+      <div><div>${svg(i,56)}</div><div class="lab">56</div></div>
+      <div><div>${svg(i,28)}</div><div class="lab">28</div></div>
+    </div>
+    <div class="pc"><b>◎</b> ${i.pro}</div><div class="pc con"><b>△</b> ${i.con}</div></div>`).join('');
+document.getElementById('home').innerHTML=ICONS.map(i=>
+  `<div class="app">${svg(i,60)}<span>加油</span></div>`).join('');
+
+/* ── 今日画面 ── */
+const IC={today:'<path d="M4 7h16v13H4z"/><path d="M4 11h16"/><path d="M8 3v4M16 3v4"/>',
+ study:'<path d="M4 5h7v15H4z"/><path d="M13 5h7v15h-7z"/><path d="M11 5v15"/>',
+ vocab:'<path d="M5 19V6a2 2 0 0 1 2-2h12v16H7a2 2 0 0 0-2 2"/><path d="M9 8h7M9 12h5"/>',
+ settings:'<circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.2M12 18.8V21M21 12h-2.2M5.2 12H3M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6M18.4 18.4l-1.6-1.6M7.2 7.2 5.6 5.6"/>'};
+const ic=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
+const TABS=`<div class="tabs"><button class="on">${ic('today')}今日</button><button>${ic('study')}学習</button>
+  <button>${ic('vocab')}単語</button><button>${ic('settings')}設定</button></div>`;
+const MARK=`<svg class="mk" viewBox="0 0 100 100"><g transform="rotate(-6 50 50)">
+  <rect x="22" y="22" width="56" height="56" rx="4" fill="${RED}"/>
+  <text x="50" y="52" text-anchor="middle" dominant-baseline="central" fill="${PAPER}"
+   font-family="Noto Serif SC, serif" font-weight="600" font-size="40">油</text></g></svg>`;
+const HEAD=`<div class="top"><span class="brand">${MARK}加油</span><span class="streak"><b>12</b>日連続</span></div>`;
+const HERO=`<h2>今日やること</h2>
+  <div class="hero"><span class="eye">あたらしく覚える</span>
+    <div class="day"><span class="l">Day</span><span class="n">13</span></div>
+    <div class="m">単語5・文法3・音声1・テスト5</div>
+    <button class="btn">学習を始める<span class="s">だいたい15分</span></button></div>`;
+
+const BEFORE=`<div class="x">${HEAD}<div class="body">${HERO}
+  <div class="subs-old">
+    <div><div class="e">復習</div><div class="n">18<span class="u">問</span></div></div>
+    <div><div class="e">模試</div><div class="n">40<span class="u">問</span></div></div>
+  </div>
+  <div class="prog-old">
+    <div class="week">${['月','火','水','木','金','土','日'].map((d,i)=>
+      `<div><span class="d ${i<4?'on':i===4?'now':''}"></span>${d}</div>`).join('')}</div>
+    <div class="bar"><span style="width:13%"></span></div>
+    <div class="lbl"><span>90日のうち 12日</span><span>13%</span></div>
+  </div></div>${TABS}</div>`;
+
+const cells=Array.from({length:90},(_,i)=>
+  `<i class="${i<12?'on':i===12?'now':''}"></i>`).join('');
+const AFTER=`<div class="x">${HEAD}<div class="body">${HERO}
+  <div class="rows">
+    <button class="row"><span class="lab">復習</span><span class="val">18<span class="u">問</span></span>
+      <span class="memo">期限13 ＋ 新規5</span><span class="go">復習する</span></button>
+    <button class="row"><span class="lab">模試</span><span class="val">40<span class="u">問</span></span>
+      <span class="memo">30分</span><span class="go">受ける</span></button>
+  </div>
+  <div class="prog">
+    <div class="head"><div class="big">12<span class="sl">/</span>90<span class="u">日</span></div>
+      <div class="rest">のこり 78 日</div></div>
+    <div class="grid">${cells}</div>
+    <div class="cap">■ 完了　□ これから　<span style="color:${RED}">■</span> 今日</div>
+  </div></div>${TABS}</div>`;
+
+document.getElementById('cols').innerHTML=`
+ <div><div class="colhead"><span class="n">前</span><h3>案X 洗練後</h3></div>
+   <div class="ph"><div class="scr">${BEFORE}</div></div></div>
+ <div><div class="colhead"><span class="n after">後</span><h3>押せる／進捗を主役に</h3></div>
+   <div class="ph"><div class="scr">${AFTER}</div></div></div>`;
+</script>
+</body>
+</html>
