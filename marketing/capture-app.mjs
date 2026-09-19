@@ -5,7 +5,7 @@
 // 画面の中身は作り物ではなく、実際に index.html を操作した結果。
 // 学習状況だけを「12日完了・復習18問」に固定して撮っている（seedState）。
 import { createServer } from 'http';
-import { readFile, mkdir } from 'fs/promises';
+import { readFile, mkdir, writeFile } from 'fs/promises';
 import { readFileSync, existsSync, readdirSync } from 'fs';
 import { extname, join, normalize } from 'path';
 import { chromium } from 'playwright';
@@ -162,6 +162,39 @@ server.listen(PORT, '127.0.0.1', async () => {
     }
     await page.waitForTimeout(250);
   };
+  // カード1枚を、ヘッダーに被られずに切り出す。
+  // 要素スクショはヘッダーの下へスクロールした位置で撮られるので上端が隠れる。
+  // いったんヘッダー直下へ寄せてから、座標で切り取る。
+  const cardShot = async (page, sel, name) => {
+    await scrollUnderHeader(page, sel);
+    const box = await page.evaluate(s => {
+      const el = document.querySelector(s);
+      if (!el) return null;
+      const r = el.getBoundingClientRect();
+      // 下部の固定ナビが写り込まないよう、使える高さから差し引く
+      const nav = document.getElementById('bottomNav');
+      const navH = (nav && getComputedStyle(nav).display !== 'none') ? nav.offsetHeight : 0;
+      return { x: r.x, y: r.y, width: r.width, height: r.height, vh: window.innerHeight - navH };
+    }, sel);
+    if (!box) { console.log('  ! 見つからない', sel); return; }
+    const height = Math.min(box.height, box.vh - box.y);
+    await page.screenshot({ path: join(OUT, `${name}.png`), clip: { x: box.x, y: box.y, width: box.width, height } });
+    console.log('  ✓', name + '.png' + (height < box.height - 1 ? '（下端が入りきらず切れている）' : ''));
+  };
+  // 全画面スクショの中で、その要素がどこにあったかを記録する。
+  // App Store版下の「丸で囲む位置」はこの座標から自動で出す（手で数えると必ずずれる）。
+  const REGIONS = {};
+  const mark = async (page, shotName, sel, key) => {
+    const r = await page.evaluate(s => {
+      const el = document.querySelector(s);
+      if (!el) return null;
+      const b = el.getBoundingClientRect();
+      return { x: b.x, y: b.y, w: b.width, h: b.height, dpr: 3 };
+    }, sel);
+    if (!r) return;
+    REGIONS[shotName] = REGIONS[shotName] || {};
+    REGIONS[shotName][key] = { x: Math.round(r.x * 3), y: Math.round(r.y * 3), w: Math.round(r.w * 3), h: Math.round(r.h * 3) };
+  };
   const shot = async (page, name, opts = {}) => {
     await page.waitForTimeout(300);
     await page.screenshot({ path: join(OUT, `${name}.png`), ...opts });
@@ -183,6 +216,7 @@ server.listen(PORT, '127.0.0.1', async () => {
     await page.waitForTimeout(400);
     await page.click('#content button:has-text("復習を始める")');
     await page.waitForTimeout(400);
+    await cardShot(page, '.flashcard', 'card-flashcard-front');   // 答えを見る前
     await page.evaluate(() => window.revReveal());
     await page.waitForTimeout(300);
     // 手応えの4段階ボタンがこの画面の要なので、必ず写る位置まで送る
@@ -191,26 +225,27 @@ server.listen(PORT, '127.0.0.1', async () => {
       if (g) window.scrollTo(0, Math.max(0, g.getBoundingClientRect().bottom + window.scrollY - window.innerHeight + 24));
     });
     await shot(page, 'review');
+    await cardShot(page, '.flashcard', 'card-flashcard');
 
     // Day学習画面
     await page.evaluate(() => window.showDay(13));
     await page.waitForTimeout(800);
     await shot(page, 'day');
-    await (await page.$('#lsCard')).screenshot({ path: join(OUT, 'listening-ready.png') });
-    console.log('  ✓ listening-ready.png');
+    await mark(page, 'day', '#content .card', 'summary');
+    await cardShot(page, '#content .card', 'card-day');
+    await cardShot(page, '#lsCard', 'listening-ready');
     await page.click('#lsPlayBtn');
     await page.waitForSelector('#lsRoot .ls-opts, #lsRoot .ls-tf', { timeout: 60000 }).catch(() => {});
     await page.waitForTimeout(400);
-    const lsq = await page.$('#lsCard');
-    if (lsq) { await lsq.screenshot({ path: join(OUT, 'listening.png') }); console.log('  ✓ listening.png'); }
+    await cardShot(page, '#lsCard', 'card-listening');
     await scrollUnderHeader(page, '#lsCard');
     await shot(page, 'screen-listening');
+    await mark(page, 'screen-listening', '#lsCard', 'card');
     const opt0 = await page.$('#lsRoot .ls-opt');
     if (opt0) {
       await opt0.click();
       await page.waitForTimeout(500);
-      await (await page.$('#lsCard')).screenshot({ path: join(OUT, 'listening-answer.png') });
-      console.log('  ✓ listening-answer.png');
+      await cardShot(page, '#lsCard', 'listening-answer');
     }
     await page.evaluate(() => window.showDay(13));
     await page.waitForTimeout(700);
@@ -239,10 +274,21 @@ server.listen(PORT, '127.0.0.1', async () => {
       }
     } else if (chips[0]) { await chips[0].click(); }
     await page.waitForTimeout(250);
-    await (await page.$('#testCard')).screenshot({ path: join(OUT, 'minitest-order.png') });
-    console.log('  ✓ minitest-order.png');
+    await cardShot(page, '#testCard', 'card-minitest');
     await scrollUnderHeader(page, '#testCard');
     await shot(page, 'screen-minitest');
+
+    // 文法カード：Day1の1つ目を、詳しい解説（日本人が間違えやすい点）を開いた状態で
+    await page.evaluate(() => window.showDay(1));
+    await page.waitForTimeout(800);
+    await page.evaluate(() => {
+      const d = document.querySelector('.gitem .g-details');
+      if (d) d.open = true;
+    });
+    await page.waitForTimeout(400);
+    await cardShot(page, '.gitem', 'card-grammar');
+    await scrollUnderHeader(page, '.gitem');
+    await shot(page, 'screen-grammar');
 
     // 単語一覧
     await page.evaluate(() => window.showVocab());
@@ -278,16 +324,14 @@ server.listen(PORT, '127.0.0.1', async () => {
     if (found) {
       await page.fill('#mtTa', '他说很快。');   // 得 が抜けた、よくある間違い
       await page.waitForTimeout(200);
-      await (await page.$('#testCard')).screenshot({ path: join(OUT, 'minitest-writing.png') });
-      console.log('  ✓ minitest-writing.png');
+      await cardShot(page, '#testCard', 'card-writing');
       await scrollUnderHeader(page, '#testCard');
       await shot(page, 'screen-writing');
       if (GRADE) {
         await page.click('#mtGrade');
         await page.waitForSelector('#mtExp .mt-exp', { timeout: 40000 }).catch(() => {});
         await page.waitForTimeout(800);
-        await (await page.$('#testCard')).screenshot({ path: join(OUT, 'minitest-writing-graded.png') });
-        console.log('  ✓ minitest-writing-graded.png');
+        await cardShot(page, '#testCard', 'card-writing-graded');
       }
     } else {
       console.log('  ! 狙った作文問題に当たらなかった');
@@ -355,9 +399,24 @@ server.listen(PORT, '127.0.0.1', async () => {
     await page.waitForTimeout(600);
     await page.evaluate(() => window.scrollTo(0, 0));
     await shot(page, 'mock-result');
+    await mark(page, 'mock-result', '.lc-bands', 'bands');
+    // 得点と「分野ごと」の帯までを、座標で切り取る（DOMは変えない）
+    const clip = await page.evaluate(() => {
+      const card = document.querySelector('#content .card');
+      const bands = document.querySelector('.lc-bands');
+      if (!card || !bands) return null;
+      const a = card.getBoundingClientRect(), b = bands.getBoundingClientRect();
+      return { x: a.x, y: a.y, width: a.width, height: Math.min(b.bottom, window.innerHeight) - a.y };
+    });
+    if (clip) {
+      await page.screenshot({ path: join(OUT, 'card-mock.png'), clip });
+      console.log('  ✓ card-mock.png');
+    }
     await page.context().close();
   }
 
+  await writeFile(join(OUT, 'regions.json'), JSON.stringify(REGIONS, null, 2));
+  console.log('  ✓ regions.json');
   await browser.close();
   server.close();
   console.log('\n出力先:', OUT);

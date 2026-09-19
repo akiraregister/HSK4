@@ -1,9 +1,16 @@
 <!doctype html>
-<!-- App Store 用スクリーンショット（6枚）の版下。
+<!-- App Store 用スクリーンショット（7枚）の版下。
      1枚 1290×2796px（iPhone 6.9インチ／15・16 Pro Max の必須サイズ）。
-     書き出し: node marketing/capture-sheets.mjs → marketing/appstore/out/01..06.png
-     中の端末画面は marketing/shots/*.png（アプリを実際に操作して撮ったもの）。
-     文言を変えたら書き出し直すこと。色・書体はアプリ本体と同じトークンを使っている。 -->
+     書き出し: node marketing/capture-sheets.mjs appstore → marketing/appstore/out/01..07.png
+
+     7枚とも「端末まるごと」にすると全部同じ絵に見えて、どこの話か分からなくなる。
+     そこでレイアウトを3つに分け、枚ごとに回している。
+       type A … 端末まるごと。画面全体が訴求そのものの回（01・07）
+       type B … 端末＋その中の「小さな一箇所」を丸で囲って拡大（02）
+                 ※ 画面のほとんどを占めるカードにこれをやると、同じ絵が二度出るだけになる
+       type C … 端末枠を使わず、カード1枚を大きく。文字を読ませる回（04・06）
+       type D … カード2枚を重ね、前後の流れを見せる回（03・05）
+     中の画面は marketing/shots/*.png（アプリを実際に操作して撮ったもの）。 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -23,97 +30,175 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#DDD6C8;font-family:var(--font-body);display:flex;flex-wrap:wrap;gap:40px;padding:40px}
 
-/* 1枚ぶん。App Store の 6.9インチ枠 */
 .sheet{width:1290px;height:2796px;position:relative;overflow:hidden;background:var(--bg);flex:none}
 .sheet svg.bg{position:absolute;inset:0;width:1290px;height:2796px}
-.inner{position:relative;height:100%;display:flex;flex-direction:column;align-items:center;
-       padding:96px 86px 0}
 
-/* 上の帯：どのアプリの画面かを毎枚示す */
-.mark{display:flex;align-items:center;gap:14px;margin-bottom:46px}
-.mark .w{font-family:var(--font-display);font-weight:900;font-size:44px;letter-spacing:.06em}
-.mark .s{font-family:var(--font-hand);font-size:24px;color:var(--muted);align-self:flex-end;padding-bottom:6px}
-
-.eyebrow{font-family:var(--font-hand);font-size:34px;color:var(--bad);letter-spacing:.04em;margin-bottom:16px}
-h1{font-family:var(--font-display);font-weight:900;font-size:100px;line-height:1.3;letter-spacing:.005em;
-   text-align:center;color:var(--ink);text-wrap:balance}
+/* ── 上のことば ───────────────────────────── */
+.head{position:relative;display:flex;flex-direction:column;align-items:center;padding:92px 76px 0;text-align:center}
+.mark{display:flex;align-items:center;gap:13px;margin-bottom:40px}
+.mark .w{font-family:var(--font-display);font-weight:900;font-size:42px;letter-spacing:.06em}
+.mark .s{font-family:var(--font-hand);font-size:23px;color:var(--muted);align-self:flex-end;padding-bottom:6px}
+.eyebrow{font-family:var(--font-hand);font-size:33px;color:var(--bad);letter-spacing:.03em;margin-bottom:16px}
+h1{font-family:var(--font-display);font-weight:900;font-size:98px;line-height:1.3;letter-spacing:.004em;color:var(--ink);text-wrap:balance}
+h1.sm{font-size:74px;line-height:1.34}
 h1 em{font-style:normal;color:var(--bad)}
-.sub{font-size:35px;line-height:1.72;color:var(--ink-2);text-align:center;margin-top:26px;max-width:21em;text-wrap:balance}
-.squiggle{display:block;height:20px;margin:20px 0 0;overflow:visible}
+.squiggle{display:block;height:18px;margin:20px 0 0;overflow:visible}
 .squiggle path{stroke:var(--brand);stroke-width:11;fill:none;stroke-linecap:round}
+.sub{font-size:36px;line-height:1.7;color:var(--ink-2);margin-top:24px;max-width:24em;text-wrap:balance}
 
-/* 端末。アプリと同じ「太い黒枠＋大きな丸み」に寄せ、下端は枠の外へ流す */
-.phone{margin-top:74px;width:930px;flex:none;border:9px solid var(--stroke);border-radius:80px;background:#fff;
-       padding:15px;box-shadow:0 34px 60px -30px rgba(42,39,36,.45)}
+/* ── 絵 ─────────────────────────────────── */
+.stage{position:relative;flex:1;margin-top:56px}
+
+/* 端末。アプリと同じ「太い黒枠＋大きな丸み」。下端は枠の外へ流して余白を作らない */
+.phone{position:absolute;border:9px solid var(--stroke);border-radius:80px;background:#fff;padding:15px;
+       box-shadow:0 34px 60px -30px rgba(42,39,36,.45)}
 .phone img{display:block;width:100%;border-radius:66px}
+/* type A：中央に大きく */
+.a .phone{left:50%;transform:translateX(-50%);bottom:-40px;width:930px}
+.a.tilt .phone{transform:translateX(-50%) rotate(-1.6deg)}
+/* type B：端末は枠内に収め、下に抜き出したカードを重ねる */
+.b .phone{left:50%;transform:translateX(-50%);top:0;width:700px;border-radius:66px;border-width:8px;padding:12px}
+.b .phone img{border-radius:53px}
+.b .card{left:50%;transform:translateX(-50%) rotate(-1.6deg);bottom:150px;width:1150px}
 
-/* 端末を少し下げて、下の帯と重ならないようにする枚 */
-.sheet.tall .phone{margin-bottom:126px}
+/* 抜き出したカード。アプリの中のカードをそのまま大きくしたもの */
+.card{position:absolute;background:#fff;border:7px solid var(--stroke);border-radius:44px;overflow:hidden;
+      box-shadow:0 44px 80px -26px rgba(42,39,36,.58)}
+.card img{display:block;width:100%}
+/* type C：端末枠を使わず、カードだけを大きく中央に */
+.c .stage{display:flex;align-items:center;justify-content:center}
+.c .card{position:static;width:1040px;transform:rotate(-1.1deg);max-height:100%}
+/* type D：2枚を重ねて、前 → 後 の流れを見せる。
+   カードの高さは中身によって変わるので、縦に積んで負のマージンで必ず重ねる。 */
+.d .stage{display:flex;flex-direction:column;align-items:center;justify-content:center}
+.d .card{position:static}
+.d .card.back {width:880px;transform:rotate(2.2deg);margin-left:220px;z-index:1}
+.d .card.front{width:1000px;transform:rotate(-2deg);margin-top:-46px;margin-right:170px;z-index:2}
+/* 長いカードは下を切って、ぼかして「続きがある」ことを示す */
+.card.clip img{margin-bottom:-2px}
+.card.clip::after{content:"";position:absolute;left:0;right:0;bottom:0;height:210px;
+  background:linear-gradient(to bottom,rgba(255,255,255,0),#fff 82%)}
+
+/* 端末側の「ここの話です」を示す手書き風の丸 */
+.ring{position:absolute;pointer-events:none;z-index:3}
+.ring ellipse{fill:none;stroke:var(--brand);stroke-width:7;stroke-linecap:round;stroke-dasharray:46 15}
 </style>
 </head>
 <body>
-
-<!-- 背面シェイプ。アプリと同じ3色だけを使う。枚ごとに配置を変えてリズムを作る -->
-<template id="bgA">
-  <svg class="bg" viewBox="0 0 1290 2796" aria-hidden="true">
-    <path d="M-40 300 C 200 190, 430 260, 660 200 C 890 140, 1120 200, 1330 130 L1330 560 C 1100 660, 850 570, 620 620 C 390 670, 160 610, -40 670 Z" fill="#FBE0BC"/>
-    <path d="M-40 1980 C 220 1900, 430 1980, 660 1930 L1330 1880 L1330 2860 L-40 2860 Z" fill="#D5E4C8" opacity=".55"/>
-  </svg>
-</template>
-
-<script>
-const SHEETS = [
-  { n:'01', eyebrow:'HSK4・90日プログラム', h:'90日で、<em>HSK4に届く</em>。',
-    sub:'開くと、今日ぶんだけが出ている。<br>1日15分、単語5個と文法3つから。', img:'../shots/home.png',
-    shapes:[['#FBE0BC','M-40 300 C 200 190, 430 262, 660 200 C 890 140, 1120 200, 1330 130 L1330 600 C 1100 700, 850 600, 620 650 C 390 700, 160 640, -40 700 Z'],
-            ['#D5E4C8','M-40 2020 C 230 1930, 460 2030, 700 1970 C 940 1912, 1140 1980, 1330 1930 L1330 2860 L-40 2860 Z']] },
-
-  { n:'02', eyebrow:'間隔反復（SM-2）', h:'忘れる頃に、<br><em>もう一度</em>出る。',
-    sub:'手応えを4段階で押すだけ。<br>次に出す日は、アプリが決めます。', img:'../shots/review.png',
-    shapes:[['#F6D9D2','M-40 260 C 180 170, 420 250, 650 190 C 880 130, 1120 200, 1330 140 L1330 640 C 1120 720, 880 640, 640 690 C 400 740, 170 680, -40 730 Z'],
-            ['#FBE0BC','M-40 2120 C 260 2030, 520 2130, 780 2070 C 1000 2020, 1180 2070, 1330 2040 L1330 2860 L-40 2860 Z']] },
-
-  { n:'03', eyebrow:'498語・222文法', h:'覚えるのは、<br><em>使う</em>中国語。',
-    sub:'例文は、上海の会議室でも街角の食堂でも<br>実際に口に出す場面から選びました。', img:'../shots/day.png',
-    shapes:[['#D5E4C8','M-40 280 C 210 180, 440 260, 680 200 C 920 140, 1130 210, 1330 150 L1330 620 C 1110 700, 860 620, 620 670 C 380 720, 160 660, -40 710 Z'],
-            ['#F6D9D2','M-40 2080 C 250 1990, 500 2090, 760 2030 C 990 1978, 1180 2040, 1330 2000 L1330 2860 L-40 2860 Z']] },
-
-  { n:'04', eyebrow:'リスニング・全90日', h:'音声は、<br><em>90日ぶん全部</em>。',
-    sub:'会話が流れるのは1回だけ。<br>聞き終えるまで、中国語の文字は出ません。', img:'../shots/screen-listening.png',
-    shapes:[['#FBE0BC','M-40 240 C 200 150, 450 240, 690 180 C 930 120, 1140 190, 1330 130 L1330 660 C 1100 740, 850 660, 610 710 C 370 760, 150 700, -40 750 Z'],
-            ['#D5E4C8','M-40 2060 C 240 1970, 490 2070, 750 2010 C 980 1958, 1170 2020, 1330 1980 L1330 2860 L-40 2860 Z']] },
-
-  { n:'05', eyebrow:'ミニテスト・986問', h:'書いた中文を、<br><em>AIが直す</em>。',
-    sub:'毎日5問。並べ替えと作文があるので、<br>覚えたかではなく組み立てられるかが出ます。', img:'../shots/screen-writing.png',
-    shapes:[['#F6D9D2','M-40 270 C 190 180, 430 255, 670 195 C 910 135, 1130 205, 1330 145 L1330 630 C 1110 710, 860 630, 620 680 C 380 730, 160 670, -40 720 Z'],
-            ['#FBE0BC','M-40 2100 C 260 2010, 510 2110, 770 2050 C 1000 1998, 1180 2060, 1330 2020 L1330 2860 L-40 2860 Z']] },
-
-  { n:'06', eyebrow:'模擬試験・40問30分', h:'いまの位置が、<br><em>点数で見える</em>。',
-    sub:'分野ごとの正答率が出て、<br>間違えた範囲の語はそのまま復習へ。', img:'../shots/mock-result.png',
-    shapes:[['#D5E4C8','M-40 250 C 220 160, 460 245, 700 185 C 940 125, 1140 195, 1330 135 L1330 650 C 1100 730, 850 650, 610 700 C 370 750, 150 690, -40 740 Z'],
-            ['#F6D9D2','M-40 2090 C 250 2000, 500 2100, 760 2040 C 990 1988, 1180 2050, 1330 2010 L1330 2860 L-40 2860 Z']] },
-];
-
+<script type="module">
 const LOGO = `<svg width="58" height="58" viewBox="0 0 100 100" aria-hidden="true">
   <path d="M52 6 C 62 30, 80 42, 80 64 A 30 30 0 1 1 20 64 C 20 46, 33 41, 41 28 C 44 41, 50 45, 50 37 C 50 26, 47 16, 52 6 Z" fill="#F2A227" stroke="#2A2724" stroke-width="4.5" stroke-linejoin="round"></path>
   <circle cx="41" cy="63" r="3.6" fill="#2A2724"></circle><circle cx="59" cy="63" r="3.6" fill="#2A2724"></circle>
   <path d="M43 73 Q 50 79 57 73" stroke="#2A2724" stroke-width="3.8" fill="none" stroke-linecap="round"></path>
 </svg>`;
 
-document.body.innerHTML = SHEETS.map(s => `
-  <section class="sheet" id="sheet-${s.n}">
-    <svg class="bg" viewBox="0 0 1290 2796" aria-hidden="true">
-      ${s.shapes.map(([c, d]) => `<path d="${d}" fill="${c}"></path>`).join('')}
-    </svg>
-    <div class="inner">
-      <div class="mark">${LOGO}<span class="w">加油</span><span class="s">ジャーヨウ</span></div>
-      <p class="eyebrow">${s.eyebrow}</p>
-      <h1>${s.h}</h1>
-      <svg class="squiggle" width="300" viewBox="0 0 300 12" aria-hidden="true"><path d="M5 8 Q 42 2 79 7 T 153 7 T 227 7 T 295 6"/></svg>
-      <p class="sub">${s.sub}</p>
-      <div class="phone"><img src="${s.img}" alt=""></div>
+// 背面シェイプ。アプリと同じ3色（セージ／アプリコット／ブラッシュ）だけを使い回す
+const SHAPE = {
+  apricot: ['#FBE0BC','M-40 300 C 200 190, 430 262, 660 200 C 890 140, 1120 200, 1330 130 L1330 600 C 1100 700, 850 600, 620 650 C 390 700, 160 640, -40 700 Z'],
+  sage:    ['#D5E4C8','M-40 280 C 210 180, 440 260, 680 200 C 920 140, 1130 210, 1330 150 L1330 620 C 1110 700, 860 620, 620 670 C 380 720, 160 660, -40 710 Z'],
+  blush:   ['#F6D9D2','M-40 260 C 180 170, 420 250, 650 190 C 880 130, 1120 200, 1330 140 L1330 640 C 1120 720, 880 640, 640 690 C 400 740, 170 680, -40 730 Z'],
+  footSage:    ['#D5E4C8','M-40 2020 C 230 1930, 460 2030, 700 1970 C 940 1912, 1140 1980, 1330 1930 L1330 2860 L-40 2860 Z'],
+  footApricot: ['#FBE0BC','M-40 2100 C 260 2010, 510 2110, 770 2050 C 1000 1998, 1180 2060, 1330 2020 L1330 2860 L-40 2860 Z'],
+  footBlush:   ['#F6D9D2','M-40 2080 C 250 1990, 500 2090, 760 2030 C 990 1978, 1180 2040, 1330 2000 L1330 2860 L-40 2860 Z'],
+};
+
+const SHEETS = [
+  { n:'01', type:'a', shapes:['apricot','footSage'],
+    eyebrow:'日本語話者のためのHSK4対策',
+    h:'HSK4に特化。<br><em>90日完結</em>。',
+    sub:'頻出498語と文法222項目を、90日ぶんに。',
+    phone:'../shots/home.png' },
+
+  { n:'02', type:'b', shapes:['sage','footApricot'], small:true,
+    eyebrow:'これ1本で足りる',
+    h:'毎日15分だけ。<br>単語も、文法も、<br>リスニングも、ミニテストも。',
+    sub:'単語5個・文法3つ・音声1問・テスト5問。',
+    phone:'../shots/day.png', card:'../shots/card-day.png',
+    ring:{ shot:'day', key:'summary' } },
+
+  { n:'03', type:'d', shapes:['blush','footApricot'],
+    eyebrow:'間隔反復（SM-2）',
+    h:'忘れる頃に、<br>もう一度出題して、<br><em>効果的に復習</em>。',
+    sub:'手応えを4段階で押すだけ。あとは自動です。',
+    back:'../shots/card-flashcard-front.png', front:'../shots/card-flashcard.png' },
+
+  { n:'04', type:'c', shapes:['sage','footBlush'],
+    eyebrow:'文法222項目すべてに',
+    h:'日本人が<br>間違えやすいところを<br><em>独自解説</em>。',
+    sub:'例：日本語の過去を、全部 了 にしないこと。',
+    card:'../shots/card-grammar.png', clip:true },
+
+  { n:'05', type:'d', shapes:['apricot','footSage'],
+    eyebrow:'本番は听力が約3分の1',
+    h:'90日分の音声を<br><em>全部カバー</em>。',
+    sub:'再生は1回だけ。聞き終えるまで文字は出ません。',
+    back:'../shots/listening-ready.png', front:'../shots/card-listening.png' },
+
+  { n:'06', type:'c', shapes:['blush','footSage'],
+    eyebrow:'作文180問',
+    h:'<em>AI</em>による添削。',
+    sub:'点数と「自然な言い方」が返ります。',
+    card:'../shots/card-writing.png', cardW:1190 },
+
+  { n:'07', type:'a', tilt:true, shapes:['sage','footBlush'],
+    eyebrow:'40問30分',
+    h:'模擬試験で、<br><em>苦手な分野</em>が見える。',
+    sub:'間違えた範囲は、そのまま復習に送れます。',
+    phone:'../shots/mock-result.png' },
+];
+
+const REGIONS = await fetch('../shots/regions.json').then(r => r.json());
+
+document.body.innerHTML = SHEETS.map(s => {
+  const bg = s.shapes.map(k => `<path d="${SHAPE[k][1]}" fill="${SHAPE[k][0]}"></path>`).join('');
+  return `
+  <section class="sheet ${s.type}${s.tilt ? ' tilt' : ''}" id="sheet-${s.n}">
+    <svg class="bg" viewBox="0 0 1290 2796" aria-hidden="true">${bg}</svg>
+    <div style="position:relative;height:100%;display:flex;flex-direction:column">
+      <div class="head">
+        <div class="mark">${LOGO}<span class="w">加油</span><span class="s">ジャーヨウ</span></div>
+        <p class="eyebrow">${s.eyebrow}</p>
+        <h1${s.small ? ' class="sm"' : ''}>${s.h}</h1>
+        <svg class="squiggle" width="280" viewBox="0 0 280 12" aria-hidden="true"><path d="M5 8 Q 40 2 75 7 T 145 7 T 215 7 T 275 6"/></svg>
+        <p class="sub">${s.sub}</p>
+      </div>
+      <div class="stage">
+        ${s.phone ? `<div class="phone"><img src="${s.phone}" alt=""></div>` : ''}
+        ${s.card ? `<div class="card${s.clip ? ' clip' : ''}"${s.cardW ? ` style="width:${s.cardW}px"` : ''}><img src="${s.card}" alt=""></div>` : ''}
+        ${s.back ? `<div class="card back"><img src="${s.back}" alt=""></div>` : ''}
+        ${s.front ? `<div class="card front"><img src="${s.front}" alt=""></div>` : ''}
+      </div>
     </div>
-  </section>`).join('');
+  </section>`;
+}).join('');
+
+// 丸の位置は、端末画像の実寸から出す。
+// 座標は撮影時に記録した regions.json（スクショ内のピクセル）を、表示倍率で変換するだけ。
+const SHOT_W = 1170, SHOT_H = 2532;
+await Promise.all([...document.images].map(im => im.complete ? null
+  : new Promise(res => { im.onload = im.onerror = res; })));
+
+for (const s of SHEETS) {
+  if (!s.ring) continue;
+  const reg = (REGIONS[s.ring.shot] || {})[s.ring.key];
+  const sheet = document.getElementById('sheet-' + s.n);
+  const img = sheet.querySelector('.phone img');
+  if (!reg || !img) continue;
+  const sr = sheet.getBoundingClientRect(), ir = img.getBoundingClientRect();
+  const k = ir.width / SHOT_W;
+  // スクショの外へはみ出す領域は、見えている範囲までに詰める
+  const h = Math.min(reg.h, SHOT_H - reg.y);
+  const cx = (ir.left - sr.left) + (reg.x + reg.w / 2) * k;
+  const cy = (ir.top - sr.top) + (reg.y + h / 2) * k;
+  const rx = reg.w / 2 * k + 26, ry = h / 2 * k + 26;
+  const pad = 18;
+  sheet.querySelector('.stage').insertAdjacentHTML('beforeend',
+    `<svg class="ring" style="left:${cx - rx - pad - (sheet.querySelector('.stage').getBoundingClientRect().left - sr.left)}px;` +
+    `top:${cy - ry - pad - (sheet.querySelector('.stage').getBoundingClientRect().top - sr.top)}px"` +
+    ` width="${(rx + pad) * 2}" height="${(ry + pad) * 2}">` +
+    `<ellipse cx="${rx + pad}" cy="${ry + pad}" rx="${rx}" ry="${ry}"` +
+    ` fill="none" stroke="#F2A227" stroke-width="7" stroke-linecap="round" stroke-dasharray="46 15"></ellipse></svg>`);
+}
 </script>
 </body>
 </html>
