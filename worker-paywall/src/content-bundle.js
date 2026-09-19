@@ -390,10 +390,10 @@ export const PAID_CONTENT = {
     {
      "id": "d12-v0",
      "zh": "关系",
-     "pinyin": "guānxì",
+     "pinyin": "guānxi",
      "ja": "関係",
      "example": "这件事和我没有关系。",
-     "exPinyin": "Zhè jiàn shì hé wǒ méiyǒu guānxì.",
+     "exPinyin": "Zhè jiàn shì hé wǒ méiyǒu guānxi.",
      "exJa": "この件は私とは関係ありません。"
     },
     {
@@ -1058,7 +1058,7 @@ export const PAID_CONTENT = {
      "pinyin": "bàomíng",
      "ja": "申し込む",
      "example": "我打算报名参加HSK四级考试。",
-     "exPinyin": "Wǒ dǎsuàn bàomíng cānjiā HSK sì jí kǎoshì.",
+     "exPinyin": "Wǒ dǎsuan bàomíng cānjiā HSK sì jí kǎoshì.",
      "exJa": "HSK4級試験に申し込むつもりです。"
     },
     {
@@ -2768,7 +2768,7 @@ export const PAID_CONTENT = {
      "pinyin": "yāoqǐng",
      "ja": "招待する",
      "example": "我邀请朋友来家里。",
-     "exPinyin": "Wǒ yāoqǐng péngyǒu lái jiālǐ.",
+     "exPinyin": "Wǒ yāoqǐng péngyou lái jiālǐ.",
      "exJa": "友達を家に招待します。"
     },
     {
@@ -3546,7 +3546,7 @@ export const PAID_CONTENT = {
      "pinyin": "gǎndòng",
      "ja": "感動する",
      "example": "这个故事很感动。",
-     "exPinyin": "Zhège gùshì hěn gǎndòng.",
+     "exPinyin": "Zhège gùshi hěn gǎndòng.",
      "exJa": "この話は感動的だ。"
     },
     {
@@ -3724,10 +3724,10 @@ export const PAID_CONTENT = {
     {
      "id": "d47-v1",
      "zh": "热闹",
-     "pinyin": "rènào",
+     "pinyin": "rènao",
      "ja": "にぎやか",
      "example": "街上很热闹。",
-     "exPinyin": "Jiē shàng hěn rènào.",
+     "exPinyin": "Jiē shàng hěn rènao.",
      "exJa": "通りはにぎやかだ。"
     },
     {
@@ -3905,10 +3905,10 @@ export const PAID_CONTENT = {
     {
      "id": "d49-v0",
      "zh": "脾气",
-     "pinyin": "píqì",
+     "pinyin": "píqi",
      "ja": "気性",
      "example": "他脾气不太好。",
-     "exPinyin": "Tā píqì bú tài hǎo.",
+     "exPinyin": "Tā píqi bú tài hǎo.",
      "exJa": "彼は気が短い。"
     },
     {
@@ -4591,7 +4591,7 @@ export const PAID_CONTENT = {
      "pinyin": "ménpiào",
      "ja": "入場券",
      "example": "门票多少钱？",
-     "exPinyin": "Ménpiào duōshǎo qián?",
+     "exPinyin": "Ménpiào duōshao qián?",
      "exJa": "入場券はいくら？"
     },
     {
@@ -4986,10 +4986,10 @@ export const PAID_CONTENT = {
     {
      "id": "d60-v4",
      "zh": "窗户",
-     "pinyin": "chuānghù",
+     "pinyin": "chuānghu",
      "ja": "窓",
      "example": "请打开窗户。",
-     "exPinyin": "Qǐng dǎkāi chuānghù.",
+     "exPinyin": "Qǐng dǎkāi chuānghu.",
      "exJa": "窓を開けてください。"
     }
    ],
@@ -5668,7 +5668,7 @@ export const PAID_CONTENT = {
      "contrast": "我给他一本书 は二重目的語、我把书给他 は把構文で、処理の焦点が違います。",
      "mistake": "人と物の順序を入れ替えないこと。",
      "example": "经理给了我一个新任务。",
-     "exPinyin": "Jīnglǐ gěi le wǒ yí ge xīn rènwù.",
+     "exPinyin": "Jīnglǐ gěi le wǒ yí ge xīn rènwu.",
      "exJa": "部長は私に新しい仕事をくれました。",
      "test": "先生は私たちに中国語を教えています。",
      "answer": "老师教我们中文。"
@@ -6129,7 +6129,7 @@ export const PAID_CONTENT = {
      "pinyin": "shùnbiàn",
      "ja": "ついでに",
      "example": "顺便买点东西。",
-     "exPinyin": "Shùnbiàn mǎi diǎn dōngxī.",
+     "exPinyin": "Shùnbiàn mǎi diǎn dōngxi.",
      "exJa": "ついでに買い物する。"
     }
    ],
@@ -6773,7 +6773,7 @@ export const PAID_CONTENT = {
      "pinyin": "yuán",
      "ja": "丸い",
      "example": "月亮是圆的。",
-     "exPinyin": "Yuèliàng shì yuán de.",
+     "exPinyin": "Yuèliang shì yuán de.",
      "exJa": "月は丸い。"
     },
     {
@@ -6800,7 +6800,7 @@ export const PAID_CONTENT = {
      "pinyin": "zhēnzhèng",
      "ja": "本当の",
      "example": "这是真正的朋友。",
-     "exPinyin": "Zhè shì zhēnzhèng de péngyǒu.",
+     "exPinyin": "Zhè shì zhēnzhèng de péngyou.",
      "exJa": "これこそ本当の友だ。"
     },
     {
@@ -7283,7 +7283,7 @@ export const PAID_CONTENT = {
      "pinyin": "jiémù",
      "ja": "番組・演目",
      "example": "这个节目很有意思。",
-     "exPinyin": "Zhège jiémù hěn yǒu yìsī.",
+     "exPinyin": "Zhège jiémù hěn yǒu yìsi.",
      "exJa": "この番組は面白い。"
     },
     {
@@ -27945,13 +27945,13 @@ export const PAID_CONTENT = {
     {
      "spk": "F",
      "zh": "因为时间比较紧，所以你打算怎么选择重点？",
-     "pinyin": "Yīnwèi shíjiān bǐjiào jǐn, suǒyǐ nǐ dǎsuàn zěnme xuǎnzé zhòngdiǎn?",
+     "pinyin": "Yīnwèi shíjiān bǐjiào jǐn, suǒyǐ nǐ dǎsuan zěnme xuǎnzé zhòngdiǎn?",
      "ja": "時間が結構タイトだから、どうやって重点を選ぶつもり？"
     },
     {
      "spk": "M",
      "zh": "虽然时间不多，但是我打算先把最重要的部分检查完，剩下的以后再说。",
-     "pinyin": "Suīrán shíjiān bù duō, dànshì wǒ dǎsuàn xiān bǎ zuì zhòngyào de bùfen jiǎnchá wán, shèngxià de yǐhòu zài shuō.",
+     "pinyin": "Suīrán shíjiān bù duō, dànshì wǒ dǎsuan xiān bǎ zuì zhòngyào de bùfen jiǎnchá wán, shèngxià de yǐhòu zài shuō.",
      "ja": "時間は多くないけど、まず一番重要な部分をチェックし終えて、残りは後で考えるつもりだよ。"
     }
    ],
@@ -28072,7 +28072,7 @@ export const PAID_CONTENT = {
     },
     {
      "zh": "虽然我对新的工作内容很有兴趣，但还不太了解具体的目的是什么，所以打算先了解清楚，再决定怎么安排时间。",
-     "pinyin": "Suīrán wǒ duì xīn de gōngzuò nèiróng hěn yǒu xìngqù, dàn hái bú tài liǎojiě jùtǐ de mùdì shì shénme, suǒyǐ dǎsuàn xiān liǎojiě qīngchu, zài juédìng zěnme ānpái shíjiān.",
+     "pinyin": "Suīrán wǒ duì xīn de gōngzuò nèiróng hěn yǒu xìngqù, dàn hái bú tài liǎojiě jùtǐ de mùdì shì shénme, suǒyǐ dǎsuan xiān liǎojiě qīngchu, zài juédìng zěnme ānpái shíjiān.",
      "ja": "新しい仕事の内容にはとても興味がありますが、具体的な目的がまだあまり分かっていないので、まず詳しく理解してから、時間の使い方を決めるつもりです。"
     }
    ],
@@ -28097,7 +28097,7 @@ export const PAID_CONTENT = {
     {
      "spk": "M",
      "zh": "刚才看了，写得不错，但是重点不太清楚，跟结论的关系有点儿乱。",
-     "pinyin": "Gāngcái kàn le, xiě de búcuò, dànshì zhòngdiǎn bú tài qīngchu, gēn jiélùn de guānxì yǒudiǎnr luàn.",
+     "pinyin": "Gāngcái kàn le, xiě de búcuò, dànshì zhòngdiǎn bú tài qīngchu, gēn jiélùn de guānxi yǒudiǎnr luàn.",
      "ja": "さっき見ました、よく書けていますが、要点があまりはっきりせず、結論との関係が少し分かりにくいです。"
     },
     {
@@ -29072,7 +29072,7 @@ export const PAID_CONTENT = {
     {
      "spk": "M",
      "zh": "既然他这么信任我，我就打算按照他的建议去做。",
-     "pinyin": "Jìrán tā zhème xìnrèn wǒ, wǒ jiù dǎsuàn ànzhào tā de jiànyì qù zuò.",
+     "pinyin": "Jìrán tā zhème xìnrèn wǒ, wǒ jiù dǎsuan ànzhào tā de jiànyì qù zuò.",
      "ja": "彼がこれほど信頼してくれている以上、彼の助言に従ってやってみるつもりです。"
     }
    ],
@@ -29193,7 +29193,7 @@ export const PAID_CONTENT = {
    ],
    "judge": {
     "zh": "这次活动跟节约用纸没有关系。",
-    "pinyin": "Zhè cì huódòng gēn jiéyuē yòng zhǐ méiyǒu guānxì.",
+    "pinyin": "Zhè cì huódòng gēn jiéyuē yòng zhǐ méiyǒu guānxi.",
     "ja": "（言い換え）今回の活動は紙の節約とは関係がない。"
    },
    "answer": false,
@@ -29405,7 +29405,7 @@ export const PAID_CONTENT = {
    "narrator": [
     {
      "zh": "新来的同事性格很活泼，也很友好，办公室因为她变得更热闹了。",
-     "pinyin": "Xīn lái de tóngshì xìnggé hěn huópō, yě hěn yǒuhǎo, bàngōngshì yīnwèi tā biàn de gèng rènào le.",
+     "pinyin": "Xīn lái de tóngshì xìnggé hěn huópō, yě hěn yǒuhǎo, bàngōngshì yīnwèi tā biàn de gèng rènao le.",
      "ja": "新しく来た同僚は性格がとても活発で、友好的でもあり、オフィスは彼女のせいでもっと賑やかになりました。"
     },
     {
@@ -29472,7 +29472,7 @@ export const PAID_CONTENT = {
     {
      "spk": "M",
      "zh": "这件事你有什么看法？我对这个客户的印象不太好，脾气好像很急。",
-     "pinyin": "Zhè jiàn shì nǐ yǒu shénme kànfǎ? Wǒ duì zhège kèhù de yìnxiàng bú tài hǎo, píqì hǎoxiàng hěn jí.",
+     "pinyin": "Zhè jiàn shì nǐ yǒu shénme kànfǎ? Wǒ duì zhège kèhù de yìnxiàng bú tài hǎo, píqi hǎoxiàng hěn jí.",
      "ja": "この件についてどう思いますか？私はこの客の印象があまり良くなくて、気性がせっかちみたいです。"
     },
     {
@@ -29496,7 +29496,7 @@ export const PAID_CONTENT = {
    ],
    "q": {
     "zh": "女的打算怎么处理这件事？",
-    "pinyin": "Nǚ de dǎsuàn zěnme chǔlǐ zhè jiàn shì?",
+    "pinyin": "Nǚ de dǎsuan zěnme chǔlǐ zhè jiàn shì?",
     "ja": "（質問）女性はこの件をどう処理するつもりですか？"
    },
    "opts": [
@@ -29790,7 +29790,7 @@ export const PAID_CONTENT = {
    "narrator": [
     {
      "zh": "这家公司在招聘新员工，我打算去面试。",
-     "pinyin": "Zhè jiā gōngsī zài zhāopìn xīn yuángōng, wǒ dǎsuàn qù miànshì.",
+     "pinyin": "Zhè jiā gōngsī zài zhāopìn xīn yuángōng, wǒ dǎsuan qù miànshì.",
      "ja": "この会社は新しい社員を募集していて、私は面接に行くつもりです。"
     },
     {
@@ -30523,7 +30523,7 @@ export const PAID_CONTENT = {
     {
      "spk": "M",
      "zh": "你最近怎么每天都去锻炼？是打算减肥吗？",
-     "pinyin": "Nǐ zuìjìn zěnme měitiān dōu qù duànliàn? Shì dǎsuàn jiǎnféi ma?",
+     "pinyin": "Nǐ zuìjìn zěnme měitiān dōu qù duànliàn? Shì dǎsuan jiǎnféi ma?",
      "ja": "最近どうして毎日運動しに行ってるの？ダイエットするつもり？"
     },
     {
@@ -30737,7 +30737,7 @@ export const PAID_CONTENT = {
     },
     {
      "zh": "也许是对方换了新号码，我打算重新确认一下。",
-     "pinyin": "Yěxǔ shì duìfāng huàn le xīn hàomǎ, wǒ dǎsuàn chóngxīn quèrèn yíxià.",
+     "pinyin": "Yěxǔ shì duìfāng huàn le xīn hàomǎ, wǒ dǎsuan chóngxīn quèrèn yíxià.",
      "ja": "もしかすると相手が新しい番号に変えたのかもしれないので、改めて確認するつもりです。"
     }
    ],
@@ -30851,7 +30851,7 @@ export const PAID_CONTENT = {
     },
     {
      "zh": "我打算坐火车回老家，已经在网上订好了座位，还打印了车票，听说今年学生票免费。",
-     "pinyin": "Wǒ dǎsuàn zuò huǒchē huí lǎojiā, yǐjīng zài wǎngshàng dìng hǎo le zuòwèi, hái dǎyìn le chēpiào, tīngshuō jīnnián xuésheng piào miǎnfèi.",
+     "pinyin": "Wǒ dǎsuan zuò huǒchē huí lǎojiā, yǐjīng zài wǎngshàng dìng hǎo le zuòwèi, hái dǎyìn le chēpiào, tīngshuō jīnnián xuésheng piào miǎnfèi.",
      "ja": "私は電車で実家に帰るつもりで、もうネットで座席を予約して、切符も印刷しました。今年は学生の切符が無料だそうです。"
     }
    ],
