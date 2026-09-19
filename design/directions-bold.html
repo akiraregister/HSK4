@@ -1,0 +1,281 @@
+<!doctype html>
+<!-- いまの世界観（紙・丸ゴシック・手書き）を一度捨てて考えた3案。
+     比較のため、左端に前回の「推奨案」を置いてある。
+     中身（案Aの構造）は4つとも同じで、視覚言語だけが違う。アプリ本体には手を入れていない。 -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>加油 — 大胆な方向3案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Yomogi&family=Noto+Serif+JP:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maru:'Zen Maru Gothic','Hiragino Maru Gothic ProN',sans-serif;
+  --kaku:'Zen Kaku Gothic New','Hiragino Sans','Yu Gothic',sans-serif;
+  --hand:'Yomogi',cursive;
+  --mincho:'Noto Serif JP','Hiragino Mincho ProN',serif;
+  --song:'Noto Serif SC','Songti SC',serif;
+  --mono:'Roboto Mono',ui-monospace,monospace;
+  --zhsans:"PingFang SC","Noto Sans SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#DEDAD2;color:#2A2724;font-family:var(--kaku);line-height:1.7;padding:22px 16px 60px}
+.wrap{max-width:1560px;margin:0 auto}
+.lede{background:#2A2724;color:#FCF9F2;border-radius:18px;padding:16px 20px;font-size:13.5px;line-height:1.8;margin-bottom:18px}
+.lede b{color:#F2A227}
+h1{font-family:var(--maru);font-size:26px;font-weight:900;margin-bottom:6px}
+.sub{font-size:13.5px;color:#5C5249;margin-bottom:16px}
+.picker{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
+.picker button{font:inherit;font-family:var(--maru);font-weight:700;font-size:13.5px;cursor:pointer;
+  border:1.5px solid #CFC6B6;background:rgba(255,255,255,.75);color:#5C5249;border-radius:999px;padding:9px 18px}
+.picker button.on{background:#2A2724;border-color:#2A2724;color:#FCF9F2;font-weight:900}
+.cols{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.colhead{margin-bottom:10px}
+.colhead .n{display:inline-block;font-family:var(--maru);font-size:11.5px;font-weight:900;background:#fff;
+  border:1.5px solid #2A2724;border-radius:999px;padding:2px 11px;margin-bottom:6px}
+.colhead .n.base{background:#E4DCCB}
+.colhead h2{font-family:var(--maru);font-size:17.5px;font-weight:900;line-height:1.35}
+.colhead p{font-size:12.5px;color:#5C5249;line-height:1.75;margin-top:3px}
+.bet{display:inline-block;font-size:11.5px;font-weight:700;background:#2A2724;color:#FCF9F2;border-radius:6px;padding:2px 8px;margin-top:6px}
+.ph{border:9px solid #2A2724;border-radius:42px;background:#fff;padding:8px;box-shadow:0 22px 44px -26px rgba(42,39,36,.55)}
+.scr{width:100%;height:720px;border-radius:34px;overflow:hidden;position:relative}
+.props{margin-top:11px;background:#fff;border:1.5px solid #2A2724;border-radius:14px;padding:11px 13px;font-size:12px;line-height:1.75}
+.props div+div{margin-top:4px;padding-top:4px;border-top:1px solid #EFE9DD}
+.props .pc{margin-top:7px;padding-top:7px;border-top:1px solid #EFE9DD}
+.props .pc b{color:#4E7A3C}.props .pc.x b{color:#B0561F}
+
+/* ══ 骨格（全案共通。案Aの構造） ══ */
+.app{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:var(--fbody);font-size:14px}
+.app .body{flex:1;overflow:hidden;padding:12px 14px 16px}
+.app .zh{font-family:var(--zh)}
+.top{flex:none;display:flex;align-items:center;justify-content:space-between;padding:13px 14px 11px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:6px;font-family:var(--fdisp);font-weight:var(--dispw);font-size:16px;letter-spacing:var(--brandls)}
+.streak{display:inline-flex;align-items:center;gap:4px;border-radius:var(--chipr);padding:3px 10px;
+  font-family:var(--fnum);font-weight:700;font-size:11.5px;background:var(--chip);border:var(--chipbd);color:var(--chipfg)}
+.screen-h{font-family:var(--fdisp);font-size:var(--h1);font-weight:var(--dispw);margin:0 0 2px;letter-spacing:var(--h1ls)}
+.hero{background:var(--card);border:var(--cardbd);border-radius:var(--r-lg);padding:var(--pad);margin-top:10px;box-shadow:var(--sh);position:relative}
+.hero .eye{font-family:var(--flab);font-size:11px;font-weight:700;color:var(--eye);letter-spacing:.08em}
+.hero .t{font-family:var(--fnum);font-size:25px;font-weight:var(--numw);line-height:1.2;margin:1px 0 3px;letter-spacing:var(--numls)}
+.hero .m{font-size:12px;color:var(--ink2);line-height:1.6}
+.big{display:block;width:100%;margin-top:11px;background:var(--btn);color:var(--btnfg);border:var(--btnbd);
+  border-radius:var(--btnr);padding:13px;font-family:var(--fbtn);font-weight:700;font-size:15px;cursor:pointer;letter-spacing:var(--btnls)}
+.mini{font-size:11px;color:var(--muted);text-align:center;margin-top:6px}
+.subs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+.subcard{background:var(--card2);border:var(--card2bd);border-radius:var(--r-md);padding:9px 11px}
+.subcard .e{font-size:10px;color:var(--muted);font-family:var(--flab);font-weight:700;letter-spacing:.06em}
+.subcard .n{font-family:var(--fnum);font-size:16px;font-weight:var(--numw);line-height:1.2;margin:1px 0}
+.subcard .b{display:block;width:100%;margin-top:6px;background:transparent;border:1px solid var(--line2);
+  border-radius:var(--btnr);padding:5px;font-family:var(--fbtn);font-weight:700;font-size:11px;cursor:pointer;color:var(--ink)}
+.week{display:flex;gap:5px;margin-top:12px}
+.week div{flex:1;text-align:center;font-size:9.5px;color:var(--muted);font-family:var(--flab);font-weight:700}
+.week .dot{display:block;width:100%;aspect-ratio:1;border-radius:var(--dotr);border:var(--dotbd);background:var(--dotbg);margin-bottom:2px}
+.week .dot.done{background:var(--dotdone);border-color:var(--dotdonebd)}
+.week .dot.today{background:var(--brand);border-color:var(--brand)}
+.bar{height:var(--barh);border-radius:999px;background:var(--barbg);overflow:hidden;margin-top:11px}
+.bar span{display:block;height:100%;background:var(--barfg)}
+.barlabel{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);margin-top:4px;font-family:var(--fnum)}
+.tabs{flex:none;display:flex;padding:7px 8px 11px;border-top:1px solid var(--line);background:var(--tabbg)}
+.tabs button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;
+  font:inherit;font-family:var(--flab);font-weight:700;font-size:10px;color:var(--muted);cursor:pointer;padding:3px 0}
+.tabs button.on{color:var(--ink)}
+.tabs svg{width:19px;height:19px}
+.steps{flex:none;display:flex;gap:4px;padding:9px 14px 10px;border-bottom:1px solid var(--line)}
+.steps i{flex:1;height:4px;border-radius:999px;background:var(--barbg)}
+.steps i.on{background:var(--barfg)}
+.steplabel{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px}
+.steplabel b{font-family:var(--fdisp);font-size:14px;font-weight:var(--dispw)}
+.steplabel span{font-size:11px;color:var(--muted);font-family:var(--fnum)}
+.wordcard{background:var(--card);border:var(--cardbd);border-radius:var(--r-lg);padding:18px 16px;text-align:center;box-shadow:var(--sh);position:relative}
+.wordcard .w{font-family:var(--zh);font-size:var(--zhsize);font-weight:var(--zhw);line-height:1.2;letter-spacing:var(--zhls)}
+.wordcard .p{font-size:15px;color:var(--ink2);margin-top:3px;font-family:var(--fpin)}
+.wordcard .j{font-size:15px;font-weight:700;margin-top:7px}
+.wordcard .ex{background:var(--exbg);border-radius:var(--r-sm);padding:10px 11px;margin-top:12px;text-align:left;font-size:12.5px;line-height:1.75}
+.wordcard .ex .zh{font-size:var(--exzh);font-weight:600}
+.wordcard .ex .s{color:var(--muted);font-size:11.5px;font-family:var(--fpin)}
+.dots{display:flex;gap:4px;justify-content:center;margin-top:10px}
+.dots i{width:6px;height:6px;border-radius:999px;background:var(--barbg)}
+.dots i.on{background:var(--barfg)}
+.footbar{flex:none;padding:9px 14px 12px;border-top:1px solid var(--line)}
+.done{text-align:center;padding:16px 4px 0}
+.done .mark{width:var(--marksz);height:var(--marksz);border-radius:var(--markr);background:var(--markbg);border:var(--markbd);
+  display:flex;align-items:center;justify-content:center;font-size:var(--markfs);margin:0 auto 12px;color:var(--markfg);
+  font-family:var(--fdisp);font-weight:var(--dispw);transform:var(--marktr)}
+.done h3{font-family:var(--fdisp);font-size:var(--celebsz);font-weight:var(--dispw);margin-bottom:3px;letter-spacing:var(--h1ls)}
+.done .lead{font-size:12.5px;color:var(--ink2)}
+.tally{background:var(--card);border:var(--cardbd);border-radius:var(--r-md);padding:11px 13px;margin-top:14px;text-align:left;box-shadow:var(--sh)}
+.tally div{display:flex;justify-content:space-between;font-size:12.5px;padding:4px 0}
+.tally div+div{border-top:1px solid var(--line)}
+.tally b{font-family:var(--fnum);font-weight:var(--numw)}
+
+/* ══ 基準：前回の推奨案 ══ */
+.rec{--bg:#FAF8F4;--card:#fff;--card2:#F4F1EA;--ink:#23201C;--ink2:#4D473F;--muted:#8D877D;--line:#E8E3DA;--line2:#DED8CC;
+ --brand:#E09420;--eye:#4E7A3C;--cardbd:1px solid #EDE8DF;--card2bd:1px solid #EDE8DF;
+ --r-lg:14px;--r-md:12px;--r-sm:10px;--pad:14px;--sh:0 2px 8px -3px rgba(35,32,28,.10);
+ --btn:#23201C;--btnfg:#FAF8F4;--btnbd:0;--btnr:999px;--btnls:0;--fbtn:var(--kaku);
+ --fbody:var(--kaku);--fdisp:var(--maru);--flab:var(--kaku);--fnum:var(--maru);--fpin:var(--kaku);--dispw:900;--numw:900;--numls:0;
+ --h1:18px;--h1ls:0;--brandls:.04em;--zh:var(--zhsans);--zhsize:46px;--zhw:700;--zhls:.03em;--exzh:16px;
+ --chip:transparent;--chipbd:1px solid #DED8CC;--chipfg:#6E675D;--chipr:999px;
+ --dotr:999px;--dotbd:1px solid #E3DDD2;--dotbg:transparent;--dotdone:#D5E4C8;--dotdonebd:#C6D8B6;
+ --barbg:#EDE8DF;--barfg:#23201C;--barh:6px;--tabbg:#FAF8F4;--exbg:#F6F3EC;
+ --marksz:84px;--markr:999px;--markbg:#D5E4C8;--markbd:2px solid #23201C;--markfs:36px;--markfg:#23201C;--marktr:none;--celebsz:24px}
+.rec .hand{display:none}.rec .done .hand{display:inline;font-family:var(--hand);color:#B0561F;font-size:13px}
+
+/* ══ 案X：辞書・新聞（明朝＋宋体、罫線、朱） ══ */
+.edi{--bg:#FBFAF7;--card:transparent;--card2:transparent;--ink:#1A1A18;--ink2:#3F3D39;--muted:#8A877F;--line:#DED9CF;--line2:#CFC9BD;
+ --brand:#B23A2E;--eye:#B23A2E;--cardbd:0;--card2bd:0;
+ --r-lg:0;--r-md:0;--r-sm:0;--pad:0;--sh:none;
+ --btn:#1A1A18;--btnfg:#FBFAF7;--btnbd:0;--btnr:2px;--btnls:.14em;--fbtn:var(--mincho);
+ --fbody:var(--mincho);--fdisp:var(--mincho);--flab:var(--mincho);--fnum:var(--mincho);--fpin:var(--mincho);--dispw:700;--numw:700;--numls:.02em;
+ --h1:19px;--h1ls:.06em;--brandls:.24em;--zh:var(--song);--zhsize:48px;--zhw:600;--zhls:.06em;--exzh:16px;
+ --chip:transparent;--chipbd:0;--chipfg:#8A877F;--chipr:0;
+ --dotr:0;--dotbd:0;--dotbg:#EAE6DC;--dotdone:#1A1A18;--dotdonebd:#1A1A18;
+ --barbg:#EAE6DC;--barfg:#1A1A18;--barh:2px;--tabbg:#FBFAF7;--exbg:transparent;
+ --marksz:66px;--markr:2px;--markbg:transparent;--markbd:2px solid #B23A2E;--markfs:26px;--markfg:#B23A2E;--marktr:rotate(-6deg);--celebsz:26px}
+.edi .hero{border-top:2px solid #1A1A18;border-bottom:1px solid #DED9CF;padding:12px 0 14px}
+.edi .subs{gap:0;border-bottom:1px solid #DED9CF}
+.edi .subcard{padding:10px 0;border-right:1px solid #DED9CF}
+.edi .subcard:last-child{border-right:0;padding-left:12px}
+.edi .subcard .b{border:0;border-top:1px solid var(--line2);border-radius:0;padding:6px 0 0;text-align:left}
+.edi .big{letter-spacing:.14em}
+.edi .hero .eye{font-size:10.5px;letter-spacing:.2em}
+.edi .wordcard{border-top:2px solid #1A1A18;border-bottom:1px solid #DED9CF;padding:20px 0}
+.edi .wordcard .ex{border-top:1px solid #DED9CF;padding:10px 0 0;margin-top:14px}
+.edi .hand{display:none}
+.edi .week .dot{aspect-ratio:auto;height:4px;margin-bottom:5px}
+.edi .tally{border-top:1px solid #DED9CF;border-bottom:1px solid #DED9CF;padding:8px 0}
+.edi .brand::after{content:"／90日";font-size:10px;letter-spacing:.1em;color:#8A877F}
+
+/* ══ 案Y：計器（ダーク＋等幅数字＋ヒートマップ） ══ */
+.ins{--bg:#0F1214;--card:#171B1E;--card2:#171B1E;--ink:#E7ECEA;--ink2:#A6AFAD;--muted:#6C7674;--line:#242A2E;--line2:#2E3539;
+ --brand:#F5A524;--eye:#5FD08A;--cardbd:1px solid #242A2E;--card2bd:1px solid #242A2E;
+ --r-lg:8px;--r-md:6px;--r-sm:6px;--pad:14px;--sh:none;
+ --btn:#F5A524;--btnfg:#0F1214;--btnbd:0;--btnr:6px;--btnls:.04em;--fbtn:var(--kaku);
+ --fbody:var(--kaku);--fdisp:var(--kaku);--flab:var(--mono);--fnum:var(--mono);--fpin:var(--mono);--dispw:700;--numw:700;--numls:-.02em;
+ --h1:17px;--h1ls:0;--brandls:.16em;--zh:var(--zhsans);--zhsize:44px;--zhw:700;--zhls:.02em;--exzh:15px;
+ --chip:#171B1E;--chipbd:1px solid #2E3539;--chipfg:#5FD08A;--chipr:6px;
+ --dotr:3px;--dotbd:0;--dotbg:#1B2124;--dotdone:#2F6B45;--dotdonebd:#2F6B45;
+ --barbg:#1B2124;--barfg:#F5A524;--barh:4px;--tabbg:#0F1214;--exbg:#12171A;
+ --marksz:0;--markr:0;--markbg:transparent;--markbd:0;--markfs:0;--markfg:#5FD08A;--marktr:none;--celebsz:22px}
+.ins .hand{display:none}
+.ins .done .mark{display:none}
+.ins .week .dot{aspect-ratio:1}
+.ins .hero .t{font-size:30px}
+.ins .barlabel{letter-spacing:-.02em}
+.ins .ph-note{display:none}
+
+/* ══ 案Z：切符・スタンプ（濃紺×朱、コレクション） ══ */
+.tkt{--bg:#F1E9DA;--card:#FFFDF7;--card2:#FFFDF7;--ink:#17284A;--ink2:#3B4A66;--muted:#8A8271;--line:#DCD1BB;--line2:#CFC2A8;
+ --brand:#D14836;--eye:#D14836;--cardbd:1.5px solid #17284A;--card2bd:1.5px solid #17284A;
+ --r-lg:8px;--r-md:6px;--r-sm:4px;--pad:14px;--sh:3px 3px 0 #17284A;
+ --btn:#17284A;--btnfg:#F1E9DA;--btnbd:0;--btnr:4px;--btnls:.1em;--fbtn:var(--kaku);
+ --fbody:var(--kaku);--fdisp:var(--kaku);--flab:var(--mono);--fnum:var(--mono);--fpin:var(--mono);--dispw:900;--numw:700;--numls:.04em;
+ --h1:18px;--h1ls:.02em;--brandls:.3em;--zh:var(--zhsans);--zhsize:44px;--zhw:700;--zhls:.04em;--exzh:15px;
+ --chip:#D14836;--chipbd:1.5px solid #17284A;--chipfg:#FFFDF7;--chipr:4px;
+ --dotr:999px;--dotbd:1.5px dashed #BDB19A;--dotbg:transparent;--dotdone:#D14836;--dotdonebd:#17284A;
+ --barbg:#DCD1BB;--barfg:#17284A;--barh:6px;--tabbg:#F1E9DA;--exbg:#F6F0E3;
+ --marksz:86px;--markr:999px;--markbg:transparent;--markbd:3px double #D14836;--markfs:26px;--markfg:#D14836;--marktr:rotate(-11deg);--celebsz:23px}
+.tkt .hand{display:none}
+/* 半券のミシン目 */
+.tkt .hero{padding-bottom:30px}
+.tkt .hero::before{content:"";position:absolute;left:10px;right:10px;bottom:19px;border-top:1.5px dashed #CFC2A8}
+.tkt .hero::after{content:"加油 · HSK4 · 90 DAYS";position:absolute;left:0;right:0;bottom:5px;text-align:center;
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.24em;color:#8A8271}
+.tkt .brand{color:#17284A}
+.tkt .hero .eye{letter-spacing:.18em}
+.tkt .wordcard{box-shadow:3px 3px 0 #17284A}
+.tkt .done .mark{font-family:var(--kaku);font-weight:900}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lede"><b>いまの世界観を一度捨てて作った3案です。</b>構造（案A）は4つとも同じで、視覚言語だけが違います。
+  左端は比較用に前回の推奨案を置いてあります。アプリ本体には手を入れていません。</div>
+  <h1>加油 — 大胆な方向3案</h1>
+  <p class="sub">画面を切り替えて見比べてください。3案はそれぞれ「何で人を動かすか」の賭けが違います。</p>
+  <div class="picker" id="picker"></div>
+  <div class="cols" id="cols"></div>
+</div>
+<script>
+const IC={today:'<path d="M4 7h16v13H4z"/><path d="M4 11h16"/><path d="M8 3v4M16 3v4"/>',
+ study:'<path d="M4 5h7v15H4z"/><path d="M13 5h7v15h-7z"/><path d="M11 5v15"/>',
+ vocab:'<path d="M5 19V6a2 2 0 0 1 2-2h12v16H7a2 2 0 0 0-2 2"/><path d="M9 8h7M9 12h5"/>',
+ settings:'<circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.2M12 18.8V21M21 12h-2.2M5.2 12H3M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6M18.4 18.4l-1.6-1.6M7.2 7.2 5.6 5.6"/>'};
+const ic=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
+const TABS=on=>`<div class="tabs"><button class="${on==='today'?'on':''}">${ic('today')}今日</button>
+ <button class="${on==='study'?'on':''}">${ic('study')}学習</button><button>${ic('vocab')}単語</button>
+ <button>${ic('settings')}設定</button></div>`;
+const HEAD=`<div class="top"><span class="brand">加油</span><span class="streak">12日連続</span></div>`;
+
+const SCREENS={
+ today:{label:'今日（ホーム）',html:()=>`<div class="app">${HEAD}<div class="body">
+   <h2 class="screen-h">今日やること <span class="hand">あと78日！</span></h2>
+   <div class="hero"><span class="eye">あたらしく覚える</span><div class="t">Day 13</div>
+     <div class="m">単語5個・文法3つ・音声1問・ミニテスト5問</div>
+     <button class="big">学習を始める</button><div class="mini">だいたい15分</div></div>
+   <div class="subs"><div class="subcard"><span class="e">思い出す</span><div class="n">18問</div>
+       <span class="e">期限13＋新規5</span><button class="b">復習する</button></div>
+     <div class="subcard"><span class="e">腕試し</span><div class="n">模擬試験</div>
+       <span class="e">40問・30分</span><button class="b">受ける</button></div></div>
+   <div class="week">${['月','火','水','木','金','土','日'].map((d,i)=>
+     `<div><span class="dot ${i<4?'done':i===4?'today':''}"></span>${d}</div>`).join('')}</div>
+   <div class="bar"><span style="width:13%"></span></div>
+   <div class="barlabel"><span>90日のうち 12日</span><span>13%</span></div>
+ </div>${TABS('today')}</div>`},
+ study:{label:'学習（単語）',html:()=>`<div class="app">
+   <div class="top"><span class="brand" style="font-size:13px">✕ 今日へ</span><span class="streak">Day 13</span></div>
+   <div class="steps"><i class="on"></i><i></i><i></i><i></i></div>
+   <div class="body"><div class="steplabel"><b>単語をおぼえる</b><span>ステップ 1 / 4</span></div>
+     <div class="wordcard"><div class="w zh">方法</div><div class="p">fāngfǎ</div><div class="j">方法</div>
+       <div class="ex"><span class="zh">这个方法很适合我。</span><br>
+         <span class="s">Zhège fāngfǎ hěn shìhé wǒ.</span><br>この方法は私に合っています。</div></div>
+     <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+     <div class="mini">1 / 5語</div></div>
+   <div class="footbar"><button class="big" style="margin-top:0">次へ</button></div></div>`},
+ done:{label:'完了（達成の瞬間）',html:()=>`<div class="app">${HEAD}<div class="body"><div class="done">
+   <div class="mark">修了</div><h3>Day 13 完了</h3>
+   <p class="lead">13日つづきました。<span class="hand">その調子！</span></p>
+   <div class="tally"><div><span>おぼえた単語</span><b>5語</b></div><div><span>文法</span><b>3つ</b></div>
+     <div><span>ミニテスト</span><b>4 / 5問</b></div></div>
+   <button class="big">復習を続ける（18問）</button><div class="mini">今日はここまでにする</div>
+ </div></div>${TABS('today')}</div>`},
+};
+
+const DIRS=[
+ {k:'rec',n:'前回の推奨',t:'紙・静か・温かい達成',d:'比較用の基準',base:1,
+  props:['書体：丸ゴシック＋Zen Kaku','色：クリーム＋墨＋アンバー','達成：セージの丸と手書き'],
+  pro:'いまのブランドの延長。販促素材の流用が効く',con:'語学教材としての「格」は出にくい'},
+ {k:'edi',n:'案X',t:'辞書・新聞',d:'明朝＋宋体、罫線だけで組む。朱が唯一の色',
+  bet:'賭け：権威と信頼で買わせる',
+  props:['書体：Noto Serif JP ＋ <b>宋体（Noto Serif SC）</b>','罫線のみ。カードも角丸も影もゼロ','色：墨＋朱の2色','数字・ラベルも明朝で統一','完了は朱の角印'],
+  pro:'アプリで明朝はほぼ無く、圧倒的に差別化できる。文法解説222項目のような<b>文字量の多い中身に最適</b>。¥4,800の説得力が最も高い',
+  con:'明朝は小さいサイズ・低輝度で可読性が落ちる。「堅い・古い」と感じる層がいる。日中2書体ぶんのフォント読み込みが重い'},
+ {k:'ins',n:'案Y',t:'計器・ダッシュボード',d:'ダーク前提。等幅数字とヒートマップ',
+  bet:'賭け：進捗の可視化で続けさせる',
+  props:['背景：ダーク（#0F1214）が既定','数字は等幅（Roboto Mono）','週の帯は<b>ヒートマップの升目</b>','色：琥珀1色＋達成の緑','完了は祝う印を持たず、数値だけ'],
+  pro:'夜と移動中に強い。<b>ストリークと正答率が主役になる</b>ので継続の動機に直結。ダークが前提なので二重管理がいらない',
+  con:'語学の「温度」が消え、つまずいた日に冷たい。主ターゲット（駐在の営業・管理職）がこの記号を好むとは限らない'},
+ {k:'tkt',n:'案Z',t:'切符・スタンプ帳',d:'濃紺×朱。90日を90枚集める物語',
+  bet:'賭け：集めたくなる気持ちで続けさせる',
+  props:['カード＝半券。ミシン目と整理番号が入る','色：濃紺＋朱＋生成り','影は落とさず<b>ずらした版ずれ</b>で立体に','週は押印（点線の丸→朱の丸）','完了は<b>二重丸の朱印</b>'],
+  pro:'90日＝90枚という<b>物語が継続動機に直結</b>。出張・渡航という文脈と噛み合う。ストアやSNSで目立つ',
+  con:'装飾が強く、毎日見ると飽きる恐れ。文法解説のような長文と相性が悪い。作り込みを外すとチープに転ぶ'},
+];
+let cur='today';
+const picker=document.getElementById('picker');
+picker.innerHTML=Object.keys(SCREENS).map(k=>`<button data-k="${k}">${SCREENS[k].label}</button>`).join('');
+function draw(){
+  [...picker.children].forEach(b=>b.classList.toggle('on',b.dataset.k===cur));
+  document.getElementById('cols').innerHTML=DIRS.map(d=>`<div class="col">
+    <div class="colhead"><span class="n${d.base?' base':''}">${d.n}</span><h2>${d.t}</h2><p>${d.d}</p>
+      ${d.bet?`<span class="bet">${d.bet}</span>`:''}</div>
+    <div class="ph"><div class="scr ${d.k}">${SCREENS[cur].html()}</div></div>
+    <div class="props">${d.props.map(p=>`<div>${p}</div>`).join('')}
+      <div class="pc"><b>◎</b> ${d.pro}</div><div class="pc x"><b>△</b> ${d.con}</div></div></div>`).join('');
+}
+picker.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cur=b.dataset.k;draw();});
+draw();
+</script>
+</body>
+</html>
