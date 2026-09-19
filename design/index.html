@@ -67,6 +67,15 @@ h1{font-family:var(--font-display);font-size:26px;font-weight:900;margin-bottom:
 .notes .why{margin-top:14px;background:var(--paper);border:var(--bw) dashed #DFD2B8;border-radius:14px;
   padding:12px 14px;font-size:13.5px;line-height:1.8;color:var(--ink-2)}
 
+.cmpnote{font-size:12.5px;color:#8A8377}
+.nofit{display:flex;height:100%;flex-direction:column;align-items:center;justify-content:center;
+  padding:34px 30px;text-align:center;gap:10px}
+.nofit .ic{width:52px;height:52px;border-radius:999px;border:var(--bw) solid var(--stroke);background:var(--apricot);
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:24px}
+.nofit b{font-family:var(--font-display);font-size:16.5px;font-weight:900}
+.nofit p{font-size:13.5px;line-height:1.85;color:#8A8377}
+.nofit code{background:var(--gray);border-radius:5px;padding:1px 5px;font-size:12.5px}
+
 /* ══ ここから下は「アプリの中身」のモック ══ */
 .app{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);font-size:15px}
 .app .body{flex:1;overflow:auto;padding:14px 16px 18px}
@@ -209,7 +218,8 @@ details.coupon input{width:100%;border:var(--bw) solid var(--line);border-radius
   </div>
 
   <h1>加油 — 改修案モックアップ</h1>
-  <p class="sub">画面を選び、「いま / 改善案」を切り替えて見比べてください。改善案の側はボタンが実際に動きます。</p>
+  <p class="sub">画面を選び、「いま / 改善案」を切り替えて見比べてください。改善案の側はボタンが実際に動きます。<br>
+  <span class="cmpnote">◧ が付いた画面は「いま」と見比べられます。付いていないものは新設なので比較対象がありません。</span></p>
 
   <div class="controls">
     <div class="seg" id="seg">
@@ -219,13 +229,20 @@ details.coupon input{width:100%;border:var(--bw) solid var(--line);border-radius
     <div class="picker" id="picker"></div>
   </div>
 
+  <template id="imgfail">
+    <div class="nofit"><div class="ic">!</div>
+      <b>画像を読み込めませんでした</b>
+      <p><code>design/current/</code> の画像が見つかりません。
+      このファイルだけを移動していないか確認してください。</p></div>
+  </template>
+
   <div class="stage">
     <div class="phone"><div class="screen" id="screen"></div></div>
     <div class="notes" id="notes"></div>
   </div>
 </div>
 
-<script type="module">
+<script>
 // 絵文字ではなく線のアイコン。アプリの線画（枠線1.5px）と調子を合わせる
 const IC = {
   today:'<path d="M4 7h16v13H4z"/><path d="M4 11h16"/><path d="M8 3v4M16 3v4"/>',
@@ -502,8 +519,10 @@ const ORDER = ['today','study','test','done','free_end','price','settings'];
 let mode = 'new', cur = 'today';
 
 const picker = document.getElementById('picker');
-picker.innerHTML = ORDER.map(k =>
-  `<button data-k="${k}" class="${SCREENS[k].plan==='C'?'c':''}">${SCREENS[k].label}${SCREENS[k].plan==='C'?' ※案C':''}</button>`).join('');
+picker.innerHTML = ORDER.map(k => {
+  const s = SCREENS[k];
+  return `<button data-k="${k}" class="${s.plan==='C'?'c':''}">${s.current?'◧ ':''}${s.label}${s.plan==='C'?' ※案C':''}</button>`;
+}).join('');
 
 function draw(){
   const s = SCREENS[cur];
@@ -513,9 +532,11 @@ function draw(){
   const screen = document.getElementById('screen');
   if (mode === 'now') {
     screen.innerHTML = s.current
-      ? `<div class="scroll"><img src="current/${s.current}" alt=""></div>`
-      : `<div style="display:flex;height:100%;align-items:center;justify-content:center;padding:32px;text-align:center;
-           font-size:14.5px;line-height:1.9;color:#8A8377">この画面は<br><b style="color:#2A2724">いまのアプリには無い</b><br>ので、比較できません。</div>`;
+      ? `<div class="scroll"><img src="current/${s.current}" alt=""
+           onerror="this.closest('.scroll').innerHTML=document.getElementById('imgfail').innerHTML"></div>`
+      : `<div class="nofit"><div class="ic">＋</div>
+           <b>この画面は新設です</b>
+           <p>いまのアプリには対応する画面が無いので、見比べられません。</p></div>`;
   } else {
     screen.innerHTML = s.render();
   }
