@@ -1,0 +1,287 @@
+<!doctype html>
+<!-- デザイン方向の比較。中身（案Aの構造）は4つとも同じで、視覚言語だけを変えている。
+     方向1＝いまを磨く／方向2＝静かな大人向け／方向3＝中文を主役に／推奨＝2をベースに3の文字組み、達成だけ温かく。
+     アプリ本体にはまだ手を入れていない。 -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>加油 — デザイン方向の比較</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Yomogi&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maru:'Zen Maru Gothic','Hiragino Maru Gothic ProN',sans-serif;
+  --kaku:'Zen Kaku Gothic New','Hiragino Sans','Yu Gothic',sans-serif;
+  --hand:'Yomogi','Hiragino Maru Gothic ProN',cursive;
+  --zh:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#E8E2D6;color:#2A2724;font-family:var(--kaku);line-height:1.7;padding:22px 16px 60px}
+.wrap{max-width:1560px;margin:0 auto}
+.lede{background:#2A2724;color:#FCF9F2;border-radius:18px;padding:16px 20px;font-size:13.5px;line-height:1.8;margin-bottom:18px}
+.lede b{color:#F2A227}
+h1{font-family:var(--maru);font-size:26px;font-weight:900;margin-bottom:6px}
+.sub{font-size:13.5px;color:#5C5249;margin-bottom:16px}
+.picker{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
+.picker button{font:inherit;font-family:var(--maru);font-weight:700;font-size:13.5px;cursor:pointer;
+  border:1.5px solid #CFC6B6;background:rgba(255,255,255,.75);color:#5C5249;border-radius:999px;padding:9px 18px}
+.picker button.on{background:#2A2724;border-color:#2A2724;color:#FCF9F2;font-weight:900}
+
+.cols{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.col{min-width:0}
+.colhead{margin-bottom:10px}
+.colhead .n{display:inline-block;font-family:var(--maru);font-size:11.5px;font-weight:900;background:#fff;
+  border:1.5px solid #2A2724;border-radius:999px;padding:2px 11px;margin-bottom:6px}
+.colhead .n.rec{background:#F2A227}
+.colhead h2{font-family:var(--maru);font-size:17.5px;font-weight:900;line-height:1.35}
+.colhead p{font-size:12.5px;color:#5C5249;line-height:1.75;margin-top:3px}
+.ph{border:9px solid #2A2724;border-radius:42px;background:#fff;padding:8px;
+    box-shadow:0 22px 44px -26px rgba(42,39,36,.55)}
+.scr{width:100%;height:720px;border-radius:34px;overflow:hidden;position:relative}
+.props{margin-top:11px;background:#fff;border:1.5px solid #2A2724;border-radius:14px;padding:11px 13px;font-size:12px;line-height:1.75}
+.props div+div{margin-top:4px;padding-top:4px;border-top:1px solid #EFE9DD}
+.props b{font-weight:700}
+
+/* ══════ 画面の骨格（4方向で共通） ══════ */
+.app{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-size:14px}
+.app .body{flex:1;overflow:hidden;padding:12px 14px 16px}
+.app .zh{font-family:var(--zh)}
+.top{flex:none;display:flex;align-items:center;justify-content:space-between;padding:13px 14px 11px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:6px;font-family:var(--fdisp);font-weight:900;font-size:16px;letter-spacing:.04em}
+.streak{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;
+  font-family:var(--fdisp);font-weight:900;font-size:11.5px;background:var(--chip);border:var(--chipbd);color:var(--chipfg)}
+.screen-h{font-family:var(--fdisp);font-size:18px;font-weight:900;margin:0 0 2px}
+.hand{font-family:var(--hand);font-size:11.5px;color:#B0561F}
+
+.hero{background:var(--card);border:var(--cardbd);border-radius:var(--r-lg);padding:var(--pad);margin-top:10px;box-shadow:var(--sh)}
+.hero .eye{font-family:var(--fdisp);font-size:11px;font-weight:900;color:var(--eye);letter-spacing:.04em}
+.hero .t{font-family:var(--fdisp);font-size:25px;font-weight:900;line-height:1.2;margin:1px 0 3px}
+.hero .m{font-size:12px;color:var(--ink2);line-height:1.6}
+.big{display:block;width:100%;margin-top:11px;background:var(--btn);color:var(--btnfg);border:var(--btnbd);
+  border-radius:999px;padding:13px;font-family:var(--fbtn);font-weight:var(--btnw);font-size:15px;cursor:pointer}
+.mini{font-size:11px;color:var(--muted);text-align:center;margin-top:6px}
+
+.subs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+.subcard{background:var(--card2);border:var(--card2bd);border-radius:var(--r-md);padding:9px 11px}
+.subcard .e{font-size:10px;color:var(--muted);font-family:var(--fdisp);font-weight:700}
+.subcard .n{font-family:var(--fdisp);font-size:16px;font-weight:900;line-height:1.2;margin:1px 0}
+.subcard .b{display:block;width:100%;margin-top:6px;background:transparent;border:1.5px solid var(--ink);
+  border-radius:999px;padding:5px;font-family:var(--fbtn);font-weight:700;font-size:11px;cursor:pointer;color:var(--ink)}
+
+.week{display:flex;gap:5px;margin-top:12px}
+.week div{flex:1;text-align:center;font-size:9.5px;color:var(--muted);font-family:var(--fdisp);font-weight:700}
+.week .dot{display:block;width:100%;aspect-ratio:1;border-radius:var(--dotr);border:var(--dotbd);background:var(--dotbg);margin-bottom:2px}
+.week .dot.done{background:var(--dotdone);border-color:var(--dotdonebd)}
+.week .dot.today{background:var(--brand);border-color:var(--brand)}
+.bar{height:var(--barh);border-radius:999px;background:var(--barbg);overflow:hidden;margin-top:11px}
+.bar span{display:block;height:100%;background:var(--ink)}
+.barlabel{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);margin-top:4px}
+
+.tabs{flex:none;display:flex;padding:7px 8px 11px;border-top:1px solid var(--line);background:var(--tabbg)}
+.tabs button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;
+  font:inherit;font-family:var(--fdisp);font-weight:700;font-size:10px;color:var(--muted);cursor:pointer;padding:3px 0}
+.tabs button.on{color:var(--ink);font-weight:900}
+.tabs svg{width:19px;height:19px}
+
+/* 学習（単語カード） */
+.steps{flex:none;display:flex;gap:4px;padding:9px 14px 10px;border-bottom:1px solid var(--line)}
+.steps i{flex:1;height:4px;border-radius:999px;background:var(--barbg)}
+.steps i.on{background:var(--ink)}
+.steplabel{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px}
+.steplabel b{font-family:var(--fdisp);font-size:14px;font-weight:900}
+.steplabel span{font-size:11px;color:var(--muted)}
+.wordcard{background:var(--card);border:var(--cardbd);border-radius:var(--r-lg);padding:18px 16px;text-align:center;box-shadow:var(--sh)}
+.wordcard .w{font-family:var(--zh);font-size:var(--zhsize);font-weight:var(--zhw);line-height:1.2;letter-spacing:var(--zhls)}
+.wordcard .p{font-size:15px;color:var(--ink2);margin-top:3px;letter-spacing:.02em}
+.wordcard .j{font-size:15px;font-weight:700;margin-top:7px}
+.wordcard .ex{background:var(--exbg);border-radius:var(--r-sm);padding:10px 11px;margin-top:12px;text-align:left;font-size:12.5px;line-height:1.75}
+.wordcard .ex .zh{font-size:var(--exzh);font-weight:var(--exzhw)}
+.wordcard .ex .s{color:var(--muted);font-size:11.5px}
+.dots{display:flex;gap:4px;justify-content:center;margin-top:10px}
+.dots i{width:6px;height:6px;border-radius:999px;background:var(--barbg)}
+.dots i.on{background:var(--ink)}
+.footbar{flex:none;padding:9px 14px 12px;border-top:1px solid var(--line)}
+
+/* 完了 */
+.done{text-align:center;padding:16px 4px 0}
+.done .mark{width:var(--marksz);height:var(--marksz);border-radius:999px;background:var(--markbg);border:var(--markbd);
+  display:flex;align-items:center;justify-content:center;font-size:var(--markfs);margin:0 auto 12px;color:var(--markfg)}
+.done h3{font-family:var(--fcelebr);font-size:var(--celebsz);font-weight:900;margin-bottom:3px}
+.done .lead{font-size:12.5px;color:var(--ink2)}
+.tally{background:var(--card);border:var(--cardbd);border-radius:var(--r-md);padding:11px 13px;margin-top:14px;text-align:left;box-shadow:var(--sh)}
+.tally div{display:flex;justify-content:space-between;font-size:12.5px;padding:4px 0}
+.tally div+div{border-top:1px solid var(--line)}
+
+/* ══════ 方向1：いまを磨く ══════ */
+.dir1{
+  --bg:#FCF9F2;--card:#fff;--card2:#FBF6EA;--ink:#2A2724;--ink2:#4A443C;--muted:#8A8377;--line:#E4DCCB;
+  --brand:#F2A227;--eye:#4E7A3C;
+  --cardbd:1.5px solid #2A2724;--card2bd:0;--r-lg:20px;--r-md:14px;--r-sm:14px;--pad:15px;
+  --sh:0 8px 20px -14px rgba(42,39,36,.30);
+  --btn:#2A2724;--btnfg:#FCF9F2;--btnbd:1.5px solid #2A2724;--fbtn:var(--maru);--btnw:900;
+  --fdisp:var(--maru);--fcelebr:var(--maru);
+  --chip:#FBE0BC;--chipbd:1.5px solid #2A2724;--chipfg:#2A2724;
+  --dotr:999px;--dotbd:1.5px solid #2A2724;--dotbg:#fff;--dotdone:#D5E4C8;--dotdonebd:#2A2724;
+  --barbg:#F0EBE0;--barh:9px;--tabbg:#FCF9F2;--exbg:#FBF6EA;
+  --zhsize:34px;--zhw:700;--zhls:0;--exzh:13px;--exzhw:600;
+  --marksz:76px;--markbg:#D5E4C8;--markbd:2.5px solid #2A2724;--markfs:34px;--markfg:#2A2724;--celebsz:22px;
+}
+.dir1 .app{position:absolute}
+/* 背面シェイプは上部だけ。カードの背後は通さない */
+.dir1 .body::before{content:"";position:absolute;left:0;right:0;top:0;height:150px;z-index:-1;
+  background:radial-gradient(120% 100% at 20% 0%, #FBE0BC 0%, #FBE0BC 55%, transparent 56%)}
+
+/* ══════ 方向2：静かな大人向け ══════ */
+.dir2{
+  --bg:#FAF8F4;--card:#fff;--card2:#F4F1EA;--ink:#23201C;--ink2:#4D473F;--muted:#8D877D;--line:#E8E3DA;
+  --brand:#E09420;--eye:#4E7A3C;
+  --cardbd:1px solid #EDE8DF;--card2bd:1px solid #EDE8DF;--r-lg:14px;--r-md:12px;--r-sm:10px;--pad:14px;
+  --sh:0 2px 8px -3px rgba(35,32,28,.10);
+  --btn:#23201C;--btnfg:#FAF8F4;--btnbd:0;--fbtn:var(--kaku);--btnw:700;
+  --fdisp:var(--maru);--fcelebr:var(--maru);
+  --chip:transparent;--chipbd:1px solid #DED8CC;--chipfg:#6E675D;
+  --dotr:999px;--dotbd:1px solid #E3DDD2;--dotbg:transparent;--dotdone:#D5E4C8;--dotdonebd:#C6D8B6;
+  --barbg:#EDE8DF;--barh:6px;--tabbg:#FAF8F4;--exbg:#F6F3EC;
+  --zhsize:34px;--zhw:700;--zhls:.01em;--exzh:13.5px;--exzhw:600;
+  --marksz:64px;--markbg:#F4F1EA;--markbd:1px solid #E3DDD2;--markfs:26px;--markfg:#4E7A3C;--celebsz:20px;
+}
+.dir2 .subcard .b{border-width:1px;border-color:#DED8CC}
+.dir2 .hand{display:none}
+
+/* ══════ 方向3：中文を主役に ══════ */
+.dir3{
+  --bg:#FFFFFF;--card:#fff;--card2:#F7F7F6;--ink:#141414;--ink2:#4A4A48;--muted:#8E8E8A;--line:#EDEDEA;
+  --brand:#E09420;--eye:#6E6E6A;
+  --cardbd:0;--card2bd:0;--r-lg:10px;--r-md:8px;--r-sm:6px;--pad:14px;
+  --sh:0 1px 3px rgba(20,20,20,.07),0 6px 18px -10px rgba(20,20,20,.14);
+  --btn:#141414;--btnfg:#fff;--btnbd:0;--fbtn:var(--kaku);--btnw:700;
+  --fdisp:var(--kaku);--fcelebr:var(--kaku);
+  --chip:transparent;--chipbd:1px solid #E4E4E0;--chipfg:#6E6E6A;
+  --dotr:3px;--dotbd:0;--dotbg:#EDEDEA;--dotdone:#141414;--dotdonebd:#141414;
+  --barbg:#EDEDEA;--barh:3px;--tabbg:#fff;--exbg:#F7F7F6;
+  --zhsize:46px;--zhw:700;--zhls:.03em;--exzh:16px;--exzhw:700;
+  --marksz:0px;--markbg:transparent;--markbd:0;--markfs:0;--markfg:#141414;--celebsz:26px;
+}
+.dir3 .hand{display:none}
+.dir3 .week .dot{aspect-ratio:auto;height:22px}
+.dir3 .done .mark{display:none}
+.dir3 .subcard{background:#fff;border:1px solid #EDEDEA}
+
+/* ══════ 推奨：2をベース、中文は3、達成だけ温かく ══════ */
+.rec{
+  --bg:#FAF8F4;--card:#fff;--card2:#F4F1EA;--ink:#23201C;--ink2:#4D473F;--muted:#8D877D;--line:#E8E3DA;
+  --brand:#E09420;--eye:#4E7A3C;
+  --cardbd:1px solid #EDE8DF;--card2bd:1px solid #EDE8DF;--r-lg:14px;--r-md:12px;--r-sm:10px;--pad:14px;
+  --sh:0 2px 8px -3px rgba(35,32,28,.10);
+  --btn:#23201C;--btnfg:#FAF8F4;--btnbd:0;--fbtn:var(--kaku);--btnw:700;
+  --fdisp:var(--maru);--fcelebr:var(--maru);
+  --chip:transparent;--chipbd:1px solid #DED8CC;--chipfg:#6E675D;
+  --dotr:999px;--dotbd:1px solid #E3DDD2;--dotbg:transparent;--dotdone:#D5E4C8;--dotdonebd:#C6D8B6;
+  --barbg:#EDE8DF;--barh:6px;--tabbg:#FAF8F4;--exbg:#F6F3EC;
+  /* 中文は方向3の組版を借りる */
+  --zhsize:46px;--zhw:700;--zhls:.03em;--exzh:16px;--exzhw:700;
+  /* 達成の瞬間だけ温度を上げる */
+  --marksz:84px;--markbg:#D5E4C8;--markbd:2px solid #23201C;--markfs:36px;--markfg:#23201C;--celebsz:24px;
+}
+.rec .subcard .b{border-width:1px;border-color:#DED8CC}
+.rec .hand{display:none}
+.rec .done .hand{display:inline;font-family:var(--hand);color:#B0561F;font-size:13px}
+.rec .done .tally{border-color:#E3DDD2}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lede"><b>中身（構造）は4つとも同じです。</b>案Aで決めた画面の並びはそのままに、<b>視覚言語だけ</b>を変えています。
+  アプリ本体にはまだ手を入れていません。</div>
+  <h1>加油 — デザイン方向の比較</h1>
+  <p class="sub">画面を切り替えて、4通りを見比べてください。いちばん右が推奨案です。</p>
+  <div class="picker" id="picker"></div>
+  <div class="cols" id="cols"></div>
+</div>
+
+<script>
+const IC={today:'<path d="M4 7h16v13H4z"/><path d="M4 11h16"/><path d="M8 3v4M16 3v4"/>',
+ study:'<path d="M4 5h7v15H4z"/><path d="M13 5h7v15h-7z"/><path d="M11 5v15"/>',
+ vocab:'<path d="M5 19V6a2 2 0 0 1 2-2h12v16H7a2 2 0 0 0-2 2"/><path d="M9 8h7M9 12h5"/>',
+ settings:'<circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.2M12 18.8V21M21 12h-2.2M5.2 12H3M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6M18.4 18.4l-1.6-1.6M7.2 7.2 5.6 5.6"/>'};
+const ic=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
+const TABS=on=>`<div class="tabs">
+  <button class="${on==='today'?'on':''}">${ic('today')}今日</button>
+  <button class="${on==='study'?'on':''}">${ic('study')}学習</button>
+  <button>${ic('vocab')}単語</button><button>${ic('settings')}設定</button></div>`;
+const HEAD=`<div class="top"><span class="brand">加油</span><span class="streak">12日連続</span></div>`;
+
+const SCREENS={
+ today:{label:'今日（ホーム）',html:()=>`<div class="app">${HEAD}
+  <div class="body">
+    <h2 class="screen-h">今日やること <span class="hand">あと78日！</span></h2>
+    <div class="hero"><span class="eye">あたらしく覚える</span><div class="t">Day 13</div>
+      <div class="m">単語5個・文法3つ・音声1問・ミニテスト5問</div>
+      <button class="big">学習を始める</button><div class="mini">だいたい15分</div></div>
+    <div class="subs">
+      <div class="subcard"><span class="e">思い出す</span><div class="n">18問</div>
+        <span class="e">期限13＋新規5</span><button class="b">復習する</button></div>
+      <div class="subcard"><span class="e">腕試し</span><div class="n">模擬試験</div>
+        <span class="e">40問・30分</span><button class="b">受ける</button></div></div>
+    <div class="week">${['月','火','水','木','金','土','日'].map((d,i)=>
+      `<div><span class="dot ${i<4?'done':i===4?'today':''}"></span>${d}</div>`).join('')}</div>
+    <div class="bar"><span style="width:13%"></span></div>
+    <div class="barlabel"><span>90日のうち 12日</span><span>13%</span></div>
+  </div>${TABS('today')}</div>`},
+
+ study:{label:'学習（単語）',html:()=>`<div class="app">
+  <div class="top"><span class="brand" style="font-size:13px;font-weight:700">✕ 今日へ</span><span class="streak">Day 13</span></div>
+  <div class="steps"><i class="on"></i><i></i><i></i><i></i></div>
+  <div class="body">
+    <div class="steplabel"><b>単語をおぼえる</b><span>ステップ 1 / 4</span></div>
+    <div class="wordcard"><div class="w zh">方法</div><div class="p">fāngfǎ</div><div class="j">方法</div>
+      <div class="ex"><span class="zh">这个方法很适合我。</span><br>
+        <span class="s">Zhège fāngfǎ hěn shìhé wǒ.</span><br>この方法は私に合っています。</div></div>
+    <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+    <div class="mini">1 / 5語</div>
+  </div>
+  <div class="footbar"><button class="big" style="margin-top:0">次へ</button></div></div>`},
+
+ done:{label:'完了（達成の瞬間）',html:()=>`<div class="app">${HEAD}
+  <div class="body"><div class="done">
+    <div class="mark">✓</div>
+    <h3>Day 13 完了</h3>
+    <p class="lead">13日つづきました。<span class="hand">その調子！</span></p>
+    <div class="tally"><div><span>おぼえた単語</span><b>5語</b></div>
+      <div><span>文法</span><b>3つ</b></div><div><span>ミニテスト</span><b>4 / 5問</b></div></div>
+    <button class="big">復習を続ける（18問）</button>
+    <div class="mini">今日はここまでにする</div>
+  </div></div>${TABS('today')}</div>`},
+};
+
+const DIRS=[
+ {k:'dir1',n:'方向1',t:'いまを磨く',d:'路線は変えず、枠線を減らして階層をつける',
+  props:['<b>枠線</b>：主役だけ黒枠、副次は地の色で区切る','<b>角丸</b>：20 / 14 / 999 の3段','<b>書体</b>：丸ゴシック＋手書きを維持','<b>背景シェイプ</b>：上部だけ、カードの背後を通さない']},
+ {k:'dir2',n:'方向2',t:'静かな大人向け',d:'装飾を削ぎ、密度を上げる',
+  props:['<b>枠線</b>：黒枠を廃止、細い境界＋浅い影','<b>角丸</b>：14px。ボタンだけ999px','<b>書体</b>：丸ゴシックは見出しと数字だけ。手書きは日常画面から外す','<b>色</b>：墨＋アンバーの2色。淡色3色は正誤専用']},
+ {k:'dir3',n:'方向3',t:'中文を主役に',d:'UIを透明にし、漢字の組版に投資する',
+  props:['<b>中文</b>：34px → <b>46px</b>、字間を開ける','<b>色</b>：ほぼモノクロ。色は「今日」の1点だけ','<b>枠線</b>：ゼロ。境界は影のみ','<b>週の帯</b>：丸ではなく細い棒。記号・絵文字は使わない']},
+ {k:'rec',n:'推奨',t:'2をベース＋3の文字組み',d:'日常は静かに、達成だけ温かく',rec:1,
+  props:['<b>日常画面</b>：方向2（静か・高密度）','<b>中文</b>：方向3の組版（46px・字間）','<b>達成の瞬間</b>：丸ゴシック・セージ・手書きを<b>ここだけ</b>に集中','<b>差別化</b>：装飾ではなく中身（日本人が間違えやすい点・AI添削）で取る']},
+];
+
+let cur='today';
+const picker=document.getElementById('picker');
+picker.innerHTML=Object.keys(SCREENS).map(k=>`<button data-k="${k}">${SCREENS[k].label}</button>`).join('');
+function draw(){
+  [...picker.children].forEach(b=>b.classList.toggle('on',b.dataset.k===cur));
+  document.getElementById('cols').innerHTML=DIRS.map(d=>`
+    <div class="col">
+      <div class="colhead"><span class="n${d.rec?' rec':''}">${d.n}</span>
+        <h2>${d.t}</h2><p>${d.d}</p></div>
+      <div class="ph"><div class="scr ${d.k}">${SCREENS[cur].html()}</div></div>
+      <div class="props">${d.props.map(p=>`<div>${p}</div>`).join('')}</div>
+    </div>`).join('');
+}
+picker.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cur=b.dataset.k;draw();});
+draw();
+</script>
+</body>
+</html>
