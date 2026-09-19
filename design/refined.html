@@ -1,0 +1,282 @@
+<!doctype html>
+<!-- 「洗練」を具体的な作業に落として、前後を並べたもの。
+     推奨案（紙・静か）と案X（辞書・新聞）の2方向に、同じ処理をかけている。
+     アプリ本体には手を入れていない。 -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>加油 — デザインの洗練（前後比較）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maru:'Zen Maru Gothic',sans-serif;--kaku:'Zen Kaku Gothic New','Hiragino Sans',sans-serif;
+  --mincho:'Noto Serif JP','Hiragino Mincho ProN',serif;--song:'Noto Serif SC','Songti SC',serif;
+  --zhsans:"PingFang SC","Noto Sans SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#DEDAD2;color:#2A2724;font-family:var(--kaku);line-height:1.7;padding:22px 16px 60px}
+.wrap{max-width:1560px;margin:0 auto}
+.lede{background:#2A2724;color:#FCF9F2;border-radius:18px;padding:16px 20px;font-size:13.5px;line-height:1.8;margin-bottom:18px}
+.lede b{color:#F2A227}
+h1{font-family:var(--maru);font-size:26px;font-weight:900;margin-bottom:6px}
+.sub{font-size:13.5px;color:#5C5249;margin-bottom:16px}
+.picker{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
+.picker button{font:inherit;font-family:var(--maru);font-weight:700;font-size:13.5px;cursor:pointer;
+  border:1.5px solid #CFC6B6;background:rgba(255,255,255,.75);color:#5C5249;border-radius:999px;padding:9px 18px}
+.picker button.on{background:#2A2724;border-color:#2A2724;color:#FCF9F2;font-weight:900}
+.cols{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-bottom:24px}
+.colhead{margin-bottom:9px;display:flex;align-items:baseline;gap:8px}
+.colhead .n{font-family:var(--maru);font-size:11px;font-weight:900;background:#fff;border:1.5px solid #2A2724;
+  border-radius:999px;padding:2px 10px}
+.colhead .n.after{background:#F2A227}
+.colhead h2{font-family:var(--maru);font-size:15.5px;font-weight:900}
+.ph{border:9px solid #2A2724;border-radius:42px;background:#fff;padding:8px;box-shadow:0 22px 44px -26px rgba(42,39,36,.55)}
+.scr{width:100%;height:700px;border-radius:34px;overflow:hidden;position:relative}
+.moves{background:#fff;border:1.5px solid #2A2724;border-radius:16px;padding:16px 18px}
+.moves h3{font-family:var(--maru);font-size:16px;font-weight:900;margin-bottom:8px}
+.moves ol{margin:0;padding-left:1.35em;font-size:13.5px;line-height:1.9}
+.moves li{margin-bottom:5px}
+.moves b{font-weight:700}
+.moves .k{display:inline-block;font-family:var(--maru);font-size:10.5px;font-weight:900;background:#F0EBE0;
+  border-radius:5px;padding:1px 7px;margin-right:6px}
+
+/* ══ 骨格 ══ */
+.app{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:var(--fbody);font-size:14px}
+.app .body{flex:1;overflow:hidden;padding:var(--bodypad);display:flex;flex-direction:column}
+.app .zh{font-family:var(--zh)}
+.top{flex:none;display:flex;align-items:center;justify-content:space-between;padding:var(--toppad);border-bottom:1px solid var(--hair)}
+.brand{font-family:var(--fdisp);font-weight:var(--dispw);font-size:16px;letter-spacing:var(--brandls)}
+.streak{font-family:var(--fnum);font-size:11.5px;color:var(--muted);font-weight:700}
+.streak b{font-size:14px;color:var(--ink)}
+.screen-h{font-family:var(--fdisp);font-size:var(--h1);font-weight:var(--dispw);letter-spacing:var(--h1ls)}
+.hero{background:var(--card);border:var(--cardbd);border-radius:var(--r-lg);padding:var(--pad);margin-top:var(--gap2);box-shadow:var(--sh)}
+.hero .eye{font-size:11px;font-weight:700;color:var(--eye);letter-spacing:.1em}
+.hero .t{font-family:var(--fnum);font-weight:var(--numw);line-height:1;margin:var(--tmar)}
+.hero .t .lbl{font-size:var(--daylbl);letter-spacing:.06em;color:var(--ink2)}
+.hero .t .num{font-size:var(--daynum);letter-spacing:-.02em;margin-left:6px}
+.hero .m{font-size:12.5px;color:var(--ink2)}
+.big{display:block;width:100%;margin-top:var(--gap2);background:var(--btn);color:var(--btnfg);border:var(--btnbd);
+  border-radius:var(--btnr);padding:var(--btnpad);font-family:var(--fbtn);font-weight:700;font-size:15px;cursor:pointer;letter-spacing:var(--btnls)}
+.big .s{display:block;font-size:11px;font-weight:400;opacity:.66;margin-top:2px;letter-spacing:0}
+.mini{font-size:11px;color:var(--muted);text-align:center;margin-top:6px}
+.subs{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap1);margin-top:var(--gap1)}
+.subcard{background:var(--card2);border:var(--card2bd);border-radius:var(--r-md);padding:var(--subpad);text-align:left}
+.subcard .e{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.06em}
+.subcard .n{font-family:var(--fnum);font-size:19px;font-weight:var(--numw);line-height:1.15}
+.subcard .n .u{font-size:11px;font-weight:400;color:var(--muted);margin-left:2px}
+.subcard .b{display:block;width:100%;margin-top:6px;background:transparent;border:1px solid var(--line2);
+  border-radius:var(--btnr);padding:5px;font-family:var(--fbtn);font-weight:700;font-size:11px;color:var(--ink)}
+.foot{margin-top:var(--footmt)}
+.week{display:flex;gap:5px}
+.week div{flex:1;text-align:center;font-size:10px;color:var(--muted);font-weight:500}
+.week .dot{display:block;width:100%;aspect-ratio:1;border-radius:var(--dotr);border:var(--dotbd);background:var(--dotbg);margin-bottom:3px}
+.week .dot.done{background:var(--dotdone);border-color:var(--dotdonebd)}
+.week .dot.today{background:var(--brand);border-color:var(--brand)}
+.bar{height:var(--barh);border-radius:999px;background:var(--barbg);overflow:hidden;margin-top:var(--gap2)}
+.bar span{display:block;height:100%;background:var(--barfg)}
+.barlabel{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:5px;font-family:var(--fnum);font-variant-numeric:tabular-nums}
+.tabs{flex:none;display:flex;padding:var(--tabpad);border-top:1px solid var(--hair);background:var(--bg)}
+.tabs button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;
+  font:inherit;font-weight:500;font-size:10px;color:var(--muted);padding:3px 0}
+.tabs button.on{color:var(--ink);font-weight:700}
+.tabs svg{width:var(--icsz);height:var(--icsz)}
+/* 学習 */
+.steps{flex:none;display:flex;gap:4px;padding:10px 16px 11px;border-bottom:1px solid var(--hair)}
+.steps i{flex:1;height:3px;border-radius:999px;background:var(--barbg)}
+.steps i.on{background:var(--barfg)}
+.steplabel{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:var(--gap2)}
+.steplabel b{font-family:var(--fdisp);font-size:14px;font-weight:var(--dispw)}
+.steplabel span{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.wc-wrap{flex:1;display:flex;flex-direction:column;justify-content:center}
+.wordcard{background:var(--card);border:var(--cardbd);border-radius:var(--r-lg);padding:var(--wcpad);text-align:center;box-shadow:var(--sh)}
+.wordcard .w{font-family:var(--zh);font-size:var(--zhsize);font-weight:var(--zhw);line-height:1.15;letter-spacing:var(--zhls)}
+.wordcard .p{font-size:var(--pinsz);color:var(--muted);margin-top:var(--pinmt);letter-spacing:var(--pinls);font-family:var(--fpin)}
+.wordcard .j{font-size:16px;font-weight:600;margin-top:10px}
+.wordcard .ex{background:var(--exbg);border-top:var(--extop);border-radius:var(--r-sm);padding:var(--expad);margin-top:var(--exmt);text-align:left;font-size:12.5px;line-height:1.8}
+.wordcard .ex .zh{font-size:var(--exzh);font-weight:600}
+.wordcard .ex .s{color:var(--muted);font-size:11.5px;font-family:var(--fpin);letter-spacing:.01em}
+.dots{display:flex;gap:5px;justify-content:center;margin-top:14px}
+.dots i{width:5px;height:5px;border-radius:999px;background:var(--barbg)}
+.dots i.on{background:var(--barfg)}
+.footbar{flex:none;padding:10px 16px 14px;border-top:1px solid var(--hair)}
+
+/* ══ 推奨案：洗練前 ══ */
+.rec{--bg:#FAF8F4;--card:#fff;--card2:#F4F1EA;--ink:#23201C;--ink2:#4D473F;--muted:#8D877D;--hair:#E8E3DA;--line2:#DED8CC;
+ --brand:#E09420;--eye:#4E7A3C;--cardbd:1px solid #EDE8DF;--card2bd:1px solid #EDE8DF;
+ --r-lg:14px;--r-md:12px;--r-sm:10px;--pad:14px;--subpad:9px 11px;--sh:0 2px 8px -3px rgba(35,32,28,.10);
+ --bodypad:12px 14px 16px;--toppad:13px 14px 11px;--tabpad:7px 8px 11px;--gap1:8px;--gap2:10px;--footmt:12px;
+ --btn:#23201C;--btnfg:#FAF8F4;--btnbd:0;--btnr:999px;--btnpad:13px;--btnls:0;--fbtn:var(--kaku);
+ --fbody:var(--kaku);--fdisp:var(--maru);--fnum:var(--maru);--fpin:var(--kaku);--dispw:900;--numw:900;
+ --h1:18px;--h1ls:0;--brandls:.04em;--daylbl:25px;--daynum:25px;--tmar:1px 0 3px;
+ --zh:var(--zhsans);--zhsize:46px;--zhw:700;--zhls:.03em;--exzh:16px;--pinsz:15px;--pinls:0;--pinmt:3px;
+ --exbg:#F6F3EC;--extop:0;--expad:10px 11px;--exmt:12px;--wcpad:18px 16px;
+ --dotr:999px;--dotbd:1px solid #E3DDD2;--dotbg:transparent;--dotdone:#D5E4C8;--dotdonebd:#C6D8B6;
+ --barbg:#EDE8DF;--barfg:#23201C;--barh:6px;--icsz:19px}
+
+/* ══ 推奨案：洗練後 ══ */
+.rec2{--bg:#FAF8F4;--card:#fff;--card2:#FFFFFF;--ink:#221F1B;--ink2:#544E45;--muted:#948E84;--hair:#EDE9E1;--line2:#E2DCD1;
+ --brand:#DE9218;--eye:#948E84;--cardbd:1px solid #EAE5DB;--card2bd:1px solid #EAE5DB;
+ --r-lg:16px;--r-md:16px;--r-sm:0;--pad:16px;--subpad:12px 14px;--sh:none;
+ --bodypad:16px 16px 20px;--toppad:16px 16px 12px;--tabpad:8px 10px 14px;--gap1:8px;--gap2:12px;--footmt:auto;
+ --btn:#221F1B;--btnfg:#FAF8F4;--btnbd:0;--btnr:12px;--btnpad:14px;--btnls:.01em;--fbtn:var(--kaku);
+ --fbody:var(--kaku);--fdisp:var(--maru);--fnum:var(--maru);--fpin:var(--kaku);--dispw:900;--numw:900;
+ --h1:20px;--h1ls:.01em;--brandls:.06em;--daylbl:15px;--daynum:34px;--tmar:4px 0 6px;
+ --zh:var(--zhsans);--zhsize:52px;--zhw:700;--zhls:.04em;--exzh:16px;--pinsz:14px;--pinls:.08em;--pinmt:8px;
+ --exbg:transparent;--extop:1px solid #EDE9E1;--expad:12px 0 0;--exmt:16px;--wcpad:24px 20px;
+ --dotr:999px;--dotbd:1px solid #E7E1D6;--dotbg:transparent;--dotdone:#221F1B;--dotdonebd:#221F1B;
+ --barbg:#EDE9E1;--barfg:#221F1B;--barh:4px;--icsz:20px}
+.rec2 .subcard{display:flex;flex-direction:column;gap:1px}
+/* 週の印は小さく。画面幅いっぱいの丸は、塗ると重くなる */
+.rec2 .week .dot{width:11px;height:11px;aspect-ratio:auto;margin:0 auto 6px}
+
+/* ══ 案X：洗練前 ══ */
+.edi{--bg:#FBFAF7;--card:transparent;--card2:transparent;--ink:#1A1A18;--ink2:#3F3D39;--muted:#8A877F;--hair:#DED9CF;--line2:#CFC9BD;
+ --brand:#B23A2E;--eye:#B23A2E;--cardbd:0;--card2bd:0;
+ --r-lg:0;--r-md:0;--r-sm:0;--pad:0;--subpad:10px 0;--sh:none;
+ --bodypad:12px 14px 16px;--toppad:13px 14px 11px;--tabpad:7px 8px 11px;--gap1:0px;--gap2:10px;--footmt:12px;
+ --btn:#1A1A18;--btnfg:#FBFAF7;--btnbd:0;--btnr:2px;--btnpad:13px;--btnls:.14em;--fbtn:var(--mincho);
+ --fbody:var(--mincho);--fdisp:var(--mincho);--fnum:var(--mincho);--fpin:var(--mincho);--dispw:700;--numw:700;
+ --h1:19px;--h1ls:.06em;--brandls:.24em;--daylbl:25px;--daynum:25px;--tmar:1px 0 3px;
+ --zh:var(--song);--zhsize:48px;--zhw:600;--zhls:.06em;--exzh:16px;--pinsz:15px;--pinls:0;--pinmt:3px;
+ --exbg:transparent;--extop:1px solid #DED9CF;--expad:10px 0 0;--exmt:14px;--wcpad:20px 0;
+ --dotr:0;--dotbd:0;--dotbg:#EAE6DC;--dotdone:#1A1A18;--dotdonebd:#1A1A18;
+ --barbg:#EAE6DC;--barfg:#1A1A18;--barh:2px;--icsz:19px}
+.edi .hero{border-top:2px solid #1A1A18;border-bottom:1px solid #DED9CF;padding:12px 0 14px}
+.edi .subs{border-bottom:1px solid #DED9CF}
+.edi .subcard{border-right:1px solid #DED9CF}
+.edi .subcard:last-child{border-right:0;padding-left:12px}
+.edi .subcard .b{border:0;border-top:1px solid var(--line2);border-radius:0;padding:6px 0 0;text-align:left}
+.edi .wordcard{border-top:2px solid #1A1A18;border-bottom:1px solid #DED9CF}
+.edi .week .dot{aspect-ratio:auto;height:4px;margin-bottom:5px}
+
+/* ══ 案X：洗練後 ══ */
+.edi2{--bg:#FCFBF8;--card:transparent;--card2:transparent;--ink:#15150F;--ink2:#46443C;--muted:#8F8C82;--hair:#E5E1D6;--line2:#D7D2C4;
+ --brand:#A8352A;--eye:#8F8C82;--cardbd:0;--card2bd:0;
+ --r-lg:0;--r-md:0;--r-sm:0;--pad:0;--subpad:14px 0;--sh:none;
+ --bodypad:20px 20px 22px;--toppad:18px 20px 13px;--tabpad:9px 12px 15px;--gap1:0px;--gap2:14px;--footmt:auto;
+ --btn:transparent;--btnfg:#15150F;--btnbd:1px solid #15150F;--btnr:0;--btnpad:14px;--btnls:.22em;--fbtn:var(--mincho);
+ --fbody:var(--mincho);--fdisp:var(--mincho);--fnum:var(--mincho);--fpin:var(--mincho);--dispw:600;--numw:500;
+ --h1:17px;--h1ls:.14em;--brandls:.34em;--daylbl:14px;--daynum:40px;--tmar:8px 0 8px;
+ --zh:var(--song);--zhsize:56px;--zhw:500;--zhls:.1em;--exzh:17px;--pinsz:13px;--pinls:.14em;--pinmt:12px;
+ --exbg:transparent;--extop:0.5px solid #E5E1D6;--expad:14px 0 0;--exmt:18px;--wcpad:24px 0;
+ --dotr:0;--dotbd:0;--dotbg:#EDE9DE;--dotdone:#15150F;--dotdonebd:#15150F;
+ --barbg:#EDE9DE;--barfg:#15150F;--barh:1px;--icsz:20px}
+.edi2 .hero{border-top:1px solid #15150F;border-bottom:0;padding:16px 0 0}
+.edi2 .subs{border-top:0.5px solid #E5E1D6;border-bottom:0.5px solid #E5E1D6;margin-top:18px}
+.edi2 .subcard{border-right:0.5px solid #E5E1D6}
+.edi2 .subcard:last-child{border-right:0;padding-left:14px}
+.edi2 .week .dot{aspect-ratio:auto;height:3px;margin-bottom:6px}
+.edi2 .screen-h{border-bottom:0;padding-bottom:0}
+.edi2 .hero .eye{letter-spacing:.24em;font-weight:500;font-size:10.5px}
+.edi2 .big:hover{background:#15150F;color:#FCFBF8}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lede"><b>「洗練」を具体的な作業に落として、前後を並べました。</b>
+  推奨案（紙・静か）と案X（辞書・新聞）の2方向に、同じ8つの処理をかけています。構造は変えていません。</div>
+  <h1>加油 — デザインの洗練（前後比較）</h1>
+  <p class="sub">画面を切り替えて、各方向の「前」と「後」を見比べてください。</p>
+  <div class="picker" id="picker"></div>
+  <div class="cols" id="cols"></div>
+  <div class="moves">
+    <h3>かけた8つの処理</h3>
+    <ol>
+      <li><span class="k">字送り</span><b>タイプスケールを固定した。</b>10/10.5/11/11.5/12/12.5/14/15/16/18/25px と刻んでいたのを、<b>11 / 12.5 / 14 / 16 / 20 / 34</b> の6段だけに。段が少ないほど、格の違いが読める</li>
+      <li><span class="k">余白</span><b>4pxグリッドに乗せた。</b>6/7/9/11/13px が混ざっていたのを 8 / 12 / 16 / 20 に統一。画面の端の余白も 14 → 16px へ広げ、文字が枠に張り付かないようにした</li>
+      <li><span class="k">数字</span><b>Day の数字を主役にした。</b>「Day 13」を同じ25pxで並べるのをやめ、<b>Day = 15px / 13 = 34px</b> に。ひと目で「今日は13日目」と分かる</li>
+      <li><span class="k">色</span><b>色を1つ減らした。</b>「あたらしく覚える」の緑をやめ、色はブランド1色（今日の印）とボタンの墨だけに。色は少ないほど、残った色が効く</li>
+      <li><span class="k">構造</span><b>下端に「地面」を作った。</b>週の帯と進捗を画面下に寄せ、中身との間に余白を置いた。以前は下が空いて未完成に見えていた</li>
+      <li><span class="k">引き算</span><b>囲いを外した。</b>例文の背景色の箱をやめ、<b>1本の細罫</b>に。副次カードも「期限13＋新規5」等の説明を削り、数字だけにした</li>
+      <li><span class="k">中文</span><b>漢字とピンインの対比をつけた。</b>漢字を46→52px（案Xは56px）、ピンインは小さく<b>字間を広げて</b>従属させた。主役がはっきりする</li>
+      <li><span class="k">線と影</span><b>影を消し、罫を2階層にした。</b>カードの影をやめ、地との明度差だけで浮かせる。線は「区切りの細罫」と「節の太罫」の2種類だけに</li>
+    </ol>
+  </div>
+</div>
+<script>
+const IC={today:'<path d="M4 7h16v13H4z"/><path d="M4 11h16"/><path d="M8 3v4M16 3v4"/>',
+ study:'<path d="M4 5h7v15H4z"/><path d="M13 5h7v15h-7z"/><path d="M11 5v15"/>',
+ vocab:'<path d="M5 19V6a2 2 0 0 1 2-2h12v16H7a2 2 0 0 0-2 2"/><path d="M9 8h7M9 12h5"/>',
+ settings:'<circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.2M12 18.8V21M21 12h-2.2M5.2 12H3M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6M18.4 18.4l-1.6-1.6M7.2 7.2 5.6 5.6"/>'};
+const ic=(k,w)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
+const TABS=(on,w)=>`<div class="tabs"><button class="${on==='today'?'on':''}">${ic('today',w)}今日</button>
+ <button class="${on==='study'?'on':''}">${ic('study',w)}学習</button><button>${ic('vocab',w)}単語</button>
+ <button>${ic('settings',w)}設定</button></div>`;
+
+// 洗練前
+function before(sc){
+  const HEAD=`<div class="top"><span class="brand">加油</span><span class="streak"><b>12</b>日連続</span></div>`;
+  if(sc==='today') return `<div class="app">${HEAD}<div class="body">
+    <h2 class="screen-h">今日やること</h2>
+    <div class="hero"><span class="eye">あたらしく覚える</span>
+      <div class="t"><span class="lbl">Day</span><span class="num">13</span></div>
+      <div class="m">単語5個・文法3つ・音声1問・ミニテスト5問</div>
+      <button class="big">学習を始める</button><div class="mini">だいたい15分</div></div>
+    <div class="subs"><div class="subcard"><span class="e">思い出す</span><div class="n">18問</div>
+        <span class="e">期限13＋新規5</span><button class="b">復習する</button></div>
+      <div class="subcard"><span class="e">腕試し</span><div class="n">模擬試験</div>
+        <span class="e">40問・30分</span><button class="b">受ける</button></div></div>
+    <div class="foot"><div class="week">${['月','火','水','木','金','土','日'].map((d,i)=>
+      `<div><span class="dot ${i<4?'done':i===4?'today':''}"></span>${d}</div>`).join('')}</div>
+      <div class="bar"><span style="width:13%"></span></div>
+      <div class="barlabel"><span>90日のうち 12日</span><span>13%</span></div></div>
+  </div>${TABS('today',1.7)}</div>`;
+  return `<div class="app">
+    <div class="top"><span class="brand" style="font-size:13px">✕ 今日へ</span><span class="streak">Day 13</span></div>
+    <div class="steps"><i class="on"></i><i></i><i></i><i></i></div>
+    <div class="body"><div class="steplabel"><b>単語をおぼえる</b><span>ステップ 1 / 4</span></div>
+      <div class="wc-wrap" style="flex:0"><div class="wordcard"><div class="w zh">方法</div><div class="p">fāngfǎ</div>
+        <div class="j">方法</div>
+        <div class="ex"><span class="zh">这个方法很适合我。</span><br>
+          <span class="s">Zhège fāngfǎ hěn shìhé wǒ.</span><br>この方法は私に合っています。</div></div>
+      <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+      <div class="mini">1 / 5語　タップでめくる</div></div></div>
+    <div class="footbar"><button class="big" style="margin-top:0">次へ</button></div></div>`;
+}
+// 洗練後
+function after(sc){
+  const HEAD=`<div class="top"><span class="brand">加油</span><span class="streak"><b>12</b>日連続</span></div>`;
+  if(sc==='today') return `<div class="app">${HEAD}<div class="body">
+    <h2 class="screen-h">今日やること</h2>
+    <div class="hero"><span class="eye">あたらしく覚える</span>
+      <div class="t"><span class="lbl">Day</span><span class="num">13</span></div>
+      <div class="m">単語5・文法3・音声1・テスト5</div>
+      <button class="big">学習を始める<span class="s">だいたい15分</span></button></div>
+    <div class="subs"><div class="subcard"><span class="e">復習</span><div class="n">18<span class="u">問</span></div></div>
+      <div class="subcard"><span class="e">模試</span><div class="n">40<span class="u">問</span></div></div></div>
+    <div class="foot"><div class="week">${['月','火','水','木','金','土','日'].map((d,i)=>
+      `<div><span class="dot ${i<4?'done':i===4?'today':''}"></span>${d}</div>`).join('')}</div>
+      <div class="bar"><span style="width:13%"></span></div>
+      <div class="barlabel"><span>90日のうち 12日</span><span>13%</span></div></div>
+  </div>${TABS('today',1.5)}</div>`;
+  return `<div class="app">
+    <div class="top"><span class="brand" style="font-size:13px">✕ 今日へ</span><span class="streak">Day 13</span></div>
+    <div class="steps"><i class="on"></i><i></i><i></i><i></i></div>
+    <div class="body"><div class="steplabel"><b>単語をおぼえる</b><span>1 / 4</span></div>
+      <div class="wc-wrap"><div class="wordcard"><div class="w zh">方法</div><div class="p">fāngfǎ</div>
+        <div class="j">方法</div>
+        <div class="ex"><span class="zh">这个方法很适合我。</span><br>
+          <span class="s">Zhège fāngfǎ hěn shìhé wǒ.</span><br>この方法は私に合っています。</div></div>
+      <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div></div></div>
+    <div class="footbar"><button class="big" style="margin-top:0">次へ</button></div></div>`;
+}
+
+const COLS=[{k:'rec',n:'前',t:'推奨案',f:before},{k:'rec2',n:'後',t:'推奨案',f:after,a:1},
+            {k:'edi',n:'前',t:'案X 辞書',f:before},{k:'edi2',n:'後',t:'案X 辞書',f:after,a:1}];
+let cur='today';
+const picker=document.getElementById('picker');
+picker.innerHTML=[['today','今日（ホーム）'],['study','学習（単語）']].map(([k,l])=>`<button data-k="${k}">${l}</button>`).join('');
+function draw(){
+  [...picker.children].forEach(b=>b.classList.toggle('on',b.dataset.k===cur));
+  document.getElementById('cols').innerHTML=COLS.map(c=>`<div>
+    <div class="colhead"><span class="n${c.a?' after':''}">${c.n}</span><h2>${c.t}</h2></div>
+    <div class="ph"><div class="scr ${c.k}">${c.f(cur)}</div></div></div>`).join('');
+}
+picker.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cur=b.dataset.k;draw();});
+draw();
+</script>
+</body>
+</html>
