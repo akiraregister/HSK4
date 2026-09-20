@@ -44,6 +44,7 @@ CHROMIUM=/path/to/chrome node tests/run.mjs
 | `track` | 計測イベント、復習離脱の両経路、設定の集計表示 | 15 |
 | `lp` | LPの横スクロール、CTA位置、計測、アプリへの導線、2つのデモ | 19 |
 | `sw` | Service Worker のプリキャッシュとオフライン起動 | — |
+| `paywall` | 購入Workerのルート判定（引き換えコード／CORS／オリジン）。**偽のStripeとメモリ上のKVで動かす**ので、本物の決済は通していない | 15 |
 
 ## 書くときの約束
 

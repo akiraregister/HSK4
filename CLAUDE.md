@@ -176,7 +176,7 @@ Day学習の4ステップ化／完了画面／設定の4グループ化と「購
 ## 検証
 
 ```bash
-node tests/run.mjs        # 全173項目＋Service Workerチェック
+node tests/run.mjs        # 全188項目＋Service Workerチェック（7スイート）
 ```
 
 **変更したら必ず通すこと。** ビルドもCIも無いので、これが唯一の安全網。
@@ -249,6 +249,19 @@ node tests/run.mjs        # 全173項目＋Service Workerチェック
 - **`hsk4-grader`側の認証も実装済み** Day1-7は誰でも採点できるまま、Day8以降は
   Firebase IDトークン＋`worker-paywall`と同じKV（`ENTITLEMENTS`）で購入済み判定。
   未接続時は安全側でDay8以降を常に403にする（詳細は`worker/README.md`）
+
+### ⚠️ 引き換えコード（未配置）
+
+**ログインを購入の前提にしない仕組みを実装したが、まだ配置していない。**
+Stripeの本物の決済を通した確認ができていないため。詳細と配置手順・切り戻しは
+`worker-paywall/README.md` の「引き換えコード」を読むこと。
+
+- 未ログインで `/checkout` を叩くとWorkerが引き換えコードを発行し、`/claim` で確定、
+  以後 `X-Claim` ヘッダーで `/content` を読める。ログインしたら `/bind` でuidへ移す
+- **従来の経路（ログイン → `/confirm`）はそのまま動く。**アプリ側も、未ログインの
+  `/checkout` が401（＝Workerが古い）なら従来のログイン導線へ落ちる。
+  **配置しなくてもアプリは壊れない**
+- `node tests/run.mjs paywall` が偽のStripeでルートの判定だけ確かめている（15項目）
 
 ### 購入確定は二重化してある（Webhookが単一障害点にならないように）
 

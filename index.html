@@ -660,7 +660,11 @@ async function initFirebase(){
           purchaseParam=qs.get('purchase');
           purchaseSessionId=qs.get('session_id');
         }catch(e){}
+        // 引き換えコードで買ったあとにログインしたら、uidへ移し替える
+        // （端末をまたいで使えるようにする）。
+        if(purchaseClaim()){ try{ if(await bindPurchaseToAccount()) setPurchaseClaim(''); }catch(e){} }
         if(purchaseParam==='success'){
+          _purchaseHandled=true;
           try{ history.replaceState(null,'',location.pathname); }catch(e){}
           if(purchaseSessionId) await confirmPurchase(purchaseSessionId);
           var got=await fetchPaidContent();
@@ -26200,6 +26204,71 @@ function mergePaidContent(data){
 })();
 // 決済から戻ってきたときの購入確定。Webhookが届かなかった場合でも、
 // Stripeが付けてくれたsession_idを渡せばWorker側が本人の支払いか照会して確定できる。
+// ===== 引き換えコード（ログインせずに買った人のための鍵） =====
+// ログインを購入の前提にしないための仕組み（分析のA3）。Googleログインは
+// 中国からは到達しないので、必須にすると買えない人が出る。
+// コードは決済へ飛ぶ前にWorkerが発行し、この端末のlocalStorageにだけ置く。
+// 失うとログインするまで復元できないので、あとでログインしたら /bind でuidへ移す。
+var CLAIM_KEY='hsk4-purchase-claim';
+function purchaseClaim(){ try{ var v=localStorage.getItem(CLAIM_KEY); return /^[0-9a-f]{64}$/.test(v||'')?v:''; }catch(e){ return ''; } }
+function setPurchaseClaim(v){ try{ if(v) localStorage.setItem(CLAIM_KEY,v); else localStorage.removeItem(CLAIM_KEY); }catch(e){} }
+
+// 未ログインで買ったあと、決済から戻ってきたときの購入確定。
+async function claimPurchase(sessionId){
+  var claim=purchaseClaim();
+  if(!claim || !sessionId) return false;
+  try{
+    var res=await fetch(paywallUrl()+'/claim', {
+      method:'POST', headers:{ 'Content-Type':'application/json' },
+      body:JSON.stringify({ session_id: sessionId, claim: claim })
+    });
+    if(!res.ok) return false;
+    var data=await res.json();
+    return !!(data && data.purchased);
+  }catch(e){ return false; }
+}
+
+// 引き換えコードで買った人がログインしたら、uidへ移し替える（端末をまたげるように）。
+async function bindPurchaseToAccount(){
+  var claim=purchaseClaim();
+  if(!claim || !firebaseReady || !auth || !auth.currentUser) return false;
+  try{
+    var token=await auth.currentUser.getIdToken();
+    var res=await fetch(paywallUrl()+'/bind', {
+      method:'POST', headers:{ 'Authorization':'Bearer '+token, 'Content-Type':'application/json' },
+      body:JSON.stringify({ claim: claim })
+    });
+    if(!res.ok) return false;
+    var data=await res.json();
+    return !!(data && data.purchased);
+  }catch(e){ return false; }
+}
+
+// 決済から戻ってきたときの処理は2通りある。
+//  ・ログイン済み … onAuthStateChanged 側（uidに紐付ける）
+//  ・未ログイン   … ここ（引き換えコードに紐付ける）
+// 二重に走らせないための目印。
+var _purchaseHandled=false;
+(function handleAnonymousPurchaseReturn(){
+  var param=null, sid=null;
+  try{ var qs=new URLSearchParams(location.search); param=qs.get('purchase'); sid=qs.get('session_id'); }catch(e){}
+  if(param!=='success' || !sid) return;
+  if(!purchaseClaim()) return;   // コードが無い＝ログインして買った人。あちらに任せる
+  // Firebaseは遅延読み込みなので、ログイン済みかどうかが分かるまで少し待つ。
+  setTimeout(async function(){
+    if(_purchaseHandled) return;
+    if(firebaseReady && auth && auth.currentUser) return;   // ログイン済みならあちらが処理する
+    _purchaseHandled=true;
+    try{ history.replaceState(null,'',location.pathname); }catch(e){}
+    var ok=await claimPurchase(sid);
+    var got=ok ? await fetchPaidContent() : false;
+    _toast(got
+      ? '購入ありがとうございます！Day8以降が使えるようになりました。この端末でそのまま使えます。'
+      : '購入の確認に少し時間がかかっています。少し待ってから、設定の「購入を復元」をお試しください。', 9000);
+    if(got) render();
+  }, 2500);
+})();
+
 async function confirmPurchase(sessionId){
   if(!firebaseReady || !auth || !auth.currentUser) return false;
   try{
@@ -26215,10 +26284,16 @@ async function confirmPurchase(sessionId){
   }catch(e){ return false; }
 }
 async function fetchPaidContent(){
-  if(!firebaseReady || !auth || !auth.currentUser) return false;
+  // ログイン済みならuidで、未ログインでも引き換えコードがあればそれで取りに行く
+  var headers={}, claim=purchaseClaim();
+  if(firebaseReady && auth && auth.currentUser){
+    try{ headers['Authorization']='Bearer '+(await auth.currentUser.getIdToken()); }catch(e){}
+  } else if(claim){
+    headers['X-Claim']=claim;
+  }
+  if(!headers['Authorization'] && !headers['X-Claim']) return false;
   try{
-    var token=await auth.currentUser.getIdToken();
-    var res=await fetch(paywallUrl()+'/content', { headers:{ 'Authorization':'Bearer '+token } });
+    var res=await fetch(paywallUrl()+'/content', { headers: headers });
     if(!res.ok) return false;
     var data=await res.json();
     var okMerge=mergePaidContent(data);
@@ -26227,16 +26302,29 @@ async function fetchPaidContent(){
   }catch(e){ return false; }
 }
 async function startCheckout(){
-  if(!firebaseReady){ _toast('クラウド同期は現在利用できません。しばらくしてからお試しください。', 6000); return; }
-  if(!auth || !auth.currentUser){ window.hsk4GoogleLogin(); return; }
+  // ログインは購入の前提にしない（分析のA3）。未ログインならWorkerが引き換えコードを
+  // 発行するので、それを端末に置いてから決済へ飛ぶ。
+  // Workerがまだ古い（未配置）と未ログインの /checkout は401を返すので、
+  // そのときだけ従来どおりログインへ誘導する。
   try{
-    var token=await auth.currentUser.getIdToken();
     var coupon='';
     var couponInput=document.getElementById('couponInput');
     if(couponInput){ coupon=couponInput.value.trim(); }
+    var headers={ 'Content-Type':'application/json' };
+    if(firebaseReady && auth && auth.currentUser){
+      try{ headers['Authorization']='Bearer '+(await auth.currentUser.getIdToken()); }catch(e){}
+    }
     var body={ coupon: coupon || undefined };
-    var res=await fetch(paywallUrl()+'/checkout', { method:'POST', headers:{ 'Authorization':'Bearer '+token, 'Content-Type':'application/json' }, body:JSON.stringify(body) });
+    var res=await fetch(paywallUrl()+'/checkout', { method:'POST', headers: headers, body:JSON.stringify(body) });
+    if(res.status===401 && !headers['Authorization']){
+      if(firebaseReady){ window.hsk4GoogleLogin(); }
+      else { _toast('いまは購入手続きを開始できません。しばらくしてからお試しください。', 6000); }
+      return;
+    }
     var data=await res.json().catch(function(){ return null; });
+    // 引き換えコードは決済へ飛ぶ前に必ず保存する。これを失うと、ログインするまで
+    // 購入を紐付けられない。
+    if(data && data.claim) setPurchaseClaim(data.claim);
     // Worker側が返す文言はすべて利用者向けに書いてある（クーポンの入力ミス等）ので、
     // あればそのまま見せる。無ければ汎用の文言にする。
     if(data && data.url){ location.href=data.url; }
@@ -28016,14 +28104,26 @@ function renderSettings(){
 // 設定からは辿り着けなかった（失敗時も alert() だった）。
 async function restorePurchase(){
   var btn=$('restoreBtn');
-  if(!firebaseReady){ _toast('クラウド同期は現在利用できません。しばらくしてからお試しください。', 6000); return; }
-  if(!auth || !auth.currentUser){ _toast('先に「Googleでログイン」を押して、購入したときと同じアカウントでログインしてください。', 7000); return; }
+  var loggedIn=!!(firebaseReady && auth && auth.currentUser);
+  // この端末で（ログインせずに）買っていれば、引き換えコードだけで復元できる
+  if(!loggedIn && !purchaseClaim()){
+    _toast(firebaseReady
+      ? '先に「Googleでログイン」を押して、購入したときと同じアカウントでログインしてください。'
+      : 'クラウド同期は現在利用できません。しばらくしてからお試しください。', 7000);
+    return;
+  }
   if(btn){ btn.disabled=true; btn.textContent='確認中…'; }
   var ok=false;
   try{ ok=await fetchPaidContent(); }catch(e){ ok=false; }
   if(btn){ btn.disabled=false; btn.textContent='購入を復元'; }
-  if(ok){ _toast('購入を確認しました。Day8以降が使えます。', 6000); render(); }
-  else { _toast('このアカウントでは購入が確認できませんでした。購入したときと同じGoogleアカウントかご確認ください。', 8000); }
+  if(ok){
+    // ログイン済みで、この端末の引き換えコードがまだ残っていればuidへ移しておく
+    if(loggedIn && purchaseClaim()){ try{ if(await bindPurchaseToAccount()) setPurchaseClaim(''); }catch(e){} }
+    _toast('購入を確認しました。Day8以降が使えます。', 6000); render();
+  }
+  else { _toast(loggedIn
+    ? 'このアカウントでは購入が確認できませんでした。購入したときと同じGoogleアカウントかご確認ください。'
+    : 'この端末では購入が確認できませんでした。別の端末で買った場合は、購入したときと同じGoogleアカウントでログインしてください。', 8000); }
 }
 Object.assign(window, {
   state,
@@ -28228,6 +28328,9 @@ window._toast = _toast;   // lockedDayHTML() の onclick から呼ぶため
 window.normalizeStateForCloud = normalizeStateForCloud;
 window.restorePurchase = restorePurchase;
 window.setPaywallPreview = setPaywallPreview;
+window.claimPurchase = claimPurchase;
+window.bindPurchaseToAccount = bindPurchaseToAccount;
+window.purchaseClaim = purchaseClaim;
 window.fetchPaidContent = fetchPaidContent;
 window.startAiChallenge = startAiChallenge;
 window.mtSaveGraderUrl = mtSaveGraderUrl;

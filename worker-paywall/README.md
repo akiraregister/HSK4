@@ -209,11 +209,79 @@ npx wrangler dev --local --port 8788
 curl -i -X POST http://127.0.0.1:8788/checkout \
   -H "Origin: https://evil.example.com"
 
-# 未ログイン（トークン無し）は401
+# 未ログイン（トークン無し）でも通る。引き換えコードが返る
 curl -i -X POST http://127.0.0.1:8788/checkout \
-  -H "Origin: https://akiraregister.github.io"
+  -H "Origin: https://akiraregister.github.io" \
+  -H "Content-Type: application/json" -d '{}'
 ```
 
 Firebase IDトークンを使った疎通確認は、実際にアプリでログインしてから
 ブラウザのdevtoolsで `firebase.auth().currentUser.getIdToken()` 相当の値を
 取得して試す。
+
+---
+
+## ⚠️ 引き換えコード（未配置。配置前に必ず読むこと）
+
+**このコードはまだ配置していない。** Stripeの本物の決済を通した確認ができていないため。
+
+### 何をする変更か
+
+ログインを購入の前提にしないための仕組み（分析のA3）。
+**Googleログインは中国からは到達しない**ので、必須にすると買えない人が出る。
+
+- `POST /checkout` を未ログインでも通す。Workerが乱数で引き換えコードを作り、
+  Stripeの `client_reference_id` に `claim:<コード>` として埋めて、コードを返す
+- アプリは決済へ飛ぶ前にコードを端末（localStorage）へ保存する
+- 決済後、アプリが `POST /claim` に `(session_id, コード)` を出す。
+  **Stripeへ直接照会して**支払い済みかつ `client_reference_id` が一致したときだけ
+  KVに `claim:<コード>` で購入済みを書く
+- 以後アプリは `X-Claim` ヘッダーでコードを送れば `/content` を読める
+- あとでログインしたら `POST /bind` でuidへ移し替える（端末をまたげるようになる）
+
+**従来の経路（ログイン済み → Authorization → `/confirm`）はそのまま動く。**
+アプリ側も、未ログインの `/checkout` が401（＝Workerが古い）なら、
+従来どおりログインへ誘導するようになっている。**つまり配置しなくてもアプリは壊れない。**
+
+### 分かっている弱点
+
+- **コードは端末のlocalStorageにだけ入る。** 失うと、ログインして `/bind` するまで
+  復元できない。ブラウザのデータを消すと消える
+- コードを知っている人は誰でも中身を読める（＝bearerトークン）。
+  64桁の乱数なので推測はできないが、人に見せない前提
+- 返金・チャージバックでコード側の購入済みを消す処理は無い（uid側にも無い）
+
+### 配置の手順
+
+```bash
+cd worker-paywall
+npx wrangler deploy
+```
+
+配置したら、**Stripeのテストモードで必ず次を通すこと**（ここが未確認）。
+
+1. ログアウトした状態でDay8を開き、価格画面から「購入して全90日を開く」
+2. Stripeのテストカード `4242 4242 4242 4242` で決済する
+3. アプリに戻って、**ログインしないまま**Day8以降が開けること
+4. 設定 → 「購入を復元」が、ログインしていなくても効くこと
+5. そのあとGoogleでログインして、**別の端末でもDay8以降が開けること**（`/bind` の確認）
+6. 従来どおり「先にログインしてから購入」も通ること（`/confirm` の経路）
+
+### 切り戻し
+
+```bash
+cd worker-paywall
+npx wrangler rollback            # 直前の版へ戻す
+npx wrangler deployments list    # 版の一覧
+```
+
+アプリ側は配置を戻すだけでよい（未ログインの `/checkout` が401になれば、
+自動的に従来のログイン導線へ落ちる）。
+ただし**その時点で引き換えコードだけで使っている人は読めなくなる**ので、
+切り戻す前に `/bind` を済ませてもらう必要がある。実質、**利用者が出る前に
+確認を終えること。**
+
+### テスト
+
+`node tests/run.mjs paywall` が、偽のStripeとメモリ上のKVでルートの判定を確かめる
+（15項目）。**Stripeの本物の決済は通していない**ので、上の手順は省略できない。
