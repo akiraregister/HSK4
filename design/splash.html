@@ -1,0 +1,202 @@
+<!doctype html>
+<!-- 起動スプラッシュ（A案「火が灯る」）の絵コンテと、タイミング違い3案の比較。
+     アプリ本体にはまだ手を入れていない。ここで形を決めてから実装する。
+     あわせて初回訴求（案1「1画面3行」）の静止案も置いてある。 -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>加油 — 起動スプラッシュの絵コンテ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FCFBF8;--ink:#15150F;--ink2:#46443C;--muted:#8F8C82;
+  --hair:#E5E1D6;--rule:#D7D2C4;--brand:#DC6011;--yama:#E5A500;
+  --f:'Noto Serif JP','Hiragino Mincho ProN',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#DEDAD2;color:var(--ink);font-family:var(--f);line-height:1.8;padding:22px 16px 64px}
+.wrap{max-width:1180px;margin:0 auto}
+.lede{background:var(--ink);color:var(--bg);padding:16px 20px;font-size:13.5px;line-height:1.9;margin-bottom:22px}
+.lede b{color:#E5A500}
+h1{font-size:25px;font-weight:600;letter-spacing:.06em;margin-bottom:4px}
+h2.sec{font-size:18px;font-weight:600;letter-spacing:.14em;margin:38px 0 6px;padding-top:14px;border-top:1px solid var(--ink)}
+.sub{font-size:13px;color:#5C5249;margin-bottom:14px}
+
+/* ── 絵コンテ ── */
+.board{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:14px}
+.cell{background:var(--bg);border:1px solid var(--rule)}
+.cell .art{aspect-ratio:9/14;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;overflow:hidden}
+.cell .cap{border-top:1px solid var(--hair);padding:8px 10px;font-size:11px;line-height:1.7;color:var(--ink2)}
+.cell .cap b{display:block;font-size:11.5px;letter-spacing:.1em;color:var(--ink);font-weight:600}
+.mk{width:46px;height:46px;display:block}
+.wd{font-size:19px;font-weight:600;letter-spacing:.18em;text-indent:.18em}
+.sb{font-size:9px;color:var(--muted);letter-spacing:.18em}
+
+/* ── タイミング表 ── */
+table.t{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:12px;background:var(--bg)}
+table.t th,table.t td{padding:9px 10px;border-bottom:1px solid var(--hair);text-align:left;vertical-align:top}
+table.t thead th{font-size:11px;letter-spacing:.14em;color:var(--muted);font-weight:500;border-bottom:1px solid var(--ink)}
+table.t td:first-child{white-space:nowrap;color:var(--ink2)}
+
+/* ── 実機サイズの再生 ── */
+.plays{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,320px));margin-top:16px}
+.play h3{font-size:14px;font-weight:600;letter-spacing:.1em;margin-bottom:2px}
+.play p{font-size:12px;color:#5C5249;margin-bottom:8px;min-height:3.4em}
+.screen{position:relative;width:100%;aspect-ratio:390/700;background:var(--bg);border:1px solid var(--rule);overflow:hidden}
+.stage{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.stage .mk{width:64px;height:64px}
+.stage .wd{font-size:26px}
+.stage .sb{font-size:11.5px}
+.btn{margin-top:9px;width:100%;background:none;border:1px solid var(--ink);color:var(--ink);
+  font:inherit;font-size:12.5px;font-weight:600;letter-spacing:.18em;padding:9px;cursor:pointer}
+.btn.all{max-width:320px}
+
+/* A-1 下から立ち上がる */
+.a1 .mk{animation:riseClip .30s ease-out .04s both}
+.a1 .wd{animation:wd .42s ease .14s both}
+.a1 .sb{animation:fade .34s ease .30s both}
+/* A-2 芯から灯る（下端を軸に大きくなる） */
+.a2 .mk{transform-origin:50% 92%;animation:lit .34s cubic-bezier(.2,.7,.3,1) .04s both}
+.a2 .wd{animation:wd .42s ease .16s both}
+.a2 .sb{animation:fade .34s ease .32s both}
+/* A-3 立ち上がってから一度だけゆらぐ */
+.a3 .mk{animation:riseClip .30s ease-out .04s both, sway .62s ease-in-out .36s 1 both}
+.a3 .wd{animation:wd .42s ease .14s both}
+.a3 .sb{animation:fade .34s ease .30s both}
+
+@keyframes riseClip{
+  from{opacity:0;clip-path:inset(100% 0 0 0);transform:translateY(5px)}
+  to{opacity:1;clip-path:inset(0 0 0 0);transform:none}}
+@keyframes lit{from{opacity:0;transform:scale(.24)}to{opacity:1;transform:scale(1)}}
+@keyframes sway{0%{transform:none}35%{transform:rotate(-1.6deg)}70%{transform:rotate(1deg)}100%{transform:none}}
+@keyframes wd{from{opacity:0;letter-spacing:.5em}to{opacity:1;letter-spacing:.18em}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+/* ── 初回訴求（案1） ── */
+.intro{background:var(--bg);border:1px solid var(--rule);max-width:390px;padding:22px 20px 20px}
+.intro .eye{font-size:10.5px;font-weight:500;color:var(--muted);letter-spacing:.24em}
+.intro h3{font-size:26px;font-weight:600;line-height:1.5;letter-spacing:.04em;margin:10px 0 0}
+.rows{margin-top:26px;border-top:1px solid var(--ink)}
+.rows>div{padding:16px 2px;border-bottom:1px solid var(--hair)}
+.rows b{display:block;font-size:16px;font-weight:600;letter-spacing:.06em}
+.rows span{display:block;font-size:12.5px;color:var(--ink2);line-height:1.8;margin-top:4px}
+.intro .go{display:block;width:100%;margin-top:22px;background:none;border:1px solid var(--ink);
+  color:var(--ink);font:inherit;font-size:15px;font-weight:600;letter-spacing:.22em;padding:14px}
+.intro .mini{font-size:11px;color:var(--muted);text-align:center;letter-spacing:.06em;margin-top:10px}
+
+.note{background:var(--bg);border:1px solid var(--rule);padding:14px 16px;font-size:13px;line-height:1.9;margin-top:14px}
+.note li{margin-left:1.1em;margin-bottom:5px}
+.note b{font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="lede"><b>起動スプラッシュ（A案「火が灯る」）の絵コンテです。</b>
+アプリ本体にはまだ手を入れていません。ここで形を決めてから実装します。
+下の「再生」で実機サイズの動きを確認できます。iPhoneでこのページを開いて見比べてください。</div>
+<h1>起動スプラッシュ — 絵コンテ</h1>
+<div class="sub">A案「火が灯る」。全体で約0.9秒、うち見えているのは0.62秒。タップで即スキップ。</div>
+
+<h2 class="sec">1. コマ割り</h2>
+<div class="sub">左から右へ時間が進みます。地は生成り（アプリの地と同じ）。</div>
+<div class="board" id="board"></div>
+
+<h2 class="sec">2. タイミング</h2>
+<table class="t">
+<thead><tr><th>時間</th><th>対象</th><th>動き</th><th>イージング</th></tr></thead>
+<tbody>
+<tr><td>0 → 40ms</td><td>—</td><td>地だけ。何も出さない（読み込みのゆらぎを吸収する間）</td><td>—</td></tr>
+<tr><td>40 → 340ms</td><td>炎</td><td><b>下から上へ姿を現す</b>（clip-path で下端から開く）＋5px上へ</td><td>ease-out</td></tr>
+<tr><td>140 → 560ms</td><td>加油</td><td>字間が .5em → .18em に<b>締まりながら</b>現れる（活字を組む所作）</td><td>ease</td></tr>
+<tr><td>300 → 640ms</td><td>90日でHSK4合格</td><td>淡く現れる</td><td>ease</td></tr>
+<tr><td>620 → 900ms</td><td>全体</td><td>フェードアウト</td><td>ease</td></tr>
+<tr><td>900ms</td><td>全体</td><td>DOMから取り除く</td><td>—</td></tr>
+</tbody>
+</table>
+
+<h2 class="sec">3. 動きの違い3案（実機サイズ）</h2>
+<div class="sub">火の立ち上がり方だけを変えています。文字の動きは共通です。</div>
+<button class="btn all" onclick="playAll()">すべて再生</button>
+<div class="plays" id="plays"></div>
+
+<h2 class="sec">4. 初回訴求（案1「1画面3行」）</h2>
+<div class="sub">初回起動のときだけ、級診断の前に出ます。2回目以降は出ません。</div>
+<div class="intro">
+  <span class="eye">はじめまして</span>
+  <h3>90日で、<br>HSK4級まで。</h3>
+  <div class="rows">
+    <div><b>90日で終わります</b><span>1日ぶんずつ、90日で単語498語と文法222項目を終える組み立てです。</span></div>
+    <div><b>1日15分</b><span>単語をおぼえる → 文法 → 聞く → 解く。ここまでで1日ぶんです。</span></div>
+    <div><b>日本人がつまずく所に絞ってあります</b><span>間違えやすい点の解説と、作文のAI添削が付きます。</span></div>
+  </div>
+  <button class="go">はじめる</button>
+  <div class="mini">次に、いまの級を見つける診断があります（スキップできます）</div>
+</div>
+
+<h2 class="sec">5. 実装するときの約束</h2>
+<div class="note"><ul>
+<li><b>操作を絶対に邪魔しない。</b>スプラッシュは <code>pointer-events:none</code>。タップは下のUIへそのまま通り、同時にスプラッシュが消える</li>
+<li><b>待たせない。</b>見えているのは0.62秒。タップで即スキップ</li>
+<li><b>動きを止めている人には動かさない。</b><code>prefers-reduced-motion</code> が有効なら静止したまま出して消える</li>
+<li><b>テストへの影響。</b>7スイートすべてが読み込み直後にクリックするので、スプラッシュが操作を遮らないことが前提。初回訴求を足すと初回の入口が1段増えるので、共通のヘルパーで吸収する</li>
+<li>炎の形と色は<b>アプリアイコン（O7）と同じもの</b>を使う。別に作らない</li>
+</ul></div>
+</div>
+
+<script>
+const FLAME='M52 8 C 62 31, 79 43, 79 64 A 29 29 0 1 1 21 64 C 21 46, 33 41, 41 29 C 44 41, 50 45, 50 37 C 50 27, 47 17, 52 8 Z';
+const SPLIT='M0 52 C 18 64, 34 48, 52 56 C 70 64, 84 50, 100 58 L100 100 L0 100 Z';
+let uid=0;
+// 炎。cut は下から何%まで見えているか（絵コンテ用）
+function mark(cls,cut){
+  const id='f'+(++uid);
+  const clip = cut==null ? '' : `clip-path:inset(${100-cut}% 0 0 0);`;
+  return `<svg class="mk ${cls||''}" viewBox="0 0 100 100" style="${clip}">
+    <defs><clipPath id="${id}"><path d="${FLAME}"/></clipPath></defs>
+    <g clip-path="url(#${id})"><rect width="100" height="100" fill="#E5A500"/>
+      <path d="${SPLIT}" fill="#DC6011"/></g>
+    <rect x="28" y="88" width="44" height="2" fill="#15150F"/></svg>`;
+}
+// ── 絵コンテ ──
+const FRAMES=[
+  [0,   null, 0,   0,   '地だけ','生成りの地。まだ何も出ていない'],
+  [120, 55,   0.25,0,   '火が立ちはじめる','炎が下端から姿を現す'],
+  [260, 92,   0.7, 0,   '火が立つ','炎がほぼ出そろう。「加油」は字間が広い'],
+  [420, 100,  1,   0.35,'字が締まる','字間が .18em へ。副題が淡く出はじめる'],
+  [620, 100,  1,   1,   '出そろう','ここが完成形。0.62秒の地点'],
+  [820, 100,  0.35,0.35,'消える','全体がフェードアウト。900msでDOMから外す'],
+];
+document.getElementById('board').innerHTML=FRAMES.map(([t,cut,wo,so,ttl,desc])=>`
+  <div class="cell"><div class="art">
+    ${cut===null?'<div style="height:46px"></div>':mark('',cut)}
+    <div class="wd" style="opacity:${wo};letter-spacing:${wo<1?'.5em':'.18em'};text-indent:${wo<1?'.5em':'.18em'}">加油</div>
+    <div class="sb" style="opacity:${so}">90日でHSK4合格</div>
+  </div><div class="cap"><b>${t}ms ${ttl}</b>${desc}</div></div>`).join('');
+
+// ── 再生 ──
+const VARIANTS=[
+  ['a1','A-1 下から立ち上がる','炎が下端から上へ開いていく。火が点いて伸びる感じ。いちばん素直。'],
+  ['a2','A-2 芯から灯る','小さな種火が下端を軸にふくらむ。マッチを擦った直後のような立ち上がり。'],
+  ['a3','A-3 立ってから一度ゆらぐ','A-1のあと、炎がひと揺れする。生きている感じは出るが、静けさは減る。'],
+];
+document.getElementById('plays').innerHTML=VARIANTS.map(([k,ttl,desc])=>`
+  <div class="play"><h3>${ttl}</h3><p>${desc}</p>
+    <div class="screen"><div class="stage ${k}" id="st-${k}">
+      ${mark()}<div class="wd">加油</div><div class="sb">90日でHSK4合格</div>
+    </div></div>
+    <button class="btn" onclick="play('${k}')">再生</button></div>`).join('');
+
+function play(k){
+  const el=document.getElementById('st-'+k);
+  const cls=el.className;
+  el.className='stage';           // アニメーションを外す
+  void el.offsetWidth;            // 反映させる
+  el.className=cls;               // 付け直して再生
+}
+function playAll(){ VARIANTS.forEach(([k])=>play(k)); }
+playAll();
+</script>
+</body></html>
