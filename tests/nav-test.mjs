@@ -77,8 +77,19 @@ ok('通常表示では開発者向け設定（作文の採点サーバー）が�
 ok('同期バーのボタンが生きている', !!(await page.$('#settingsPanel #loginBtn')));
 ok('設定表示中は#contentが隠れる', await page.$eval('#content', e => getComputedStyle(e).display === 'none'));
 
+// --- 設定は4グループ（アカウント／学習／表示／その他） ---
+const groups = await page.$$eval('#settingsPanel .set-group-h', e => e.map(x => x.textContent.trim()));
+ok('設定が4グループに分かれている', groups.length === 4, groups.join('／'));
+ok('グループの並びが アカウント／学習／表示／その他',
+  groups.join(',') === 'アカウント,学習,表示,その他', groups.join(','));
+ok('選択肢が1行のセグメントに畳まれている', !!(await page.$('#settingsPanel .seg')));
+// A6：機種変・再インストールのときの復元導線が設定に無かった
+ok('「購入を復元」が設定にある', !!(await page.$('#settingsPanel #restoreBtn')));
+ok('復元はアカウントのグループにある',
+  await page.$eval('#restoreBtn', e => e.closest('.set-group').querySelector('.set-group-h').textContent.trim() === 'アカウント'));
+
 // change a SRS setting from settings — must re-render settings, not jump to review
-await page.click('#settingsPanel .chip-toggle:has-text("16")'); await page.waitForTimeout(250);
+await page.click('#settingsPanel .seg button:has-text("16")'); await page.waitForTimeout(250);
 ok('新規問数を変えても設定に留まる', (await view()) === 'settingsTab' && (await page.textContent('#settingsPanel')).includes('出題の向き'));
 ok('新規問数が保存された', await page.evaluate(() => window.state.srsNewLimit === 16));
 

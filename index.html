@@ -353,6 +353,21 @@ h1,h2,h3,.badge,.fc-prompt,.daybtn,.set-label,
 #dayModebar .chip-toggle{padding:5px 12px;font-size:11.5px;font-weight:500;letter-spacing:.06em;
   border-color:var(--hair);color:var(--muted)}
 #dayModebar .chip-toggle.on{background:transparent;color:var(--ink);border-color:var(--ink)}
+/* ===== 設定：4グループ（アカウント／学習／表示／その他） ===== */
+/* グループの境目を太罫で作るので、パネル全体を囲う枠は外す（囲いの入れ子をやめる） */
+#settingsPanel{border:0;padding:0;margin:0}
+.set-group{margin-top:26px;padding-top:14px;border-top:1px solid var(--ink)}
+.set-group:first-of-type{margin-top:12px}
+.set-group-h{font-size:11.5px;letter-spacing:.24em;color:var(--muted);margin-bottom:6px}
+/* 選択肢は折り返すチップの群れをやめ、罫で仕切った1行のセグメントに畳む */
+.seg{display:grid;border:var(--bw) solid var(--rule);margin-top:8px}
+.seg button{border:0;border-left:var(--bw) solid var(--rule);background:transparent;color:var(--muted);
+  border-radius:0;padding:10px 4px;font-size:12.5px;font-weight:500;letter-spacing:.04em;
+  min-height:42px;line-height:1.3;cursor:pointer;touch-action:manipulation}
+.seg button:first-child{border-left:0}
+.seg button.on{background:var(--ink);color:var(--bg);font-weight:600}
+.seg .fs-btn{padding:10px 4px;font-size:13.5px;border:0;border-left:var(--bw) solid var(--rule)}
+.seg .fs-btn:first-child{border-left:0}
 /* ===== 完了画面 ===== */
 .done{text-align:center;padding:24px 0 0}
 .done-mark{font-size:34px;line-height:1;color:var(--brand)}
@@ -502,6 +517,10 @@ h1.brand{display:flex;align-items:center;gap:8px;margin:0;font-size:inherit;colo
  <div id="settingsPanel" class="settings-panel card">
   <div class="section-title"><h2>設定</h2></div>
 
+  <!-- アカウント。同期バーは Firebase 側が ID を直接参照するので、ここから動かさない
+       （再描画で作り直さず、表示だけ切り替える） -->
+  <div class="set-group">
+  <div class="set-group-h">アカウント</div>
   <div class="set-label">クラウド同期</div>
   <div class="syncbar" id="syncBar">
     <span class="syncdot warn" id="syncDot"></span>
@@ -513,12 +532,8 @@ h1.brand{display:flex;align-items:center;gap:8px;margin:0;font-size:inherit;colo
     <button class="force-btn force-dl" id="forceDownloadBtn" type="button" style="display:none">↓ クラウド→端末</button>
   </div>
   <div class="small muted" style="margin-top:6px">ログインすると、進捗を他の端末とも<span style="white-space:nowrap">同期します。</span></div>
-
-  <div class="set-label">文字サイズ</div>
-  <div class="fs-global" role="group" aria-label="文字サイズの調整">
-    <button type="button" class="fs-btn" data-fs="sm" onclick="setFontScale('sm')" aria-label="文字サイズ 小">小</button>
-    <button type="button" class="fs-btn" data-fs="md" onclick="setFontScale('md')" aria-label="文字サイズ 中">中</button>
-    <button type="button" class="fs-btn" data-fs="lg" onclick="setFontScale('lg')" aria-label="文字サイズ 大">大</button>
+  <!-- 「購入を復元」はここに描かれる。機種変・再インストールのときの導線 -->
+  <div id="setAccountExtra"></div>
   </div>
 
   <div id="settingsBody"></div>
@@ -27729,6 +27744,10 @@ function setSettingsPanel(on){
 }
 
 // 設定タブの本文（同期バーと文字サイズは静的markupなので #settingsBody の中身だけ描く）
+// ===== 設定 =====
+// 4グループ（アカウント／学習／表示／その他）に割る。アカウントだけは同期バーを
+// 動かせないので静的な markup 側にあり、ここでは「購入を復元」だけを足す。
+// 選択肢は折り返すチップの群れをやめ、罫で仕切った1行のセグメントに畳んだ。
 function renderSettings(){
   var c=$('content'); if(c){ c.innerHTML=''; c.style.display='none'; c.className=''; }
   $('bookmarkPanel').className='bookmark-panel card';
@@ -27737,42 +27756,64 @@ function renderSettings(){
   var nl=(typeof state.srsNewLimit==='number')?state.srsNewLimit:8;
   var dl=(typeof state.srsDueLimit==='number')?state.srsDueLimit:30;
   var dir=(state.srsDir==='ja2zh')?'ja2zh':'zh2ja';
+  var fs=(state.fontScale==='sm'||state.fontScale==='lg')?state.fontScale:'md';
   function seg(opts, cur, fn){
-    var segCls = opts.length<=2 ? 'seg2' : 'seg4';
-    return '<div class="set-row '+segCls+'">'+opts.map(function(o){
-      return '<button type="button" class="chip-toggle '+(cur===o.v?'on':'')+'" onclick="'+fn(o.v)+'">'+o.t+'</button>';
+    return '<div class="seg" style="grid-template-columns:repeat('+opts.length+',1fr)">'+opts.map(function(o){
+      return '<button type="button" class="'+(cur===o.v?'on':'')+'" onclick="'+fn(o.v)+'">'+o.t+'</button>';
     }).join('')+'</div>';
   }
-  var h='';
-  h+='<div class="set-label">復習の出題範囲</div>'
+  function note(t){ return '<div class="small muted" style="margin-top:6px">'+t+'</div>'; }
+  function group(title, inner){ return '<div class="set-group"><div class="set-group-h">'+title+'</div>'+inner+'</div>'; }
+
+  // ── アカウント（同期バーの下に足す） ──────────────────────────────
+  var acc=$('setAccountExtra');
+  if(acc){
+    acc.innerHTML='<div class="set-label">購入</div>'
+      + '<div class="small muted" style="margin-bottom:8px">機種を変えたり入れ直したりしたときは、購入したときと同じGoogleアカウントでログインしてから押してください。</div>'
+      + '<button id="restoreBtn" style="width:100%" onclick="restorePurchase()">購入を復元</button>';
+  }
+
+  // ── 学習 ────────────────────────────────────────────────────────
+  var learn='';
+  learn+='<div class="set-label">復習の出題範囲</div>'
    + seg([{v:'all',t:'すべて'},{v:'bm',t:'ブックマークのみ'}], scope, function(v){ return "revSetScope('"+v+"')"; })
-   + '<div class="small muted" style="margin-top:6px">すべて＝完了分の単語・文法＋ブックマーク＋<span style="white-space:nowrap">マイ単語。</span></div>';
-  h+='<div class="set-label">1日の新規問数</div>'
+   + note('すべて＝完了分の単語・文法＋ブックマーク＋<span style="white-space:nowrap">マイ単語。</span>');
+  learn+='<div class="set-label">1日の新規問数</div>'
    + seg([{v:0,t:'なし'},{v:8,t:'8'},{v:16,t:'16'},{v:-1,t:'制限なし'}], nl, function(v){ return 'srsSetNewLimit('+v+')'; })
-   + '<div class="small muted" style="margin-top:6px">新しく学ぶ語の上限。多いほど復習が増えます。</div>';
-  h+='<div class="set-label">1日の復習上限</div>'
+   + note('新しく学ぶ語の上限。多いほど復習が増えます。');
+  learn+='<div class="set-label">1日の復習上限</div>'
    + seg([{v:20,t:'20'},{v:30,t:'30'},{v:50,t:'50'},{v:-1,t:'制限なし'}], dl, function(v){ return 'srsSetDueLimit('+v+')'; })
-   + '<div class="small muted" style="margin-top:6px">復習が溜まっても一気に出さないための上限<span style="white-space:nowrap">です。</span>超えた分は翌日以降に回します。</div>';
-  h+='<div class="set-label">出題の向き</div>'
+   + note('復習が溜まっても一気に出さないための上限<span style="white-space:nowrap">です。</span>超えた分は翌日以降に回します。');
+  learn+='<div class="set-label">出題の向き</div>'
    + seg([{v:'zh2ja',t:'中文 → 日本語'},{v:'ja2zh',t:'日本語 → 中文'}], dir, function(v){ return "srsSetDir('"+v+"')"; })
-   + '<div class="small muted" style="margin-top:6px">中文→日本語は意味を、日本語→中文は中文を<span style="white-space:nowrap">答える練習です。</span></div>';
-
-  h+='<div class="set-label">受験予定日</div>'
-   + '<div class="small muted" style="margin-bottom:8px">設定すると、今日画面に残り日数が出ます。</div>'
-   + '<input id="examDateInput" type="date" value="'+esc(examDate())+'" style="width:100%;box-sizing:border-box;-webkit-appearance:none;appearance:none;border:var(--bw) solid var(--stroke);border-radius:12px;padding:11px 13px;font:inherit;background:#fff" onchange="setExamDate(this.value)">'
+   + note('中文→日本語は意味を、日本語→中文は中文を<span style="white-space:nowrap">答える練習です。</span>');
+  learn+='<div class="set-label">受験予定日</div>'
+   + note('設定すると、今日画面に残り日数が出ます。')
+   + '<input id="examDateInput" type="date" value="'+esc(examDate())+'" style="width:100%;box-sizing:border-box;-webkit-appearance:none;appearance:none;border:var(--bw) solid var(--stroke);border-radius:var(--r-md);padding:11px 13px;font:inherit;background:var(--card);margin-top:8px" onchange="setExamDate(this.value)">'
    + (examDate()? '<button style="width:100%;margin-top:8px" onclick="setExamDate(\'\')">日付を消す</button>' : '');
+  learn+='<div class="set-label">模擬試験</div>'
+   + note('完了したDayの範囲から40問・30分。<b style="white-space:nowrap">听力は含みません。</b>')
+   + '<button style="width:100%;margin-top:8px" onclick="showMock()">模擬試験へ</button>';
+  learn+='<div class="set-label">レベル診断</div>'
+   + note('HSK3〜6級の問題でいまの級を判定します。')
+   + '<button style="width:100%;margin-top:8px" onclick="showLevelCheck()">級診断を受ける</button>';
 
-  h+='<div class="set-label">模擬試験</div>'
-   + '<div class="small muted" style="margin-bottom:8px">完了したDayの範囲から40問・30分。<b style="white-space:nowrap">听力は含みません。</b></div>'
-   + '<button style="width:100%" onclick="showMock()">模擬試験へ</button>';
+  // ── 表示 ────────────────────────────────────────────────────────
+  // 文字サイズは以前ここだけ静的な markup にあったが、グループの順番を
+  // アカウント→学習→表示→その他にするために描画側へ移した。
+  var disp='<div class="set-label">文字サイズ</div>'
+   + '<div class="fs-global seg" role="group" aria-label="文字サイズの調整" style="grid-template-columns:repeat(3,1fr);margin-top:8px">'
+   +   ['sm','md','lg'].map(function(v,i){
+         return '<button type="button" class="fs-btn'+(fs===v?' on':'')+'" data-fs="'+v+'" onclick="setFontScale(\''+v+'\')" aria-label="文字サイズ '+['小','中','大'][i]+'">'+['小','中','大'][i]+'</button>';
+       }).join('')
+   + '</div>'
+   + note('単語・例文・和訳の大きさが変わります。');
 
-  h+='<div class="set-label">レベル診断</div>'
-   + '<div class="small muted" style="margin-bottom:8px">HSK3〜6級の問題でいまの級を判定します。</div>'
-   + '<button style="width:100%" onclick="showLevelCheck()">級診断を受ける</button>';
-
+  // ── その他 ──────────────────────────────────────────────────────
+  var other='';
   if(isDebugMode()){
     var ts=trackSummary();
-    h+='<div class="set-label">計測（開発者向け）</div>'
+    other+='<div class="set-label">計測（開発者向け）</div>'
      + '<div class="small muted" style="margin-bottom:8px">操作の記録です。送信先が空のあいだは<b>この端末の中だけ</b>に貯まります（最大'+TRACK_MAX+'件）。'
      + '過去には遡れないので、人が増える前から取り続けることに意味があります。</div>'
      + '<div class="lc-bands" style="margin:0 0 10px">'
@@ -27785,21 +27826,35 @@ function renderSettings(){
      + '<div class="set-row"><button style="flex:1" onclick="trackCopy()">ログをコピー</button>'
      +   '<button style="flex:1" onclick="trackClear()">消す</button></div>'
      + '<div class="small muted" style="margin:10px 0 6px">送信先URL（POSTで1件ずつ送ります）</div>'
-     + '<input id="sinkUrlInput" type="text" value="'+esc(trackSinkUrl())+'" placeholder="空欄＝端末内のみ" spellcheck="false" style="width:100%;border:var(--bw) solid var(--stroke);border-radius:12px;padding:11px 13px;font:inherit;background:#fff">'
+     + '<input id="sinkUrlInput" type="text" value="'+esc(trackSinkUrl())+'" placeholder="空欄＝端末内のみ" spellcheck="false" style="width:100%;border:var(--bw) solid var(--stroke);border-radius:var(--r-md);padding:11px 13px;font:inherit;background:var(--card)">'
      + '<button style="width:100%;margin-top:8px" onclick="setTrackSink(document.getElementById(\'sinkUrlInput\').value)">保存</button>';
-
-    h+='<div class="set-label">作文の採点サーバー（開発者向け）</div>'
+    other+='<div class="set-label">作文の採点サーバー（開発者向け）</div>'
      + '<div class="small muted" style="margin-bottom:8px">ミニテストの作文をAI採点するサーバーのURLです。端末ごとに保存され、クラウド同期はされません。</div>'
-     + '<input id="graderUrlInput" type="text" value="'+esc(mtGraderUrl())+'" placeholder="https://...workers.dev" style="width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:14px" spellcheck="false">'
+     + '<input id="graderUrlInput" type="text" value="'+esc(mtGraderUrl())+'" placeholder="https://...workers.dev" style="width:100%;border:1px solid var(--line);border-radius:var(--r-md);padding:10px;font-size:14px;background:var(--card)" spellcheck="false">'
      + '<button class="primary" style="width:100%;margin-top:10px" onclick="mtSaveGraderUrl()">保存</button>'
      + '<div id="graderUrlMsg" class="small muted" style="margin-top:6px"></div>';
   }
-  h+='<div class="set-row" style="margin-top:22px;padding-top:16px;border-top:1px solid var(--line);justify-content:center;gap:14px">'
+  other+='<div class="set-row" style="margin-top:14px;justify-content:center;gap:14px;flex-wrap:wrap">'
    + '<a href="legal/terms.html" target="_blank" rel="noopener" class="small muted" style="text-decoration:none">利用規約</a>'
    + '<a href="legal/privacy.html" target="_blank" rel="noopener" class="small muted" style="text-decoration:none">プライバシーポリシー</a>'
    + '<a href="legal/tokushoho.html" target="_blank" rel="noopener" class="small muted" style="text-decoration:none">特定商取引法に基づく表記</a>'
    + '</div>';
-  body.innerHTML=h;
+
+  body.innerHTML = group('学習', learn) + group('表示', disp) + group('その他', other);
+}
+
+// 機種変・再インストールのときの復元導線。以前は Day8以降の購入画面の中にしかなく、
+// 設定からは辿り着けなかった（失敗時も alert() だった）。
+async function restorePurchase(){
+  var btn=$('restoreBtn');
+  if(!firebaseReady){ _toast('クラウド同期は現在利用できません。しばらくしてからお試しください。', 6000); return; }
+  if(!auth || !auth.currentUser){ _toast('先に「Googleでログイン」を押して、購入したときと同じアカウントでログインしてください。', 7000); return; }
+  if(btn){ btn.disabled=true; btn.textContent='確認中…'; }
+  var ok=false;
+  try{ ok=await fetchPaidContent(); }catch(e){ ok=false; }
+  if(btn){ btn.disabled=false; btn.textContent='購入を復元'; }
+  if(ok){ _toast('購入を確認しました。Day8以降が使えます。', 6000); render(); }
+  else { _toast('このアカウントでは購入が確認できませんでした。購入したときと同じGoogleアカウントかご確認ください。', 8000); }
 }
 Object.assign(window, {
   state,
@@ -28002,6 +28057,7 @@ window._toast = _toast;   // lockedDayHTML() の onclick から呼ぶため
 // state に足したフィールドをここへ書き忘れると同期のたびに消える（列挙式のため）。
 // tests/nav-test.mjs がそれを見張れるように公開している。
 window.normalizeStateForCloud = normalizeStateForCloud;
+window.restorePurchase = restorePurchase;
 window.fetchPaidContent = fetchPaidContent;
 window.startAiChallenge = startAiChallenge;
 window.mtSaveGraderUrl = mtSaveGraderUrl;
