@@ -8,10 +8,11 @@ import { extname, join, normalize } from 'path';
 
 const ROOT = new URL('..', import.meta.url).pathname;
 const PORT = Number(process.env.PORT || 8765);
-const SUITES = ['nav', 'onboard', 'mock', 'track', 'lp', 'sw', 'paywall'];
+const SUITES = ['nav', 'onboard', 'mock', 'track', 'listen', 'lp', 'sw', 'paywall'];
 
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.mjs': 'text/javascript',
-  '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml' };
+  '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml',
+  '.mp3': 'audio/mpeg' };
 
 // index.html を配るだけの静的サーバー。Service Worker を試すので file:// は使えない。
 const server = createServer(async (req, res) => {

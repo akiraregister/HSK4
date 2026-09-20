@@ -46,7 +46,10 @@
 --font-display:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho','Noto Serif SC','Songti SC',serif;
 --font-body:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho','Noto Serif SC','Songti SC',serif;
 --font-hand:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho','Noto Serif SC','Songti SC',serif}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-weight:400;line-height:1.7;
+/* overscroll-behavior：iOSの「引っぱると跳ね返る」を止める。跳ねているあいだ、
+   固定ヘッダーの下を中身が滑るので、ロゴがにじんで見えていた。
+   scrollingElement は html 側なので、html にも書かないと効かない。 */
+*{box-sizing:border-box}html{scroll-behavior:smooth;overscroll-behavior-y:none}body{margin:0;overscroll-behavior-y:none;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-weight:400;line-height:1.7;
   /* 読み込んでいないウェイトをブラウザが太らせて偽装すると、明朝は横画が細いので
      字がつぶれる。太字が要る場所は実在するウェイトだけを使うこと。
      和文 Noto Serif JP = 400/500/600/700、中文 Noto Serif SC = 400/500/600。
@@ -54,7 +57,10 @@
   font-synthesis:none;-webkit-font-synthesis:none}
 .app{max-width:980px;margin:0 auto;padding:16px 16px calc(96px + env(safe-area-inset-bottom))}
 /* ヘッダーは細いバー1本。以前は4タブを抱えて縦を約300px（画面の12%）使っていた */
-.top{position:sticky;top:0;z-index:10;background:rgba(252,251,248,.92);backdrop-filter:blur(14px);border-bottom:var(--bw) solid var(--stroke);padding:calc(10px + env(safe-area-inset-top)) 16px 10px}
+/* 地は**不透明**にする。半透明＋backdrop-filter だと、スクロール中に下の中身が
+   透けて毎フレーム引き直され、ロゴと文字がにじむ（実機で指摘された）。
+   案Xはもともと罫で階層を作る方針なので、ガラス効果は要らない。 */
+.top{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:var(--bw) solid var(--stroke);padding:calc(10px + env(safe-area-inset-top)) 16px 10px}
 .top-inner{max-width:980px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
 .top-meta{font-size:13px;color:var(--muted);letter-spacing:.08em;white-space:nowrap}
 .top-back{display:none;border:0;background:none;padding:6px 2px;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer;touch-action:manipulation}
@@ -65,7 +71,7 @@ select,button,input,textarea{font:inherit}select{flex:1;min-width:180px;border:v
 button{border:var(--bw) solid var(--stroke);background:var(--card);border-radius:var(--r-pill);padding:11px 14px;font-weight:600;color:var(--ink);touch-action:manipulation;cursor:pointer}
 .top .row button{border:var(--bw) solid var(--stroke);background:var(--card);color:var(--ink)}
 /* 下タブ。画面下に固定し、上ヘッダーが返した縦を中身に使う */
-.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;background:rgba(252,251,248,.96);backdrop-filter:blur(14px);border-top:var(--bw) solid var(--stroke);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;background:var(--bg);border-top:var(--bw) solid var(--stroke);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
 .nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 2px;font-size:11px;font-weight:700;color:var(--muted);background:none;border:0;cursor:pointer;touch-action:manipulation;user-select:none;min-height:48px}
 .nav-tab svg{width:22px;height:22px;display:block}
 .nav-tab i{font-size:17px}
@@ -98,7 +104,7 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .progressline{height:10px;border-radius:var(--r-pill);background:var(--gray);overflow:hidden;margin-top:8px}.progressline span{display:block;height:100%;background:var(--ink);width:0%}
 @media(min-width:700px){.day-grid{grid-template-columns:repeat(10,1fr)}}
 /* Day学習の下バー（前／完了／次）。下タブとは排他で、学習中だけこちらが出る */
-.bottomnav{position:fixed;left:0;right:0;bottom:0;background:rgba(252,251,248,.94);backdrop-filter:blur(14px);border-top:var(--bw) solid var(--stroke);padding:11px 14px;padding-bottom:calc(11px + env(safe-area-inset-bottom));display:flex;gap:8px;z-index:20;transform:translateZ(0);-webkit-transform:translateZ(0);will-change:transform}.bottomnav button{flex:1}
+.bottomnav{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:var(--bw) solid var(--stroke);padding:11px 14px;padding-bottom:calc(11px + env(safe-area-inset-bottom));display:flex;gap:8px;z-index:20;transform:translateZ(0);-webkit-transform:translateZ(0);will-change:transform}.bottomnav button{flex:1}
 @media(max-width:430px){.top{padding:calc(20px + env(safe-area-inset-top)) 14px 14px}h1{font-size:21px;margin-bottom:16px;text-align:center}button{padding:10px 11px}.app{padding-top:20px}}@media(min-width:800px){.vocab{grid-template-columns:1fr 1fr}}
 
 .syncbar{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:2px;padding:11px 13px;border:var(--bw) solid var(--stroke);background:var(--card);border-radius:var(--r-lg)}
@@ -285,6 +291,22 @@ body.fs-lg .vrow-zh{font-size:23px}body.fs-lg .vrow-py{font-size:17px}body.fs-lg
 @keyframes ls-bar{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
 .ls-prog{height:6px;background:var(--gray);border-radius:var(--r-pill);overflow:hidden;margin:2px 0 6px}.ls-prog>i{display:block;height:100%;width:0%;background:var(--ink)}
 .ls-hint{text-align:center;font-size:13px;color:var(--muted);margin-top:4px}
+/* 再生中の操作。止める／最初から／速さ。
+   本番の試験は1回きりだが、練習では聞き直せたほうが身につくので出している。 */
+.ls-ctl{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.ls-ctl button{border:1px solid var(--stroke);background:var(--card);color:var(--ink);
+  border-radius:var(--r-md);padding:12px 8px;font:inherit;font-size:14px;font-weight:600;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;
+  touch-action:manipulation}
+.ls-ctl button[disabled]{color:var(--muted);border-color:var(--hair);cursor:default}
+.ls-rate{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px}
+.ls-rate .lab{font-size:12px;color:var(--muted);letter-spacing:.1em}
+.ls-rate button{border:1px solid var(--stroke);background:var(--card);color:var(--ink2);
+  border-radius:var(--r-sm);padding:7px 12px;font:inherit;font-size:13px;font-weight:600;
+  cursor:pointer;touch-action:manipulation}
+.ls-rate button.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+/* 止めているあいだは波も止める。動いたままだと鳴っているように見える */
+.ls-wave.paused i{animation-play-state:paused}
 .ls-q{font-size:16px;line-height:1.75;font-weight:600;margin:14px 0 16px;text-align:center}
 .ls-tf{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .ls-tf button{border:1.5px solid var(--stroke);background:var(--card);border-radius:var(--r-lg);padding:18px 10px;font-size:24px;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px}
@@ -27193,39 +27215,129 @@ function mtSaveGraderUrl(){
 }
 /* ===== 聴解エンジン（LISTENINGが有るDayだけ表示。SRS復習・模擬試験には出さない） ===== */
 var _ls=null;
-function lsStopAudio(){ if(_ls && _ls.audio){ try{ _ls.audio.pause(); }catch(e){} } }
+// 再生速度は端末に覚えさせる。毎日開くものなので、そのつど選び直させない。
+// state ではなく localStorage なのは、normalizeStateForCloud() の列挙に足す必要を
+// 作らないため（書き忘れるとFirebase同期のたびに消える）。
+var LS_RATES=[0.75,1,1.25];
+function lsRate(){
+  var v=parseFloat(localStorage.getItem('hsk4-ls-rate'));
+  return LS_RATES.indexOf(v)>=0 ? v : 1;
+}
+function lsSetRate(v){
+  v=Number(v); if(LS_RATES.indexOf(v)<0) v=1;
+  try{ localStorage.setItem('hsk4-ls-rate', String(v)); }catch(e){}
+  if(_ls && _ls.audio) lsApplyRate(_ls.audio);
+  lsSyncRateButtons();
+  track('listening_rate',{rate:v});
+}
+function lsApplyRate(audio){
+  try{
+    audio.playbackRate=lsRate();
+    // 遅くしても声の高さを変えない。ピッチが下がると別人の声に聞こえて練習にならない
+    audio.preservesPitch=true;
+    audio.webkitPreservesPitch=true;
+  }catch(e){}
+}
+function lsSyncRateButtons(){
+  var r=lsRate();
+  document.querySelectorAll('[data-ls-rate]').forEach(function(b){
+    b.classList.toggle('on', Number(b.dataset.lsRate)===r);
+  });
+}
+// 再生・一時停止の見た目をいまの音声に合わせる。要素が無い画面では何もしない
+function lsSyncToggle(){
+  var btn=document.getElementById('lsToggle');
+  var wave=document.querySelector('#lsRoot .ls-wave');
+  var playing = !!(_ls && _ls.audio && !_ls.audio.paused && !_ls.audio.ended);
+  if(btn) btn.innerHTML = playing ? lsIcon('pause')+'一時停止' : lsIcon('play')+'再開する';
+  if(wave) wave.classList.toggle('paused', !playing);
+}
+// **画面を離れるときは必ずこれを呼ぶ。**呼び忘れると、ステップを送っても
+// 音声だけ鳴り続ける（実機で指摘された）。止めた状態をボタンにも反映するので、
+// 聞くステップへ戻れば「再開する」から続きを聞ける。
+function lsStopAudio(){
+  if(_ls && _ls.audio){ try{ _ls.audio.pause(); }catch(e){} }
+  lsSyncToggle();
+}
 function lsInit(day){
   lsStopAudio();
   _ls={day:day, entry:LISTENING[day], phase:'ready', audio:null};
   lsRenderReady();
 }
+function lsIcon(kind){
+  var a='width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"';
+  if(kind==='pause') return '<svg '+a+' fill="currentColor"><rect x="7" y="5.5" width="3.6" height="13" rx="0"></rect><rect x="13.4" y="5.5" width="3.6" height="13" rx="0"></rect></svg>';
+  if(kind==='restart') return '<svg '+a+' fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1"></path><path d="M3.5 4.5v4.2h4.2"></path></svg>';
+  return '<svg '+a+' fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"></circle><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"></path></svg>';
+}
+function lsRateBarHTML(){
+  return '<div class="ls-rate"><span class="lab">速さ</span>'+
+    LS_RATES.map(function(v){
+      return '<button type="button" data-ls-rate="'+v+'" class="'+(v===lsRate()?'on':'')+'">'+
+        (v===1?'1×':v+'×')+'</button>';
+    }).join('')+'</div>';
+}
+function lsBindRateBar(root){
+  if(!root) return;
+  [].forEach.call(root.querySelectorAll('[data-ls-rate]'), function(b){
+    b.onclick=function(){ lsSetRate(b.dataset.lsRate); };
+  });
+}
 function lsRenderReady(){
   var root=$('lsRoot'); if(!root) return;
-  root.innerHTML='<div class="small">会話を聞いて、内容について答えます。音声は<b>1回だけ</b>再生され、聞き終えるまで中国語の文字は表示されません。</div>'+
+  root.innerHTML='<div class="small">会話を聞いて、内容について答えます。聞き終えるまで中国語の文字は表示されません。<b>本番の試験では1回しか流れません</b>が、ここでは止めたり、最初から聞き直したり、速さを変えたりできます。</div>'+
     '<button class="ls-play" id="lsPlayBtn" type="button">'+
     '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"></circle><path d="M10 8.5l6 3.5-6 3.5z" fill="#fff" stroke="none"></path></svg>'+
-    '音声を再生する</button>';
+    '音声を再生する</button>'+
+    lsRateBarHTML();
   $('lsPlayBtn').onclick=lsPlay;
+  lsBindRateBar(root);
 }
 function lsPlay(){
   if(!_ls || _ls.phase!=='ready') return;
   _ls.phase='playing';
-  track('listening_play',{day:_ls.day});
+  track('listening_play',{day:_ls.day, rate:lsRate()});
   var root=$('lsRoot'); if(!root) return;
-  root.innerHTML='<div class="small">聞き終わるまで、文字は出ません。最後まで集中して聞きましょう。</div>'+
+  root.innerHTML='<div class="small">聞き終わるまで、文字は出ません。まずは通しで聞いてみましょう。</div>'+
     '<div class="ls-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>'+
     '<div class="ls-prog"><i id="lsProgBar"></i></div>'+
-    '<button class="ls-play" disabled type="button">再生中…</button>'+
-    '<div class="ls-hint">音声はこの1回のみ。一時停止・巻き戻しはできません。</div>';
+    '<div class="ls-ctl">'+
+      '<button id="lsRestart" type="button">'+lsIcon('restart')+'最初から</button>'+
+      '<button id="lsToggle" type="button">'+lsIcon('pause')+'一時停止</button>'+
+    '</div>'+
+    lsRateBarHTML()+
+    '<div class="ls-hint">本番の試験は1回きりです。慣れてきたら止めずに通しで。</div>';
   var audio=new Audio(_ls.entry.audio);
   _ls.audio=audio;
+  lsApplyRate(audio);
   audio.ontimeupdate=function(){
     var bar=$('lsProgBar'); if(!bar || !audio.duration) return;
     bar.style.width=Math.min(100, audio.currentTime/audio.duration*100)+'%';
   };
   audio.onended=function(){ lsQuestion(); };
   audio.onerror=function(){ lsAudioError(); };
+  audio.onplay=lsSyncToggle;
+  audio.onpause=lsSyncToggle;
+  $('lsRestart').onclick=lsRestart;
+  $('lsToggle').onclick=lsToggle;
+  lsBindRateBar(root);
   audio.play().catch(function(){ lsAudioError(); });
+}
+function lsToggle(){
+  if(!_ls || !_ls.audio) return;
+  var a=_ls.audio;
+  if(a.paused) a.play().catch(function(){});
+  else a.pause();
+  lsSyncToggle();
+}
+function lsRestart(){
+  if(!_ls || !_ls.audio) return;
+  var a=_ls.audio;
+  try{ a.currentTime=0; }catch(e){}
+  var bar=$('lsProgBar'); if(bar) bar.style.width='0%';
+  a.play().catch(function(){});
+  lsSyncToggle();
+  track('listening_restart',{day:_ls.day});
 }
 function lsAudioError(){
   if(!_ls) return;
@@ -27304,8 +27416,10 @@ function lsReveal(right){
     '<div class="small" style="margin-bottom:14px">'+answerLine+'</div>'+
     '<div class="ls-transcript">'+transcriptHtml+'</div>'+
     '<div class="note"><span class="label">解説：</span>'+mtEsc(e.explain)+'</div>'+
-    '<button class="mt-btn ghost" id="lsReplayBtn" type="button" style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px">'+lsReplayIcon()+'もう一度聞く（答え合わせ後は文字を見ながらでOK）</button>';
+    '<button class="mt-btn ghost" id="lsReplayBtn" type="button" style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px">'+lsReplayIcon()+'もう一度聞く（答え合わせ後は文字を見ながらでOK）</button>'+
+    lsRateBarHTML();
   $('lsReplayBtn').onclick=lsReplay;
+  lsBindRateBar(root);
 }
 function lsReplayIcon(){
   return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"></circle><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"></path></svg>';
@@ -27318,6 +27432,7 @@ function lsReplay(){
   btn.innerHTML='再生中…';
   var audio=new Audio(_ls.entry.audio);
   _ls.audio=audio;
+  lsApplyRate(audio);
   var restore=function(){
     var b=$('lsReplayBtn'); if(!b) return;
     b.removeAttribute('disabled');
@@ -27325,6 +27440,8 @@ function lsReplay(){
   };
   audio.onended=restore;
   audio.onerror=restore;
+  // ステップを送って止めた場合も、押せる状態に戻しておく
+  audio.onpause=function(){ if(audio.currentTime<audio.duration) restore(); };
   audio.play().catch(restore);
 }
 function setDay(d){lsStopAudio();dayResetSteps();currentView='day';track('day_open',{day:Math.max(1,Math.min(TOTAL_DAYS,d))});current=Math.max(1,Math.min(TOTAL_DAYS,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
@@ -27390,13 +27507,19 @@ function dayNext(){
   var l=lesson(); if(!l) return;
   var steps=daySteps(l);
   if(steps[dayStep].k==='vocab' && dayVocabIdx<l.vocab.length-1){ dayVocabIdx++; applyDayVocab(); return; }
-  if(dayStep<steps.length-1){ dayStep++; applyDayStep(); window.scrollTo({top:0,behavior:'smooth'}); }
+  if(dayStep<steps.length-1){
+    // **ステップを離れるときは音声を止める。**止めないと、聞くステップを抜けても
+    // 音声だけ鳴り続ける。止めた位置は残るので、戻れば「再開する」で続きから聞ける
+    lsStopAudio();
+    dayStep++; applyDayStep(); window.scrollTo({top:0,behavior:'smooth'});
+  }
 }
 function dayPrev(){
   var l=lesson(); if(!l) return;
   var steps=daySteps(l);
   if(steps[dayStep].k==='vocab' && dayVocabIdx>0){ dayVocabIdx--; applyDayVocab(); return; }
   if(dayStep>0){
+    lsStopAudio();   // dayNext() と同じ理由
     dayStep--;
     // 単語のステップへ戻るときは最後に見ていた語ではなく最後の語から
     if(daySteps(l)[dayStep].k==='vocab') dayVocabIdx=Math.max(0,l.vocab.length-1);
