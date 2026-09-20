@@ -157,6 +157,33 @@ ok('完了日時が記録される', await page.evaluate(() => {
 ok('ヘッダーが連続日数になる', (await page.textContent('#topMeta')).includes('日連続'));
 ok('完了日時はクラウド同期の対象', await page.evaluate(() =>
   'completedAt' in window.normalizeStateForCloud(window.state)));
+
+// --- 書体（案X＝明朝＋宋体） ---
+// 読み込んでいないウェイトを指定すると、ブラウザが太らせて偽装し、明朝は字がつぶれる。
+const weights = await page.evaluate(() => {
+  const out = new Set();
+  for (const sheet of document.styleSheets) {
+    let rules; try { rules = sheet.cssRules; } catch { continue; }
+    if (!rules) continue;
+    for (const r of rules) {
+      const w = r.style && r.style.fontWeight;
+      if (w && /^\d+$/.test(w)) out.add(w);
+    }
+  }
+  return [...out].sort();
+});
+ok('使っているウェイトは読み込み済みのものだけ',
+  weights.every(w => ['400', '500', '600', '700'].includes(w)), weights.join(','));
+
+await page.click('#homeBtn'); await page.waitForTimeout(200);
+await page.click('button:has-text("学習を始める")'); await page.waitForTimeout(400);
+const zhFont = await page.$eval('.wcard.on .zh', e => getComputedStyle(e).fontFamily.split(',')[0].replace(/"/g, ''));
+const jaFont = await page.$eval('.wcard.on .ja', e => getComputedStyle(e).fontFamily.split(',')[0].replace(/"/g, ''));
+ok('中文は宋体（Noto Serif SC）', zhFont === 'Noto Serif SC', zhFont);
+ok('和文は明朝（Noto Serif JP）', jaFont === 'Noto Serif JP', jaFont);
+const zhW = await page.$eval('.wcard.on .zh', e => getComputedStyle(e).fontWeight);
+ok('中文のウェイトは600以下（宋体は600までしか読んでいない）', Number(zhW) <= 600, zhW);
+await page.click('#topBack'); await page.waitForTimeout(250);
 const revText = await page.textContent('.trow-rev');
 ok('Day完了後、復習枚数が出る', /[1-9]/.test(await page.textContent('.trow-rev .val')), revText.replace(/\s+/g, ' ').slice(0, 70));
 ok('Day完了後、90マスの1つが埋まる', (await page.$$eval('.prog-grid i.on', e => e.length)) >= 1);
