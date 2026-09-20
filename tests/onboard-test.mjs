@@ -40,10 +40,18 @@ async function answerAll(p, upTo) {
   const txt = await p.textContent('#content');
   ok('初回起動で級診断が出る', txt.includes('あなたに合う級'));
   ok('スキップできる', !!(await p.$('[data-lc-action="skip"]')));
+  // 初回のオンボーディングは全画面。タブを出すと、まだ何も見ていない人が離脱できてしまう
+  // うえ、級診断は設定から入る画面なので「設定」タブが選択状態になってしまう（分析のB2）
+  ok('初回の級診断では下タブを出さない',
+    await p.$eval('#tabBar', e => getComputedStyle(e).display === 'none'));
   await p.click('[data-lc-action="skip"]'); await p.waitForTimeout(400);
   ok('スキップで今日画面へ', (await p.textContent('#content')).includes('今日やること'));
   await p.reload({ waitUntil: 'load' }); await p.waitForTimeout(600);
   ok('2回目は診断が出ない', (await p.textContent('#content')).includes('今日やること'));
+  // 2回目以降は設定から入る画面なので、タブを出してよい
+  await p.evaluate(() => window.showLevelCheck()); await p.waitForTimeout(400);
+  ok('2回目以降の級診断では下タブが戻る',
+    await p.$eval('#tabBar', e => getComputedStyle(e).display === 'flex'));
   await c.close();
 }
 

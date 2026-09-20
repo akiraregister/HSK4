@@ -75,7 +75,9 @@ button{border:var(--bw) solid var(--stroke);background:var(--card);border-radius
 .nav-tab.tab-done{color:var(--good)}button.primary{background:var(--accent);color:var(--bg);border-color:var(--stroke)}
 button.complete.active{background:var(--goodbg);color:var(--good);border-color:var(--goodline)}button.toggle.off{background:var(--card);color:var(--ink)}button.toggle.on{background:var(--gray);color:var(--ink2)}
 button.bookmark{padding:7px 9px;border-radius:var(--r-pill);background:var(--card);color:var(--muted)}button.bookmark.active{background:var(--brand-tint);border-color:var(--hair);color:var(--brand-2)}
-.card{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:var(--r-lg);padding:16px;margin:12px 0}.section-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.section-title h2{font-size:18px;margin:0}.badge{display:inline-flex;border-radius:var(--r-pill);background:var(--gray);color:var(--ink2);padding:4px 10px;font-size:13px;font-weight:600}
+/* 案Xはカードを地から浮かせず罫だけで組むので、外側の囲いは持たない。
+   中の要素（.vitem .flashcard .lc-band 等）が自分の罫を持っている */
+.card{background:var(--card);border:0;border-radius:0;padding:0;margin:16px 0}.section-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.section-title h2{font-size:18px;margin:0}.badge{display:inline-flex;border-radius:var(--r-pill);background:var(--gray);color:var(--ink2);padding:4px 10px;font-size:13px;font-weight:600}
 .vocab{display:grid;gap:10px}.vitem{border:var(--bw) solid var(--stroke);border-radius:var(--r-lg);padding:13px 15px;background:var(--card)}.item-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.zh{font-size:20px;font-weight:500}.pinyin{color:var(--ink2);margin-top:2px;font-size:18px}.ja{color:var(--ink2);margin-top:4px}.ex{margin-top:10px;line-height:1.75}
 .gitem{border:var(--bw) solid var(--stroke);border-radius:var(--r-lg);padding:15px 17px;margin:10px 0;background:var(--card)}.gitem h3{margin:0 0 6px;font-size:17px}.label{font-weight:600;color:var(--ink2)}.note{background:var(--paper);border:var(--bw) dashed var(--hair);border-radius:var(--r-md);padding:12px 14px;margin-top:8px;line-height:1.75}
 .testq{border-top:1px solid var(--line);padding:14px 0}.testq:first-child{border-top:0}.opts{display:grid;gap:8px;margin-top:8px}.opt{display:flex;gap:8px;align-items:flex-start;border:1px solid var(--line);border-radius:var(--r-md);padding:10px;background:var(--card)}
@@ -432,6 +434,8 @@ h1,h2,h3,.badge,.fc-prompt,.daybtn,.set-label,
 .hero-day{font-weight:500;line-height:1;margin:8px 0}
 .hero-day .l{font-size:14px;letter-spacing:.06em;color:var(--ink2)}
 .hero-day .n{font-size:40px;letter-spacing:-.02em;margin-left:6px}
+/* 完走時だけは数字ではなく文が入るので、Day番号の大きさを当てない */
+.hero-day .n.txt{font-size:26px;letter-spacing:.04em;margin-left:0}
 .hero-m{font-size:12.5px;color:var(--ink2);line-height:1.7}
 /* 案Xのボタンは塗りつぶさず罫で囲う */
 .xbtn{display:block;width:100%;margin-top:12px;background:transparent;color:var(--ink);
@@ -26390,7 +26394,7 @@ function renderHome(){
  const hero=allDone
   ? `<div class="hero">
       <span class="hero-eye">仕上げ</span>
-      <div class="hero-day"><span class="n">90日ぶん完走</span></div>
+      <div class="hero-day"><span class="n txt">90日ぶん完走</span></div>
       <div class="hero-m">新しく覚えるぶんは終わりです。ここからは復習と模試で仕上げます。</div>
       <button class="xbtn" onclick="showMock()">模擬試験を受ける</button>
      </div>`
@@ -26973,14 +26977,7 @@ function updateDayNav(){
 }
 function updateCompleteButtons(){
  const done=!!state.completed[current];
- // completeTab (nav-tab)
- const ct=$('completeTab');
- if(ct){
-   ct.classList.toggle('tab-done',done);
-   const sp=ct.querySelector('span');
-   if(sp) sp.textContent=done?'完了済み':'このDayを完了';
- }
- // bottomComplete ボタン
+ // 下バーの「完了」ボタン（以前あった completeTab は無くなった）
  const bc=$('bottomComplete');
  if(bc){bc.textContent=done?'完了済み':'完了';bc.className='complete'+(done?' active':'');}
 }
@@ -27055,8 +27052,12 @@ function setTopOffset(){ var t=document.querySelector('.top'); if(t) document.do
 // 下タブ（.tabbar）と学習用の下バー（#bottomNav）は排他。Day学習だけが後者。
 function setChrome(){
   var isDay = (currentView==='day');
+  // 初回起動の級診断は全画面にする。タブを出すと、まだ何も見ていない人が
+  // いきなり離脱できてしまううえ、級診断は設定から入る画面なので
+  // 「設定」タブが選択状態になり、初回にはつじつまが合わない（分析のB2）。
+  var onboarding = (currentView==='levelcheck' && !hasOnboarded());
   var bn=$('bottomNav'); if(bn) bn.style.display = isDay ? 'flex' : 'none';
-  var tb=$('tabBar');    if(tb) tb.style.display = isDay ? 'none' : 'flex';
+  var tb=$('tabBar');    if(tb) tb.style.display = (isDay||onboarding) ? 'none' : 'flex';
   var top=$('topBar');   if(top) top.classList.toggle('day', isDay);
   var meta=$('topMeta');
   if(meta){

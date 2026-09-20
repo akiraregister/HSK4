@@ -163,7 +163,7 @@ Day学習の4ステップ化／完了画面／設定の4グループ化と「購
 ## 検証
 
 ```bash
-node tests/run.mjs        # 全156項目＋Service Workerチェック
+node tests/run.mjs        # 全158項目＋Service Workerチェック
 ```
 
 **変更したら必ず通すこと。** ビルドもCIも無いので、これが唯一の安全網。
