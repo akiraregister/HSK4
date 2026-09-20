@@ -19,6 +19,8 @@ table{width:100%;border-collapse:collapse;font-size:13px}
 td{padding:7px 2px;border-bottom:1px solid var(--hair);vertical-align:top}
 td:first-child{color:var(--ink2);width:42%}
 b.ok{color:var(--ok)}b.ng{color:var(--ng)}
+button.try{text-align:left;font-size:14px;letter-spacing:.02em;padding:13px 14px}
+button.try b{font-weight:600}
 button{width:100%;border:1px solid var(--rule);background:none;color:var(--ink);font:inherit;
   font-size:15px;font-weight:600;letter-spacing:.1em;padding:14px;margin-top:10px;cursor:pointer}
 button:active{background:var(--ink);color:var(--bg)}
@@ -46,8 +48,16 @@ button:active{background:var(--ink);color:var(--bg)}
 <button id="b1">① MP3を鳴らす</button>
 
 <h2>3. 読み上げは鳴るか</h2>
-<p class="lead">単語カードと同じ方法で「你好」と喋らせます。</p>
-<button id="b2">② 読み上げを試す</button>
+<p class="lead">書き方を4通り用意しました。<b>上から順に1つずつ押して、
+そのたびに「聞こえた／聞こえなかった」を答えてください。</b>
+どれか1つでも鳴れば、その書き方に直せば済みます。</p>
+<button class="try" data-v="A">A：cancel してから喋る（前のアプリと同じ）</button>
+<button class="try" data-v="B">B：cancel せずに喋る（声を指定する）</button>
+<button class="try" data-v="C">C：cancel せず、<b>声を指定しない</b>（言語だけ）</button>
+<button class="try" data-v="D">D：Cと同じで、<b>ゆっくりにしない</b>（rate 1.0）</button>
+<p class="note">Cだけ鳴るなら、声のオブジェクトを渡しているのが原因です。
+Dだけ鳴るなら速度指定が原因です。全部ダメなら、端末に中国語の声が
+入っていない可能性が高いです（下の案内を参照）。</p>
 
 <div class="ask" id="ask">
   <b>いま「你好」と聞こえましたか？</b>
@@ -109,63 +119,89 @@ document.getElementById('b1').onclick = function(){
   setTimeout(function(){ if(mp3ok===null){ log('① 4秒たっても始まらない'); mp3ok=false; verdict(); } }, 4000);
 };
 
-// ---- 3. 読み上げ ----
-// アプリ側とまったく同じ呼び方（cancel してから speak）で試す。
-document.getElementById('b2').onclick = function(){
-  if(!hasSS){ log('② この端末に読み上げ機能が無い'); speechok=false; verdict(); return; }
-  log('② speak() を呼びます（speaking='+speechSynthesis.speaking+' pending='+speechSynthesis.pending+'）');
-  speechSynthesis.cancel();
-  var u = new SpeechSynthesisUtterance('你好');
-  u.lang='zh-CN'; u.rate=0.9;
-  var zs=zhVoices(); if(zs.length){ u.voice=zs[0]; log('② 声を指定: '+zs[0].name); }
-  else log('② 中国語の声が見つからないので lang だけ指定');
-  // **onstart が来ても「音が出た」ことにはならない。**iOSは、消音スイッチで
-  // 黙らされていても onstart と onend を普通に返す。だから最後は人に聞く。
-  u.onstart=function(){ log('② onstart が来た（喋る処理は始まった）'); started=true; };
-  u.onend  =function(){ log('② onend が来た（喋る処理は終わった）'); ask(); };
-  u.onerror=function(e){ log('② onerror: '+(e.error||'不明')); speechok=false; verdict(); };
-  speechSynthesis.speak(u);
-  setTimeout(function(){
-    if(!started && speechok===null){
-      log('② 2秒たっても onstart が来ない＝処理すら始まっていない');
-      log('② いまの状態 speaking='+speechSynthesis.speaking+' pending='+speechSynthesis.pending);
-      speechok=false; verdict();
+// ---- 3. 読み上げ（4通り） ----
+// A: cancel してから speak（前のアプリの書き方）
+// B: cancel せず、声のオブジェクトを渡す
+// C: cancel せず、声を渡さない（lang だけ）
+// D: C と同じで rate も既定のまま
+var tried={}, lastV=null, started=false;
+[].forEach.call(document.querySelectorAll('.try'), function(b){
+  b.onclick=function(){ runSpeak(b.dataset.v); };
+});
+function runSpeak(v){
+  if(!hasSS){ log(v+': この端末に読み上げ機能が無い'); tried[v]=false; verdict(); return; }
+  lastV=v; started=false;
+  var zs=zhVoices();
+  log(v+': speak() を呼びます（speaking='+speechSynthesis.speaking+' pending='+speechSynthesis.pending+
+      ' 中国語の声='+zs.length+'個）');
+  var fire=function(){
+    var u=new SpeechSynthesisUtterance('你好');
+    u.lang='zh-CN';
+    if(v==='A'||v==='B'||v==='C') u.rate=0.9;
+    if(v==='A'||v==='B'){
+      if(zs.length){ u.voice=zs[0]; log(v+': 声を指定 '+zs[0].name+'（'+zs[0].lang+'）'); }
+      else log(v+': 中国語の声が無いので指定できない');
+    } else {
+      log(v+': 声は指定しない（lang だけ）');
     }
-  }, 2000);
-};
-var started=false;
-function ask(){
-  if(speechok!==null) return;
-  var a=document.getElementById('ask'); a.style.display='block';
-  a.scrollIntoView({block:'center'});
+    u.onstart=function(){ started=true; log(v+': onstart'); };
+    u.onend  =function(){ log(v+': onend'); ask(v); };
+    u.onerror=function(e){ log(v+': onerror '+(e.error||'不明')); tried[v]=false; verdict(); };
+    try{ speechSynthesis.speak(u); }catch(e){ log(v+': speak() が例外 '+e.name); tried[v]=false; verdict(); }
+    setTimeout(function(){
+      if(!started && tried[v]===undefined){
+        log(v+': 2秒たっても onstart が来ない（speaking='+speechSynthesis.speaking+'）');
+        ask(v);
+      }
+    }, 2000);
+  };
+  if(v==='A'){ speechSynthesis.cancel(); log('A: cancel() を呼んだ'); fire(); }
+  else if(speechSynthesis.speaking || speechSynthesis.pending){
+    speechSynthesis.cancel(); setTimeout(fire, 80);
+  } else fire();
 }
-document.getElementById('heard').onclick=function(){ log('② 人の耳：聞こえた'); speechok=true; hideAsk(); verdict(); };
-document.getElementById('notheard').onclick=function(){ log('② 人の耳：**聞こえなかった**'); speechok=false; hideAsk(); verdict(); };
+function ask(v){
+  if(tried[v]!==undefined) return;
+  var a=document.getElementById('ask');
+  a.querySelector('b').textContent='「'+v+'」で「你好」と聞こえましたか？';
+  a.style.display='block'; a.scrollIntoView({block:'center'});
+}
 function hideAsk(){ document.getElementById('ask').style.display='none'; }
+document.getElementById('heard').onclick=function(){
+  tried[lastV]=true; log(lastV+': 人の耳＝**聞こえた**'); hideAsk(); verdict();
+};
+document.getElementById('notheard').onclick=function(){
+  tried[lastV]=false; log(lastV+': 人の耳＝聞こえなかった'); hideAsk(); verdict();
+};
 
 function verdict(){
-  if(mp3ok===null || speechok===null) return;
-  var v=document.getElementById('verdict'); v.style.display='block';
-  if(!mp3ok && !speechok){
-    v.innerHTML='<b>どちらも鳴っていません</b>端末の消音スイッチか音量が原因の可能性が高いです。'+
-      '本体横のスイッチと音量を上げて、もう一度お試しください。';
-  } else if(mp3ok && !speechok){
-    v.innerHTML='<b>MP3は鳴るが、読み上げだけ聞こえない</b>'+
-      '<b style="display:inline">まず本体横の消音スイッチを確認してください。</b>'+
-      'iPhoneでは、この2つは<b style="display:inline">別の経路で鳴ります</b>。'+
-      '録音ファイル（MP3）は消音でも鳴りますが、<b style="display:inline">読み上げは消音スイッチで黙ります</b>。'+
-      '画面上部に🔕（ベルに斜線）が出ていたら、それです。'+
-      '<br><br>スイッチを戻して、もう一度②を押してみてください。'+
-      'それでも聞こえないなら、'+
-      (standalone ? 'ホーム画面から起動したアプリで読み上げが鳴らない件かもしれません。Safariで直接開いて試してください。'
-                  : '声の種類か、端末の読み上げ設定の問題です。')+
-      '<br><br>どちらにせよ、<b style="display:inline">単語と例文も録音ファイルにすれば、この問題ごと無くなります</b>。';
-  } else if(!mp3ok && speechok){
-    v.innerHTML='<b>読み上げは鳴るが、MP3が鳴らない</b>音声ファイルに届いていません。通信かキャッシュの問題です。';
-  } else {
-    v.innerHTML='<b>どちらも聞こえています</b>この画面では問題が再現しませんでした。'+
-      'アプリ側（ホーム画面から起動したほう）で同じことを試してみてください。';
+  var v=document.getElementById('verdict');
+  var okList=Object.keys(tried).filter(function(k){ return tried[k]; });
+  var ngList=Object.keys(tried).filter(function(k){ return !tried[k]; });
+  if(!okList.length && !ngList.length) return;
+  v.style.display='block';
+  if(okList.length){
+    var how={A:'cancel してから喋る', B:'cancel せず、声を指定する',
+             C:'cancel せず、声を指定しない（言語だけ）', D:'声を指定せず、速度も変えない'};
+    v.innerHTML='<b>「'+okList.join('・')+'」で鳴りました</b>'+
+      'アプリもこの書き方（'+how[okList[0]]+'）に合わせれば鳴るようになります。'+
+      (ngList.length ? '<br><br>鳴らなかったのは「'+ngList.join('・')+'」です。' : '');
+    return;
   }
+  if(Object.keys(tried).length < 4){
+    v.innerHTML='<b>「'+ngList.join('・')+'」は鳴りませんでした</b>残りも試してください。';
+    return;
+  }
+  v.innerHTML='<b>4通りとも鳴りませんでした</b>'+
+    '書き方の問題ではありません。<b style="display:inline">端末に中国語の声が入っていない</b>'+
+    '可能性が高いです。'+
+    '<br><br>iPhoneの「設定」→「アクセシビリティ」→「読み上げコンテンツ」→「声」→「中国語」'+
+    'を開いて、<b style="display:inline">中国語（中国本土）の声がダウンロード済みか</b>'+
+    'を確認してください。名前の横に雲マーク（↓）が付いていたら、まだ入っていません。'+
+    '<br><br>一覧に名前が出ていても、実体が入っていなければ iOS は'+
+    '「喋った」と返すだけで音を出しません。'+
+    '<br><br><b style="display:inline">どちらにせよ、単語と例文も録音ファイルにすれば'+
+    'この問題ごと無くなります。</b>リスニング問題（①）は録音なので、確実に鳴っています。';
 }
 </script>
 </body>
