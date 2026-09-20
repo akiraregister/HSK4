@@ -1,7 +1,7 @@
 <!doctype html>
-<!-- 起動スプラッシュ（A案「火が灯る」）の絵コンテと、タイミング違い3案の比較。
-     アプリ本体にはまだ手を入れていない。ここで形を決めてから実装する。
-     あわせて初回訴求（案1「1画面3行」）の静止案も置いてある。 -->
+<!-- 起動スプラッシュ（A案「火が灯る」）の絵コンテと、ゆらめき3案・長さ3段の比較。
+     あわせて初回訴求（案1「1画面3行」）のアニメーション3案。
+     アプリ本体にはまだ手を入れていない。ここで形を決めてから実装する。 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -17,75 +17,129 @@
   --f:'Noto Serif JP','Hiragino Mincho ProN',serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#DEDAD2;color:var(--ink);font-family:var(--f);line-height:1.8;padding:22px 16px 64px}
+body{background:#DEDAD2;color:var(--ink);font-family:var(--f);line-height:1.8;padding:22px 16px 70px}
 .wrap{max-width:1180px;margin:0 auto}
 .lede{background:var(--ink);color:var(--bg);padding:16px 20px;font-size:13.5px;line-height:1.9;margin-bottom:22px}
 .lede b{color:#E5A500}
 h1{font-size:25px;font-weight:600;letter-spacing:.06em;margin-bottom:4px}
-h2.sec{font-size:18px;font-weight:600;letter-spacing:.14em;margin:38px 0 6px;padding-top:14px;border-top:1px solid var(--ink)}
+h2.sec{font-size:18px;font-weight:600;letter-spacing:.14em;margin:40px 0 6px;padding-top:14px;border-top:1px solid var(--ink)}
 .sub{font-size:13px;color:#5C5249;margin-bottom:14px}
+.warn{background:var(--bg);border-left:3px solid var(--brand);padding:12px 15px;font-size:12.5px;line-height:1.85;margin:12px 0}
 
 /* ── 絵コンテ ── */
-.board{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:14px}
+.board{display:grid;gap:9px;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));margin-top:14px}
 .cell{background:var(--bg);border:1px solid var(--rule)}
-.cell .art{aspect-ratio:9/14;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;overflow:hidden}
-.cell .cap{border-top:1px solid var(--hair);padding:8px 10px;font-size:11px;line-height:1.7;color:var(--ink2)}
-.cell .cap b{display:block;font-size:11.5px;letter-spacing:.1em;color:var(--ink);font-weight:600}
-.mk{width:46px;height:46px;display:block}
-.wd{font-size:19px;font-weight:600;letter-spacing:.18em;text-indent:.18em}
-.sb{font-size:9px;color:var(--muted);letter-spacing:.18em}
+.cell .art{aspect-ratio:9/13;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;overflow:hidden}
+.cell .cap{border-top:1px solid var(--hair);padding:8px 9px;font-size:10.5px;line-height:1.7;color:var(--ink2)}
+.cell .cap b{display:block;font-size:11px;letter-spacing:.08em;color:var(--ink);font-weight:600}
+.mk{width:42px;height:42px;display:block}
+.wd{font-size:18px;font-weight:600;letter-spacing:.18em;text-indent:.18em}
+.sb{font-size:8.5px;color:var(--muted);letter-spacing:.18em}
 
-/* ── タイミング表 ── */
 table.t{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:12px;background:var(--bg)}
 table.t th,table.t td{padding:9px 10px;border-bottom:1px solid var(--hair);text-align:left;vertical-align:top}
 table.t thead th{font-size:11px;letter-spacing:.14em;color:var(--muted);font-weight:500;border-bottom:1px solid var(--ink)}
 table.t td:first-child{white-space:nowrap;color:var(--ink2)}
 
-/* ── 実機サイズの再生 ── */
-.plays{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,320px));margin-top:16px}
-.play h3{font-size:14px;font-weight:600;letter-spacing:.1em;margin-bottom:2px}
-.play p{font-size:12px;color:#5C5249;margin-bottom:8px;min-height:3.4em}
+/* ── 再生（実機サイズ） ── */
+.ctl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0 4px}
+.ctl .lab{font-size:11.5px;color:#5C5249;letter-spacing:.1em;margin-right:2px}
+.btn{background:none;border:1px solid var(--ink);color:var(--ink);font:inherit;font-size:12px;
+  font-weight:600;letter-spacing:.14em;padding:8px 14px;cursor:pointer}
+.btn.on{background:var(--ink);color:var(--bg)}
+.plays{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,310px));margin-top:14px}
+.play h3{font-size:14px;font-weight:600;letter-spacing:.08em;margin-bottom:2px}
+.play p{font-size:12px;color:#5C5249;margin-bottom:8px;min-height:4.6em;line-height:1.75}
 .screen{position:relative;width:100%;aspect-ratio:390/700;background:var(--bg);border:1px solid var(--rule);overflow:hidden}
-.stage{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
-.stage .mk{width:64px;height:64px}
+.stage{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;--t:1}
+.stage .mk{width:66px;height:66px}
 .stage .wd{font-size:26px}
 .stage .sb{font-size:11.5px}
-.btn{margin-top:9px;width:100%;background:none;border:1px solid var(--ink);color:var(--ink);
-  font:inherit;font-size:12.5px;font-weight:600;letter-spacing:.18em;padding:9px;cursor:pointer}
-.btn.all{max-width:320px}
+.play .btn{margin-top:9px;width:100%}
 
-/* A-1 下から立ち上がる */
-.a1 .mk{animation:riseClip .30s ease-out .04s both}
-.a1 .wd{animation:wd .42s ease .14s both}
-.a1 .sb{animation:fade .34s ease .30s both}
-/* A-2 芯から灯る（下端を軸に大きくなる） */
-.a2 .mk{transform-origin:50% 92%;animation:lit .34s cubic-bezier(.2,.7,.3,1) .04s both}
-.a2 .wd{animation:wd .42s ease .16s both}
-.a2 .sb{animation:fade .34s ease .32s both}
-/* A-3 立ち上がってから一度だけゆらぐ */
-.a3 .mk{animation:riseClip .30s ease-out .04s both, sway .62s ease-in-out .36s 1 both}
-.a3 .wd{animation:wd .42s ease .14s both}
-.a3 .sb{animation:fade .34s ease .30s both}
-
-@keyframes riseClip{
-  from{opacity:0;clip-path:inset(100% 0 0 0);transform:translateY(5px)}
-  to{opacity:1;clip-path:inset(0 0 0 0);transform:none}}
-@keyframes lit{from{opacity:0;transform:scale(.24)}to{opacity:1;transform:scale(1)}}
-@keyframes sway{0%{transform:none}35%{transform:rotate(-1.6deg)}70%{transform:rotate(1deg)}100%{transform:none}}
+/* ===== スプラッシュ：共通の文字の動き ===== */
+.stage .wd{animation:wd calc(var(--t)*460ms) ease calc(var(--t)*200ms) both}
+.stage .sb{animation:fade calc(var(--t)*360ms) ease calc(var(--t)*420ms) both}
 @keyframes wd{from{opacity:0;letter-spacing:.5em}to{opacity:1;letter-spacing:.18em}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
-/* ── 初回訴求（案1） ── */
-.intro{background:var(--bg);border:1px solid var(--rule);max-width:390px;padding:22px 20px 20px}
+/* B-1 芯がゆらぐ：火は芯から灯り、内側の色の境目が息をする */
+.b1 .mk{transform-origin:50% 92%;animation:lit calc(var(--t)*360ms) cubic-bezier(.2,.7,.3,1) calc(var(--t)*60ms) both}
+.b1 .core{animation:core calc(var(--t)*1080ms) ease-in-out calc(var(--t)*420ms) both}
+/* B-2 全体がしなる：炎そのものが左右に揺れる */
+.b2 .mk{transform-origin:50% 92%;
+  animation:lit calc(var(--t)*360ms) cubic-bezier(.2,.7,.3,1) calc(var(--t)*60ms) both,
+            sway calc(var(--t)*1080ms) ease-in-out calc(var(--t)*420ms) both}
+/* B-3 芯がゆらぐ＋ほのかな灯り（案Xの「影ゼロ」から外れる） */
+.b3 .mk{transform-origin:50% 92%;
+  animation:lit calc(var(--t)*360ms) cubic-bezier(.2,.7,.3,1) calc(var(--t)*60ms) both,
+            glow calc(var(--t)*1080ms) ease-in-out calc(var(--t)*420ms) both}
+.b3 .core{animation:core calc(var(--t)*1080ms) ease-in-out calc(var(--t)*420ms) both}
+
+@keyframes lit{from{opacity:0;transform:scale(.22)}to{opacity:1;transform:scale(1)}}
+/* 芯の息づかい。等間隔にしないと機械的に見えるので、山と谷の幅を変えてある */
+@keyframes core{
+  0%{transform:translateY(0)} 22%{transform:translateY(-3.2px)}
+  41%{transform:translateY(1.4px)} 63%{transform:translateY(-2.4px)}
+  82%{transform:translateY(.8px)} 100%{transform:translateY(0)}}
+@keyframes sway{
+  0%{transform:scale(1)} 20%{transform:scale(1.03,1.05) rotate(-1.4deg)}
+  42%{transform:scale(.99,.98) rotate(.9deg)} 64%{transform:scale(1.02,1.04) rotate(-.7deg)}
+  84%{transform:scale(1,.995) rotate(.4deg)} 100%{transform:scale(1) rotate(0)}}
+@keyframes glow{
+  0%{filter:drop-shadow(0 0 0 rgba(229,165,0,0))}
+  30%{filter:drop-shadow(0 0 14px rgba(229,165,0,.5))}
+  55%{filter:drop-shadow(0 0 7px rgba(229,165,0,.28))}
+  78%{filter:drop-shadow(0 0 12px rgba(229,165,0,.42))}
+  100%{filter:drop-shadow(0 0 0 rgba(229,165,0,0))}}
+
+/* ===== 初回訴求 ===== */
+.iscreen{position:relative;width:100%;aspect-ratio:390/760;background:var(--bg);border:1px solid var(--rule);overflow:hidden}
+.intro{position:absolute;inset:0;padding:24px 20px 18px;display:flex;flex-direction:column}
 .intro .eye{font-size:10.5px;font-weight:500;color:var(--muted);letter-spacing:.24em}
-.intro h3{font-size:26px;font-weight:600;line-height:1.5;letter-spacing:.04em;margin:10px 0 0}
-.rows{margin-top:26px;border-top:1px solid var(--ink)}
-.rows>div{padding:16px 2px;border-bottom:1px solid var(--hair)}
-.rows b{display:block;font-size:16px;font-weight:600;letter-spacing:.06em}
-.rows span{display:block;font-size:12.5px;color:var(--ink2);line-height:1.8;margin-top:4px}
-.intro .go{display:block;width:100%;margin-top:22px;background:none;border:1px solid var(--ink);
-  color:var(--ink);font:inherit;font-size:15px;font-weight:600;letter-spacing:.22em;padding:14px}
-.intro .mini{font-size:11px;color:var(--muted);text-align:center;letter-spacing:.06em;margin-top:10px}
+.intro h3{font-size:25px;font-weight:600;line-height:1.5;letter-spacing:.04em;margin:9px 0 0}
+.rows{margin-top:20px;border-top:1px solid var(--ink)}
+.rows>div{padding:13px 2px;border-bottom:1px solid var(--hair)}
+.rows b{display:block;font-size:15px;font-weight:600;letter-spacing:.06em}
+.rows span{display:block;font-size:12px;color:var(--ink2);line-height:1.75;margin-top:3px}
+.grid90{display:grid;grid-template-columns:repeat(15,1fr);gap:2px;margin-top:9px}
+.grid90 i{display:block;aspect-ratio:1;border:1px solid var(--hair);background:transparent}
+.intro .go{display:block;width:100%;margin-top:auto;background:none;border:1px solid var(--ink);
+  color:var(--ink);font:inherit;font-size:14px;font-weight:600;letter-spacing:.22em;padding:13px}
+.intro .mini{font-size:10.5px;color:var(--muted);text-align:center;letter-spacing:.06em;margin-top:9px}
+
+/* C-1 組版されていく：太罫が引かれ、行が順に立ち上がる */
+.c1 .eye{animation:up .4s ease .05s both}
+.c1 h3{animation:up .5s ease .18s both}
+.c1 .rows{animation:drawline .5s ease .5s both}
+.c1 .rows>div:nth-child(1){animation:up .45s ease .72s both}
+.c1 .rows>div:nth-child(2){animation:up .45s ease .87s both}
+.c1 .rows>div:nth-child(3){animation:up .45s ease 1.02s both}
+.c1 .go{animation:up .45s ease 1.25s both}
+.c1 .mini{animation:fade .4s ease 1.45s both}
+/* C-2 数字が数え上がる */
+.c2 .eye{animation:up .4s ease .05s both}
+.c2 h3{animation:up .5s ease .18s both}
+.c2 .rows{animation:drawline .5s ease .5s both}
+.c2 .rows>div{animation:up .45s ease .72s both}
+.c2 .go{animation:up .45s ease 1.3s both}
+.c2 .mini{animation:fade .4s ease 1.5s both}
+/* C-3 90マスが埋まっていく */
+.c3 .eye{animation:up .4s ease .05s both}
+.c3 h3{animation:up .5s ease .18s both}
+.c3 .rows{animation:drawline .5s ease .5s both}
+.c3 .rows>div:nth-child(1){animation:up .45s ease .72s both}
+.c3 .rows>div:nth-child(2){animation:up .45s ease 1.5s both}
+.c3 .rows>div:nth-child(3){animation:up .45s ease 1.65s both}
+.c3 .go{animation:up .45s ease 1.88s both}
+.c3 .mini{animation:fade .4s ease 2.05s both}
+.c3 .rows>div{padding:11px 2px}
+.c3 .grid90{grid-template-columns:repeat(30,1fr);gap:1px;margin-top:7px}
+.c3 .grid90 i{background:transparent;transition:none}
+.c3.run .grid90 i.on{background:var(--ink);border-color:var(--ink)}
+
+@keyframes up{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+@keyframes drawline{from{opacity:0;transform:scaleX(.06);transform-origin:left}to{opacity:1;transform:scaleX(1)}}
 
 .note{background:var(--bg);border:1px solid var(--rule);padding:14px 16px;font-size:13px;line-height:1.9;margin-top:14px}
 .note li{margin-left:1.1em;margin-bottom:5px}
@@ -94,55 +148,57 @@ table.t td:first-child{white-space:nowrap;color:var(--ink2)}
 </head>
 <body>
 <div class="wrap">
-<div class="lede"><b>起動スプラッシュ（A案「火が灯る」）の絵コンテです。</b>
-アプリ本体にはまだ手を入れていません。ここで形を決めてから実装します。
-下の「再生」で実機サイズの動きを確認できます。iPhoneでこのページを開いて見比べてください。</div>
-<h1>起動スプラッシュ — 絵コンテ</h1>
-<div class="sub">A案「火が灯る」。全体で約0.9秒、うち見えているのは0.62秒。タップで即スキップ。</div>
+<div class="lede"><b>起動スプラッシュと初回訴求の絵コンテです。</b>
+アプリ本体にはまだ手を入れていません。<b>ボタンで実際に再生できます。</b>
+iPhoneでこのページを開いて見比べてください。</div>
+<h1>起動スプラッシュ — 絵コンテ（ゆらめき入り）</h1>
+<div class="sub">A案「火が灯る」を長くして、炎のゆらめきを足したもの。見えているのは約1.35秒。タップで即スキップ。</div>
 
 <h2 class="sec">1. コマ割り</h2>
-<div class="sub">左から右へ時間が進みます。地は生成り（アプリの地と同じ）。</div>
+<div class="sub">火が灯る → 字が組まれる → <b>炎がゆらぐ</b> → 消える。左から右へ時間が進みます。</div>
 <div class="board" id="board"></div>
 
 <h2 class="sec">2. タイミング</h2>
 <table class="t">
-<thead><tr><th>時間</th><th>対象</th><th>動き</th><th>イージング</th></tr></thead>
+<thead><tr><th>時間</th><th>対象</th><th>動き</th></tr></thead>
 <tbody>
-<tr><td>0 → 40ms</td><td>—</td><td>地だけ。何も出さない（読み込みのゆらぎを吸収する間）</td><td>—</td></tr>
-<tr><td>40 → 340ms</td><td>炎</td><td><b>下から上へ姿を現す</b>（clip-path で下端から開く）＋5px上へ</td><td>ease-out</td></tr>
-<tr><td>140 → 560ms</td><td>加油</td><td>字間が .5em → .18em に<b>締まりながら</b>現れる（活字を組む所作）</td><td>ease</td></tr>
-<tr><td>300 → 640ms</td><td>90日でHSK4合格</td><td>淡く現れる</td><td>ease</td></tr>
-<tr><td>620 → 900ms</td><td>全体</td><td>フェードアウト</td><td>ease</td></tr>
-<tr><td>900ms</td><td>全体</td><td>DOMから取り除く</td><td>—</td></tr>
+<tr><td>0 → 60ms</td><td>—</td><td>地だけ。読み込みのゆらぎを吸収する間</td></tr>
+<tr><td>60 → 420ms</td><td>炎</td><td>芯から灯る（下端を軸に小さな種火がふくらむ）</td></tr>
+<tr><td>200 → 660ms</td><td>加油</td><td>字間が .5em → .18em に締まりながら現れる</td></tr>
+<tr><td>420 → 780ms</td><td>副題</td><td>淡く現れる</td></tr>
+<tr><td><b>420 → 1500ms</b></td><td><b>炎</b></td><td><b>ゆらぐ（約1.1秒。山と谷の幅を不均等にして機械的に見えないようにする）</b></td></tr>
+<tr><td>1350 → 1700ms</td><td>全体</td><td>フェードアウト</td></tr>
+<tr><td>1700ms</td><td>全体</td><td>DOMから取り除く</td></tr>
 </tbody>
 </table>
+<div class="warn"><b>長さについて。</b>これは毎日開くアプリなので、長くするほど「今日の15分」を始めるまでの摩擦になります。
+1.35秒を標準に置きましたが、下のボタンで <b>短め(1.0秒) / 標準(1.35秒) / 長め(1.8秒)</b> を切り替えられます。
+実機で触って、待たされる感じが出ない上限を決めてください。</div>
 
-<h2 class="sec">3. 動きの違い3案（実機サイズ）</h2>
-<div class="sub">火の立ち上がり方だけを変えています。文字の動きは共通です。</div>
-<button class="btn all" onclick="playAll()">すべて再生</button>
+<h2 class="sec">3. ゆらめきの違い3案</h2>
+<div class="sub">火の灯り方は共通（芯から）。<b>ゆらぎ方だけ</b>が違います。見比べられるように、この見本は<b>最後のフェードアウトだけ省いて完成形で止めてあります</b>（本番は1700msで消えてアプリ本体へ渡ります）。</div>
+<div class="ctl">
+  <span class="lab">長さ</span>
+  <button class="btn" data-t="0.74">短め 1.0秒</button>
+  <button class="btn on" data-t="1">標準 1.35秒</button>
+  <button class="btn" data-t="1.33">長め 1.8秒</button>
+  <button class="btn" onclick="playAll()" style="margin-left:auto">すべて再生</button>
+</div>
 <div class="plays" id="plays"></div>
 
-<h2 class="sec">4. 初回訴求（案1「1画面3行」）</h2>
-<div class="sub">初回起動のときだけ、級診断の前に出ます。2回目以降は出ません。</div>
-<div class="intro">
-  <span class="eye">はじめまして</span>
-  <h3>90日で、<br>HSK4級まで。</h3>
-  <div class="rows">
-    <div><b>90日で終わります</b><span>1日ぶんずつ、90日で単語498語と文法222項目を終える組み立てです。</span></div>
-    <div><b>1日15分</b><span>単語をおぼえる → 文法 → 聞く → 解く。ここまでで1日ぶんです。</span></div>
-    <div><b>日本人がつまずく所に絞ってあります</b><span>間違えやすい点の解説と、作文のAI添削が付きます。</span></div>
-  </div>
-  <button class="go">はじめる</button>
-  <div class="mini">次に、いまの級を見つける診断があります（スキップできます）</div>
-</div>
+<h2 class="sec">4. 初回訴求のアニメーション3案</h2>
+<div class="sub">初回起動のときだけ、級診断の前に出ます。1回しか見ないので、スプラッシュより少し丁寧に動かせます。<b>3案とも1画面に収まること（スクロールさせないこと）を条件にしています。</b></div>
+<div class="ctl"><button class="btn" onclick="playIntros()">すべて再生</button></div>
+<div class="plays" id="intros"></div>
 
 <h2 class="sec">5. 実装するときの約束</h2>
 <div class="note"><ul>
 <li><b>操作を絶対に邪魔しない。</b>スプラッシュは <code>pointer-events:none</code>。タップは下のUIへそのまま通り、同時にスプラッシュが消える</li>
-<li><b>待たせない。</b>見えているのは0.62秒。タップで即スキップ</li>
-<li><b>動きを止めている人には動かさない。</b><code>prefers-reduced-motion</code> が有効なら静止したまま出して消える</li>
-<li><b>テストへの影響。</b>7スイートすべてが読み込み直後にクリックするので、スプラッシュが操作を遮らないことが前提。初回訴求を足すと初回の入口が1段増えるので、共通のヘルパーで吸収する</li>
+<li><b>動きを止めている人には動かさない。</b><code>prefers-reduced-motion</code> が有効なら、ゆらめきも含めて静止したまま出して消える</li>
+<li><b>ゆらめきは transform と filter だけで書く。</b>レイアウトを動かさないので、古い端末でもコマ落ちしにくい</li>
+<li><b>B-3の「ほのかな灯り」は案Xの「影ゼロ」から外れる。</b>起動の一瞬だけの例外として許すかどうかの判断が要る</li>
 <li>炎の形と色は<b>アプリアイコン（O7）と同じもの</b>を使う。別に作らない</li>
+<li><b>テストへの影響。</b>初回訴求を足すと初回の入口が1段増えるので、共通のヘルパーで吸収する</li>
 </ul></div>
 </div>
 
@@ -150,37 +206,38 @@ table.t td:first-child{white-space:nowrap;color:var(--ink2)}
 const FLAME='M52 8 C 62 31, 79 43, 79 64 A 29 29 0 1 1 21 64 C 21 46, 33 41, 41 29 C 44 41, 50 45, 50 37 C 50 27, 47 17, 52 8 Z';
 const SPLIT='M0 52 C 18 64, 34 48, 52 56 C 70 64, 84 50, 100 58 L100 100 L0 100 Z';
 let uid=0;
-// 炎。cut は下から何%まで見えているか（絵コンテ用）
-function mark(cls,cut){
+// 炎。scale は絵コンテ用の大きさ、coreY は芯（色の境目）の上下位置
+function mark(scale,coreY,extra){
   const id='f'+(++uid);
-  const clip = cut==null ? '' : `clip-path:inset(${100-cut}% 0 0 0);`;
-  return `<svg class="mk ${cls||''}" viewBox="0 0 100 100" style="${clip}">
+  const st = scale==null ? '' : `opacity:${scale>0?1:0};transform:scale(${scale});transform-origin:50% 92%;`;
+  return `<svg class="mk" viewBox="0 0 100 100" style="${st}${extra||''}">
     <defs><clipPath id="${id}"><path d="${FLAME}"/></clipPath></defs>
     <g clip-path="url(#${id})"><rect width="100" height="100" fill="#E5A500"/>
-      <path d="${SPLIT}" fill="#DC6011"/></g>
+      <path class="core" d="${SPLIT}" fill="#DC6011" style="${coreY!=null?`transform:translateY(${coreY}px)`:''}"/></g>
     <rect x="28" y="88" width="44" height="2" fill="#15150F"/></svg>`;
 }
 // ── 絵コンテ ──
 const FRAMES=[
-  [0,   null, 0,   0,   '地だけ','生成りの地。まだ何も出ていない'],
-  [120, 55,   0.25,0,   '火が立ちはじめる','炎が下端から姿を現す'],
-  [260, 92,   0.7, 0,   '火が立つ','炎がほぼ出そろう。「加油」は字間が広い'],
-  [420, 100,  1,   0.35,'字が締まる','字間が .18em へ。副題が淡く出はじめる'],
-  [620, 100,  1,   1,   '出そろう','ここが完成形。0.62秒の地点'],
-  [820, 100,  0.35,0.35,'消える','全体がフェードアウト。900msでDOMから外す'],
+  [0,    null,0,   0,  0,  '地だけ','まだ何も出ていない'],
+  [180,  .45, 0,   0,  0,  '火が灯る','芯から小さな種火がふくらむ'],
+  [420,  1,   0,   .5, 0,  '火が立つ','炎が出そろう。「加油」は字間が広い'],
+  [700,  1,  -3.2, 1,  .7, '字が締まる','字間が .18em へ。<b>ここからゆらぎはじめる</b>'],
+  [1050, 1,   1.4, 1,  1,  'ゆらぐ','芯が下がる。山と谷は不均等'],
+  [1350, 1,  -2.4, 1,  1,  'ゆらぐ','芯がまた上がる。ここが完成形'],
+  [1600, 1,   0,   .3, .3, '消える','全体がフェードアウト。1700msで外す'],
 ];
-document.getElementById('board').innerHTML=FRAMES.map(([t,cut,wo,so,ttl,desc])=>`
+document.getElementById('board').innerHTML=FRAMES.map(([t,sc,cy,wo,so,ttl,desc])=>`
   <div class="cell"><div class="art">
-    ${cut===null?'<div style="height:46px"></div>':mark('',cut)}
+    ${sc===null?'<div style="height:42px"></div>':mark(sc,cy)}
     <div class="wd" style="opacity:${wo};letter-spacing:${wo<1?'.5em':'.18em'};text-indent:${wo<1?'.5em':'.18em'}">加油</div>
     <div class="sb" style="opacity:${so}">90日でHSK4合格</div>
   </div><div class="cap"><b>${t}ms ${ttl}</b>${desc}</div></div>`).join('');
 
-// ── 再生 ──
+// ── スプラッシュ再生 ──
 const VARIANTS=[
-  ['a1','A-1 下から立ち上がる','炎が下端から上へ開いていく。火が点いて伸びる感じ。いちばん素直。'],
-  ['a2','A-2 芯から灯る','小さな種火が下端を軸にふくらむ。マッチを擦った直後のような立ち上がり。'],
-  ['a3','A-3 立ってから一度ゆらぐ','A-1のあと、炎がひと揺れする。生きている感じは出るが、静けさは減る。'],
+  ['b1','B-1 芯がゆらぐ','炎の形はそのままに、<b>内側の色の境目（芯）だけが上下に息をする。</b>このアイコンが二段でできていることを活かした動き。いちばん静かで、案Xの落ち着きを壊さない。'],
+  ['b2','B-2 全体がしなる','<b>炎そのものが左右にしなる。</b>火らしさは最も強い。ただし形が変わるぶん、見る回数が増えると気になる可能性がある。'],
+  ['b3','B-3 芯がゆらぐ＋灯り','B-1に<b>ほのかな暖色の光</b>を足したもの。いちばん情緒的。ただし<b>案Xの「影ゼロ」から外れる</b>ので、起動の一瞬だけの例外として許すかの判断が要る。'],
 ];
 document.getElementById('plays').innerHTML=VARIANTS.map(([k,ttl,desc])=>`
   <div class="play"><h3>${ttl}</h3><p>${desc}</p>
@@ -189,14 +246,66 @@ document.getElementById('plays').innerHTML=VARIANTS.map(([k,ttl,desc])=>`
     </div></div>
     <button class="btn" onclick="play('${k}')">再生</button></div>`).join('');
 
+let T=1;
 function play(k){
   const el=document.getElementById('st-'+k);
-  const cls=el.className;
-  el.className='stage';           // アニメーションを外す
-  void el.offsetWidth;            // 反映させる
-  el.className=cls;               // 付け直して再生
+  const cls=el.className; el.className='stage'; void el.offsetWidth;
+  el.style.setProperty('--t',T); el.className=cls;
 }
 function playAll(){ VARIANTS.forEach(([k])=>play(k)); }
-playAll();
+document.querySelectorAll('.ctl .btn[data-t]').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.ctl .btn[data-t]').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); T=Number(b.dataset.t); playAll();
+});
+
+// ── 初回訴求 ──
+const R1='<b>90日で終わります</b><span>1日ぶんずつ、90日で単語498語と文法222項目を終える組み立てです。</span>';
+const R2='<b>1日15分</b><span>単語をおぼえる → 文法 → 聞く → 解く。ここまでで1日ぶんです。</span>';
+const R3='<b>日本人がつまずく所に絞ってあります</b><span>間違えやすい点の解説と、作文のAI添削が付きます。</span>';
+const CELLS=Array.from({length:90},()=>'<i></i>').join('');
+const INTROS=[
+  ['c1','C-1 組版されていく','<b>太罫が左から引かれ、3行が順に立ち上がる。</b>新聞が組まれていく所作。案Xの語彙そのままで、いちばん素直。',
+   `<div class="rows"><div>${R1}</div><div>${R2}</div><div>${R3}</div></div>`],
+  ['c2','C-2 数字が数え上がる','<b>90・498・222・15 の数字が0から数え上がる。</b>教材の厚みが体感で伝わる。ただし数え上げは見飽きやすく、読み終わるまで待たされる感じも出る。',
+   `<div class="rows"><div><b>90日で終わります</b><span>1日ぶんずつ、<u data-n="90">0</u>日で単語<u data-n="498">0</u>語と文法<u data-n="222">0</u>項目を終える組み立てです。</span></div><div>${R2}</div><div>${R3}</div></div>`],
+  ['c3','C-3 90マスが埋まっていく','<b>1行目に90マスの格子を置き、順に墨で埋まる。</b>今日画面の90マスと直結し、「90日で終わる」が絵で伝わる。そのぶん少し長くなる（約2.3秒）。',
+   `<div class="rows"><div>${R1}<div class="grid90">${CELLS}</div></div><div>${R2}</div><div>${R3}</div></div>`],
+];
+document.getElementById('intros').innerHTML=INTROS.map(([k,ttl,desc,rows])=>`
+  <div class="play"><h3>${ttl}</h3><p>${desc}</p>
+    <div class="iscreen"><div class="intro ${k}" id="in-${k}">
+      <span class="eye">はじめまして</span>
+      <h3 style="font-size:25px">90日で、<br>HSK4級まで。</h3>
+      ${rows}
+      <button class="go">はじめる</button>
+      <div class="mini">次に、いまの級を見つける診断があります（スキップできます）</div>
+    </div></div>
+    <button class="btn" onclick="playIntro('${k}')">再生</button></div>`).join('');
+
+const timers=[];
+function playIntro(k){
+  const el=document.getElementById('in-'+k);
+  const cls=el.className.replace(' run','');
+  el.className='intro'; void el.offsetWidth; el.className=cls;
+  if(k==='c2'){
+    el.querySelectorAll('u[data-n]').forEach(u=>{
+      const n=Number(u.dataset.n); const t0=performance.now()+900;
+      (function step(){
+        const p=Math.min(1,(performance.now()-t0)/900);
+        u.textContent = p<0 ? 0 : Math.round(n*Math.max(0,p));
+        if(p<1) timers.push(requestAnimationFrame(step));
+      })();
+    });
+  }
+  if(k==='c3'){
+    const cells=[...el.querySelectorAll('.grid90 i')];
+    cells.forEach(c=>c.classList.remove('on'));
+    el.classList.add('run');
+    cells.forEach((c,i)=>timers.push(setTimeout(()=>c.classList.add('on'), 1000+i*10)));
+  }
+}
+function playIntros(){ timers.forEach(t=>{clearTimeout(t);cancelAnimationFrame(t);}); timers.length=0;
+  INTROS.forEach(([k])=>playIntro(k)); }
+playAll(); playIntros();
 </script>
 </body></html>
