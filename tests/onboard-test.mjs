@@ -47,9 +47,11 @@ async function answerAll(p, upTo) {
   // 初回はまず案内を出す（分析のB1：価値を見せる前に7分を要求していた）
   ok('初回起動でまず案内が出る', !!(await p.$('#content .intro')), txt.slice(0, 30).replace(/\s+/g, ' '));
   ok('案内に90日と1日15分が出る', txt.includes('90日') && txt.includes('15分'));
-  // 3つの訴求は積み上げずに1つずつ。最初は1つ目だけが開いている
-  // （1つ目が出るのは 720ms。fresh() の 600ms だけでは間に合わない）
-  await p.waitForTimeout(500);
+  // 3つの訴求は積み上げずに1つずつ。最初は1つ目だけが開いている。
+  // **順番に見せるのはスプラッシュが消えてから。**裏で流すと1つ目を見せないまま
+  // 次へ送ってしまうので、ここでもスプラッシュをタップで消してから測る
+  await p.mouse.move(195, 400); await p.mouse.down(); await p.mouse.up();
+  await p.waitForTimeout(900);
   const openAt0 = await p.$$eval('#content .intro-rows>div', es => es.map(e => e.className));
   ok('案内は最初は1つ目だけを見せる',
     openAt0.filter(x => x.includes('intro-on')).length === 1 && !openAt0[1].includes('intro-on'),
@@ -85,12 +87,20 @@ async function answerAll(p, upTo) {
 // --- 起動スプラッシュ ---
 {
   const { c, p } = await fresh();
-  // CSS は 1800ms から薄くなり、JS が 2300ms に DOM から外す。片方だけ変えると
-  // 「まだ見えているのに消える」「消えたあとも居座る」のどちらかになる
-  const t = await p.evaluate(() => performance.now());
-  await p.waitForTimeout(Math.max(0, 2600 - t));
-  ok('スプラッシュは2.6秒までに消える',
-    await p.$eval('#splash', e => e.classList.contains('gone')));
+  // 長さはCSSの --sp-life 1か所。ここもそれを読んで待つので、長さを変えても
+  // このテストは直さなくていい（逆に、JS側に数字を戻したらここで落ちる）
+  const life = await p.$eval('#splash',
+    e => parseFloat(getComputedStyle(e).getPropertyValue('--sp-life')));
+  ok('長さはCSSの --sp-life から取れる', life > 0, 'life=' + life);
+  // タイマーが動き出すのは（1.25MBを読み終えた）モジュール実行時なので、
+  // performance.now() とは原点がずれる。時刻で決め打ちせず、消えるのを待つ
+  let gone = true;
+  try {
+    await p.waitForFunction(
+      () => document.getElementById('splash').classList.contains('gone'),
+      null, { timeout: life + 2500 });
+  } catch (e) { gone = false; }
+  ok('--sp-life を過ぎればスプラッシュは消えている', gone);
   await c.close();
 }
 {
@@ -113,9 +123,25 @@ async function answerAll(p, upTo) {
   await seedFullContent(p);
   await p.goto(B, { waitUntil: 'load' }); await p.waitForTimeout(600);
   ok('動きを止めていれば灯りも出さない',
-    await p.$eval('.splash-flame', e => getComputedStyle(e).filter === 'none'));
+    await p.$eval('.splash-mark', e => getComputedStyle(e).filter === 'none'));
   ok('動きを止めていれば訴求は3つとも最初から開く',
     await p.$$eval('.intro-rows>div', es => es.every(e => e.classList.contains('intro-on'))));
+  await c.close();
+}
+{
+  // タップせずに待った場合も、案内はスプラッシュが消えてから始まること。
+  // スプラッシュは3.5秒あるので、裏で流すと1つ目の訴求を見せないまま次へ送ってしまう
+  const { c, p } = await fresh();
+  await p.waitForFunction(
+    () => document.getElementById('splash').classList.contains('gone'),
+    null, { timeout: 8000 });
+  const before = await p.$$eval('.intro-rows>div', es => es.map(e => e.className));
+  ok('スプラッシュの裏では訴求を進めない',
+    before.every(x => !x.includes('intro-on')), JSON.stringify(before));
+  await p.waitForTimeout(900);
+  const after = await p.$$eval('.intro-rows>div', es => es.map(e => e.className));
+  ok('消えたあとに1つ目から始まる',
+    after[0].includes('intro-on') && !after[1].includes('intro-on'), JSON.stringify(after));
   await c.close();
 }
 {

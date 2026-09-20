@@ -362,47 +362,93 @@ h1,h2,h3,.badge,.fc-prompt,.daybtn,.set-label,
 .vrow-locked .vrow-day{background:transparent;border:1px solid var(--hair);color:var(--muted)}
 .vrow-locked .vrow-day::before{content:"🔒 ";font-size:10px}
 /* ===== 起動スプラッシュ ===== */
-/* 操作は絶対に邪魔しない（pointer-events:none）。案Xなので動きは抑えめに、
-   跳ねたり回ったりはさせない。 */
-#splash{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;
+/* 操作は絶対に邪魔しない（pointer-events:none）。
+   **長さの出どころは --sp-life 1か所だけ。**下の splash-out の「遅延＋長さ」と
+   同じ値にしてあり、JS（dismissSplash）もこの変数を読んでDOMから外す。
+   以前はCSSとJSに数字が2つあり、片方だけ動かすと「まだ見えているのに消える」
+   「消えたあとも居座る」のどちらかになった。 */
+#splash{--sp-life:3560;
+  position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;
   flex-direction:column;align-items:center;justify-content:center;gap:10px;
-  pointer-events:none;color:var(--ink);animation:splash-out 470ms ease 1800ms both}
+  pointer-events:none;color:var(--ink);animation:splash-out 560ms ease 3000ms both}
 #splash.gone{display:none}
-.splash-mark{width:64px;height:64px;display:block;transform-origin:50% 92%;
-  animation:splash-lit 480ms cubic-bezier(.2,.7,.3,1) 80ms both}
-.splash-flame{animation:splash-glow 1440ms ease-in-out 560ms both}
-/* 芯（柿と山吹の境目）だけが上下に息をする。山と谷の幅をわざと不均等にしてある。
+/* 炎まわりは「1つの要素に1つの transform」で組む。
+   同じ要素に transform を使うアニメーションを2本並べると、both で埋めるぶん
+   **後ろの1本が最初から勝ってしまい、前の1本が効かない。** */
+.splash-fig{position:relative;width:64px;height:64px}
+/* **灯りは svg 側に掛ける。**clip-path と同じ要素に filter を置くと、
+   SVGは「filter → clip」の順に適用するので、**滲み出た光がそのまま切り落とされて
+   何も光らない**（最初これで、灯りがまったく出ていなかった）。
+   svgの中は炎だけにしてあるので、光るのは炎の形のまま。
+   transform（splash-lit）と filter（splash-glow）は別の性質なので同じ要素に並べてよい。 */
+.splash-mark{position:absolute;inset:0;width:64px;height:64px;display:block;overflow:visible;
+  transform-origin:50% 92%;
+  animation:splash-lit 900ms cubic-bezier(.2,.75,.3,1) 120ms both,
+            splash-glow 2700ms ease-in-out 300ms both}
+/* 足元の罫。炎とは別の要素にして、揺れにも伸び縮みにも巻き込まれないようにしてある
+   （中に入れたままだと、地面が一緒にしなって浮いて見える） */
+.splash-ground{position:absolute;left:50%;top:56px;width:28px;height:2px;margin-left:-14px;
+  background:var(--ink);transform-origin:50% 50%;animation:splash-ground 300ms ease both}
+/* 炎の塊。しなりだけを持つ（灯りは上のsvg側。理由はそこに書いた） */
+.splash-flame{transform-box:fill-box;transform-origin:50% 92%;
+  animation:splash-sway 2360ms ease-in-out 640ms both}
+/* 芯（柿と山吹の境目）が上下に息をする。山と谷の幅をわざと不均等にしてある。
    等間隔にすると機械の点滅に見えて、火には見えない。 */
-.splash-core{animation:splash-coreY 1440ms ease-in-out 560ms both}
+.splash-core{transform-box:fill-box;animation:splash-coreY 2360ms ease-in-out 640ms both}
 .splash-word{font-family:var(--font-brand);font-size:26px;font-weight:600;
-  letter-spacing:.5em;text-indent:.5em;animation:splash-word 610ms ease 265ms both}
+  letter-spacing:.62em;text-indent:.62em;animation:splash-word 900ms ease 900ms both}
 .splash-sub{font-size:11.5px;color:var(--muted);letter-spacing:.18em;
-  animation:splash-fade 480ms ease 560ms both}
-@keyframes splash-lit{from{opacity:0;transform:scale(.22)}to{opacity:1;transform:scale(1)}}
+  animation:splash-fade 600ms ease 1500ms both}
+@keyframes splash-ground{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
+/* 火が点く → ぐっと立ち上がる（フレア）→ 揺り戻して落ち着く */
+@keyframes splash-lit{
+  0%{opacity:0;transform:scale(.10)}
+  18%{opacity:1;transform:scale(.52)}
+  46%{transform:scale(1.10,1.18)}
+  68%{transform:scale(.97,.94)}
+  85%{transform:scale(1.02,1.03)}
+  100%{transform:scale(1)}}
 @keyframes splash-coreY{
-  0%{transform:translateY(0)} 22%{transform:translateY(-3.2px)}
-  41%{transform:translateY(1.4px)} 63%{transform:translateY(-2.4px)}
-  82%{transform:translateY(.8px)} 100%{transform:translateY(0)}}
-/* B-3の「ほのかな灯り」。案Xは影ゼロ（--sh:none）だが、ここだけは例外として許した。
+  0%{transform:translateY(0)} 16%{transform:translateY(-5.5px)}
+  31%{transform:translateY(2.4px)} 49%{transform:translateY(-4.2px)}
+  66%{transform:translateY(1.6px)} 83%{transform:translateY(-2.6px)}
+  100%{transform:translateY(0)}}
+@keyframes splash-sway{
+  0%{transform:rotate(0) scale(1)}
+  17%{transform:rotate(-2.2deg) scale(1.04,1.07)}
+  34%{transform:rotate(1.5deg) scale(.985,.97)}
+  52%{transform:rotate(-1.7deg) scale(1.03,1.05)}
+  70%{transform:rotate(1.1deg) scale(.995,.985)}
+  86%{transform:rotate(-.7deg) scale(1.015,1.02)}
+  100%{transform:rotate(0) scale(1)}}
+/* B-3の「灯り」。案Xは影ゼロ（--sh:none）だが、ここだけは例外として許した。
    box-shadow ではなく filter:drop-shadow なので、炎の形に沿って光る＝面に落ちる影には
-   ならず、罫で組んだ紙面を壊さない。止まった影を残さないよう、必ず0へ戻す。 */
+   ならず、罫で組んだ紙面を壊さない。止まった影を残さないよう、必ず0へ戻す。
+   8%が「フレア」。炎がいちばん伸びる瞬間（splash-lit の46%＝約534ms）に合わせてある。 */
 @keyframes splash-glow{
   0%{filter:drop-shadow(0 0 0 rgba(229,165,0,0))}
-  30%{filter:drop-shadow(0 0 14px rgba(229,165,0,.5))}
-  55%{filter:drop-shadow(0 0 7px rgba(229,165,0,.28))}
-  78%{filter:drop-shadow(0 0 12px rgba(229,165,0,.42))}
+  8%{filter:drop-shadow(0 0 28px rgba(229,165,0,.66))}
+  18%{filter:drop-shadow(0 0 10px rgba(229,165,0,.28))}
+  33%{filter:drop-shadow(0 0 21px rgba(229,165,0,.52))}
+  48%{filter:drop-shadow(0 0 9px rgba(229,165,0,.26))}
+  63%{filter:drop-shadow(0 0 18px rgba(229,165,0,.46))}
+  78%{filter:drop-shadow(0 0 11px rgba(229,165,0,.3))}
+  90%{filter:drop-shadow(0 0 15px rgba(229,165,0,.38))}
   100%{filter:drop-shadow(0 0 0 rgba(229,165,0,0))}}
-@keyframes splash-word{from{opacity:0;letter-spacing:.5em}to{opacity:1;letter-spacing:.18em}}
+@keyframes splash-word{
+  from{opacity:0;letter-spacing:.62em;transform:translateY(5px)}
+  to{opacity:1;letter-spacing:.18em;transform:translateY(0)}}
 @keyframes splash-fade{from{opacity:0}to{opacity:1}}
-@keyframes splash-out{to{opacity:0}}
+@keyframes splash-out{to{opacity:0;transform:scale(.96)}}
 /* 動きを止めている人には動かさない。灯り（drop-shadow）も出さない。
    明滅しない影だけが残ると、案Xの「影ゼロ」から外れる理由がなくなる。 */
 @media (prefers-reduced-motion: reduce){
-  #splash,.splash-mark,.splash-flame,.splash-core,.splash-word,.splash-sub{animation:none}
-  .splash-mark,.splash-word,.splash-sub{opacity:1}
-  .splash-mark{transform:none}
-  .splash-flame{filter:none}
-  .splash-word{letter-spacing:.18em}
+  #splash,.splash-mark,.splash-ground,.splash-flame,.splash-core,
+  .splash-word,.splash-sub{animation:none}
+  .splash-mark,.splash-ground,.splash-word,.splash-sub{opacity:1}
+  .splash-mark,.splash-ground{transform:none}
+  .splash-mark{filter:none}
+  .splash-word{letter-spacing:.18em;text-indent:.18em}
 }
 /* ===== 初回だけの案内（級診断の前） ===== */
 /* 以前は初回起動がいきなり20問・約7分の級診断で、価値を一度も見せる前に
@@ -639,7 +685,10 @@ h1.brand{display:flex;align-items:center;gap:8px;margin:0;font-size:inherit;colo
      **pointer-events:none にして、操作は一切邪魔しない。**待たされる感じを作らないため、
      タップすると即座に消える（タップ自体は下のUIへそのまま通る）。 -->
 <div id="splash" aria-hidden="true">
- <svg class="splash-mark" viewBox="0 0 100 100"><defs><clipPath id="sf"><path d="M52 8 C 62 31, 79 43, 79 64 A 29 29 0 1 1 21 64 C 21 46, 33 41, 41 29 C 44 41, 50 45, 50 37 C 50 27, 47 17, 52 8 Z"/></clipPath></defs><g class="splash-flame" clip-path="url(#sf)"><rect width="100" height="100" fill="#E5A500"/><path class="splash-core" d="M0 52 C 18 64, 34 48, 52 56 C 70 64, 84 50, 100 58 L100 100 L0 100 Z" fill="#DC6011"/></g><rect x="28" y="88" width="44" height="2" fill="currentColor"/></svg>
+ <div class="splash-fig">
+  <svg class="splash-mark" viewBox="0 0 100 100"><defs><clipPath id="sf"><path d="M52 8 C 62 31, 79 43, 79 64 A 29 29 0 1 1 21 64 C 21 46, 33 41, 41 29 C 44 41, 50 45, 50 37 C 50 27, 47 17, 52 8 Z"/></clipPath></defs><g class="splash-flame" clip-path="url(#sf)"><rect width="100" height="100" fill="#E5A500"/><path class="splash-core" d="M0 52 C 18 64, 34 48, 52 56 C 70 64, 84 50, 100 58 L100 100 L0 100 Z" fill="#DC6011"/></g></svg>
+  <div class="splash-ground"></div>
+ </div>
  <div class="splash-word">加油</div>
  <div class="splash-sub">90日でHSK4合格</div>
 </div>
@@ -26635,6 +26684,8 @@ function bmSetSort(s){
 // 間隔反復（SRS）はここでは言わない。初見では良さが伝わらず、最初の1週間で
 // 自分で実感してもらうほうが効く（paywallをDay8に置いたのも同じ理由）。
 var introTimers = [];
+// 起動スプラッシュが消えたか。案内はスプラッシュの裏では始めない（下の introSequence）
+var splashDone = false;
 function renderIntroScreen(){
   save(); renderBookmarkPanel();
   $('bookmarkPanel').className='bookmark-panel card';
@@ -26661,6 +26712,15 @@ function renderIntroScreen(){
 // これより短いと、畳まれる前に読み終わらない。
 // タップで先送りする仕掛けはあえて付けていない。出口は「はじめる」ひとつに絞ったほうが
 // 迷わないし、画面のどこを触っても進むと、誤って触ったときに何が起きたか分からなくなる。
+// スプラッシュが消えた合図。案内を開いているならそこから順番に見せ始める。
+// タップで早く消した場合もここを通るので、待たされずに1つ目から見られる。
+function onSplashGone(){
+  if(splashDone) return;
+  splashDone = true;
+  if(currentView!=='intro') return;
+  var c=$('content');
+  if(c && c.querySelector('.intro-rows')) introSequence(c);
+}
 function introSequence(root){
   introTimers.forEach(function(t){ clearTimeout(t); }); introTimers.length=0;
   var rows=[].slice.call(root.querySelectorAll('.intro-rows>div'));
@@ -26669,6 +26729,10 @@ function introSequence(root){
   var reduce=false;
   try{ reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
   if(reduce){ rows.forEach(function(r){ r.classList.add('intro-on'); }); return; }
+  // **スプラッシュが出ているあいだは始めない。**起動スプラッシュは3.5秒あるので、
+  // そのまま流すと1つ目の訴求がスプラッシュの裏で終わってしまう。
+  // 消えたら onSplashGone() がここを呼び直す。
+  if(!splashDone) return;
   var IN=720, DWELL=2600;
   rows.forEach(function(r,i){
     introTimers.push(setTimeout(function(){
@@ -29082,17 +29146,18 @@ document.addEventListener('click', function(e){
 // 初回起動時だけ級診断から始める。進捗がある人はそのまま。
 // PLACEMENT_QUESTIONS など級診断側の定義がすべて済んだ後でないと描画できないため、
 // モジュールの最後で判定する（render() は同じタスク内なので画面のちらつきは起きない）。
-// 起動スプラッシュを消す。CSS側は 1800ms から 470ms かけて薄くなるので、
-// 消えきった 2300ms に確実に DOM から外す。**この値を変えるときは
-// #splash の splash-out の遅延＋長さも一緒に変えること**（片方だけ変えると、
-// まだ見えているのに消える／消えたあとも居座る、のどちらかになる）。
+// 起動スプラッシュを消す。**長さはCSSの --sp-life（ミリ秒）1か所だけ**に書いてあり、
+// ここはそれを読むだけ。数字をJSにも持たせると、片方だけ動かしたときに
+// 「まだ見えているのに消える」「消えたあとも居座る」のどちらかになる。
 // タップされたら即座に消す。操作は pointer-events:none で下へ通しているので、
 // タップが失われることはない。毎日開くアプリなので、待たされる感じは作らない。
 (function dismissSplash(){
   var el=document.getElementById('splash'); if(!el) return;
+  var life=parseFloat(getComputedStyle(el).getPropertyValue('--sp-life'));
+  if(!(life>0)) life=3600;   // 変数が読めない古い環境でも必ず消えるようにする
   var done=false;
-  function go(){ if(done) return; done=true; el.classList.add('gone'); }
-  setTimeout(go, 2300);
+  function go(){ if(done) return; done=true; el.classList.add('gone'); onSplashGone(); }
+  setTimeout(go, life+40);
   window.addEventListener('pointerdown', go, { once:true, passive:true });
 })();
 
