@@ -1,3 +1,7 @@
 node_modules/
 tests/__shots/
 worker/.wrangler/
+# tests/run.mjs を動かすのに `npm i playwright` が要る。
+# このリポジトリはビルドを持たない方針なので、その副産物は追跡しない。
+package.json
+package-lock.json
