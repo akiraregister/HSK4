@@ -11,7 +11,7 @@ await p.goto(B, { waitUntil: 'load' }); await p.waitForTimeout(700);
 const skip = await p.$('[data-lc-action="skip"]'); if (skip) { await skip.click(); await p.waitForTimeout(400); }
 
 // --- 材料が足りないうちは模試が出ない ---
-ok('完了0日では今日画面に模試が出ない', !(await p.textContent('#content')).includes('腕試し'));
+ok('完了0日では今日画面に模試が出ない', !(await p.$('#content .trow-mock')));
 await p.click('#settingsTab'); await p.waitForTimeout(400);
 await p.click('#settingsPanel button:has-text("模擬試験へ")'); await p.waitForTimeout(400);
 ok('設定からは入れて、足りないと説明が出る', (await p.textContent('#content')).includes('日ぶん終わると'));
@@ -19,7 +19,7 @@ ok('設定からは入れて、足りないと説明が出る', (await p.textCon
 // --- 12日ぶん完了させる ---
 await p.evaluate(() => { for (let d = 1; d <= 12; d++) state.completed[d] = true; save(); });
 await p.click('#homeBtn'); await p.waitForTimeout(400);
-ok('12日完了で今日画面に模試の入口が出る', (await p.textContent('#content')).includes('腕試し'));
+ok('12日完了で今日画面に模試の入口が出る', !!(await p.$('#content .trow-mock')));
 
 // --- 受験日 ---
 await p.evaluate(() => {
@@ -31,7 +31,7 @@ const todayTxt = await p.textContent('#content');
 ok('受験日を入れると残り日数が出る', /試験まであと\s*30\s*日/.test(todayTxt.replace(/\s/g, '')) || todayTxt.includes('試験まであと30日'), todayTxt.match(/試験まであと\d+日/)?.[0] || 'なし');
 
 // --- 模試を通す ---
-await p.click('#content .tcard button:has-text("受ける")'); await p.waitForTimeout(500);
+await p.click('#content .trow-mock'); await p.waitForTimeout(500);
 const intro = await p.textContent('#content');
 ok('听力を含まないと明記している', intro.includes('听力（リスニング）は含みません'));
 ok('本番の目安にならないと書いている', intro.includes('本番の点数の目安にはなりません'));

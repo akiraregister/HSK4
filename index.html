@@ -330,10 +330,6 @@ h1,h2,h3,.badge,.zh,.vrow-zh,.fc-prompt,.tc-title,.tc-count,.daybtn,.set-label,
 /* .expinyin は復習カードでは .small（14.5px）の中に置かれるため、基準サイズを
    持たないと Day画面の21pxと食い違う。同じ詳細度なので .small より後に置くこと。 */
 .expinyin{font-size:18px}
-/* 見出しの下の squiggle。各画面に1本だけ */
-/* 見出しの下は手書き風の波線をやめ、太罫1本にした（案X） */
-.squiggle{display:block;margin-top:6px;height:0;overflow:visible;border-top:1px solid var(--ink)}
-.squiggle path{display:none}
 /* 設定パネル（ブックマークパネルと同じく #content とは別枠。設定タブでのみ表示） */
 .settings-panel{display:none}
 .settings-panel.active{display:block}
@@ -342,20 +338,56 @@ h1,h2,h3,.badge,.zh,.vrow-zh,.fc-prompt,.tc-title,.tc-count,.daybtn,.set-label,
 .set-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .set-row.seg2{width:264px;justify-content:space-between}
 .set-row.seg4{width:272px;justify-content:space-between}
-/* 「今日」画面：新規／復習の2カード */
-.today-actions{display:grid;gap:12px;margin-top:12px}
-@media(min-width:640px){.today-actions{grid-template-columns:1fr 1fr}}
-.tcard{border:var(--bw) solid var(--stroke);border-radius:var(--r-lg);background:var(--card);padding:17px 19px;display:flex;flex-direction:column;gap:2px}
-.tcard.accent{background:var(--card)}
-.tcard .tc-eyebrow{font-family:var(--font-hand);font-size:14px;font-weight:400;letter-spacing:0;color:var(--good)}
-.tcard.rev .tc-eyebrow{color:var(--bad)}
-.tcard .tc-title{font-size:27px;font-weight:900;color:var(--ink);line-height:1.2}
-.tcard .tc-meta{font-size:14.5px;color:var(--ink2);line-height:1.6}
-.tcard button{margin-top:12px;width:100%;padding:14px;font-size:15.5px;font-weight:900}
-.tcard .tc-count{font-size:27px;font-weight:900;color:var(--ink);line-height:1.2}
-.tcard.done .tc-count{color:var(--good)}
-.day-list-details{margin-top:12px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--card);overflow:hidden}
-.day-list-details>summary{list-style:none;cursor:pointer;padding:14px 18px;font-weight:900;font-size:14.5px;color:var(--ink);display:flex;align-items:center;justify-content:space-between;touch-action:manipulation}
+/* ===== 「今日」画面（design/x-next.html の確定版） =====
+   ・復習と模試は2列の罫組みをやめ「行」にした。右端に罫囲みのボタンを置いて押せることを示す
+   ・進捗は90マスの格子（原稿用紙の升目）。完了＝墨のベタ／今日＝柿／これから＝空マス
+   ・進捗の塊は太罫で区切って画面下端へ。上＝今日やること／下＝これまで、と役割を分ける */
+/* 進捗を下端に置くため、.today は「ヘッダーと下タブを除いた高さ」を最低限持つ。
+   112px = .app の上下パディング（16 + 96）。96pxは下タブの逃げ */
+.today{display:flex;flex-direction:column;min-height:calc(100vh - var(--top-h,64px) - 116px - env(safe-area-inset-bottom,0px))}
+.today-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:2px 0 0}
+.today-head h2{font-size:17px;font-weight:600;letter-spacing:.14em;margin:0}
+.today-note{font-size:12px;color:var(--brand);letter-spacing:.06em}
+/* 主役は1枚だけ。太罫で始めて、数字（Day番号）を大きく置く */
+.hero{border-top:1px solid var(--ink);padding:16px 0 0;margin-top:12px}
+.hero-eye{font-size:10.5px;font-weight:500;color:var(--muted);letter-spacing:.24em}
+.hero-day{font-weight:500;line-height:1;margin:8px 0}
+.hero-day .l{font-size:14px;letter-spacing:.06em;color:var(--ink2)}
+.hero-day .n{font-size:40px;letter-spacing:-.02em;margin-left:6px}
+.hero-m{font-size:12.5px;color:var(--ink2);line-height:1.7}
+/* 案Xのボタンは塗りつぶさず罫で囲う */
+.xbtn{display:block;width:100%;margin-top:12px;background:transparent;color:var(--ink);
+  border:1px solid var(--ink);border-radius:var(--r-md);padding:14px;font-weight:600;font-size:15px;
+  letter-spacing:.22em;cursor:pointer;touch-action:manipulation}
+.xbtn[disabled]{opacity:.4;cursor:default;border-color:var(--rule);color:var(--muted)}
+.xbtn .s{display:block;font-size:11px;font-weight:400;letter-spacing:0;color:var(--muted);margin-top:3px}
+/* 復習・模試の行 */
+.trows{margin-top:16px;border-top:1px solid var(--hair)}
+.trow{display:flex;align-items:center;gap:12px;padding:12px 2px;border:0;border-bottom:1px solid var(--hair);
+  background:transparent;width:100%;text-align:left;cursor:pointer;color:var(--ink);border-radius:0;
+  touch-action:manipulation;font-weight:400}
+.trow[disabled]{cursor:default}
+.trow .lab{font-size:13px;letter-spacing:.1em;flex:none;width:3.6em;color:var(--ink2)}
+.trow .val{font-size:20px;font-weight:500;line-height:1;flex:none}
+.trow .val .u{font-size:11px;color:var(--muted);margin-left:2px}
+.trow .memo{font-size:11px;color:var(--muted);flex:1;line-height:1.5}
+.trow .go{flex:none;font-size:11px;letter-spacing:.18em;border:1px solid var(--ink);padding:5px 11px}
+.trow[disabled] .go{border-color:var(--rule);color:var(--muted)}
+/* 進捗＝90マスの格子。ここだけ下端に寄せる */
+.prog{margin-top:auto;padding-top:12px;border-top:1px solid var(--ink)}
+.prog-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:8px}
+.prog-big{font-size:30px;font-weight:500;line-height:1;letter-spacing:-.01em}
+.prog-big .sl{font-size:16px;color:var(--muted);margin:0 3px}
+.prog-big .u{font-size:12px;color:var(--muted);margin-left:3px;letter-spacing:.06em}
+.prog-rest{font-size:11.5px;color:var(--muted);letter-spacing:.06em}
+.prog-grid{display:grid;grid-template-columns:repeat(15,1fr);gap:2.5px}
+.prog-grid i{display:block;aspect-ratio:1;border:1px solid var(--hair);background:transparent}
+.prog-grid i.on{background:var(--ink);border-color:var(--ink)}
+.prog-grid i.now{background:var(--brand);border-color:var(--brand)}
+.prog-cap{font-size:10.5px;color:var(--muted);letter-spacing:.06em;margin-top:8px;text-align:right}
+.prog-cap .now{color:var(--brand)}
+.day-list-details{margin-top:12px;border:1px solid var(--hair);border-radius:var(--r-lg);background:var(--card);overflow:hidden}
+.day-list-details>summary{list-style:none;cursor:pointer;padding:11px 14px;font-weight:500;font-size:13.5px;letter-spacing:.06em;color:var(--ink);display:flex;align-items:center;justify-content:space-between;touch-action:manipulation}
 .day-list-details>summary::-webkit-details-marker{display:none}
 .day-list-details>summary::after{content:"＋";font-size:16px;color:var(--ink)}
 .day-list-details[open]>summary::after{content:"−"}
@@ -26208,8 +26240,6 @@ function renderHome(){
  c.style.display='';
  c.className='';
  const doneCount=Object.keys(state.completed||{}).filter(k=>state.completed[k]).length;
- const percent=Math.round(doneCount/TOTAL_DAYS*100);
- const ringC=213.6, ringOff=(ringC*(1-percent/100)).toFixed(1);
  const nextDay=Math.min(TOTAL_DAYS, Math.max(1, doneCount+1));
  const nextLesson=LESSONS[nextDay-1];
  const allDone=doneCount>=TOTAL_DAYS;
@@ -26225,88 +26255,95 @@ function renderHome(){
  const carryOver=cnt.due-shownDue;
  const revTotal=shownDue+shownNew;
 
- const newCard=allDone
-  ? `<div class="tcard done">
-      <span class="tc-eyebrow">仕上げ</span>
-      <span class="tc-title">90日ぶん完走</span>
-      <span class="tc-meta">新しく覚えるぶんは終わりです。ここからは復習と模試で仕上げます。</span>
-      <button class="primary" onclick="showMock()">模擬試験を受ける</button>
+ // 主役は1枚だけ。以前は新規と復習が同じ大きさで並び、初日は「まだありません」が
+ // Day 1 と同じ大きさで出ていた（分析のB3）。
+ const hero=allDone
+  ? `<div class="hero">
+      <span class="hero-eye">仕上げ</span>
+      <div class="hero-day"><span class="n">90日ぶん完走</span></div>
+      <div class="hero-m">新しく覚えるぶんは終わりです。ここからは復習と模試で仕上げます。</div>
+      <button class="xbtn" onclick="showMock()">模擬試験を受ける</button>
      </div>`
   : !nextLesson
-  ? `<div class="tcard accent">
-      <span class="tc-eyebrow">あたらしく覚える</span>
-      <span class="tc-title">Day ${nextDay}は購入後に解放</span>
-      <span class="tc-meta">Day1-7は無料でお試しいただけます。続きは購入すると全90日ぶんが使えるようになります。</span>
-      <button class="primary" onclick="startCheckout()">購入する</button>
+  ? `<div class="hero">
+      <span class="hero-eye">あたらしく覚える</span>
+      <div class="hero-day"><span class="l">Day</span><span class="n">${nextDay}</span></div>
+      <div class="hero-m">ここから先は購入後に解放されます。Day1-7は無料でお試しいただけます。</div>
+      <button class="xbtn" onclick="startCheckout()">購入する</button>
      </div>`
-  : `<div class="tcard accent">
-      <span class="tc-eyebrow">あたらしく覚える</span>
-      <span class="tc-title">Day ${nextDay}</span>
-      <span class="tc-meta">${esc(nextLesson.title.replace(/^Day\s*\d+｜/,''))} · 単語${nextLesson.vocab.length}個・文法${nextLesson.grammar.length}つ</span>
-      <button class="primary" onclick="showDay(${nextDay})">学習を始める</button>
+  : `<div class="hero">
+      <span class="hero-eye">あたらしく覚える</span>
+      <div class="hero-day"><span class="l">Day</span><span class="n">${nextDay}</span></div>
+      <div class="hero-m">単語${nextLesson.vocab.length}・文法${nextLesson.grammar.length}${LISTENING[nextDay]?'・音声1':''}・テスト5</div>
+      <button class="xbtn" onclick="showDay(${nextDay})">学習を始める<span class="s">だいたい15分</span></button>
      </div>`;
 
- const revCard = cnt.elig===0
-  ? `<div class="tcard rev">
-      <span class="tc-eyebrow">思い出す</span>
-      <span class="tc-title">まだありません</span>
-      <span class="tc-meta">Dayを1つ完了すると、その単語・文法がここに入り、忘れる頃に出題されます。</span>
-      <button disabled>復習する</button>
-     </div>`
-  : `<div class="tcard rev${revTotal===0?' done':''}">
-      <span class="tc-eyebrow">思い出す</span>
-      <span class="tc-count">${revTotal}<span style="font-size:14px;font-weight:700"> 問</span></span>
-      <span class="tc-meta">${revTotal===0?'今日のぶんは終わっています。':`期限 ${shownDue}${carryOver>0?`（+${carryOver}は明日以降）`:''} ＋ 新しく覚える ${shownNew}`}</span>
-      <button class="${revTotal>0?'primary':''}" ${revTotal===0?'disabled':''} onclick="showTest()">${revTotal===0?'今日の復習は完了':'復習する'}</button>
-     </div>`;
+ // 復習・模試は「行」にして、右端の罫囲みで押せることを示す（以前は2列の罫組みで、
+ // 押せると分からなかった）。数字は左に残して一覧性を保つ。
+ const revRow = cnt.elig===0
+  ? `<button class="trow trow-rev" disabled>
+      <span class="lab">復習</span><span class="val">—</span>
+      <span class="memo">Dayを1つ完了すると、その単語・文法がここに入ります</span>
+      <span class="go">復習する</span>
+     </button>`
+  : `<button class="trow trow-rev"${revTotal===0?' disabled':''} onclick="showTest()">
+      <span class="lab">復習</span><span class="val">${revTotal}<span class="u">問</span></span>
+      <span class="memo">${revTotal===0?'今日のぶんは終わっています':`期限 ${shownDue}${carryOver>0?`（+${carryOver}は明日以降）`:''} ＋ 新規 ${shownNew}`}</span>
+      <span class="go">${revTotal===0?'完了':'復習する'}</span>
+     </button>`;
+
+ const mockRow = (!allDone && mockAvailable())
+  ? `<button class="trow trow-mock" onclick="showMock()">
+      <span class="lab">模試</span><span class="val">40<span class="u">問</span></span>
+      <span class="memo">ここまでの範囲から・30分</span>
+      <span class="go">受ける</span>
+     </button>`
+  : '';
+
+ // 90マス＝原稿用紙の升目。1本のバーより「残りの量」が体感できる。
+ let cells='';
+ for(let d=1; d<=TOTAL_DAYS; d++){
+   cells+=`<i class="${state.completed[d]?'on':(d===nextDay&&!allDone?'now':'')}"></i>`;
+ }
 
  c.innerHTML=`
-  <div style="margin:2px 0 14px">
-   <div style="display:flex;align-items:baseline;gap:9px;flex-wrap:wrap">
-     <span style="font-size:21px;font-weight:900">今日やること</span>
-     <span class="hand" style="font-size:14.5px;color:var(--bad)">${(()=>{
+  <div class="today">
+   <div class="today-head">
+     <h2>今日やること</h2>
+     <span class="today-note">${(()=>{
        const dl=examDaysLeft();
-       if(dl!==null && dl>0) return `試験まであと${dl}日！`;
-       if(dl===0) return '試験は今日です！';
-       if(dl!==null) return '受験おつかれさま！';
-       return allDone?'90日ぶん完走！':`あと${TOTAL_DAYS-doneCount}日！`;
+       if(dl!==null && dl>0) return `試験まであと${dl}日`;
+       if(dl===0) return '試験は今日です';
+       if(dl!==null) return '受験おつかれさま';
+       return allDone?'90日ぶん完走':`あと${TOTAL_DAYS-doneCount}日`;
      })()}</span>
    </div>
-   <svg class="squiggle" width="168" viewBox="0 0 168 9" aria-hidden="true"><path d="M2 6 Q 22 1 42 5 T 82 5 T 122 5 T 158 4"/></svg>
-  </div>
 
-  <div class="card" style="display:flex;align-items:center;gap:15px;padding:14px 18px">
-     <svg width="54" height="54" viewBox="0 0 80 80" style="flex:none" role="img" aria-label="完了 ${doneCount} / ${TOTAL_DAYS} 日、${percent}パーセント">
-       <circle cx="40" cy="40" r="30" fill="var(--bg)" stroke="var(--stroke)" stroke-width="4"/>
-       <circle cx="40" cy="40" r="30" fill="none" stroke="var(--brand)" stroke-width="8" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="${(188.5*(1-percent/100)).toFixed(1)}" transform="rotate(-90 40 40)"/>
-       <text x="40" y="41" text-anchor="middle" dominant-baseline="central" style="font-size:17px;font-weight:900;fill:var(--ink)">${percent}%</text>
-     </svg>
-     <div style="font-size:14.5px;line-height:1.65;color:#4A443C">90日のうち <b>${doneCount}日</b> 完了<br>のこり ${TOTAL_DAYS-doneCount}日</div>
-  </div>
+   ${hero}
 
-  <div class="today-actions">${newCard}${revCard}</div>
+   <div class="trows">${revRow}${mockRow}</div>
 
-  ${(!allDone && mockAvailable()) ? `
-  <div class="tcard" style="margin-top:12px;flex-direction:row;align-items:center;gap:12px">
-    <div style="flex:1">
-      <span class="tc-eyebrow">腕試し</span>
-      <div style="font-size:15px;font-weight:900;margin-top:2px">模擬試験</div>
-      <div class="tc-meta">ここまでの範囲から40問・30分</div>
-    </div>
-    <button style="width:auto;margin:0;padding:12px 18px" onclick="showMock()">受ける</button>
-  </div>` : ''}
+   <details class="day-list-details">
+     <summary>全90日から選ぶ</summary>
+     <div class="dl-body">
+       <div class="small" style="margin-bottom:6px">完了済みのDayには ✓ が付きます。</div>
+       <div class="day-grid">
+         ${(()=>{ let out=''; for(let d=1; d<=TOTAL_DAYS; d++){ const locked=!lessonAvailable(d);
+           out+=`<button class="daybtn ${state.completed[d]?'done':''}${locked?' locked':''}" onclick="${locked?'startCheckout()':`showDay(${d})`}">${locked?'🔒':d+(state.completed[d]?'✓':'')}</button>`; }
+           return out; })()}
+       </div>
+     </div>
+   </details>
 
-  <details class="day-list-details">
-    <summary>全90日から選ぶ</summary>
-    <div class="dl-body">
-      <div class="small" style="margin-bottom:6px">完了済みのDayは緑で表示されます。</div>
-      <div class="day-grid">
-        ${(()=>{ let out=''; for(let d=1; d<=TOTAL_DAYS; d++){ const locked=!lessonAvailable(d);
-          out+=`<button class="daybtn ${state.completed[d]?'done':''}${locked?' locked':''}" onclick="${locked?'startCheckout()':`showDay(${d})`}">${locked?'🔒':d+(state.completed[d]?'✓':'')}</button>`; }
-          return out; })()}
-      </div>
-    </div>
-  </details>`;
+   <div class="prog">
+     <div class="prog-head">
+       <div class="prog-big">${doneCount}<span class="sl">/</span>${TOTAL_DAYS}<span class="u">日</span></div>
+       <div class="prog-rest">のこり ${TOTAL_DAYS-doneCount} 日</div>
+     </div>
+     <div class="prog-grid" role="img" aria-label="90日のうち ${doneCount}日 完了">${cells}</div>
+     <div class="prog-cap">■ 完了　□ これから　<span class="now">■</span> 今日</div>
+   </div>
+  </div>`;
  updateCompleteButtons();
 }
 

@@ -44,9 +44,13 @@ ok('ヘッダーから同期バーが消えた', !hasSyncInHeader);
 const view = () => page.evaluate(() => document.querySelector('.nav-tab.active')?.id);
 ok('初期表示は今日タブ', (await view()) === 'homeBtn');
 ok('今日やることが表示される', (await page.textContent('#content')).includes('今日やること'));
-const cards = await page.$$eval('.tcard', e => e.length);
-ok('新規/復習の2カードがある', cards === 2, `${cards}枚`);
-ok('初回は復習カードが空状態', (await page.textContent('.tcard:nth-child(2)')).includes('まだありません'));
+// 今日画面は「主役1枚（.hero）＋復習・模試は行（.trow）」という形に変えた
+ok('主役の学習カードが1枚だけ', (await page.$$eval('.hero', e => e.length)) === 1);
+ok('復習は行になっている', !!(await page.$('.trow-rev')));
+ok('初回は復習行が空状態で押せない', (await page.textContent('.trow-rev')).includes('Dayを1つ完了すると')
+  && (await page.$eval('.trow-rev', e => e.disabled)));
+ok('進捗が90マスの格子になっている', (await page.$$eval('.prog-grid i', e => e.length)) === 90);
+ok('進捗の「x / 90」が見出しの大きさ', await page.$eval('.prog-big', e => parseFloat(getComputedStyle(e).fontSize) >= 24));
 ok('全90日は折りたたみの中', !!(await page.$('details.day-list-details')));
 
 // --- 単語 ---
@@ -98,8 +102,9 @@ await page.click('#bottomComplete'); await page.waitForTimeout(300);
 await page.click('#topBack'); await page.waitForTimeout(300);
 ok('「✕ 今日へ」で今日画面に戻る', (await page.textContent('#content')).includes('今日やること'));
 ok('今日画面では下タブが戻る', await page.$eval('#tabBar', e => getComputedStyle(e).display === 'flex'));
-const revText = await page.textContent('.tcard:nth-child(2)');
-ok('Day完了後、復習枚数が出る', !!(await page.$('.tcard .tc-count')) && /[1-9]/.test(revText.replace(/Day\s*\d+/g, '')), revText.replace(/\s+/g, ' ').slice(0, 70));
+const revText = await page.textContent('.trow-rev');
+ok('Day完了後、復習枚数が出る', /[1-9]/.test(await page.textContent('.trow-rev .val')), revText.replace(/\s+/g, ' ').slice(0, 70));
+ok('Day完了後、90マスの1つが埋まる', (await page.$$eval('.prog-grid i.on', e => e.length)) >= 1);
 
 // --- 復習画面は即開始、設定は無い ---
 await page.click('button:has-text("復習する")'); await page.waitForTimeout(300);
