@@ -344,6 +344,22 @@ h1,h2,h3,.badge,.zh,.vrow-zh,.fc-prompt,.tc-title,.tc-count,.daybtn,.set-label,
 #dayModebar .chip-toggle{padding:5px 12px;font-size:11.5px;font-weight:500;letter-spacing:.06em;
   border-color:var(--hair);color:var(--muted)}
 #dayModebar .chip-toggle.on{background:transparent;color:var(--ink);border-color:var(--ink)}
+/* ===== 完了画面 ===== */
+.done{text-align:center;padding:24px 0 0}
+.done-mark{font-size:34px;line-height:1;color:var(--brand)}
+.done h2{font-size:22px;font-weight:600;letter-spacing:.1em;margin:14px 0 0}
+.done-lead{font-size:13.5px;color:var(--ink2);line-height:1.8;margin:8px 0 0}
+/* その日やったことを数字で3行だけ */
+.tally{margin-top:24px;border-top:1px solid var(--ink);text-align:left}
+.tally>div{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  padding:13px 2px;border-bottom:1px solid var(--hair)}
+.tally span{font-size:12.5px;color:var(--ink2);letter-spacing:.06em}
+.tally b{font-size:22px;font-weight:500;line-height:1}
+.tally b i{font-style:normal;font-size:11.5px;color:var(--muted);margin-left:3px;letter-spacing:.06em}
+.done .xbtn{margin-top:20px;text-align:center}
+.done .xbtn+.xbtn{margin-top:10px}
+.done .xbtn.ghost{border-color:var(--rule);color:var(--ink2);letter-spacing:.14em}
+.done-foot{font-size:11px;color:var(--muted);letter-spacing:.06em;margin-top:22px}
 /* ===== Day学習：4ステップ（単語→文法→聞く→解く） =====
    上に進捗バー、下は「次へ」1つ。1本のスクロールで単語5→文法3→リスニング→テストと
    延々続き、いまどこでどれだけ残っているか分からなかったのを割った（分析のC3）。 */
@@ -612,7 +628,7 @@ function setSyncStatus(kind, text, userText=''){
 function cloudDocRef(){ return cloudUser ? doc(db,'users',cloudUser.uid,'hsk4','state') : null; }
 function localUpdatedAt(){ const n=Number(localStorage.getItem(storageKey+'-updatedAtMs')||0); return Number.isFinite(n)?n:0; }
 function markLocalUpdated(){ localStorage.setItem(storageKey+'-updatedAtMs', String(nowMs())); }
-function normalizeStateForCloud(s){ return {completed:s.completed||{}, answers:s.answers||{}, scores:s.scores||{}, bookmarks:s.bookmarks||{}, dragOrders:s.dragOrders||{}, levels:s.levels||{}, customWords:Array.isArray(s.customWords)?s.customWords:[], density:s.density||'standard', fontScale:(s.fontScale==='sm'||s.fontScale==='lg')?s.fontScale:'md', srs:(s.srs&&typeof s.srs==='object')?s.srs:{}, srsNewLimit:(typeof s.srsNewLimit==='number')?s.srsNewLimit:8, srsDueLimit:(typeof s.srsDueLimit==='number')?s.srsDueLimit:30, srsDir:(s.srsDir==='ja2zh')?'ja2zh':'zh2ja', examDate:(typeof s.examDate==='string')?s.examDate:'', mockHistory:Array.isArray(s.mockHistory)?s.mockHistory:[], bmSort:(['recommend','hard','added','random'].indexOf(s.bmSort)>=0)?s.bmSort:'recommend', revScope:(s.revScope==='bm')?'bm':'all', currentDay:current||1, updatedAtMs:nowMs(), appVersion:'firebase-sync-v1', storageKey:storageKey}; }
+function normalizeStateForCloud(s){ return {completed:s.completed||{}, completedAt:(s.completedAt&&typeof s.completedAt==='object')?s.completedAt:{}, answers:s.answers||{}, scores:s.scores||{}, bookmarks:s.bookmarks||{}, dragOrders:s.dragOrders||{}, levels:s.levels||{}, customWords:Array.isArray(s.customWords)?s.customWords:[], density:s.density||'standard', fontScale:(s.fontScale==='sm'||s.fontScale==='lg')?s.fontScale:'md', srs:(s.srs&&typeof s.srs==='object')?s.srs:{}, srsNewLimit:(typeof s.srsNewLimit==='number')?s.srsNewLimit:8, srsDueLimit:(typeof s.srsDueLimit==='number')?s.srsDueLimit:30, srsDir:(s.srsDir==='ja2zh')?'ja2zh':'zh2ja', examDate:(typeof s.examDate==='string')?s.examDate:'', mockHistory:Array.isArray(s.mockHistory)?s.mockHistory:[], bmSort:(['recommend','hard','added','random'].indexOf(s.bmSort)>=0)?s.bmSort:'recommend', revScope:(s.revScope==='bm')?'bm':'all', currentDay:current||1, updatedAtMs:nowMs(), appVersion:'firebase-sync-v1', storageKey:storageKey}; }
 async function saveCloudState(force=false){
   if(!cloudUser || ((!cloudReady)&&!force) || (cloudLoading && !force)) return;
   try{ const payload=normalizeStateForCloud(state); payload.updatedAt=serverTimestamp(); await setDoc(cloudDocRef(), payload, {merge:true}); setSyncStatus('on','クラウド同期済み',cloudUser.email||''); }
@@ -26283,6 +26299,46 @@ function bmSetSort(s){
   state.bmSort=s; save(); renderBookmarkPanel();
 }
 
+// ===== 完了画面 =====
+// 以前は完了ボタンの色が変わるだけで、終わった実感がなかった。
+// 連続日数・その日の数字3行・次の2択だけを置く。
+// 次のDayへは進ませない（1日1Dayが商品の形、という決定に沿う）。
+function renderDoneScreen(){
+  save(); renderBookmarkPanel();
+  $('bookmarkPanel').className='bookmark-panel card';
+  var c=$('content'); c.style.display=''; c.className='';
+  var day=current, l=LESSONS[day-1];
+  var streak=streakDays();
+  var score=state.scores[day];
+  var scope=(state.revScope==='bm')?'bm':'all';
+  var nl=(typeof state.srsNewLimit==='number')?state.srsNewLimit:8;
+  var dl=(typeof state.srsDueLimit==='number')?state.srsDueLimit:30;
+  var cnt=srsCounts(scope);
+  var revTotal=((dl<0)?cnt.due:Math.min(dl,cnt.due))+((nl<0)?cnt.fresh:Math.min(nl,cnt.fresh));
+  var doneCount=Object.keys(state.completed||{}).filter(function(k){return state.completed[k];}).length;
+
+  c.innerHTML=
+   '<div class="done">'
+   + '<div class="done-mark" aria-hidden="true">✓</div>'
+   + '<h2>Day '+day+' 完了</h2>'
+   + '<p class="done-lead">'
+     + (streak>1 ? streak+'日つづきました。明日もこの調子で。'
+       : streak===1 ? '今日のぶんが終わりました。明日もう1日やると連続がはじまります。'
+       : '今日のぶんが終わりました。')
+     + '</p>'
+   + '<div class="tally">'
+     + '<div><span>おぼえた単語</span><b>'+(l?l.vocab.length:0)+'<i>語</i></b></div>'
+     + '<div><span>文法</span><b>'+(l?l.grammar.length:0)+'<i>つ</i></b></div>'
+     + '<div><span>ミニテスト</span><b>'+(score!=null?score+'<i> / 5問</i>':'<i>未採点</i>')+'</b></div>'
+   + '</div>'
+   + (revTotal>0
+      ? '<button class="xbtn" onclick="showTest()">復習を続ける<span class="s">'+revTotal+'問</span></button>'
+      : '')
+   + '<button class="xbtn ghost" onclick="showToday()">今日はここまで</button>'
+   + '<div class="done-foot">90日のうち '+doneCount+'日</div>'
+   + '</div>';
+}
+
 function renderHome(){
  save(); renderBookmarkPanel();
  $('bookmarkPanel').className='bookmark-panel card';
@@ -26416,6 +26472,7 @@ function render(){
  if(currentView==='levelcheck'){ renderLevelCheckScreen(); return; }
  if(currentView==='mock'){ renderMockScreen(); return; }
  if(currentView==='review'){ renderTestScreen(); return; }
+ if(currentView==='done'){ renderDoneScreen(); return; }
  if(currentView==='today'){ renderHome(); return; }
  save(); renderBookmarkPanel();
  const c=$('content');
@@ -26810,6 +26867,23 @@ function setDay(d){lsStopAudio();dayResetSteps();currentView='day';track('day_op
 // 文法や音声が無い日は自動で抜けるので、ステップ数は日によって3〜4になる。
 // ステップの移動は #content を描き直さず表示だけ切り替える。描き直すと
 // ミニテストとリスニングの途中経過が飛ぶため。
+// ===== 連続日数 =====
+// state.completedAt（Day番号 → 完了時刻ms）から、今日から遡って連続している
+// カレンダー日数を数える。記録を始める前に完了したDayは日時を持たないので
+// 数に入らない（過去の完了日は復元できないため。design/HANDOFF.md 参照）。
+function dayKeyOf(ms){ var d=new Date(ms); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+function streakDays(){
+  var at=state.completedAt;
+  if(!at || typeof at!=='object') return 0;
+  var days={};
+  Object.keys(at).forEach(function(k){ var ms=at[k]; if(typeof ms==='number' && ms>0) days[dayKeyOf(ms)]=true; });
+  var n=0, cur=new Date();
+  // 今日まだ完了していなければ、昨日までの連続を数える
+  if(!days[dayKeyOf(cur.getTime())]) cur.setDate(cur.getDate()-1);
+  while(days[dayKeyOf(cur.getTime())]){ n++; cur.setDate(cur.getDate()-1); }
+  return n;
+}
+
 var dayStep=0, dayVocabIdx=0;
 function daySteps(l){
   var st=[{k:'vocab',label:'単語をおぼえる'}];
@@ -26889,12 +26963,19 @@ function updateCompleteButtons(){
 function toggleComplete(){
   var nowDone=!state.completed[current];
   var ungraded = nowDone && (state.scores[current]==null);
-  state.completed[current]=nowDone; save();
+  state.completed[current]=nowDone;
+  // 完了した日時を残す。連続日数はこれが無いと出せない。
+  // state.completed は {day:true} しか持たないので、記録を始める前の完了日は復元できない。
+  if(!state.completedAt || typeof state.completedAt!=='object') state.completedAt={};
+  if(nowDone) state.completedAt[current]=nowMs(); else delete state.completedAt[current];
+  save();
   track(nowDone?'day_complete':'day_uncomplete',{day:current, graded:state.scores[current]!=null});
-  // Day画面では描き直さない。ミニテストの結果が出たまま完了を押せるようにするため。
+  if(nowDone){
+    // 完了の手応えを作る画面へ送る。以前はボタンの色が変わるだけで終わった実感がなかった
+    if(ungraded) _toast('ミニテストはまだ未採点です。解いておくと「復習」での定着が高まります。');
+    goView('done'); return;
+  }
   if(currentView==='day') updateCompleteButtons(); else render();
-  if(nowDone){ var bc=$('bottomComplete'); if(bc) bc.classList.add('hsk-checkpulse'); var ct=$('completeTab'); if(ct) ct.classList.add('hsk-checkpulse'); }
-  if(ungraded) _toast('完了しました。ミニテストはまだ未採点です。解いておくと「復習」での定着が高まります。');
 }
 function applyFontScale(){
   var s=(state.fontScale==='sm'||state.fontScale==='lg')?state.fontScale:'md';
@@ -26957,8 +27038,14 @@ function setChrome(){
   if(meta){
     if(isDay){ meta.textContent='Day '+current; }
     else{
-      var done=Object.keys(state.completed||{}).filter(function(k){return state.completed[k];}).length;
-      meta.textContent=done+' / '+TOTAL_DAYS;
+      // 連続日数があればそちらを出す。今日画面の「x / 90」と重ねない。
+      // 記録を始める前の完了日は復元できないので、しばらくは 0 のままの人がいる。
+      var st=streakDays();
+      if(st>0){ meta.textContent=st+'日連続'; }
+      else{
+        var done=Object.keys(state.completed||{}).filter(function(k){return state.completed[k];}).length;
+        meta.textContent=done+' / '+TOTAL_DAYS;
+      }
     }
   }
   setTopOffset();
@@ -27903,6 +27990,9 @@ function startAiChallenge(){
 // モジュールスコープの関数をグローバルに公開（onclick属性から呼び出せるように）
 window.startCheckout = startCheckout;
 window._toast = _toast;   // lockedDayHTML() の onclick から呼ぶため
+// state に足したフィールドをここへ書き忘れると同期のたびに消える（列挙式のため）。
+// tests/nav-test.mjs がそれを見張れるように公開している。
+window.normalizeStateForCloud = normalizeStateForCloud;
 window.fetchPaidContent = fetchPaidContent;
 window.startAiChallenge = startAiChallenge;
 window.mtSaveGraderUrl = mtSaveGraderUrl;

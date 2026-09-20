@@ -36,7 +36,7 @@ Cloudflare／Stripeの**設定と通し動作確認は2026年9月に完了済み
 見た目と画面構成を作り直す作業が進行中。方向は**案X（辞書・新聞）＝明朝＋宋体・罫線で組む・
 角丸と影はゼロ**、アクセントは柿 `#DC6011`、アイコンはO7「二段の炎」。
 **フェーズ0（粗取り）・1（アイコン一式）・2（デザイントークン）・3（下タブ化と細いヘッダー）・
-4（今日画面）・5（Day学習の4ステップ化）まで実装済み。**残りは完了画面の新設・設定の整理。
+4（今日画面）・5（Day学習の4ステップ化）・6（完了画面）まで実装済み。**残りは設定の整理。
 再開するときは **`design/HANDOFF.md` を最初に読むこと。**決まったこと・次にやること・
 実装時の落とし穴がまとまっている。分析と案の全記録は `design/README.md`。
 
@@ -86,7 +86,7 @@ Cloudflare／Stripeの**設定と通し動作確認は2026年9月に完了済み
 
 **画面状態は `currentView` 1つ。** 以前は5つの真偽値を各遷移関数が手で書き換えており、
 1つ書き忘れると二重表示になっていた。遷移は必ず `goView()` を通すこと。
-値は `today` / `day` / `bookmark` / `vocab` / `settings` / `review` / `mock` / `levelcheck`。
+値は `today` / `day` / `done` / `bookmark` / `vocab` / `settings` / `review` / `mock` / `levelcheck`。
 
 **宣言順に注意。** モジュール1本なので `const` の一時的死角を踏みやすい。実際に2回踏んだ。
 - 初回起動の判定は `PLACEMENT_QUESTIONS` などの定義後でないと動かないので**モジュール末尾**にある
@@ -104,6 +104,16 @@ Cloudflare／Stripeの**設定と通し動作確認は2026年9月に完了済み
 **ブックマークはオブジェクトで格納する。** `state.bookmarks[id] = true` ではなく
 `toggleBookmark()` と同じ `{id, type, title, sub, day, pinyin, example, ...}` の形。
 真偽値を入れると一覧が `b.id.match` で落ちる。
+
+**連続日数は `state.completedAt` から出す。** `state.completed` は `{day:true}` しか持たず、
+「いつ終えたか」を持っていなかったので、`completedAt`（Day番号 → 完了時刻ms）を足した。
+- **記録を始める前に完了したDayは日時を持たない。** 過去の完了日は復元できないので、
+  連続日数は実質「記録を入れた日からの数」になる（2026年9月にAの方針で決定）
+- `state.srs[id].last` では代用できない。あれは「復習カードをめくった時刻」で、
+  Dayを完了しただけで復習を開いていない人にはエントリ自体が無い
+- **`state` に新しいフィールドを足したら `normalizeStateForCloud()` にも足すこと。**
+  あそこは列挙式なので、書き忘れるとFirebase同期のたびに消える。
+  `tests/nav-test.mjs` がこれを見張っている
 
 **描き直しは学習の途中経過を壊す。** `toggleBookmark()` と `setLevel()` と `toggleComplete()` は
 以前 `render()` を呼んでおり、Day学習の途中で★・難易度・完了を押すとミニテストとリスニングが
@@ -137,7 +147,7 @@ Cloudflare／Stripeの**設定と通し動作確認は2026年9月に完了済み
 ## 検証
 
 ```bash
-node tests/run.mjs        # 全138項目＋Service Workerチェック
+node tests/run.mjs        # 全147項目＋Service Workerチェック
 ```
 
 **変更したら必ず通すこと。** ビルドもCIも無いので、これが唯一の安全網。

@@ -135,10 +135,28 @@ ok('学習中のヘッダーに出口が出る', await page.$eval('#topBack', e 
 ok('学習中のヘッダーにDay番号が出る', (await page.textContent('#topMeta')).includes('Day'));
 ok('Day選択の重複バーが消えた', !(await page.$('.daybar')) && !(await page.$('#daySelect')));
 
-await page.click('#bottomComplete'); await page.waitForTimeout(300);
-await page.click('#topBack'); await page.waitForTimeout(300);
-ok('「✕ 今日へ」で今日画面に戻る', (await page.textContent('#content')).includes('今日やること'));
-ok('今日画面では下タブが戻る', await page.$eval('#tabBar', e => getComputedStyle(e).display === 'flex'));
+await page.click('#bottomComplete'); await page.waitForTimeout(400);
+
+// --- 完了画面（新設） ---
+ok('完了すると完了画面が出る', !!(await page.$('#content .done')));
+const doneTxt = await page.textContent('#content .done');
+ok('完了画面にDay番号が出る', /Day\s*\d+\s*完了/.test(doneTxt.replace(/\s+/g, ' ')));
+ok('その日の数字が3行出る', (await page.$$eval('#content .tally > div', e => e.length)) === 3);
+ok('連続日数が出る', /つづきました|連続がはじまります/.test(doneTxt));
+ok('完了画面では下タブが戻る', await page.$eval('#tabBar', e => getComputedStyle(e).display === 'flex'));
+ok('完了画面では学習用の下バーが出ない', await page.$eval('#bottomNav', e => getComputedStyle(e).display === 'none'));
+ok('次のDayへ進むボタンは置かない', !doneTxt.includes('次のDay') && !doneTxt.includes('次の日'));
+
+await page.click('#content button:has-text("今日はここまで")'); await page.waitForTimeout(300);
+ok('「今日はここまで」で今日画面に戻る', (await page.textContent('#content')).includes('今日やること'));
+// 完了日時（state.completedAt）が入り、ヘッダーが連続日数に変わる
+ok('完了日時が記録される', await page.evaluate(() => {
+  const at = window.state.completedAt || {};
+  return Object.keys(at).length > 0 && Object.values(at).every(v => typeof v === 'number' && v > 0);
+}));
+ok('ヘッダーが連続日数になる', (await page.textContent('#topMeta')).includes('日連続'));
+ok('完了日時はクラウド同期の対象', await page.evaluate(() =>
+  'completedAt' in window.normalizeStateForCloud(window.state)));
 const revText = await page.textContent('.trow-rev');
 ok('Day完了後、復習枚数が出る', /[1-9]/.test(await page.textContent('.trow-rev .val')), revText.replace(/\s+/g, ' ').slice(0, 70));
 ok('Day完了後、90マスの1つが埋まる', (await page.$$eval('.prog-grid i.on', e => e.length)) >= 1);

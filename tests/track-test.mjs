@@ -26,8 +26,8 @@ await p.click('#bottomComplete'); await p.waitForTimeout(400);
 log = await evs();
 ok('完了で day_complete が入る', log.some(e => e.e === 'day_complete' && e.p && e.p.day === 1));
 
-// Day学習中は下タブを隠しているので、戻り道はヘッダーの「✕ 今日へ」
-await p.click('#topBack'); await p.waitForTimeout(300);
+// 完了すると完了画面へ送られる。そこから今日画面へ戻る
+await p.click('#content button:has-text("今日はここまで")'); await p.waitForTimeout(300);
 await p.click('#content button:has-text("復習する")'); await p.waitForTimeout(300);
 await p.click('#content button:has-text("復習を始める")'); await p.waitForTimeout(500);
 log = await evs();
