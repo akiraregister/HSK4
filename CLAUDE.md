@@ -7,6 +7,19 @@ HSK4級を90日で目指す、日本語話者向けの学習アプリ。GitHub P
 - 本体 https://akiraregister.github.io/HSK4/
 - LP　 https://akiraregister.github.io/HSK4/lp/
 
+## Day8以降を自分で試したいとき
+
+**いまは何もしなくても全90日使えます。** 未告知のあいだ `restore-full-content.mjs` で
+Day8-90を`index.html`に書き戻してあるので、paywallのコードは休眠中。ログインも購入も不要。
+
+そのぶん**価格画面と無料の区切りは普段は一度も出ない**ので、確認用のスイッチを用意してある。
+- **見る**：URLに `?paywall=1` を付ける（設定 → その他 → 「paywallのプレビュー」でも切替）
+- **戻す**：URLに `?paywall=0`、またはトグルを「切」に
+- 学習データは消えない。切ればすぐ全90日に戻る
+
+販売開始時に `build-content.mjs` でDay8-90を切り出せば、このスイッチに関係なく
+本来の判定（`LESSONS`にその日があるか）が効く。
+
 ## ⚠️ 販売開始前に必ず確認（今の状態）
 
 このリポジトリは**公開（Public）**。公開リポジトリに入っているファイルは、GitHub Pagesの
@@ -163,7 +176,7 @@ Day学習の4ステップ化／完了画面／設定の4グループ化と「購
 ## 検証
 
 ```bash
-node tests/run.mjs        # 全158項目＋Service Workerチェック
+node tests/run.mjs        # 全167項目＋Service Workerチェック
 ```
 
 **変更したら必ず通すこと。** ビルドもCIも無いので、これが唯一の安全網。

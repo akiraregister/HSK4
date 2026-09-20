@@ -88,6 +88,32 @@ ok('「購入を復元」が設定にある', !!(await page.$('#settingsPanel #r
 ok('復元はアカウントのグループにある',
   await page.$eval('#restoreBtn', e => e.closest('.set-group').querySelector('.set-group-h').textContent.trim() === 'アカウント'));
 
+// --- 案C：価格画面（paywallのプレビューで確認する） ---
+// 全90日が index.html に入っているあいだは価格画面が出ないので、
+// プレビューを入れて未購入の状態を作る。
+await page.evaluate(() => window.setPaywallPreview(true));
+await page.waitForTimeout(300);
+await page.evaluate(() => window.showDay(50));
+await page.waitForTimeout(400);
+const priceTxt = await page.textContent('#content');
+ok('未購入のDayで価格画面が出る', !!(await page.$('#content .price')));
+ok('値段がアプリ内に出る（以前は一度も出なかった）', priceTxt.includes('¥4,800'));
+ok('買い切りだと価格の近くに書いてある', priceTxt.includes('買い切り'));
+ok('無料と有料の比較表がある', (await page.$$eval('#content .cmp tbody tr', e => e.length)) === 6);
+// 閉じた <details> の中身は offsetParent が残るので checkVisibility で見る
+ok('クーポン欄は畳まれている',
+  await page.$eval('#content .coupon', e => !e.open)
+  && !(await page.$eval('#couponInput', e => e.checkVisibility({ contentVisibilityAuto: true, checkVisibilityCSS: true }))));
+ok('価格画面から購入を復元できる', !!(await page.$('#content .fine button')));
+// 未購入のDayは学習のステップではないので、下の「戻る／完了」を出してはいけない
+ok('価格画面に学習用の下バーを出さない',
+  await page.$eval('#bottomNav', e => getComputedStyle(e).display === 'none'));
+await page.evaluate(() => window.setPaywallPreview(false));
+await page.waitForTimeout(300);
+ok('プレビューを切ると中身が戻る', !(await page.$('#content .price')));
+// Day画面から設定へ戻す（学習中はタブが隠れているのでタブは押せない）
+await page.evaluate(() => window.showSettings()); await page.waitForTimeout(400);
+
 // change a SRS setting from settings — must re-render settings, not jump to review
 await page.click('#settingsPanel .seg button:has-text("16")'); await page.waitForTimeout(250);
 ok('新規問数を変えても設定に留まる', (await view()) === 'settingsTab' && (await page.textContent('#settingsPanel')).includes('出題の向き'));

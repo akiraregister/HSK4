@@ -355,6 +355,44 @@ h1,h2,h3,.badge,.fc-prompt,.daybtn,.set-label,
 #dayModebar .chip-toggle{padding:5px 12px;font-size:11.5px;font-weight:500;letter-spacing:.06em;
   border-color:var(--hair);color:var(--muted)}
 #dayModebar .chip-toggle.on{background:transparent;color:var(--ink);border-color:var(--ink)}
+/* ===== 価格画面（案C） ===== */
+.price-head{border-top:1px solid var(--ink);padding-top:16px}
+.price-head h2{font-size:22px;font-weight:600;line-height:1.5;letter-spacing:.04em;margin:8px 0 0}
+.price-head p{font-size:12.5px;color:var(--ink2);margin:8px 0 0}
+/* 無料と有料の比較。罫だけで組む */
+.cmp{width:100%;border-collapse:collapse;margin-top:22px;font-size:13px}
+.cmp th,.cmp td{padding:10px 4px;border-bottom:1px solid var(--hair);text-align:right}
+.cmp th:first-child,.cmp td:first-child{text-align:left;color:var(--ink2)}
+.cmp thead th{font-size:11px;font-weight:500;letter-spacing:.14em;color:var(--muted);
+  border-bottom:1px solid var(--ink)}
+.cmp td{font-weight:500}
+.cmp .yes{color:var(--ink)}
+.cmp .no{color:var(--muted)}
+.cmp tbody tr:last-child td{border-bottom:0}
+/* 買い切りであることを価格の真横に */
+.pricebox{margin-top:22px;padding-top:14px;border-top:1px solid var(--ink)}
+.pricebox .amt{font-size:34px;font-weight:500;line-height:1;letter-spacing:-.01em}
+.pricebox .amt small{font-size:12px;color:var(--muted);margin-left:4px;letter-spacing:.06em}
+.pricebox .pricenote{font-size:12px;color:var(--ink2);letter-spacing:.06em;margin-top:8px}
+.price .xbtn{text-align:center}
+/* クーポンは畳む。常時出ていると全員にコードを探しに行かせる */
+.coupon{margin-top:14px;border-top:1px solid var(--hair);padding-top:12px}
+.coupon>summary{list-style:none;cursor:pointer;font-size:12px;color:var(--muted);
+  letter-spacing:.06em;touch-action:manipulation}
+.coupon>summary::-webkit-details-marker{display:none}
+.coupon>summary::after{content:"＋";margin-left:6px}
+.coupon[open]>summary::after{content:"−"}
+.price .fine{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+  margin-top:18px;font-size:11.5px}
+.price .fine a,.price .fine button{color:var(--muted);text-decoration:underline;background:none;
+  border:0;padding:0;font:inherit;font-size:11.5px;cursor:pointer;min-height:0}
+.price .fine span{color:var(--hair)}
+/* ===== 無料の区切り（Day 7 完了時） ===== */
+.freeend{border-top:1px solid var(--ink);padding-top:16px;margin-top:22px;margin-bottom:4px;text-align:left}
+.freeend .peek{font-size:12.5px;color:var(--ink2);line-height:1.8;margin-top:10px}
+.freeend .peek .zh{font-size:17px;display:block;margin-bottom:2px}
+.freeend .g{font-size:20px;font-weight:500;letter-spacing:.04em;margin-top:6px}
+.freeend .mini{font-size:11px;color:var(--muted);text-align:center;letter-spacing:.06em;margin-top:8px}
 /* ===== 設定：4グループ（アカウント／学習／表示／その他） ===== */
 /* グループの境目を太罫で作るので、パネル全体を囲う枠は外す（囲いの入れ子をやめる） */
 #settingsPanel{border:0;padding:0;margin:0}
@@ -26088,7 +26126,32 @@ const LISTENING = {
 const TOTAL_DAYS=90;
 const PAID_CONTENT_CACHE_KEY='hsk4-paid-content-v1';
 function paywallUrl(){ return localStorage.getItem('hsk4-paywall-url')||'https://hsk4-paywall.hsk4test.workers.dev'; }
-function lessonAvailable(day){ return LESSONS.some(function(l){ return l.day===day; }); }
+// 無料で使える日数。paywallはDay8から（間隔反復が効き目を体感させるのに最低1週間かかるため）
+var FREE_DAYS=7;
+// ===== paywallのプレビュー（販売前の確認用） =====
+// 本番の判定は「LESSONSにその日があるか」だけ。いまは未告知のあいだ全90日を
+// index.html に戻してあるので、価格画面や無料の区切りが一度も出ない。
+// 内容を切り出さずにそれらの画面だけ見られるように、このスイッチを用意した。
+//   確認する  …  URLに ?paywall=1 を付ける（設定→その他 のトグルでも切り替わる）
+//   元に戻す  …  URLに ?paywall=0 を付ける
+// 販売開始時に build-content.mjs でDay8-90を切り出せば、このスイッチに関係なく
+// 本来の判定が効く。
+function paywallPreview(){
+  try{
+    var q=new URLSearchParams(location.search).get('paywall');
+    if(q==='1') localStorage.setItem('hsk4-paywall-preview','1');
+    if(q==='0') localStorage.removeItem('hsk4-paywall-preview');
+    return localStorage.getItem('hsk4-paywall-preview')==='1';
+  }catch(e){ return false; }
+}
+function setPaywallPreview(on){
+  try{ if(on) localStorage.setItem('hsk4-paywall-preview','1'); else localStorage.removeItem('hsk4-paywall-preview'); }catch(e){}
+  render();
+}
+function lessonAvailable(day){
+  if(paywallPreview() && day>FREE_DAYS) return false;
+  return LESSONS.some(function(l){ return l.day===day; });
+}
 function mergePaidContent(data){
   if(!data) return false;
   try{
@@ -26164,16 +26227,51 @@ async function startCheckout(){
     else{ _toast((data && data.error) || '決済ページを開けませんでした。しばらくしてからお試しください。', 6000); }
   }catch(e){ _toast('決済ページを開けませんでした。しばらくしてからお試しください。', 6000); }
 }
+// ===== 価格画面（案C） =====
+// 以前はここが「未購入」の札とクーポン欄と購入ボタンだけで、値段も中身も
+// 一度も出ないまま決済画面へ飛ばしていた（分析のA1・A2）。
+var PRICE_TEXT='¥4,800';
 function lockedDayHTML(day){
-  var loggedIn=!!(firebaseReady && auth && auth.currentUser);
-  return '<div class="card">'
-    +'<div class="section-title"><h2>Day '+day+'</h2><span class="badge">未購入</span></div>'
-    +'<div class="small" style="margin:10px 0 16px">Day8以降は購入後に使えるようになります。Day1-7は引き続き無料でお試しいただけます。</div>'
-    +'<input id="couponInput" type="text" placeholder="クーポンコード（お持ちの場合）">'
-    +'<button class="primary" style="width:100%;margin-top:10px" onclick="startCheckout()">'+(loggedIn?'購入する':'ログインして購入する')+'</button>'
-    +'<button style="width:100%;margin-top:10px" onclick="fetchPaidContent().then(function(ok){ if(ok){ render(); } else { _toast(\'まだ購入が確認できませんでした。\', 6000); } })">購入済みの内容を確認する</button>'
-    +'<button style="width:100%;margin-top:10px" onclick="showDay(1)">Day1-7に戻る</button>'
-    +'</div>';
+  var paid=TOTAL_DAYS-FREE_DAYS;
+  var rows=[
+    ['学習できる日数', FREE_DAYS+'日', TOTAL_DAYS+'日'],
+    ['単語',          '35語',        '498語'],
+    ['リスニング音声', FREE_DAYS+'本', TOTAL_DAYS+'本'],
+    ['ミニテスト',     '77問',        '986問'],
+    ['AI添削つき作文', '14問',        '180問'],
+    ['模擬試験',       null,          'あり']
+  ];
+  return '<div class="price">'
+   + '<div class="price-head">'
+   +   '<span class="hero-eye">Day '+(FREE_DAYS+1)+' からが本編です</span>'
+   +   '<h2>のこり'+paid+'日分を、<br>まとめて開きます。</h2>'
+   +   '<p>Day 1-'+FREE_DAYS+' はこれからも無料のままです。</p>'
+   + '</div>'
+   + '<table class="cmp"><thead><tr><th></th><th>無料</th><th>全'+TOTAL_DAYS+'日</th></tr></thead><tbody>'
+   +   rows.map(function(r){
+         return '<tr><td>'+r[0]+'</td>'
+           + '<td>'+(r[1]===null?'<span class="no">—</span>':r[1])+'</td>'
+           + '<td class="yes">'+r[2]+'</td></tr>';
+       }).join('')
+   + '</tbody></table>'
+   // 買い切りであることを価格の真横に。月額でないのは強い売りなのにどこにも書いていなかった
+   + '<div class="pricebox">'
+   +   '<div class="amt">'+PRICE_TEXT+'<small>（税込）</small></div>'
+   +   '<div class="pricenote">買い切り・月額なし・追加費用なし</div>'
+   + '</div>'
+   + '<button class="xbtn" onclick="startCheckout()">購入して全'+TOTAL_DAYS+'日を開く</button>'
+   // クーポン欄は購入ボタンより上に常時出ていると、全員に「割引があるらしい」と
+   // 気づかせてコードを探しに離脱させる（分析のA2）。畳んで下に置く。
+   + '<details class="coupon"><summary>クーポンコードをお持ちの方</summary>'
+   +   '<input id="couponInput" type="text" placeholder="コードを入力" spellcheck="false">'
+   + '</details>'
+   + '<p class="fine">'
+   +   '<button type="button" onclick="restorePurchase()">購入を復元</button>'
+   +   '<span>·</span>'
+   +   '<a href="legal/tokushoho.html" target="_blank" rel="noopener">特定商取引法に基づく表記</a>'
+   + '</p>'
+   + '<button class="xbtn ghost" onclick="showDay(1)">Day 1-'+FREE_DAYS+'に戻る</button>'
+   + '</div>';
 }
 
 const $=id=>document.getElementById(id);
@@ -26219,7 +26317,9 @@ if(state.dragOrders){
 }
 function save(){localStorage.setItem(storageKey,JSON.stringify(state));localStorage.setItem('hsk4-current-day',current);markLocalUpdated();scheduleCloudSave()}
 function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
-function lesson(){return LESSONS[current-1]}
+// プレビュー中はDay8以降を「持っていない」ことにする。render() の day 分岐は
+// lesson() が falsy なら lockedDayHTML() を出す作りなので、ここだけで効く。
+function lesson(){ if(paywallPreview() && current>FREE_DAYS) return null; return LESSONS[current-1]; }
 function isBookmarked(id){return !!state.bookmarks[id]}
 function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){
   if(state.bookmarks[id]){ delete state.bookmarks[id]; }
@@ -26359,11 +26459,32 @@ function renderDoneScreen(){
      + '<div><span>文法</span><b>'+(l?l.grammar.length:0)+'<i>つ</i></b></div>'
      + '<div><span>ミニテスト</span><b>'+(score!=null?score+'<i> / 5問</i>':'<i>未採点</i>')+'</b></div>'
    + '</div>'
+   + freeEndHTML(day)
    + (revTotal>0
       ? '<button class="xbtn" onclick="showTest()">復習を続ける<span class="s">'+revTotal+'問</span></button>'
       : '')
    + '<button class="xbtn ghost" onclick="showToday()">今日はここまで</button>'
    + '<div class="done-foot">90日のうち '+doneCount+'日</div>'
+   + '</div>';
+}
+
+// 無料の区切り（分析のA4）。以前はDay7を終えても何も起きず、次にDay8の🔒に
+// 当たって初めて壁に気づく作りだった。paywallは壁ではなく予告にする。
+// 1週間やり切ったことを先に認めて、Day8の中身を本物で見せてから価格へ渡す。
+function freeEndHTML(day){
+  if(day!==FREE_DAYS) return '';
+  if(lessonAvailable(FREE_DAYS+1)) return '';   // 購入済み・全日入りのときは出さない
+  var vocab=0, grammar=0;
+  LESSONS.forEach(function(l){ if(l.day<=FREE_DAYS){ vocab+=l.vocab.length; grammar+=l.grammar.length; } });
+  // Day8の中身はここには無い（購入後に取得する）ので、予告は固定の文言で出す
+  return '<div class="freeend">'
+   + '<span class="hero-eye">ここまでが無料です</span>'
+   + '<div class="freeend-lead small" style="margin-top:8px">Day 1-'+FREE_DAYS+' をやり切りました。'
+   +   '単語'+vocab+'語と文法'+grammar+'項目を終えています。</div>'
+   + '<div class="g">Day '+(FREE_DAYS+1)+' からは文法がぐっと増えます</div>'
+   + '<div class="peek">のこり'+(TOTAL_DAYS-FREE_DAYS)+'日で、単語は498語、'
+   +   'リスニングは90本、AI添削つきの作文は180問になります。</div>'
+   + '<button class="xbtn" style="margin-top:14px" onclick="showDay('+(FREE_DAYS+1)+')">続きを見る<span class="s">全'+TOTAL_DAYS+'日・'+PRICE_TEXT+'の買い切り</span></button>'
    + '</div>';
 }
 
@@ -26375,7 +26496,7 @@ function renderHome(){
  c.className='';
  const doneCount=Object.keys(state.completed||{}).filter(k=>state.completed[k]).length;
  const nextDay=Math.min(TOTAL_DAYS, Math.max(1, doneCount+1));
- const nextLesson=LESSONS[nextDay-1];
+ const nextLesson=lessonAvailable(nextDay)?LESSONS[nextDay-1]:null;
  const allDone=doneCount>=TOTAL_DAYS;
 
  // 復習の問数は「今日やること」を判断する材料なので、新規と必ず同じ画面に並べる。
@@ -27056,7 +27177,10 @@ function setChrome(){
   // いきなり離脱できてしまううえ、級診断は設定から入る画面なので
   // 「設定」タブが選択状態になり、初回にはつじつまが合わない（分析のB2）。
   var onboarding = (currentView==='levelcheck' && !hasOnboarded());
-  var bn=$('bottomNav'); if(bn) bn.style.display = isDay ? 'flex' : 'none';
+  // 未購入のDay＝価格画面。学習のステップではないので、下の「戻る／完了」は出さない
+  // （出すと未購入のDayを完了にできてしまう）。出口はヘッダーの「✕ 今日へ」。
+  var locked = isDay && !lesson();
+  var bn=$('bottomNav'); if(bn) bn.style.display = (isDay && !locked) ? 'flex' : 'none';
   var tb=$('tabBar');    if(tb) tb.style.display = (isDay||onboarding) ? 'none' : 'flex';
   var top=$('topBar');   if(top) top.classList.toggle('day', isDay);
   var meta=$('topMeta');
@@ -27812,6 +27936,13 @@ function renderSettings(){
 
   // ── その他 ──────────────────────────────────────────────────────
   var other='';
+  // 販売前の確認用。全90日を index.html に入れたままでも、価格画面と
+  // 無料の区切りを見られるようにする。URLに ?paywall=1 / ?paywall=0 でも切り替わる。
+  var pv=paywallPreview();
+  other+='<div class="set-label">paywallのプレビュー</div>'
+   + note('入れると Day '+(FREE_DAYS+1)+' 以降が未購入の扱いになり、価格画面と無料の区切りを確認できます。'
+        + '学習データは消えないので、切ればすぐ全'+TOTAL_DAYS+'日に戻ります。<b>販売開始前の確認用です。</b>')
+   + seg([{v:0,t:'切'},{v:1,t:'入'}], pv?1:0, function(v){ return 'setPaywallPreview('+(v?'true':'false')+')'; });
   if(isDebugMode()){
     var ts=trackSummary();
     other+='<div class="set-label">計測（開発者向け）</div>'
@@ -28059,6 +28190,7 @@ window._toast = _toast;   // lockedDayHTML() の onclick から呼ぶため
 // tests/nav-test.mjs がそれを見張れるように公開している。
 window.normalizeStateForCloud = normalizeStateForCloud;
 window.restorePurchase = restorePurchase;
+window.setPaywallPreview = setPaywallPreview;
 window.fetchPaidContent = fetchPaidContent;
 window.startAiChallenge = startAiChallenge;
 window.mtSaveGraderUrl = mtSaveGraderUrl;
