@@ -27289,8 +27289,14 @@ function setChrome(){
   var top=$('topBar');   if(top) top.classList.toggle('day', isDay);
   var meta=$('topMeta');
   if(meta){
-    if(isDay){ meta.textContent='Day '+current; }
+    if(paywallPreview()){
+      // 入れっぱなしだとDay8以降が開けず「壊れた」と勘違いするので、常に見えるようにする
+      meta.textContent='paywallプレビュー中';
+      meta.style.color='var(--brand)';
+    }
+    else if(isDay){ meta.textContent='Day '+current; meta.style.color=''; }
     else{
+      meta.style.color='';
       // 連続日数があればそちらを出す。今日画面の「x / 90」と重ねない。
       // 記録を始める前の完了日は復元できないので、しばらくは 0 のままの人がいる。
       var st=streakDays();
