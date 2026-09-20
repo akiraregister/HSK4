@@ -19,7 +19,7 @@ if (skip) { await skip.click(); await page.waitForTimeout(400); }
 const results = [];
 const ok = (n, c, extra = '') => results.push(`${c ? 'PASS' : 'FAIL'}  ${n}${extra ? '  — ' + extra : ''}`);
 
-// --- tab bar ---
+// --- tab bar（案Aで下へ移した） ---
 const tabs = await page.$$eval('.nav-tab', els => els.map(e => ({ id: e.id, label: e.querySelector('span').textContent })));
 ok('タブは4つ', tabs.length === 4, JSON.stringify(tabs.map(t => t.label)));
 
@@ -27,7 +27,14 @@ ok('タブは4つ', tabs.length === 4, JSON.stringify(tabs.map(t => t.label)));
 const trunc = await page.$$eval('.nav-tab span', els => els.filter(e => e.scrollWidth > e.clientWidth + 1).map(e => e.textContent));
 ok('390pxでラベルが省略されない', trunc.length === 0, trunc.join(','));
 
-// header rows: brand + tabs only
+ok('タブはヘッダーではなく下タブにある', !(await page.$('.top .nav-tab')) && !!(await page.$('#tabBar .nav-tab')));
+ok('下タブが画面下に固定されている', await page.$eval('#tabBar', e => getComputedStyle(e).position === 'fixed'));
+
+// ヘッダーは細いバー1本。4タブを抱えていたころは約300pxあった
+const topH = await page.$eval('.top', e => e.getBoundingClientRect().height);
+ok('ヘッダーが細い（100px未満）', topH < 100, Math.round(topH) + 'px');
+
+// header rows: brand only
 const hasFsInHeader = await page.$('.top .fs-global');
 const hasSyncInHeader = await page.$('.top #syncBar');
 ok('ヘッダーから文字サイズが消えた', !hasFsInHeader);
@@ -81,9 +88,16 @@ await page.click('#homeBtn'); await page.waitForTimeout(250);
 await page.click('button:has-text("学習を始める")'); await page.waitForTimeout(400);
 ok('今日から学習画面へ', (await page.textContent('#content')).includes('単語5個'));
 ok('学習画面で下部ナビが出る', await page.$eval('#bottomNav', e => getComputedStyle(e).display === 'flex'));
+// 学習中は下タブを隠し、抜け道はヘッダーの「✕ 今日へ」だけにする（ナビの三重化をやめた）
+ok('学習中は下タブが隠れる', await page.$eval('#tabBar', e => getComputedStyle(e).display === 'none'));
+ok('学習中のヘッダーに出口が出る', await page.$eval('#topBack', e => getComputedStyle(e).display !== 'none'));
+ok('学習中のヘッダーにDay番号が出る', (await page.textContent('#topMeta')).includes('Day'));
+ok('Day選択の重複バーが消えた', !(await page.$('.daybar')) && !(await page.$('#daySelect')));
 
 await page.click('#bottomComplete'); await page.waitForTimeout(300);
-await page.click('#homeBtn'); await page.waitForTimeout(300);
+await page.click('#topBack'); await page.waitForTimeout(300);
+ok('「✕ 今日へ」で今日画面に戻る', (await page.textContent('#content')).includes('今日やること'));
+ok('今日画面では下タブが戻る', await page.$eval('#tabBar', e => getComputedStyle(e).display === 'flex'));
 const revText = await page.textContent('.tcard:nth-child(2)');
 ok('Day完了後、復習枚数が出る', !!(await page.$('.tcard .tc-count')) && /[1-9]/.test(revText.replace(/Day\s*\d+/g, '')), revText.replace(/\s+/g, ' ').slice(0, 70));
 

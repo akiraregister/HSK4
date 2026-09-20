@@ -47,17 +47,26 @@
 --font-body:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho',serif;
 --font-hand:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho',serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-weight:400;line-height:1.7}
-.app{max-width:980px;margin:0 auto;padding:18px 12px calc(90px + env(safe-area-inset-bottom))}.top{position:sticky;top:0;z-index:10;background:rgba(252,251,248,.92);backdrop-filter:blur(14px);border-bottom:var(--bw) solid var(--stroke);padding:calc(18px + env(safe-area-inset-top)) 16px 14px}.top-inner{max-width:980px;margin:0 auto}
+.app{max-width:980px;margin:0 auto;padding:16px 16px calc(96px + env(safe-area-inset-bottom))}
+/* ヘッダーは細いバー1本。以前は4タブを抱えて縦を約300px（画面の12%）使っていた */
+.top{position:sticky;top:0;z-index:10;background:rgba(252,251,248,.92);backdrop-filter:blur(14px);border-bottom:var(--bw) solid var(--stroke);padding:calc(10px + env(safe-area-inset-top)) 16px 10px}
+.top-inner{max-width:980px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.top-meta{font-size:13px;color:var(--muted);letter-spacing:.08em;white-space:nowrap}
+.top-back{display:none;border:0;background:none;padding:6px 2px;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer;touch-action:manipulation}
+/* Day学習中はブランドを引っ込め、出口（✕ 今日へ）だけを出す */
+.top.day .brand{display:none}.top.day .top-back{display:inline-flex;align-items:center}
 h1{font-size:20px;margin:0 0 12px;letter-spacing:-.01em;line-height:1.2;text-align:left}.small{font-size:14.5px;color:var(--muted);line-height:1.6}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 select,button,input,textarea{font:inherit}select{flex:1;min-width:180px;border:var(--bw) solid var(--stroke);border-radius:var(--r-pill);padding:11px 14px;background:var(--card);font-weight:700}
 button{border:var(--bw) solid var(--stroke);background:var(--card);border-radius:var(--r-pill);padding:11px 14px;font-weight:900;color:var(--ink);touch-action:manipulation;cursor:pointer}
 .top .row button{border:var(--bw) solid var(--stroke);background:var(--card);color:var(--ink)}
-.nav-tabs{display:flex;gap:6px;margin-top:10px}
-.nav-tab{flex:1;display:flex;align-items:center;justify-content:center;padding:10px 6px;font-size:13px;font-weight:700;color:var(--muted);background:transparent;border:var(--bw) solid var(--rule);border-radius:var(--r-pill);cursor:pointer;touch-action:manipulation;user-select:none;min-height:44px}
-.nav-tab svg{display:none}
+/* 下タブ。画面下に固定し、上ヘッダーが返した縦を中身に使う */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;background:rgba(252,251,248,.96);backdrop-filter:blur(14px);border-top:var(--bw) solid var(--stroke);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+.nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 2px;font-size:11px;font-weight:700;color:var(--muted);background:none;border:0;cursor:pointer;touch-action:manipulation;user-select:none;min-height:48px}
+.nav-tab svg{width:22px;height:22px;display:block}
 .nav-tab i{font-size:17px}
 .nav-tab span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
-.nav-tab.active{color:var(--bg);background:var(--ink);border-color:var(--stroke);font-weight:900}
+/* 選ばれているタブは墨。案Xは塗りつぶしの帯を持たないので、色と太さだけで示す */
+.nav-tab.active{color:var(--ink);font-weight:900}
 .nav-tab.tab-done{color:var(--good)}button.primary{background:var(--accent);color:var(--bg);border-color:var(--stroke)}
 button.complete.active{background:var(--goodbg);color:var(--good);border-color:var(--goodline)}button.toggle.off{background:var(--card);color:var(--ink)}button.toggle.on{background:var(--gray);color:var(--ink2)}
 button.bookmark{padding:7px 9px;border-radius:var(--r-pill);background:var(--card);color:var(--muted)}button.bookmark.active{background:var(--brand-tint);border-color:var(--hair);color:var(--brand-2)}
@@ -81,8 +90,9 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .day-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}.daybtn{padding:10px 0;border-radius:var(--r-md);background:var(--card)}.daybtn.done{background:var(--goodbg);border-color:var(--goodline);color:var(--good)}.daybtn.locked{opacity:.55}
 .progressline{height:10px;border-radius:var(--r-pill);background:var(--gray);overflow:hidden;margin-top:8px}.progressline span{display:block;height:100%;background:var(--ink);width:0%}
 @media(min-width:700px){.day-grid{grid-template-columns:repeat(10,1fr)}}
+/* Day学習の下バー（前／完了／次）。下タブとは排他で、学習中だけこちらが出る */
 .bottomnav{position:fixed;left:0;right:0;bottom:0;background:rgba(252,251,248,.94);backdrop-filter:blur(14px);border-top:var(--bw) solid var(--stroke);padding:11px 14px;padding-bottom:calc(11px + env(safe-area-inset-bottom));display:flex;gap:8px;z-index:20;transform:translateZ(0);-webkit-transform:translateZ(0);will-change:transform}.bottomnav button{flex:1}
-@media(max-width:430px){.top{padding:calc(20px + env(safe-area-inset-top)) 14px 14px}h1{font-size:21px;margin-bottom:16px;text-align:center}button{padding:10px 11px}.app{padding-top:20px}}@media(min-width:800px){.vocab{grid-template-columns:1fr 1fr}.top h1{font-size:28px}.app{padding-bottom:40px}.bottomnav{display:none}}
+@media(max-width:430px){.top{padding:calc(20px + env(safe-area-inset-top)) 14px 14px}h1{font-size:21px;margin-bottom:16px;text-align:center}button{padding:10px 11px}.app{padding-top:20px}}@media(min-width:800px){.vocab{grid-template-columns:1fr 1fr}}
 
 .syncbar{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:2px;padding:11px 13px;border:var(--bw) solid var(--stroke);background:var(--card);border-radius:var(--r-lg)}
 .syncbar .sync-status{font-size:13px;color:var(--ink2);font-weight:700}
@@ -124,9 +134,6 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .modebar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
 .chip-toggle{border:var(--bw) solid var(--rule);background:transparent;color:var(--muted);border-radius:var(--r-pill);padding:9px 16px;font-weight:900;font-size:14px;cursor:pointer;touch-action:manipulation}
 .chip-toggle.on{background:var(--ink);border-color:var(--stroke);color:var(--bg)}
-.daybar{display:flex;gap:8px;align-items:center;margin-bottom:10px}
-.daybar select{flex:1;min-width:120px}
-.daybar button{flex:0 0 auto;background:var(--card)}
 /* ⑤ 難易度コントロール（普通/曖昧/苦手）＋カード左の色バー */
 .lvc{display:inline-flex;gap:6px;margin-top:8px}
 .lvc button{border:var(--bw) solid var(--rule);border-radius:var(--r-pill);padding:6px 13px;font-size:11.5px;font-weight:900;background:var(--card);color:var(--muted);min-height:32px}
@@ -372,22 +379,21 @@ h1,h2,h3,.badge,.zh,.vrow-zh,.fc-prompt,.tc-title,.tc-count,.daybtn,.set-label,
 .hsk-toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(10px);max-width:88%;background:var(--ink);color:var(--bg);font-size:14px;font-weight:600;line-height:1.5;padding:11px 16px;border-radius:var(--r-md);box-shadow:var(--sh);opacity:0;transition:opacity .3s ease,transform .3s ease;z-index:60;pointer-events:none;text-align:center}
 .hsk-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-h1.brand{display:flex;align-items:center;justify-content:flex-start;gap:10px}.brand .brand-flame{width:32px;height:32px;flex:none}.brand .brand-word{font-family:var(--font-brand);font-size:34px;font-weight:900;color:var(--primary);letter-spacing:.06em;line-height:1}.brand .brand-sub{font-family:var(--font-hand);font-size:12px;font-weight:400;color:var(--muted);letter-spacing:.02em;align-self:flex-end;padding-bottom:2px}@media(max-width:360px){.brand .brand-sub{display:none}}
+h1.brand{display:flex;align-items:center;gap:8px;margin:0;font-size:inherit;color:var(--ink)}
+/* 炎はアプリアイコン（O7）と同じ形・同じ色。下の罫は currentColor なので地に追従する */
+.brand .brand-flame{width:22px;height:22px;flex:none;display:block}
+.brand .brand-word{font-family:var(--font-brand);font-size:19px;font-weight:700;color:var(--ink);letter-spacing:.18em;line-height:1}
 </style>
 </head>
 <body>
-<div class="top">
+<!-- ヘッダーは細いバー1本。4タブは下（.tabbar）へ移した。
+     Day学習中は .top.day が付き、ブランドの代わりに「✕ 今日へ」を出す。
+     学習中はタブを隠すので、ここが唯一の出口になる。 -->
+<div class="top" id="topBar">
  <div class="top-inner">
-  <h1 class="brand" aria-label="加油 90日でHSK4合格"><svg class="brand-flame" viewBox="0 0 100 100" aria-hidden="true"><path d="M52 6 C 62 30, 80 42, 80 64 A 30 30 0 1 1 20 64 C 20 46, 33 41, 41 28 C 44 41, 50 45, 50 37 C 50 26, 47 16, 52 6 Z" fill="#F2A227" stroke="#2A2724" stroke-width="4.5" stroke-linejoin="round"></path><circle cx="41" cy="63" r="3.6" fill="#2A2724"></circle><circle cx="59" cy="63" r="3.6" fill="#2A2724"></circle><path d="M43 73 Q 50 79 57 73" stroke="#2A2724" stroke-width="3.8" fill="none" stroke-linecap="round"></path></svg><span class="brand-word">加油</span><span class="brand-sub">90日でHSK4合格</span></h1>
-  <div class="nav-tabs">
-   <div class="nav-tab" id="homeBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v2.5"/><circle cx="12" cy="13.5" r="7.5"/><path d="M12 10v3.5l2.5 1.5"/></svg><span>今日</span></div>
-   <div class="nav-tab" id="bookmarkViewBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>ブックマーク</span></div>
-   <div class="nav-tab" id="vocabTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10"/><path d="M8 9h6"/><path d="M8 13h8"/></svg><span>単語</span></div>
-   <div class="nav-tab" id="settingsTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v2.2M12 19.3v2.2M21.5 12h-2.2M4.7 12H2.5M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6M18.7 18.7l-1.6-1.6M6.9 6.9L5.3 5.3"/></svg><span>設定</span></div>
-  </div>
-
-  
-
+  <h1 class="brand" aria-label="加油 90日でHSK4合格"><svg class="brand-flame" viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="bf"><path d="M52 8 C 62 31, 79 43, 79 64 A 29 29 0 1 1 21 64 C 21 46, 33 41, 41 29 C 44 41, 50 45, 50 37 C 50 27, 47 17, 52 8 Z"/></clipPath></defs><g clip-path="url(#bf)"><rect width="100" height="100" fill="#E5A500"/><path d="M0 52 C 18 64, 34 48, 52 56 C 70 64, 84 50, 100 58 L100 100 L0 100 Z" fill="#DC6011"/></g><rect x="28" y="88" width="44" height="2" fill="currentColor"/></svg><span class="brand-word">加油</span></h1>
+  <button class="top-back" id="topBack" type="button">✕ 今日へ</button>
+  <span class="top-meta" id="topMeta"></span>
  </div>
 </div>
 
@@ -429,6 +435,16 @@ h1.brand{display:flex;align-items:center;justify-content:flex-start;gap:10px}.br
  <button id="bottomPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg>前</button>
  <button id="bottomComplete" class="complete">完了</button>
  <button id="bottomNext">次<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
+</div>
+
+<!-- 下タブ。上ヘッダーの約300pxを中身に返すための移設（案A）。
+     .nav-tab のクラス名とIDは据え置き＝setupNavTabs() / setActiveTab() はそのまま効く。
+     Day学習中だけ隠す（学習は1本の流れなので、抜け道はヘッダーの「✕ 今日へ」1つにする）。 -->
+<div class="tabbar" id="tabBar">
+ <div class="nav-tab" id="homeBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v13H4z"/><path d="M4 11h16"/><path d="M8 3v4M16 3v4"/></svg><span>今日</span></div>
+ <div class="nav-tab" id="bookmarkViewBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>ブックマーク</span></div>
+ <div class="nav-tab" id="vocabTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19V6a2 2 0 0 1 2-2h12v16H7a2 2 0 0 0-2 2"/><path d="M9 8h7M9 12h5"/></svg><span>単語</span></div>
+ <div class="nav-tab" id="settingsTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.2M12 18.8V21M21 12h-2.2M5.2 12H3M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6M18.4 18.4l-1.6-1.6M7.2 7.2 5.6 5.6"/></svg><span>設定</span></div>
 </div>
 
 <script type="module">
@@ -26034,14 +26050,6 @@ async function startCheckout(){
     else{ _toast((data && data.error) || '決済ページを開けませんでした。しばらくしてからお試しください。', 6000); }
   }catch(e){ _toast('決済ページを開けませんでした。しばらくしてからお試しください。', 6000); }
 }
-function daySelectOptionsHTML(selectedDay){
-  let out='';
-  for(let d=1; d<=TOTAL_DAYS; d++){
-    const locked=!lessonAvailable(d);
-    out+=`<option value="${d}"${d===selectedDay?' selected':''}${locked?' disabled':''}>Day ${d}${locked?' 🔒':(state.completed[d]?' ✓':'')}</option>`;
-  }
-  return out;
-}
 function lockedDayHTML(day){
   var loggedIn=!!(firebaseReady && auth && auth.currentUser);
   return '<div class="card">'
@@ -26098,7 +26106,6 @@ if(state.dragOrders){
 function save(){localStorage.setItem(storageKey,JSON.stringify(state));localStorage.setItem('hsk4-current-day',current);markLocalUpdated();scheduleCloudSave()}
 function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function lesson(){return LESSONS[current-1]}
-function initSelect(){ const s=$('daySelect'); if(!s)return; s.innerHTML=daySelectOptionsHTML(current); s.value=current}
 function isBookmarked(id){return !!state.bookmarks[id]}
 function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){if(state.bookmarks[id]){delete state.bookmarks[id];}else{state.bookmarks[id]={id,type,title,sub,day:current,pinyin:pinyin||'',example:example||'',exPinyin:exPinyin||'',exJa:exJa||'',hl:0};}save();render();}
 function fmtBmItem(b){
@@ -26195,8 +26202,7 @@ function bmSetSort(s){
 }
 
 function renderHome(){
- if($('bottomNav')) $('bottomNav').style.display='none';
- save(); initSelect(); renderBookmarkPanel();
+ save(); renderBookmarkPanel();
  $('bookmarkPanel').className='bookmark-panel card';
  const c=$('content');
  c.style.display='';
@@ -26316,24 +26322,23 @@ function render(){
    :(currentView==='settings'||currentView==='levelcheck')?'settingsTab'
    :'homeBtn');
  setSettingsPanel(currentView==='settings');
+ setChrome();
  renderBgShapes(currentView==='levelcheck'?'settings':currentView);
- if(currentView==='settings'){ if($('bottomNav')) $('bottomNav').style.display='none'; renderSettings(); return; }
+ if(currentView==='settings'){ renderSettings(); return; }
  if(currentView==='vocab'){ if(document.querySelector('.vlist') && document.activeElement && document.activeElement.id==='vocabSearch'){ vocabFilterOnly(); } else { renderVocabScreen(); } return; }
- if(currentView==='levelcheck'){ if($('bottomNav')) $('bottomNav').style.display='none'; renderLevelCheckScreen(); return; }
+ if(currentView==='levelcheck'){ renderLevelCheckScreen(); return; }
  if(currentView==='mock'){ renderMockScreen(); return; }
- if(currentView==='review'){ if($('bottomNav')) $('bottomNav').style.display='none'; renderTestScreen(); return; }
+ if(currentView==='review'){ renderTestScreen(); return; }
  if(currentView==='today'){ renderHome(); return; }
- save(); initSelect(); renderBookmarkPanel();
+ save(); renderBookmarkPanel();
  const c=$('content');
  // ブックマークはDay画面ではないので下ナビ（前・完了・次）は出さない。
  // 以前はこの手前で display='flex' してから bookmark で早期リターンしていたため、
  // ブックマークタブに下ナビが残り、無関係なDayの完了状態を変えられてしまっていた。
  if(currentView==='bookmark'){
-   if($('bottomNav')) $('bottomNav').style.display='none';
    c.style.display='none';
    return;
  }
- if($('bottomNav')) $('bottomNav').style.display='flex';
  const l=lesson();
  c.style.display='';
  c.className=showAnswers?'show-answers':'';
@@ -26343,11 +26348,6 @@ function render(){
    return;
  }
  c.innerHTML=`
-  <div class="daybar">
-   <button type="button" onclick="setDay(${current-1})">‹ 前の日</button>
-   <select id="daySelect" onchange="setDay(Number(this.value))">${daySelectOptionsHTML(current)}</select>
-   <button type="button" onclick="setDay(${current+1})">次の日 ›</button>
-  </div>
   <div class="modebar">
    <button type="button" class="chip-toggle ${document.body.classList.contains('hidden-pinyin')?'':'on'}" id="pinyinChip" onclick="togglePinyin()">拼音を${document.body.classList.contains('hidden-pinyin')?'非表示':'表示'}</button>
    <button type="button" class="chip-toggle ${document.body.classList.contains('hidden-ja')?'':'on'}" id="jaChip" onclick="toggleJa()">和訳を${document.body.classList.contains('hidden-ja')?'非表示':'表示'}</button>
@@ -26770,6 +26770,24 @@ function toggleJa(){
 }
 function applyDensity(){ /* 密度はブックマークパネル内だけに適用（renderBookmarkPanelでクラス付与）。学習セクションには適用しない。 */ }
 function setTopOffset(){ var t=document.querySelector('.top'); if(t) document.documentElement.style.setProperty('--top-h', t.offsetHeight+'px'); }
+// 画面まわりの「枠」を1か所で決める。以前は各 render*() が bottomNav を
+// 手で出し入れしており、書き忘れるとブックマークに学習用の下バーが残った。
+// 下タブ（.tabbar）と学習用の下バー（#bottomNav）は排他。Day学習だけが後者。
+function setChrome(){
+  var isDay = (currentView==='day');
+  var bn=$('bottomNav'); if(bn) bn.style.display = isDay ? 'flex' : 'none';
+  var tb=$('tabBar');    if(tb) tb.style.display = isDay ? 'none' : 'flex';
+  var top=$('topBar');   if(top) top.classList.toggle('day', isDay);
+  var meta=$('topMeta');
+  if(meta){
+    if(isDay){ meta.textContent='Day '+current; }
+    else{
+      var done=Object.keys(state.completed||{}).filter(function(k){return state.completed[k];}).length;
+      meta.textContent=done+' / '+TOTAL_DAYS;
+    }
+  }
+  setTopOffset();
+}
 function toggleDensity(){
   state.density = state.density==='compact' ? 'standard' : 'compact';
   save(); render();
@@ -26850,7 +26868,6 @@ function vocabFilterOnly(){
   var cl=$('vocabClear'); if(cl) cl.style.visibility=_vocabQuery.trim()?'visible':'hidden';
 }
 function renderVocabScreen(){
-  if($('bottomNav')) $('bottomNav').style.display='none';
   if($('bookmarkPanel')) $('bookmarkPanel').className='bookmark-panel card';
   var c=$('content'); if(!c) return;
   c.style.display=''; c.className='';
@@ -27267,7 +27284,6 @@ function renderMockScreen(){
   var c=$('content'); if(!c) return;
   c.style.display=''; c.className='';
   $('bookmarkPanel').className='bookmark-panel card';
-  if($('bottomNav')) $('bottomNav').style.display='none';
   if(!_mock){ c.innerHTML=mockIntroHtml(); return; }
   c.innerHTML = _mock.done ? (_mock.reviewing ? mockReviewHtml() : mockResultHtml()) : mockQuestionHtml();
 }
@@ -27543,6 +27559,7 @@ setTimeout(setTopOffset, 300); // Webフォント/アイコン読込後のズレ
 
 (function setupNavTabs(){
   var ht=document.getElementById('homeBtn');     if(ht) ht.addEventListener('click', showToday);
+  var tb=document.getElementById('topBack');     if(tb) tb.addEventListener('click', showToday);
   var vt=document.getElementById('vocabTab');    if(vt) vt.addEventListener('click', showVocab);
   var gt=document.getElementById('settingsTab'); if(gt) gt.addEventListener('click', showSettings);
   // ブックマークタブは別途 bookmarkViewBtn のハンドラで処理
@@ -27878,7 +27895,6 @@ function lcRecommend(correct,total){
 }
 
 function renderLevelCheckScreen(){
-  if($('bottomNav')) $('bottomNav').style.display='none';
   if($('bookmarkPanel')) $('bookmarkPanel').className='bookmark-panel card';
   var c=$('content'); if(!c) return;
   c.style.display=''; c.className='';

@@ -131,7 +131,7 @@ Cloudflare／Stripeの**設定と通し動作確認は2026年9月に完了済み
 ## 検証
 
 ```bash
-node tests/run.mjs        # 全109項目＋Service Workerチェック
+node tests/run.mjs        # 全118項目＋Service Workerチェック
 ```
 
 **変更したら必ず通すこと。** ビルドもCIも無いので、これが唯一の安全網。
