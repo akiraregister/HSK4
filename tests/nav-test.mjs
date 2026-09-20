@@ -90,7 +90,44 @@ ok('級診断中も設定タブが選択状態', (await view()) === 'settingsTab
 // --- 今日 → 学習 → 完了 → 復習が出る ---
 await page.click('#homeBtn'); await page.waitForTimeout(250);
 await page.click('button:has-text("学習を始める")'); await page.waitForTimeout(400);
-ok('今日から学習画面へ', (await page.textContent('#content')).includes('単語5個'));
+ok('今日から学習画面へ', !!(await page.$('#content .wcard.on')));
+
+// --- Day学習は4ステップ（単語→文法→聞く→解く） ---
+const stepBars = await page.$$eval('.dsteps i', e => e.length);
+ok('ステップの進捗バーが出る', stepBars >= 3 && stepBars <= 4, `${stepBars}本`);
+ok('最初は単語のステップ', (await page.textContent('.dstep-label')).includes('単語をおぼえる'));
+ok('単語は1語ずつ出る', (await page.$$eval('#content .wcard.on', e => e.length)) === 1
+  && (await page.$$eval('#content .wcard', e => e.length)) === 5);
+ok('最初は「戻る」が出ない', await page.$eval('#bottomPrev', e => getComputedStyle(e).display === 'none'));
+ok('最初は「完了」が出ない', await page.$eval('#bottomComplete', e => getComputedStyle(e).display === 'none'));
+ok('「次へ」が出る', (await page.textContent('#bottomNext')).includes('次へ'));
+
+// 「次へ」で語が進み、5語めの次でステップが変わる
+await page.click('#bottomNext'); await page.waitForTimeout(200);
+ok('次へで2語めになる', (await page.textContent('.wcount')).startsWith('2 /'));
+ok('2語めでは「戻る」が出る', await page.$eval('#bottomPrev', e => getComputedStyle(e).display !== 'none'));
+await page.click('#bottomPrev'); await page.waitForTimeout(200);
+ok('戻るで1語めに戻る', (await page.textContent('.wcount')).startsWith('1 /'));
+
+// ★と難易度は描き直さずその場で更新する。以前は render() を呼んでいたので、
+// 学習の途中でどちらかを押すとミニテストとリスニングが最初からやり直しになった。
+await page.click('#bottomNext'); await page.waitForTimeout(150);
+await page.click('#bottomNext'); await page.waitForTimeout(150);
+await page.click('.wcard.on .bookmark'); await page.waitForTimeout(200);
+ok('★を押しても語の位置が変わらない', (await page.textContent('.wcount')).startsWith('3 /'));
+ok('★がその場で反映される', await page.$eval('.wcard.on .bookmark', e => e.classList.contains('active')));
+await page.click('.wcard.on .lvc button:nth-child(3)'); await page.waitForTimeout(200);
+ok('難易度を押しても語の位置が変わらない', (await page.textContent('.wcount')).startsWith('3 /'));
+ok('難易度がその場で反映される', await page.$eval('.wcard.on .lvc button:nth-child(3)', e => e.className.includes('lvc-on-2')));
+
+// 最後のステップ（解く）まで「次へ」を押し切る
+for (let i = 0; i < 12; i++) {
+  if (await page.$eval('#bottomNext', e => getComputedStyle(e).display === 'none')) break;
+  await page.click('#bottomNext'); await page.waitForTimeout(160);
+}
+ok('最後のステップで「次へ」が消える', await page.$eval('#bottomNext', e => getComputedStyle(e).display === 'none'));
+ok('最後のステップはミニテスト', !!(await page.$('#mtRoot .mt-counter')));
+ok('最後のステップで「完了」が出る', await page.$eval('#bottomComplete', e => getComputedStyle(e).display !== 'none'));
 ok('学習画面で下部ナビが出る', await page.$eval('#bottomNav', e => getComputedStyle(e).display === 'flex'));
 // 学習中は下タブを隠し、抜け道はヘッダーの「✕ 今日へ」だけにする（ナビの三重化をやめた）
 ok('学習中は下タブが隠れる', await page.$eval('#tabBar', e => getComputedStyle(e).display === 'none'));

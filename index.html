@@ -338,6 +338,44 @@ h1,h2,h3,.badge,.zh,.vrow-zh,.fc-prompt,.tc-title,.tc-count,.daybtn,.set-label,
 .set-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .set-row.seg2{width:264px;justify-content:space-between}
 .set-row.seg4{width:272px;justify-content:space-between}
+/* 拼音・和訳のトグルは補助なので、学習中は主役（中文）より弱く見せる。
+   墨のベタ塗りのままだと画面でいちばん強い要素になってしまう。 */
+#dayModebar{gap:6px;margin-bottom:14px}
+#dayModebar .chip-toggle{padding:5px 12px;font-size:11.5px;font-weight:500;letter-spacing:.06em;
+  border-color:var(--hair);color:var(--muted)}
+#dayModebar .chip-toggle.on{background:transparent;color:var(--ink);border-color:var(--ink)}
+/* ===== Day学習：4ステップ（単語→文法→聞く→解く） =====
+   上に進捗バー、下は「次へ」1つ。1本のスクロールで単語5→文法3→リスニング→テストと
+   延々続き、いまどこでどれだけ残っているか分からなかったのを割った（分析のC3）。 */
+.dsteps{display:flex;gap:4px;margin:0 0 14px}
+.dsteps i{flex:1;height:2px;background:var(--hair);display:block}
+.dsteps i.on{background:var(--ink)}
+.dstep-label{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px}
+.dstep-label b{font-size:16px;font-weight:600;letter-spacing:.1em}
+.dstep-label span{font-size:11.5px;color:var(--muted);letter-spacing:.06em;white-space:nowrap}
+/* ステップは描き直さず表示だけ切り替える（ミニテストの途中経過を保つため） */
+.dstep{display:none}
+.dstep.on{display:block}
+/* 単語は1語ずつめくる。5語を一度に並べない */
+.wcard{display:none;border-top:1px solid var(--ink);border-bottom:1px solid var(--hair);padding:22px 0 16px;cursor:pointer}
+.wcard.on{display:block}
+.wcard .zh{font-size:48px;font-weight:500;line-height:1.25;letter-spacing:.04em;text-align:center}
+.wcard .zh .speak-btn{vertical-align:middle}
+.wcard .pinyin{font-size:15px;text-align:center;margin-top:6px}
+.wcard .ja{font-size:16px;margin-top:10px;text-align:center;color:var(--ink)}
+.wcard .wex{border-top:1px solid var(--hair);margin-top:18px;padding-top:14px;font-size:14px;line-height:1.8}
+.wcard .wex .expinyin{font-size:13px;margin-top:2px}
+.wcard .wex .exja{margin-top:2px}
+.wcard .note{margin-top:12px}
+.wcard .wfoot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
+.wcard .wfoot .lvc{margin-top:0}
+.wcard.lv-1{border-left:4px solid var(--amber);padding-left:12px}
+.wcard.lv-2{border-left:4px solid var(--red2);padding-left:12px}
+.wdots{display:flex;gap:6px;justify-content:center;margin-top:16px}
+.wdots button{width:9px;height:9px;padding:0;min-height:0;border:1px solid var(--rule);background:transparent;
+  border-radius:0;cursor:pointer;touch-action:manipulation}
+.wdots button.on{background:var(--ink);border-color:var(--ink)}
+.wcount{text-align:center;font-size:11px;color:var(--muted);letter-spacing:.06em;margin-top:8px}
 /* ===== 「今日」画面（design/x-next.html の確定版） =====
    ・復習と模試は2列の罫組みをやめ「行」にした。右端に罫囲みのボタンを置いて押せることを示す
    ・進捗は90マスの格子（原稿用紙の升目）。完了＝墨のベタ／今日＝柿／これから＝空マス
@@ -26139,7 +26177,19 @@ function save(){localStorage.setItem(storageKey,JSON.stringify(state));localStor
 function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function lesson(){return LESSONS[current-1]}
 function isBookmarked(id){return !!state.bookmarks[id]}
-function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){if(state.bookmarks[id]){delete state.bookmarks[id];}else{state.bookmarks[id]={id,type,title,sub,day:current,pinyin:pinyin||'',example:example||'',exPinyin:exPinyin||'',exJa:exJa||'',hl:0};}save();render();}
+function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){
+  if(state.bookmarks[id]){ delete state.bookmarks[id]; }
+  else { state.bookmarks[id]={id,type,title,sub,day:current,pinyin:pinyin||'',example:example||'',exPinyin:exPinyin||'',exJa:exJa||'',hl:0}; }
+  save();
+  // 以前はここで render() を呼んでいた。Day学習の途中でブックマークすると
+  // ミニテストやリスニングが最初からやり直しになるので、★だけを差し替える。
+  var on=!!state.bookmarks[id], hit=0;
+  document.querySelectorAll('button.bookmark[data-bm="'+id+'"]').forEach(function(b){
+    b.classList.toggle('active',on); b.textContent=on?'★':'☆'; hit++;
+  });
+  // 一覧そのものが変わる画面（ブックマーク）と、差し替え先が見つからない場合は描き直す
+  if(currentView==='bookmark' || !hit) render();
+}
 function fmtBmItem(b){
   if(!b || typeof b!=='object') return '';
   var ex=b.example||'',exP=b.exPinyin||'',exJ=b.exJa||'',pin=b.pinyin||'';
@@ -26384,50 +26434,59 @@ function render(){
    updateCompleteButtons();
    return;
  }
+ const steps=daySteps(l);
  c.innerHTML=`
-  <div class="modebar">
+  <div class="dsteps">${steps.map(()=>'<i></i>').join('')}</div>
+  <div class="dstep-label"></div>
+  <div class="modebar" id="dayModebar">
    <button type="button" class="chip-toggle ${document.body.classList.contains('hidden-pinyin')?'':'on'}" id="pinyinChip" onclick="togglePinyin()">拼音を${document.body.classList.contains('hidden-pinyin')?'非表示':'表示'}</button>
    <button type="button" class="chip-toggle ${document.body.classList.contains('hidden-ja')?'':'on'}" id="jaChip" onclick="toggleJa()">和訳を${document.body.classList.contains('hidden-ja')?'非表示':'表示'}</button>
   </div>
-  <div class="card">
-   <div class="section-title"><h2>${esc(l.title)}</h2><span class="badge">${state.completed[l.day]?'完了済み':'未完了'}</span></div>
-   <div class="small">今日の内容：単語${l.vocab.length}個${l.grammar.length?`・文法${l.grammar.length}つ`:''}${LISTENING[l.day]?'・リスニング1問':''}・ミニテスト5問</div>
-   ${state.scores[l.day]!=null?`<div class="scorebox">前回のミニテスト：<b>${state.scores[l.day]} / 5</b></div>`:''}
-  </div>
-  <div class="card">
-   <div class="section-title"><h2>単語${l.vocab.length}個</h2></div>
-   <div class="vocab">${l.vocab.map((v,i)=>`
-    <div class="vitem lv-${state.levels[v.id]||0}">
-     <div class="item-head"><div><div class="zh">${i+1}. ${esc(v.zh)} <button class="speak-btn" onclick="speakZh('${esc(v.zh)}')" title="発音"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div><div class="pinyin">${esc(v.pinyin)}</div><div class="ja">${esc(v.ja)}</div>${lvControl(v.id)}</div>
-     <button class="bookmark ${isBookmarked(v.id)?'active':''}" onclick="toggleBookmark('${v.id}','単語','${esc(v.zh)}','${esc(v.ja)}','${esc(v.pinyin)}')">${isBookmarked(v.id)?'★':'☆'}</button></div>
-     <div class="ex"><span class="cw-ex" data-ex="${esc(v.example)}" data-exp="${esc(v.exPinyin)}" data-exj="${esc(v.exJa)}">${esc(v.example)}</span> <button class="speak-btn" onclick="speakZh('${esc(v.example)}')" title="例文を聞く"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div><div class="pinyin expinyin">${esc(v.exPinyin)}</div><div class="ja exja">${esc(v.exJa)}</div>${v.contrast?`<div class="note"><span class="label">違い・注意：</span>${esc(v.contrast)}</div>`:''}
-    </div>`).join('')}</div>
-  </div>
-  ${l.grammar.length?`<div class="card">
-   <div class="section-title"><h2>文法${l.grammar.length}つ</h2><span class="badge">解説強化</span></div>
-   ${l.grammar.map((g,i)=>`
-    <div class="gitem lv-${state.levels[g.id]||0}">
-     <div class="item-head"><div><h3>${i+1}. ${esc(g.name)}</h3><div class="pinyin">${esc(g.pinyin)}</div><div class="ja"><span class="label">意味：</span>${esc(g.meaning)}</div>${lvControl(g.id)}</div>
-     <button class="bookmark ${isBookmarked(g.id)?'active':''}" onclick="toggleBookmark('${g.id}','文法','${esc(g.name)}','${esc(g.meaning)}')">${isBookmarked(g.id)?'★':'☆'}</button></div>
-     <details class="g-details"><summary>詳しい解説（違い・間違いポイント）</summary>
-     <div class="note"><span class="label">解説：</span>${esc(g.explain)}</div>
-     <div class="note"><span class="label">違い・注意：</span>${esc(g.contrast)}</div>
-     <div class="note"><span class="label">日本人が間違えやすい点：</span>${esc(g.mistake)}</div>
-     </details>
-     <div class="ex"><span class="label">例文：</span><span class="cw-ex" data-ex="${esc(g.example)}" data-exp="${esc(g.exPinyin)}" data-exj="${esc(g.exJa)}">${esc(g.example)}</span> <button class="speak-btn" onclick="speakZh('${esc(g.example)}')" title="例文を聞く"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div><div class="pinyin expinyin">${esc(g.exPinyin)}</div><div class="ja exja">${esc(g.exJa)}</div>
-    </div>`).join('')}
-  </div>`:''}
-  ${LISTENING[l.day]?`<div class="card" id="lsCard">
-   <div class="section-title"><h2>リスニング</h2><span class="badge">1問</span></div>
-   <div id="lsRoot"></div>
-  </div>`:''}
-  <div class="card" id="testCard">
-   <div class="section-title"><h2>今日のミニテスト</h2><span class="badge">5問</span></div>
-   <div id="mtRoot"></div>
-  </div>`;
+
+  ${steps.map(st=>{
+   if(st.k==='vocab') return `<div class="dstep">
+    ${l.vocab.map((v,i)=>`
+     <div class="wcard lv-${state.levels[v.id]||0}" data-w="${i}" onclick="if(!event.target.closest('button')) dayNext()">
+      <div class="zh">${esc(v.zh)} <button class="speak-btn" onclick="speakZh('${esc(v.zh)}')" title="発音"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div>
+      <div class="pinyin">${esc(v.pinyin)}</div>
+      <div class="ja">${esc(v.ja)}</div>
+      <div class="wex">
+       <div><span class="cw-ex" data-ex="${esc(v.example)}" data-exp="${esc(v.exPinyin)}" data-exj="${esc(v.exJa)}">${esc(v.example)}</span> <button class="speak-btn" onclick="speakZh('${esc(v.example)}')" title="例文を聞く"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div>
+       <div class="pinyin expinyin">${esc(v.exPinyin)}</div>
+       <div class="ja exja">${esc(v.exJa)}</div>
+      </div>
+      ${v.contrast?`<div class="note"><span class="label">違い・注意：</span>${esc(v.contrast)}</div>`:''}
+      <div class="wfoot">${lvControl(v.id)}<button class="bookmark ${isBookmarked(v.id)?'active':''}" data-bm="${v.id}" onclick="toggleBookmark('${v.id}','単語','${esc(v.zh)}','${esc(v.ja)}','${esc(v.pinyin)}')">${isBookmarked(v.id)?'★':'☆'}</button></div>
+     </div>`).join('')}
+    <div class="wdots">${l.vocab.map((v,i)=>`<button type="button" aria-label="${i+1}語目" onclick="dayGoVocab(${i})"></button>`).join('')}</div>
+    <div class="wcount"></div>
+   </div>`;
+
+   if(st.k==='grammar') return `<div class="dstep">
+    ${l.grammar.map((g,i)=>`
+     <div class="gitem lv-${state.levels[g.id]||0}">
+      <div class="item-head"><div><h3>${i+1}. ${esc(g.name)}</h3><div class="pinyin">${esc(g.pinyin)}</div><div class="ja"><span class="label">意味：</span>${esc(g.meaning)}</div>${lvControl(g.id)}</div>
+      <button class="bookmark ${isBookmarked(g.id)?'active':''}" data-bm="${g.id}" onclick="toggleBookmark('${g.id}','文法','${esc(g.name)}','${esc(g.meaning)}')">${isBookmarked(g.id)?'★':'☆'}</button></div>
+      <details class="g-details"><summary>詳しい解説（違い・間違いポイント）</summary>
+      <div class="note"><span class="label">解説：</span>${esc(g.explain)}</div>
+      <div class="note"><span class="label">違い・注意：</span>${esc(g.contrast)}</div>
+      <div class="note"><span class="label">日本人が間違えやすい点：</span>${esc(g.mistake)}</div>
+      </details>
+      <div class="ex"><span class="label">例文：</span><span class="cw-ex" data-ex="${esc(g.example)}" data-exp="${esc(g.exPinyin)}" data-exj="${esc(g.exJa)}">${esc(g.example)}</span> <button class="speak-btn" onclick="speakZh('${esc(g.example)}')" title="例文を聞く"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div><div class="pinyin expinyin">${esc(g.exPinyin)}</div><div class="ja exja">${esc(g.exJa)}</div>
+     </div>`).join('')}
+   </div>`;
+
+   if(st.k==='listen') return `<div class="dstep"><div id="lsRoot"></div></div>`;
+
+   return `<div class="dstep">
+    ${state.scores[l.day]!=null?`<div class="scorebox">前回のミニテスト：<b>${state.scores[l.day]} / 5</b></div>`:''}
+    <div id="mtRoot"></div>
+   </div>`;
+  }).join('')}`;
+ applyDayStep();
  mtInit(l.day);
  if(LISTENING[l.day]) lsInit(l.day);
- updateCompleteButtons();
+ updateDayNav();
 }
 /* ===== 新ミニテストエンジン（案P：1問ずつ・即時解説・AI作文採点） ===== */
 var _mt=null;
@@ -26746,7 +26805,74 @@ function lsReplay(){
   audio.onerror=restore;
   audio.play().catch(restore);
 }
-function setDay(d){lsStopAudio();currentView='day';track('day_open',{day:Math.max(1,Math.min(TOTAL_DAYS,d))});current=Math.max(1,Math.min(TOTAL_DAYS,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
+function setDay(d){lsStopAudio();dayResetSteps();currentView='day';track('day_open',{day:Math.max(1,Math.min(TOTAL_DAYS,d))});current=Math.max(1,Math.min(TOTAL_DAYS,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
+// ===== Day学習：4ステップ（単語→文法→聞く→解く） =====
+// 文法や音声が無い日は自動で抜けるので、ステップ数は日によって3〜4になる。
+// ステップの移動は #content を描き直さず表示だけ切り替える。描き直すと
+// ミニテストとリスニングの途中経過が飛ぶため。
+var dayStep=0, dayVocabIdx=0;
+function daySteps(l){
+  var st=[{k:'vocab',label:'単語をおぼえる'}];
+  if(l.grammar && l.grammar.length) st.push({k:'grammar',label:'文法をつかむ'});
+  if(LISTENING[l.day]) st.push({k:'listen',label:'聞きとる'});
+  st.push({k:'test',label:'解いて確かめる'});
+  return st;
+}
+function dayResetSteps(){ dayStep=0; dayVocabIdx=0; }
+function applyDayStep(){
+  var l=lesson(); if(!l) return;
+  var steps=daySteps(l);
+  if(dayStep<0) dayStep=0;
+  if(dayStep>steps.length-1) dayStep=steps.length-1;
+  var k=steps[dayStep].k;
+  document.querySelectorAll('#content .dstep').forEach(function(el,i){ el.classList.toggle('on', i===dayStep); });
+  document.querySelectorAll('#content .dsteps i').forEach(function(el,i){ el.classList.toggle('on', i<=dayStep); });
+  var lab=document.querySelector('#content .dstep-label');
+  if(lab) lab.innerHTML='<b>'+esc(steps[dayStep].label)+'</b><span>ステップ '+(dayStep+1)+' / '+steps.length+'</span>';
+  // 拼音・和訳のトグルは読むステップでしか意味がない
+  var md=$('dayModebar'); if(md) md.style.display=(k==='vocab'||k==='grammar')?'':'none';
+  if(k==='vocab') applyDayVocab(); else updateDayNav();
+}
+function applyDayVocab(){
+  var cards=document.querySelectorAll('#content .wcard');
+  if(!cards.length){ updateDayNav(); return; }
+  if(dayVocabIdx<0) dayVocabIdx=0;
+  if(dayVocabIdx>cards.length-1) dayVocabIdx=cards.length-1;
+  cards.forEach(function(el,i){ el.classList.toggle('on', i===dayVocabIdx); });
+  document.querySelectorAll('#content .wdots button').forEach(function(b,i){ b.classList.toggle('on', i===dayVocabIdx); });
+  var cnt=document.querySelector('#content .wcount');
+  if(cnt) cnt.textContent=(dayVocabIdx+1)+' / '+cards.length+'語';
+  updateDayNav();
+}
+function dayGoVocab(i){ dayVocabIdx=Number(i); applyDayVocab(); }
+function dayAtStart(){ return dayStep===0 && dayVocabIdx===0; }
+function dayAtEnd(){ var l=lesson(); return !!l && dayStep>=daySteps(l).length-1; }
+function dayNext(){
+  var l=lesson(); if(!l) return;
+  var steps=daySteps(l);
+  if(steps[dayStep].k==='vocab' && dayVocabIdx<l.vocab.length-1){ dayVocabIdx++; applyDayVocab(); return; }
+  if(dayStep<steps.length-1){ dayStep++; applyDayStep(); window.scrollTo({top:0,behavior:'smooth'}); }
+}
+function dayPrev(){
+  var l=lesson(); if(!l) return;
+  var steps=daySteps(l);
+  if(steps[dayStep].k==='vocab' && dayVocabIdx>0){ dayVocabIdx--; applyDayVocab(); return; }
+  if(dayStep>0){
+    dayStep--;
+    // 単語のステップへ戻るときは最後に見ていた語ではなく最後の語から
+    if(daySteps(l)[dayStep].k==='vocab') dayVocabIdx=Math.max(0,l.vocab.length-1);
+    applyDayStep(); window.scrollTo({top:0,behavior:'smooth'});
+  }
+}
+// 下バーは「戻る／次へ」。最後のステップでだけ「完了」に変わる。
+function updateDayNav(){
+  var atEnd=dayAtEnd(), atStart=dayAtStart();
+  var prev=$('bottomPrev'), next=$('bottomNext'), comp=$('bottomComplete');
+  if(prev){ prev.style.display=atStart?'none':''; prev.innerHTML='← 戻る'; }
+  if(next){ next.style.display=atEnd?'none':''; next.innerHTML='次へ →'; }
+  if(comp) comp.style.display=atEnd?'':'none';
+  updateCompleteButtons();
+}
 function updateCompleteButtons(){
  const done=!!state.completed[current];
  // completeTab (nav-tab)
@@ -26765,7 +26891,8 @@ function toggleComplete(){
   var ungraded = nowDone && (state.scores[current]==null);
   state.completed[current]=nowDone; save();
   track(nowDone?'day_complete':'day_uncomplete',{day:current, graded:state.scores[current]!=null});
-  render();
+  // Day画面では描き直さない。ミニテストの結果が出たまま完了を押せるようにするため。
+  if(currentView==='day') updateCompleteButtons(); else render();
   if(nowDone){ var bc=$('bottomComplete'); if(bc) bc.classList.add('hsk-checkpulse'); var ct=$('completeTab'); if(ct) ct.classList.add('hsk-checkpulse'); }
   if(ungraded) _toast('完了しました。ミニテストはまだ未採点です。解いておくと「復習」での定着が高まります。');
 }
@@ -26790,11 +26917,22 @@ function applyA11yLabels(){
 // ===== 改善案：難易度コントロール（⑤）・拼音/和訳・密度（②⑥） =====
 function lvControl(id){
   var lv=state.levels[id]||0, labels=['普通','曖昧','苦手'];
-  return '<div class="lvc">'+labels.map(function(t,n){
+  return '<div class="lvc" data-lv="'+id+'">'+labels.map(function(t,n){
     return '<button type="button" class="'+(lv===n?'lvc-on-'+n:'')+'" onclick="setLevel(\''+id+'\','+n+')">'+t+'</button>';
   }).join('')+'</div>';
 }
-function setLevel(id,n){ state.levels[id]=n; save(); render(); }
+function setLevel(id,n){
+  state.levels[id]=n; save();
+  // ブックマークと同じ理由で render() を呼ばない（学習途中の状態が飛ぶため）
+  var hit=0;
+  document.querySelectorAll('.lvc[data-lv="'+id+'"]').forEach(function(box){
+    hit++;
+    box.querySelectorAll('button').forEach(function(b,i){ b.className=(n===i?'lvc-on-'+i:''); });
+    var item=box.closest('.vitem,.gitem,.wcard');
+    if(item){ item.classList.remove('lv-0','lv-1','lv-2'); item.classList.add('lv-'+n); }
+  });
+  if(!hit) render();
+}
 function togglePinyin(){
   document.body.classList.toggle('hidden-pinyin');
   var shown=!document.body.classList.contains('hidden-pinyin'), c=$('pinyinChip');
@@ -26831,7 +26969,8 @@ function toggleDensity(){
 }
 // homeBtn handled by setupNavTabs;
 // Day選択・前/次は学習画面内に移動し inline onclick/onchange で処理（②③）
-$('bottomPrev').onclick=()=>setDay(current-1); $('bottomNext').onclick=()=>setDay(current+1);
+// 下バーはDayの前後ではなくステップの前後を動かす（案A：下は「次へ」1つ）
+$('bottomPrev').onclick=dayPrev; $('bottomNext').onclick=dayNext;
 // completeBtn handled by setupNavTabs; bottomComplete stays
 if($('bottomComplete')) $('bottomComplete').onclick=toggleComplete;
 // pinyinBtn handled by setupNavTabs

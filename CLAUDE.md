@@ -36,7 +36,7 @@ Cloudflare／Stripeの**設定と通し動作確認は2026年9月に完了済み
 見た目と画面構成を作り直す作業が進行中。方向は**案X（辞書・新聞）＝明朝＋宋体・罫線で組む・
 角丸と影はゼロ**、アクセントは柿 `#DC6011`、アイコンはO7「二段の炎」。
 **フェーズ0（粗取り）・1（アイコン一式）・2（デザイントークン）・3（下タブ化と細いヘッダー）・
-4（今日画面）まで実装済み。**残りはDay学習の4ステップ化・完了画面の新設・設定の整理。
+4（今日画面）・5（Day学習の4ステップ化）まで実装済み。**残りは完了画面の新設・設定の整理。
 再開するときは **`design/HANDOFF.md` を最初に読むこと。**決まったこと・次にやること・
 実装時の落とし穴がまとまっている。分析と案の全記録は `design/README.md`。
 
@@ -105,6 +105,12 @@ Cloudflare／Stripeの**設定と通し動作確認は2026年9月に完了済み
 `toggleBookmark()` と同じ `{id, type, title, sub, day, pinyin, example, ...}` の形。
 真偽値を入れると一覧が `b.id.match` で落ちる。
 
+**描き直しは学習の途中経過を壊す。** `toggleBookmark()` と `setLevel()` と `toggleComplete()` は
+以前 `render()` を呼んでおり、Day学習の途中で★・難易度・完了を押すとミニテストとリスニングが
+最初からやり直しになっていた。いまはどれも**その場の要素だけ**を更新する
+（`data-bm` / `data-lv` を手がかりにする。見つからない画面では従来どおり `render()`）。
+同じ理由で、Day学習の**ステップ移動も描き直さず表示だけ切り替える**（`.dstep.on`）。
+
 **書体は明朝と宋体。** デザイン刷新（案X＝辞書・新聞）で丸ゴシック（Zen Maru Gothic）・
 角ゴシック（Zen Kaku Gothic New）・手書き（Yomogi）はすべて外した。和文は Noto Serif JP
 （`--font-brand` `--font-display` `--font-body` `--font-hand` すべて同じ明朝）、
@@ -131,7 +137,7 @@ Cloudflare／Stripeの**設定と通し動作確認は2026年9月に完了済み
 ## 検証
 
 ```bash
-node tests/run.mjs        # 全122項目＋Service Workerチェック
+node tests/run.mjs        # 全138項目＋Service Workerチェック
 ```
 
 **変更したら必ず通すこと。** ビルドもCIも無いので、これが唯一の安全網。

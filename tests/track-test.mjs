@@ -17,6 +17,11 @@ await p.click('#content button:has-text("学習を始める")'); await p.waitFor
 let log = await evs();
 ok('Dayを開くと day_open が入る', log.some(e => e.e === 'day_open' && e.p && e.p.day === 1), JSON.stringify(log.filter(e => e.e === 'day_open')[0] || {}));
 
+// Day学習は4ステップになった。完了ボタンは最後のステップでしか出ない
+for (let i = 0; i < 12; i++) {
+  if (await p.$eval('#bottomNext', e => getComputedStyle(e).display === 'none')) break;
+  await p.click('#bottomNext'); await p.waitForTimeout(160);
+}
 await p.click('#bottomComplete'); await p.waitForTimeout(400);
 log = await evs();
 ok('完了で day_complete が入る', log.some(e => e.e === 'day_complete' && e.p && e.p.day === 1));
