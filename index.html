@@ -355,6 +355,12 @@ h1,h2,h3,.badge,.fc-prompt,.daybtn,.set-label,
 #dayModebar .chip-toggle{padding:5px 12px;font-size:11.5px;font-weight:500;letter-spacing:.06em;
   border-color:var(--hair);color:var(--muted)}
 #dayModebar .chip-toggle.on{background:transparent;color:var(--ink);border-color:var(--ink)}
+/* 未購入の単語。あることだけ見せて、拼音と和訳は持たない */
+.vrow-locked{color:var(--muted)}
+.vrow-locked .vrow-zh{color:var(--ink2)}
+.vrow-locked .vrow-ja{color:var(--muted);font-size:12px}
+.vrow-locked .vrow-day{background:transparent;border:1px solid var(--hair);color:var(--muted)}
+.vrow-locked .vrow-day::before{content:"🔒 ";font-size:10px}
 /* ===== 価格画面（案C） ===== */
 .price-head{border-top:1px solid var(--ink);padding-top:16px}
 .price-head h2{font-size:22px;font-weight:600;line-height:1.5;letter-spacing:.04em;margin:8px 0 0}
@@ -26126,6 +26132,14 @@ const LISTENING = {
 const TOTAL_DAYS=90;
 const PAID_CONTENT_CACHE_KEY='hsk4-paid-content-v1';
 function paywallUrl(){ return localStorage.getItem('hsk4-paywall-url')||'https://hsk4-paywall.hsk4test.workers.dev'; }
+// ===== 未購入分の単語の目録 =====
+// 単語タブに全498語を出して未購入分に🔒を付けるための最小限のデータ（分析のA5）。
+// **中文とDay番号だけ**で、拼音と和訳は入れない。教材の厚みは見せつつ、中身は渡さない。
+// build-content.mjs がDay8-90を切り出すときに埋め、
+// restore-full-content.mjs が全90日を書き戻すときに空にする。
+// 全90日が入っているあいだは空のままで、paywallのプレビューでは LESSONS から作る。
+const LOCKED_VOCAB = [];
+
 // 無料で使える日数。paywallはDay8から（間隔反復が効き目を体感させるのに最低1週間かかるため）
 var FREE_DAYS=7;
 // ===== paywallのプレビュー（販売前の確認用） =====
@@ -26146,6 +26160,7 @@ function paywallPreview(){
 }
 function setPaywallPreview(on){
   try{ if(on) localStorage.setItem('hsk4-paywall-preview','1'); else localStorage.removeItem('hsk4-paywall-preview'); }catch(e){}
+  _vocabIndex=null;   // 単語一覧の作り置きは🔒の有無が変わるので捨てる
   render();
 }
 function lessonAvailable(day){
@@ -26162,6 +26177,7 @@ function mergePaidContent(data){
     }
     if(data.bank) Object.assign(BANK, data.bank);
     if(data.listening) Object.assign(LISTENING, data.listening);
+    _vocabIndex=null;   // 単語一覧の作り置きは作り直す（🔒が外れるため）
     return true;
   }catch(e){ return false; }
 }
@@ -27246,8 +27262,20 @@ function showMock(){ _mock=null; goView('mock'); }
 function vocabGoToDay(d){ showDay(d); }
 function vocabBuildIndex(){
   if(_vocabIndex) return _vocabIndex;
-  var arr=[];
-  LESSONS.forEach(function(l){ (l.vocab||[]).forEach(function(v){ arr.push({zh:v.zh,pinyin:v.pinyin,ja:v.ja,day:l.day}); }); });
+  var arr=[], preview=paywallPreview();
+  LESSONS.forEach(function(l){
+    // プレビュー中はDay8以降を「持っていない」扱いにするので、中文とDayだけにする
+    var locked = preview && l.day>FREE_DAYS;
+    (l.vocab||[]).forEach(function(v){
+      arr.push(locked ? {zh:v.zh, day:l.day, locked:true}
+                      : {zh:v.zh, pinyin:v.pinyin, ja:v.ja, day:l.day});
+    });
+  });
+  // 切り出し済みのときは、未購入分をここから足す（中文とDayだけ持っている）
+  LOCKED_VOCAB.forEach(function(v){
+    if(!lessonAvailable(v.day)) arr.push({zh:v.zh, day:v.day, locked:true});
+  });
+  arr.sort(function(a,b){ return a.day-b.day; });
   _vocabIndex=arr; return arr;
 }
 function vocabStripTone(s){
@@ -27260,10 +27288,19 @@ function vocabComputeList(){
   if(!k) return all;
   var kt=vocabStripTone(k);
   return all.filter(function(v){
-    return v.zh.indexOf(k)>=0 || v.pinyin.toLowerCase().indexOf(k)>=0 || vocabStripTone(v.pinyin).indexOf(kt)>=0 || v.ja.toLowerCase().indexOf(k)>=0;
+    // 未購入分は中文しか持っていないので、拼音・和訳は空として扱う
+    var py=v.pinyin||'', ja=v.ja||'';
+    return v.zh.indexOf(k)>=0 || py.toLowerCase().indexOf(k)>=0 || vocabStripTone(py).indexOf(kt)>=0 || ja.toLowerCase().indexOf(k)>=0;
   });
 }
 function vocabRowHTML(v){
+  // 未購入分は「ある」ことだけ見せる。拼音と和訳は持っていない（＝渡していない）。
+  if(v.locked){
+    return '<button type="button" class="vrow vrow-locked" onclick="vocabGoToDay('+v.day+')">'
+      +'<span class="vrow-main"><span class="vrow-top"><b class="vrow-zh">'+esc(v.zh)+'</b></span>'
+      +'<span class="vrow-ja">購入すると読めます</span></span>'
+      +'<span class="vrow-day">Day '+v.day+'</span></button>';
+  }
   return '<button type="button" class="vrow" onclick="vocabGoToDay('+v.day+')">'
     +'<span class="vrow-main"><span class="vrow-top"><b class="vrow-zh">'+esc(v.zh)+'</b> <span class="vrow-py">'+esc(v.pinyin)+'</span></span>'
     +'<span class="vrow-ja">'+esc(v.ja)+'</span></span>'

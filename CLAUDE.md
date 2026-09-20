@@ -176,7 +176,7 @@ Day学習の4ステップ化／完了画面／設定の4グループ化と「購
 ## 検証
 
 ```bash
-node tests/run.mjs        # 全167項目＋Service Workerチェック
+node tests/run.mjs        # 全173項目＋Service Workerチェック
 ```
 
 **変更したら必ず通すこと。** ビルドもCIも無いので、これが唯一の安全網。
@@ -238,6 +238,14 @@ node tests/run.mjs        # 全167項目＋Service Workerチェック
   に分離し、`index.html` にはDay1-7だけを残す。**二重実行すると有料分0件で
   content-bundle.jsを上書きしてDay8-90を消す**事故を起こしたので、いまは
   有料分が0件なら何もせず終了するガードが入っている
+- **切り出しでは `LOCKED_VOCAB` も埋める。** 単語タブに全498語を出して未購入分に🔒を
+  付けるための目録で、**中文とDay番号だけ**（拼音と和訳は入れない＝厚みは見せるが中身は渡さない）。
+  `restore-full-content.mjs` は空に戻す
+- **ブロックの置換は必ずファイルの後ろから。** `index.html` 内の並びは
+  `LESSONS` → `BANK` → `LISTENING` → `LOCKED_VOCAB`。前から置換すると後ろのブロックの
+  オフセットがずれ、**まったく別の場所へ書き込んでファイルを壊す**（実際に壊した）。
+  いまは両スクリプトとも `blockStart` で降順に並べ替えてから置換し、
+  **書き出す前に読み直して件数を検算する**（合わなければ書かずに終了コード1）
 - **`hsk4-grader`側の認証も実装済み** Day1-7は誰でも採点できるまま、Day8以降は
   Firebase IDトークン＋`worker-paywall`と同じKV（`ENTITLEMENTS`）で購入済み判定。
   未接続時は安全側でDay8以降を常に403にする（詳細は`worker/README.md`）

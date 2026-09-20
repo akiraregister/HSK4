@@ -108,9 +108,23 @@ ok('価格画面から購入を復元できる', !!(await page.$('#content .fine
 // 未購入のDayは学習のステップではないので、下の「戻る／完了」を出してはいけない
 ok('価格画面に学習用の下バーを出さない',
   await page.$eval('#bottomNav', e => getComputedStyle(e).display === 'none'));
+// 単語タブは全498語を出し、未購入分には拼音も和訳も付けない（分析のA5）
+await page.evaluate(() => window.showVocab()); await page.waitForTimeout(600);
+const vRows = await page.$$eval('.vrow', e => e.length);
+const vLocked = await page.$$eval('.vrow-locked', e => e.length);
+ok('単語タブに全498語が出る', vRows === 498, `${vRows}行`);
+ok('未購入分に🔒が付く', vLocked === 463, `${vLocked}行`);
+ok('未購入分に拼音を出さない', !(await page.$('.vrow-locked .vrow-py')));
+ok('未購入分に和訳を出さない',
+  (await page.$$eval('.vrow-locked .vrow-ja', e => [...new Set(e.map(x => x.textContent.trim()))])).join('') === '購入すると読めます');
+await page.click('.vrow-locked'); await page.waitForTimeout(500);
+ok('🔒の語をタップすると価格画面へ行く', !!(await page.$('#content .price')));
+
 await page.evaluate(() => window.setPaywallPreview(false));
 await page.waitForTimeout(300);
 ok('プレビューを切ると中身が戻る', !(await page.$('#content .price')));
+await page.evaluate(() => window.showVocab()); await page.waitForTimeout(500);
+ok('プレビューを切ると🔒が消える', (await page.$$eval('.vrow-locked', e => e.length)) === 0);
 // Day画面から設定へ戻す（学習中はタブが隠れているのでタブは押せない）
 await page.evaluate(() => window.showSettings()); await page.waitForTimeout(400);
 
