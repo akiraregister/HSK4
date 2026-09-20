@@ -94,6 +94,83 @@ await p.reload({ waitUntil: 'load' }); await p.waitForTimeout(700);
 ok('読み込み直しても速さを覚えている',
   (await p.evaluate(() => localStorage.getItem('hsk4-ls-rate'))) === '0.75');
 
+// --- 単語・例文の読み上げ（端末のTTS。リスニングのMP3とは別のしくみ） ---
+// iOSで鳴らなかったという指摘への手当てを見張る。読み上げそのものは
+// ヘッドレスに無いので、speechSynthesis を偽物に差し替えて呼び方だけ確かめる。
+{
+  const c2 = await br.newContext({ viewport: { width: 390, height: 844 } });
+  const p2 = await c2.newPage();
+  const errs2 = []; p2.on('pageerror', e => errs2.push(e.message));
+  await p2.addInitScript(() => {
+    window.__ss = { spoke: [], cancels: 0, speaking: false, pending: false };
+    window.SpeechSynthesisUtterance = class {
+      constructor(t) { this.text = t; this.lang = ''; this.rate = 1; this.voice = null; }
+    };
+    Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: {
+      get speaking() { return window.__ss.speaking; },
+      get pending() { return window.__ss.pending; },
+      cancel() { window.__ss.cancels++; },
+      getVoices() { return [
+        { name: 'Ting-Ting', lang: 'zh-CN' },
+        { name: 'Mei-Jia', lang: 'zh-TW' },
+        { name: 'Kyoko', lang: 'ja-JP' },
+      ]; },
+      speak(u) { window.__ss.spoke.push({ text: u.text, lang: u.lang, rate: u.rate,
+                                          voice: u.voice && u.voice.name });
+                 if (u.onstart) u.onstart(); },
+    }});
+  });
+  await seedFullContent(p2);
+  await p2.goto(B, { waitUntil: 'load' }); await p2.waitForTimeout(600);
+  await p2.mouse.move(195, 400); await p2.mouse.down(); await p2.mouse.up();
+  await p2.waitForTimeout(300);
+  await passOnboarding(p2);
+  await p2.evaluate(() => localStorage.setItem('hsk4-ls-rate', '0.75'));
+  await p2.click('#content button:has-text("学習を始める")'); await p2.waitForTimeout(600);
+
+  const btns = await p2.$$('#content .wcard.on .speak-btn');
+  ok('単語カードに読み上げボタンがある', btns.length >= 1, 'n=' + btns.length);
+  // 溶けて見つけられなかったので、罫で囲って本文寄りの色にした
+  const look = await p2.$eval('#content .speak-btn',
+    e => ({ border: getComputedStyle(e).borderTopWidth, color: getComputedStyle(e).color,
+            w: getComputedStyle(e.querySelector('.spk-ic')).width }));
+  ok('読み上げボタンは罫で囲ってある', parseFloat(look.border) > 0, look.border);
+  ok('薄すぎる色にしない', look.color !== 'rgb(143, 140, 130)', look.color);
+
+  await btns[0].click(); await p2.waitForTimeout(250);
+  const said = await p2.evaluate(() => window.__ss);
+  ok('押すと読み上げる', said.spoke.length === 1, JSON.stringify(said.spoke));
+  // iOSでは cancel の直後の speak が声を出さないまま終わることがある。
+  // 鳴っていないときに cancel を呼んではいけない
+  ok('鳴っていないときは cancel を呼ばない', said.cancels === 0, 'cancels=' + said.cancels);
+  ok('大陸の普通話の声を選ぶ', said.spoke[0].voice === 'Ting-Ting', said.spoke[0].voice);
+  ok('聞きとりで選んだ速さが効く',
+    Math.abs(said.spoke[0].rate - 0.9 * 0.75) < 0.001, 'rate=' + said.spoke[0].rate);
+  ok('読み上げでエラーを出さない', errs2.length === 0, errs2.join(','));
+  await c2.close();
+}
+{
+  // 鳴らない端末では黙らない。押しても無反応が一番困る
+  const c3 = await br.newContext({ viewport: { width: 390, height: 844 } });
+  const p3 = await c3.newPage();
+  await p3.addInitScript(() => {
+    Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: {
+      speaking: false, pending: false, cancel() {}, getVoices() { return []; },
+      speak() { /* iOSの壊れ方：何も起きず、onstart も onerror も来ない */ },
+    }});
+  });
+  await seedFullContent(p3);
+  await p3.goto(B, { waitUntil: 'load' }); await p3.waitForTimeout(600);
+  await p3.mouse.move(195, 400); await p3.mouse.down(); await p3.mouse.up();
+  await p3.waitForTimeout(300);
+  await passOnboarding(p3);
+  await p3.click('#content button:has-text("学習を始める")'); await p3.waitForTimeout(600);
+  await p3.click('#content .wcard.on .speak-btn'); await p3.waitForTimeout(2000);
+  const toast = await p3.textContent('.hsk-toast').catch(() => '');
+  ok('鳴らなければそう伝える', (toast || '').includes('読み上げ'), JSON.stringify(toast));
+  await c3.close();
+}
+
 // --- スクロールの跳ね返りとヘッダーのにじみ（実機で指摘された） ---
 {
   const chrome = await p.evaluate(() => {

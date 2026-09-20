@@ -79,6 +79,7 @@ Day学習の4ステップ化／完了画面／設定の4グループ化と「購
 | `sw.js` | Service Worker。**更新したら `CACHE_VERSION` を1つ上げる**（ファイル冒頭の規約） |
 | `audio/dayN.mp3` | リスニング問題の音声（Day 1〜90、全日実装済み。Google Cloud TTS生成）。台本はDay1-7が `index.html` の `LISTENING`、Day8-90が `worker-paywall/src/content-bundle.js`。模試には未収録（SRS復習・模試の対象外） |
 | `tests/` | 実ブラウザで画面を操作するテスト。`tests/README.md` 参照 |
+| `tools/speech-check.html` | **単語・例文の読み上げが鳴らないときの調査ページ**。端末の状態（standalone起動か・中国語の声があるか）を出し、`audio/day1.mp3` と `SpeechSynthesis` を並べて試して切り分ける。**MP3は鳴るのに読み上げだけ鳴らなければ、音量の問題ではなく読み上げ機能の問題**。`.../HSK4/tools/speech-check.html` で開く |
 | `worker/` | 作文のAI採点Worker（Cloudflare）。ソースはここが本体、`hsk4-grader.hsk4test.workers.dev` は配置先。作文の内容を変えたら `worker/README.md` の手順で作り直して配置し直すこと。`writing-bank.js` はDay1-7（`index.html`）とDay8-90（`worker-paywall/src/content-bundle.js`）をマージして作る。Day8以降の採点はFirebaseログイン＋購入済み（`worker-paywall`と同じKVを読む）が必要 |
 | `legal/` | 利用規約・プライバシーポリシー・特定商取引法に基づく表記。設定画面とLPのフッターからリンク。特商法ページの事業者情報は**未定のまま**なので、販売開始前に確定させること |
 | `worker-paywall/` | 購入・権限管理Worker（Cloudflare）。Stripe決済とFirebase uidごとの購入済み判定、Day8-90本体（`GET /content`）の配信を担当。作文採点Workerとはあえて別Workerにしてある（理由は `worker-paywall/README.md`）。**配置済み・稼働中**（`hsk4-paywall.hsk4test.workers.dev`。いまはStripeサンドボックス＝テストモード）。`build-content.mjs`（Day8-90を切り出してindex.htmlから外す）と`restore-full-content.mjs`（その逆＝index.htmlへ全90日を書き戻す）の両方がある |
@@ -177,6 +178,25 @@ Day学習の4ステップ化／完了画面／設定の4グループ化と「購
   （PlaywrightのChromiumはMP3デコーダを積んでいないことがあり、本物だと環境依存で
   落ちる。確かめたいのは再生の可否ではなく、ボタンと音声の状態が食い違わないこと）
 
+**単語・例文の読み上げは「録音」ではない。** リスニング問題（`audio/dayN.mp3`）は
+Google Cloud TTSで作った録音ファイルだが、**単語カード・例文・文法の例文・復習カード・
+ブックマーク・マイ単語の読み上げは、端末の読み上げ機能（Web Speech）にその場で
+喋らせている**（`speakZh()`）。しくみが違うので、片方だけ鳴らないことがある。
+- **iOSでは鳴らないことがある。**とくにホーム画面から起動したPWA（`manifest.json` は
+  `display:standalone`）で鳴らない報告が多い。鳴らなかったときは
+  `tools/speech-check.html` をiPhoneで開いて切り分けること
+- **speak() の直前に無条件で `cancel()` を呼ばない。**iOSでは cancel した直後の speak が
+  声を出さないまま終わることがあり、**最初の1回でこれをやると以後ずっと鳴らない端末**に
+  なる。いまは鳴っている最中だけ cancel し、80ms おいてから喋る
+- **`getVoices()` はiOSでは最初は空。**押されるたびに引き直し、`zh-CN`／`Hans` を優先する
+  （`zh-TW`・`zh-HK` は発音が別物）
+- **鳴らなかったら黙らない。**`onstart` も `onerror` も来ないまま終わるのがiOSの壊れ方
+  なので、1.4秒の時間切れで気づいて1度だけトーストを出す。押しても無反応が一番困る
+- **速さは聞きとりと同じ設定（`hsk4-ls-rate`）を使う。**設定が2つあるように見せない
+- **読み上げボタンは罫で囲ってある。**以前は `--muted` の18pxで明朝の紙面に溶けており、
+  **実機で「単語の音声は無いのか」と聞かれた＝存在に気づかれていなかった**
+- 単語タブの一覧には読み上げが無い（行そのものがDayへ飛ぶボタンなので、押し分けが要る）
+
 **固定バーは不透明にする。ぼかしは掛けない。** 以前は `.top` `.tabbar` `.bottomnav` が
 半透明＋`backdrop-filter:blur(14px)` で、**スクロール中に下の中身が透けて毎フレーム
 引き直され、ロゴと文字がにじんでいた**（実機で指摘された）。案Xはもともと罫で階層を
@@ -229,7 +249,7 @@ Day学習の4ステップ化／完了画面／設定の4グループ化と「購
 ## 検証
 
 ```bash
-node tests/run.mjs        # 全225項目＋Service Workerチェック（8スイート）
+node tests/run.mjs        # 全234項目＋Service Workerチェック（8スイート）
 ```
 
 **変更したら必ず通すこと。** ビルドもCIも無いので、これが唯一の安全網。

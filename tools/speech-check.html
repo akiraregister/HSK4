@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>読み上げの調査 — 加油</title>
+<style>
+:root{--bg:#FCFBF8;--ink:#15150F;--ink2:#46443C;--muted:#8F8C82;--hair:#E3DFD2;--rule:#15150F;--brand:#DC6011;
+ --ok:#2E7D5B;--ng:#C0442B;
+ --f:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho',serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);line-height:1.75;
+  padding:24px 18px calc(40px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto}
+h1{font-size:20px;font-weight:600;letter-spacing:.04em;margin:0 0 4px}
+.lead{font-size:13px;color:var(--ink2);margin:0 0 20px}
+h2{font-size:14px;font-weight:600;letter-spacing:.08em;margin:26px 0 8px;
+  border-top:1px solid var(--rule);padding-top:10px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+td{padding:7px 2px;border-bottom:1px solid var(--hair);vertical-align:top}
+td:first-child{color:var(--ink2);width:42%}
+b.ok{color:var(--ok)}b.ng{color:var(--ng)}
+button{width:100%;border:1px solid var(--rule);background:none;color:var(--ink);font:inherit;
+  font-size:15px;font-weight:600;letter-spacing:.1em;padding:14px;margin-top:10px;cursor:pointer}
+button:active{background:var(--ink);color:var(--bg)}
+#log{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;line-height:1.65;color:var(--ink2);
+  white-space:pre-wrap;word-break:break-all;border:1px solid var(--hair);padding:10px;margin-top:10px;min-height:80px}
+.verdict{border:1px solid var(--rule);padding:14px;margin-top:14px;font-size:14px;display:none}
+.verdict b{display:block;font-size:15px;margin-bottom:5px}
+.note{font-size:12px;color:var(--muted);margin-top:8px}
+</style>
+</head>
+<body>
+<h1>読み上げの調査</h1>
+<p class="lead">単語と例文の読み上げが鳴らない原因を切り分けます。
+上から順に、2つのボタンを押してください。</p>
+
+<h2>1. この端末の状態</h2>
+<table id="env"></table>
+
+<h2>2. 録音ファイルは鳴るか</h2>
+<p class="lead">リスニング問題と同じMP3を鳴らします。<b>これが鳴らなければ、原因は端末の
+消音スイッチか音量</b>です（読み上げの問題ではありません）。</p>
+<button id="b1">① MP3を鳴らす</button>
+
+<h2>3. 読み上げは鳴るか</h2>
+<p class="lead">単語カードと同じ方法で「你好」と喋らせます。</p>
+<button id="b2">② 読み上げを試す</button>
+
+<div class="verdict" id="verdict"></div>
+
+<h2>記録</h2>
+<div id="log">（まだ何もしていません）</div>
+<p class="note">この画面の結果をそのまま伝えてもらえれば、原因が特定できます。</p>
+
+<script>
+var L=document.getElementById('log'); L.textContent='';
+var t0=Date.now();
+function log(s){ L.textContent += '['+String(Date.now()-t0).padStart(5)+'ms] '+s+'\n'; }
+function yn(v){ return v ? '<b class="ok">はい</b>' : '<b class="ng">いいえ</b>'; }
+
+var mp3ok=null, speechok=null;
+
+// ---- 1. 環境 ----
+var standalone = (window.navigator.standalone === true) ||
+  (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+var hasSS = !!window.speechSynthesis;
+function voices(){ try{ return window.speechSynthesis.getVoices()||[]; }catch(e){ return []; } }
+function zhVoices(){ return voices().filter(function(v){ return /^zh/i.test(v.lang||''); }); }
+function renderEnv(){
+  var zs=zhVoices();
+  document.getElementById('env').innerHTML =
+    row('ホーム画面から起動（standalone）', yn(standalone)) +
+    row('読み上げ機能がある', yn(hasSS)) +
+    row('声の総数', voices().length) +
+    row('中国語の声', zs.length ? zs.map(function(v){return v.name+'（'+v.lang+'）';}).join('<br>') : '<b class="ng">見つからない</b>') +
+    row('画面の幅', window.innerWidth+' × '+window.innerHeight) +
+    row('UA', navigator.userAgent);
+}
+function row(k,v){ return '<tr><td>'+k+'</td><td>'+v+'</td></tr>'; }
+renderEnv();
+if(hasSS && typeof speechSynthesis.onvoiceschanged !== 'undefined'){
+  speechSynthesis.onvoiceschanged = function(){ log('声の一覧が届いた（'+voices().length+'個）'); renderEnv(); };
+}
+log('standalone=' + standalone + ' / speechSynthesis=' + hasSS + ' / voices=' + voices().length);
+
+// ---- 2. MP3 ----
+document.getElementById('b1').onclick = function(){
+  log('① MP3を再生します');
+  var a = new Audio('../audio/day1.mp3');
+  a.onplaying = function(){ log('① 再生が始まった'); mp3ok=true; verdict(); };
+  a.onerror = function(){ log('① 読み込みに失敗（ファイルに届いていない）'); mp3ok=false; verdict(); };
+  a.onended = function(){ log('① 最後まで鳴った'); };
+  a.play().then(function(){ log('① play() は成功を返した'); })
+          .catch(function(e){ log('① play() が拒否された: '+e.name); mp3ok=false; verdict(); });
+  setTimeout(function(){ if(mp3ok===null){ log('① 4秒たっても始まらない'); mp3ok=false; verdict(); } }, 4000);
+};
+
+// ---- 3. 読み上げ ----
+// アプリ側とまったく同じ呼び方（cancel してから speak）で試す。
+document.getElementById('b2').onclick = function(){
+  if(!hasSS){ log('② この端末に読み上げ機能が無い'); speechok=false; verdict(); return; }
+  log('② speak() を呼びます（speaking='+speechSynthesis.speaking+' pending='+speechSynthesis.pending+'）');
+  speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance('你好');
+  u.lang='zh-CN'; u.rate=0.9;
+  var zs=zhVoices(); if(zs.length){ u.voice=zs[0]; log('② 声を指定: '+zs[0].name); }
+  else log('② 中国語の声が見つからないので lang だけ指定');
+  u.onstart=function(){ log('② onstart が来た＝実際に喋り始めた'); speechok=true; verdict(); };
+  u.onend  =function(){ log('② onend が来た'); };
+  u.onerror=function(e){ log('② onerror: '+(e.error||'不明')); speechok=false; verdict(); };
+  speechSynthesis.speak(u);
+  setTimeout(function(){
+    if(speechok===null){
+      log('② 2秒たっても onstart が来ない＝**喋っていない**');
+      log('② いまの状態 speaking='+speechSynthesis.speaking+' pending='+speechSynthesis.pending);
+      speechok=false; verdict();
+    }
+  }, 2000);
+};
+
+function verdict(){
+  if(mp3ok===null || speechok===null) return;
+  var v=document.getElementById('verdict'); v.style.display='block';
+  if(!mp3ok && !speechok){
+    v.innerHTML='<b>どちらも鳴っていません</b>端末の消音スイッチか音量が原因の可能性が高いです。'+
+      '本体横のスイッチと音量を上げて、もう一度お試しください。';
+  } else if(mp3ok && !speechok){
+    v.innerHTML='<b>MP3は鳴るが、読み上げだけ鳴らない</b>'+
+      '音量の問題ではありません。読み上げ機能（Web Speech）がこの環境で動いていません。'+
+      (standalone ? 'ホーム画面から起動したアプリでは、iOSの読み上げが鳴らないことが知られています。'+
+        '<b style="display:inline">Safariで直接開くと鳴るか</b>も試してみてください。' : '')+
+      '<br><br>この場合、単語と例文も録音ファイルにするのが確実な直し方です。';
+  } else if(!mp3ok && speechok){
+    v.innerHTML='<b>読み上げは鳴るが、MP3が鳴らない</b>音声ファイルに届いていません。通信かキャッシュの問題です。';
+  } else {
+    v.innerHTML='<b>どちらも鳴っています</b>この画面では問題が再現しませんでした。'+
+      'アプリ側の呼び方に原因がありそうです。';
+  }
+}
+</script>
+</body>
+</html>

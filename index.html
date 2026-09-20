@@ -129,8 +129,11 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .ai-q{font-weight:700;margin-bottom:8px;line-height:1.5}
 .ai-opts label{display:block;padding:8px 10px;border:1px solid var(--hair);border-radius:var(--r-sm);margin-bottom:6px;cursor:pointer;touch-action:manipulation}
 .ai-ans-box{background:var(--goodbg);border:1px solid var(--goodline);border-radius:var(--r-sm);padding:10px;margin-top:8px}
-.speak-btn{border:none!important;background:transparent!important;padding:4px 6px!important;cursor:pointer;touch-action:manipulation;line-height:0;vertical-align:middle;color:var(--muted);display:inline-flex;align-items:center}.speak-btn .spk-ic{width:18px;height:18px;display:block}
-.speak-btn:active{color:var(--ink);transform:scale(1.15)}
+/* 読み上げボタン。以前は --muted の18pxで、明朝の紙面に溶けて**見つけられなかった**
+   （実機で「単語の音声は無いのか」と聞かれた＝存在に気づかれていなかった）。
+   罫で囲って、色を本文寄りにして、押せるものだと分かるようにした。 */
+.speak-btn{border:1px solid var(--hair)!important;background:transparent!important;padding:5px 7px!important;cursor:pointer;touch-action:manipulation;line-height:0;vertical-align:middle;color:var(--ink2);display:inline-flex;align-items:center}.speak-btn .spk-ic{width:19px;height:19px;display:block}
+.speak-btn:active{background:var(--ink);border-color:var(--ink)!important;color:var(--bg)}
 .syncdot{width:8px;height:8px;border-radius:var(--r-pill);background:var(--muted);display:inline-block}
 .syncdot.on{background:var(--good)}.syncdot.warn{background:var(--brand-2)}.syncdot.err{background:var(--bad)}
 .cloud-note{font-size:12.5px;color:var(--muted);text-align:center;margin-top:4px}
@@ -28690,19 +28693,61 @@ window.showHome = showHome;
 window.toggleComplete = toggleComplete;
 window.setDay = setDay;
 
-// 音声読み上げ
+// 単語・例文の読み上げ。リスニング問題（audio/dayN.mp3）と違って録音ではなく、
+// 端末の読み上げ機能（iPhoneなら中国語のSiri音声）にその場で喋らせている。
+//
+// **iOSでは鳴らないことがある。**分かっているぶんだけ手当てしてある：
+//  - **speak() の直前に無条件で cancel() を呼ばない。**iOSでは、cancel した直後の
+//    speak が声を出さないまま終わることがある（最初の1回でこれをやると、以後ずっと
+//    鳴らない端末になる）。いまは鳴っている最中だけ cancel して、少し待ってから喋る
+//  - **声を明示して選ぶ。**getVoices() はiOSでは最初は空なので、押されるたびに引き直す
+//  - **鳴らなかったら黙らない。**onstart も onerror も来ないまま終わるのがiOSの壊れ方
+//    なので、時間切れで気づいて1度だけ知らせる（押しても無反応、が一番困る）
+var _speakBroken=false, _speakUnlocked=false;
+function zhVoice(){
+  try{
+    var vs=window.speechSynthesis.getVoices()||[];
+    // 大陸の普通話を優先する。台湾（zh-TW）・広東（zh-HK）は発音が別物
+    return vs.filter(function(v){ return /^zh[-_]?(CN|Hans)?$/i.test(v.lang||'') || /^zh/i.test(v.lang||''); })
+             .sort(function(a,b){ return (/CN|Hans/i.test(b.lang)?1:0)-(/CN|Hans/i.test(a.lang)?1:0); })[0] || null;
+  }catch(e){ return null; }
+}
 window.speakZh = function(text){
   if(!text) return;
   // 文法の型は「因为〜所以〜」のように、語句が入る位置を「〜」で示している。
   // これは目で見るための印なので、音にする前に落とす。
   var say = String(text).replace(/[〜～／]/g,' ').replace(/\s+/g,' ').trim();
   if(!say) return;
-  window.speechSynthesis.cancel();
-  var u = new SpeechSynthesisUtterance(say);
-  u.lang = 'zh-CN';
-  u.rate = 0.9;
-  window.speechSynthesis.speak(u);
+  var ss = window.speechSynthesis;
+  if(!ss){ _speakFailed(); return; }
+  var go = function(){
+    var u = new SpeechSynthesisUtterance(say);
+    u.lang = 'zh-CN';
+    // 聞きとりで選んだ速さをここにも効かせる。設定が2つあるように見せない
+    u.rate = 0.9 * (typeof lsRate==='function' ? lsRate() : 1);
+    var v = zhVoice(); if(v) u.voice = v;
+    var started=false;
+    u.onstart=function(){ started=true; _speakUnlocked=true; };
+    u.onerror=function(){ started=true; _speakFailed(); };
+    try{ ss.speak(u); }catch(e){ _speakFailed(); return; }
+    // onstart も onerror も来なければ、鳴っていない
+    setTimeout(function(){ if(!started && !ss.speaking) _speakFailed(); }, 1400);
+  };
+  if(ss.speaking || ss.pending){
+    // 鳴っている最中の割り込みだけ cancel する。iOSでは cancel の直後に speak すると
+    // 取りこぼすので、一拍おく（ここは1回目ではないので、操作の直後でなくても鳴る）
+    try{ ss.cancel(); }catch(e){}
+    setTimeout(go, 80);
+  } else {
+    go();
+  }
 };
+function _speakFailed(){
+  if(_speakBroken || _speakUnlocked) return;   // 一度鳴った端末なら、単発の失敗は黙って流す
+  _speakBroken = true;
+  track('speak_unavailable',{});
+  _toast('この端末では読み上げが鳴らないようです。音量と消音スイッチをご確認ください。リスニング問題の音声は別のしくみなので、そちらは鳴ります。', 7000);
+}
 window._aiPickIdx = _aiPickIdx;
 window._aiClose = _aiClose;
 window.cycleHighlight = cycleHighlight;
