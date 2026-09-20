@@ -1,4 +1,4 @@
-import { launch, seedFullContent } from './browser.mjs';
+import { launch, seedFullContent, passOnboarding } from './browser.mjs';
 const B = process.env.BASE || 'http://127.0.0.1:8765/';
 const br = await launch();
 const c = await br.newContext({ viewport: { width: 390, height: 844 } });
@@ -8,7 +8,7 @@ const errs = []; p.on('pageerror', e => errs.push(e.message));
 const res = []; const ok = (n, v, x = '') => res.push(`${v ? 'PASS' : 'FAIL'}  ${n}${x ? '  — ' + x : ''}`);
 
 await p.goto(B, { waitUntil: 'load' }); await p.waitForTimeout(700);
-const skip = await p.$('[data-lc-action="skip"]'); if (skip) { await skip.click(); await p.waitForTimeout(400); }
+await passOnboarding(p);
 
 // --- 材料が足りないうちは模試が出ない ---
 ok('完了0日では今日画面に模試が出ない', !(await p.$('#content .trow-mock')));

@@ -32,3 +32,12 @@ export async function seedFullContent(page) {
     try { localStorage.setItem('hsk4-paid-content-v1', JSON.stringify(data)); } catch (e) {}
   }, PAID_CONTENT);
 }
+
+// 初回起動は「案内 → 級診断」の順に出る。本題に入る前にここを抜ける。
+// 案内は分析のB1（いきなり20問・約7分を要求していた）への対応で足したもの。
+export async function passOnboarding(page) {
+  const start = await page.$('#content .intro button');
+  if (start) { await start.click(); await page.waitForTimeout(400); }
+  const skip = await page.$('[data-lc-action="skip"]');
+  if (skip) { await skip.click(); await page.waitForTimeout(400); }
+}

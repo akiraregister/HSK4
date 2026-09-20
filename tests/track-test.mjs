@@ -1,4 +1,4 @@
-import { launch, seedFullContent } from './browser.mjs';
+import { launch, seedFullContent, passOnboarding } from './browser.mjs';
 const B = process.env.BASE || 'http://127.0.0.1:8765/';
 const br = await launch();
 const c = await br.newContext({ viewport: { width: 390, height: 844 }, permissions: ['clipboard-read', 'clipboard-write'] });
@@ -10,7 +10,7 @@ const evs = () => p.evaluate(() => JSON.parse(localStorage.getItem('hsk4-events'
 
 // 計測セクションと採点サーバー設定は開発者向けなので ?debug=1 で有効化する
 await p.goto(B + '?debug=1', { waitUntil: 'load' }); await p.waitForTimeout(700);
-const skip = await p.$('[data-lc-action="skip"]'); if (skip) { await skip.click(); await p.waitForTimeout(400); }
+await passOnboarding(p);
 
 // --- 学習の一連の操作でイベントが積まれるか ---
 await p.click('#content button:has-text("学習を始める")'); await p.waitForTimeout(500);

@@ -1,4 +1,4 @@
-import { launch, seedFullContent } from './browser.mjs';
+import { launch, seedFullContent, passOnboarding } from './browser.mjs';
 
 const BASE = process.env.BASE || 'http://127.0.0.1:8765/';
 const browser = await launch();
@@ -13,8 +13,7 @@ page.on('console', m => { if (m.type() === 'error' && !/ERR_|Failed to load reso
 await page.goto(BASE, { waitUntil: 'load' });
 await page.waitForTimeout(600);
 // 初回起動は級診断から始まる仕様になったので、ここではスキップして本題へ入る
-const skip = await page.$('[data-lc-action="skip"]');
-if (skip) { await skip.click(); await page.waitForTimeout(400); }
+await passOnboarding(page);
 
 const results = [];
 const ok = (n, c, extra = '') => results.push(`${c ? 'PASS' : 'FAIL'}  ${n}${extra ? '  — ' + extra : ''}`);

@@ -14,6 +14,12 @@ async function fresh() {
   await p.waitForTimeout(600);
   return { c, p };
 }
+// 初回は「案内 → 級診断」の順に出る。案内を抜けて級診断を始めるところまで。
+async function toLevelCheck(p) {
+  await p.click('#content .intro button'); await p.waitForTimeout(400);
+  await p.click('[data-lc-action="start"]'); await p.waitForTimeout(300);
+}
+
 // 診断を最後まで答える。levelは3..6、指定levelまで正解して以降は誤答させる。
 async function answerAll(p, upTo) {
   for (let i = 0; i < 16; i++) {
@@ -37,8 +43,29 @@ async function answerAll(p, upTo) {
 // --- 初回起動で診断が出るか ---
 {
   const { c, p } = await fresh();
-  const txt = await p.textContent('#content');
-  ok('初回起動で級診断が出る', txt.includes('あなたに合う級'));
+  let txt = await p.textContent('#content');
+  // 初回はまず案内を出す（分析のB1：価値を見せる前に7分を要求していた）
+  ok('初回起動でまず案内が出る', !!(await p.$('#content .intro')), txt.slice(0, 30).replace(/\s+/g, ' '));
+  ok('案内に90日と1日15分が出る', txt.includes('90日') && txt.includes('15分'));
+  // 3つの訴求は積み上げずに1つずつ。最初は1つ目だけが開いている
+  // （1つ目が出るのは 720ms。fresh() の 600ms だけでは間に合わない）
+  await p.waitForTimeout(500);
+  const openAt0 = await p.$$eval('#content .intro-rows>div', es => es.map(e => e.className));
+  ok('案内は最初は1つ目だけを見せる',
+    openAt0.filter(x => x.includes('intro-on')).length === 1 && !openAt0[1].includes('intro-on'),
+    JSON.stringify(openAt0));
+  // 2つ目が来ると1つ目は見出しだけ残して畳まれる（消さない。3つあることが見えなくなるため）
+  await p.waitForTimeout(2800);
+  const at1 = await p.$$eval('#content .intro-rows>div', es => es.map(e => e.className));
+  ok('次が来ると前のものは畳まれる', at1[0].includes('intro-done') && at1[1].includes('intro-on'),
+    JSON.stringify(at1));
+  ok('畳んでも見出しは残る',
+    (await p.textContent('#content')).includes('90日で終わります'));
+  ok('案内でも下タブを出さない',
+    await p.$eval('#tabBar', e => getComputedStyle(e).display === 'none'));
+  await p.click('#content .intro button'); await p.waitForTimeout(500);
+  txt = await p.textContent('#content');
+  ok('案内のあとに級診断が出る', txt.includes('あなたに合う級'));
   ok('スキップできる', !!(await p.$('[data-lc-action="skip"]')));
   // 初回のオンボーディングは全画面。タブを出すと、まだ何も見ていない人が離脱できてしまう
   // うえ、級診断は設定から入る画面なので「設定」タブが選択状態になってしまう（分析のB2）
@@ -55,10 +82,55 @@ async function answerAll(p, upTo) {
   await c.close();
 }
 
+// --- 起動スプラッシュ ---
+{
+  const { c, p } = await fresh();
+  // CSS は 1800ms から薄くなり、JS が 2300ms に DOM から外す。片方だけ変えると
+  // 「まだ見えているのに消える」「消えたあとも居座る」のどちらかになる
+  const t = await p.evaluate(() => performance.now());
+  await p.waitForTimeout(Math.max(0, 2600 - t));
+  ok('スプラッシュは2.6秒までに消える',
+    await p.$eval('#splash', e => e.classList.contains('gone')));
+  await c.close();
+}
+{
+  const { c, p } = await fresh();
+  // 毎日開くアプリなので、待たされる感じは作らない。操作は pointer-events:none で
+  // 下へ通しているので、タップが失われることはない
+  await p.mouse.move(195, 400); await p.mouse.down(); await p.mouse.up();
+  await p.waitForTimeout(80);
+  ok('タップすれば待たずに消える',
+    await p.$eval('#splash', e => e.classList.contains('gone')));
+  ok('スプラッシュは操作を邪魔しない',
+    await p.$eval('#splash', e => getComputedStyle(e).pointerEvents === 'none'));
+  await c.close();
+}
+{
+  // 動きを止めている人には動かさない。B-3の灯りは案Xの「影ゼロ」から外した例外なので、
+  // 明滅しないただの影として残してはいけない
+  const c = await br.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+  const p = await c.newPage();
+  await seedFullContent(p);
+  await p.goto(B, { waitUntil: 'load' }); await p.waitForTimeout(600);
+  ok('動きを止めていれば灯りも出さない',
+    await p.$eval('.splash-flame', e => getComputedStyle(e).filter === 'none'));
+  ok('動きを止めていれば訴求は3つとも最初から開く',
+    await p.$$eval('.intro-rows>div', es => es.every(e => e.classList.contains('intro-on'))));
+  await c.close();
+}
+{
+  // 灯りはスプラッシュの炎だけの例外。アプリ本体の影ゼロは保つ
+  const { c, p } = await fresh();
+  ok('アプリ本体の --sh は none のまま',
+    (await p.evaluate(() => getComputedStyle(document.documentElement)
+      .getPropertyValue('--sh').trim())) === 'none');
+  await c.close();
+}
+
 // --- リスニング問題（各級5問目） ---
 {
   const { c, p } = await fresh();
-  await p.click('[data-lc-action="start"]'); await p.waitForTimeout(300);
+  await toLevelCheck(p);
   for (let i = 0; i < 4; i++) { // HSK3の最初の4問（テキスト）を飛ばす
     await p.click('.lc-opt.unknown'); await p.waitForTimeout(50);
     await p.click('[data-lc-action="next"]'); await p.waitForTimeout(90);
@@ -82,7 +154,7 @@ async function answerAll(p, upTo) {
 // 各級を直接選んで、分岐先だけを確かめる。
 for (const [lv, label, expect] of [[3, 'HSK3', '少し背伸び'], [4, 'HSK4', '今日やること'], [5, 'HSK5', '易しすぎます']]) {
   const { c, p } = await fresh();
-  await p.click('[data-lc-action="start"]'); await p.waitForTimeout(300);
+  await toLevelCheck(p);
   // 20問すべて「わからない」で流して結果画面へ
   for (let i = 0; i < 20; i++) {
     await p.click('.lc-opt.unknown'); await p.waitForTimeout(50);
