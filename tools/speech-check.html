@@ -25,6 +25,9 @@ button:active{background:var(--ink);color:var(--bg)}
 #log{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;line-height:1.65;color:var(--ink2);
   white-space:pre-wrap;word-break:break-all;border:1px solid var(--hair);padding:10px;margin-top:10px;min-height:80px}
 .verdict{border:1px solid var(--rule);padding:14px;margin-top:14px;font-size:14px;display:none}
+.ask{border:1px solid var(--brand);padding:14px;margin-top:14px;font-size:14px;display:none}
+.ask b{display:block;font-size:15px;color:var(--brand);margin-bottom:5px}
+.ask p{font-size:12.5px;color:var(--ink2);margin:0 0 10px}
 .verdict b{display:block;font-size:15px;margin-bottom:5px}
 .note{font-size:12px;color:var(--muted);margin-top:8px}
 </style>
@@ -46,6 +49,14 @@ button:active{background:var(--ink);color:var(--bg)}
 <p class="lead">単語カードと同じ方法で「你好」と喋らせます。</p>
 <button id="b2">② 読み上げを試す</button>
 
+<div class="ask" id="ask">
+  <b>いま「你好」と聞こえましたか？</b>
+  <p>処理が走ったかどうかは機械にも分かりますが、<b>音が出たかどうかは聞いた人にしか分かりません</b>。
+  iOSは消音スイッチで黙っているときも「喋った」と返してきます。</p>
+  <button id="heard">聞こえた</button>
+  <button id="notheard">聞こえなかった</button>
+</div>
+
 <div class="verdict" id="verdict"></div>
 
 <h2>記録</h2>
@@ -65,7 +76,10 @@ var standalone = (window.navigator.standalone === true) ||
   (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
 var hasSS = !!window.speechSynthesis;
 function voices(){ try{ return window.speechSynthesis.getVoices()||[]; }catch(e){ return []; } }
-function zhVoices(){ return voices().filter(function(v){ return /^zh/i.test(v.lang||''); }); }
+function zhVoices(){
+  return voices().filter(function(v){ return /^zh/i.test(v.lang||''); })
+    .sort(function(a,b){ return (/CN|Hans/i.test(b.lang)?1:0)-(/CN|Hans/i.test(a.lang)?1:0); });
+}
 function renderEnv(){
   var zs=zhVoices();
   document.getElementById('env').innerHTML =
@@ -105,18 +119,29 @@ document.getElementById('b2').onclick = function(){
   u.lang='zh-CN'; u.rate=0.9;
   var zs=zhVoices(); if(zs.length){ u.voice=zs[0]; log('② 声を指定: '+zs[0].name); }
   else log('② 中国語の声が見つからないので lang だけ指定');
-  u.onstart=function(){ log('② onstart が来た＝実際に喋り始めた'); speechok=true; verdict(); };
-  u.onend  =function(){ log('② onend が来た'); };
+  // **onstart が来ても「音が出た」ことにはならない。**iOSは、消音スイッチで
+  // 黙らされていても onstart と onend を普通に返す。だから最後は人に聞く。
+  u.onstart=function(){ log('② onstart が来た（喋る処理は始まった）'); started=true; };
+  u.onend  =function(){ log('② onend が来た（喋る処理は終わった）'); ask(); };
   u.onerror=function(e){ log('② onerror: '+(e.error||'不明')); speechok=false; verdict(); };
   speechSynthesis.speak(u);
   setTimeout(function(){
-    if(speechok===null){
-      log('② 2秒たっても onstart が来ない＝**喋っていない**');
+    if(!started && speechok===null){
+      log('② 2秒たっても onstart が来ない＝処理すら始まっていない');
       log('② いまの状態 speaking='+speechSynthesis.speaking+' pending='+speechSynthesis.pending);
       speechok=false; verdict();
     }
   }, 2000);
 };
+var started=false;
+function ask(){
+  if(speechok!==null) return;
+  var a=document.getElementById('ask'); a.style.display='block';
+  a.scrollIntoView({block:'center'});
+}
+document.getElementById('heard').onclick=function(){ log('② 人の耳：聞こえた'); speechok=true; hideAsk(); verdict(); };
+document.getElementById('notheard').onclick=function(){ log('② 人の耳：**聞こえなかった**'); speechok=false; hideAsk(); verdict(); };
+function hideAsk(){ document.getElementById('ask').style.display='none'; }
 
 function verdict(){
   if(mp3ok===null || speechok===null) return;
@@ -125,16 +150,21 @@ function verdict(){
     v.innerHTML='<b>どちらも鳴っていません</b>端末の消音スイッチか音量が原因の可能性が高いです。'+
       '本体横のスイッチと音量を上げて、もう一度お試しください。';
   } else if(mp3ok && !speechok){
-    v.innerHTML='<b>MP3は鳴るが、読み上げだけ鳴らない</b>'+
-      '音量の問題ではありません。読み上げ機能（Web Speech）がこの環境で動いていません。'+
-      (standalone ? 'ホーム画面から起動したアプリでは、iOSの読み上げが鳴らないことが知られています。'+
-        '<b style="display:inline">Safariで直接開くと鳴るか</b>も試してみてください。' : '')+
-      '<br><br>この場合、単語と例文も録音ファイルにするのが確実な直し方です。';
+    v.innerHTML='<b>MP3は鳴るが、読み上げだけ聞こえない</b>'+
+      '<b style="display:inline">まず本体横の消音スイッチを確認してください。</b>'+
+      'iPhoneでは、この2つは<b style="display:inline">別の経路で鳴ります</b>。'+
+      '録音ファイル（MP3）は消音でも鳴りますが、<b style="display:inline">読み上げは消音スイッチで黙ります</b>。'+
+      '画面上部に🔕（ベルに斜線）が出ていたら、それです。'+
+      '<br><br>スイッチを戻して、もう一度②を押してみてください。'+
+      'それでも聞こえないなら、'+
+      (standalone ? 'ホーム画面から起動したアプリで読み上げが鳴らない件かもしれません。Safariで直接開いて試してください。'
+                  : '声の種類か、端末の読み上げ設定の問題です。')+
+      '<br><br>どちらにせよ、<b style="display:inline">単語と例文も録音ファイルにすれば、この問題ごと無くなります</b>。';
   } else if(!mp3ok && speechok){
     v.innerHTML='<b>読み上げは鳴るが、MP3が鳴らない</b>音声ファイルに届いていません。通信かキャッシュの問題です。';
   } else {
-    v.innerHTML='<b>どちらも鳴っています</b>この画面では問題が再現しませんでした。'+
-      'アプリ側の呼び方に原因がありそうです。';
+    v.innerHTML='<b>どちらも聞こえています</b>この画面では問題が再現しませんでした。'+
+      'アプリ側（ホーム画面から起動したほう）で同じことを試してみてください。';
   }
 }
 </script>
