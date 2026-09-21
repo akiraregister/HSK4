@@ -55,9 +55,12 @@ button:active{background:var(--ink);color:var(--bg)}
 <button class="try" data-v="B">B：cancel せずに喋る（声を指定する）</button>
 <button class="try" data-v="C">C：cancel せず、<b>声を指定しない</b>（言語だけ）</button>
 <button class="try" data-v="D">D：Cと同じで、<b>ゆっくりにしない</b>（rate 1.0）</button>
-<p class="note">Cだけ鳴るなら、声のオブジェクトを渡しているのが原因です。
-Dだけ鳴るなら速度指定が原因です。全部ダメなら、端末に中国語の声が
-入っていない可能性が高いです（下の案内を参照）。</p>
+<button class="try" data-v="E">E：<b>以前のアプリとまったく同じ書き方</b>（cancel あり・声を指定しない）</button>
+<p class="note"><b>消音モードのまま試してください。</b>以前は消音でも聞こえていた、
+という報告があるので、まず<b>E</b>（以前のアプリとまったく同じ書き方）を押してください。
+Eだけ鳴るなら、私がこのセッションで入れた変更が原因です。<br>
+Cだけ鳴るなら声のオブジェクトを渡しているのが、Dだけなら速度指定が原因です。
+全部ダメなら、端末に中国語の声が入っていない可能性があります（下の案内を参照）。</p>
 
 <div class="ask" id="ask">
   <b>いま「你好」と聞こえましたか？</b>
@@ -120,10 +123,13 @@ document.getElementById('b1').onclick = function(){
 };
 
 // ---- 3. 読み上げ（4通り） ----
-// A: cancel してから speak（前のアプリの書き方）
+// A: cancel してから speak、声も渡す（このセッションで入れた書き方）
 // B: cancel せず、声のオブジェクトを渡す
 // C: cancel せず、声を渡さない（lang だけ）
 // D: C と同じで rate も既定のまま
+// E: cancel あり・声を渡さない・rate 0.9 ＝**このセッションで触る前のアプリそのもの**
+//    （A〜D にこの組み合わせが無かった。以前は消音でも聞こえていたという報告があるので、
+//     ここが鳴るなら、原因は消音スイッチではなくこちらの変更）
 var tried={}, lastV=null, started=false;
 [].forEach.call(document.querySelectorAll('.try'), function(b){
   b.onclick=function(){ runSpeak(b.dataset.v); };
@@ -137,7 +143,7 @@ function runSpeak(v){
   var fire=function(){
     var u=new SpeechSynthesisUtterance('你好');
     u.lang='zh-CN';
-    if(v==='A'||v==='B'||v==='C') u.rate=0.9;
+    if(v!=='D') u.rate=0.9;
     if(v==='A'||v==='B'){
       if(zs.length){ u.voice=zs[0]; log(v+': 声を指定 '+zs[0].name+'（'+zs[0].lang+'）'); }
       else log(v+': 中国語の声が無いので指定できない');
@@ -155,7 +161,7 @@ function runSpeak(v){
       }
     }, 2000);
   };
-  if(v==='A'){ speechSynthesis.cancel(); log('A: cancel() を呼んだ'); fire(); }
+  if(v==='A'||v==='E'){ speechSynthesis.cancel(); log(v+': cancel() を呼んだ'); fire(); }
   else if(speechSynthesis.speaking || speechSynthesis.pending){
     speechSynthesis.cancel(); setTimeout(fire, 80);
   } else fire();
@@ -181,18 +187,24 @@ function verdict(){
   if(!okList.length && !ngList.length) return;
   v.style.display='block';
   if(okList.length){
-    var how={A:'cancel してから喋る', B:'cancel せず、声を指定する',
-             C:'cancel せず、声を指定しない（言語だけ）', D:'声を指定せず、速度も変えない'};
-    v.innerHTML='<b>「'+okList.join('・')+'」で鳴りました</b>'+
-      'アプリもこの書き方（'+how[okList[0]]+'）に合わせれば鳴るようになります。'+
-      (ngList.length ? '<br><br>鳴らなかったのは「'+ngList.join('・')+'」です。' : '');
+    var how={A:'cancel してから喋る（声も指定）', B:'cancel せず、声を指定する',
+             C:'cancel せず、声を指定しない（言語だけ）', D:'声を指定せず、速度も変えない',
+             E:'以前のアプリと同じ（cancel あり・声を指定しない）'};
+    var msg='<b>「'+okList.join('・')+'」で鳴りました</b>'+
+      'アプリもこの書き方（'+how[okList[0]]+'）に合わせれば鳴るようになります。';
+    if(okList.indexOf('E')>=0){
+      msg='<b>「E」で鳴りました＝以前の書き方なら鳴ります</b>'+
+        '消音スイッチのせいではなく、<b style="display:inline">このセッションで入れた変更が原因</b>です。'+
+        'アプリを以前の書き方へ戻します。';
+    }
+    v.innerHTML = msg + (ngList.length ? '<br><br>鳴らなかったのは「'+ngList.join('・')+'」です。' : '');
     return;
   }
-  if(Object.keys(tried).length < 4){
+  if(Object.keys(tried).length < 5){
     v.innerHTML='<b>「'+ngList.join('・')+'」は鳴りませんでした</b>残りも試してください。';
     return;
   }
-  v.innerHTML='<b>4通りとも鳴りませんでした</b>'+
+  v.innerHTML='<b>5通りとも鳴りませんでした</b>'+
     '書き方の問題ではありません。<b style="display:inline">端末に中国語の声が入っていない</b>'+
     '可能性が高いです。'+
     '<br><br>iPhoneの「設定」→「アクセシビリティ」→「読み上げコンテンツ」→「声」→「中国語」'+

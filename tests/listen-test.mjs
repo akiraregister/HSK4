@@ -140,10 +140,12 @@ ok('読み込み直しても速さを覚えている',
   await btns[0].click(); await p2.waitForTimeout(250);
   const said = await p2.evaluate(() => window.__ss);
   ok('押すと読み上げる', said.spoke.length === 1, JSON.stringify(said.spoke));
-  // iOSでは cancel の直後の speak が声を出さないまま終わることがある。
-  // 鳴っていないときに cancel を呼んではいけない
-  ok('鳴っていないときは cancel を呼ばない', said.cancels === 0, 'cancels=' + said.cancels);
-  ok('大陸の普通話の声を選ぶ', said.spoke[0].voice === 'Ting-Ting', said.spoke[0].voice);
+  // **この2つは実機で決まった形。理屈で変えないこと。**
+  // 2026年9月に「声を明示して選ぶ」「鳴っている最中だけ cancel する」へ変えたら、
+  // それまで消音モードでも聞こえていたものが鳴らなくなった。元の形に戻してある。
+  ok('毎回 cancel してから喋る', said.cancels === 1, 'cancels=' + said.cancels);
+  ok('声のオブジェクトは渡さない（lang だけ）',
+    said.spoke[0].voice == null && said.spoke[0].lang === 'zh-CN', JSON.stringify(said.spoke[0]));
   ok('聞きとりで選んだ速さが効く',
     Math.abs(said.spoke[0].rate - 0.9 * 0.75) < 0.001, 'rate=' + said.spoke[0].rate);
   ok('読み上げでエラーを出さない', errs2.length === 0, errs2.join(','));

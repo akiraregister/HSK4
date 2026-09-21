@@ -28712,14 +28712,6 @@ window.setDay = setDay;
 //  - **鳴らなかったら黙らない。**onstart も onerror も来ないまま終わるのがiOSの壊れ方
 //    なので、時間切れで気づいて1度だけ知らせる（押しても無反応、が一番困る）
 var _speakBroken=false, _speakUnlocked=false;
-function zhVoice(){
-  try{
-    var vs=window.speechSynthesis.getVoices()||[];
-    // 大陸の普通話を優先する。台湾（zh-TW）・広東（zh-HK）は発音が別物
-    return vs.filter(function(v){ return /^zh[-_]?(CN|Hans)?$/i.test(v.lang||'') || /^zh/i.test(v.lang||''); })
-             .sort(function(a,b){ return (/CN|Hans/i.test(b.lang)?1:0)-(/CN|Hans/i.test(a.lang)?1:0); })[0] || null;
-  }catch(e){ return null; }
-}
 window.speakZh = function(text){
   if(!text) return;
   // 文法の型は「因为〜所以〜」のように、語句が入る位置を「〜」で示している。
@@ -28728,27 +28720,23 @@ window.speakZh = function(text){
   if(!say) return;
   var ss = window.speechSynthesis;
   if(!ss){ _speakFailed(); return; }
-  var go = function(){
-    var u = new SpeechSynthesisUtterance(say);
-    u.lang = 'zh-CN';
-    // 聞きとりで選んだ速さをここにも効かせる。設定が2つあるように見せない
-    u.rate = 0.9 * (typeof lsRate==='function' ? lsRate() : 1);
-    var v = zhVoice(); if(v) u.voice = v;
-    var started=false;
-    u.onstart=function(){ started=true; _speakUnlocked=true; };
-    u.onerror=function(){ started=true; _speakFailed(); };
-    try{ ss.speak(u); }catch(e){ _speakFailed(); return; }
-    // onstart も onerror も来なければ、鳴っていない
-    setTimeout(function(){ if(!started && !ss.speaking) _speakFailed(); }, 1400);
-  };
-  if(ss.speaking || ss.pending){
-    // 鳴っている最中の割り込みだけ cancel する。iOSでは cancel の直後に speak すると
-    // 取りこぼすので、一拍おく（ここは1回目ではないので、操作の直後でなくても鳴る）
-    try{ ss.cancel(); }catch(e){}
-    setTimeout(go, 80);
-  } else {
-    go();
-  }
+  // **ここの呼び方は触らないこと。**2026年9月に「声を明示して選ぶ」「鳴っている最中だけ
+  // cancel する」へ変えたところ、**消音モードで鳴らなくなった**（それまでは消音でも
+  // 聞こえていた）。iOSの一般論としては良い変更のはずだったが、実機では逆効果だった。
+  // いまは元の形に戻してある：**毎回 cancel してから、lang だけ指定して喋らせる。**
+  // 声を u.voice で渡さないのが肝で、渡すとiOSの声の選び方と音の出方が変わるらしい。
+  ss.cancel();
+  var u = new SpeechSynthesisUtterance(say);
+  u.lang = 'zh-CN';
+  // 聞きとりで選んだ速さをここにも効かせる。設定が2つあるように見せない
+  // （既定の 1 倍なら 0.9 ＝ 元の値そのまま）
+  u.rate = 0.9 * (typeof lsRate==='function' ? lsRate() : 1);
+  var started=false;
+  u.onstart=function(){ started=true; _speakUnlocked=true; };
+  u.onerror=function(){ started=true; _speakFailed(); };
+  try{ ss.speak(u); }catch(e){ _speakFailed(); return; }
+  // onstart も onerror も来なければ、そもそも喋っていない
+  setTimeout(function(){ if(!started && !ss.speaking) _speakFailed(); }, 1400);
 };
 function _speakFailed(){
   if(_speakBroken || _speakUnlocked) return;   // 一度鳴った端末なら、単発の失敗は黙って流す
