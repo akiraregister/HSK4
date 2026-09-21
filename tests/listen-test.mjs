@@ -5,6 +5,8 @@
 // 落ちたり落ちなかったりする。ここで確かめたいのは再生の可否ではなく、
 // ボタンと音声の状態が食い違わないことなので、偽の Audio で十分。
 import { launch, seedFullContent, passOnboarding } from './browser.mjs';
+import { audioKey as nodeAudioKey, sayText } from '../audio/build-word-audio.mjs';
+import { readFile } from 'fs/promises';
 const B = process.env.BASE || 'http://127.0.0.1:8765/';
 const br = await launch();
 const c = await br.newContext({ viewport: { width: 390, height: 844 } });
@@ -182,6 +184,117 @@ ok('読み込み直しても速さを覚えている',
   const toast = await p3.textContent('.hsk-toast').catch(() => '');
   ok('鳴らなければそう伝える', (toast || '').includes('読み上げ'), JSON.stringify(toast));
   await c3.close();
+}
+
+// --- 録音の読み上げ（消音スイッチで黙らないほう） ---
+// iPhoneの消音スイッチは内蔵スピーカーにしか効かず、録音は消音でも鳴るが
+// 読み上げ（Web Speech）は黙る。ブラウザからは経路を選べないので、録音を本命にした。
+{
+  // 録音がある状態を作る。リポジトリの索引はまだ空（1本も作っていない）ので、
+  // ここでは「作ったあと」を再現して差し替える。
+  // **Service Worker は止めること。**止めないと fetch を横取りされて差し替えが効かない
+  const HAVE = ['水平', '我的中文水平还不够高。', '你好', '因为 所以', '没有录音'].map(nodeAudioKey);
+  const c4 = await br.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
+  const p4 = await c4.newPage();
+  await p4.route('**/audio/w/index.json', r =>
+    r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(HAVE) }));
+  const errs4 = []; p4.on('pageerror', e => errs4.push(e.message));
+  await p4.addInitScript(() => {
+    window.__played = []; window.__spoke = []; window.__failNext = false;
+    window.Audio = class {
+      constructor(src) {
+        this.src = src; this.paused = true; this.playbackRate = 1; this.preservesPitch = true;
+        window.__played.push(this);
+        if (window.__failNext) setTimeout(() => this.onerror && this.onerror(), 5);
+      }
+      play() { this.paused = false; return window.__failNext ? Promise.reject(new Error('404')) : Promise.resolve(); }
+      pause() { this.paused = true; }
+    };
+    window.SpeechSynthesisUtterance = class { constructor(t) { this.text = t; this.lang = ''; this.rate = 1; } };
+    Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: {
+      speaking: false, pending: false, cancel() {}, getVoices() { return []; },
+      speak(u) { window.__spoke.push(u.text); if (u.onstart) u.onstart(); },
+    }});
+  });
+  await seedFullContent(p4);
+  await p4.goto(B, { waitUntil: 'load' }); await p4.waitForTimeout(600);
+  await p4.mouse.move(195, 400); await p4.mouse.down(); await p4.mouse.up();
+  await p4.waitForTimeout(300);
+  await passOnboarding(p4);
+
+  // **アプリと生成器でファイル名の計算がずれると、録音が見つからず黙って読み上げへ
+  // 落ちる（＝消音で鳴らないまま）。**本番にテスト用のフックは足さない約束なので、
+  // speakZh() が実際に取りにいくURLから確かめる。
+  // 「因为〜所以〜」は、読み上げ前に「〜」を落とす処理の一致も兼ねる。
+  const samples = ['水平', '我的中文水平还不够高。', '你好', '因为〜所以〜'];
+  const urls = await p4.evaluate(ts => {
+    window.__played.length = 0;
+    return ts.map(t => { window.speakZh(t); return window.__played.at(-1).src; });
+  }, samples);
+  const want = samples.map(t => 'audio/w/' + nodeAudioKey(sayText(t)) + '.mp3');
+  ok('ファイル名の計算がアプリと生成器で一致する',
+    urls.every((u, i) => u.endsWith(want[i])), urls.join(' ') + ' / 期待 ' + want.join(' '));
+
+  await p4.evaluate(() => { window.__played.length = 0; window.__spoke.length = 0; });
+  await p4.evaluate(() => localStorage.setItem('hsk4-ls-rate', '0.75'));
+  await p4.click('#content button:has-text("学習を始める")'); await p4.waitForTimeout(600);
+  await p4.click('#content .wcard.on .speak-btn'); await p4.waitForTimeout(250);
+  const rec = await p4.evaluate(() => ({ played: window.__played.map(a => ({ src: a.src, rate: a.playbackRate })),
+                                         spoke: window.__spoke }));
+  ok('録音を鳴らす', rec.played.length === 1 && /audio\/w\/[0-9a-f]{8}\.mp3$/.test(rec.played[0].src),
+    JSON.stringify(rec.played));
+  ok('録音があれば端末の読み上げは使わない', rec.spoke.length === 0, JSON.stringify(rec.spoke));
+  ok('聞きとりの速さが録音にも効く', Math.abs(rec.played[0].rate - 0.75) < 0.001, 'rate=' + rec.played[0].rate);
+
+  // 録音がまだ無い文字列は、従来どおり端末の読み上げへ落ちる（作った分から順に置き換わる）
+  await p4.evaluate(() => { window.__played.length = 0; window.__spoke.length = 0; window.__failNext = true; });
+  await p4.evaluate(() => window.speakZh('没有录音'));
+  await p4.waitForTimeout(300);
+  const fb = await p4.evaluate(() => ({ played: window.__played.length, spoke: window.__spoke }));
+  ok('録音が無ければ端末の読み上げへ落ちる', fb.spoke.includes('没有录音'), JSON.stringify(fb));
+  // onerror と play() の拒否が両方来るので、素直に書くと同じ語を二重に読み上げる
+  ok('落ちるときに二重に読み上げない', fb.spoke.length === 1, JSON.stringify(fb.spoke));
+  ok('読み上げでエラーを出さない', errs4.length === 0, errs4.join(','));
+  await c4.close();
+}
+{
+  // 索引（audio/w/index.json）があれば、無い文字列は取りにいかずに読み上げへ回す。
+  // 取りにいくと、押してから404を待つぶん声が出るまで待たされる
+  // **Service Worker を止めておくこと。**止めないと fetch を横取りされて、
+  // Playwright の差し替えが効かない（素通りして本物の404が返ってくる）
+  const c5 = await br.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
+  const p5 = await c5.newPage();
+  await p5.route('**/audio/w/index.json', r =>
+    r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(['deadbeef']) }));
+  await p5.addInitScript(() => {
+    window.__played = []; window.__spoke = [];
+    window.Audio = class { constructor(s){ this.src=s; this.playbackRate=1; window.__played.push(this); }
+      play(){ return Promise.resolve(); } pause(){} };
+    window.SpeechSynthesisUtterance = class { constructor(t){ this.text=t; this.lang=''; this.rate=1; } };
+    Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: {
+      speaking: false, pending: false, cancel() {}, getVoices() { return []; },
+      speak(u) { window.__spoke.push(u.text); if (u.onstart) u.onstart(); } }});
+  });
+  await seedFullContent(p5);
+  await p5.goto(B, { waitUntil: 'load' }); await p5.waitForTimeout(600);
+  await p5.mouse.move(195, 400); await p5.mouse.down(); await p5.mouse.up();
+  await p5.waitForTimeout(300);
+  await passOnboarding(p5);
+  await p5.evaluate(() => window.speakZh('索引を読ませる'));   // 1回目で索引を読みにいく
+  await p5.waitForTimeout(600);
+  await p5.evaluate(() => { window.__played.length = 0; window.__spoke.length = 0; });
+  await p5.evaluate(() => window.speakZh('録音が無い語'));
+  await p5.waitForTimeout(200);
+  const idx = await p5.evaluate(() => ({ played: window.__played.length, spoke: window.__spoke.length }));
+  ok('索引に無ければ取りにいかない', idx.played === 0, JSON.stringify(idx));
+  ok('索引に無ければすぐ読み上げへ回す', idx.spoke === 1, JSON.stringify(idx));
+  await c5.close();
+}
+{
+  // いまリポジトリにある索引は空（録音をまだ作っていない）。この状態で無駄な
+  // 取得が出ないことを確かめる＝作る前でも、いまより遅くならない
+  const real = JSON.parse(await readFile(new URL('../audio/w/index.json', import.meta.url), 'utf8'));
+  ok('録音の索引がリポジトリにある', Array.isArray(real), JSON.stringify(real).slice(0, 40));
 }
 
 // --- スクロールの跳ね返りとヘッダーのにじみ（実機で指摘された） ---

@@ -5,8 +5,9 @@
 // のに、音がスピーカーへ届かない。書き方を4通り試しても全滅だったので、アプリ側からは
 // 手が出せない。端末の読み上げ設定に左右されないよう、こちらで録音を持つ。
 //
-//   node audio/build-word-audio.mjs --dry-run     何本作るかだけ見る（鍵は要らない）
-//   GOOGLE_TTS_KEY=xxxx node audio/build-word-audio.mjs
+//   node audio/build-word-audio.mjs --dry-run              何本作るかだけ見る（鍵は要らない）
+//   GOOGLE_TTS_KEY=xxxx node audio/build-word-audio.mjs --words   単語498本だけ（約2〜3MB）
+//   GOOGLE_TTS_KEY=xxxx node audio/build-word-audio.mjs           全部（1,207本・12〜16MB）
 //
 // ・**すでにあるファイルは作り直さない。**途中で止めても、もう一度叩けば続きから進む
 // ・ファイル名は中文そのものから決まる（audioKey）。**一覧（manifest）は置かない。**
@@ -23,6 +24,9 @@ const OUT = ROOT + 'audio/w/';
 const KEY = process.env.GOOGLE_TTS_KEY || '';
 const VOICE = process.env.GOOGLE_TTS_VOICE || 'cmn-CN-Wavenet-A';
 const DRY = process.argv.includes('--dry-run');
+// 例文と文法例文で容量の8割を使うので、単語だけ先に作れるようにしてある。
+// あとから足すときも、すでにあるファイルは作り直さないのでそのまま続けられる。
+const WORDS_ONLY = process.argv.includes('--words');
 
 // index.html / content-bundle.js と同じ方法でブロックを取り出す
 function extractBlock(src, marker, openChar, closeChar) {
@@ -65,8 +69,11 @@ function collect(lessons) {
     if (say && !out.has(say)) out.set(say, kind);
   };
   for (const l of lessons) {
-    for (const v of (l.vocab || [])) { add(v.zh, '単語'); add(v.example, '例文'); }
-    for (const g of (l.grammar || [])) add(g.example, '文法例文');
+    for (const v of (l.vocab || [])) {
+      add(v.zh, '単語');
+      if (!WORDS_ONLY) add(v.example, '例文');
+    }
+    if (!WORDS_ONLY) for (const g of (l.grammar || [])) add(g.example, '文法例文');
   }
   return out;
 }
@@ -125,6 +132,17 @@ if (!KEY) {
   process.exit(1);
 }
 
+// アプリが「その録音があるか」を押す前に知るための索引。**中身はハッシュだけ**なので、
+// 未購入のDay8-90の中文が漏れることはない（一覧を置かない理由はファイル先頭に書いた）。
+// これが無いとアプリは毎回とりあえず取りにいき、無い文字列では404を待ってから
+// 読み上げへ落ちる＝押してから声が出るまで待たされる。
+async function writeIndex() {
+  const keys = (await readdir(OUT).catch(() => []))
+    .filter(f => f.endsWith('.mp3')).map(f => f.slice(0, -4)).sort();
+  await writeFile(OUT + 'index.json', JSON.stringify(keys));
+  console.log(`索引を書き出した audio/w/index.json（${keys.length}本）`);
+}
+
 async function synth(text, tries = 0) {
   const res = await fetch('https://texttospeech.googleapis.com/v1/text:synthesize?key=' + KEY, {
     method: 'POST',
@@ -167,6 +185,7 @@ for (const [key, text] of todo) {
     process.exit(1);
   }
 }
+await writeIndex();
 console.log(`\n完了。${done} 本 / ${Math.round(bytes / 1024 / 1024 * 10) / 10}MB`);
 console.log('このあと sw.js の CACHE_VERSION を1つ上げて、node tests/run.mjs を通してください。');
 

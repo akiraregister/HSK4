@@ -28712,12 +28712,80 @@ window.setDay = setDay;
 //  - **鳴らなかったら黙らない。**onstart も onerror も来ないまま終わるのがiOSの壊れ方
 //    なので、時間切れで気づいて1度だけ知らせる（押しても無反応、が一番困る）
 var _speakBroken=false, _speakUnlocked=false;
+
+// ===== 単語・例文の録音（audio/w/*.mp3） =====
+// iPhoneの消音スイッチは内蔵スピーカーにしか効かず、**録音は消音でも鳴るが
+// 読み上げ（Web Speech）は黙る**。同じ端末でイヤホンを挿すと両方鳴ることで確かめた。
+// ブラウザからは消音状態も再生経路も触れないので、確実に鳴らすには録音を持つしかない。
+// 録音が無い文字列は、従来どおり端末の読み上げへ落ちる（＝作った分から順に置き換わる）。
+
+// ★ audio/build-word-audio.mjs の audioKey() と**同じ計算**（FNV-1a 32bit / UTF-8バイト列）。
+//   片方だけ直すと録音が全部見つからなくなり、黙って読み上げへ落ちる（＝消音で鳴らない）。
+//   tests/listen-test.mjs が両者の一致を見張っている。
+function audioKey(text){
+  var bytes=new TextEncoder().encode(String(text));
+  var h=0x811c9dc5;
+  for(var i=0;i<bytes.length;i++){ h^=bytes[i]; h=Math.imul(h,0x01000193)>>>0; }
+  return ('0000000'+h.toString(16)).slice(-8);
+}
+// どの録音があるかの索引（ハッシュだけ）。**無い文字列を取りにいかないため**に使う。
+// 索引が無い／読めないうちは、とりあえず取りにいって404なら落ちる（動作は変わらない）。
+var _recIndex=null, _recIndexTried=false, _noRec={}, _recAudio=null;
+function loadRecIndex(){
+  if(_recIndexTried) return;
+  _recIndexTried=true;
+  try{
+    fetch('audio/w/index.json').then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(list){
+        if(!Array.isArray(list)) return;
+        var m={}; for(var i=0;i<list.length;i++) m[list[i]]=1;
+        _recIndex=m;
+      }).catch(function(){});
+  }catch(e){}
+}
+// 録音を鳴らす。鳴らせたら true。
+// **必ず操作の直後（同じタップの中）で play() を呼ぶこと。**先に索引を待つと
+// iOSが「操作から始まった再生」と見なさなくなり、拒否される。
+function playWordAudio(say){
+  loadRecIndex();
+  if(_noRec[say]) return false;
+  var key=audioKey(say);
+  if(_recIndex && !_recIndex[key]){ _noRec[say]=true; return false; }
+  try{
+    if(_recAudio){ try{ _recAudio.pause(); }catch(e){} }
+    var a=new Audio('audio/w/'+key+'.mp3');
+    _recAudio=a;
+    a.playbackRate = (typeof lsRate==='function' ? lsRate() : 1);
+    a.preservesPitch=true; a.webkitPreservesPitch=true;
+    // **onerror と play() の拒否は両方来る。**素直に両方から呼ぶと
+    // 同じ語を二重に読み上げるので、1回に絞る（実際に二重になった）。
+    var fell=false;
+    var fall=function(){
+      if(fell) return; fell=true;
+      _noRec[say]=true;
+      if(_recAudio===a) _recAudio=null;
+      speakZhFallback(say);
+    };
+    a.onerror=fall;
+    a.play().catch(fall);
+    return true;
+  }catch(e){ return false; }
+}
 window.speakZh = function(text){
   if(!text) return;
   // 文法の型は「因为〜所以〜」のように、語句が入る位置を「〜」で示している。
   // これは目で見るための印なので、音にする前に落とす。
+  // **audio/build-word-audio.mjs の sayText() と同じ処理にすること。**
+  // ここで落とした形で録音を作っているので、ずれるとファイル名が合わない。
   var say = String(text).replace(/[〜～／]/g,' ').replace(/\s+/g,' ').trim();
   if(!say) return;
+  // まず録音。無ければ端末の読み上げへ落ちる
+  if(playWordAudio(say)) return;
+  speakZhFallback(say);
+};
+// 端末の読み上げ（Web Speech）。録音がまだ無い文字列のための控え。
+// **消音スイッチで黙るのはこちら。**だから録音を本命にしてある。
+function speakZhFallback(say){
   var ss = window.speechSynthesis;
   if(!ss){ _speakFailed(); return; }
   // **ここの呼び方は触らないこと。**2026年9月に「声を明示して選ぶ」「鳴っている最中だけ
@@ -28737,7 +28805,7 @@ window.speakZh = function(text){
   try{ ss.speak(u); }catch(e){ _speakFailed(); return; }
   // onstart も onerror も来なければ、そもそも喋っていない
   setTimeout(function(){ if(!started && !ss.speaking) _speakFailed(); }, 1400);
-};
+}
 function _speakFailed(){
   if(_speakBroken || _speakUnlocked) return;   // 一度鳴った端末なら、単発の失敗は黙って流す
   _speakBroken = true;
