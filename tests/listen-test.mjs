@@ -155,6 +155,8 @@ ok('読み込み直しても速さを覚えている',
   const note = await p2.textContent('#content .spk-note').catch(() => '');
   ok('消音スイッチの注意書きが単語ステップに出る',
     note.includes('消音スイッチ') && note.includes('別のしくみ'), JSON.stringify(note));
+  // 消音スイッチは内蔵スピーカーにしか効かない。イヤホンなら鳴るので、その場で試せる
+  ok('イヤホンという逃げ道も書いてある', note.includes('イヤホン'), JSON.stringify(note));
   ok('注意書きは読み上げボタンと同じ画面にある',
     await p2.$eval('#content .spk-note',
       e => e.checkVisibility({ contentVisibilityAuto: true })));
