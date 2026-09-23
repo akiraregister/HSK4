@@ -22,32 +22,47 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Yomogi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-/* アプリ本体（../index.html）と同じトークン。ブランドを1つに保つため値を共有する */
+/* アプリ本体（../index.html）と同じトークン。ブランドを1つに保つため値を写してある。
+   **アプリ側の :root を変えたら、ここも一緒に変えること。**
+   2026年9月、アプリだけ案X（辞書・新聞）へ替えてLPを置き去りにし、
+   丸ゴシック＋山吹＋角丸のまま半年ぶん取り残されていた。 */
 :root{
-  --bg:#FCF9F2;--card:#fff;--ink:#2A2724;--ink-2:#4A443C;--muted:#8A8377;--line:#E4DCCB;
-  --brand:#F2A227;--good:#4E7A3C;--bad:#B0561F;--gray:#F0EBE0;--paper:#FBF6EA;
-  --sage:#D5E4C8;--apricot:#FBE0BC;--blush:#F6D9D2;
-  --stroke:#2A2724;--bw:1.5px;
-  --font-display:'Zen Maru Gothic','Hiragino Maru Gothic ProN',sans-serif;
-  --font-body:'Zen Kaku Gothic New','Hiragino Sans','Yu Gothic',sans-serif;
-  --font-hand:'Yomogi','Hiragino Maru Gothic ProN',cursive;
-  --zh-font:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+  --bg:#FCFBF8;--card:#FCFBF8;--ink:#15150F;--ink-2:#46443C;--ink2:#46443C;--muted:#8F8C82;
+  /* 罫は2階層だけ。--hair=細罫（区切り）／--rule=太罫（塊の境目）。
+     旧名の --line --stroke --bw はこの2つを指す */
+  --hair:#E5E1D6;--rule:#D7D2C4;--line:#E5E1D6;--stroke:#D7D2C4;--bw:1px;
+  /* 角丸は0。案Xは罫だけで組む */
+  --r-sm:0;--r-md:0;--r-lg:0;--r-pill:0;
+  --sh:none;
+  /* アクセントは柿1色。山吹はクリーム地との明度差が小さく、罫囲みでは読めない */
+  --brand:#DC6011;--brand-2:#B84D0C;--brand-tint:#F6E4D4;
+  --good:#3F6B34;--bad:#A8352A;--gray:#EFEBE0;--paper:#F7F4EA;
+  --sage:#E8EFE2;--apricot:#F6E4D4;--blush:#F3E0DD;
+  /* 和文は明朝、中文は宋体。--font-hand は呼び出しが残っているので名前だけ生かす */
+  --font-display:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho','Noto Serif SC','Songti SC',serif;
+  --font-body:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho','Noto Serif SC','Songti SC',serif;
+  --font-hand:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho',serif;
+  --zh-font:'Noto Serif SC','Songti SC','SimSun',serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-weight:400;line-height:1.85;-webkit-font-smoothing:antialiased}
-:focus-visible{outline:2.5px solid var(--bad);outline-offset:3px;border-radius:6px}
+/* 読み込んでいないウェイト（800・900）をブラウザが太らせて偽装すると、
+   明朝は横画が細いので字がつぶれる。アプリ本体と同じ保険をかける */
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-weight:400;line-height:1.85;-webkit-font-smoothing:antialiased;font-synthesis:none;-webkit-font-synthesis:none}
+:focus-visible{outline:2.5px solid var(--bad);outline-offset:3px;border-radius:0}
 h1,h2,h3,.num,.btn,.badge{font-family:var(--font-display)}
 .hand{font-family:var(--font-hand);font-weight:400}
 img,svg{max-width:100%}
 a{color:var(--bad)}
-.zh{font-family:var(--zh-font);font-weight:700}
+.zh{font-family:var(--zh-font);font-weight:600}
 
 /* 背面シェイプ。色はカードではなく地が持つ（アプリと同じ考え方） */
-#bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+/* 案Xは地に色を敷かない。アプリ側の #bgShapes も display:none にしてある。
+   markup は残してあるので、戻したくなったらここだけ触ればよい */
+#bg{display:none;position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
 #bg svg{width:100%;height:100%;min-width:900px}
 
 .wrap{max-width:860px;margin:0 auto;padding:0 20px}
@@ -58,14 +73,14 @@ a{color:var(--bad)}
 .eyebrow{display:flex;align-items:center;gap:11px;margin:0 0 12px;
   font-family:var(--font-hand);font-size:13px;color:var(--muted);line-height:1.6}
 .eyebrow::after{content:"";flex:1;height:1.5px;background:var(--line)}
-h2{font-size:clamp(21px,4.6vw,28px);line-height:1.42;margin:0 0 8px;font-weight:900;text-wrap:balance}
+h2{font-size:clamp(21px,4.6vw,28px);line-height:1.42;margin:0 0 8px;font-weight:600;text-wrap:balance}
 .sec-lead{color:var(--ink-2);font-size:14.5px;margin:0 0 22px;line-height:1.85;max-width:38em}
-.card{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:20px;padding:20px 22px}
+.card{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:0;padding:20px 22px}
 
 /* ヘッダー */
 .top{padding:20px 0 0}
 .brand{display:flex;align-items:center;gap:10px}
-.brand-word{font-family:var(--font-display);font-size:24px;font-weight:900;letter-spacing:.04em}
+.brand-word{font-family:var(--font-display);font-size:24px;font-weight:600;letter-spacing:.04em}
 .brand-sub{font-family:var(--font-hand);font-size:12px;color:var(--muted);align-self:flex-end;padding-bottom:3px}
 
 /* ファーストビュー：広告からの流入を想定し、ここだけで判断できるようにする。
@@ -73,68 +88,74 @@ h2{font-size:clamp(21px,4.6vw,28px);line-height:1.42;margin:0 0 8px;font-weight:
 .hero{padding:28px 0 8px}
 .hero-grid{display:grid;grid-template-columns:1fr;gap:30px;align-items:center}
 @media(min-width:820px){.hero-grid{grid-template-columns:1.06fr .94fr;gap:38px}}
-h1{font-size:clamp(30px,7.4vw,46px);line-height:1.32;letter-spacing:.005em;margin:0 0 16px;font-weight:900;text-wrap:balance}
+h1{font-size:clamp(30px,7.4vw,46px);line-height:1.32;letter-spacing:.005em;margin:0 0 16px;font-weight:600;text-wrap:balance}
 h1 .em{color:var(--bad)}
 .lead{font-size:clamp(15.5px,3.8vw,17px);line-height:1.9;margin:0 0 8px;max-width:34em}
-.squiggle{display:block;height:10px;margin:2px 0 18px;overflow:visible}
-.squiggle path{stroke:var(--brand);stroke-width:4.5;fill:none;stroke-linecap:round}
+/* 見出しの下の線。以前は手書き風のうねり線だったが、案Xは罫で組むので
+   まっすぐな太罫にした（アプリの .intro-rows の上罫と同じ考え方） */
+.squiggle{display:block;height:0;border-top:2px solid var(--brand);width:210px;max-width:100%;margin:6px 0 20px}
+.squiggle path{display:none}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  background:var(--stroke);color:var(--bg);border:var(--bw) solid var(--stroke);border-radius:999px;
-  padding:17px 30px;font-size:17px;font-weight:900;text-decoration:none;min-height:56px;cursor:pointer;font-family:var(--font-display)}
-.btn.ghost{background:#fff;color:var(--ink)}
-.btn.amber{background:var(--brand);color:var(--ink)}
+  background:var(--ink);color:var(--bg);border:var(--bw) solid var(--stroke);border-radius:0;
+  padding:17px 30px;font-size:17px;font-weight:600;text-decoration:none;min-height:56px;cursor:pointer;font-family:var(--font-display)}
+/* 副：罫囲み（アプリの .xbtn と同じ）／主：墨ベタ（アプリの「答えを見る」と同じ）。
+   **柿ベタはやめた。**案Xでは柿は差し色1点に絞る決まりだし、
+   濃い文字を載せると明度差が足りずに読みにくかった（実際に読めなかった）。
+   クラス名 amber は markup 側に残っているので、名前だけ生かしてある */
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.amber{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .cta-row{display:flex;flex-direction:column;gap:10px;align-items:stretch;margin-top:20px}
 @media(min-width:560px){.cta-row{flex-direction:row;align-items:center}.cta-row .btn{flex:0 0 auto}}
 .cta-note{font-size:13px;color:var(--muted);margin-top:10px}
 
 /* 端末モック：アプリの「今日」画面をそのまま縮めたもの */
 .mock{width:100%;max-width:330px;margin:0 auto;background:var(--card);
-  border:var(--bw) solid var(--stroke);border-radius:30px;padding:9px}
-.mock-screen{background:var(--bg);border:var(--bw) solid var(--line);border-radius:22px;padding:12px 12px 14px;overflow:hidden}
+  border:var(--bw) solid var(--stroke);border-radius:0;padding:9px}
+.mock-screen{background:var(--bg);border:var(--bw) solid var(--line);border-radius:0;padding:12px 12px 14px;overflow:hidden}
 .mock-brand{display:flex;align-items:center;gap:7px;margin-bottom:9px}
-.mock-brand .w{font-family:var(--font-display);font-size:16px;font-weight:900;letter-spacing:.04em}
+.mock-brand .w{font-family:var(--font-display);font-size:16px;font-weight:600;letter-spacing:.04em}
 .mock-brand .s{font-family:var(--font-hand);font-size:9.5px;color:var(--muted);align-self:flex-end;padding-bottom:2px}
 .mock-tabs{display:flex;gap:4px;margin-bottom:12px}
 .mock-tab{flex:1;text-align:center;font-family:var(--font-display);font-size:9.5px;font-weight:700;color:var(--muted);
-  background:rgba(255,255,255,.72);border:var(--bw) solid #CFC6B6;border-radius:999px;padding:5px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mock-tab.on{color:var(--bg);background:var(--stroke);border-color:var(--stroke);font-weight:900}
+  background:rgba(255,255,255,.72);border:var(--bw) solid #CFC6B6;border-radius:0;padding:5px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mock-tab.on{color:var(--bg);background:var(--ink);border-color:var(--stroke);font-weight:600}
 .mock-h{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
-.mock-h b{font-size:14.5px;font-weight:900}
+.mock-h b{font-size:14.5px;font-weight:600}
 .mock-h .hand{font-size:10px;color:var(--bad)}
-.mock-card{background:#fff;border:var(--bw) solid var(--stroke);border-radius:14px;padding:9px 11px;margin-top:8px;
+.mock-card{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:0;padding:9px 11px;margin-top:8px;
   display:flex;align-items:center;gap:10px}
 .mock-card .t{font-size:10.5px;line-height:1.6;color:var(--ink-2)}
 .mock-two{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}
-.mock-t{background:#fff;border:var(--bw) solid var(--stroke);border-radius:14px;padding:9px 10px}
+.mock-t{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:0;padding:9px 10px}
 .mock-t.accent{background:var(--apricot)}
 .mock-t .e{font-family:var(--font-hand);font-size:9px;color:var(--muted);display:block}
-.mock-t .ti{font-family:var(--font-display);font-size:14px;font-weight:900;display:block;line-height:1.3;margin-top:1px}
+.mock-t .ti{font-family:var(--font-display);font-size:14px;font-weight:600;display:block;line-height:1.3;margin-top:1px}
 .mock-t .m{font-size:9px;color:var(--ink-2);line-height:1.55;display:block;margin-top:2px;min-height:2.8em}
-.mock-t .b{display:block;text-align:center;font-family:var(--font-display);font-size:9.5px;font-weight:900;
-  border:var(--bw) solid var(--stroke);border-radius:999px;padding:5px;margin-top:6px;background:var(--stroke);color:var(--bg)}
-.mock-t.rev .b{background:#fff;color:var(--ink)}
+.mock-t .b{display:block;text-align:center;font-family:var(--font-display);font-size:9.5px;font-weight:600;
+  border:var(--bw) solid var(--stroke);border-radius:0;padding:5px;margin-top:6px;background:var(--ink);color:var(--bg)}
+.mock-t.rev .b{background:var(--card);color:var(--ink)}
 
 /* 数字 */
 .nums{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 @media(min-width:560px){.nums{grid-template-columns:repeat(4,1fr)}}
-.numbox{background:#fff;border:var(--bw) solid var(--stroke);border-radius:18px;padding:15px 12px;text-align:center}
-.num{font-size:29px;font-weight:900;line-height:1.15;display:block}
+.numbox{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:0;padding:15px 12px;text-align:center}
+.num{font-size:29px;font-weight:600;line-height:1.15;display:block}
 .numlabel{font-size:12.5px;color:var(--muted);margin-top:3px;display:block;line-height:1.5}
 
 /* 3ステップ */
 .steps{display:grid;gap:14px}
 @media(min-width:700px){.steps{grid-template-columns:repeat(3,1fr)}}
-.step{background:#fff;border:var(--bw) solid var(--stroke);border-radius:20px;padding:18px 20px}
-.step .n{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:999px;
-  background:var(--sage);border:var(--bw) solid var(--stroke);font-family:var(--font-display);font-weight:900;font-size:15px;margin-bottom:10px}
-.step h3{font-size:17.5px;margin:0 0 6px;font-weight:900}
+.step{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:0;padding:18px 20px}
+.step .n{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:0;
+  background:var(--sage);border:var(--bw) solid var(--stroke);font-family:var(--font-display);font-weight:600;font-size:15px;margin-bottom:10px}
+.step h3{font-size:17.5px;margin:0 0 6px;font-weight:600}
 .step p{font-size:14px;margin:0;line-height:1.8;color:var(--ink-2)}
 
 /* 触って確かめる部分。アプリの画面をそのまま持ってきている */
 .demo{display:grid;gap:16px;align-items:start}
 @media(min-width:760px){.demo{grid-template-columns:1.12fr .88fr}}
-.pane{background:#fff;border:var(--bw) solid var(--stroke);border-radius:20px;overflow:hidden}
+.pane{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:0;overflow:hidden}
 .pane-head{display:flex;align-items:center;justify-content:space-between;gap:10px;
   padding:10px 16px;border-bottom:var(--bw) solid var(--stroke);background:var(--paper);
   font-family:var(--font-hand);font-size:12px;color:var(--muted)}
@@ -142,34 +163,34 @@ h1 .em{color:var(--bad)}
 .demo-note{font-size:13.5px;line-height:1.85;color:var(--ink-2);margin:0 0 12px}
 .demo-note b{font-weight:700}
 
-.badge{display:inline-block;font-size:10.5px;font-weight:900;background:var(--gray);
-  border:var(--bw) solid var(--stroke);border-radius:999px;padding:2px 9px;margin:0 5px 8px 0;line-height:1.7}
+.badge{display:inline-block;font-size:10.5px;font-weight:600;background:var(--gray);
+  border:var(--bw) solid var(--stroke);border-radius:0;padding:2px 9px;margin:0 5px 8px 0;line-height:1.7}
 .fc-prompt{font-family:var(--zh-font);font-size:34px;font-weight:700;line-height:1.35;margin:4px 0 2px}
 .fc-sub{font-size:13px;color:var(--muted);line-height:1.7}
 .fc-answer{margin-top:10px;padding-top:12px;border-top:var(--bw) dashed var(--line)}
 .a-main{font-size:19px;font-weight:700;line-height:1.6}
-.ex{background:var(--paper);border-radius:14px;padding:11px 13px;margin-top:11px;font-size:13.5px;line-height:1.75}
+.ex{background:var(--paper);border-radius:0;padding:11px 13px;margin-top:11px;font-size:13.5px;line-height:1.75}
 .ex .s{color:var(--muted);font-size:12.5px}
 .fc-actions{margin-top:14px}
-.fc-actions button{width:100%;font-family:var(--font-display);font-size:15px;font-weight:900;
-  padding:14px;border:var(--bw) solid var(--stroke);border-radius:999px;background:#fff;color:var(--ink);cursor:pointer;min-height:50px}
+.fc-actions button{width:100%;font-family:var(--font-display);font-size:15px;font-weight:600;
+  padding:14px;border:var(--bw) solid var(--stroke);border-radius:0;background:var(--card);color:var(--ink);cursor:pointer;min-height:50px}
 .g4{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 @media(min-width:420px){.g4{grid-template-columns:repeat(4,1fr)}}
 .g4 button{font-size:13.5px;padding:13px 4px}
 .fc-actions .g4-again{background:var(--blush);color:#A3402A}
 .fc-actions .g4-hard{background:var(--apricot);color:#8A5A18}
-.fc-actions .g4-good{background:#fff}
+.fc-actions .g4-good{background:var(--card)}
 .fc-actions .g4-easy{background:var(--sage);color:#3D5A2E}
-.verdict{background:var(--paper);border-radius:14px;padding:12px 14px;margin-top:12px;font-size:14px;line-height:1.8}
-.verdict b{font-weight:900}
+.verdict{background:var(--paper);border-radius:0;padding:12px 14px;margin-top:12px;font-size:14px;line-height:1.8}
+.verdict b{font-weight:600}
 
 /* 次に出る日の一覧。間隔が開いていくことが、ここで目に見える */
 .strip{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-.strip li{display:flex;align-items:center;gap:10px;background:#fff;border:var(--bw) solid var(--stroke);
-  border-radius:14px;padding:10px 13px;font-size:13.5px}
+.strip li{display:flex;align-items:center;gap:10px;background:var(--card);border:var(--bw) solid var(--stroke);
+  border-radius:0;padding:10px 13px;font-size:13.5px}
 .strip .w{font-family:var(--zh-font);font-weight:700;font-size:16px;flex:none;min-width:2.6em}
 .strip .g{color:var(--muted);font-size:12px;flex:1;line-height:1.5}
-.strip .d{font-family:var(--font-display);font-weight:900;font-size:14px;flex:none}
+.strip .d{font-family:var(--font-display);font-weight:600;font-size:14px;flex:none}
 .strip li.waiting{border-style:dashed;border-color:var(--line);background:transparent;color:var(--muted)}
 .strip li.waiting .w{color:var(--muted)}
 
@@ -177,57 +198,57 @@ h1 .em{color:var(--bad)}
 .q{font-size:15px;font-weight:700;line-height:1.7;margin:0 0 4px}
 .q-note{font-size:12.5px;color:var(--muted);line-height:1.7;margin:0 0 10px}
 /* 候補と回答の上下関係は、アプリ本体の並べ替え問題と同じにしてある */
-.bank{min-height:60px;background:var(--paper);border:var(--bw) dashed #DFD2B8;border-radius:14px;
+.bank{min-height:60px;background:var(--paper);border:var(--bw) dashed #DFD2B8;border-radius:0;
   padding:9px;display:flex;flex-wrap:wrap;gap:7px;align-content:flex-start}
-.slot{min-height:60px;background:#fff;border:var(--bw) solid var(--line);border-radius:14px;
+.slot{min-height:60px;background:var(--card);border:var(--bw) solid var(--line);border-radius:0;
   padding:9px;margin-top:10px;display:flex;flex-wrap:wrap;gap:7px;align-content:flex-start}
 .slot:empty::before{content:"ここにタップした順で語句が入ります";font-size:12.5px;color:var(--muted);font-family:var(--font-hand);align-self:center}
-.chip{font-family:var(--zh-font);font-size:16px;font-weight:700;background:#fff;color:var(--ink);
-  border:var(--bw) solid var(--stroke);border-radius:12px;padding:8px 13px;cursor:pointer;line-height:1.5;
+.chip{font-family:var(--zh-font);font-size:16px;font-weight:700;background:var(--card);color:var(--ink);
+  border:var(--bw) solid var(--stroke);border-radius:0;padding:8px 13px;cursor:pointer;line-height:1.5;
   min-height:44px;display:inline-flex;align-items:center}
 .chip.used{background:var(--gray);color:#A29A8E;border-color:var(--line);text-decoration:line-through;cursor:default}
-.chip.in{background:var(--stroke);color:var(--bg);border-color:var(--stroke)}
+.chip.in{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .chip .n{font-family:var(--font-display);font-size:11px;opacity:.72;margin-right:6px}
 .row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
-.row button{flex:1;min-width:130px;font-family:var(--font-display);font-size:14.5px;font-weight:900;
-  padding:13px;border:var(--bw) solid var(--stroke);border-radius:999px;background:#fff;cursor:pointer;min-height:48px}
-.row button.primary{background:var(--stroke);color:var(--bg)}
+.row button{flex:1;min-width:130px;font-family:var(--font-display);font-size:14.5px;font-weight:600;
+  padding:13px;border:var(--bw) solid var(--stroke);border-radius:0;background:var(--card);cursor:pointer;min-height:48px}
+.row button.primary{background:var(--ink);color:var(--bg)}
 .row button[disabled]{opacity:.42;cursor:default}
-.ok{color:var(--good);font-weight:900}
-.ng{color:var(--bad);font-weight:900}
+.ok{color:var(--good);font-weight:600}
+.ng{color:var(--bad);font-weight:600}
 
 /* 向いている人 */
 .who4{display:grid;gap:12px}
 @media(min-width:640px){.who4{grid-template-columns:1fr 1fr}}
 .who4 .card{padding:16px 18px}
-.who4 h3{font-size:16px;margin:0 0 4px;font-weight:900}
+.who4 h3{font-size:16px;margin:0 0 4px;font-weight:600}
 .who4 p{font-size:13.5px;margin:0;color:var(--ink-2);line-height:1.8}
 
 /* 例文 */
 .who{display:grid;gap:12px}
 @media(min-width:640px){.who{grid-template-columns:1fr 1fr}}
 .who .card{padding:18px 20px}
-.who h3{font-size:16.5px;margin:0 0 8px;font-weight:900}
+.who h3{font-size:16.5px;margin:0 0 8px;font-weight:600}
 .who ul{margin:0;padding-left:1.2em;font-size:14px;line-height:1.85}
 .who li{margin-bottom:4px}
 
 /* 正直な但し書き */
-.honest{background:var(--paper);border:var(--bw) dashed #DFD2B8;border-radius:20px;padding:20px 22px}
+.honest{background:var(--paper);border:var(--bw) dashed #DFD2B8;border-radius:0;padding:20px 22px}
 .honest dl{margin:0}
 .honest dt{font-weight:700;font-size:14.5px;margin-top:14px}
 .honest dt:first-of-type{margin-top:0}
 .honest dd{margin:4px 0 0;font-size:14px;color:var(--ink-2);line-height:1.8}
 
 /* 価格 */
-.price{background:var(--apricot);border:var(--bw) solid var(--stroke);border-radius:22px;padding:24px 22px}
+.price{background:var(--apricot);border:var(--bw) solid var(--stroke);border-radius:0;padding:24px 22px}
 .price .tag{font-family:var(--font-hand);font-size:14px;color:#8A5A18}
-.price .amount{font-size:34px;font-weight:900;font-family:var(--font-display);line-height:1.25;margin:4px 0 2px}
+.price .amount{font-size:34px;font-weight:600;font-family:var(--font-display);line-height:1.25;margin:4px 0 2px}
 .price .amount small{font-size:15px;font-weight:700}
 .price p{font-size:14px;line-height:1.85;margin:10px 0 0}
-#priceThanks{display:none;background:#fff;border:var(--bw) solid var(--stroke);border-radius:16px;padding:14px 16px;margin-top:14px;font-size:14px;line-height:1.8}
+#priceThanks{display:none;background:var(--card);border:var(--bw) solid var(--stroke);border-radius:0;padding:14px 16px;margin-top:14px;font-size:14px;line-height:1.8}
 
 /* FAQ */
-.faq details{background:#fff;border:var(--bw) solid var(--stroke);border-radius:18px;margin-bottom:10px;overflow:hidden}
+.faq details{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:0;margin-bottom:10px;overflow:hidden}
 .faq summary{list-style:none;cursor:pointer;padding:16px 20px;font-weight:700;font-size:15.5px;display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"＋";font-size:17px;color:var(--muted);flex:none}
@@ -251,11 +272,7 @@ footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46p
 
   <header class="top">
     <div class="brand">
-      <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true">
-        <path d="M52 6 C 62 30, 80 42, 80 64 A 30 30 0 1 1 20 64 C 20 46, 33 41, 41 28 C 44 41, 50 45, 50 37 C 50 26, 47 16, 52 6 Z" fill="#F2A227" stroke="#2A2724" stroke-width="4.5" stroke-linejoin="round"></path>
-        <circle cx="41" cy="63" r="3.6" fill="#2A2724"></circle><circle cx="59" cy="63" r="3.6" fill="#2A2724"></circle>
-        <path d="M43 73 Q 50 79 57 73" stroke="#2A2724" stroke-width="3.8" fill="none" stroke-linecap="round"></path>
-      </svg>
+      <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="lpf1"><path d="M52 8 C 62 31, 79 43, 79 64 A 29 29 0 1 1 21 64 C 21 46, 33 41, 41 29 C 44 41, 50 45, 50 37 C 50 27, 47 17, 52 8 Z"/></clipPath></defs><g clip-path="url(#lpf1)"><rect width="100" height="100" fill="#E5A500"/><path d="M0 52 C 18 64, 34 48, 52 56 C 70 64, 84 50, 100 58 L100 100 L0 100 Z" fill="#DC6011"/></g><rect x="28" y="88" width="44" height="2" fill="#15150F"/></svg>
       <span class="brand-word">加油</span>
       <span class="brand-sub">ジャーヨウ／がんばれ</span>
     </div>
@@ -278,9 +295,7 @@ footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46p
       <div class="mock" aria-hidden="true">
         <div class="mock-screen">
           <div class="mock-brand">
-            <svg width="19" height="19" viewBox="0 0 100 100">
-              <path d="M52 6 C 62 30, 80 42, 80 64 A 30 30 0 1 1 20 64 C 20 46, 33 41, 41 28 C 44 41, 50 45, 50 37 C 50 26, 47 16, 52 6 Z" fill="#F2A227" stroke="#2A2724" stroke-width="5" stroke-linejoin="round"></path>
-            </svg>
+            <svg width="19" height="19" viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="lpf2"><path d="M52 8 C 62 31, 79 43, 79 64 A 29 29 0 1 1 21 64 C 21 46, 33 41, 41 29 C 44 41, 50 45, 50 37 C 50 27, 47 17, 52 8 Z"/></clipPath></defs><g clip-path="url(#lpf2)"><rect width="100" height="100" fill="#E5A500"/><path d="M0 52 C 18 64, 34 48, 52 56 C 70 64, 84 50, 100 58 L100 100 L0 100 Z" fill="#DC6011"/></g><rect x="28" y="88" width="44" height="2" fill="#15150F"/></svg>
             <span class="w">加油</span><span class="s">90日でHSK4合格</span>
           </div>
           <div class="mock-tabs">
@@ -291,7 +306,7 @@ footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46p
             <svg width="34" height="34" viewBox="0 0 80 80" style="flex:none">
               <circle cx="40" cy="40" r="30" fill="#FCF9F2" stroke="#2A2724" stroke-width="4"/>
               <circle cx="40" cy="40" r="30" fill="none" stroke="#F2A227" stroke-width="8" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="164.0" transform="rotate(-90 40 40)"/>
-              <text x="40" y="41" text-anchor="middle" dominant-baseline="central" style="font-size:19px;font-weight:900;fill:#2A2724">13%</text>
+              <text x="40" y="41" text-anchor="middle" dominant-baseline="central" style="font-size:19px;font-weight:600;fill:#2A2724">13%</text>
             </svg>
             <span class="t">90日のうち <b>12日</b> 完了<br>のこり 78日</span>
           </div>
