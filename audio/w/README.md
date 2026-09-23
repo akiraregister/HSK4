@@ -18,8 +18,12 @@ iPhoneの消音スイッチは**内蔵スピーカーにしか効かない**。�
 
 ```
 node audio/build-word-audio.mjs --dry-run --words     本数だけ見る（鍵は要らない）
-GOOGLE_TTS_KEY=xxxx node audio/build-word-audio.mjs --words
+GOOGLE_TTS_KEY=AIza... node audio/build-word-audio.mjs --words
 ```
+
+**`AIza...` の部分は実際のキーに置き換えること。**案内文のプレースホルダを
+そのまま貼ってしまう事故が起きたので、いまは鍵の形（`AIza` で始まる39文字）を
+先に見て、叩いた瞬間に止まるようにしてある。
 
 - `--words` は単語498本だけ。**これは作成済み**（実測3.4MB）
 - **例文と文法例文を足すなら `--words` を外す。**単語は飛ばして709本だけ作る。

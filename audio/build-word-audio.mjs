@@ -131,6 +131,16 @@ if (!KEY) {
   console.error('  GOOGLE_TTS_KEY=あなたのAPIキー node audio/build-word-audio.mjs');
   process.exit(1);
 }
+// 案内文のプレースホルダをそのまま貼ってしまう事故が実際に起きた（「ここに鍵」）。
+// Google の APIキーは "AIza" で始まる39文字の英数字なので、形だけ見て先に止める。
+// 1本目を投げてから 400 が返るより、叩いた瞬間に分かるほうがいい。
+if (!/^AIza[0-9A-Za-z_-]{35}$/.test(KEY)) {
+  console.error('\nGOOGLE_TTS_KEY がAPIキーの形をしていません。');
+  console.error(`  渡された値：${KEY.length}文字${/[^\x20-\x7e]/.test(KEY) ? '（日本語が混ざっています）' : ''}`);
+  console.error('  Google の APIキーは "AIza" で始まる39文字です。');
+  console.error('  案内文の「ここに鍵」のような置き場所を、実際のキーに置き換えてください。');
+  process.exit(1);
+}
 
 // アプリが「その録音があるか」を押す前に知るための索引。**中身はハッシュだけ**なので、
 // 未購入のDay8-90の中文が漏れることはない（一覧を置かない理由はファイル先頭に書いた）。
@@ -162,6 +172,14 @@ async function synth(text, tries = 0) {
       console.log(`  ${res.status} のため ${wait / 1000}秒待って再試行`);
       await new Promise(r => setTimeout(r, wait));
       return synth(text, tries + 1);
+    }
+    if (res.status === 400 && /API_KEY_INVALID|API key not valid/.test(body)) {
+      throw new Error('APIキーが正しくありません。Google Cloud の「認証情報」で作り直してください');
+    }
+    if (res.status === 403) {
+      throw new Error('APIキーは通りましたが、拒否されました。'
+        + 'Cloud Text-to-Speech API が有効になっているか、キーの「APIの制限」に'
+        + 'このAPIが入っているかを確認してください');
     }
     throw new Error(`${res.status} ${body.slice(0, 300)}`);
   }
