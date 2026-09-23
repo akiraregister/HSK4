@@ -6,7 +6,7 @@
 // ボタンと音声の状態が食い違わないことなので、偽の Audio で十分。
 import { launch, seedFullContent, passOnboarding } from './browser.mjs';
 import { audioKey as nodeAudioKey, sayText } from '../audio/build-word-audio.mjs';
-import { readFile } from 'fs/promises';
+import { readFile, readdir } from 'fs/promises';
 const B = process.env.BASE || 'http://127.0.0.1:8765/';
 const br = await launch();
 const c = await br.newContext({ viewport: { width: 390, height: 844 } });
@@ -100,8 +100,13 @@ ok('読み込み直しても速さを覚えている',
 // iOSで鳴らなかったという指摘への手当てを見張る。読み上げそのものは
 // ヘッドレスに無いので、speechSynthesis を偽物に差し替えて呼び方だけ確かめる。
 {
-  const c2 = await br.newContext({ viewport: { width: 390, height: 844 } });
+  // **録音を「無い」ことにして、控えの経路だけを見る。**録音が入ってからは
+  // そちらが鳴るので、索引を空に差し替えないとTTSまで到達しない。
+  // Service Worker は止めること（止めないと fetch を横取りされて差し替えが効かない）
+  const c2 = await br.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
   const p2 = await c2.newPage();
+  await p2.route('**/audio/w/index.json', r =>
+    r.fulfill({ status: 200, contentType: 'application/json', body: '[]' }));
   const errs2 = []; p2.on('pageerror', e => errs2.push(e.message));
   await p2.addInitScript(() => {
     window.__ss = { spoke: [], cancels: 0, speaking: false, pending: false };
@@ -128,6 +133,10 @@ ok('読み込み直しても速さを覚えている',
   await p2.waitForTimeout(300);
   await passOnboarding(p2);
   await p2.evaluate(() => localStorage.setItem('hsk4-ls-rate', '0.75'));
+  // 1回目は索引が未取得で楽観的に録音を取りにいくので、先に1度呼んで読ませておく
+  await p2.evaluate(() => window.speakZh('索引を読ませる'));
+  await p2.waitForTimeout(600);
+  await p2.evaluate(() => { window.__ss.spoke.length = 0; window.__ss.cancels = 0; });
   await p2.click('#content button:has-text("学習を始める")'); await p2.waitForTimeout(600);
 
   const btns = await p2.$$('#content .wcard.on .speak-btn');
@@ -166,8 +175,11 @@ ok('読み込み直しても速さを覚えている',
 }
 {
   // 鳴らない端末では黙らない。押しても無反応が一番困る
-  const c3 = await br.newContext({ viewport: { width: 390, height: 844 } });
+  // ここも録音を「無い」ことにする（録音があるとそちらが鳴って、控えまで来ない）
+  const c3 = await br.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
   const p3 = await c3.newPage();
+  await p3.route('**/audio/w/index.json', r =>
+    r.fulfill({ status: 200, contentType: 'application/json', body: '[]' }));
   await p3.addInitScript(() => {
     Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: {
       speaking: false, pending: false, cancel() {}, getVoices() { return []; },
@@ -179,6 +191,9 @@ ok('読み込み直しても速さを覚えている',
   await p3.mouse.move(195, 400); await p3.mouse.down(); await p3.mouse.up();
   await p3.waitForTimeout(300);
   await passOnboarding(p3);
+  // 1回目は索引が未取得で楽観的に録音を取りにいくので、先に1度呼んで読ませておく
+  await p3.evaluate(() => window.speakZh('索引を読ませる'));
+  await p3.waitForTimeout(600);
   await p3.click('#content button:has-text("学習を始める")'); await p3.waitForTimeout(600);
   await p3.click('#content .wcard.on .speak-btn'); await p3.waitForTimeout(2000);
   const toast = await p3.textContent('.hsk-toast').catch(() => '');
@@ -291,10 +306,15 @@ ok('読み込み直しても速さを覚えている',
   await c5.close();
 }
 {
-  // いまリポジトリにある索引は空（録音をまだ作っていない）。この状態で無駄な
-  // 取得が出ないことを確かめる＝作る前でも、いまより遅くならない
-  const real = JSON.parse(await readFile(new URL('../audio/w/index.json', import.meta.url), 'utf8'));
-  ok('録音の索引がリポジトリにある', Array.isArray(real), JSON.stringify(real).slice(0, 40));
+  // 索引とmp3がずれると、**黙って読み上げへ落ちる**（＝消音で鳴らないまま気づけない）。
+  // mp3を手で消したり足したりしたら、生成器を叩き直して索引を作り直すこと
+  const dir = new URL('../audio/w/', import.meta.url);
+  const real = JSON.parse(await readFile(new URL('index.json', dir), 'utf8'));
+  const files = (await readdir(dir)).filter(f => f.endsWith('.mp3')).map(f => f.slice(0, -4)).sort();
+  ok('録音の索引が空でない', Array.isArray(real) && real.length > 0, 'n=' + (real || []).length);
+  ok('索引とmp3の中身が一致する',
+    JSON.stringify([...real].sort()) === JSON.stringify(files),
+    `索引${real.length}件 / mp3 ${files.length}本`);
 }
 
 // --- スクロールの跳ね返りとヘッダーのにじみ（実機で指摘された） ---
