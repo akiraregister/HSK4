@@ -5,3 +5,5 @@ worker/.wrangler/
 # このリポジトリはビルドを持たない方針なので、その副産物は追跡しない。
 package.json
 package-lock.json
+worker-paywall/.wrangler/
+.wrangler/
