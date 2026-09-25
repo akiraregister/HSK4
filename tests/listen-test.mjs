@@ -363,6 +363,60 @@ ok('読み込み直しても速さを覚えている',
   ok('今日画面のヘッダーに進捗を重ねない', !/\d+\s*\/\s*90/.test(meta), JSON.stringify(meta));
 }
 
+// --- 今日画面の「復習する」「受ける」は同じ幅（縦に並ぶと右端がガタついていた） ---
+{
+  // 行は状態で出たり出なかったりするので、同じ部品を3つ並べて幅を測る
+  const w = await p.evaluate(() => {
+    const t = document.createElement('div'); t.className = 'trow';
+    t.innerHTML = '<span class="go">復習する</span><span class="go">受ける</span><span class="go">完了</span>';
+    document.getElementById('content').appendChild(t);
+    const ws = [...t.querySelectorAll('.go')].map(e => Math.round(e.getBoundingClientRect().width));
+    t.remove(); return ws;
+  });
+  ok('今日画面の副ボタンは文言によらず同じ幅', new Set(w).size === 1, JSON.stringify(w));
+}
+
+// --- ブックマーク：案2「辞書の項目」（design/bookmarks.html） ---
+{
+  await p.evaluate(() => {
+    window.toggleBookmark('d1-v0', '単語', '水平', 'レベル、能力水準', 'shuǐpíng');
+    window.toggleBookmark('d1-v1', '単語', '提高', '高める、向上させる', 'tígāo');
+  });
+  await p.click('#bookmarkViewBtn'); await p.waitForTimeout(250);
+  const bm = await p.evaluate(() => {
+    const panel = document.getElementById('bookmarkPanel');
+    const ent = panel.querySelector('.bm-ent');
+    return {
+      ents: panel.querySelectorAll('.bm-ent').length,
+      boxes: panel.querySelectorAll('.vitem').length,
+      heading: !!panel.querySelector('.section-title'),
+      help: panel.textContent.includes('各カードのボタンで切替'),
+      tab: panel.querySelector('.cw-subtab.active').textContent,
+      entBorder: ent ? getComputedStyle(ent).borderTopWidth + '/' + getComputedStyle(ent).borderRightWidth : '',
+      parts: ent ? ['.zh', '.speak-btn', '.pinyin', '.bm-ja', '.ex', '.lvc', 'button.bookmark'].filter(q => !ent.querySelector(q)) : ['no entry'],
+      sortRows: new Set([...panel.querySelectorAll('.bm-sort button')].map(b => Math.round(b.getBoundingClientRect().top))).size,
+    };
+  });
+  ok('ブックマークは項目として並ぶ（箱を持たない）', bm.ents === 2 && bm.boxes === 0 && bm.entBorder === '0px/0px', JSON.stringify(bm));
+  ok('見出し・説明文は出さない', !bm.heading && !bm.help, JSON.stringify(bm));
+  ok('件数は切り替えの中に入る', /ブックマーク\s*2/.test(bm.tab), bm.tab);
+  ok('中身は減らさない（語・読み上げ・拼音・意味・例文・難易度・★）', bm.parts.length === 0, JSON.stringify(bm.parts));
+  ok('並び替え4つが1行に収まる', bm.sortRows === 1, 'rows=' + bm.sortRows);
+  // 「例文」で例文だけが消える（state.density の compact）
+  await p.click('.bm-exsw'); await p.waitForTimeout(200);
+  const exVis = await p.evaluate(() => getComputedStyle(document.querySelector('#bookmarkPanel .bm-ent .ex')).display);
+  ok('「例文」を切ると例文が隠れる', exVis === 'none', exVis);
+  await p.click('.bm-exsw'); await p.waitForTimeout(200);
+  // 難易度を押してもその場で反映され、項目の左に色罫が付く
+  await p.click('#bookmarkPanel .lvc[data-lv="d1-v1"] button:nth-child(2)'); await p.waitForTimeout(200);
+  const lvOn = await p.evaluate(() => {
+    const box = document.querySelector('#bookmarkPanel .lvc[data-lv="d1-v1"]');
+    return !!box.querySelector('.lvc-on-1') && box.closest('.bm-ent').classList.contains('lv-1');
+  });
+  ok('ブックマークで難易度を切り替えると、その場で左の色罫も変わる', lvOn);
+  await p.evaluate(() => { window.toggleBookmark('d1-v0'); window.toggleBookmark('d1-v1'); });
+}
+
 console.log(res.join('\n'));
 console.log('\npageerrors:', errs.length ? errs.slice(0, 3) : 'none');
 const f = res.filter(r => r.startsWith('FAIL')).length;

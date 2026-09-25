@@ -240,9 +240,12 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .lc-startlist{margin:14px 0 0;padding:0;list-style:none;color:var(--ink2);line-height:1.7;font-size:14.5px}.lc-startlist li{padding-left:18px;position:relative}.lc-startlist li:before{content:"・";position:absolute;left:2px}
 .cw-ex{cursor:text}
 mark.cw-hl{background:var(--brand-tint);color:inherit;border-radius:var(--r-sm);padding:0 1px}
-.cw-subtabs{display:flex;gap:8px;margin-bottom:12px}
-.cw-subtab{flex:1;border:1px solid var(--line);background:var(--card);border-radius:var(--r-md);padding:9px;font:inherit;font-weight:700;color:var(--ink2);cursor:pointer}
-.cw-subtab.active{border-color:var(--ink);background:var(--gray);color:var(--ink)}
+.cw-subtabs{display:flex;gap:24px;margin-bottom:0;border-bottom:1px solid var(--hair)}
+/* 箱で囲むと「押すもの」に見えるが、これは画面の中の移動。押せるものの3段の「移動」＝下線のタブ */
+.cw-subtab{border:0;background:none;border-radius:0;padding:4px 0 9px;margin-bottom:-1px;font:inherit;font-size:15px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent}
+.cw-subtab.active{color:var(--ink);border-bottom-color:var(--ink)}
+.cw-subtab small{font-size:12px;font-weight:400;margin-left:4px}
+#bookmarkPanel .cw-subtabs+*{margin-top:12px}
 .cw-item{border:1px solid var(--line);border-radius:var(--r-md);padding:12px;margin:10px 0}
 .cw-item-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
 .cw-item .zh{font-size:17px;font-weight:500}
@@ -285,8 +288,30 @@ z{font-family:var(--zh-font);font-style:normal}
 body.fs-sm .vrow-zh{font-size:17px}body.fs-sm .vrow-py{font-size:13.5px}body.fs-sm .vrow-ja{font-size:12.5px}
 body.fs-lg .vrow-zh{font-size:23px}body.fs-lg .vrow-py{font-size:17px}body.fs-lg .vrow-ja{font-size:16px}
 
-.bm-sort{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 2px}
-.bm-sort .chip-toggle{padding:5px 11px;font-size:12.5px}
+/* ブックマーク：案2「辞書の項目」（design/bookmarks.html）。
+   上は2行だけ（切り替え／並び替え＋例文）。項目は箱を持たず細罫で区切る */
+#bookmarkPanel .bm-tools{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0!important;padding:10px 0;border-bottom:1px solid var(--rule)}
+.bm-sort{display:flex;align-items:center;gap:14px;flex-wrap:nowrap}
+.bm-sort button{border:0;background:none;padding:6px 0;font-size:13px;font-weight:500;color:var(--muted);border-bottom:1px solid transparent;border-radius:0}
+.bm-sort button.on{color:var(--ink);font-weight:600;border-bottom-color:var(--ink)}
+.bm-exsw{flex:none;border:1px solid var(--rule);background:none;padding:4px 10px;font-size:12.5px;font-weight:500;color:var(--muted)}
+.bm-exsw.on{border-color:var(--ink);color:var(--ink)}
+.bm-ent{position:relative;padding:14px 0 12px;border-bottom:1px solid var(--hair)}
+.bm-ent.lv-1{border-left:2px solid var(--amber);padding-left:10px}
+.bm-ent.lv-2{border-left:2px solid var(--red2);padding-left:10px}
+.bm-ent .bm-h{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;padding-right:40px}
+.bm-ent .zh{font-size:22px;line-height:1.3}
+.bm-ent .bm-h .pinyin{margin:0;font-size:15px}
+.bm-ent .bm-ja{font-size:14px;color:var(--ink2);margin-top:2px}
+.bm-ent .ex{margin-top:8px;line-height:1.65}
+.bm-ent .ex .bm-exzh{color:var(--ink);font-weight:500}
+.bm-ent .ex .bm-expy{font-size:13px;color:var(--ink2)}
+.bm-ent .ex .bm-exja{font-size:13px;color:var(--ink2)}
+.bm-ent .bm-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.bm-ent .lvc{margin-top:0}
+.bm-ent button.bookmark{position:absolute;right:0;top:10px;border:0;background:none;padding:6px 8px;font-size:17px;color:var(--brand)}
+#bookmarkPanel.compact .bm-ent{padding:10px 0 8px}
+#bookmarkPanel.compact .bm-ent.lv-1,#bookmarkPanel.compact .bm-ent.lv-2{padding-left:10px}
 .mt-opts{display:flex;flex-direction:column;gap:10px}
 .mt-opt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:var(--r-md);padding:13px 14px;font-size:16px;cursor:pointer;line-height:1.4}
 .mt-opt:active{transform:scale(.99)}.mt-opt[disabled]{cursor:default}
@@ -680,7 +705,9 @@ h1,h2,h3,.badge,.fc-prompt,.daybtn,.set-label,
 .trow .val{font-size:20px;font-weight:500;line-height:1;flex:none}
 .trow .val .u{font-size:11px;color:var(--muted);margin-left:2px}
 .trow .memo{font-size:11px;color:var(--muted);flex:1;line-height:1.5}
-.trow .go{flex:none;font-size:11px;letter-spacing:.18em;border:1px solid var(--ink);padding:5px 11px}
+/* 幅を固定して揃える（「復習する」と「受ける」で幅が違い、縦に並ぶと右端がガタついていた）。
+   字間 .18em は最後の字の後ろにも付くので、左の余白で釣り合いを取って中央に見せる */
+.trow .go{flex:none;box-sizing:border-box;width:7em;text-align:center;font-size:11px;letter-spacing:.18em;border:1px solid var(--ink);padding:5px 0 5px .18em}
 .trow[disabled] .go{border-color:var(--rule);color:var(--muted)}
 /* 進捗＝90マスの格子。ここだけ下端に寄せる */
 .prog{margin-top:auto;padding-top:12px;border-top:1px solid var(--ink)}
@@ -26641,25 +26668,24 @@ function fmtBmItem(b){
         if(item2){ex=item2.example||'';exP=item2.exPinyin||'';exJ=item2.exJa||'';pin=item2.pinyin||'';}}}
   }
   var lv=state.levels[b.id]||0;
-  var h='<div class="vitem lv-'+lv+'"><div class="vitem-inner" style="padding:12px;border-radius:12px">';
-  h+='<div class="item-head"><div>';
-  h+='<span class="badge">'+esc(b.type)+'</span><span class="badge">Day '+b.day+'</span>';
-  h+='<div class="zh">'+esc(b.title)+' <button class="speak-btn" onclick="speakZh(\''+esc(b.title)+'\')"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div>';
-  if(pin) h+='<div class="pinyin">'+esc(pin)+'</div>';
+  // 案2「辞書の項目」：箱をやめて細罫で区切る。札（単語・Day）は下の行の小さな文字へ、
+  // 難易度はその行の右端へ。★は右上。中身（語・拼音・意味・例文3行・読み上げ）は減らさない
+  var sub=String(b.sub||'');
   // 以前は単語の sub に「拼音｜和訳」をまとめて入れていたため、拼音の行と二重に出ていた。
   // 保存済みのブックマークは作り直せないので、表示側で先頭の拼音を落とす。
-  var sub=String(b.sub||'');
   if(pin && sub.indexOf(pin+'｜')===0) sub=sub.slice(pin.length+1);
-  h+='<div class="small">'+esc(sub)+'</div>';
-  h+=lvControl(b.id);
-  h+='</div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">';
-  h+='<button class="bookmark active" data-action="removeBookmark" data-id="'+b.id+'">★</button>';
-  h+='</div></div>';
-  if(ex){h+='<div class="ex"><div style="color:var(--ink);font-weight:600">'+esc(ex)+'</div>';
-    if(exP) h+='<div class="small" style="color:#5C5249">'+esc(exP)+'</div>';
-    if(exJ) h+='<div class="small" style="color:#463F37">'+esc(exJ)+'</div>';
+  var h='<div class="bm-ent lv-'+lv+'">';
+  h+='<button class="bookmark active" data-action="removeBookmark" data-id="'+b.id+'" aria-label="ブックマークを外す">★</button>';
+  h+='<div class="bm-h"><span class="zh">'+esc(b.title)+' <button class="speak-btn" onclick="speakZh(\''+esc(b.title)+'\')"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></span>';
+  if(pin) h+='<span class="pinyin">'+esc(pin)+'</span>';
+  h+='</div>';
+  if(sub) h+='<div class="bm-ja">'+esc(sub)+'</div>';
+  if(ex){h+='<div class="ex"><div class="bm-exzh">'+esc(ex)+'</div>';
+    if(exP) h+='<div class="bm-expy">'+esc(exP)+'</div>';
+    if(exJ) h+='<div class="bm-exja">'+esc(exJ)+'</div>';
     h+='</div>';}
-  h+='</div></div>';
+  h+='<div class="bm-meta"><span>'+esc(b.type)+'・Day '+b.day+'</span>'+lvControl(b.id)+'</div>';
+  h+='</div>';
   return h;
 }
 
@@ -26678,16 +26704,18 @@ function renderBookmarkPanel(){
     bvb.classList.toggle('active', currentView==='bookmark');
   }
   var cwCount=(state.customWords||[]).length;
-  var subbar='<div class="cw-subtabs"><button class="cw-subtab'+(cwSubTab!=='custom'?' active':'')+'" data-cw-action="tab-bm">ブックマーク</button><button class="cw-subtab'+(cwSubTab==='custom'?' active':'')+'" data-cw-action="tab-custom">マイ単語'+(cwCount?(' '+cwCount):'')+'</button></div>';
+  var bmCount=Object.keys(state.bookmarks||{}).length;
+  // 件数は切り替えの中に入れる（以前は見出し「ブックマーク」＋「○件」の札で1行を取っていた）
+  var subbar='<div class="cw-subtabs"><button class="cw-subtab'+(cwSubTab!=='custom'?' active':'')+'" data-cw-action="tab-bm">ブックマーク'+(bmCount?('<small>'+bmCount+'</small>'):'')+'</button><button class="cw-subtab'+(cwSubTab==='custom'?' active':'')+'" data-cw-action="tab-custom">マイ単語'+(cwCount?('<small>'+cwCount+'</small>'):'')+'</button></div>';
   if(cwSubTab==='custom'){ $('bookmarkPanel').innerHTML=subbar+cwRenderListHtml(); return; }
   var items=bmSortedItems();
   var inner=subbar;
-  inner+='<div class="section-title"><h2>ブックマーク</h2><span class="badge">'+items.length+'件</span></div>';
-  inner+='<div class="row bm-stickybar" style="gap:8px">';
-  inner+='<button type="button" class="chip-toggle '+(state.density==='compact'?'on':'')+'" onclick="toggleDensity()">'+(state.density==='compact'?'表示：コンパクト（一覧）':'表示：標準（詳細）')+'</button>';
-  inner+='</div>';
-  inner+='<div class="bm-sort"><span class="small muted" style="margin-right:2px">並び替え</span>'+bmSortChips()+'</div>';
-  inner+='<div class="small" style="margin:6px 0 10px;color:var(--muted)">難易度（普通／曖昧／苦手）は各カードのボタンで切替できます。</div>';
+  // 上は2行だけ。見出し・件数の札・「難易度は各カードで…」の説明文は外した（design/bookmarks.html 案2）。
+  // 「表示：標準（詳細）」は押すと何が変わるか言葉から分からなかったので「例文」と名乗る。
+  // 中身は state.density のまま（standard＝例文あり／compact＝例文なし）
+  var exOn=state.density!=='compact';
+  inner+='<div class="bm-tools"><div class="bm-sort">'+bmSortChips()+'</div>';
+  inner+='<button type="button" class="bm-exsw'+(exOn?' on':'')+'" aria-pressed="'+exOn+'" onclick="toggleDensity()">例文</button></div>';
   inner+=items.length?items.map(fmtBmItem).join(''):'<div class="empty">まだブックマークがありません。単語・文法の右上の ☆ を押すとここに集まります。</div>';
   $('bookmarkPanel').innerHTML=inner;
 }
@@ -26715,7 +26743,7 @@ function bmSortedItems(){
 function bmSortChips(){
   var cur=state.bmSort||'recommend';
   var opts=[['recommend','おすすめ'],['hard','苦手順'],['added','追加順'],['random','ランダム']];
-  return opts.map(function(o){ return '<button type="button" class="chip-toggle'+(cur===o[0]?' on':'')+'" data-action="bmSort" data-id="'+o[0]+'">'+o[1]+'</button>'; }).join('');
+  return opts.map(function(o){ return '<button type="button" class="'+(cur===o[0]?'on':'')+'" data-action="bmSort" data-id="'+o[0]+'">'+o[1]+'</button>'; }).join('');
 }
 function bmSetSort(s){
   if(['recommend','hard','added','random'].indexOf(s)<0) s='recommend';
@@ -27622,7 +27650,7 @@ function setLevel(id,n){
   document.querySelectorAll('.lvc[data-lv="'+id+'"]').forEach(function(box){
     hit++;
     box.querySelectorAll('button').forEach(function(b,i){ b.className=(n===i?'lvc-on-'+i:''); });
-    var item=box.closest('.vitem,.gitem,.wcard');
+    var item=box.closest('.vitem,.gitem,.wcard,.bm-ent');
     if(item){ item.classList.remove('lv-0','lv-1','lv-2'); item.classList.add('lv-'+n); }
   });
   if(!hit) render();
