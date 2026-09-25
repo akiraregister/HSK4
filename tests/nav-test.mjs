@@ -52,17 +52,23 @@ ok('進捗が90マスの格子になっている', (await page.$$eval('.prog-gri
 ok('進捗の「x / 90」が見出しの大きさ', await page.$eval('.prog-big', e => parseFloat(getComputedStyle(e).fontSize) >= 24));
 ok('全90日は折りたたみの中', !!(await page.$('details.day-list-details')));
 
-// --- 単語 ---
+// --- 単語（ブックマークを統合した。2026年9月） ---
 await page.click('#vocabTab'); await page.waitForTimeout(250);
-ok('単語タブに遷移', (await view()) === 'vocabTab' && (await page.textContent('#content')).includes('全498語'));
-
-// --- ブックマーク ---
-await page.click('#bookmarkViewBtn'); await page.waitForTimeout(250);
-ok('ブックマークタブに遷移', (await view()) === 'bookmarkViewBtn');
-ok('ブックマークで#contentが隠れる', await page.$eval('#content', e => getComputedStyle(e).display === 'none'));
+ok('単語タブに遷移', (await view()) === 'vocabTab');
+ok('単語タブで#contentが隠れる', await page.$eval('#content', e => getComputedStyle(e).display === 'none'));
+const chips = await page.$$eval('#bookmarkPanel .w-chips button', e => e.map(x => x.firstChild.textContent));
+ok('絞り込みが すべて／★／苦手・曖昧／マイ単語', chips.join(',') === 'すべて,★,苦手・曖昧,マイ単語', chips.join(','));
+ok('「すべて」に498語が並ぶ', (await page.$$eval('#bookmarkPanel .bm-ent:not(.bm-g)', e => e.length)) === 498);
+ok('ブックマーク用のタブは無くなった', !(await page.$('#bookmarkViewBtn')));
 // pressing it again must NOT toggle back (old behaviour)
-await page.click('#bookmarkViewBtn'); await page.waitForTimeout(250);
-ok('再押下でトグルせず留まる', (await view()) === 'bookmarkViewBtn');
+await page.click('#vocabTab'); await page.waitForTimeout(250);
+ok('再押下でトグルせず留まる', (await view()) === 'vocabTab');
+
+// --- 復習タブ ---
+await page.click('#reviewTab'); await page.waitForTimeout(250);
+ok('復習タブに遷移', (await view()) === 'reviewTab' && (await page.textContent('#content')).includes('今日の復習'));
+ok('復習タブの中に「今日へ戻る」を出さない', !(await page.textContent('#content')).includes('今日やることへ戻る'));
+ok('復習が無い日はタブに件数を出さない', (await page.textContent('#revN')) === '');
 
 // --- 設定 ---
 await page.click('#settingsTab'); await page.waitForTimeout(250);
@@ -109,21 +115,21 @@ ok('価格画面に学習用の下バーを出さない',
   await page.$eval('#bottomNav', e => getComputedStyle(e).display === 'none'));
 // 単語タブは全498語を出し、未購入分には拼音も和訳も付けない（分析のA5）
 await page.evaluate(() => window.showVocab()); await page.waitForTimeout(600);
-const vRows = await page.$$eval('.vrow', e => e.length);
-const vLocked = await page.$$eval('.vrow-locked', e => e.length);
+const vRows = await page.$$eval('#bookmarkPanel .bm-ent:not(.bm-g)', e => e.length);
+const vLocked = await page.$$eval('#bookmarkPanel .bm-locked', e => e.length);
 ok('単語タブに全498語が出る', vRows === 498, `${vRows}行`);
 ok('未購入分に🔒が付く', vLocked === 463, `${vLocked}行`);
-ok('未購入分に拼音を出さない', !(await page.$('.vrow-locked .vrow-py')));
+ok('未購入分に拼音を出さない', !(await page.$('.bm-locked .pinyin')));
 ok('未購入分に和訳を出さない',
-  (await page.$$eval('.vrow-locked .vrow-ja', e => [...new Set(e.map(x => x.textContent.trim()))])).join('') === '購入すると読めます');
-await page.click('.vrow-locked'); await page.waitForTimeout(500);
+  (await page.$$eval('.bm-locked .bm-ja', e => [...new Set(e.map(x => x.textContent.trim()))])).join('') === '🔒 購入すると読めます');
+await page.click('.bm-locked .bm-row'); await page.waitForTimeout(500);
 ok('🔒の語をタップすると価格画面へ行く', !!(await page.$('#content .price')));
 
 await page.evaluate(() => window.setPaywallPreview(false));
 await page.waitForTimeout(300);
 ok('プレビューを切ると中身が戻る', !(await page.$('#content .price')));
 await page.evaluate(() => window.showVocab()); await page.waitForTimeout(500);
-ok('プレビューを切ると🔒が消える', (await page.$$eval('.vrow-locked', e => e.length)) === 0);
+ok('プレビューを切ると🔒が消える', (await page.$$eval('.bm-locked', e => e.length)) === 0);
 // Day画面から設定へ戻す（学習中はタブが隠れているのでタブは押せない）
 await page.evaluate(() => window.showSettings()); await page.waitForTimeout(400);
 
@@ -242,12 +248,13 @@ ok('Day完了後、復習枚数が出る', /[1-9]/.test(await page.textContent('
 ok('Day完了後、90マスの1つが埋まる', (await page.$$eval('.prog-grid i.on', e => e.length)) >= 1);
 
 // --- 復習画面は即開始、設定は無い ---
-await page.click('button:has-text("復習する")'); await page.waitForTimeout(300);
+ok('Day完了後、復習タブに件数が出る', /^[1-9]\d*$/.test(await page.textContent('#revN')), await page.textContent('#revN'));
+await page.click('#content button:has-text("復習する")'); await page.waitForTimeout(300);
 const rtxt = await page.textContent('#content');
 ok('復習画面に開始ボタンがある', rtxt.includes('復習を始める'));
 ok('復習画面から設定UIが消えた', !rtxt.includes('出題の向き') && !rtxt.includes('採点サーバー'));
-ok('復習中も今日タブが選択状態', (await view()) === 'homeBtn');
-await page.click('button:has-text("復習を始める")'); await page.waitForTimeout(400);
+ok('復習中は復習タブが選択状態', (await view()) === 'reviewTab');
+await page.click('#content button:has-text("復習を始める")'); await page.waitForTimeout(400);
 ok('復習が実際に始まる', !!(await page.$('.fc-actions, .g4-again, .mt-opt, .lc-opt')) || (await page.textContent('#content')).length > 50);
 
 // --- 戻れること ---

@@ -387,17 +387,17 @@ ok('読み込み直しても速さを覚えている',
     window.toggleBookmark('d1-v0', '単語', '水平', 'レベル、能力水準', 'shuǐpíng');
     window.toggleBookmark('d1-v1', '単語', '提高', '高める、向上させる', 'tígāo');
   });
-  await p.click('#bookmarkViewBtn'); await p.waitForTimeout(250);
+  await p.evaluate(() => window.showBookmarks()); await p.waitForTimeout(250);
   const bm = await p.evaluate(() => {
     const panel = document.getElementById('bookmarkPanel');
     const ent = panel.querySelector('.bm-ent');
     return {
       ents: panel.querySelectorAll('.bm-ent').length,
       heading: !!panel.querySelector('.section-title'),
-      tab: panel.querySelector('.cw-subtab.active').textContent,
+      tab: panel.querySelector('.w-chips button.on').textContent,
       row: ent ? ['.bm-row .zh', '.bm-row .pinyin', '.bm-row .bm-ja'].filter(q => !ent.querySelector(q)) : ['no entry'],
       // 閉じている行には、例文・難易度・読み上げ・外すを出さない（出すと羅列に戻る）
-      closedExtras: ent ? ['.ex', '.lvc', '.speak-btn', '.bm-rm', 'button.bookmark'].filter(q => ent.querySelector(q)) : [],
+      closedExtras: ent ? ['.ex', '.lvc', '.speak-btn', '.w-bm', 'button.bookmark'].filter(q => ent.querySelector(q)) : [],
       exSwitch: !!panel.querySelector('.bm-exsw'),
       sortRows: new Set([...panel.querySelectorAll('.bm-sort button')].map(b => Math.round(b.getBoundingClientRect().top))).size,
     };
@@ -405,7 +405,7 @@ ok('読み込み直しても速さを覚えている',
   ok('ブックマークは1語1行で並ぶ', bm.ents === 2 && bm.row.length === 0, JSON.stringify(bm));
   ok('閉じた行には語・拼音・意味だけ（例文・難易度・読み上げは出さない）', bm.closedExtras.length === 0, JSON.stringify(bm.closedExtras));
   ok('見出し・「例文」切替は出さない', !bm.heading && !bm.exSwitch, JSON.stringify(bm));
-  ok('件数は切り替えの中に入る', /ブックマーク\s*2/.test(bm.tab), bm.tab);
+  ok('件数は切り替えの中に入る', /★\s*2/.test(bm.tab), bm.tab);
   ok('並び替え4つが1行に収まる', bm.sortRows === 1, 'rows=' + bm.sortRows);
   // 行を押すと、その場で詳しい中身が開く（中身は減らしていない）
   const y0 = await p.evaluate(() => window.scrollY);
@@ -413,7 +413,7 @@ ok('読み込み直しても速さを覚えている',
   const opened = await p.evaluate(() => {
     const e = document.querySelector('#bookmarkPanel .bm-ent[data-bmid="d1-v1"]');
     return { open: e.classList.contains('open'), aria: e.querySelector('.bm-row').getAttribute('aria-expanded'),
-      missing: ['.speak-btn', '.ex', '.lvc', '.bm-rm'].filter(q => !e.querySelector(q)),
+      missing: ['.speak-btn', '.ex', '.lvc', '.w-bm', '.w-go'].filter(q => !e.querySelector(q)),
       ex: (e.querySelector('.ex') || {}).textContent || '',
       others: document.querySelectorAll('#bookmarkPanel .bm-ent.open').length };
   });
@@ -439,9 +439,9 @@ ok('読み込み直しても速さを覚えている',
   await p.click('#bookmarkPanel .bm-sort button[data-id="recommend"]'); await p.waitForTimeout(150);
   // 開いた中の「ブックマークを外す」で一覧から消える
   await p.click('#bookmarkPanel .bm-ent[data-bmid="d1-v0"] .bm-row'); await p.waitForTimeout(150);
-  await p.click('#bookmarkPanel .bm-ent[data-bmid="d1-v0"] .bm-rm'); await p.waitForTimeout(200);
+  await p.click('#bookmarkPanel .bm-ent[data-bmid="d1-v0"] .w-bm'); await p.waitForTimeout(200);
   const gone = await p.evaluate(() => ({ v0: !!document.querySelector('#bookmarkPanel .bm-ent[data-bmid="d1-v0"]'), n: document.querySelectorAll('#bookmarkPanel .bm-ent').length }));
-  ok('開いた中の「ブックマークを外す」で一覧から消える', !gone.v0 && gone.n === 1, JSON.stringify(gone));
+  ok('開いた中の「★ ブックマーク済み」を押すと★の一覧から消える', !gone.v0 && gone.n === 1, JSON.stringify(gone));
   await p.evaluate(() => { window.toggleBookmark('d1-v1'); });
   // 古いブックマーク（例文を持たず、idの形も今と違う）でも、見出し語から例文を引く
   await p.evaluate(() => window.toggleBookmark('old-shuiping', '単語', '水平', 'レベル'));
@@ -459,7 +459,7 @@ ok('読み込み直しても速さを覚えている',
   await p.click('#bookmarkPanel .bm-ent[data-bmid="d81-g0"] .bm-row'); await p.waitForTimeout(200);
   const oldG = await p.evaluate(() => {
     const e = document.querySelector('#bookmarkPanel .bm-ent.bm-g');
-    return e ? { zh: e.querySelector('.bm-row .zh').textContent.trim(), meta: e.querySelector('.bm-dfoot span').textContent,
+    return e ? { zh: e.querySelector('.bm-row .zh').textContent.trim(), meta: e.querySelector('.bm-dfoot .w-go').textContent,
       ex: (e.querySelector('.ex') || {}).textContent || '', size: getComputedStyle(e.querySelector('.bm-row .zh')).fontSize } : null;
   });
   ok('古い文法ブックマークは今の名前・Day・例文で出す',
@@ -506,11 +506,11 @@ ok('読み込み直しても速さを覚えている',
   const ov = await p.evaluate(() => { const r = document.querySelector('#bookmarkPanel .bm-ent.open .bm-row'); return [r.scrollWidth, r.clientWidth]; });
   ok('ブックマークの行を開いても右端がはみ出さない', ov[0] <= ov[1], JSON.stringify(ov));
   // マイ単語タブ：ブックマーク側と揃える（見出し・件数の札・「学習画面に戻る」を出さない）
-  await p.click('[data-cw-action="tab-custom"]'); await p.waitForTimeout(200);
+  await p.click('#bookmarkPanel [data-action="wf"][data-id="cw"]'); await p.waitForTimeout(200);
   const cw = await p.evaluate(() => { const panel = document.getElementById('bookmarkPanel');
     return { h2: !!panel.querySelector('.section-title'), back: panel.textContent.includes('学習画面に戻る'), add: !!panel.querySelector('[data-cw-action="new"]') }; });
   ok('マイ単語タブに見出し・「学習画面に戻る」を出さない（追加ボタンは残す）', !cw.h2 && !cw.back && cw.add, JSON.stringify(cw));
-  await p.click('[data-cw-action="tab-bm"]'); await p.waitForTimeout(150);
+  await p.click('#bookmarkPanel [data-action="wf"][data-id="bm"]'); await p.waitForTimeout(150);
   await p.evaluate(() => window.toggleBookmark('d1-v0'));
   // Day学習の単語カード：例文の中国語・拼音・和訳を同じ揃えにする（拼音と和訳だけ中央寄せになっていた）
   await p.evaluate(() => window.showDay(1)); await p.waitForTimeout(250);
@@ -587,18 +587,27 @@ ok('読み込み直しても速さを覚えている',
 // --- 単語タブから語を開いたら、単語一覧へ戻れる（出口が「今日へ」「次へ」しかなかった） ---
 {
   await p.evaluate(() => window.showVocab()); await p.waitForTimeout(300);
-  // 少し下の語（Day 2 の2語目）を押す。押した語のカードが開き、出口は「単語一覧へ」
-  const target = await p.evaluate(() => { const rows = [...document.querySelectorAll('#content .vrow')].filter(r => /Day 2\b/.test(r.textContent));
-    const r = rows[1]; r.scrollIntoView({ block: 'center' }); return r.querySelector('.vrow-zh').textContent; });
-  await p.waitForTimeout(200);
+  await p.click('#bookmarkPanel [data-action="wf"][data-id="all"]'); await p.waitForTimeout(300);
+  // 少し下の語（Day 2 の2語目）を開いて「Day 2 で学ぶ →」を押す。押した語のカードが開き、出口は「単語一覧へ」
+  const target = await p.evaluate(() => { const r = document.querySelector('#bookmarkPanel .bm-ent[data-bmid="d2-v1"]');
+    r.scrollIntoView({ block: 'center' }); return r.querySelector('.bm-row .zh').textContent; });
+  await p.click('#bookmarkPanel .bm-ent[data-bmid="d2-v1"] .bm-row'); await p.waitForTimeout(200);
+  const star = await p.evaluate(() => { const e = document.querySelector('#bookmarkPanel .bm-ent.open'); return { bm: e.querySelector('.w-bm').textContent, go: e.querySelector('.w-go').textContent }; });
+  ok('「すべて」で開くと ☆ と「Day N で学ぶ」が出る', /☆/.test(star.bm) && /Day 2 で学ぶ/.test(star.go), JSON.stringify(star));
+  // ☆を押すと、その語のDayで★に入る（開いているDayではなく）
+  await p.click('#bookmarkPanel .bm-ent.open .w-bm'); await p.waitForTimeout(200);
+  const added = await p.evaluate(() => ({ txt: document.querySelector('#bookmarkPanel .bm-ent.open .w-bm').textContent,
+    rowStar: !!document.querySelector('#bookmarkPanel .bm-ent.open .bm-row .bm-star'), cnt: document.querySelector('#bookmarkPanel [data-id="bm"] small').textContent }));
+  ok('開いた中の ☆ で★が付き、行と件数にも出る', /★/.test(added.txt) && added.rowStar && added.cnt === '1', JSON.stringify(added));
+  await p.click('#bookmarkPanel .bm-ent.open .w-bm'); await p.waitForTimeout(200);
   const y0 = await p.evaluate(() => window.scrollY);
-  await p.evaluate((zh) => [...document.querySelectorAll('#content .vrow')].find(r => r.querySelector('.vrow-zh').textContent === zh).click(), target);
+  await p.click('#bookmarkPanel .bm-ent.open .w-go');
   await p.waitForTimeout(400);
   const inDay = await p.evaluate(() => ({ back: document.getElementById('topBack').textContent, card: (document.querySelector('.wcard.on>.zh') || {}).textContent || '' }));
   ok('単語タブから開くと、押した語のカードが出る', inDay.card.trim().startsWith(target), JSON.stringify({ target, card: inDay.card.trim() }));
   ok('単語タブから開いたDayの出口は「単語一覧へ」', /単語一覧/.test(inDay.back), inDay.back);
   await p.click('#topBack'); await p.waitForTimeout(500);
-  const back = await p.evaluate(() => ({ list: document.querySelectorAll('#content .vrow').length, y: window.scrollY }));
+  const back = await p.evaluate(() => ({ list: document.querySelectorAll('#bookmarkPanel .bm-ent').length, y: window.scrollY }));
   ok('「単語一覧へ」で単語一覧の元の位置へ戻る', back.list > 0 && Math.abs(back.y - y0) < 40, JSON.stringify({ y0, back }));
   // 今日画面から開いたDayでは、出口は従来どおり「今日へ」
   await p.evaluate(() => { window.showToday(); window.showDay(1); }); await p.waitForTimeout(250);

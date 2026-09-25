@@ -236,6 +236,18 @@ html.standalone .top{padding-top:calc(44px + env(safe-area-inset-top))}
 .cw-ex{cursor:text}
 mark.cw-hl{background:var(--brand-tint);color:inherit;border-radius:var(--r-sm);padding:0 1px}
 .cw-subtabs{display:flex;gap:24px;margin-bottom:0;border-bottom:1px solid var(--hair)}
+.w-chips{display:flex;gap:20px;border-bottom:1px solid var(--hair);overflow-x:auto;scrollbar-width:none;margin-top:4px}
+.w-chips::-webkit-scrollbar{display:none}
+.w-chips button{flex:none;border:0;background:none;border-radius:0;padding:6px 0 9px;margin-bottom:-1px;font:inherit;font-size:15px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.w-chips button.on{color:var(--ink);border-bottom-color:var(--ink)}
+.w-chips small{font-size:12px;font-weight:400;margin-left:4px}
+#bookmarkPanel .w-chips+*{margin-top:12px}
+.bm-star{color:var(--brand);font-size:12px;margin-left:6px;flex:none}
+.w-bm{border:1px solid var(--rule);background:none;padding:6px 12px;font:inherit;font-size:13px;font-weight:500;color:var(--ink);cursor:pointer}
+.w-bm.on{color:var(--brand);border-color:var(--brand)}
+.w-go{border:0;background:none;padding:6px 0;font:inherit;font-size:13px;font-weight:500;color:var(--ink);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.rev-n{font-size:10px;font-weight:500;margin-left:3px;color:var(--brand);letter-spacing:0}
+.rev-n:empty{display:none}
 /* 箱で囲むと「押すもの」に見えるが、これは画面の中の移動。押せるものの3段の「移動」＝下線のタブ */
 .cw-subtab{border:0;background:none;border-radius:0;padding:4px 0 9px;margin-bottom:-1px;font:inherit;font-size:15px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent}
 .cw-subtab.active{color:var(--ink);border-bottom-color:var(--ink)}
@@ -897,8 +909,8 @@ h1.brand{display:flex;align-items:center;gap:8px;margin:0;font-size:inherit;colo
      Day学習中だけ隠す（学習は1本の流れなので、抜け道はヘッダーの「✕ 今日へ」1つにする）。 -->
 <div class="tabbar" id="tabBar">
  <div class="nav-tab" id="homeBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v13H4z"/><path d="M4 11h16"/><path d="M8 3v4M16 3v4"/></svg><span>今日</span></div>
- <div class="nav-tab" id="bookmarkViewBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>ブックマーク</span></div>
  <div class="nav-tab" id="vocabTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19V6a2 2 0 0 1 2-2h12v16H7a2 2 0 0 0-2 2"/><path d="M9 8h7M9 12h5"/></svg><span>単語</span></div>
+ <div class="nav-tab" id="reviewTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg><span>復習<b class="rev-n" id="revN"></b></span></div>
  <div class="nav-tab" id="settingsTab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.2M12 18.8V21M21 12h-2.2M5.2 12H3M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6M18.4 18.4l-1.6-1.6M7.2 7.2 5.6 5.6"/></svg><span>設定</span></div>
 </div>
 
@@ -1084,6 +1096,9 @@ document.addEventListener('click', function(e){
   else if(a==='hl' && id) cycleHighlight(id);
   else if(a==='bmSort' && id) bmSetSort(id);
   else if(a==='bmToggle' && id) bmToggle(id);
+  else if(a==='bmStar' && id) bmStar(id);
+  else if(a==='wGo' && id) vocabGoToDay(Number(id), btn.dataset.zh||'');
+  else if(a==='wf' && id){ setWFilter(id); _vocabQuery=''; renderBookmarkPanel(); window.scrollTo({top:0}); }
 });
 
 
@@ -26736,7 +26751,9 @@ function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt
 function lesson(){ if(paywallPreview() && current>FREE_DAYS) return null; return LESSONS[current-1]; }
 function isBookmarked(id){return !!state.bookmarks[id]}
 function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){
-  if(state.bookmarks[id]){ delete state.bookmarks[id]; if(_bmOpen) delete _bmOpen[id]; } // 外したら「開いている」も忘れる（付け直すと開いたまま出ていた）
+  // ★で絞っている一覧から外したら「開いている」も忘れる（付け直すと開いたまま出ていた）。
+  // 「すべて」の一覧では、開いた中の★を押しても開いたままにする
+  if(state.bookmarks[id]){ delete state.bookmarks[id]; if(_bmOpen && wFilter()==='bm') delete _bmOpen[id]; }
   else { state.bookmarks[id]={id,type,title,sub,day:current,pinyin:pinyin||'',example:example||'',exPinyin:exPinyin||'',exJa:exJa||'',hl:0}; }
   save();
   // 以前はここで render() を呼んでいた。Day学習の途中でブックマークすると
@@ -26746,7 +26763,8 @@ function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){
     b.classList.toggle('active',on); b.textContent=on?'★':'☆'; hit++;
   });
   // 一覧そのものが変わる画面（ブックマーク）と、差し替え先が見つからない場合は描き直す
-  if(currentView==='bookmark' || !hit) render();
+  if(currentView==='vocab'||currentView==='bookmark') renderBookmarkPanel();
+  else if(!hit) render();
 }
 // 保存された見出しが今の項目名と同じものか。教材を組み直す前の見出しは
 // 「对来说：自然会話での使い方」のように、今の名前（对〜来说）から「〜」「…」が抜け、
@@ -26760,11 +26778,18 @@ function bmSameItem(saved, name){
 // ブックマーク一覧で開いている項目（id→true）。並び替えや描き直しをまたいで開いたままにする
 var _bmOpen={};
 function bmToggle(id){
-  if(!id || !state.bookmarks[id]) return;
+  var e=id && wEntryById(id); if(!e) return;
   if(_bmOpen[id]) delete _bmOpen[id]; else _bmOpen[id]=true;
   // その項目だけ差し替える（一覧ごと描き直すとスクロール位置が飛ぶ）
   var el=document.querySelector('#bookmarkPanel .bm-ent[data-bmid="'+id.replace(/"/g,'')+'"]');
-  if(el) el.outerHTML=fmtBmItem(state.bookmarks[id]); else renderBookmarkPanel();
+  if(el) el.outerHTML=fmtBmItem(e); else renderBookmarkPanel();
+}
+// 開いた中の ☆／★。★を付けるときは、その語のDayで記録する（toggleBookmark は開いているDayを入れるため）
+function bmStar(id){
+  var e=wEntryById(id); if(!e) return;
+  var adding=!state.bookmarks[id];
+  if(adding){ toggleBookmark(id, e.type, e.title, e.sub||'', e.pinyin||''); if(state.bookmarks[id]){ state.bookmarks[id].day=e.day; save(); } }
+  else toggleBookmark(id);
 }
 function fmtBmItem(b){
   if(!b || typeof b!=='object') return '';
@@ -26805,7 +26830,7 @@ function fmtBmItem(b){
   var h='<div class="bm-ent lv-'+lv+(b.type==='文法'?' bm-g':'')+(open?' open':'')+'" data-bmid="'+esc(b.id)+'">';
   h+='<button type="button" class="bm-row" data-action="bmToggle" data-id="'+esc(b.id)+'" aria-expanded="'+open+'">';
   h+='<span class="bm-word"><span class="zh">'+esc(title)+'</span>'+(pin?'<span class="pinyin">'+esc(pin)+'</span>':'')+'</span>';
-  h+='<span class="bm-ja">'+esc(sub)+'</span><span class="bm-chev" aria-hidden="true">›</span></button>';
+  h+='<span class="bm-ja">'+esc(sub)+'</span>'+(state.bookmarks[b.id]?'<span class="bm-star" aria-label="ブックマーク済み">★</span>':'')+'<span class="bm-chev" aria-hidden="true">›</span></button>';
   // 詳しい中身は開いている項目にだけ作る（419語ぶん作ると重い）
   if(open){
     h+='<div class="bm-detail">';
@@ -26815,7 +26840,9 @@ function fmtBmItem(b){
       if(exJ) h+='<div class="bm-exja">'+esc(exJ)+'</div>';
       h+='</div>';}
     h+='<div class="bm-dlv"><span class="bm-dlabel">難易度</span>'+lvControl(b.id)+'</div>';
-    h+='<div class="bm-dfoot"><span>'+esc(b.type)+'・Day '+day+'</span><button type="button" class="bm-rm" data-action="removeBookmark" data-id="'+esc(b.id)+'">ブックマークを外す</button></div>';
+    var on=!!state.bookmarks[b.id];
+    h+='<div class="bm-dfoot"><button type="button" class="w-bm'+(on?' on':'')+'" data-action="bmStar" data-id="'+esc(b.id)+'">'+(on?'★ ブックマーク済み':'☆ ブックマーク')+'</button>'
+      +'<button type="button" class="w-go" data-action="wGo" data-id="'+Number(day)+'" data-zh="'+esc(title)+'">'+esc(b.type)+'・Day '+day+' で学ぶ →</button></div>';
     h+='</div>';
   }
   h+='</div>';
@@ -26828,27 +26855,92 @@ function cycleHighlight(id){
   save(); renderBookmarkPanel();
 }
 
-function renderBookmarkPanel(){
-  $('bookmarkPanel').className='bookmark-panel card'+(currentView==='bookmark'?' active':'');
-  var bvb=$('bookmarkViewBtn');
-  if(bvb){
-    var sp=bvb.querySelector('span');
-    if(sp) sp.textContent='ブックマーク';
-    bvb.classList.toggle('active', currentView==='bookmark');
+// ===== 単語タブ（ブックマークと統合。2026年9月） =====
+// 全単語・全文法を1行ずつ並べ、上の切り替えで「すべて／★／苦手・曖昧／マイ単語」に絞る。
+// 行を押すとその場で開き、例文・読み上げ・難易度・★の付け外し・「Day N で学ぶ」が出る。
+// 最後に選んだ絞り込みは端末に覚える（state に入れると同期の列挙にも足す必要が出るので localStorage）
+var WF_KEY='hsk4-word-filter';
+function wFilter(){ try{ var v=localStorage.getItem(WF_KEY); return ['all','bm','hard','cw'].indexOf(v)>=0?v:'all'; }catch(e){ return 'all'; } }
+function setWFilter(f){ try{ localStorage.setItem(WF_KEY, f); }catch(e){} }
+var _wCache=null;
+function wEntries(){
+  if(_wCache) return _wCache;
+  var arr=[], preview=paywallPreview();
+  LESSONS.forEach(function(l){
+    // プレビュー中は Day8 以降を「持っていない」扱い。中文とDayだけの🔒行にする（拼音・和訳は出さない）
+    var locked = preview && l.day>FREE_DAYS;
+    (l.vocab||[]).forEach(function(v){
+      arr.push(locked ? {id:v.id, locked:true, type:'単語', title:v.zh, day:l.day}
+                      : {id:v.id, type:'単語', title:v.zh, sub:v.ja, pinyin:v.pinyin, day:l.day});
+    });
+    if(!locked) (l.grammar||[]).forEach(function(g){ arr.push({id:g.id, type:'文法', title:g.name, sub:g.meaning, pinyin:g.pinyin, day:l.day}); });
+  });
+  // 切り出し済みのときは、未購入分をここから足す（中文とDayだけ持っている）
+  LOCKED_VOCAB.forEach(function(v){ if(!lessonAvailable(v.day)) arr.push({id:'lk-'+v.day+'-'+v.zh, locked:true, type:'単語', title:v.zh, day:v.day}); });
+  arr.sort(function(x,y){ return x.day-y.day; });
+  _wCache=arr; return arr;
+}
+function wEntryById(id){
+  if(state.bookmarks[id]) return state.bookmarks[id];
+  return wEntries().find(function(e){ return e.id===id; })||null;
+}
+function wMatch(e, q){
+  if(!q) return true;
+  var k=q.trim().toLowerCase(); if(!k) return true;
+  var kt=vocabStripTone(k), py=String(e.pinyin||'').toLowerCase();
+  return String(e.title||'').indexOf(k)>=0 || py.indexOf(k)>=0 || vocabStripTone(py).replace(/\s/g,'').indexOf(kt.replace(/\s/g,''))>=0 || String(e.sub||'').toLowerCase().indexOf(k)>=0;
+}
+function wLockedRow(e){
+  return '<div class="bm-ent bm-locked"><button type="button" class="bm-row" onclick="vocabGoToDay('+e.day+')">'
+    +'<span class="bm-word"><span class="zh">'+esc(e.title)+'</span></span>'
+    +'<span class="bm-ja">🔒 購入すると読めます</span><span class="bm-chev" aria-hidden="true">›</span></button></div>';
+}
+function wItems(){
+  var f=wFilter(), q=_vocabQuery;
+  var items;
+  if(f==='bm') items=bmSortedItems();
+  else if(f==='hard') items=wEntries().filter(function(e){ return !e.locked && (state.levels[e.id]||0)>0; })
+                        .sort(function(a,b){ return ((state.levels[b.id]||0)-(state.levels[a.id]||0)) || (a.day-b.day); });
+  else items=wEntries();
+  return q ? items.filter(function(e){ return !e.locked && wMatch(e,q); }) : items;
+}
+function wListHTML(){
+  var f=wFilter(), items=wItems();
+  if(!items.length){
+    if(_vocabQuery.trim()) return '<div class="empty" style="margin-top:14px">「'+esc(_vocabQuery)+'」に一致する語はありません。</div>';
+    if(f==='bm') return '<div class="empty" style="margin-top:14px">★を付けた語はまだありません。語を開いて「☆ ブックマーク」を押すか、学習中に ☆ を押すとここに集まります。</div>';
+    if(f==='hard') return '<div class="empty" style="margin-top:14px">曖昧・苦手にした語はまだありません。</div>';
   }
-  var cwCount=(state.customWords||[]).length;
-  var bmCount=Object.keys(state.bookmarks||{}).length;
-  // 件数は切り替えの中に入れる（以前は見出し「ブックマーク」＋「○件」の札で1行を取っていた）
-  var subbar='<div class="cw-subtabs"><button class="cw-subtab'+(cwSubTab!=='custom'?' active':'')+'" data-cw-action="tab-bm">ブックマーク'+(bmCount?('<small>'+bmCount+'</small>'):'')+'</button><button class="cw-subtab'+(cwSubTab==='custom'?' active':'')+'" data-cw-action="tab-custom">マイ単語'+(cwCount?('<small>'+cwCount+'</small>'):'')+'</button></div>';
-  if(cwSubTab==='custom'){ $('bookmarkPanel').innerHTML=subbar+cwRenderListHtml(); return; }
-  var items=bmSortedItems();
-  var inner=subbar;
-  // 上は2行だけ（切り替え／並び替え）。見出し・件数の札・説明文は外した。
-  // 例文は開いた項目の中に出すので、以前の「例文」切替（state.density）は使わない（値は同期のため残す）
-  var rows=items.map(fmtBmItem);
-  inner+='<div class="bm-tools"><div class="bm-sort">'+bmSortChips()+'</div></div>';
-  inner+=items.length?rows.join(''):'<div class="empty">まだブックマークがありません。単語・文法の右上の ☆ を押すとここに集まります。</div>';
-  $('bookmarkPanel').innerHTML=inner;
+  return items.map(function(e){ return e.locked ? wLockedRow(e) : fmtBmItem(e); }).join('');
+}
+function renderBookmarkPanel(){
+  var P=$('bookmarkPanel'); if(!P) return;
+  P.className='bookmark-panel card'+(currentView==='vocab'?' active':'');
+  if(currentView!=='vocab') return;
+  _wCache=null;
+  var f=wFilter();
+  var all=wEntries();
+  var nAll=all.length;
+  var nBm=Object.keys(state.bookmarks||{}).length;
+  var nHard=all.filter(function(e){ return !e.locked && (state.levels[e.id]||0)>0; }).length;
+  var nCw=(state.customWords||[]).length;
+  var chip=function(k,t,n){ return '<button type="button" class="'+(f===k?'on':'')+'" data-action="wf" data-id="'+k+'">'+t+'<small>'+n+'</small></button>'; };
+  var h='';
+  if(f!=='cw'){
+    var hasQ=!!_vocabQuery.trim();
+    h+='<div class="vsearch"><span class="vsearch-ic">🔍</span>'
+      +'<input id="vocabSearch" type="search" placeholder="例: 提高 / tigao / 高める" value="'+esc(_vocabQuery)+'" autocomplete="off" autocapitalize="off">'
+      +'<button type="button" class="vsearch-clear" id="vocabClear"'+(hasQ?'':' style="visibility:hidden"')+'>×</button></div>';
+  }
+  h+='<div class="w-chips">'+chip('all','すべて',nAll)+chip('bm','★',nBm)+chip('hard','苦手・曖昧',nHard)+chip('cw','マイ単語',nCw)+'</div>';
+  if(f==='cw'){ P.innerHTML=h+cwRenderListHtml(); return; }
+  if(f==='bm') h+='<div class="bm-tools"><div class="bm-sort">'+bmSortChips()+'</div></div>';
+  h+='<div id="wList">'+wListHTML()+'</div>';
+  P.innerHTML=h;
+  var si=$('vocabSearch');
+  if(si) si.oninput=function(){ _vocabQuery=si.value; var cl=$('vocabClear'); if(cl) cl.style.visibility=_vocabQuery?'visible':'hidden'; var L=$('wList'); if(L) L.innerHTML=wListHTML(); };
+  var cl=$('vocabClear');
+  if(cl) cl.onclick=function(){ _vocabQuery=''; renderBookmarkPanel(); var s2=$('vocabSearch'); if(s2) s2.focus(); };
 }
 
 // ===== ブックマーク：並び替え（「おすすめ」順は統合復習スケジュール state.srs を参照、bookmarks本体は非破壊） =====
@@ -27136,15 +27228,17 @@ function render(){
  setTopOffset();
  // 「今日」「復習」「級診断」はタブ上では同じ『今日』を選択状態にする（復習と級診断は
  // 今日／設定から入る下位画面で、タブそのものは持たない）。
- setActiveTab(currentView==='vocab'?'vocabTab'
-   :currentView==='bookmark'?'bookmarkViewBtn'
+ setActiveTab((currentView==='vocab'||currentView==='bookmark')?'vocabTab'
+   :currentView==='review'?'reviewTab'
    :(currentView==='settings'||currentView==='levelcheck')?'settingsTab'
    :'homeBtn');
+ updRevBadge();
  setSettingsPanel(currentView==='settings');
  setChrome();
  renderBgShapes(currentView==='levelcheck'?'settings':currentView);
  if(currentView==='settings'){ renderSettings(); return; }
- if(currentView==='vocab'){ if(document.querySelector('.vlist') && document.activeElement && document.activeElement.id==='vocabSearch'){ vocabFilterOnly(); } else { renderVocabScreen(); } return; }
+ // 単語タブ＝全単語・全文法の一覧（ブックマークを統合）。器は #bookmarkPanel
+ if(currentView==='vocab'||currentView==='bookmark'){ currentView='vocab'; saveView(); renderBookmarkPanel(); var cv=$('content'); if(cv) cv.style.display='none'; return; }
  if(currentView==='levelcheck'){ renderLevelCheckScreen(); return; }
  if(currentView==='mock'){ renderMockScreen(); return; }
  if(currentView==='review'){ renderTestScreen(); return; }
@@ -27886,7 +27980,7 @@ if(false && $('jaBtn'))$('jaBtn').onclick=()=>{document.body.classList.toggle('h
 var _ansBtn=$('answerBtn');if(_ansBtn)_ansBtn.onclick=()=>{showAnswers=!showAnswers;_ansBtn.textContent=showAnswers?'解答を隠す':'解答を表示';_ansBtn.className='toggle '+(showAnswers?'on':'off');$('content').className=showAnswers?'show-answers':''}
 // ブックマークタブは以前トグル動作（再度押すと直前の画面に戻る）だったが、
 // 4タブ構成では他のタブと同じく単純な切替に揃える。
-document.getElementById('bookmarkViewBtn').addEventListener('click', showBookmarks);
+// ブックマークのタブは単語タブへ統合した（2026年9月）。★で絞る＝以前のブックマーク
 
 // Expose module-scoped functions for inline handlers.
 // This is necessary because this file uses <script type="module"> for Firebase imports.
@@ -27909,7 +28003,8 @@ function trackSrsEnd(how){
                     good:_rev.good, easy:_rev.easy, how:how||'button' });
 }
 function showDay(d){ currentView='day'; setDay(Number(d)); }
-function showBookmarks(){ goView('bookmark'); }
+// 旧ブックマークタブの入口。単語タブを「★」で絞った状態で開く
+function showBookmarks(){ setWFilter('bm'); goView('vocab'); }
 function showToday(){ goView('today'); }
 function showHome(){ showToday(); }   // 旧名。級診断など既存の呼び出し元が使う
 function showStudy(){ goView('day'); }
@@ -27942,82 +28037,9 @@ function dayBack(){
     setTimeout(function(){ window.scrollTo({top:f.scroll, behavior:'auto'}); }, 0);
   } else showToday();
 }
-function vocabBuildIndex(){
-  if(_vocabIndex) return _vocabIndex;
-  var arr=[], preview=paywallPreview();
-  LESSONS.forEach(function(l){
-    // プレビュー中はDay8以降を「持っていない」扱いにするので、中文とDayだけにする
-    var locked = preview && l.day>FREE_DAYS;
-    (l.vocab||[]).forEach(function(v){
-      arr.push(locked ? {zh:v.zh, day:l.day, locked:true}
-                      : {zh:v.zh, pinyin:v.pinyin, ja:v.ja, day:l.day});
-    });
-  });
-  // 切り出し済みのときは、未購入分をここから足す（中文とDayだけ持っている）
-  LOCKED_VOCAB.forEach(function(v){
-    if(!lessonAvailable(v.day)) arr.push({zh:v.zh, day:v.day, locked:true});
-  });
-  arr.sort(function(a,b){ return a.day-b.day; });
-  _vocabIndex=arr; return arr;
-}
 function vocabStripTone(s){
   var map={'ā':'a','á':'a','ǎ':'a','à':'a','ē':'e','é':'e','ě':'e','è':'e','ī':'i','í':'i','ǐ':'i','ì':'i','ō':'o','ó':'o','ǒ':'o','ò':'o','ū':'u','ú':'u','ǔ':'u','ù':'u','ǖ':'u','ǘ':'u','ǚ':'u','ǜ':'u','ü':'u'};
   return String(s||'').toLowerCase().replace(/[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜü]/g,function(m){return map[m]||m;});
-}
-function vocabComputeList(){
-  var all=vocabBuildIndex();
-  var k=_vocabQuery.trim().toLowerCase();
-  if(!k) return all;
-  var kt=vocabStripTone(k);
-  return all.filter(function(v){
-    // 未購入分は中文しか持っていないので、拼音・和訳は空として扱う
-    var py=v.pinyin||'', ja=v.ja||'';
-    return v.zh.indexOf(k)>=0 || py.toLowerCase().indexOf(k)>=0 || vocabStripTone(py).indexOf(kt)>=0 || ja.toLowerCase().indexOf(k)>=0;
-  });
-}
-function vocabRowHTML(v){
-  // 未購入分は「ある」ことだけ見せる。拼音と和訳は持っていない（＝渡していない）。
-  if(v.locked){
-    return '<button type="button" class="vrow vrow-locked" onclick="vocabGoToDay('+v.day+')">'
-      +'<span class="vrow-main"><span class="vrow-top"><b class="vrow-zh">'+esc(v.zh)+'</b></span>'
-      +'<span class="vrow-ja">購入すると読めます</span></span>'
-      +'<span class="vrow-day">Day '+v.day+'</span></button>';
-  }
-  return '<button type="button" class="vrow" onclick="vocabGoToDay('+v.day+',\''+esc(v.zh)+'\')">'
-    +'<span class="vrow-main"><span class="vrow-top"><b class="vrow-zh">'+esc(v.zh)+'</b> <span class="vrow-py">'+esc(v.pinyin)+'</span></span>'
-    +'<span class="vrow-ja">'+esc(v.ja)+'</span></span>'
-    +'<span class="vrow-day">Day '+v.day+' \u203a</span></button>';
-}
-function vocabListHTML(list){
-  if(!list.length) return '<div class="vempty">\u300c'+esc(_vocabQuery)+'\u300d\u306b\u4e00\u81f4\u3059\u308b\u5358\u8a9e\u306f\u3042\u308a\u307e\u305b\u3093</div>';
-  return list.map(vocabRowHTML).join('');
-}
-function vocabFilterOnly(){
-  var list=vocabComputeList();
-  var vl=document.querySelector('.vlist'); if(vl) vl.innerHTML=vocabListHTML(list);
-  var cnt=document.querySelector('.vsearch-count'); if(cnt) cnt.textContent=list.length+'件';
-  var cl=$('vocabClear'); if(cl) cl.style.visibility=_vocabQuery.trim()?'visible':'hidden';
-}
-function renderVocabScreen(){
-  if($('bookmarkPanel')) $('bookmarkPanel').className='bookmark-panel card';
-  var c=$('content'); if(!c) return;
-  c.style.display=''; c.className='';
-  var all=vocabBuildIndex();
-  var list=vocabComputeList();
-  var hasQ=!!_vocabQuery.trim();
-  var h='<div class="card">'
-    +'<div class="section-title"><h2>単語</h2><span class="badge">全'+all.length+'語</span></div>'
-    +'<div class="small muted">中国語・ピンイン・日本語で検索（タップでそのDayへ）</div>'
-    +'<div class="vsearch"><span class="vsearch-ic">🔍</span>'
-    +'<input id="vocabSearch" type="search" placeholder="例: 提高 / tigao / 高める" value="'+esc(_vocabQuery)+'" autocomplete="off" autocapitalize="off">'
-    +'<button type="button" class="vsearch-clear" id="vocabClear"'+(hasQ?'':' style="visibility:hidden"')+'>×</button></div>'
-    +'<div class="small muted vsearch-count">'+list.length+'件</div>'
-    +'<div class="vlist">'+vocabListHTML(list)+'</div></div>';
-  c.innerHTML=h;
-  var si=$('vocabSearch');
-  if(si){ si.oninput=function(){ _vocabQuery=si.value; vocabFilterOnly(); }; }
-  var cl=$('vocabClear');
-  if(cl){ cl.onclick=function(){ _vocabQuery=''; vocabFilterOnly(); var s=$('vocabSearch'); if(s){ s.value=''; s.focus(); } }; }
 }
 function setActiveTab(id){ document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.toggle('active', t.id===id);}); }
 
@@ -28189,6 +28211,17 @@ function _toast(msg, ms){
   }catch(e){}
 }
 
+// 復習タブの件数（今日ぶん）。renderTestScreen と同じ数え方
+function revTodayCount(){
+  try{
+    var scope=(state.revScope==='bm')?'bm':'all';
+    var nl=(typeof state.srsNewLimit==='number')?state.srsNewLimit:8;
+    var dl=(typeof state.srsDueLimit==='number')?state.srsDueLimit:30;
+    var cnt=srsCounts(scope);
+    return ((dl<0)?cnt.due:Math.min(dl,cnt.due))+((nl<0)?cnt.fresh:Math.min(nl,cnt.fresh));
+  }catch(e){ return 0; }
+}
+function updRevBadge(){ var el=$('revN'); if(el){ var n=revTodayCount(); el.textContent=n>0?String(n):''; } }
 function renderTestScreen(){
   var c=$('content'); c.style.display=''; c.className='';
   $('bookmarkPanel').className='bookmark-panel card';
@@ -28206,16 +28239,13 @@ function renderTestScreen(){
   var html='<div class="card testwrap"><div class="section-title"><h2>今日の復習</h2><span class="badge">'+todayTotal+'問</span></div>';
   if(cnt.elig===0){
     html+='<div class="empty" style="margin-top:4px">'+(scope==='bm'?'ブックマークがまだありません。学習画面で単語・文法の ☆ を押すと、ここで復習できます。':'まだ復習対象がありません。学習画面で各Dayを完了すると、その単語・文法が復習に入ります。')+'</div>';
-    html+='<button style="width:100%;margin-top:12px" onclick="showToday()">今日やることへ戻る</button>';
   } else if(todayTotal===0){
     html+='<div class="empty" style="margin-top:4px">今日ぶんの復習は終わっています。おつかれさまでした。</div>';
-    html+='<button style="width:100%;margin-top:12px" onclick="showToday()">今日やることへ戻る</button>';
   } else {
     html+='<div class="small muted" style="margin-top:2px">期限 '+shownDue+'問'+(carryOver>0?'（+'+carryOver+'問は明日以降に持ち越し）':'')+' ＋ 新しく覚える '+shownNew+'問。忘れる頃に自動で出題します（間隔反復）。</div>';
     html+='<button class="primary" style="width:100%;margin-top:12px" onclick="revStart()">復習を始める（'+todayTotal+'問）</button>';
-    html+='<button style="width:100%;margin-top:8px" onclick="showToday()">あとにする</button>';
   }
-  html+='<div class="small muted" style="margin-top:14px">出題範囲や1日の新規問数は<a href="#" onclick="showSettings();return false">設定</a>で変更できます。</div>';
+  html+='<div class="small muted" style="margin-top:14px">出題範囲や1日の新規問数は<a href="#" style="color:var(--ink2);text-underline-offset:3px" onclick="showSettings();return false">設定</a>で変更できます。</div>';
   html+='</div>';
   c.innerHTML=html;
 }
@@ -28752,7 +28782,7 @@ setTimeout(setTopOffset, 300); // Webフォント/アイコン読込後のズレ
   var tb=document.getElementById('topBack');     if(tb) tb.addEventListener('click', dayBack);
   var vt=document.getElementById('vocabTab');    if(vt) vt.addEventListener('click', showVocab);
   var gt=document.getElementById('settingsTab'); if(gt) gt.addEventListener('click', showSettings);
-  // ブックマークタブは別途 bookmarkViewBtn のハンドラで処理
+  var rt=document.getElementById('reviewTab');   if(rt) rt.addEventListener('click', showTest);
 })();
 
 // ===== ローカルチャレンジ問題生成 =====
@@ -29594,7 +29624,7 @@ function cwModalSave(){
   cwCloseModal();
   document.querySelectorAll('.cw-ex').forEach(function(el){ el.removeAttribute('data-cw-n'); });
   cwApplyHighlights();
-  if(currentView==='bookmark' && cwSubTab==='custom'){ renderBookmarkPanel(); }
+  if(currentView==='vocab' && wFilter()==='cw'){ renderBookmarkPanel(); }
 }
 
 /* ---- 専用クリックリスナー（既存ハンドラと独立） ---- */
@@ -29602,8 +29632,8 @@ document.addEventListener('click', function(e){
   var b=e.target.closest && e.target.closest('[data-cw-action]');
   if(!b) return;
   var a=b.dataset.cwAction, i=Number(b.dataset.i);
-  if(a==='tab-bm'){ cwSubTab='bm'; renderBookmarkPanel(); }
-  else if(a==='tab-custom'){ cwSubTab='custom'; renderBookmarkPanel(); }
+  if(a==='tab-bm'){ setWFilter('bm'); renderBookmarkPanel(); }
+  else if(a==='tab-custom'){ setWFilter('cw'); renderBookmarkPanel(); }
   else if(a==='del'){ if(state.customWords[i]){ state.customWords.splice(i,1); save(); renderBookmarkPanel(); document.querySelectorAll('.cw-ex').forEach(function(el){ el.removeAttribute('data-cw-n'); }); cwApplyHighlights(); } }
   else if(a==='speak'){ var w=state.customWords[i]; if(w&&window.speakZh) window.speakZh(w.zh); }
   else if(a==='speak-ex'){ var w2=state.customWords[i]; if(w2&&window.speakZh) window.speakZh(w2.example); }
