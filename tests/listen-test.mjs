@@ -520,6 +520,66 @@ ok('読み込み直しても速さを覚えている',
   await p.evaluate(() => window.showToday()); await p.waitForTimeout(150);
 }
 
+// --- 字の大きさの上下関係（文字サイズ3段とも）。全体向けの body.fs-lg .zh 等に負けて逆転していた ---
+{
+  const res = [];
+  for (const fs of ['fs-sm', '', 'fs-lg']) {
+    await p.evaluate(() => window.showDay(1)); await p.waitForTimeout(200);
+    res.push(await p.evaluate((fs) => {
+      document.body.classList.remove('fs-sm', 'fs-lg'); if (fs) document.body.classList.add(fs);
+      document.querySelectorAll('.dstep').forEach(d => d.classList.add('on'));
+      const px = (sel) => { const e = [...document.querySelectorAll(sel)].find(x => x.offsetParent); return e ? parseFloat(getComputedStyle(e).fontSize) : NaN; };
+      const r = { fs, zh: px('.wcard.on>.zh'), py: px('.wcard.on>.pinyin'), ja: px('.wcard.on>.ja'), ex: px('.wcard.on .wex .cw-ex'), expy: px('.wcard.on .wex .expinyin'), exja: px('.wcard.on .wex .exja'),
+        gh: px('.gitem h3'), gpy: px('.gitem .item-head .pinyin'), gex: px('.gitem .ex .cw-ex'), gexpy: px('.gitem .expinyin'), gexja: px('.gitem .exja') };
+      document.body.classList.remove('fs-sm', 'fs-lg');
+      return r;
+    }, fs));
+  }
+  ok('単語カード：見出し語＞意味、例文の中国語＞和訳、拼音＜意味（文字サイズ3段とも）',
+    res.every(r => r.zh > r.ja && r.ex > r.exja && r.py < r.ja && r.expy < r.exja), JSON.stringify(res));
+  ok('単語カード：文字サイズ「大」で見出し語が縮まない（小＜中＜大）', res[0].zh < res[1].zh && res[1].zh < res[2].zh, JSON.stringify(res.map(r => r.zh)));
+  ok('文法の項目：見出し＞拼音、例文の中国語＞例文の拼音・和訳（3段とも）',
+    res.every(r => r.gh > r.gpy && r.gex > r.gexpy && r.gex > r.gexja), JSON.stringify(res));
+  await p.evaluate(() => window.showToday()); await p.waitForTimeout(150);
+}
+
+// --- ブックマークの意味は必ず1行（長い文法でも折れない。入り切らなければ「…」、開くと全文） ---
+{
+  await p.evaluate(() => {
+    window.toggleBookmark('d1-g0', '文法', '了：状態変化', '状況が新しく変わったことを表す');
+    window.toggleBookmark('d24-g0', '文法', '是〜的：強調', 'すでに起きたことの時・場所・方法を強調する');
+    window.showBookmarks();
+  });
+  const sizes = [[440, 'fs-lg'], [390, ''], [375, 'fs-lg']];
+  const out = [];
+  for (const [w, fs] of sizes) {
+    await p.setViewportSize({ width: w, height: 844 }); await p.waitForTimeout(150);
+    out.push(await p.evaluate((fs) => {
+      document.body.classList.remove('fs-sm', 'fs-lg'); if (fs) document.body.classList.add(fs);
+      // 1行に収まる・見出しと意味が重ならない
+      const r = [...document.querySelectorAll('#bookmarkPanel .bm-row')].map(row => {
+        const j = row.querySelector('.bm-ja'), z = row.querySelector('.zh');
+        const lh = parseFloat(getComputedStyle(j).lineHeight);
+        return j.getBoundingClientRect().height <= lh * 1.3 && z.getBoundingClientRect().right <= j.getBoundingClientRect().left + 1; });
+      document.body.classList.remove('fs-sm', 'fs-lg');
+      return r.every(Boolean);
+    }, fs));
+  }
+  ok('ブックマークの意味は1行に収まり、見出しと重ならない（440/390/375・文字サイズ「大」含む）', out.every(Boolean), JSON.stringify(out));
+  await p.click('#bookmarkPanel .bm-row'); await p.waitForTimeout(150);
+  const full = await p.evaluate(() => { const j = document.querySelector('#bookmarkPanel .bm-ent.open .bm-ja');
+    return { ws: getComputedStyle(j).whiteSpace, fits: j.scrollWidth <= j.clientWidth + 1 && j.getBoundingClientRect().right <= document.querySelector('#bookmarkPanel .bm-ent.open .bm-row').getBoundingClientRect().right + 1 }; });
+  ok('開いた行では意味を省かず全文を、枠からはみ出さずに出す', full.ws === 'normal' && full.fits, JSON.stringify(full));
+  await p.evaluate(() => { window.toggleBookmark('d1-g0'); window.toggleBookmark('d24-g0'); });
+  // スマホ向けの調整は幅440（利用者の大型機）でも390でも同じ
+  const pads = [];
+  for (const w of [390, 440]) { await p.setViewportSize({ width: w, height: 844 }); await p.waitForTimeout(100);
+    pads.push(await p.evaluate(() => { const b = document.createElement('button'); document.body.appendChild(b); const v = getComputedStyle(b).padding; b.remove(); return v; })); }
+  ok('スマホ向けの見た目は機種の幅で変わらない（390と440で同じ）', pads[0] === pads[1], JSON.stringify(pads));
+  await p.setViewportSize({ width: 390, height: 844 });
+  await p.evaluate(() => window.showToday()); await p.waitForTimeout(150);
+}
+
 // --- ホーム画面から起動したときは、ロゴを iOS のぼかし（安全域＋約34pt）の外へ下げる ---
 {
   const r = await p.evaluate(() => {
