@@ -292,11 +292,17 @@ body.fs-lg .vrow-zh{font-size:23px}body.fs-lg .vrow-py{font-size:17px}body.fs-lg
 .bm-ent.lv-1 .bm-row::before,.bm-ent.lv-2 .bm-row::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;background:var(--amber)}
 .bm-ent.lv-2 .bm-row::before{background:var(--red2)}
 .bm-word{flex:none;display:flex;align-items:baseline;gap:8px;min-width:0}
-.bm-ent .zh{font-size:24px;line-height:1.3}
-/* 文法は見出しが長い（「V起来：印象」など）。語と同じ大きさだと意味を押し出す */
-.bm-ent.bm-g .zh{font-size:18px}
-.bm-word .pinyin{margin:0;font-size:13px;color:var(--ink2);letter-spacing:.02em}
-.bm-row .bm-ja{flex:1;min-width:0;font-size:14px;color:var(--ink2);text-align:right;line-height:1.5}
+/* 字の大きさは3つの変数だけで決める。**語も文法も同じ大きさ**（以前は語24px・文法18pxで、
+   並べるとばらついて見えた）。文字サイズの設定（body.fs-sm / fs-lg）は変数を差し替えて効かせる。
+   `body.fs-lg .zh` `body.fs-lg .pinyin` の一般規則のほうが詳細度が高く、以前は拼音が20pxに
+   ふくらんで見出しと同じ大きさになっていた（実機で指摘された）ので、#bookmarkPanel で上書きする */
+#bookmarkPanel{--bm-zh:21px;--bm-py:13px;--bm-ja:14px}
+body.fs-sm #bookmarkPanel{--bm-zh:19px;--bm-py:12px;--bm-ja:13px}
+body.fs-lg #bookmarkPanel{--bm-zh:24px;--bm-py:14.5px;--bm-ja:15.5px}
+#bookmarkPanel .bm-row .zh{font-size:var(--bm-zh);line-height:1.3}
+#bookmarkPanel .bm-row .pinyin{margin:0;font-size:var(--bm-py);color:var(--ink2);letter-spacing:.02em}
+#bookmarkPanel .bm-row .bm-ja{flex:1;min-width:0;font-size:var(--bm-ja);color:var(--ink2);text-align:right;line-height:1.5}
+.bm-word{flex-wrap:wrap;column-gap:8px;row-gap:0}
 .bm-chev{flex:none;color:var(--muted);font-size:17px;line-height:1;transition:transform .15s}
 .bm-ent.open .bm-chev{transform:rotate(90deg)}
 .bm-detail{background:var(--paper,#F6F3EA);padding:14px 16px 12px;border-top:1px solid var(--hair)}
@@ -26659,6 +26665,15 @@ function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){
   // 一覧そのものが変わる画面（ブックマーク）と、差し替え先が見つからない場合は描き直す
   if(currentView==='bookmark' || !hit) render();
 }
+// 保存された見出しが今の項目名と同じものか。教材を組み直す前の見出しは
+// 「对来说：自然会話での使い方」のように、今の名前（对〜来说）から「〜」「…」が抜け、
+// 後ろに「：…」が付いている。「〜」類を落として比べ、「今の名前＋：」で始まるものも同じとみなす
+function bmSameItem(saved, name){
+  if(!saved || !name) return false;
+  var norm=function(x){ return String(x).replace(/[〜~…･・\s]/g,''); };
+  var t=norm(saved), n=norm(name);
+  return !!n && (t===n || t.indexOf(n+'：')===0);
+}
 // ブックマーク一覧で開いている項目（id→true）。並び替えや描き直しをまたいで開いたままにする
 var _bmOpen={};
 function bmToggle(id){
@@ -26676,8 +26691,7 @@ function fmtBmItem(b){
     if(m2){var l2=LESSONS.find(function(l){return l.day===Number(m2[1]);});
       if(l2){var arr=m2[2]==='v'?l2.vocab:l2.grammar,item2=arr[Number(m2[3])];
         // idが今の別の項目を指していることがある（教材を組み直す前のid）。見出しが合うときだけ使う
-        var t2=String(b.title||''), n2=item2&&(item2.zh||item2.name)||'';
-        if(item2 && t2 && t2!==n2 && t2.indexOf(n2+'：')!==0) item2=null;
+        if(item2 && b.title && !bmSameItem(b.title, item2.zh||item2.name)) item2=null;
         if(item2){ex=item2.example||'';exP=item2.exPinyin||'';exJ=item2.exJa||'';pin=item2.pinyin||'';}}}
   }
   // それでも無ければ見出し語で引く。古いブックマークは例文を持たず、idの形も今と違うことがあり、
@@ -26690,7 +26704,7 @@ function fmtBmItem(b){
     var hit=null, hitDay=0, t=String(b.title);
     LESSONS.some(function(l){
       hit=(l.vocab||[]).find(function(v){return v.zh===t;})
-        ||(l.grammar||[]).find(function(g){return g.name===t || t.indexOf(g.name+'：')===0;});
+        ||(l.grammar||[]).find(function(g){return bmSameItem(t, g.name);});
       if(hit) hitDay=l.day;
       return !!hit;
     });

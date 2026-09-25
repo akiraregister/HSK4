@@ -460,8 +460,37 @@ ok('読み込み直しても速さを覚えている',
   });
   ok('古い文法ブックマークは今の名前・Day・例文で出す',
     oldG && oldG.zh === 'V起来：印象' && /Day 23/.test(oldG.meta) && oldG.ex.includes('听起来'), JSON.stringify(oldG));
-  ok('文法の見出しは語より小さくして折れにくくする', oldG && oldG.size === '18px', oldG && oldG.size);
   await p.evaluate(() => window.toggleBookmark('d81-g0'));
+  // 「〜」の抜けた古い見出し（今は「对〜来说」）でも今の項目として出す（実機のデータ）
+  await p.evaluate(() => window.toggleBookmark('d76-g9', '文法', '对来说：自然会話での使い方', '〜にとって'));
+  await p.waitForTimeout(200);
+  const oldD = await p.evaluate(() => {
+    const e = document.querySelector('#bookmarkPanel .bm-ent[data-bmid="d76-g9"]');
+    return e ? { zh: e.querySelector('.bm-row .zh').textContent, py: (e.querySelector('.bm-row .pinyin') || {}).textContent || '' } : null;
+  });
+  ok('「〜」の抜けた古い見出しも今の名前と拼音で出す', oldD && oldD.zh === '对〜来说' && oldD.py.includes('duì'), JSON.stringify(oldD));
+  await p.evaluate(() => window.toggleBookmark('d76-g9'));
+  // 字の大きさは語も文法も同じ。文字サイズ「大」でも拼音が見出しより大きくならない（実機で指摘された）
+  await p.evaluate(() => {
+    window.toggleBookmark('d1-v0', '単語', '水平', 'レベル、能力水準', 'shuǐpíng');
+    window.toggleBookmark('d23-g0', '文法', 'V起来：印象', '〜してみると、〜な感じ');
+  });
+  await p.waitForTimeout(150);
+  const sizes = [];
+  for (const fs of ['', 'fs-sm', 'fs-lg']) {
+    sizes.push(await p.evaluate((fs) => {
+      document.body.classList.remove('fs-sm', 'fs-lg'); if (fs) document.body.classList.add(fs);
+      const px = (sel) => parseFloat(getComputedStyle(document.querySelector(sel)).fontSize);
+      const r = { fs, v: px('#bookmarkPanel .bm-ent[data-bmid="d1-v0"] .bm-row .zh'), g: px('#bookmarkPanel .bm-ent[data-bmid="d23-g0"] .bm-row .zh'),
+        py: px('#bookmarkPanel .bm-ent[data-bmid="d1-v0"] .bm-row .pinyin') };
+      document.body.classList.remove('fs-sm', 'fs-lg');
+      return r;
+    }, fs));
+  }
+  ok('語と文法の見出しは同じ大きさ（文字サイズの設定3段とも）', sizes.every(r => r.v === r.g), JSON.stringify(sizes));
+  ok('拼音は見出しの7割以下（文字サイズ「大」でもふくらまない）', sizes.every(r => r.py <= r.v * 0.7), JSON.stringify(sizes));
+  ok('文字サイズの設定で大きさが変わる', sizes[1].v < sizes[0].v && sizes[0].v < sizes[2].v, JSON.stringify(sizes));
+  await p.evaluate(() => { window.toggleBookmark('d1-v0'); window.toggleBookmark('d23-g0'); });
 }
 
 // --- ホーム画面から起動したときは、ロゴを iOS のぼかし（安全域＋約34pt）の外へ下げる ---
