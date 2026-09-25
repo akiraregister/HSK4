@@ -430,6 +430,32 @@ ok('読み込み直しても速さを覚えている',
   });
   ok('古いブックマークでも見出し語から例文を引く', oldEx.includes('我的中文水平'), oldEx.slice(0, 30));
   await p.evaluate(() => window.toggleBookmark('old-shuiping'));
+  // 教材を組み直す前の文法ブックマーク：見出しに後ろ書きが付き、Dayも今とずれている（実機のデータ）
+  await p.evaluate(() => window.toggleBookmark('d81-g0', '文法', 'V起来：印象：自然会話での使い方', '〜してみると、〜な感じ'));
+  await p.waitForTimeout(200);
+  const oldG = await p.evaluate(() => {
+    const e = document.querySelector('#bookmarkPanel .bm-ent.bm-g');
+    return e ? { zh: e.querySelector('.zh').textContent.trim(), meta: e.querySelector('.bm-meta span').textContent,
+      ex: (e.querySelector('.ex') || {}).textContent || '', size: getComputedStyle(e.querySelector('.zh')).fontSize } : null;
+  });
+  ok('古い文法ブックマークは今の名前・Day・例文で出す',
+    oldG && oldG.zh === 'V起来：印象' && /Day 23/.test(oldG.meta) && oldG.ex.includes('听起来'), JSON.stringify(oldG));
+  ok('文法の見出しは語より小さくして折れにくくする', oldG && oldG.size === '18px', oldG && oldG.size);
+  await p.evaluate(() => window.toggleBookmark('d81-g0'));
+}
+
+// --- ホーム画面から起動したときは、ロゴを iOS のぼかし（上から約90pt）の外へ下げる ---
+{
+  const pad = await p.evaluate(() => {
+    const t = document.querySelector('.top');
+    const before = parseFloat(getComputedStyle(t).paddingTop);
+    document.documentElement.classList.add('standalone');
+    const after = parseFloat(getComputedStyle(t).paddingTop);
+    document.documentElement.classList.remove('standalone');
+    return { before, after };
+  });
+  ok('ホーム画面起動ではロゴの上端が104px以上', pad.after >= 104, JSON.stringify(pad));
+  ok('ブラウザで開いたときは下げない', pad.before < 104, JSON.stringify(pad));
 }
 
 console.log(res.join('\n'));
