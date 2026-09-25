@@ -205,6 +205,10 @@ ok('Day選択の重複バーが消えた', !(await page.$('.daybar')) && !(await
 ok('答える前は下のバーに「次の問題へ」を出さない', await page.$eval('#bottomMt', e => getComputedStyle(e).display === 'none'));
 await page.click('#mtRoot .mt-opt'); await page.waitForTimeout(300);
 ok('答えたら下のバーに「次の問題へ」が出る', await page.$eval('#bottomMt', e => getComputedStyle(e).display !== 'none' && e.textContent.includes('次の問題へ')));
+// 答えた画面を1画面に収める（実機で「スクロールで画面が揺れる」と言われた）
+ok('解説の行はフレックスにしない（文が途中で折れて行が増えていた）', await page.$eval('#mtRoot .mt-exp .row', e => getComputedStyle(e).display === 'block'));
+ok('ほかの選択肢の解説は畳んである', await page.$eval('#mtRoot .mt-exp', e => { const d = e.querySelector('details.mt-more'); return !d || !d.open; }));
+ok('「テストをとばして完了する」は問番号の行にある', !!(await page.$('#mtRoot .mt-head #mtSkip')));
 ok('画面の中に同じボタンを重ねない', !(await page.$('#mtRoot .mt-btn:not(.ghost)')));
 ok('答えても「完了」はまだ出さない', await page.$eval('#bottomComplete', e => getComputedStyle(e).display === 'none'));
 await page.click('#bottomMt'); await page.waitForTimeout(300);

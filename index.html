@@ -264,9 +264,12 @@ mark.cw-hl{background:var(--brand-tint);color:inherit;border-radius:var(--r-sm);
 z{font-family:var(--zh-font);font-style:normal}
 #mtRoot{scroll-margin-top:10px}
 .mt-counter{font-size:14px;color:var(--muted);font-weight:600}
-.mt-prog{height:6px;background:var(--gray);border-radius:var(--r-pill);overflow:hidden;margin:8px 0 14px}.mt-prog>i{display:block;height:100%;background:var(--blue2,var(--ink));transition:width .25s}
+/* 問番号の行の右に「テストをとばして完了する」を置く（以前はテストの下で、答えると画面からはみ出す原因の1つだった） */
+.mt-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.mt-head .mt-skip{margin:0;font-size:12.5px}
+.mt-prog{height:6px;background:var(--gray);border-radius:var(--r-pill);overflow:hidden;margin:6px 0 12px}.mt-prog>i{display:block;height:100%;background:var(--blue2,var(--ink));transition:width .25s}
 .mt-qtype{display:inline-block;font-size:12.5px;font-weight:700;color:var(--ink);background:var(--gray);border-radius:var(--r-sm);padding:3px 8px;margin-bottom:10px}
-.mt-q{font-size:18px;line-height:1.55;font-weight:600;margin:2px 0 14px;white-space:pre-wrap}
+.mt-q{font-size:18px;line-height:1.55;font-weight:600;margin:2px 0 12px;white-space:pre-wrap}
 .mt-blank{display:inline-block;min-width:64px;height:1.1em;margin:0 4px;vertical-align:-0.2em;border-bottom:2.5px solid var(--ink)}
 .vsearch{display:flex;align-items:center;gap:8px;background:var(--gray);border-radius:var(--r-md);padding:10px 12px;margin:10px 0 0}
 .vsearch-ic{color:var(--ink);font-size:15px}
@@ -335,16 +338,17 @@ body.fs-lg #bookmarkPanel{--bm-zh:21px;--bm-py:13px;--bm-ja:14px}
 .bm-dfoot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:12.5px;color:var(--muted)}
 .bm-rm{border:0;background:none;padding:6px 0;font-size:13px;font-weight:400;color:var(--ink2);text-decoration:underline;text-underline-offset:3px}
 
-.mt-opts{display:flex;flex-direction:column;gap:10px}
+.mt-opts{display:flex;flex-direction:column;gap:8px}
 /* 以前はブラウザ既定の青いリンクのままで、アプリの中でここだけ色が浮いていた */
 .mt-finish{color:var(--ink2);text-decoration:underline;text-underline-offset:3px}
-.mt-opt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:var(--r-md);padding:13px 14px;font-size:16px;cursor:pointer;line-height:1.4}
+.mt-opt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:var(--r-md);padding:10px 14px;font-size:16px;cursor:pointer;line-height:1.4}
 .mt-opt:active{transform:scale(.99)}.mt-opt[disabled]{cursor:default}
 .mt-opt.correct{border-color:var(--good);background:var(--goodbg)}.mt-opt.wrong{border-color:var(--bad);background:var(--caution-tint)}
 .mt-opt .mk{margin-left:auto;font-weight:600}.mt-opt.correct .mk{color:var(--good)}.mt-opt.wrong .mk{color:var(--bad)}
-.mt-exp{margin-top:14px;border-radius:var(--r-md);padding:12px 13px;font-size:14px;line-height:1.65;background:var(--brand-tint);border:1px solid var(--hair)}
+.mt-exp{margin-top:12px;border-radius:var(--r-md);padding:10px 13px;font-size:14px;line-height:1.65;background:var(--brand-tint);border:1px solid var(--hair)}
 .mt-review-item{border:1.5px solid var(--stroke);border-radius:var(--r-lg);padding:14px 15px;margin-bottom:12px;background:var(--card)}
-.mt-exp h4{margin:0 0 6px;font-size:14px;color:var(--brand-2)}.mt-exp .row{margin:5px 0}.mt-exp .x{color:var(--bad);font-weight:700}.mt-exp .o{color:var(--good);font-weight:700}
+.mt-more{margin-top:4px}.mt-more summary{cursor:pointer;font-size:13px;color:var(--ink2);padding:3px 0}
+.mt-exp h4{margin:0 0 4px;font-size:14px;color:var(--brand-2)}.mt-exp .row{margin:4px 0;display:block}.mt-exp .x{color:var(--bad);font-weight:700}.mt-exp .o{color:var(--good);font-weight:700}
 .mt-next{margin-top:16px}.mt-btn{width:100%;border:none;border-radius:var(--r-md);padding:14px;font-size:16px;font-weight:700;cursor:pointer;background:var(--blue,var(--ink));color:var(--bg)}.mt-btn.ghost{background:var(--gray);color:var(--blue,var(--ink))}.mt-btn[disabled]{opacity:.5}
 .mt-ta{width:100%;min-height:84px;border:1.5px solid var(--line);border-radius:var(--r-md);padding:12px;font-size:18px;font-family:var(--zh-font);margin-bottom:10px}
 .mt-verdict{display:inline-block;border-radius:var(--r-sm);padding:4px 10px;font-weight:600;font-size:14px;margin-bottom:6px}.v-correct{background:var(--goodbg);color:var(--good)}.v-acceptable{background:var(--brand-tint);color:var(--brand-2)}.v-incorrect{background:var(--caution-tint);color:var(--bad)}
@@ -27400,13 +27404,17 @@ function mtSyncNav(){ try{ if(currentView==='day' && typeof updateDayNav==='func
 function mtRender(){
   var root=$('mtRoot'); if(!root) return;
   var q=_mt.quiz[_mt.idx];
-  var head='<div class="mt-counter">問'+(_mt.idx+1)+' / '+_mt.quiz.length+'</div>'+
+  var head='<div class="mt-head"><div class="mt-counter">問'+(_mt.idx+1)+' / '+_mt.quiz.length+'</div></div>'+
            '<div class="mt-prog"><i style="width:'+(_mt.idx/_mt.quiz.length*100)+'%"></i></div>';
   _mt.answered=false; _mt.ready=false; mtSyncNav();
+  mtParkSkip();
   if(q.opts){ root.innerHTML=head+mtMC(q); mtBindMC(q); }
   else if(q.__t==='drag'){ root.innerHTML=head+mtDrag(q); mtBindDrag(q); }
   else if(q.__t==='writing'){ root.innerHTML=head+mtWriting(q); mtBindWriting(q); }
+  var sk=$('mtSkip'), hd=root.querySelector('.mt-head'); if(sk && hd) hd.appendChild(sk);
 }
+// 「とばす」は #mtRoot の中（問番号の行）へ入れて使うので、中身を描き替える前に外へ逃がす（消えないように）
+function mtParkSkip(){ var root=$('mtRoot'), sk=$('mtSkip'); if(root && sk && root.contains(sk)) root.parentNode.insertBefore(sk, root.nextSibling); }
 function mtMC(q){
   var h='<span class="mt-qtype">'+mtEsc(q.tag)+'</span><div class="mt-q">'+mtBlank(mtRich(q.q))+'</div><div class="mt-opts">';
   var _zh=mtOptsZh(q);
@@ -27429,12 +27437,14 @@ function mtChooseMC(q,choice){
     if(i===choice && !right){ b.classList.add('wrong'); b.querySelector('.mk').textContent='✗'; }
   });
   var _zh=mtOptsZh(q);
-  var e='<div class="mt-exp"><h4>'+(right?'正解 ✓':'不正解 ✗')+'</h4>';
+  // 1画面に収めるため、選んだ答えと正解の解説だけ出し、ほかの選択肢は畳む（実機で「スクロールで画面が揺れる」と言われた）
+  var e='<div class="mt-exp"><h4>'+(right?'正解 ✓':'不正解 ✗')+'</h4>', more='';
+  if(!right && q.opts[choice]) e+='<div class="row"><span class="x">× '+mtOptLabel(q.opts[choice].t,_zh)+'（あなたの解答）：</span>'+mtRich(q.opts[choice].why)+'</div>';
   q.opts.forEach(function(o,i){
     if(o.ok) e+='<div class="row"><span class="o">○ '+mtOptLabel(o.t,_zh)+'：</span>'+mtRich(o.why)+'</div>';
-    else if(i===choice) e+='<div class="row"><span class="x">× '+mtOptLabel(o.t,_zh)+'（あなたの解答）：</span>'+mtRich(o.why)+'</div>';
-    else e+='<div class="row"><span class="x">× '+mtOptLabel(o.t,_zh)+'：</span>'+mtRich(o.why)+'</div>';
+    else if(i!==choice) more+='<div class="row"><span class="x">× '+mtOptLabel(o.t,_zh)+'：</span>'+mtRich(o.why)+'</div>';
   });
+  if(more) e+='<details class="mt-more"><summary>ほかの選択肢の解説</summary>'+more+'</details>';
   e+='</div>';
   $('mtExp').innerHTML=e; mtNext();
 }
@@ -27524,6 +27534,7 @@ function mtResult(){
   setTimeout(function(){ if(typeof updateDayNav==='function' && currentView==='day') updateDayNav(); },0);
   var msg=pct===100?'満点！':pct>=80?'よくできました。':pct>=60?'あと少し。解説を読み返しましょう。':'復習タブで反復しましょう。';
   var root=$('mtRoot');
+  mtParkSkip();
   root.innerHTML='<div class="mt-result"><div class="sc">'+n+' / '+total+'</div><div class="sub">'+pct+'％　'+msg+'</div>'+
     '<div class="mt-next"><button class="mt-btn ghost" id="mtAgain">やり直す（別の問題）</button></div></div>';
   $('mtAgain').onclick=function(){ mtInit(_mt.day); var r=$('mtRoot'); if(r) r.scrollIntoView({block:'start',behavior:'smooth'}); };
