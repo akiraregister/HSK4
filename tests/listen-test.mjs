@@ -160,17 +160,9 @@ ok('読み込み直しても速さを覚えている',
   ok('聞きとりで選んだ速さが効く',
     Math.abs(said.spoke[0].rate - 0.9 * 0.75) < 0.001, 'rate=' + said.spoke[0].rate);
   ok('読み上げでエラーを出さない', errs2.length === 0, errs2.join(','));
-  // iPhoneは消音スイッチで読み上げだけが黙る。リスニングのMP3は消音でも鳴るので、
-  // 「リスニングは鳴るのに単語だけ鳴らない」に見えて不具合と区別がつかない。
-  // 消音かどうかはwebからは分からないので、押す人の目に入る所に置いておく
-  const note = await p2.textContent('#content .spk-note').catch(() => '');
-  ok('消音スイッチの注意書きが単語ステップに出る',
-    note.includes('消音スイッチ') && note.includes('別のしくみ'), JSON.stringify(note));
-  // 消音スイッチは内蔵スピーカーにしか効かない。イヤホンなら鳴るので、その場で試せる
-  ok('イヤホンという逃げ道も書いてある', note.includes('イヤホン'), JSON.stringify(note));
-  ok('注意書きは読み上げボタンと同じ画面にある',
-    await p2.$eval('#content .spk-note',
-      e => e.checkVisibility({ contentVisibilityAuto: true })));
+  // 以前は単語ステップに「消音スイッチを切って」の注意書きがあったが、全部録音に替えて
+  // 消音でも鳴るようになったので外した（事実と合わない案内を出さない）
+  ok('消音スイッチの注意書きはもう出さない', !(await p2.$('#content .spk-note')));
   await c2.close();
 }
 {
