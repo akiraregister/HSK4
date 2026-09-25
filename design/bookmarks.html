@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ブックマーク画面の整理案 — 加油</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FCFBF8;--ink:#15150F;--ink2:#46443C;--muted:#8F8C82;--hair:#E5E1D6;--rule:#D7D2C4;
+ --brand:#DC6011;--gray:#EFEBE0;
+ --f:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho',serif}
+*{box-sizing:border-box}
+body{margin:0;background:#EFECE3;color:var(--ink);font-family:var(--f);line-height:1.75;
+ font-synthesis:none;padding:22px 16px calc(40px + env(safe-area-inset-bottom))}
+.wrap{max-width:1100px;margin:0 auto}
+h1{font-size:20px;font-weight:600;letter-spacing:.04em;margin:0 0 4px}
+.lead{font-size:13px;color:var(--ink2);margin:0 0 22px;line-height:1.85}
+h2.sec{font-size:14px;font-weight:600;letter-spacing:.08em;margin:34px 0 8px;
+ border-top:1px solid var(--ink);padding-top:11px}
+.note{font-size:12px;color:var(--ink2);line-height:1.85;margin:0 0 14px}
+.note b{font-weight:600;color:var(--ink)}
+.warn{border:1px solid var(--brand);padding:13px 15px;font-size:12.5px;line-height:1.85;margin:14px 0}
+.warn b{color:var(--brand);font-weight:600}
+
+.row{display:flex;gap:18px;overflow-x:auto;padding-bottom:10px;-webkit-overflow-scrolling:touch}
+.col{flex:none;width:300px}
+.col h3{font-size:14px;font-weight:600;letter-spacing:.06em;margin:0 0 3px}
+.col p{font-size:11.5px;color:var(--ink2);line-height:1.8;margin:0 0 10px;min-height:66px}
+.ph{width:300px;background:var(--bg);border:1px solid var(--rule);padding:0;overflow:hidden}
+
+/* ── アプリ本体と同じ部品（縮尺は 300/390 ≒ 0.77） ── */
+.s{padding:13px 12px 0}
+.top{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;
+ border-bottom:1px solid var(--rule)}
+.brand{display:flex;align-items:center;gap:6px}
+.bw{font-size:15px;font-weight:700;letter-spacing:.18em}
+.bm{font-size:10px;color:var(--muted);letter-spacing:.08em}
+.fl{width:17px;height:17px;display:block}
+.h1{font-size:17px;font-weight:600;letter-spacing:.04em;margin:0}
+.eye{font-size:9px;color:var(--muted);letter-spacing:.22em;display:block}
+.day{display:flex;align-items:baseline;gap:5px;margin:3px 0 1px}
+.day .l{font-size:12px;color:var(--ink2)}
+.day .n{font-size:38px;font-weight:600;line-height:1}
+.m{font-size:11px;color:var(--ink2);margin:0 0 9px}
+.hr{border:0;border-top:1px solid var(--ink);margin:9px 0}
+.hair{border:0;border-top:1px solid var(--hair);margin:9px 0}
+
+/* 押せるもの：主＝墨ベタ／副＝罫囲み＋「›」 */
+.btn{display:block;width:100%;background:transparent;color:var(--ink);border:1px solid var(--ink);
+ padding:11px;font:inherit;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-align:center}
+.btn .s2{display:block;font-size:9px;font-weight:400;letter-spacing:0;color:var(--muted);margin-top:2px}
+.btn.solid{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.solid .s2{color:rgba(252,251,248,.66)}
+.trow{display:flex;align-items:center;gap:8px;padding:10px 2px;border-bottom:1px solid var(--hair);
+ font-size:11px}
+.trow .lab{width:30px;color:var(--ink2);flex:none}
+.trow .val{font-size:17px;font-weight:600;flex:none}
+.trow .val u{font-size:9.5px;font-weight:400;text-decoration:none;color:var(--ink2);margin-left:1px}
+.trow .memo{color:var(--muted);font-size:9.5px;flex:1;line-height:1.55}
+.trow .go{flex:none;border:1px solid var(--ink);padding:5px 9px;font-size:10px;font-weight:600;letter-spacing:.1em}
+.trow .chev{flex:none;color:var(--ink2);font-size:13px}
+.pick{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--rule);
+ padding:10px 11px;font-size:11.5px;margin-top:9px}
+.pick.link{border:0;border-top:1px solid var(--hair);padding:10px 2px}
+.prog{display:flex;align-items:baseline;justify-content:space-between;margin-top:12px}
+.prog .n{font-size:20px;font-weight:600}
+.prog .n u{font-size:11px;font-weight:400;text-decoration:none;color:var(--ink2)}
+.prog .r{font-size:10px;color:var(--muted);letter-spacing:.06em}
+.grid{display:grid;grid-template-columns:repeat(15,1fr);gap:2px;margin-top:7px}
+.grid i{display:block;aspect-ratio:1;background:var(--ink)}
+.grid i.now{background:var(--brand)}
+.grid i.todo{background:transparent;border:1px solid var(--hair)}
+.legend{display:flex;gap:9px;justify-content:flex-end;font-size:8.5px;color:var(--muted);margin-top:5px}
+.legend b{display:inline-block;width:7px;height:7px;background:var(--ink);vertical-align:-1px;margin-right:2px}
+.tabs{display:flex;border-top:1px solid var(--rule);margin-top:12px}
+.tabs span{flex:1;text-align:center;font-size:8.5px;color:var(--muted);padding:8px 0 10px}
+.tabs span.on{color:var(--ink);font-weight:600}
+.pad{padding-bottom:11px}
+
+.cut{background:#FBE9E5;outline:1px solid #E3A69B}
+.keyline{border-left:2px solid var(--brand);padding-left:9px;margin:9px 0}
+table.t{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0 0}
+table.t th,table.t td{text-align:left;padding:6px 6px 6px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+table.t th{color:var(--ink2);font-weight:600;width:34%}
+.tag{display:inline-block;border:1px solid var(--rule);padding:1px 6px;font-size:10px;color:var(--ink2);margin-left:4px}
+.col{width:310px}.ph{width:310px}
+.zhf{font-family:'Noto Serif SC',serif}
+.py{font-family:-apple-system,system-ui,sans-serif;letter-spacing:.04em;color:var(--ink2)}
+.spk{display:inline-block;border:1px solid var(--hair);font-size:8px;padding:1px 4px;vertical-align:2px;color:var(--ink2);margin-left:4px}
+.star{color:var(--brand);font-size:12px}
+/* 現状の部品 */
+.sub2{display:flex;gap:6px;margin-bottom:8px}.sub2 span{flex:1;text-align:center;border:1px solid var(--rule);padding:6px;font-size:11px;font-weight:600;color:var(--ink2)}
+.sub2 span.on{border-color:var(--ink);background:var(--gray);color:var(--ink)}
+.chipc{display:inline-block;border:1px solid var(--rule);padding:3px 8px;font-size:9.5px;color:var(--muted);margin:0 3px 4px 0}
+.chipc.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.oldcard{border:1px solid var(--rule);padding:12px 12px 10px;margin-top:8px;position:relative}
+.bdg{display:inline-block;background:var(--gray);font-size:8.5px;padding:1px 5px;margin-right:3px;color:var(--ink2)}
+.oz{font-size:16px;margin-top:3px}
+.lvq{display:flex;gap:4px;margin:5px 0 6px}.lvq span{border:1px solid var(--rule);font-size:8.5px;padding:2px 7px;color:var(--muted)}
+.lvq span.on{background:var(--gray);color:var(--ink2)}
+.lvq span.on1{border-color:var(--brand);color:var(--brand)}
+.oex{font-size:10.5px;line-height:1.6}.oex .zhf{font-weight:600}.oex div{font-size:9.5px}
+.starbox{position:absolute;right:10px;top:10px;background:#F7E5D6;padding:3px 6px}
+/* 案の部品 */
+.utabs{display:flex;gap:18px;border-bottom:1px solid var(--hair);margin-bottom:0}
+.utabs span{font-size:11.5px;padding:0 0 7px;color:var(--muted);font-weight:600}
+.utabs span.on{color:var(--ink);border-bottom:2px solid var(--ink);margin-bottom:-1px}
+.utabs span small{font-size:9.5px;font-weight:400;margin-left:3px}
+.tools{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--ink);font-size:10px;color:var(--muted)}
+.tools .sort span{margin-right:9px}.tools .sort span.on{color:var(--ink);font-weight:600;border-bottom:1px solid var(--ink)}
+.tools .exsw{border:1px solid var(--rule);padding:1px 6px;color:var(--ink2)}
+.ent{padding:11px 0 10px;border-bottom:1px solid var(--hair);position:relative}
+.ent.lv1{border-left:2px solid var(--brand);padding-left:8px}
+.ent.lv2{border-left:2px solid var(--bad,#B3261E);padding-left:8px}
+.ent .h{display:flex;align-items:baseline;gap:7px;padding-right:22px}
+.ent .h .z{font-size:17px}
+.ent .h .py{font-size:10.5px}
+.ent .ja{font-size:10.5px;color:var(--ink2);margin-top:1px}
+.ent .ex{font-size:10.5px;margin-top:5px;line-height:1.6}
+.ent .ex .j{display:block;font-size:9.5px;color:var(--ink2)}
+.ent .meta{display:flex;align-items:center;justify-content:space-between;margin-top:6px;font-size:9px;color:var(--muted);letter-spacing:.04em}
+.seg{display:inline-flex;border:1px solid var(--rule)}.seg span{padding:1px 7px;font-size:8.5px;color:var(--muted)}
+.seg span+span{border-left:1px solid var(--rule)}.seg span.on{background:var(--gray);color:var(--ink);font-weight:600}
+.ent.lv1 .seg span.on{color:var(--brand)}
+.ent .st{position:absolute;right:0;top:11px}
+.ent.row1 .h{padding-right:44px}
+.ent .chev{position:absolute;right:18px;top:13px;font-size:10px;color:var(--muted)}
+.open{background:#F6F3EA;margin:6px -4px 0;padding:7px 8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>ブックマーク画面の整理案</h1>
+<p class="lead">
+中身（覚えたい単語）に辿り着く前に<b>6かたまり</b>が積まれていて、カード1枚の中にも要素が多い。
+今日画面と同じく、<b>重複と説明を落とす</b>方向で3案を作りました。<br>
+<b>横にスクロールすると並べて見られます。</b>実装はまだしていません。
+</p>
+
+<h2 class="sec">いま画面に載っているもの</h2>
+<table class="t">
+<tr><th>重複</th><td>切り替えの <b>ブックマーク</b> と、その下の見出し <b>ブックマーク</b><span class="tag">同じ言葉</span></td></tr>
+<tr><th>件数</th><td><b>5件</b> が見出しの横に単独で1行を取っている</td></tr>
+<tr><th>表示切替</th><td><b>表示：標準（詳細）</b> — 押すと何が変わるのか言葉から分からない（実際は例文を隠す）</td></tr>
+<tr><th>並び替え</th><td>罫囲み4つ。幅が足りず <b>ランダムだけ2行目</b>に落ちる</td></tr>
+<tr><th>説明文</th><td><b>難易度（普通／曖昧／苦手）は各カードのボタンで切替できます。</b><span class="tag">ボタンを見れば分かる</span></td></tr>
+<tr><th>カード</th><td>外の罫の中に<b>もう一段の余白</b>があり二重に字下げ。札2つ（単語・Day 1）、★の色付き箱、難易度3つ、例文3行</td></tr>
+</table>
+
+<h2 class="sec">3案を並べる</h2>
+<div class="row">
+
+<!-- 現状 -->
+<div class="col">
+<h3>現状</h3>
+<p>最初の単語が出るまでに6かたまり。カードは箱の中に箱。</p>
+<div class="ph"><div class="s pad">
+ <div class="sub2"><span class="on">ブックマーク</span><span>マイ単語</span></div>
+ <div style="display:flex;justify-content:space-between;align-items:center"><b class="cut" style="font-size:13px">ブックマーク</b><span class="bdg cut" style="font-size:9.5px;padding:2px 7px">5件</span></div>
+ <div style="margin:7px 0"><span class="chipc">表示：標準（詳細）</span></div>
+ <div style="font-size:9.5px;color:var(--muted)">並び替え <span class="chipc on">おすすめ</span><span class="chipc">苦手順</span><span class="chipc">追加順</span><br><span class="chipc">ランダム</span></div>
+ <div class="cut" style="font-size:9.5px;color:var(--muted);line-height:1.6">難易度（普通／曖昧／苦手）は各カードのボタンで切替できます。</div>
+ <div class="oldcard"><span class="bdg">単語</span><span class="bdg">Day 1</span><span class="starbox"><span class="star">★</span></span>
+  <div class="oz zhf">水平<span class="spk">◁)</span></div><div class="py" style="font-size:11px">shuǐpíng</div>
+  <div style="font-size:10px;color:var(--muted)">レベル、能力水準</div>
+  <div class="lvq"><span class="on">普通</span><span>曖昧</span><span>苦手</span></div>
+  <div class="oex"><span class="zhf">我的中文水平还不够高。</span><div class="py">Wǒ de Zhōngwén shuǐpíng hái bú gòu gāo.</div><div>私の中国語レベルはまだ十分高くありません。</div></div></div>
+ <div class="oldcard"><span class="bdg">単語</span><span class="bdg">Day 1</span><span class="starbox"><span class="star">★</span></span>
+  <div class="oz zhf">提高<span class="spk">◁)</span></div><div class="py" style="font-size:11px">tígāo</div>
+  <div style="font-size:10px;color:var(--muted)">高める、向上させる</div>
+  <div class="lvq"><span>普通</span><span class="on1">曖昧</span><span>苦手</span></div></div>
+</div>
+<div class="tabs"><span>今日</span><span class="on">ブックマーク</span><span>単語</span><span>設定</span></div></div>
+</div>
+
+<!-- 案1 -->
+<div class="col">
+<h3>案1　削るだけ</h3>
+<p>カードの形は残し、<b>上の6かたまりを2行に</b>。見出し・説明文を落とし、件数は切り替えの中へ。並び替えは文字だけにして1行に収める。カードの二重の余白をやめる。</p>
+<div class="ph"><div class="s pad">
+ <div class="utabs"><span class="on">ブックマーク<small>5</small></span><span>マイ単語</span></div>
+ <div class="tools"><span class="sort"><span class="on">おすすめ</span><span>苦手順</span><span>追加順</span><span>ランダム</span></span><span class="exsw">例文</span></div>
+ <div class="oldcard" style="padding:10px"><span style="font-size:9px;color:var(--muted)">単語・Day 1</span><span style="position:absolute;right:10px;top:9px" class="star">★</span>
+  <div class="oz zhf">水平<span class="spk">◁)</span> <span class="py" style="font-size:11px">shuǐpíng</span></div>
+  <div style="font-size:10px;color:var(--ink2)">レベル、能力水準</div>
+  <div class="lvq"><span class="on">普通</span><span>曖昧</span><span>苦手</span></div>
+  <div class="oex"><span class="zhf">我的中文水平还不够高。</span><div class="py" style="font-size:9.5px">Wǒ de Zhōngwén shuǐpíng hái bú gòu gāo.</div><div style="color:var(--ink2)">私の中国語レベルはまだ十分高くありません。</div></div></div>
+ <div class="oldcard" style="padding:10px"><span style="font-size:9px;color:var(--muted)">単語・Day 1</span><span style="position:absolute;right:10px;top:9px" class="star">★</span>
+  <div class="oz zhf">提高<span class="spk">◁)</span> <span class="py" style="font-size:11px">tígāo</span></div>
+  <div style="font-size:10px;color:var(--ink2)">高める、向上させる</div>
+  <div class="lvq"><span>普通</span><span class="on1">曖昧</span><span>苦手</span></div>
+  <div class="oex"><span class="zhf">我想提高中文会话能力。</span><div class="py" style="font-size:9.5px">Wǒ xiǎng tígāo Zhōngwén huìhuà nénglì.</div><div style="color:var(--ink2)">中国語の会話力を上げたいです。</div></div></div>
+</div>
+<div class="tabs"><span>今日</span><span class="on">ブックマーク</span><span>単語</span><span>設定</span></div></div>
+</div>
+
+<!-- 案2 -->
+<div class="col">
+<h3>案2　辞書の項目にする</h3>
+<p>案1に加えて<b>箱をやめ、細罫で区切った項目</b>にする（案Xの「罫で組む」どおり）。難易度は下の行の右端へ小さくまとめ、左の色罫でも分かるように。1画面に入る語が1.5倍ほどになる。</p>
+<div class="ph"><div class="s pad">
+ <div class="utabs"><span class="on">ブックマーク<small>5</small></span><span>マイ単語</span></div>
+ <div class="tools"><span class="sort"><span class="on">おすすめ</span><span>苦手順</span><span>追加順</span><span>ランダム</span></span><span class="exsw">例文</span></div>
+ <div class="ent"><span class="st star">★</span>
+  <div class="h"><span class="z zhf">水平</span><span class="spk">◁)</span><span class="py">shuǐpíng</span></div>
+  <div class="ja">レベル、能力水準</div>
+  <div class="ex"><span class="zhf">我的中文水平还不够高。</span><span class="j py" style="font-size:9.5px">Wǒ de Zhōngwén shuǐpíng hái bú gòu gāo.</span><span class="j">私の中国語レベルはまだ十分高くありません。</span></div>
+  <div class="meta"><span>単語・Day 1</span><span class="seg"><span class="on">普通</span><span>曖昧</span><span>苦手</span></span></div></div>
+ <div class="ent lv1"><span class="st star">★</span>
+  <div class="h"><span class="z zhf">提高</span><span class="spk">◁)</span><span class="py">tígāo</span></div>
+  <div class="ja">高める、向上させる</div>
+  <div class="ex"><span class="zhf">我想提高中文会话能力。</span><span class="j py" style="font-size:9.5px">Wǒ xiǎng tígāo Zhōngwén huìhuà nénglì.</span><span class="j">中国語の会話力を上げたいです。</span></div>
+  <div class="meta"><span>単語・Day 1</span><span class="seg"><span>普通</span><span class="on">曖昧</span><span>苦手</span></span></div></div>
+ <div class="ent"><span class="st star">★</span>
+  <div class="h"><span class="z zhf">方便</span><span class="spk">◁)</span><span class="py">fāngbiàn</span></div>
+  <div class="ja">便利だ、都合がよい</div>
+  <div class="ex"><span class="zhf">在上海生活很方便。</span><span class="j py" style="font-size:9.5px">Zài Shànghǎi shēnghuó hěn fāngbiàn.</span><span class="j">上海での生活は便利です。</span></div>
+  <div class="meta"><span>単語・Day 1</span><span class="seg"><span class="on">普通</span><span>曖昧</span><span>苦手</span></span></div></div>
+</div>
+<div class="tabs"><span>今日</span><span class="on">ブックマーク</span><span>単語</span><span>設定</span></div></div>
+</div>
+
+<!-- 案3 -->
+<div class="col">
+<h3>案3　一覧＋開く</h3>
+<p>普段は<b>1語1行</b>（中文・拼音・意味・★）。行を押すと、その語だけ例文と難易度が開く。いちばん静かで、「例文」切替も要らなくなる。代わりに<b>例文を見るのに1手増える</b>。</p>
+<div class="ph"><div class="s pad">
+ <div class="utabs"><span class="on">ブックマーク<small>5</small></span><span>マイ単語</span></div>
+ <div class="tools"><span class="sort"><span class="on">おすすめ</span><span>苦手順</span><span>追加順</span><span>ランダム</span></span><span></span></div>
+ <div class="ent row1"><span class="st star">★</span><span class="chev">﹀</span>
+  <div class="h"><span class="z zhf">水平</span><span class="py">shuǐpíng</span></div><div class="ja">レベル、能力水準</div></div>
+ <div class="ent row1 lv1"><span class="st star">★</span><span class="chev">︿</span>
+  <div class="h"><span class="z zhf">提高</span><span class="py">tígāo</span></div><div class="ja">高める、向上させる</div>
+  <div class="open"><div class="ex" style="margin-top:0"><span class="zhf">我想提高中文会话能力。</span><span class="spk">◁)</span><span class="j py" style="font-size:9.5px">Wǒ xiǎng tígāo Zhōngwén huìhuà nénglì.</span><span class="j">中国語の会話力を上げたいです。</span></div>
+  <div class="meta"><span>単語・Day 1</span><span class="seg"><span>普通</span><span class="on">曖昧</span><span>苦手</span></span></div></div></div>
+ <div class="ent row1"><span class="st star">★</span><span class="chev">﹀</span>
+  <div class="h"><span class="z zhf">方便</span><span class="py">fāngbiàn</span></div><div class="ja">便利だ、都合がよい</div></div>
+ <div class="ent row1"><span class="st star">★</span><span class="chev">﹀</span>
+  <div class="h"><span class="z zhf">复杂</span><span class="py">fùzá</span></div><div class="ja">複雑だ</div></div>
+ <div class="ent row1"><span class="st star">★</span><span class="chev">﹀</span>
+  <div class="h"><span class="z zhf" style="font-size:14px">了：状態変化</span><span class="py">le</span></div><div class="ja">状況が新しく変わったことを表す</div></div>
+</div>
+<div class="tabs"><span>今日</span><span class="on">ブックマーク</span><span>単語</span><span>設定</span></div></div>
+</div>
+
+</div>
+
+<h2 class="sec">3案に共通すること</h2>
+<div class="keyline">
+<b>上は2行だけ</b>＝①切り替え（件数入り）②並び替え＋例文の切替<br>
+<b>落とす</b>＝見出し「ブックマーク」・「5件」の札・説明文・「単語」「Day 1」の灰色の札（小さな文字1行に）<br>
+<b>「表示：標準（詳細）」は「例文」へ改名</b>＝押すと例文が消える、が言葉から分かるように<br>
+<b>中身は減らさない</b>＝見出し語・拼音・意味・例文（中文・拼音・和訳）・読み上げ・難易度・★はすべて残す。減らすのは囲みと札と説明だけ<br>
+<b>難易度の選択は墨ベタにしない</b>＝墨ベタは「1画面に1つだけの主役」の印。選ばれた難易度は薄い地で示す<br>
+<b>切り替えは下線のタブ</b>＝箱で囲むと「押すもの」に見えるが、これは画面の中の移動（押せるものの3段の「移動」）
+</div>
+
+<h2 class="sec">どれを推すか</h2>
+<p class="note">
+<b>案2を推します。</b>いまの操作（読み上げ・難易度・★・例文）をどれも1手のまま残したうえで、
+箱が消えるぶん静かになり、1画面に入る語が1.5倍ほどになります。
+罫で組む案Xの方針とも合い、単語タブの一覧とも見た目が揃います。<br><br>
+<b>案1</b>は変化が小さく安全ですが、箱が並ぶ重さは残ります。<br>
+<b>案3</b>はいちばん静かですが、ブックマークは<b>見返して覚える場所</b>なので、
+例文が1手奥へ下がるのは損だと見ています。
+</p>
+<p class="note" style="color:var(--muted)">
+※ マイ単語の側（＋新規追加など）は今回は触りません。切り替えのタブだけ共通になります。
+</p>
+</div>
+</body>
+</html>
