@@ -303,7 +303,9 @@ body.fs-lg #bookmarkPanel{--bm-zh:24px;--bm-py:14.5px;--bm-ja:15.5px}
 #bookmarkPanel .bm-row .pinyin{margin:0;font-size:var(--bm-py);color:var(--ink2);letter-spacing:.02em}
 #bookmarkPanel .bm-row .bm-ja{flex:1;min-width:0;font-size:var(--bm-ja);color:var(--ink2);text-align:right;line-height:1.5}
 .bm-word{flex-wrap:wrap;column-gap:8px;row-gap:0}
-.bm-chev{flex:none;color:var(--muted);font-size:17px;line-height:1;transition:transform .15s}
+.bm-chev{flex:none;display:inline-block;width:1em;text-align:center;color:var(--muted);font-size:17px;line-height:1;transition:transform .15s}
+/* 開くと「›」を90度回す。回した字の外枠が行からはみ出し、右端が約5px出ていた（点検で見つけた）ので切る */
+.bm-row{overflow:hidden}
 .bm-ent.open .bm-chev{transform:rotate(90deg)}
 .bm-detail{background:var(--paper,#F6F3EA);padding:14px 16px 12px;border-top:1px solid var(--hair)}
 .bm-detail .ex{margin-top:10px;line-height:1.7}
@@ -316,6 +318,8 @@ body.fs-lg #bookmarkPanel{--bm-zh:24px;--bm-py:14.5px;--bm-ja:15.5px}
 .bm-rm{border:0;background:none;padding:6px 0;font-size:13px;font-weight:400;color:var(--ink2);text-decoration:underline;text-underline-offset:3px}
 
 .mt-opts{display:flex;flex-direction:column;gap:10px}
+/* 以前はブラウザ既定の青いリンクのままで、アプリの中でここだけ色が浮いていた */
+.mt-finish{color:var(--ink2);text-decoration:underline;text-underline-offset:3px}
 .mt-opt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:var(--r-md);padding:13px 14px;font-size:16px;cursor:pointer;line-height:1.4}
 .mt-opt:active{transform:scale(.99)}.mt-opt[disabled]{cursor:default}
 .mt-opt.correct{border-color:var(--good);background:var(--goodbg)}.mt-opt.wrong{border-color:var(--bad);background:var(--caution-tint)}
@@ -655,6 +659,9 @@ h1,h2,h3,.badge,.fc-prompt,.daybtn,.set-label,
 .wcard .wex{border-top:1px solid var(--hair);margin-top:18px;padding-top:14px;font-size:14px;line-height:1.8}
 .wcard .wex .expinyin{font-size:13px;margin-top:2px}
 .wcard .wex .exja{margin-top:2px}
+/* 例文の拼音・和訳は .pinyin / .ja も持つので、見出し語用の中央寄せ（.wcard .pinyin/.ja）を拾っていた。
+   例文の中国語は左寄せなので、3行を左で揃える（点検で見つけた崩れ） */
+.wcard .wex .pinyin,.wcard .wex .ja{text-align:left}
 .wcard .note{margin-top:12px}
 .wcard .wfoot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
 .wcard .wfoot .lvc{margin-top:0}
@@ -26653,7 +26660,7 @@ function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt
 function lesson(){ if(paywallPreview() && current>FREE_DAYS) return null; return LESSONS[current-1]; }
 function isBookmarked(id){return !!state.bookmarks[id]}
 function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){
-  if(state.bookmarks[id]){ delete state.bookmarks[id]; }
+  if(state.bookmarks[id]){ delete state.bookmarks[id]; if(_bmOpen) delete _bmOpen[id]; } // 外したら「開いている」も忘れる（付け直すと開いたまま出ていた）
   else { state.bookmarks[id]={id,type,title,sub,day:current,pinyin:pinyin||'',example:example||'',exPinyin:exPinyin||'',exJa:exJa||'',hl:0}; }
   save();
   // 以前はここで render() を呼んでいた。Day学習の途中でブックマークすると
@@ -28348,7 +28355,7 @@ function mockQuestionHtml(){
       ? '<button class="lc-btn primary flex" onclick="mockFinish(false)">採点する</button>'
       : '<button class="lc-btn primary flex" onclick="mockNav(1)">次の問題</button>')
    + '</div>';
-  h+='<div class="small muted" style="margin-top:10px;text-align:center"><a href="#" onclick="mockFinish(false);return false">ここまでで採点する</a></div>';
+  h+='<div class="small muted" style="margin-top:10px;text-align:center"><a href="#" class="mt-finish" onclick="mockFinish(false);return false">ここまでで採点する</a></div>';
   return h+'</div>';
 }
 
@@ -29270,10 +29277,10 @@ function cwEsc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&a
 /* ---- 一覧（ブックマーク画面の「新規単語」サブタブ） ---- */
 function cwRenderListHtml(){
   var arr=state.customWords||[];
-  var head='<div class="section-title"><h2>マイ単語</h2><span class="badge">'+arr.length+'件</span></div>'
-    +'<div class="small" style="margin-bottom:10px">例文の語を選択して追加するほか、「＋新規追加」で中国語を入力して自分で登録できます（ピンイン・意味は自動取得）。</div>'
-    +'<div class="row bm-stickybar" style="gap:8px"><button class="primary" data-cw-action="new">＋ 新規追加</button><button data-action="showHome">学習画面に戻る</button></div>';
-  if(!arr.length) return head+'<div class="empty">まだありません。例文の語を選択するか、上の「＋新規追加」で登録してください。</div>';
+  // ブックマーク側と揃える：見出し「マイ単語」・「○件」の札（件数はタブの中にある）・「学習画面に戻る」
+  // （下タブで戻れる）は外した。登録のしかたの説明は、まだ1語も無いときだけ出す
+  var head='<div class="bm-tools"><span></span><button class="primary" data-cw-action="new">＋ 新規追加</button></div>';
+  if(!arr.length) return head+'<div class="empty" style="margin-top:14px">まだありません。例文の中の語を選んで追加するか、「＋ 新規追加」で中国語を入力して登録できます（拼音・意味は自動で入ります）。</div>';
   var body=arr.map(function(w,i){
     return '<div class="cw-item">'
       +'<div class="cw-item-head"><div class="zh">'+cwEsc(w.zh)+' <button class="speak-btn" data-cw-action="speak" data-i="'+i+'"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div>'

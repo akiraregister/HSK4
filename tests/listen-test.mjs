@@ -493,6 +493,33 @@ ok('読み込み直しても速さを覚えている',
   await p.evaluate(() => { window.toggleBookmark('d1-v0'); window.toggleBookmark('d23-g0'); });
 }
 
+// --- 点検で見つけた崩れ（2026年9月25日）。戻さないこと ---
+{
+  // ブックマークの行を開いても、回した「›」で右端がはみ出さない
+  await p.evaluate(() => { window.toggleBookmark('d1-v0', '単語', '水平', 'レベル、能力水準', 'shuǐpíng'); window.showBookmarks(); });
+  await p.waitForTimeout(200);
+  await p.click('#bookmarkPanel .bm-ent[data-bmid="d1-v0"] .bm-row'); await p.waitForTimeout(250);
+  const ov = await p.evaluate(() => { const r = document.querySelector('#bookmarkPanel .bm-ent.open .bm-row'); return [r.scrollWidth, r.clientWidth]; });
+  ok('ブックマークの行を開いても右端がはみ出さない', ov[0] <= ov[1], JSON.stringify(ov));
+  // マイ単語タブ：ブックマーク側と揃える（見出し・件数の札・「学習画面に戻る」を出さない）
+  await p.click('[data-cw-action="tab-custom"]'); await p.waitForTimeout(200);
+  const cw = await p.evaluate(() => { const panel = document.getElementById('bookmarkPanel');
+    return { h2: !!panel.querySelector('.section-title'), back: panel.textContent.includes('学習画面に戻る'), add: !!panel.querySelector('[data-cw-action="new"]') }; });
+  ok('マイ単語タブに見出し・「学習画面に戻る」を出さない（追加ボタンは残す）', !cw.h2 && !cw.back && cw.add, JSON.stringify(cw));
+  await p.click('[data-cw-action="tab-bm"]'); await p.waitForTimeout(150);
+  await p.evaluate(() => window.toggleBookmark('d1-v0'));
+  // Day学習の単語カード：例文の中国語・拼音・和訳を同じ揃えにする（拼音と和訳だけ中央寄せになっていた）
+  await p.evaluate(() => window.showDay(1)); await p.waitForTimeout(250);
+  const al = await p.evaluate(() => { const c = document.querySelector('.wcard .wex'); if (!c) return null;
+    return [...c.children].filter(e => e.offsetParent).map(e => getComputedStyle(e).textAlign); });
+  ok('単語カードの例文は3行とも同じ揃え', al && al.length >= 2 && new Set(al.map(a => a === 'start' ? 'left' : a)).size === 1, JSON.stringify(al));
+  // 模試の「ここまでで採点する」はブラウザ既定の青にしない
+  const link = await p.evaluate(() => { const a = document.createElement('a'); a.className = 'mt-finish'; a.href = '#'; a.textContent = 'x';
+    document.body.appendChild(a); const c = getComputedStyle(a).color; a.remove(); return c; });
+  ok('模試の「ここまでで採点する」は既定の青いリンク色にしない', link !== 'rgb(0, 0, 238)', link);
+  await p.evaluate(() => window.showToday()); await p.waitForTimeout(150);
+}
+
 // --- ホーム画面から起動したときは、ロゴを iOS のぼかし（安全域＋約34pt）の外へ下げる ---
 {
   const r = await p.evaluate(() => {
