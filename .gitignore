@@ -7,3 +7,7 @@ package.json
 package-lock.json
 worker-paywall/.wrangler/
 .wrangler/
+
+# 撮影用に落としてくる書体（14MB）。第三者のバイナリなのでリポジトリには入れない。
+# 必要になったら node tests/fetch-fonts.mjs で落とし直す。
+tests/fonts/
