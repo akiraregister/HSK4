@@ -403,9 +403,15 @@ ok('読み込み直しても速さを覚えている',
   ok('中身は減らさない（語・読み上げ・拼音・意味・例文・難易度・★）', bm.parts.length === 0, JSON.stringify(bm.parts));
   ok('並び替え4つが1行に収まる', bm.sortRows === 1, 'rows=' + bm.sortRows);
   // 「例文」で例文だけが消える（state.density の compact）
+  const zhOn = await p.evaluate(() => getComputedStyle(document.querySelector('#bookmarkPanel .bm-ent .zh')).fontSize);
   await p.click('.bm-exsw'); await p.waitForTimeout(200);
-  const exVis = await p.evaluate(() => getComputedStyle(document.querySelector('#bookmarkPanel .bm-ent .ex')).display);
-  ok('「例文」を切ると例文が隠れる', exVis === 'none', exVis);
+  const offState = await p.evaluate(() => ({
+    ex: getComputedStyle(document.querySelector('#bookmarkPanel .bm-ent .ex')).display,
+    zh: getComputedStyle(document.querySelector('#bookmarkPanel .bm-ent .zh')).fontSize,
+  }));
+  ok('「例文」を切ると例文が隠れる', offState.ex === 'none', offState.ex);
+  // 以前は字まで縮めていたので、実機で「押すと字が大きくなるだけ」に見えた
+  ok('「例文」を切っても字の大きさは変わらない', offState.zh === zhOn, zhOn + ' → ' + offState.zh);
   await p.click('.bm-exsw'); await p.waitForTimeout(200);
   // 難易度を押してもその場で反映され、項目の左に色罫が付く
   await p.click('#bookmarkPanel .lvc[data-lv="d1-v1"] button:nth-child(2)'); await p.waitForTimeout(200);
@@ -415,6 +421,15 @@ ok('読み込み直しても速さを覚えている',
   });
   ok('ブックマークで難易度を切り替えると、その場で左の色罫も変わる', lvOn);
   await p.evaluate(() => { window.toggleBookmark('d1-v0'); window.toggleBookmark('d1-v1'); });
+  // 古いブックマーク（例文を持たず、idの形も今と違う）でも、見出し語から例文を引く
+  await p.evaluate(() => window.toggleBookmark('old-shuiping', '単語', '水平', 'レベル'));
+  await p.waitForTimeout(200);
+  const oldEx = await p.evaluate(() => {
+    const e = document.querySelector('#bookmarkPanel .bm-ent .ex');
+    return e ? e.textContent : '';
+  });
+  ok('古いブックマークでも見出し語から例文を引く', oldEx.includes('我的中文水平'), oldEx.slice(0, 30));
+  await p.evaluate(() => window.toggleBookmark('old-shuiping'));
 }
 
 console.log(res.join('\n'));

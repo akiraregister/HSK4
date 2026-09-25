@@ -173,27 +173,12 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .vitem.lv-1,.gitem.lv-1{border-left:8px solid var(--amber)}
 .vitem.lv-2,.gitem.lv-2{border-left:8px solid var(--red2)}
 /* ⑥ 密度（標準 / コンパクト） */
-/* ⑥ コンパクト＝「一覧／復習モード」：ブックマーク画面でのみ有効。
-   各項目を 中文＋拼音＋語義 に圧縮し、例文・文法詳細を畳んで件数を最大化する。
-   学習セクション(#content)には一切影響しない（常に標準＝詳細）。 */
-#bookmarkPanel.compact .card{padding:10px;margin:8px 0}
-#bookmarkPanel.compact .section-title{margin-bottom:6px}
-#bookmarkPanel.compact .section-title h2{font-size:16px}
-#bookmarkPanel.compact .vocab{gap:6px}
-#bookmarkPanel.compact .vitem,#bookmarkPanel.compact .gitem{padding:8px 10px}
-#bookmarkPanel.compact .gitem{margin:6px 0}
-#bookmarkPanel.compact .gitem h3{font-size:15px;margin:0}
-#bookmarkPanel.compact .zh{font-size:17px}
-#bookmarkPanel.compact .ja{margin-top:2px}
-/* 例文・文法の詳細解説は非表示（標準モードで読む） */
-#bookmarkPanel.compact .ex,
-#bookmarkPanel.compact .expinyin,
-#bookmarkPanel.compact .exja,
-#bookmarkPanel.compact .note{display:none}
-/* 難易度コントロールも小型化 */
-#bookmarkPanel.compact .lvc{margin-top:4px}
-#bookmarkPanel.compact .lvc button{padding:3px 8px;font-size:10px}
-#bookmarkPanel.compact .gitem .pinyin,#bookmarkPanel.compact .vitem .pinyin{margin-top:1px}
+/* ⑥ state.density の compact＝ブックマーク画面の「例文」を切った状態。
+   **例文を隠すだけで、字の大きさや余白は変えない。**以前は語の字を17pxへ縮め、
+   難易度ボタンも小さくしていたので、「例文」を押すと例文が出るより先に
+   字の大きさが変わって見えた（実機で「押すと字が大きくなるだけ」と指摘された）。
+   学習セクション(#content)には一切影響しない。 */
+#bookmarkPanel.compact .ex{display:none}
 /* ＋ ブックマークだけのミニテスト（フラッシュカード） */
 .testwrap .seg{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
 .testwrap .seg .chip-toggle.on{background:var(--ink);border-color:var(--stroke);color:var(--bg)}
@@ -310,8 +295,7 @@ body.fs-lg .vrow-zh{font-size:23px}body.fs-lg .vrow-py{font-size:17px}body.fs-lg
 .bm-ent .bm-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;font-size:12px;color:var(--muted);letter-spacing:.04em}
 .bm-ent .lvc{margin-top:0}
 .bm-ent button.bookmark{position:absolute;right:0;top:10px;border:0;background:none;padding:6px 8px;font-size:17px;color:var(--brand)}
-#bookmarkPanel.compact .bm-ent{padding:10px 0 8px}
-#bookmarkPanel.compact .bm-ent.lv-1,#bookmarkPanel.compact .bm-ent.lv-2{padding-left:10px}
+
 .mt-opts{display:flex;flex-direction:column;gap:10px}
 .mt-opt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:var(--r-md);padding:13px 14px;font-size:16px;cursor:pointer;line-height:1.4}
 .mt-opt:active{transform:scale(.99)}.mt-opt[disabled]{cursor:default}
@@ -26667,6 +26651,16 @@ function fmtBmItem(b){
       if(l2){var arr=m2[2]==='v'?l2.vocab:l2.grammar,item2=arr[Number(m2[3])];
         if(item2){ex=item2.example||'';exP=item2.exPinyin||'';exJ=item2.exJa||'';pin=item2.pinyin||'';}}}
   }
+  // それでも無ければ見出し語で引く。古いブックマークは例文を持たず、idの形も今と違うことがあり、
+  // そのままだと「例文」を押しても何も出なかった（字の大きさが変わるだけに見えた）
+  if(!ex && b.title){
+    var hit=null;
+    LESSONS.some(function(l){
+      hit=(l.vocab||[]).find(function(v){return v.zh===b.title;})||(l.grammar||[]).find(function(g){return g.name===b.title;});
+      return !!hit;
+    });
+    if(hit){ex=hit.example||'';exP=hit.exPinyin||'';exJ=hit.exJa||'';pin=pin||hit.pinyin||'';}
+  }
   var lv=state.levels[b.id]||0;
   // 案2「辞書の項目」：箱をやめて細罫で区切る。札（単語・Day）は下の行の小さな文字へ、
   // 難易度はその行の右端へ。★は右上。中身（語・拼音・意味・例文3行・読み上げ）は減らさない
@@ -26714,9 +26708,13 @@ function renderBookmarkPanel(){
   // 「表示：標準（詳細）」は押すと何が変わるか言葉から分からなかったので「例文」と名乗る。
   // 中身は state.density のまま（standard＝例文あり／compact＝例文なし）
   var exOn=state.density!=='compact';
+  var rows=items.map(fmtBmItem);
+  // 例文を持つ項目が1つも無ければ「例文」は出さない（押しても何も変わらないボタンになる）
+  var anyEx=rows.some(function(h){ return h.indexOf('<div class="ex">')>=0; });
   inner+='<div class="bm-tools"><div class="bm-sort">'+bmSortChips()+'</div>';
-  inner+='<button type="button" class="bm-exsw'+(exOn?' on':'')+'" aria-pressed="'+exOn+'" onclick="toggleDensity()">例文</button></div>';
-  inner+=items.length?items.map(fmtBmItem).join(''):'<div class="empty">まだブックマークがありません。単語・文法の右上の ☆ を押すとここに集まります。</div>';
+  if(anyEx) inner+='<button type="button" class="bm-exsw'+(exOn?' on':'')+'" aria-pressed="'+exOn+'" onclick="toggleDensity()">例文</button>';
+  inner+='</div>';
+  inner+=items.length?rows.join(''):'<div class="empty">まだブックマークがありません。単語・文法の右上の ☆ を押すとここに集まります。</div>';
   $('bookmarkPanel').innerHTML=inner;
 }
 
