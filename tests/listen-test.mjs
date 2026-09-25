@@ -580,6 +580,29 @@ ok('読み込み直しても速さを覚えている',
   await p.evaluate(() => window.showToday()); await p.waitForTimeout(150);
 }
 
+// --- 単語タブから語を開いたら、単語一覧へ戻れる（出口が「今日へ」「次へ」しかなかった） ---
+{
+  await p.evaluate(() => window.showVocab()); await p.waitForTimeout(300);
+  // 少し下の語（Day 2 の2語目）を押す。押した語のカードが開き、出口は「単語一覧へ」
+  const target = await p.evaluate(() => { const rows = [...document.querySelectorAll('#content .vrow')].filter(r => /Day 2\b/.test(r.textContent));
+    const r = rows[1]; r.scrollIntoView({ block: 'center' }); return r.querySelector('.vrow-zh').textContent; });
+  await p.waitForTimeout(200);
+  const y0 = await p.evaluate(() => window.scrollY);
+  await p.evaluate((zh) => [...document.querySelectorAll('#content .vrow')].find(r => r.querySelector('.vrow-zh').textContent === zh).click(), target);
+  await p.waitForTimeout(400);
+  const inDay = await p.evaluate(() => ({ back: document.getElementById('topBack').textContent, card: (document.querySelector('.wcard.on>.zh') || {}).textContent || '' }));
+  ok('単語タブから開くと、押した語のカードが出る', inDay.card.trim().startsWith(target), JSON.stringify({ target, card: inDay.card.trim() }));
+  ok('単語タブから開いたDayの出口は「単語一覧へ」', /単語一覧/.test(inDay.back), inDay.back);
+  await p.click('#topBack'); await p.waitForTimeout(500);
+  const back = await p.evaluate(() => ({ list: document.querySelectorAll('#content .vrow').length, y: window.scrollY }));
+  ok('「単語一覧へ」で単語一覧の元の位置へ戻る', back.list > 0 && Math.abs(back.y - y0) < 40, JSON.stringify({ y0, back }));
+  // 今日画面から開いたDayでは、出口は従来どおり「今日へ」
+  await p.evaluate(() => { window.showToday(); window.showDay(1); }); await p.waitForTimeout(250);
+  const tb = await p.evaluate(() => document.getElementById('topBack').textContent);
+  ok('今日画面から開いたDayの出口は「今日へ」のまま', /今日へ/.test(tb), tb);
+  await p.evaluate(() => window.showToday()); await p.waitForTimeout(150);
+}
+
 // --- ホーム画面から起動したときは、ロゴを iOS のぼかし（安全域＋約34pt）の外へ下げる ---
 {
   const r = await p.evaluate(() => {

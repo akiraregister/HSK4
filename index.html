@@ -27844,6 +27844,7 @@ function goView(v){
   if(currentView==='intro' && v!=='intro'){
     introTimers.forEach(function(t){ clearTimeout(t); }); introTimers.length=0;
   }
+  if(v!=='day' && _dayFrom){ _dayFrom=null; syncTopBack(); }
   currentView=v; render(); window.scrollTo({top:0,behavior:'smooth'});
 }
 function trackSrsEnd(how){
@@ -27861,7 +27862,30 @@ function showLevelCheck(){ goView('levelcheck'); }
 function showVocab(){ goView('vocab'); }
 function showSettings(){ goView('settings'); }
 function showMock(){ _mock=null; goView('mock'); }
-function vocabGoToDay(d){ showDay(d); }
+// 単語タブから開いたDayは、ヘッダーの出口を「← 単語一覧へ」にして、元の位置（検索語・スクロール）へ戻す。
+// 以前は出口が「✕ 今日へ」と「次へ」しかなく、単語一覧に戻れなかった（実機で指摘された）。
+// 押した語のカードを最初に開く（Dayの1語目からではなく）。
+var _dayFrom=null;
+function vocabGoToDay(d, zh){
+  var y=window.scrollY||0;
+  showDay(d);
+  _dayFrom={view:'vocab', scroll:y};
+  syncTopBack();
+  var l=lesson(), i=(l&&zh)?(l.vocab||[]).findIndex(function(v){ return v.zh===zh; }):-1;
+  if(i>0) dayGoVocab(i);
+}
+function syncTopBack(){
+  var b=$('topBack'); if(!b) return;
+  b.textContent = (_dayFrom && _dayFrom.view==='vocab') ? '← 単語一覧へ' : '✕ 今日へ';
+}
+function dayBack(){
+  var f=_dayFrom; _dayFrom=null; syncTopBack();
+  if(f && f.view==='vocab'){
+    goView('vocab');
+    // goView はなめらかに上へ戻すので、それを打ち消して元の位置へ
+    setTimeout(function(){ window.scrollTo({top:f.scroll, behavior:'auto'}); }, 0);
+  } else showToday();
+}
 function vocabBuildIndex(){
   if(_vocabIndex) return _vocabIndex;
   var arr=[], preview=paywallPreview();
@@ -27903,7 +27927,7 @@ function vocabRowHTML(v){
       +'<span class="vrow-ja">購入すると読めます</span></span>'
       +'<span class="vrow-day">Day '+v.day+'</span></button>';
   }
-  return '<button type="button" class="vrow" onclick="vocabGoToDay('+v.day+')">'
+  return '<button type="button" class="vrow" onclick="vocabGoToDay('+v.day+',\''+esc(v.zh)+'\')">'
     +'<span class="vrow-main"><span class="vrow-top"><b class="vrow-zh">'+esc(v.zh)+'</b> <span class="vrow-py">'+esc(v.pinyin)+'</span></span>'
     +'<span class="vrow-ja">'+esc(v.ja)+'</span></span>'
     +'<span class="vrow-day">Day '+v.day+' \u203a</span></button>';
@@ -28669,7 +28693,7 @@ setTimeout(setTopOffset, 300); // Webフォント/アイコン読込後のズレ
 
 (function setupNavTabs(){
   var ht=document.getElementById('homeBtn');     if(ht) ht.addEventListener('click', showToday);
-  var tb=document.getElementById('topBack');     if(tb) tb.addEventListener('click', showToday);
+  var tb=document.getElementById('topBack');     if(tb) tb.addEventListener('click', dayBack);
   var vt=document.getElementById('vocabTab');    if(vt) vt.addEventListener('click', showVocab);
   var gt=document.getElementById('settingsTab'); if(gt) gt.addEventListener('click', showSettings);
   // ブックマークタブは別途 bookmarkViewBtn のハンドラで処理
