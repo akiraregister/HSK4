@@ -36,7 +36,7 @@ ok('復習開始で srs_start が入る', log.some(e => e.e === 'srs_start' && e
 // 1枚だけ採点して終える
 const reveal = await p.$('#content button:has-text("答えを見る")');
 if (reveal) { await reveal.click(); await p.waitForTimeout(300); await p.click('#content .g4-good'); await p.waitForTimeout(300); }
-const end = await p.$('#content button:has-text("復習を終了")');
+const end = await p.$('#content .rev-end');   // 1画面に収めるため、終了は見出しの右へ移した
 if (end) { await end.click(); await p.waitForTimeout(400); }
 log = await evs();
 ok('ボタンで終えると srs_end が入る', log.some(e => e.e === 'srs_end' && e.p && e.p.how === 'button'), JSON.stringify(log.filter(e => e.e === 'srs_end')[0]?.p || {}));

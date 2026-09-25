@@ -59,6 +59,14 @@ ok('単語タブで#contentが隠れる', await page.$eval('#content', e => getC
 const chips = await page.$$eval('#bookmarkPanel .w-chips button', e => e.map(x => x.firstChild.textContent));
 ok('絞り込みが すべて／★／苦手・曖昧／マイ単語', chips.join(',') === 'すべて,★,苦手・曖昧,マイ単語', chips.join(','));
 ok('「すべて」に498語が並ぶ', (await page.$$eval('#bookmarkPanel .bm-ent:not(.bm-g)', e => e.length)) === 498);
+const sorts = await page.$$eval('#bookmarkPanel .bm-sort button', e => e.map(x => x.textContent));
+ok('「すべて」に並び替え（Day順／拼音順／苦手順／ランダム）がある', sorts.join(',') === 'Day順,拼音順,苦手順,ランダム', sorts.join(','));
+await page.click('#bookmarkPanel [data-action="wSort"][data-id="pinyin"]'); await page.waitForTimeout(250);
+const pys = await page.$$eval('#bookmarkPanel .bm-ent .bm-row .pinyin', e => e.slice(0, 40).map(x => x.textContent.normalize('NFD').toLowerCase().replace(/^(adj|adv|v|n)\s+/, '').replace(/[^a-z]/g, '')));
+ok('拼音順で a から並ぶ', pys[0].startsWith('a') && pys.every((v, i) => i === 0 || pys[i - 1].localeCompare(v) <= 0), pys.slice(0, 5).join(','));
+ok('並び順は次に開いても残る', await page.evaluate(() => { window.showToday(); window.showVocab(); return document.querySelector('#bookmarkPanel .bm-sort button.on').textContent === '拼音順'; }));
+await page.click('#bookmarkPanel [data-action="wSort"][data-id="day"]'); await page.waitForTimeout(250);
+ok('Day順に戻せる', (await page.getAttribute('#bookmarkPanel .bm-ent', 'data-bmid')).startsWith('d1-'));
 ok('ブックマーク用のタブは無くなった', !(await page.$('#bookmarkViewBtn')));
 // pressing it again must NOT toggle back (old behaviour)
 await page.click('#vocabTab'); await page.waitForTimeout(250);
@@ -194,6 +202,15 @@ ok('学習中のヘッダーに出口が出る', await page.$eval('#topBack', e 
 ok('学習中のヘッダーにDay番号が出る', (await page.textContent('#topMeta')).includes('Day'));
 ok('Day選択の重複バーが消えた', !(await page.$('.daybar')) && !(await page.$('#daySelect')));
 
+// 答えたら「次の問題へ」は下の固定バーに出る（解説の下にあってスクロールしないと見えなかった）
+ok('答える前は下のバーに「次の問題へ」を出さない', await page.$eval('#bottomMt', e => getComputedStyle(e).display === 'none'));
+await page.click('#mtRoot .mt-opt'); await page.waitForTimeout(300);
+ok('答えたら下のバーに「次の問題へ」が出る', await page.$eval('#bottomMt', e => getComputedStyle(e).display !== 'none' && e.textContent.includes('次の問題へ')));
+ok('画面の中に同じボタンを重ねない', !(await page.$('#mtRoot .mt-btn:not(.ghost)')));
+ok('答えても「完了」はまだ出さない', await page.$eval('#bottomComplete', e => getComputedStyle(e).display === 'none'));
+await page.click('#bottomMt'); await page.waitForTimeout(300);
+ok('下の「次の問題へ」で次の問題へ進む', (await page.textContent('#mtRoot .mt-counter')).includes('問2'));
+ok('次の問題では答えるまで下のボタンが消える', await page.$eval('#bottomMt', e => getComputedStyle(e).display === 'none'));
 await page.click('#mtSkip a'); await page.waitForTimeout(400);
 
 // --- 完了画面（新設） ---
@@ -255,6 +272,8 @@ ok('復習画面に開始ボタンがある', rtxt.includes('復習を始める'
 ok('復習画面から設定UIが消えた', !rtxt.includes('出題の向き') && !rtxt.includes('採点サーバー'));
 ok('復習中は復習タブが選択状態', (await view()) === 'reviewTab');
 await page.click('#content button:has-text("復習を始める")'); await page.waitForTimeout(400);
+ok('復習中の「終了」は見出しの右にある', !!(await page.$('#content .section-title .rev-end')));
+ok('復習中に下の説明文・「復習を終了」ボタンを出さない', !(await page.$('#content .fc-progress')) && !(await page.textContent('#content')).includes('復習を終了'));
 ok('復習が実際に始まる', !!(await page.$('.fc-actions, .g4-again, .mt-opt, .lc-opt')) || (await page.textContent('#content')).length > 50);
 
 // --- 戻れること ---

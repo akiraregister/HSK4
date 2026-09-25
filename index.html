@@ -172,6 +172,13 @@ html.standalone .top{padding-top:calc(44px + env(safe-area-inset-top))}
 #bottomPrev svg,#bottomNext svg{width:18px;height:18px}
 /* 「完了」はこの画面の主役なので墨ベタ（押せるものの3段の「主」）。以前は柿色の塗りだった */
 #bottomComplete{background:var(--ink);color:var(--bg);border-color:var(--ink);flex:1.4}
+#bottomMt{background:var(--ink);color:var(--bg);border-color:var(--ink);flex:1.4}
+.rev-hd{display:flex;align-items:center;gap:14px}
+.rev-end{border:0;background:none;padding:6px 0;font:inherit;font-size:14px;color:var(--ink2);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.rev-run .flashcard{margin-top:10px}
+.rev-more{margin-top:8px;text-align:left}
+.rev-more summary{cursor:pointer;font-size:13px;color:var(--ink2);padding:4px 0}
+.rev-more .note{margin-top:4px}
 .mt-skip{text-align:center;margin:22px 0 4px;font-size:13px}
 .mt-skip a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
 #bottomComplete.active{background:var(--sage);color:var(--ink);border-color:var(--stroke)}
@@ -901,6 +908,7 @@ h1.brand{display:flex;align-items:center;gap:8px;margin:0;font-size:inherit;colo
 <div class="bottomnav" id="bottomNav">
  <button id="bottomPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg>前</button>
  <button id="bottomComplete" class="complete">完了</button>
+ <button id="bottomMt" style="display:none">次の問題へ</button>
  <button id="bottomNext">次<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
 </div>
 
@@ -1095,6 +1103,7 @@ document.addEventListener('click', function(e){
   else if(a==='removeBookmark' && id) toggleBookmark(id);
   else if(a==='hl' && id) cycleHighlight(id);
   else if(a==='bmSort' && id) bmSetSort(id);
+  else if(a==='wSort' && id) wSetSort(id);
   else if(a==='bmToggle' && id) bmToggle(id);
   else if(a==='bmStar' && id) bmStar(id);
   else if(a==='wGo' && id) vocabGoToDay(Number(id), btn.dataset.zh||'');
@@ -26895,13 +26904,43 @@ function wLockedRow(e){
     +'<span class="bm-word"><span class="zh">'+esc(e.title)+'</span></span>'
     +'<span class="bm-ja">🔒 購入すると読めます</span><span class="bm-chev" aria-hidden="true">›</span></button></div>';
 }
+// 「すべて」「苦手・曖昧」の並び順。★は従来どおり bmSortedItems（おすすめ／苦手順／追加順／ランダム）。
+// 端末に覚える（hsk4-word-sort）。絞り込みごとの既定は すべて＝Day順、苦手・曖昧＝苦手順
+var WS_KEY='hsk4-word-sort', _wRandom=null;
+function wSort(){ var f=wFilter(), v=''; try{ v=localStorage.getItem(WS_KEY+'-'+f)||''; }catch(e){}
+  return ['day','pinyin','hard','random'].indexOf(v)>=0 ? v : (f==='hard'?'hard':'day'); }
+function wSetSort(v){
+  if(v==='random') _wRandom=null;   // ランダムは押すたびに並べ直す
+  try{ localStorage.setItem(WS_KEY+'-'+wFilter(), v); }catch(e){}
+  renderBookmarkPanel();
+}
+function wSortItems(items){
+  var m=wSort(), arr=items.slice();
+  var py=function(e){ return vocabStripTone(e.pinyin||'').replace(/^(adj|adv|v|n)\s+/,'').replace(/[^a-z]/g,''); };
+  if(m==='pinyin'){
+    // 🔒の語は拼音を持たないので、後ろにまとめる
+    return arr.sort(function(a,b){ if(!!a.locked!==!!b.locked) return a.locked?1:-1; return py(a).localeCompare(py(b)) || (a.day-b.day); });
+  }
+  if(m==='hard') return arr.sort(function(a,b){ return ((state.levels[b.id]||0)-(state.levels[a.id]||0)) || (a.day-b.day); });
+  if(m==='random'){
+    if(!_wRandom) _wRandom={};
+    arr.forEach(function(e){ if(_wRandom[e.id]==null) _wRandom[e.id]=Math.random(); });
+    return arr.sort(function(a,b){ return _wRandom[a.id]-_wRandom[b.id]; });
+  }
+  return arr.sort(function(a,b){ return a.day-b.day; });
+}
+function wSortChips(){
+  var cur=wSort();
+  return [['day','Day順'],['pinyin','拼音順'],['hard','苦手順'],['random','ランダム']].map(function(o){
+    return '<button type="button" class="'+(cur===o[0]?'on':'')+'" data-action="wSort" data-id="'+o[0]+'">'+o[1]+'</button>'; }).join('');
+}
 function wItems(){
   var f=wFilter(), q=_vocabQuery;
   var items;
   if(f==='bm') items=bmSortedItems();
-  else if(f==='hard') items=wEntries().filter(function(e){ return !e.locked && (state.levels[e.id]||0)>0; })
-                        .sort(function(a,b){ return ((state.levels[b.id]||0)-(state.levels[a.id]||0)) || (a.day-b.day); });
+  else if(f==='hard') items=wEntries().filter(function(e){ return !e.locked && (state.levels[e.id]||0)>0; });
   else items=wEntries();
+  if(f!=='bm') items=wSortItems(items);
   return q ? items.filter(function(e){ return !e.locked && wMatch(e,q); }) : items;
 }
 function wListHTML(){
@@ -26934,7 +26973,7 @@ function renderBookmarkPanel(){
   }
   h+='<div class="w-chips">'+chip('all','すべて',nAll)+chip('bm','★',nBm)+chip('hard','苦手・曖昧',nHard)+chip('cw','マイ単語',nCw)+'</div>';
   if(f==='cw'){ P.innerHTML=h+cwRenderListHtml(); return; }
-  if(f==='bm') h+='<div class="bm-tools"><div class="bm-sort">'+bmSortChips()+'</div></div>';
+  h+='<div class="bm-tools"><div class="bm-sort">'+(f==='bm'?bmSortChips():wSortChips())+'</div></div>';
   h+='<div id="wList">'+wListHTML()+'</div>';
   P.innerHTML=h;
   var si=$('vocabSearch');
@@ -27367,7 +27406,7 @@ function mtRender(){
   var q=_mt.quiz[_mt.idx];
   var head='<div class="mt-counter">問'+(_mt.idx+1)+' / '+_mt.quiz.length+'</div>'+
            '<div class="mt-prog"><i style="width:'+(_mt.idx/_mt.quiz.length*100)+'%"></i></div>';
-  _mt.answered=false;
+  _mt.answered=false; _mt.ready=false; mtSyncNav();
   if(q.opts){ root.innerHTML=head+mtMC(q); mtBindMC(q); }
   else if(q.__t==='drag'){ root.innerHTML=head+mtDrag(q); mtBindDrag(q); }
   else if(q.__t==='writing'){ root.innerHTML=head+mtWriting(q); mtBindWriting(q); }
@@ -27473,11 +27512,9 @@ function mtGradeWriting(q){
     mtNext();
   });
 }
-function mtNext(){
-  var last=(_mt.idx>=_mt.quiz.length-1);
-  $('mtNx').innerHTML='<div class="mt-next"><button class="mt-btn" id="mtGo">'+(last?'結果を見る':'次の問題へ')+'</button></div>';
-  $('mtGo').onclick=mtAdvance;
-}
+// 答えたら「次の問題へ」を**下の固定バー**に出す（#bottomMt）。以前は解説の下にあり、
+// 解説が長いとスクロールしないと見えなかった（実機で指摘された）。画面の中には置かない（墨ベタが2つになる）
+function mtNext(){ _mt.ready=true; mtSyncNav(); }
 function mtAdvance(){
   _mt.idx++;
   if(_mt.idx>=_mt.quiz.length) return mtResult();
@@ -27843,6 +27880,12 @@ function updateDayNav(){
   if(prev){ prev.style.display=atStart?'none':''; prev.innerHTML='← 戻る'; }
   if(next){ next.style.display=atEnd?'none':''; next.innerHTML='次へ →'; }
   if(comp) comp.style.display=(atEnd && !testing)?'':'none';
+  var mb=$('bottomMt');
+  if(mb){ var go=atEnd && mtInProgress() && !!_mt.ready;
+    mb.style.display=go?'':'none';
+    if(go){ mb.textContent=(_mt.idx>=_mt.quiz.length-1)?'結果を見る':'次の問題へ';
+      // 完了済みのDayでテストを解き直しているときは「完了済み」を隠す（主役を1つにする）
+      if(comp) comp.style.display='none'; } }
   var sk=$('mtSkip'); if(sk) sk.style.display=testing?'':'none';
   updateCompleteButtons();
 }
@@ -27973,6 +28016,7 @@ function toggleDensity(){
 $('bottomPrev').onclick=dayPrev; $('bottomNext').onclick=dayNext;
 // completeBtn handled by setupNavTabs; bottomComplete stays
 if($('bottomComplete')) $('bottomComplete').onclick=toggleComplete;
+if($('bottomMt')) $('bottomMt').onclick=function(){ if(mtInProgress() && _mt.ready) mtAdvance(); };
 // pinyinBtn handled by setupNavTabs
 if(false && $('pinyinBtn'))$('pinyinBtn').onclick=()=>{document.body.classList.toggle('hidden-pinyin'); const hidden=document.body.classList.contains('hidden-pinyin'); $('pinyinBtn').textContent=hidden?'拼音を表示':'拼音を隠す'; $('pinyinBtn').className='toggle '+(hidden?'on':'off');}
 // jaBtn handled by setupNavTabs
@@ -28150,16 +28194,18 @@ function _revRender(c){
     var leech=srsIsLeech(card.id);
     function exBlock(){
       if(!card.ex){ return leech?'<div class="leech-tip">🔁 つまずき中：例文がない語です。短い例文を自作する／出題の向きを変えると覚えやすくなります。</div>':''; }
-      var tip=leech?'<div class="leech-tip">🔁 つまずき中：例文ごと声に出して、文脈で覚えてみましょう（向きを変えるのも有効）。</div>':'';
-      return tip+'<div class="ex'+(leech?' ex-leech':'')+'" style="text-align:left;margin-top:10px"><div style="color:var(--ink);font-weight:600">'+esc(card.ex)+' <button class="speak-btn" onclick="speakZh(\''+esc(card.ex)+'\')" aria-label="例文を再生"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div>'+(card.exP?'<div class="small expinyin">'+esc(card.exP)+'</div>':'')+(card.exJ?'<div class="small">'+esc(card.exJ)+'</div>':'')+'</div>';
+      var tip=leech?'<div class="leech-tip">🔁 例文ごと声に出して、文脈で覚えましょう</div>':'';
+      return tip+'<div class="ex'+(leech?' ex-leech':'')+'" style="text-align:left;margin-top:8px"><div style="color:var(--ink);font-weight:600">'+esc(card.ex)+' <button class="speak-btn" onclick="speakZh(\''+esc(card.ex)+'\')" aria-label="例文を再生"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div>'+(card.exP?'<div class="small expinyin">'+esc(card.exP)+'</div>':'')+(card.exJ?'<div class="small">'+esc(card.exJ)+'</div>':'')+'</div>';
     }
     // 似た意味の文法表現(了/过 など)を取り違えないよう、Day画面と同じ「違い・注意」を復習でも出す。
     function contrastBlock(){
-      return card.contrast?'<div class="note" style="text-align:left;margin-top:10px"><span class="label">違い・注意：</span>'+esc(card.contrast)+'</div>':'';
+      return card.contrast?'<details class="rev-more"><summary>違い・注意</summary><div class="note">'+esc(card.contrast)+'</div></details>':'';
     }
     var spk='<button class="speak-btn" onclick="speakZh(\''+esc(card.zh)+'\')" aria-label="発音を再生"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button>';
     var dir=(state.srsDir==='ja2zh')?'ja2zh':'zh2ja';
-    var h='<div class="card testwrap"><div class="section-title"><h2>今日の復習'+(state.revScope==='bm'?'（ブックマーク）':'')+'</h2><span class="badge">残り '+remain+'問</span></div>';
+    // **1画面に収める**（実機で「スクロールしないと評価ボタンが出ない」と言われた）。
+    // 終了は見出しの右へ、説明文は開始画面へ、「違い・注意」は畳む
+    var h='<div class="card testwrap rev-run"><div class="section-title"><h2>今日の復習'+(state.revScope==='bm'?'（★）':'')+'</h2><span class="rev-hd"><span class="badge">残り '+remain+'問</span><button type="button" class="rev-end" onclick="revEnd()">終了</button></span></div>';
     h+='<div class="flashcard"><span class="badge">'+esc(card.type)+'</span><span class="badge">'+(card.custom?'マイ単語':'Day '+card.day)+'</span>'+(leech?'<span class="badge badge-leech">🔁 つまずき中</span>':'');
     if(dir==='zh2ja'){
       h+='<div class="fc-prompt cw-pick">'+esc(card.zh)+' '+spk+'</div>';
@@ -28189,8 +28235,6 @@ function _revRender(c){
       }
     }
     h+='</div>';
-    h+='<div class="fc-progress">手応えで次回の出題日が決まります（もう一度→今日中にまた／簡単→ぐっと先送り）。</div>';
-    h+='<div class="row" style="margin-top:10px"><button onclick="revEnd()">復習を終了</button></div>';
     h+='</div>';
     c.innerHTML=h; return;
   }
@@ -28242,7 +28286,7 @@ function renderTestScreen(){
   } else if(todayTotal===0){
     html+='<div class="empty" style="margin-top:4px">今日ぶんの復習は終わっています。おつかれさまでした。</div>';
   } else {
-    html+='<div class="small muted" style="margin-top:2px">期限 '+shownDue+'問'+(carryOver>0?'（+'+carryOver+'問は明日以降に持ち越し）':'')+' ＋ 新しく覚える '+shownNew+'問。忘れる頃に自動で出題します（間隔反復）。</div>';
+    html+='<div class="small muted" style="margin-top:2px">期限 '+shownDue+'問'+(carryOver>0?'（+'+carryOver+'問は明日以降に持ち越し）':'')+' ＋ 新しく覚える '+shownNew+'問。忘れる頃に自動で出題します（間隔反復）。答えを見たら手応えを4段で選ぶと、次に出る日が決まります（もう一度→今日中にまた／簡単→ぐっと先送り）。</div>';
     html+='<button class="primary" style="width:100%;margin-top:12px" onclick="revStart()">復習を始める（'+todayTotal+'問）</button>';
   }
   html+='<div class="small muted" style="margin-top:14px">出題範囲や1日の新規問数は<a href="#" style="color:var(--ink2);text-underline-offset:3px" onclick="showSettings();return false">設定</a>で変更できます。</div>';
