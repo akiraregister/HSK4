@@ -60,7 +60,10 @@
 /* 地は**不透明**にする。半透明＋backdrop-filter だと、スクロール中に下の中身が
    透けて毎フレーム引き直され、ロゴと文字がにじむ（実機で指摘された）。
    案Xはもともと罫で階層を作る方針なので、ガラス効果は要らない。 */
-.top{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:var(--bw) solid var(--stroke);padding:calc(10px + env(safe-area-inset-top)) 16px 10px}
+/* 貼り付けない（position:sticky を使わない）。iPhone は sticky の層だけ
+   低い解像度で描くことがあり、ロゴと文字がかすむ（実機の画素を測って確認した。
+   ヘッダーの文字が輝度58、本文は15）。罫で階層を作る案Xでは貼り付ける必要もない。 */
+.top{background:var(--bg);border-bottom:var(--bw) solid var(--stroke);padding:calc(10px + env(safe-area-inset-top)) 16px 10px}
 .top-inner{max-width:980px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
 .top-meta{font-size:13px;color:var(--muted);letter-spacing:.08em;white-space:nowrap}
 .top-back{display:none;border:0;background:none;padding:6px 2px;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer;touch-action:manipulation}
@@ -97,7 +100,7 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 .chip.answer-chip{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .chip.dragging{opacity:.45}.chip.selected{outline:3px solid var(--rule)}
 .bookmark-panel{display:none}.bookmark-panel.active{display:block}.empty{padding:14px;border:1px dashed var(--hair);border-radius:var(--r-lg);background:var(--paper);color:var(--muted)}
-.bm-stickybar{position:sticky;top:var(--top-h,64px);z-index:8;background:var(--card);padding:8px 0;margin:0 0 8px;box-shadow:var(--sh)}
+.bm-stickybar{position:sticky;top:0;z-index:8;background:var(--card);padding:8px 0;margin:0 0 8px;box-shadow:var(--sh)}
 
 
 .day-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}.daybtn{padding:10px 0;border-radius:var(--r-md);background:var(--card)}.daybtn.done{background:var(--goodbg);border-color:var(--goodline);color:var(--good)}.daybtn.locked{opacity:.55}
@@ -254,7 +257,7 @@ mark.cw-hl{background:var(--brand-tint);color:inherit;border-radius:var(--r-sm);
 :root{--zh-font:'Noto Serif SC','Songti SC','Source Han Serif SC',serif}
 .zh,.vrow-zh,.ex,.cw-ex,.testq,.lc-q{font-family:var(--zh-font)}
 z{font-family:var(--zh-font);font-style:normal}
-#mtRoot{scroll-margin-top:calc(var(--top-h,64px) + 10px)}
+#mtRoot{scroll-margin-top:10px}
 .mt-counter{font-size:14px;color:var(--muted);font-weight:600}
 .mt-prog{height:6px;background:var(--gray);border-radius:var(--r-pill);overflow:hidden;margin:8px 0 14px}.mt-prog>i{display:block;height:100%;background:var(--blue2,var(--ink));transition:width .25s}
 .mt-qtype{display:inline-block;font-size:12.5px;font-weight:700;color:var(--ink);background:var(--gray);border-radius:var(--r-sm);padding:3px 8px;margin-bottom:10px}
@@ -635,11 +638,15 @@ h1,h2,h3,.badge,.fc-prompt,.daybtn,.set-label,
 /* 進捗を下端に置くため、.today は「ヘッダーと下タブを除いた高さ」を最低限持つ。
    112px = .app の上下パディング（16 + 96）。96pxは下タブの逃げ */
 .today{display:flex;flex-direction:column;min-height:calc(100vh - var(--top-h,64px) - 116px - env(safe-area-inset-bottom,0px))}
+/* 見出し「今日やること」は外した（画面そのものがそれなので、名乗る必要がない）。
+   残したのは試験までの日数だけで、試験日を入れていない人には行ごと出ない。 */
 .today-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:2px 0 0}
-.today-head h2{font-size:17px;font-weight:600;letter-spacing:.14em;margin:0}
 .today-note{font-size:12px;color:var(--brand);letter-spacing:.06em}
 /* 主役は1枚だけ。太罫で始めて、数字（Day番号）を大きく置く */
 .hero{border-top:1px solid var(--ink);padding:16px 0 0;margin-top:12px}
+/* 試験日が未設定だと hero が今日画面の先頭に来る。そのままだとヘッダーの罫と
+   すぐ下の太罫が二重線に見えるので、先頭のときだけ罫を持たせない。 */
+.today>.hero:first-child{border-top:0;padding-top:4px;margin-top:6px}
 .hero-eye{font-size:10.5px;font-weight:500;color:var(--muted);letter-spacing:.24em}
 .hero-day{font-weight:500;line-height:1;margin:8px 0}
 .hero-day .l{font-size:14px;letter-spacing:.06em;color:var(--ink2)}
@@ -647,12 +654,19 @@ h1,h2,h3,.badge,.fc-prompt,.daybtn,.set-label,
 /* 完走時だけは数字ではなく文が入るので、Day番号の大きさを当てない */
 .hero-day .n.txt{font-size:26px;letter-spacing:.04em;margin-left:0}
 .hero-m{font-size:12.5px;color:var(--ink2);line-height:1.7}
-/* 案Xのボタンは塗りつぶさず罫で囲う */
-.xbtn{display:block;width:100%;margin-top:12px;background:transparent;color:var(--ink);
+/* 押せるものは強さを3段に分ける。以前は主役も区切りも同じ太さの罫囲みで、
+   どれを押せばいいのか分からなかった（実機で指摘された）。
+     主 ＝ .xbtn（墨ベタ）……1画面に1つだけ。今日いちばんやってほしいこと
+     副 ＝ .xbtn.ghost / .trow .go（罫囲み）……やってもいいこと
+     移動 ＝ 罫なし（.day-list-details）……別の画面や折りたたみを開くだけのもの
+   墨ベタは1画面に1つという決まりなので、.xbtn を増やすときは必ず ghost を付けること。 */
+.xbtn{display:block;width:100%;margin-top:12px;background:var(--ink);color:var(--bg);
   border:1px solid var(--ink);border-radius:var(--r-md);padding:14px;font-weight:600;font-size:15px;
   letter-spacing:.22em;cursor:pointer;touch-action:manipulation}
-.xbtn[disabled]{opacity:.4;cursor:default;border-color:var(--rule);color:var(--muted)}
-.xbtn .s{display:block;font-size:11px;font-weight:400;letter-spacing:0;color:var(--muted);margin-top:3px}
+.xbtn.ghost{background:transparent;color:var(--ink2);border-color:var(--rule)}
+.xbtn[disabled]{opacity:.4;cursor:default;background:transparent;border-color:var(--rule);color:var(--muted)}
+.xbtn .s{display:block;font-size:11px;font-weight:400;letter-spacing:0;color:var(--bg);opacity:.66;margin-top:3px}
+.xbtn.ghost .s,.xbtn[disabled] .s{color:var(--muted);opacity:1}
 /* 復習・模試の行 */
 .trows{margin-top:16px;border-top:1px solid var(--hair)}
 .trow{display:flex;align-items:center;gap:12px;padding:12px 2px;border:0;border-bottom:1px solid var(--hair);
@@ -676,14 +690,12 @@ h1,h2,h3,.badge,.fc-prompt,.daybtn,.set-label,
 .prog-grid i{display:block;aspect-ratio:1;border:1px solid var(--hair);background:transparent}
 .prog-grid i.on{background:var(--ink);border-color:var(--ink)}
 .prog-grid i.now{background:var(--brand);border-color:var(--brand)}
-.prog-cap{font-size:10.5px;color:var(--muted);letter-spacing:.06em;margin-top:8px;text-align:right}
-.prog-cap .now{color:var(--brand)}
-.day-list-details{margin-top:12px;border:1px solid var(--hair);border-radius:var(--r-lg);background:var(--card);overflow:hidden}
-.day-list-details>summary{list-style:none;cursor:pointer;padding:11px 14px;font-weight:500;font-size:13.5px;letter-spacing:.06em;color:var(--ink);display:flex;align-items:center;justify-content:space-between;touch-action:manipulation}
+.day-list-details{margin-top:2px;border:0;border-bottom:1px solid var(--hair);border-radius:0;background:transparent;overflow:hidden}
+.day-list-details>summary{list-style:none;cursor:pointer;padding:12px 2px;font-weight:500;font-size:13.5px;letter-spacing:.06em;color:var(--ink);display:flex;align-items:center;justify-content:space-between;touch-action:manipulation}
 .day-list-details>summary::-webkit-details-marker{display:none}
 .day-list-details>summary::after{content:"＋";font-size:16px;color:var(--ink)}
 .day-list-details[open]>summary::after{content:"−"}
-.day-list-details .dl-body{padding:0 14px 14px}
+.day-list-details .dl-body{padding:0 2px 14px}
 .fs-btn{padding:9px 16px;font-size:14px;font-weight:600;border:var(--bw) solid var(--rule);background:transparent;color:var(--muted);border-radius:var(--r-pill);line-height:1.4;touch-action:manipulation;cursor:pointer}
 .fs-btn.on{background:var(--ink);color:var(--bg);border-color:var(--stroke)}
 .g-details{margin-top:8px;border:1px dashed var(--hair);border-radius:var(--r-md);background:var(--paper);overflow:hidden}
@@ -26791,6 +26803,7 @@ function renderDoneScreen(){
   var cnt=srsCounts(scope);
   var revTotal=((dl<0)?cnt.due:Math.min(dl,cnt.due))+((nl<0)?cnt.fresh:Math.min(nl,cnt.fresh));
   var doneCount=Object.keys(state.completed||{}).filter(function(k){return state.completed[k];}).length;
+  var freeEnd=freeEndHTML(day);
 
   c.innerHTML=
    '<div class="done">'
@@ -26806,11 +26819,13 @@ function renderDoneScreen(){
      + '<div><span>文法</span><b>'+(l?l.grammar.length:0)+'<i>つ</i></b></div>'
      + '<div><span>ミニテスト</span><b>'+(score!=null?score+'<i> / 5問</i>':'<i>未採点</i>')+'</b></div>'
    + '</div>'
-   + freeEndHTML(day)
+   + freeEnd
+   // 墨ベタ（主）は1画面に1つ。無料の区切りが出ている日は「続きを見る」が主役なので、
+   // 復習は罫囲みへ下げる。復習も無ければ「今日はここまで」が主役になる。
    + (revTotal>0
-      ? '<button class="xbtn" onclick="showTest()">復習を続ける<span class="s">'+revTotal+'問</span></button>'
+      ? '<button class="xbtn'+(freeEnd?' ghost':'')+'" onclick="showTest()">復習を続ける<span class="s">'+revTotal+'問</span></button>'
       : '')
-   + '<button class="xbtn ghost" onclick="showToday()">今日はここまで</button>'
+   + '<button class="xbtn'+((freeEnd||revTotal>0)?' ghost':'')+'" onclick="showToday()">今日はここまで</button>'
    + '<div class="done-foot">90日のうち '+doneCount+'日</div>'
    + '</div>';
 }
@@ -26876,7 +26891,15 @@ function renderHome(){
   : `<div class="hero">
       <span class="hero-eye">あたらしく覚える</span>
       <div class="hero-day"><span class="l">Day</span><span class="n">${nextDay}</span></div>
-      <div class="hero-m">単語${nextLesson.vocab.length}・文法${nextLesson.grammar.length}${LISTENING[nextDay]?'・音声1':''}・テスト5</div>
+      <div class="hero-m">${(()=>{
+        // 0のものは並べない。以前は文法の無い日にも「文法0」が出ていた。
+        const parts=[];
+        if(nextLesson.vocab.length) parts.push(`単語${nextLesson.vocab.length}`);
+        if(nextLesson.grammar.length) parts.push(`文法${nextLesson.grammar.length}`);
+        if(LISTENING[nextDay]) parts.push('音声1');
+        parts.push('テスト5');
+        return parts.join('・');
+      })()}</div>
       <button class="xbtn" onclick="showDay(${nextDay})">学習を始める<span class="s">だいたい15分</span></button>
      </div>`;
 
@@ -26890,14 +26913,14 @@ function renderHome(){
      </button>`
   : `<button class="trow trow-rev"${revTotal===0?' disabled':''} onclick="showTest()">
       <span class="lab">復習</span><span class="val">${revTotal}<span class="u">問</span></span>
-      <span class="memo">${revTotal===0?'今日のぶんは終わっています':`期限 ${shownDue}${carryOver>0?`（+${carryOver}は明日以降）`:''} ＋ 新規 ${shownNew}`}</span>
+      <span class="memo">${revTotal===0?'今日のぶんは終わっています':[`期限${shownDue}`,`新規${shownNew}`].concat(carryOver>0?[`明日以降${carryOver}`]:[]).join('・')}</span>
       <span class="go">${revTotal===0?'完了':'復習する'}</span>
      </button>`;
 
  const mockRow = (!allDone && mockAvailable())
   ? `<button class="trow trow-mock" onclick="showMock()">
       <span class="lab">模試</span><span class="val">40<span class="u">問</span></span>
-      <span class="memo">ここまでの範囲から・30分</span>
+      <span class="memo">30分</span>
       <span class="go">受ける</span>
      </button>`
   : '';
@@ -26910,16 +26933,12 @@ function renderHome(){
 
  c.innerHTML=`
   <div class="today">
-   <div class="today-head">
-     <h2>今日やること</h2>
-     <span class="today-note">${(()=>{
-       const dl=examDaysLeft();
-       if(dl!==null && dl>0) return `試験まであと${dl}日`;
-       if(dl===0) return '試験は今日です';
-       if(dl!==null) return '受験おつかれさま';
-       return allDone?'90日ぶん完走':`あと${TOTAL_DAYS-doneCount}日`;
-     })()}</span>
-   </div>
+   ${(()=>{
+     const dl=examDaysLeft();
+     if(dl===null) return '';   // 試験日が未設定なら行ごと出さない
+     const t = dl>0 ? `試験まであと${dl}日` : dl===0 ? '試験は今日です' : '受験おつかれさま';
+     return `<div class="today-head"><span class="today-note">${t}</span></div>`;
+   })()}
 
    ${hero}
 
@@ -26943,7 +26962,6 @@ function renderHome(){
        <div class="prog-rest">のこり ${TOTAL_DAYS-doneCount} 日</div>
      </div>
      <div class="prog-grid" role="img" aria-label="90日のうち ${doneCount}日 完了">${cells}</div>
-     <div class="prog-cap">■ 完了　□ これから　<span class="now">■</span> 今日</div>
    </div>
   </div>`;
  updateCompleteButtons();
@@ -27650,6 +27668,11 @@ function setChrome(){
       // 記録を始める前の完了日は復元できないので、しばらくは 0 のままの人がいる。
       var st=streakDays();
       if(st>0){ meta.textContent=st+'日連続'; }
+      else if(currentView==='today'){
+        // 今日画面には90マスの進捗が必ず出ているので、同じ数字をヘッダーにも
+        // 置くと重複になる（実機で「ごちゃつく」と指摘された3組のうちの1組）。
+        meta.textContent='';
+      }
       else{
         var done=Object.keys(state.completed||{}).filter(function(k){return state.completed[k];}).length;
         meta.textContent=done+' / '+TOTAL_DAYS;

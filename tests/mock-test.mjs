@@ -74,7 +74,7 @@ const bmAfter = await p.evaluate(() => Object.keys(window.state.bookmarks || {})
 ok('間違えたDayの語を★に送れる', bmAfter >= bmBefore, `${bmBefore}→${bmAfter}`);
 
 await p.click('#content button:has-text("終わる")'); await p.waitForTimeout(400);
-ok('模試から今日へ戻れる', (await p.textContent('#content')).includes('今日やること'));
+ok('模試から今日へ戻れる', !!(await p.$('#content .today')));
 
 // --- 完走後の仕上げモード ---
 await p.evaluate(() => { for (let d = 1; d <= 90; d++) state.completed[d] = true; save(); });

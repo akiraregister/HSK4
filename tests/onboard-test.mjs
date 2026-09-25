@@ -74,9 +74,9 @@ async function answerAll(p, upTo) {
   ok('初回の級診断では下タブを出さない',
     await p.$eval('#tabBar', e => getComputedStyle(e).display === 'none'));
   await p.click('[data-lc-action="skip"]'); await p.waitForTimeout(400);
-  ok('スキップで今日画面へ', (await p.textContent('#content')).includes('今日やること'));
+  ok('スキップで今日画面へ', !!(await p.$('#content .today')));
   await p.reload({ waitUntil: 'load' }); await p.waitForTimeout(600);
-  ok('2回目は診断が出ない', (await p.textContent('#content')).includes('今日やること'));
+  ok('2回目は診断が出ない', !!(await p.$('#content .today')));
   // 2回目以降は設定から入る画面なので、タブを出してよい
   await p.evaluate(() => window.showLevelCheck()); await p.waitForTimeout(400);
   ok('2回目以降の級診断では下タブが戻る',
@@ -178,7 +178,7 @@ async function answerAll(p, upTo) {
 // --- 3分岐 ---
 // 判定アルゴリズムは既存で今回触っていないので、結果画面の「級を選ぶ」から
 // 各級を直接選んで、分岐先だけを確かめる。
-for (const [lv, label, expect] of [[3, 'HSK3', '少し背伸び'], [4, 'HSK4', '今日やること'], [5, 'HSK5', '易しすぎます']]) {
+for (const [lv, label, expect] of [[3, 'HSK3', '少し背伸び'], [4, 'HSK4', 'あたらしく覚える'], [5, 'HSK5', '易しすぎます']]) {
   const { c, p } = await fresh();
   await toLevelCheck(p);
   // 20問すべて「わからない」で流して結果画面へ
@@ -204,7 +204,7 @@ for (const [lv, label, expect] of [[3, 'HSK3', '少し背伸び'], [4, 'HSK4', '
   }
   if (lv === 3) {
     await p.click('[data-lc-action="startProgram"]'); await p.waitForTimeout(400);
-    ok('HSK3: Day1から始められる', (await p.textContent('#content')).includes('今日やること'));
+    ok('HSK3: Day1から始められる', !!(await p.$('#content .today')));
   }
   await c.close();
 }

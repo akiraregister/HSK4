@@ -327,6 +327,7 @@ ok('読み込み直しても速さを覚えている',
       topFilter: g('.top', 'backdropFilter') || g('.top', 'webkitBackdropFilter'),
       topBg: g('.top', 'backgroundColor'),
       tabFilter: g('.tabbar', 'backdropFilter') || g('.tabbar', 'webkitBackdropFilter'),
+      topPos: g('.top', 'position'),
     };
   });
   ok('引っぱっても跳ね返らない（html）', chrome.htmlOver === 'none', chrome.htmlOver);
@@ -335,6 +336,31 @@ ok('読み込み直しても速さを覚えている',
   ok('ヘッダーにぼかしを掛けない', chrome.topFilter === 'none', chrome.topFilter);
   ok('ヘッダーの地は不透明', !/rgba\(.*0?\.\d+\)/.test(chrome.topBg), chrome.topBg);
   ok('下タブにもぼかしを掛けない', chrome.tabFilter === 'none', chrome.tabFilter);
+  // ぼかしを外したあとも「上部がかすむ」と再度指摘された。原因は position:sticky で、
+  // iPhone がその層だけ低い解像度で描いていた（画素を測って確認）。戻さないこと。
+  ok('ヘッダーを貼り付けない（position:sticky を使わない）',
+    chrome.topPos !== 'sticky' && chrome.topPos !== 'fixed', chrome.topPos);
+}
+
+// --- 押せるものの強さは3段。墨ベタ（主役）は1画面に1つだけ ---
+{
+  await p.evaluate(() => showToday());
+  await p.waitForTimeout(250);
+  const solids = await p.evaluate(() => {
+    const btns = [...document.querySelectorAll('#content .xbtn')];
+    const filled = (b) => {
+      const bg = getComputedStyle(b).backgroundColor;
+      return bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)';
+    };
+    return { total: btns.length, solid: btns.filter(filled).length };
+  });
+  ok('今日画面の墨ベタは1つだけ', solids.solid === 1, JSON.stringify(solids));
+  // 重複していた3組。見出し「今日やること」・ヘッダーの「x / 90」・「あと○日」は外した
+  const txt = await p.textContent('#content');
+  ok('見出し「今日やること」は出さない', !txt.includes('今日やること'));
+  ok('凡例は出さない', !txt.includes('これから'), txt.slice(0, 60));
+  const meta = await p.textContent('#topMeta');
+  ok('今日画面のヘッダーに進捗を重ねない', !/\d+\s*\/\s*90/.test(meta), JSON.stringify(meta));
 }
 
 console.log(res.join('\n'));

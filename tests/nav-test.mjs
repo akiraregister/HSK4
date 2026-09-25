@@ -42,7 +42,7 @@ ok('ヘッダーから同期バーが消えた', !hasSyncInHeader);
 // --- initial view = 今日 ---
 const view = () => page.evaluate(() => document.querySelector('.nav-tab.active')?.id);
 ok('初期表示は今日タブ', (await view()) === 'homeBtn');
-ok('今日やることが表示される', (await page.textContent('#content')).includes('今日やること'));
+ok('今日画面が表示される', !!(await page.$('#content .today')));
 // 今日画面は「主役1枚（.hero）＋復習・模試は行（.trow）」という形に変えた
 ok('主役の学習カードが1枚だけ', (await page.$$eval('.hero', e => e.length)) === 1);
 ok('復習は行になっている', !!(await page.$('.trow-rev')));
@@ -198,7 +198,7 @@ ok('完了画面では学習用の下バーが出ない', await page.$eval('#bot
 ok('次のDayへ進むボタンは置かない', !doneTxt.includes('次のDay') && !doneTxt.includes('次の日'));
 
 await page.click('#content button:has-text("今日はここまで")'); await page.waitForTimeout(300);
-ok('「今日はここまで」で今日画面に戻る', (await page.textContent('#content')).includes('今日やること'));
+ok('「今日はここまで」で今日画面に戻る', !!(await page.$('#content .today')));
 // 完了日時（state.completedAt）が入り、ヘッダーが連続日数に変わる
 ok('完了日時が記録される', await page.evaluate(() => {
   const at = window.state.completedAt || {};
@@ -249,7 +249,7 @@ ok('復習が実際に始まる', !!(await page.$('.fc-actions, .g4-again, .mt-o
 
 // --- 戻れること ---
 await page.click('#homeBtn'); await page.waitForTimeout(250);
-ok('復習から今日へ戻れる', (await page.textContent('#content')).includes('今日やること'));
+ok('復習から今日へ戻れる', !!(await page.$('#content .today')));
 
 console.log(results.join('\n'));
 console.log('\nerrors:', errs.length ? errs.slice(0, 6).join('\n') : 'none');
