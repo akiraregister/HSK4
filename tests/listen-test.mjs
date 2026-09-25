@@ -376,7 +376,8 @@ ok('読み込み直しても速さを覚えている',
   ok('今日画面の副ボタンは文言によらず同じ幅', new Set(w).size === 1, JSON.stringify(w));
 }
 
-// --- ブックマーク：案2「辞書の項目」（design/bookmarks.html） ---
+// --- ブックマーク：案3-3「その場で開く」（design/bookmarks.html） ---
+// 一覧は語・拼音・意味の1行だけ。押すとその行の下に読み上げ・例文・難易度・外すが開く
 {
   await p.evaluate(() => {
     window.toggleBookmark('d1-v0', '単語', '水平', 'レベル、能力水準', 'shuǐpíng');
@@ -388,42 +389,60 @@ ok('読み込み直しても速さを覚えている',
     const ent = panel.querySelector('.bm-ent');
     return {
       ents: panel.querySelectorAll('.bm-ent').length,
-      boxes: panel.querySelectorAll('.vitem').length,
       heading: !!panel.querySelector('.section-title'),
-      help: panel.textContent.includes('各カードのボタンで切替'),
       tab: panel.querySelector('.cw-subtab.active').textContent,
-      entBorder: ent ? getComputedStyle(ent).borderTopWidth + '/' + getComputedStyle(ent).borderRightWidth : '',
-      parts: ent ? ['.zh', '.speak-btn', '.pinyin', '.bm-ja', '.ex', '.lvc', 'button.bookmark'].filter(q => !ent.querySelector(q)) : ['no entry'],
+      row: ent ? ['.bm-row .zh', '.bm-row .pinyin', '.bm-row .bm-ja'].filter(q => !ent.querySelector(q)) : ['no entry'],
+      // 閉じている行には、例文・難易度・読み上げ・外すを出さない（出すと羅列に戻る）
+      closedExtras: ent ? ['.ex', '.lvc', '.speak-btn', '.bm-rm', 'button.bookmark'].filter(q => ent.querySelector(q)) : [],
+      exSwitch: !!panel.querySelector('.bm-exsw'),
       sortRows: new Set([...panel.querySelectorAll('.bm-sort button')].map(b => Math.round(b.getBoundingClientRect().top))).size,
     };
   });
-  ok('ブックマークは項目として並ぶ（箱を持たない）', bm.ents === 2 && bm.boxes === 0 && bm.entBorder === '0px/0px', JSON.stringify(bm));
-  ok('見出し・説明文は出さない', !bm.heading && !bm.help, JSON.stringify(bm));
+  ok('ブックマークは1語1行で並ぶ', bm.ents === 2 && bm.row.length === 0, JSON.stringify(bm));
+  ok('閉じた行には語・拼音・意味だけ（例文・難易度・読み上げは出さない）', bm.closedExtras.length === 0, JSON.stringify(bm.closedExtras));
+  ok('見出し・「例文」切替は出さない', !bm.heading && !bm.exSwitch, JSON.stringify(bm));
   ok('件数は切り替えの中に入る', /ブックマーク\s*2/.test(bm.tab), bm.tab);
-  ok('中身は減らさない（語・読み上げ・拼音・意味・例文・難易度・★）', bm.parts.length === 0, JSON.stringify(bm.parts));
   ok('並び替え4つが1行に収まる', bm.sortRows === 1, 'rows=' + bm.sortRows);
-  // 「例文」で例文だけが消える（state.density の compact）
-  const zhOn = await p.evaluate(() => getComputedStyle(document.querySelector('#bookmarkPanel .bm-ent .zh')).fontSize);
-  await p.click('.bm-exsw'); await p.waitForTimeout(200);
-  const offState = await p.evaluate(() => ({
-    ex: getComputedStyle(document.querySelector('#bookmarkPanel .bm-ent .ex')).display,
-    zh: getComputedStyle(document.querySelector('#bookmarkPanel .bm-ent .zh')).fontSize,
-  }));
-  ok('「例文」を切ると例文が隠れる', offState.ex === 'none', offState.ex);
-  // 以前は字まで縮めていたので、実機で「押すと字が大きくなるだけ」に見えた
-  ok('「例文」を切っても字の大きさは変わらない', offState.zh === zhOn, zhOn + ' → ' + offState.zh);
-  await p.click('.bm-exsw'); await p.waitForTimeout(200);
-  // 難易度を押してもその場で反映され、項目の左に色罫が付く
+  // 行を押すと、その場で詳しい中身が開く（中身は減らしていない）
+  const y0 = await p.evaluate(() => window.scrollY);
+  await p.click('#bookmarkPanel .bm-ent[data-bmid="d1-v1"] .bm-row'); await p.waitForTimeout(200);
+  const opened = await p.evaluate(() => {
+    const e = document.querySelector('#bookmarkPanel .bm-ent[data-bmid="d1-v1"]');
+    return { open: e.classList.contains('open'), aria: e.querySelector('.bm-row').getAttribute('aria-expanded'),
+      missing: ['.speak-btn', '.ex', '.lvc', '.bm-rm'].filter(q => !e.querySelector(q)),
+      ex: (e.querySelector('.ex') || {}).textContent || '',
+      others: document.querySelectorAll('#bookmarkPanel .bm-ent.open').length };
+  });
+  ok('行を押すとその場で開き、読み上げ・例文・難易度・外すが出る',
+    opened.open && opened.aria === 'true' && opened.missing.length === 0 && opened.ex.includes('我想提高'), JSON.stringify(opened));
+  ok('開くのは押した行だけ', opened.others === 1, JSON.stringify(opened));
+  // 難易度を押してもその場で反映され、行の左に色罫が付く（開いたまま）
   await p.click('#bookmarkPanel .lvc[data-lv="d1-v1"] button:nth-child(2)'); await p.waitForTimeout(200);
   const lvOn = await p.evaluate(() => {
     const box = document.querySelector('#bookmarkPanel .lvc[data-lv="d1-v1"]');
-    return !!box.querySelector('.lvc-on-1') && box.closest('.bm-ent').classList.contains('lv-1');
+    const e = box && box.closest('.bm-ent');
+    return !!(box && box.querySelector('.lvc-on-1') && e.classList.contains('lv-1') && e.classList.contains('open'));
   });
-  ok('ブックマークで難易度を切り替えると、その場で左の色罫も変わる', lvOn);
-  await p.evaluate(() => { window.toggleBookmark('d1-v0'); window.toggleBookmark('d1-v1'); });
+  ok('開いた中で難易度を切り替えると、その場で左の色罫も変わる', lvOn);
+  // 並び替えで描き直しても、開いた項目は開いたまま
+  await p.click('#bookmarkPanel .bm-sort button[data-id="added"]'); await p.waitForTimeout(200);
+  const kept = await p.evaluate(() => !!document.querySelector('#bookmarkPanel .bm-ent.open[data-bmid="d1-v1"]'));
+  ok('並び替えても開いた項目は開いたまま', kept);
+  // もう一度押すと閉じる
+  await p.click('#bookmarkPanel .bm-ent[data-bmid="d1-v1"] .bm-row'); await p.waitForTimeout(200);
+  const closed = await p.evaluate(() => !document.querySelector('#bookmarkPanel .bm-ent.open'));
+  ok('もう一度押すと閉じる', closed);
+  await p.click('#bookmarkPanel .bm-sort button[data-id="recommend"]'); await p.waitForTimeout(150);
+  // 開いた中の「ブックマークを外す」で一覧から消える
+  await p.click('#bookmarkPanel .bm-ent[data-bmid="d1-v0"] .bm-row'); await p.waitForTimeout(150);
+  await p.click('#bookmarkPanel .bm-ent[data-bmid="d1-v0"] .bm-rm'); await p.waitForTimeout(200);
+  const gone = await p.evaluate(() => ({ v0: !!document.querySelector('#bookmarkPanel .bm-ent[data-bmid="d1-v0"]'), n: document.querySelectorAll('#bookmarkPanel .bm-ent').length }));
+  ok('開いた中の「ブックマークを外す」で一覧から消える', !gone.v0 && gone.n === 1, JSON.stringify(gone));
+  await p.evaluate(() => { window.toggleBookmark('d1-v1'); });
   // 古いブックマーク（例文を持たず、idの形も今と違う）でも、見出し語から例文を引く
   await p.evaluate(() => window.toggleBookmark('old-shuiping', '単語', '水平', 'レベル'));
   await p.waitForTimeout(200);
+  await p.click('#bookmarkPanel .bm-ent[data-bmid="old-shuiping"] .bm-row'); await p.waitForTimeout(200);
   const oldEx = await p.evaluate(() => {
     const e = document.querySelector('#bookmarkPanel .bm-ent .ex');
     return e ? e.textContent : '';
@@ -433,10 +452,11 @@ ok('読み込み直しても速さを覚えている',
   // 教材を組み直す前の文法ブックマーク：見出しに後ろ書きが付き、Dayも今とずれている（実機のデータ）
   await p.evaluate(() => window.toggleBookmark('d81-g0', '文法', 'V起来：印象：自然会話での使い方', '〜してみると、〜な感じ'));
   await p.waitForTimeout(200);
+  await p.click('#bookmarkPanel .bm-ent[data-bmid="d81-g0"] .bm-row'); await p.waitForTimeout(200);
   const oldG = await p.evaluate(() => {
     const e = document.querySelector('#bookmarkPanel .bm-ent.bm-g');
-    return e ? { zh: e.querySelector('.zh').textContent.trim(), meta: e.querySelector('.bm-meta span').textContent,
-      ex: (e.querySelector('.ex') || {}).textContent || '', size: getComputedStyle(e.querySelector('.zh')).fontSize } : null;
+    return e ? { zh: e.querySelector('.bm-row .zh').textContent.trim(), meta: e.querySelector('.bm-dfoot span').textContent,
+      ex: (e.querySelector('.ex') || {}).textContent || '', size: getComputedStyle(e.querySelector('.bm-row .zh')).fontSize } : null;
   });
   ok('古い文法ブックマークは今の名前・Day・例文で出す',
     oldG && oldG.zh === 'V起来：印象' && /Day 23/.test(oldG.meta) && oldG.ex.includes('听起来'), JSON.stringify(oldG));

@@ -183,13 +183,6 @@ html.standalone .top{padding-top:calc(44px + env(safe-area-inset-top))}
 .lvc button.lvc-on-2{background:var(--blush);border-color:var(--stroke);color:var(--bad)}
 .vitem.lv-1,.gitem.lv-1{border-left:8px solid var(--amber)}
 .vitem.lv-2,.gitem.lv-2{border-left:8px solid var(--red2)}
-/* ⑥ 密度（標準 / コンパクト） */
-/* ⑥ state.density の compact＝ブックマーク画面の「例文」を切った状態。
-   **例文を隠すだけで、字の大きさや余白は変えない。**以前は語の字を17pxへ縮め、
-   難易度ボタンも小さくしていたので、「例文」を押すと例文が出るより先に
-   字の大きさが変わって見えた（実機で「押すと字が大きくなるだけ」と指摘された）。
-   学習セクション(#content)には一切影響しない。 */
-#bookmarkPanel.compact .ex{display:none}
 /* ＋ ブックマークだけのミニテスト（フラッシュカード） */
 .testwrap .seg{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
 .testwrap .seg .chip-toggle.on{background:var(--ink);border-color:var(--stroke);color:var(--bg)}
@@ -284,30 +277,37 @@ z{font-family:var(--zh-font);font-style:normal}
 body.fs-sm .vrow-zh{font-size:17px}body.fs-sm .vrow-py{font-size:13.5px}body.fs-sm .vrow-ja{font-size:12.5px}
 body.fs-lg .vrow-zh{font-size:23px}body.fs-lg .vrow-py{font-size:17px}body.fs-lg .vrow-ja{font-size:16px}
 
-/* ブックマーク：案2「辞書の項目」（design/bookmarks.html）。
-   上は2行だけ（切り替え／並び替え＋例文）。項目は箱を持たず細罫で区切る */
+/* ブックマーク：案3-3「その場で開く」（design/bookmarks.html、2026年9月25日）。
+   一覧は「語・拼音・意味」の1行だけ。押すとその行の下に、読み上げ・例文・難易度・外すが開く。
+   以前は全項目に全部（例文3行・難易度3つ・★・読み上げ）を出していて、419語だと
+   「単語や文字の羅列」に見えた（実機で指摘された）。一覧と詳しい中身を分けた */
 #bookmarkPanel .bm-tools{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0!important;padding:10px 0;border-bottom:1px solid var(--rule)}
 .bm-sort{display:flex;align-items:center;gap:14px;flex-wrap:nowrap}
 .bm-sort button{border:0;background:none;padding:6px 0;font-size:13px;font-weight:500;color:var(--muted);border-bottom:1px solid transparent;border-radius:0}
 .bm-sort button.on{color:var(--ink);font-weight:600;border-bottom-color:var(--ink)}
-.bm-exsw{flex:none;border:1px solid var(--rule);background:none;padding:4px 10px;font-size:12.5px;font-weight:500;color:var(--muted)}
-.bm-exsw.on{border-color:var(--ink);color:var(--ink)}
-.bm-ent{position:relative;padding:14px 0 12px;border-bottom:1px solid var(--hair)}
-.bm-ent.lv-1{border-left:2px solid var(--amber);padding-left:10px}
-.bm-ent.lv-2{border-left:2px solid var(--red2);padding-left:10px}
-.bm-ent .bm-h{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;padding-right:40px}
-.bm-ent .zh{font-size:22px;line-height:1.3}
-/* 文法は見出しが長い（「V起来：印象」など）。語と同じ22pxだと2行に折れて項目が間延びする */
+.bm-ent{position:relative;border-bottom:1px solid var(--hair)}
+.bm-row{display:flex;align-items:baseline;gap:12px;width:100%;border:0;border-radius:0;background:none;
+  padding:16px 2px 16px 14px;text-align:left;font-weight:400;color:var(--ink);cursor:pointer;position:relative}
+/* 曖昧・苦手は行の左の色罫で示す（一覧に難易度のボタンは置かない） */
+.bm-ent.lv-1 .bm-row::before,.bm-ent.lv-2 .bm-row::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;background:var(--amber)}
+.bm-ent.lv-2 .bm-row::before{background:var(--red2)}
+.bm-word{flex:none;display:flex;align-items:baseline;gap:8px;min-width:0}
+.bm-ent .zh{font-size:24px;line-height:1.3}
+/* 文法は見出しが長い（「V起来：印象」など）。語と同じ大きさだと意味を押し出す */
 .bm-ent.bm-g .zh{font-size:18px}
-.bm-ent .bm-h .pinyin{margin:0;font-size:15px}
-.bm-ent .bm-ja{font-size:14px;color:var(--ink2);margin-top:2px}
-.bm-ent .ex{margin-top:8px;line-height:1.65}
-.bm-ent .ex .bm-exzh{color:var(--ink);font-weight:500}
-.bm-ent .ex .bm-expy{font-size:13px;color:var(--ink2)}
-.bm-ent .ex .bm-exja{font-size:13px;color:var(--ink2)}
-.bm-ent .bm-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;font-size:12px;color:var(--muted);letter-spacing:.04em}
-.bm-ent .lvc{margin-top:0}
-.bm-ent button.bookmark{position:absolute;right:0;top:10px;border:0;background:none;padding:6px 8px;font-size:17px;color:var(--brand)}
+.bm-word .pinyin{margin:0;font-size:13px;color:var(--ink2);letter-spacing:.02em}
+.bm-row .bm-ja{flex:1;min-width:0;font-size:14px;color:var(--ink2);text-align:right;line-height:1.5}
+.bm-chev{flex:none;color:var(--muted);font-size:17px;line-height:1;transition:transform .15s}
+.bm-ent.open .bm-chev{transform:rotate(90deg)}
+.bm-detail{background:var(--paper,#F6F3EA);padding:14px 16px 12px;border-top:1px solid var(--hair)}
+.bm-detail .ex{margin-top:10px;line-height:1.7}
+.bm-dlabel{display:block;font-size:11.5px;letter-spacing:.2em;color:var(--muted);margin-bottom:2px}
+.bm-detail .bm-exzh{font-size:18px;color:var(--ink)}
+.bm-detail .bm-expy,.bm-detail .bm-exja{font-size:13.5px;color:var(--ink2)}
+.bm-dlv{margin-top:14px;padding-top:12px;border-top:1px solid var(--hair)}
+.bm-dlv .lvc{margin-top:0;display:flex}.bm-dlv .lvc button{flex:1}
+.bm-dfoot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:12.5px;color:var(--muted)}
+.bm-rm{border:0;background:none;padding:6px 0;font-size:13px;font-weight:400;color:var(--ink2);text-decoration:underline;text-underline-offset:3px}
 
 .mt-opts{display:flex;flex-direction:column;gap:10px}
 .mt-opt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:var(--r-md);padding:13px 14px;font-size:16px;cursor:pointer;line-height:1.4}
@@ -999,6 +999,7 @@ document.addEventListener('click', function(e){
   else if(a==='removeBookmark' && id) toggleBookmark(id);
   else if(a==='hl' && id) cycleHighlight(id);
   else if(a==='bmSort' && id) bmSetSort(id);
+  else if(a==='bmToggle' && id) bmToggle(id);
 });
 
 
@@ -26658,6 +26659,15 @@ function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){
   // 一覧そのものが変わる画面（ブックマーク）と、差し替え先が見つからない場合は描き直す
   if(currentView==='bookmark' || !hit) render();
 }
+// ブックマーク一覧で開いている項目（id→true）。並び替えや描き直しをまたいで開いたままにする
+var _bmOpen={};
+function bmToggle(id){
+  if(!id || !state.bookmarks[id]) return;
+  if(_bmOpen[id]) delete _bmOpen[id]; else _bmOpen[id]=true;
+  // その項目だけ差し替える（一覧ごと描き直すとスクロール位置が飛ぶ）
+  var el=document.querySelector('#bookmarkPanel .bm-ent[data-bmid="'+id.replace(/"/g,'')+'"]');
+  if(el) el.outerHTML=fmtBmItem(state.bookmarks[id]); else renderBookmarkPanel();
+}
 function fmtBmItem(b){
   if(!b || typeof b!=='object') return '';
   var ex=b.example||'',exP=b.exPinyin||'',exJ=b.exJa||'',pin=b.pinyin||'';
@@ -26694,17 +26704,23 @@ function fmtBmItem(b){
   // 以前は単語の sub に「拼音｜和訳」をまとめて入れていたため、拼音の行と二重に出ていた。
   // 保存済みのブックマークは作り直せないので、表示側で先頭の拼音を落とす。
   if(pin && sub.indexOf(pin+'｜')===0) sub=sub.slice(pin.length+1);
-  var h='<div class="bm-ent lv-'+lv+(b.type==='文法'?' bm-g':'')+'">';
-  h+='<button class="bookmark active" data-action="removeBookmark" data-id="'+b.id+'" aria-label="ブックマークを外す">★</button>';
-  h+='<div class="bm-h"><span class="zh">'+esc(title)+' <button class="speak-btn" onclick="speakZh(\''+esc(title)+'\')"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></span>';
-  if(pin) h+='<span class="pinyin">'+esc(pin)+'</span>';
-  h+='</div>';
-  if(sub) h+='<div class="bm-ja">'+esc(sub)+'</div>';
-  if(ex){h+='<div class="ex"><div class="bm-exzh">'+esc(ex)+'</div>';
-    if(exP) h+='<div class="bm-expy">'+esc(exP)+'</div>';
-    if(exJ) h+='<div class="bm-exja">'+esc(exJ)+'</div>';
-    h+='</div>';}
-  h+='<div class="bm-meta"><span>'+esc(b.type)+'・Day '+day+'</span>'+lvControl(b.id)+'</div>';
+  var open=!!(_bmOpen && _bmOpen[b.id]);
+  var h='<div class="bm-ent lv-'+lv+(b.type==='文法'?' bm-g':'')+(open?' open':'')+'" data-bmid="'+esc(b.id)+'">';
+  h+='<button type="button" class="bm-row" data-action="bmToggle" data-id="'+esc(b.id)+'" aria-expanded="'+open+'">';
+  h+='<span class="bm-word"><span class="zh">'+esc(title)+'</span>'+(pin?'<span class="pinyin">'+esc(pin)+'</span>':'')+'</span>';
+  h+='<span class="bm-ja">'+esc(sub)+'</span><span class="bm-chev" aria-hidden="true">›</span></button>';
+  // 詳しい中身は開いている項目にだけ作る（419語ぶん作ると重い）
+  if(open){
+    h+='<div class="bm-detail">';
+    h+='<button class="speak-btn" onclick="speakZh(\''+esc(title)+'\')"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button>';
+    if(ex){h+='<div class="ex"><span class="bm-dlabel">例文</span><div class="bm-exzh">'+esc(ex)+'</div>';
+      if(exP) h+='<div class="bm-expy">'+esc(exP)+'</div>';
+      if(exJ) h+='<div class="bm-exja">'+esc(exJ)+'</div>';
+      h+='</div>';}
+    h+='<div class="bm-dlv"><span class="bm-dlabel">難易度</span>'+lvControl(b.id)+'</div>';
+    h+='<div class="bm-dfoot"><span>'+esc(b.type)+'・Day '+day+'</span><button type="button" class="bm-rm" data-action="removeBookmark" data-id="'+esc(b.id)+'">ブックマークを外す</button></div>';
+    h+='</div>';
+  }
   h+='</div>';
   return h;
 }
@@ -26716,7 +26732,7 @@ function cycleHighlight(id){
 }
 
 function renderBookmarkPanel(){
-  $('bookmarkPanel').className='bookmark-panel card'+(currentView==='bookmark'?' active':'')+(state.density==='compact'?' compact':'');
+  $('bookmarkPanel').className='bookmark-panel card'+(currentView==='bookmark'?' active':'');
   var bvb=$('bookmarkViewBtn');
   if(bvb){
     var sp=bvb.querySelector('span');
@@ -26730,16 +26746,10 @@ function renderBookmarkPanel(){
   if(cwSubTab==='custom'){ $('bookmarkPanel').innerHTML=subbar+cwRenderListHtml(); return; }
   var items=bmSortedItems();
   var inner=subbar;
-  // 上は2行だけ。見出し・件数の札・「難易度は各カードで…」の説明文は外した（design/bookmarks.html 案2）。
-  // 「表示：標準（詳細）」は押すと何が変わるか言葉から分からなかったので「例文」と名乗る。
-  // 中身は state.density のまま（standard＝例文あり／compact＝例文なし）
-  var exOn=state.density!=='compact';
+  // 上は2行だけ（切り替え／並び替え）。見出し・件数の札・説明文は外した。
+  // 例文は開いた項目の中に出すので、以前の「例文」切替（state.density）は使わない（値は同期のため残す）
   var rows=items.map(fmtBmItem);
-  // 例文を持つ項目が1つも無ければ「例文」は出さない（押しても何も変わらないボタンになる）
-  var anyEx=rows.some(function(h){ return h.indexOf('<div class="ex">')>=0; });
-  inner+='<div class="bm-tools"><div class="bm-sort">'+bmSortChips()+'</div>';
-  if(anyEx) inner+='<button type="button" class="bm-exsw'+(exOn?' on':'')+'" aria-pressed="'+exOn+'" onclick="toggleDensity()">例文</button>';
-  inner+='</div>';
+  inner+='<div class="bm-tools"><div class="bm-sort">'+bmSortChips()+'</div></div>';
   inner+=items.length?rows.join(''):'<div class="empty">まだブックマークがありません。単語・文法の右上の ☆ を押すとここに集まります。</div>';
   $('bookmarkPanel').innerHTML=inner;
 }
