@@ -188,14 +188,6 @@ html.standalone .top{padding-top:calc(44px + env(safe-area-inset-top))}
 .chip-toggle{border:var(--bw) solid var(--rule);background:transparent;color:var(--muted);border-radius:var(--r-pill);padding:9px 16px;font-weight:600;font-size:14px;cursor:pointer;touch-action:manipulation}
 .chip-toggle.on{background:var(--ink);border-color:var(--stroke);color:var(--bg)}
 /* ⑤ 難易度コントロール（普通/曖昧/苦手）＋カード左の色バー */
-.lvc{display:inline-flex;gap:6px;margin-top:8px}
-.lvc button{border:var(--bw) solid var(--rule);border-radius:var(--r-pill);padding:6px 13px;font-size:11.5px;font-weight:600;background:var(--card);color:var(--muted);min-height:32px}
-.lvc button+button{border-left:1px solid var(--line)}
-.lvc button.lvc-on-0{background:var(--gray);border-color:var(--stroke);color:var(--ink2)}
-.lvc button.lvc-on-1{background:var(--apricot);border-color:var(--stroke);color:var(--brand-2)}
-.lvc button.lvc-on-2{background:var(--blush);border-color:var(--stroke);color:var(--bad)}
-.vitem.lv-1,.gitem.lv-1{border-left:8px solid var(--amber)}
-.vitem.lv-2,.gitem.lv-2{border-left:8px solid var(--red2)}
 /* ＋ ブックマークだけのミニテスト（フラッシュカード） */
 .testwrap .seg{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
 .testwrap .seg .chip-toggle.on{background:var(--ink);border-color:var(--stroke);color:var(--bg)}
@@ -347,8 +339,6 @@ body.fs-lg #bookmarkPanel{--bm-zh:21px;--bm-py:13px;--bm-ja:14px}
 .bm-dlabel{display:block;font-size:11.5px;letter-spacing:.2em;color:var(--muted);margin-bottom:2px}
 .bm-detail .bm-exzh{font-size:18px;color:var(--ink)}
 .bm-detail .bm-expy,.bm-detail .bm-exja{font-size:13.5px;color:var(--ink2)}
-.bm-dlv{margin-top:14px;padding-top:12px;border-top:1px solid var(--hair)}
-.bm-dlv .lvc{margin-top:0;display:flex}.bm-dlv .lvc button{flex:1}
 .bm-dfoot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:12.5px;color:var(--muted)}
 .bm-rm{border:0;background:none;padding:6px 0;font-size:13px;font-weight:400;color:var(--ink2);text-decoration:underline;text-underline-offset:3px}
 
@@ -442,7 +432,7 @@ body.fs-lg .zh{font-size:24px}body.fs-lg .pinyin{font-size:20px}body.fs-lg .ja{f
    和文書体には簡体字だけの字（请・说・这 等）が無いので、1つの文の中で
    字ごとに別の書体へ落ちて字面が崩れる。 */
 h1,h2,h3,.badge,.fc-prompt,.daybtn,.set-label,
-.nav-tab,.chip-toggle,.fs-btn,.lvc button,button,.lc-btn,.mt-btn,.mt-opt,.opt{font-family:var(--font-display)}
+.nav-tab,.chip-toggle,.fs-btn,button,.lc-btn,.mt-btn,.mt-opt,.opt{font-family:var(--font-display)}
 .hand{font-family:var(--font-hand);font-weight:400}
 /* 読ませる文章は本文書体のまま、行間を広めに */
 .ja,.exja,.note,.small,.muted,.label,.gitem p,.fc-sub,.mt-exp,.vrow-ja{font-family:var(--font-body)}
@@ -747,9 +737,6 @@ body.fs-lg .ls-transcript{--lt-zh:19px;--lt-py:14.5px;--lt-ja:15.5px}
 #content .ls-tline .ja{font-size:var(--lt-ja)}
 .wcard .note{margin-top:12px}
 .wcard .wfoot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
-.wcard .wfoot .lvc{margin-top:0}
-.wcard.lv-1{border-left:4px solid var(--amber);padding-left:12px}
-.wcard.lv-2{border-left:4px solid var(--red2);padding-left:12px}
 .wdots{display:flex;gap:6px;justify-content:center;margin-top:16px}
 .wdots button{width:9px;height:9px;padding:0;min-height:0;border:1px solid var(--rule);background:transparent;
   border-radius:0;cursor:pointer;touch-action:manipulation}
@@ -1021,7 +1008,7 @@ function setSyncStatus(kind, text, userText=''){
 function cloudDocRef(){ return cloudUser ? doc(db,'users',cloudUser.uid,'hsk4','state') : null; }
 function localUpdatedAt(){ const n=Number(localStorage.getItem(storageKey+'-updatedAtMs')||0); return Number.isFinite(n)?n:0; }
 function markLocalUpdated(){ localStorage.setItem(storageKey+'-updatedAtMs', String(nowMs())); }
-function normalizeStateForCloud(s){ return {completed:s.completed||{}, completedAt:(s.completedAt&&typeof s.completedAt==='object')?s.completedAt:{}, answers:s.answers||{}, scores:s.scores||{}, bookmarks:s.bookmarks||{}, dragOrders:s.dragOrders||{}, levels:s.levels||{}, customWords:Array.isArray(s.customWords)?s.customWords:[], density:s.density||'standard', fontScale:(s.fontScale==='sm'||s.fontScale==='lg')?s.fontScale:'md', srs:(s.srs&&typeof s.srs==='object')?s.srs:{}, srsNewLimit:(typeof s.srsNewLimit==='number')?s.srsNewLimit:8, srsDueLimit:(typeof s.srsDueLimit==='number')?s.srsDueLimit:30, srsDir:(s.srsDir==='ja2zh')?'ja2zh':'zh2ja', examDate:(typeof s.examDate==='string')?s.examDate:'', mockHistory:Array.isArray(s.mockHistory)?s.mockHistory:[], bmSort:(['recommend','hard','added','random'].indexOf(s.bmSort)>=0)?s.bmSort:'recommend', revScope:(s.revScope==='bm')?'bm':'all', currentDay:current||1, updatedAtMs:nowMs(), appVersion:'firebase-sync-v1', storageKey:storageKey}; }
+function normalizeStateForCloud(s){ return {completed:s.completed||{}, completedAt:(s.completedAt&&typeof s.completedAt==='object')?s.completedAt:{}, answers:s.answers||{}, scores:s.scores||{}, bookmarks:s.bookmarks||{}, dragOrders:s.dragOrders||{}, levels:s.levels||{}, customWords:Array.isArray(s.customWords)?s.customWords:[], density:s.density||'standard', fontScale:(s.fontScale==='sm'||s.fontScale==='lg')?s.fontScale:'md', srs:(s.srs&&typeof s.srs==='object')?s.srs:{}, srsNewLimit:(typeof s.srsNewLimit==='number')?s.srsNewLimit:8, srsDueLimit:(typeof s.srsDueLimit==='number')?s.srsDueLimit:30, srsDir:(s.srsDir==='ja2zh')?'ja2zh':'zh2ja', examDate:(typeof s.examDate==='string')?s.examDate:'', mockHistory:Array.isArray(s.mockHistory)?s.mockHistory:[], bmSort:(['recommend','hard','added','random'].indexOf(s.bmSort)>=0)?s.bmSort:'recommend', lvMigrated:!!s.lvMigrated, revScope:(s.revScope==='bm')?'bm':'all', currentDay:current||1, updatedAtMs:nowMs(), appVersion:'firebase-sync-v1', storageKey:storageKey}; }
 async function saveCloudState(force=false){
   if(!cloudUser || ((!cloudReady)&&!force) || (cloudLoading && !force)) return;
   try{ const payload=normalizeStateForCloud(state); payload.updatedAt=serverTimestamp(); await setDoc(cloudDocRef(), payload, {merge:true}); setSyncStatus('on','クラウド同期済み',cloudUser.email||''); }
@@ -1054,6 +1041,7 @@ async function loadCloudState(){
       state.scores=cloud.scores||{};state.bookmarks=cloud.bookmarks||{};
       state.dragOrders=cloud.dragOrders||{};
       state.levels=cloud.levels||state.levels||{};
+      if(cloud.lvMigrated) state.lvMigrated=true;
       if(cloud.srs&&typeof cloud.srs==='object') state.srs=cloud.srs;             // 復習スケジュール（SM-2）
       if(Array.isArray(cloud.customWords)) state.customWords=cloud.customWords;    // マイ単語
       if(typeof cloud.srsNewLimit==='number') state.srsNewLimit=cloud.srsNewLimit;
@@ -1063,6 +1051,7 @@ async function loadCloudState(){
       if(cloud.revScope==='bm'||cloud.revScope==='all') state.revScope=cloud.revScope;
       if(cloud.fontScale==='sm'||cloud.fontScale==='lg'||cloud.fontScale==='md') state.fontScale=cloud.fontScale;
       cwEnsureIds();
+      migrateLevels();   // 別の端末で付けた曖昧・苦手も★へ（済んでいれば何もしない）
       if(cloud.density) state.density=cloud.density;
       if(cloud.currentDay) current=Number(cloud.currentDay)||current;
       localStorage.setItem(storageKey,JSON.stringify(state));
@@ -26759,6 +26748,22 @@ function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt
 // lesson() が falsy なら lockedDayHTML() を出す作りなので、ここだけで効く。
 function lesson(){ if(paywallPreview() && current>FREE_DAYS) return null; return LESSONS[current-1]; }
 function isBookmarked(id){return !!state.bookmarks[id]}
+// 2026年9月、手で付ける「普通・曖昧・苦手」をやめた（復習の手応えと役目が重なり、出題にも使っていなかった）。
+// 付けてあった曖昧・苦手の語は、黙って消さずに★へ移す。state.lvMigrated で一度きり（同期する）。
+// levels 自体は消さない（古い版の端末と同期しても食い違わないように）
+function migrateLevels(){
+  if(state.lvMigrated) return;
+  var n=0;
+  Object.keys(state.levels||{}).forEach(function(id){
+    if(!(state.levels[id]>0) || state.bookmarks[id]) return;
+    var c=srsCard(id); if(!c || c.custom) return;
+    state.bookmarks[id]={id:id, type:c.type, title:c.zh, sub:c.ja||'', day:c.day, pinyin:c.pin||'', example:c.ex||'', exPinyin:c.exP||'', exJa:c.exJ||'', hl:0};
+    n++;
+  });
+  state.lvMigrated=true;
+  try{ localStorage.setItem(storageKey, JSON.stringify(state)); }catch(e){}
+  return n;
+}
 function toggleBookmark(id,type,title,sub,pinyin,example,exPinyin,exJa){
   // ★で絞っている一覧から外したら「開いている」も忘れる（付け直すと開いたまま出ていた）。
   // 「すべて」の一覧では、開いた中の★を押しても開いたままにする
@@ -26828,7 +26833,7 @@ function fmtBmItem(b){
     if(hit){ex=hit.example||'';exP=hit.exPinyin||'';exJ=hit.exJa||'';pin=pin||hit.pinyin||'';
       title=hit.zh||hit.name||title; day=hitDay||day;}
   }
-  var lv=state.levels[b.id]||0;
+  var lv=weakLevel(b.id);   // 左の色罫：もう一度＝赤、難しい＝黄
   // 案2「辞書の項目」：箱をやめて細罫で区切る。札（単語・Day）は下の行の小さな文字へ、
   // 難易度はその行の右端へ。★は右上。中身（語・拼音・意味・例文3行・読み上げ）は減らさない
   var sub=String(b.sub||'');
@@ -26848,7 +26853,6 @@ function fmtBmItem(b){
       if(exP) h+='<div class="bm-expy">'+esc(exP)+'</div>';
       if(exJ) h+='<div class="bm-exja">'+esc(exJ)+'</div>';
       h+='</div>';}
-    h+='<div class="bm-dlv"><span class="bm-dlabel">難易度</span>'+lvControl(b.id)+'</div>';
     var on=!!state.bookmarks[b.id];
     h+='<div class="bm-dfoot"><button type="button" class="w-bm'+(on?' on':'')+'" data-action="bmStar" data-id="'+esc(b.id)+'">'+(on?'★ ブックマーク済み':'☆ ブックマーク')+'</button>'
       +'<button type="button" class="w-go" data-action="wGo" data-id="'+Number(day)+'" data-zh="'+esc(title)+'">'+esc(b.type)+'・Day '+day+' で学ぶ →</button></div>';
@@ -26921,7 +26925,7 @@ function wSortItems(items){
     // 🔒の語は拼音を持たないので、後ろにまとめる
     return arr.sort(function(a,b){ if(!!a.locked!==!!b.locked) return a.locked?1:-1; return py(a).localeCompare(py(b)) || (a.day-b.day); });
   }
-  if(m==='hard') return arr.sort(function(a,b){ return ((state.levels[b.id]||0)-(state.levels[a.id]||0)) || (a.day-b.day); });
+  if(m==='hard') return arr.sort(weakCmp);
   if(m==='random'){
     if(!_wRandom) _wRandom={};
     arr.forEach(function(e){ if(_wRandom[e.id]==null) _wRandom[e.id]=Math.random(); });
@@ -26931,14 +26935,14 @@ function wSortItems(items){
 }
 function wSortChips(){
   var cur=wSort();
-  return [['day','Day順'],['pinyin','拼音順'],['hard','苦手順'],['random','ランダム']].map(function(o){
+  return [['day','Day順'],['pinyin','拼音順'],['hard','つまずき順'],['random','ランダム']].map(function(o){
     return '<button type="button" class="'+(cur===o[0]?'on':'')+'" data-action="wSort" data-id="'+o[0]+'">'+o[1]+'</button>'; }).join('');
 }
 function wItems(){
   var f=wFilter(), q=_vocabQuery;
   var items;
   if(f==='bm') items=bmSortedItems();
-  else if(f==='hard') items=wEntries().filter(function(e){ return !e.locked && (state.levels[e.id]||0)>0; });
+  else if(f==='hard') items=wEntries().filter(function(e){ return !e.locked && weakLevel(e.id)>0; });
   else items=wEntries();
   if(f!=='bm') items=wSortItems(items);
   return q ? items.filter(function(e){ return !e.locked && wMatch(e,q); }) : items;
@@ -26948,7 +26952,7 @@ function wListHTML(){
   if(!items.length){
     if(_vocabQuery.trim()) return '<div class="empty" style="margin-top:14px">「'+esc(_vocabQuery)+'」に一致する語はありません。</div>';
     if(f==='bm') return '<div class="empty" style="margin-top:14px">★を付けた語はまだありません。語を開いて「☆ ブックマーク」を押すか、学習中に ☆ を押すとここに集まります。</div>';
-    if(f==='hard') return '<div class="empty" style="margin-top:14px">曖昧・苦手にした語はまだありません。</div>';
+    if(f==='hard') return '<div class="empty" style="margin-top:14px">苦手な語はまだありません。復習で「もう一度」「難しい」を押した語がここに集まり、「普通」「簡単」を押せたら外れます。</div>';
   }
   return items.map(function(e){ return e.locked ? wLockedRow(e) : fmtBmItem(e); }).join('');
 }
@@ -26961,7 +26965,7 @@ function renderBookmarkPanel(){
   var all=wEntries();
   var nAll=all.length;
   var nBm=Object.keys(state.bookmarks||{}).length;
-  var nHard=all.filter(function(e){ return !e.locked && (state.levels[e.id]||0)>0; }).length;
+  var nHard=all.filter(function(e){ return !e.locked && weakLevel(e.id)>0; }).length;
   var nCw=(state.customWords||[]).length;
   var chip=function(k,t,n){ return '<button type="button" class="'+(f===k?'on':'')+'" data-action="wf" data-id="'+k+'">'+t+'<small>'+n+'</small></button>'; };
   var h='';
@@ -26971,7 +26975,7 @@ function renderBookmarkPanel(){
       +'<input id="vocabSearch" type="search" placeholder="例: 提高 / tigao / 高める" value="'+esc(_vocabQuery)+'" autocomplete="off" autocapitalize="off">'
       +'<button type="button" class="vsearch-clear" id="vocabClear"'+(hasQ?'':' style="visibility:hidden"')+'>×</button></div>';
   }
-  h+='<div class="w-chips">'+chip('all','すべて',nAll)+chip('bm','★',nBm)+chip('hard','苦手・曖昧',nHard)+chip('cw','マイ単語',nCw)+'</div>';
+  h+='<div class="w-chips">'+chip('all','すべて',nAll)+chip('bm','★',nBm)+chip('hard','苦手',nHard)+chip('cw','マイ単語',nCw)+'</div>';
   if(f==='cw'){ P.innerHTML=h+cwRenderListHtml(); return; }
   h+='<div class="bm-tools"><div class="bm-sort">'+(f==='bm'?bmSortChips():wSortChips())+'</div></div>';
   h+='<div id="wList">'+wListHTML()+'</div>';
@@ -26987,7 +26991,7 @@ var _bmRandom=null; // ランダム並びのキャッシュ（id配列）。再�
 function bmSortedItems(){
   var arr=Object.values(state.bookmarks||{});
   var mode=state.bmSort||'recommend';
-  if(mode==='hard'){ return arr.sort(function(a,b){return ((state.levels[b.id]||0)-(state.levels[a.id]||0))||(a.day-b.day);}); }
+  if(mode==='hard'){ return arr.sort(weakCmp); }
   if(mode==='added'){ return arr.reverse(); } // 追加が新しい順
   if(mode==='random'){
     var map={}; arr.forEach(function(b){ map[b.id]=b; });
@@ -27004,7 +27008,7 @@ function bmSortedItems(){
 }
 function bmSortChips(){
   var cur=state.bmSort||'recommend';
-  var opts=[['recommend','おすすめ'],['hard','苦手順'],['added','追加順'],['random','ランダム']];
+  var opts=[['recommend','おすすめ'],['hard','つまずき順'],['added','追加順'],['random','ランダム']];
   return opts.map(function(o){ return '<button type="button" class="'+(cur===o[0]?'on':'')+'" data-action="bmSort" data-id="'+o[0]+'">'+o[1]+'</button>'; }).join('');
 }
 function bmSetSort(s){
@@ -27313,7 +27317,7 @@ function render(){
   ${steps.map(st=>{
    if(st.k==='vocab') return `<div class="dstep">
     ${l.vocab.map((v,i)=>`
-     <div class="wcard lv-${state.levels[v.id]||0}" data-w="${i}" onclick="if(!event.target.closest('button')) dayNext()">
+     <div class="wcard" data-w="${i}" onclick="if(!event.target.closest('button')) dayNext()">
       <div class="zh">${esc(v.zh)} <button class="speak-btn" onclick="speakZh('${esc(v.zh)}')" title="発音"><svg class="spk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></button></div>
       <div class="pinyin">${esc(v.pinyin)}</div>
       <div class="ja">${esc(v.ja)}</div>
@@ -27323,7 +27327,7 @@ function render(){
        <div class="ja exja">${esc(v.exJa)}</div>
       </div>
       ${v.contrast?`<div class="note"><span class="label">違い・注意：</span>${esc(v.contrast)}</div>`:''}
-      <div class="wfoot">${lvControl(v.id)}<button class="bookmark ${isBookmarked(v.id)?'active':''}" data-bm="${v.id}" onclick="toggleBookmark('${v.id}','単語','${esc(v.zh)}','${esc(v.ja)}','${esc(v.pinyin)}')">${isBookmarked(v.id)?'★':'☆'}</button></div>
+      <div class="wfoot"><span></span><button class="bookmark ${isBookmarked(v.id)?'active':''}" data-bm="${v.id}" onclick="toggleBookmark('${v.id}','単語','${esc(v.zh)}','${esc(v.ja)}','${esc(v.pinyin)}')">${isBookmarked(v.id)?'★':'☆'}</button></div>
      </div>`).join('')}
     <div class="wdots">${l.vocab.map((v,i)=>`<button type="button" aria-label="${i+1}語目" onclick="dayGoVocab(${i})"></button>`).join('')}</div>
     <div class="wcount"></div>
@@ -27332,8 +27336,8 @@ function render(){
 
    if(st.k==='grammar') return `<div class="dstep">
     ${l.grammar.map((g,i)=>`
-     <div class="gitem lv-${state.levels[g.id]||0}">
-      <div class="item-head"><div><h3>${i+1}. ${esc(g.name)}</h3><div class="pinyin">${esc(g.pinyin)}</div><div class="ja"><span class="label">意味：</span>${esc(g.meaning)}</div>${lvControl(g.id)}</div>
+     <div class="gitem">
+      <div class="item-head"><div><h3>${i+1}. ${esc(g.name)}</h3><div class="pinyin">${esc(g.pinyin)}</div><div class="ja"><span class="label">意味：</span>${esc(g.meaning)}</div></div>
       <button class="bookmark ${isBookmarked(g.id)?'active':''}" data-bm="${g.id}" onclick="toggleBookmark('${g.id}','文法','${esc(g.name)}','${esc(g.meaning)}')">${isBookmarked(g.id)?'★':'☆'}</button></div>
       <details class="g-details"><summary>詳しい解説（違い・間違いポイント）</summary>
       <div class="note"><span class="label">解説：</span>${esc(g.explain)}</div>
@@ -27931,24 +27935,6 @@ function applyA11yLabels(){
 }
 
 // ===== 改善案：難易度コントロール（⑤）・拼音/和訳・密度（②⑥） =====
-function lvControl(id){
-  var lv=state.levels[id]||0, labels=['普通','曖昧','苦手'];
-  return '<div class="lvc" data-lv="'+id+'">'+labels.map(function(t,n){
-    return '<button type="button" class="'+(lv===n?'lvc-on-'+n:'')+'" onclick="setLevel(\''+id+'\','+n+')">'+t+'</button>';
-  }).join('')+'</div>';
-}
-function setLevel(id,n){
-  state.levels[id]=n; save();
-  // ブックマークと同じ理由で render() を呼ばない（学習途中の状態が飛ぶため）
-  var hit=0;
-  document.querySelectorAll('.lvc[data-lv="'+id+'"]').forEach(function(box){
-    hit++;
-    box.querySelectorAll('button').forEach(function(b,i){ b.className=(n===i?'lvc-on-'+i:''); });
-    var item=box.closest('.vitem,.gitem,.wcard,.bm-ent');
-    if(item){ item.classList.remove('lv-0','lv-1','lv-2'); item.classList.add('lv-'+n); }
-  });
-  if(!hit) render();
-}
 function togglePinyin(){
   document.body.classList.toggle('hidden-pinyin');
   var shown=!document.body.classList.contains('hidden-pinyin'), c=$('pinyinChip');
@@ -28138,6 +28124,21 @@ function srsBuildDue(newLimit, scope, dueLimit){
   return due.concat(fresh);
 }
 var LEECH_LAPSES=4; // 「もう一度」がこの回数以上で「つまずき語（リーチ）」
+// 苦手の度合い：2＝最後が「もう一度」、1＝最後が「難しい」、0＝苦手ではない。
+// 「普通」「簡単」を押せたら外れる（一度でも押したら入る、にすると一覧が増える一方になる）。
+// 手応えを記録する前の復習は q を持たないので、「最後がもう一度」だと分かるもの（reps 0・lapses 1以上）だけ拾う
+function weakLevel(id){
+  var s=state.srs && state.srs[id]; if(!s) return 0;
+  var q=(typeof s.q==='number') ? s.q : ((s.reps||0)===0 && (s.lapses||0)>0 ? 2 : 0);
+  return q===2 ? 2 : q===3 ? 1 : 0;
+}
+// 苦手が上（もう一度→難しい）、同じ度合いなら最近つまずいた順
+function weakCmp(a,b){
+  var wa=weakLevel(a.id), wb=weakLevel(b.id);
+  if(wa!==wb) return wb-wa;
+  if(wa) return ((state.srs[b.id]||{}).last||0)-((state.srs[a.id]||{}).last||0);
+  return (a.day||0)-(b.day||0);
+}
 function srsIsLeech(id){ var s=state.srs[id]; return !!(s && (s.lapses||0)>=LEECH_LAPSES); }
 function srsGrade(id, q){
   var s=state.srs[id]||{ef:2.5, interval:0, reps:0, due:0, last:0, lapses:0};
@@ -28151,6 +28152,7 @@ function srsGrade(id, q){
     if(s.ef<1.3) s.ef=1.3;
   }
   var now=nowMs();
+  s.q=q;   // 最後に押した手応え（2=もう一度／3=難しい／4=普通／5=簡単）。単語タブの「苦手」はこれで決める
   s.last=now; s.due=now + (s.interval||1)*86400000;
   state.srs[id]=s; save();
   return s;
@@ -28807,7 +28809,6 @@ Object.assign(window, {
   showTest,
   showBookmarks,
   toggleBookmark,
-  setLevel,
   togglePinyin,
   toggleJa,
   toggleDensity
@@ -29129,7 +29130,6 @@ window._aiPickIdx = _aiPickIdx;
 window._aiClose = _aiClose;
 window.cycleHighlight = cycleHighlight;
 // 改善案（②⑤⑥＋）で追加した関数も明示公開
-window.setLevel = setLevel;
 window.togglePinyin = togglePinyin;
 window.setFontScale = setFontScale;
 window.revStart = revStart;
@@ -29187,6 +29187,7 @@ window.hsk4ForceDownload=async function(){
     state.completed=cl.completed||{};state.answers=cl.answers||{};
     state.scores=cl.scores||{};state.bookmarks=cl.bookmarks||{};state.dragOrders=cl.dragOrders||{};
     state.levels=cl.levels||state.levels||{};
+    if(cl.lvMigrated) state.lvMigrated=true;
     if(cl.srs&&typeof cl.srs==='object') state.srs=cl.srs;
     if(Array.isArray(cl.customWords)) state.customWords=cl.customWords;
     if(typeof cl.srsNewLimit==='number') state.srsNewLimit=cl.srsNewLimit;
@@ -29196,6 +29197,7 @@ window.hsk4ForceDownload=async function(){
     if(cl.revScope==='bm'||cl.revScope==='all') state.revScope=cl.revScope;
     if(cl.fontScale==='sm'||cl.fontScale==='lg'||cl.fontScale==='md') state.fontScale=cl.fontScale;
     cwEnsureIds();
+    migrateLevels();
     if(cl.density) state.density=cl.density;
     if(cl.currentDay)current=Number(cl.currentDay)||current;
     localStorage.setItem(storageKey,JSON.stringify(state));
@@ -29706,6 +29708,7 @@ document.addEventListener('click', function(e){
   window.addEventListener('pointerdown', go, { once:true, passive:true });
 })();
 
+try{ migrateLevels(); }catch(e){ console.warn(e); }
 (function firstRun(){
   var started=Object.keys(state.completed||{}).some(function(k){ return state.completed[k]; });
   if(!hasOnboarded() && !started){ track('first_visit'); goView('intro'); }

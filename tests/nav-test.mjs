@@ -57,10 +57,10 @@ await page.click('#vocabTab'); await page.waitForTimeout(250);
 ok('単語タブに遷移', (await view()) === 'vocabTab');
 ok('単語タブで#contentが隠れる', await page.$eval('#content', e => getComputedStyle(e).display === 'none'));
 const chips = await page.$$eval('#bookmarkPanel .w-chips button', e => e.map(x => x.firstChild.textContent));
-ok('絞り込みが すべて／★／苦手・曖昧／マイ単語', chips.join(',') === 'すべて,★,苦手・曖昧,マイ単語', chips.join(','));
+ok('絞り込みが すべて／★／苦手／マイ単語', chips.join(',') === 'すべて,★,苦手,マイ単語', chips.join(','));
 ok('「すべて」に498語が並ぶ', (await page.$$eval('#bookmarkPanel .bm-ent:not(.bm-g)', e => e.length)) === 498);
 const sorts = await page.$$eval('#bookmarkPanel .bm-sort button', e => e.map(x => x.textContent));
-ok('「すべて」に並び替え（Day順／拼音順／苦手順／ランダム）がある', sorts.join(',') === 'Day順,拼音順,苦手順,ランダム', sorts.join(','));
+ok('「すべて」に並び替え（Day順／拼音順／つまずき順／ランダム）がある', sorts.join(',') === 'Day順,拼音順,つまずき順,ランダム', sorts.join(','));
 await page.click('#bookmarkPanel [data-action="wSort"][data-id="pinyin"]'); await page.waitForTimeout(250);
 const pys = await page.$$eval('#bookmarkPanel .bm-ent .bm-row .pinyin', e => e.slice(0, 40).map(x => x.textContent.normalize('NFD').toLowerCase().replace(/^(adj|adv|v|n)\s+/, '').replace(/[^a-z]/g, '')));
 ok('拼音順で a から並ぶ', pys[0].startsWith('a') && pys.every((v, i) => i === 0 || pys[i - 1].localeCompare(v) <= 0), pys.slice(0, 5).join(','));
@@ -180,9 +180,8 @@ await page.click('#bottomNext'); await page.waitForTimeout(150);
 await page.click('.wcard.on .bookmark'); await page.waitForTimeout(200);
 ok('★を押しても語の位置が変わらない', (await page.textContent('.wcount')).startsWith('3 /'));
 ok('★がその場で反映される', await page.$eval('.wcard.on .bookmark', e => e.classList.contains('active')));
-await page.click('.wcard.on .lvc button:nth-child(3)'); await page.waitForTimeout(200);
-ok('難易度を押しても語の位置が変わらない', (await page.textContent('.wcount')).startsWith('3 /'));
-ok('難易度がその場で反映される', await page.$eval('.wcard.on .lvc button:nth-child(3)', e => e.className.includes('lvc-on-2')));
+// 手で付ける「普通・曖昧・苦手」はやめた（苦手は復習の手応えから自動で決める）
+ok('単語カードに難易度ボタンを出さない', !(await page.$('.wcard .lvc')) && !(await page.textContent('.wcard.on')).includes('曖昧'));
 
 // 最後のステップ（解く）まで「次へ」を押し切る
 for (let i = 0; i < 12; i++) {

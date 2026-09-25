@@ -413,21 +413,15 @@ ok('読み込み直しても速さを覚えている',
   const opened = await p.evaluate(() => {
     const e = document.querySelector('#bookmarkPanel .bm-ent[data-bmid="d1-v1"]');
     return { open: e.classList.contains('open'), aria: e.querySelector('.bm-row').getAttribute('aria-expanded'),
-      missing: ['.speak-btn', '.ex', '.lvc', '.w-bm', '.w-go'].filter(q => !e.querySelector(q)),
+      missing: ['.speak-btn', '.ex', '.w-bm', '.w-go'].filter(q => !e.querySelector(q)),
       ex: (e.querySelector('.ex') || {}).textContent || '',
       others: document.querySelectorAll('#bookmarkPanel .bm-ent.open').length };
   });
-  ok('行を押すとその場で開き、読み上げ・例文・難易度・外すが出る',
+  ok('行を押すとその場で開き、読み上げ・例文・★・Dayへが出る',
     opened.open && opened.aria === 'true' && opened.missing.length === 0 && opened.ex.includes('我想提高'), JSON.stringify(opened));
   ok('開くのは押した行だけ', opened.others === 1, JSON.stringify(opened));
-  // 難易度を押してもその場で反映され、行の左に色罫が付く（開いたまま）
-  await p.click('#bookmarkPanel .lvc[data-lv="d1-v1"] button:nth-child(2)'); await p.waitForTimeout(200);
-  const lvOn = await p.evaluate(() => {
-    const box = document.querySelector('#bookmarkPanel .lvc[data-lv="d1-v1"]');
-    const e = box && box.closest('.bm-ent');
-    return !!(box && box.querySelector('.lvc-on-1') && e.classList.contains('lv-1') && e.classList.contains('open'));
-  });
-  ok('開いた中で難易度を切り替えると、その場で左の色罫も変わる', lvOn);
+  // 手で付ける難易度はやめた。開いた中にも出さない
+  ok('開いた中に難易度ボタンを出さない', !(await p.$('#bookmarkPanel .lvc')));
   // 並び替えで描き直しても、開いた項目は開いたまま
   await p.click('#bookmarkPanel .bm-sort button[data-id="added"]'); await p.waitForTimeout(200);
   const kept = await p.evaluate(() => !!document.querySelector('#bookmarkPanel .bm-ent.open[data-bmid="d1-v1"]'));
@@ -584,6 +578,26 @@ ok('読み込み直しても速さを覚えている',
   await p.evaluate(() => window.showToday()); await p.waitForTimeout(150);
 }
 
+// --- 苦手は復習の最後の手応えで決まる（手で付ける難易度をやめた。2026年9月） ---
+{
+  const weak = await p.evaluate(() => {
+    const S = window.state; const now = Date.now();
+    S.srs['d1-v0'] = { ef: 2.3, interval: 1, reps: 0, due: now, last: now - 1000, lapses: 1, q: 2 };   // もう一度
+    S.srs['d1-v1'] = { ef: 2.4, interval: 6, reps: 2, due: now, last: now, lapses: 0, q: 3 };           // 難しい
+    S.srs['d1-v2'] = { ef: 2.6, interval: 6, reps: 2, due: now, last: now, lapses: 1, q: 4 };           // 普通＝外れる
+    S.srs['d1-v3'] = { ef: 2.3, interval: 1, reps: 0, due: now, last: now, lapses: 1 };                 // 手応えを記録する前の「もう一度」
+    localStorage.setItem('hsk4-word-filter', 'hard'); window.showToday(); window.showVocab();
+    const ids = [...document.querySelectorAll('#bookmarkPanel .bm-ent')].map(e => e.dataset.bmid);
+    const cls = id => { const e = document.querySelector('#bookmarkPanel .bm-ent[data-bmid="' + id + '"]'); return e ? e.className : ''; };
+    return { ids, n: document.querySelector('#bookmarkPanel [data-id="hard"] small').textContent, c0: cls('d1-v0'), c1: cls('d1-v1') };
+  });
+  ok('苦手に「もう一度」「難しい」と、記録前の「もう一度」が入り、「普通」は入らない',
+    weak.ids.includes('d1-v0') && weak.ids.includes('d1-v1') && weak.ids.includes('d1-v3') && !weak.ids.includes('d1-v2') && weak.n === '3', JSON.stringify(weak));
+  ok('つまずき順：もう一度が難しいより上', weak.ids.indexOf('d1-v0') < weak.ids.indexOf('d1-v1'), weak.ids.join(','));
+  ok('左の色罫：もう一度＝lv-2、難しい＝lv-1', /lv-2/.test(weak.c0) && /lv-1/.test(weak.c1), JSON.stringify(weak));
+  await p.evaluate(() => { ['d1-v0', 'd1-v1', 'd1-v2', 'd1-v3'].forEach(id => delete window.state.srs[id]); localStorage.setItem('hsk4-word-filter', 'all'); window.showToday(); });
+}
+
 // --- 単語タブから語を開いたら、単語一覧へ戻れる（出口が「今日へ」「次へ」しかなかった） ---
 {
   await p.evaluate(() => window.showVocab()); await p.waitForTimeout(300);
@@ -691,6 +705,23 @@ ok('読み込み直しても速さを覚えている',
   });
   ok('起動画面の字間と字下げがどの瞬間も同じ（中心がずれない）',
     kf && kf.every(([a, b]) => a && a === b), JSON.stringify(kf));
+}
+
+// --- 手で付けていた曖昧・苦手は、一度だけ★へ移す（黙って消さない） ---
+{
+  const KEY = 'hsk4-90-v4-state';
+  await p.evaluate((KEY) => { const st = JSON.parse(localStorage.getItem(KEY));
+    st.levels = { 'd3-v0': 2, 'd3-v1': 1, 'd3-v2': 0 }; st.lvMigrated = false;
+    ['d3-v0', 'd3-v1', 'd3-v2'].forEach(id => delete st.bookmarks[id]);
+    localStorage.setItem(KEY, JSON.stringify(st)); }, KEY);
+  await p.reload({ waitUntil: 'load' }); await p.waitForTimeout(600);
+  const m = await p.evaluate(() => { const S = window.state, b = S.bookmarks;
+    return { v0: b['d3-v0'] && b['d3-v0'].day, v1: !!b['d3-v1'], v2: !!b['d3-v2'], flag: S.lvMigrated, kept: S.levels['d3-v0'] }; });
+  ok('曖昧・苦手の印は★へ移る（その語のDayで。普通は移さない。levels は残す）',
+    m.v0 === 3 && m.v1 && !m.v2 && m.flag === true && m.kept === 2, JSON.stringify(m));
+  await p.evaluate(() => window.toggleBookmark('d3-v0'));
+  await p.reload({ waitUntil: 'load' }); await p.waitForTimeout(600);
+  ok('移したあとで★を外しても、次の起動で戻ってこない', await p.evaluate(() => !window.state.bookmarks['d3-v0']));
 }
 
 console.log(res.join('\n'));
