@@ -277,7 +277,17 @@ ok('復習中は復習タブが選択状態', (await view()) === 'reviewTab');
 await page.click('#content button:has-text("復習を始める")'); await page.waitForTimeout(400);
 ok('復習中の「終了」は見出しの右にある', !!(await page.$('#content .section-title .rev-end')));
 ok('復習中に下の説明文・「復習を終了」ボタンを出さない', !(await page.$('#content .fc-progress')) && !(await page.textContent('#content')).includes('復習を終了'));
+const revN0 = Number(await page.textContent('#revN'));
 ok('復習が実際に始まる', !!(await page.$('.fc-actions, .g4-again, .mt-opt, .lc-opt')) || (await page.textContent('#content')).length > 50);
+
+// 答えるたびに復習タブの件数も減る（以前は別のタブへ移るまで減らなかった）
+{
+  const reveal = await page.$('#content button:has-text("答えを見る")');
+  if (reveal) { await reveal.click(); await page.waitForTimeout(200); await page.click('#content .g4-easy'); await page.waitForTimeout(200); }
+  ok('1問答えると復習タブの件数が1減る', Number(await page.textContent('#revN') || 0) === revN0 - 1, `${revN0} → ${await page.textContent('#revN')}`);
+}
+ok('設定の出題範囲は「★のみ」', await page.evaluate(() => { window.showSettings(); return document.getElementById('settingsPanel').textContent.includes('★のみ') && !document.getElementById('settingsPanel').textContent.includes('ブックマークのみ'); }));
+await page.evaluate(() => window.showTest()); await page.waitForTimeout(200);
 
 // --- 戻れること ---
 await page.click('#homeBtn'); await page.waitForTimeout(250);

@@ -312,12 +312,15 @@ body.fs-lg .vrow-zh{font-size:23px}body.fs-lg .vrow-py{font-size:17px}body.fs-lg
 #bookmarkPanel{--bm-zh:20px;--bm-py:12.5px;--bm-ja:13.5px}
 body.fs-sm #bookmarkPanel{--bm-zh:18px;--bm-py:12px;--bm-ja:12.5px}
 body.fs-lg #bookmarkPanel{--bm-zh:21px;--bm-py:13px;--bm-ja:14px}
-#bookmarkPanel .bm-row .zh{font-size:var(--bm-zh);line-height:1.3;white-space:nowrap}
+/* 見出しは入り切らないときだけ折り返す（短い語は1行のまま）。「：」のある文法名は「：」の後ろで折る */
+#bookmarkPanel .bm-row .zh{font-size:var(--bm-zh);line-height:1.3;white-space:normal}
+#bookmarkPanel .bm-row .zh-a{display:inline-block;white-space:nowrap}
+#bookmarkPanel .bm-row .zh-b{display:inline-block}
 #bookmarkPanel .bm-row .pinyin{margin:0;font-size:var(--bm-py);color:var(--ink2);letter-spacing:.02em}
 /* 意味は必ず1行（実機で「日本語訳が2行になる」と指摘された）。場所が足りない行は、
    まず語の側が縮んで拼音が中国語の下へ回り、それでも足りなければ意味の末尾を「…」で省く。
    開くと全文が出る（.open では折り返す） */
-#bookmarkPanel .bm-row .bm-ja{flex:1 .15 auto;min-width:38%;font-size:var(--bm-ja);color:var(--ink2);text-align:right;line-height:1.5;
+#bookmarkPanel .bm-row .bm-ja{flex:1 1 auto;min-width:30%;font-size:var(--bm-ja);color:var(--ink2);text-align:right;line-height:1.5;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* 開いた行は、意味を語の下へ1行まるごと回して全文を出す（横に並べたまま折り返すと枠からはみ出した） */
 #bookmarkPanel .bm-ent.open .bm-row{flex-wrap:wrap;row-gap:4px}
@@ -325,6 +328,10 @@ body.fs-lg #bookmarkPanel{--bm-zh:21px;--bm-py:13px;--bm-ja:14px}
 #bookmarkPanel .bm-ent.open .bm-row .bm-ja{order:2;flex:0 0 100%;min-width:0;white-space:normal;text-align:left}
 /* 語の側は、拼音を中国語の下へ回すところまでは縮むが、中国語より細くはならない（min-content）。
    0 まで縮めると、長い文法名（是〜的：強調）が意味の文字に重なった */
+/* 語と意味は同じ係数（1）で縮む。**縮む係数を1未満にしないこと**：語の側が下限で止まったあと、
+   残った意味の係数の合計が1未満だと、足りない幅のその割合しか縮まない（flexの決まり）。
+   以前は意味が .15 で、長い文法名5つの行が画面の右へはみ出し、意味と「›」が切れていた。
+   意味の下限は30%。これより広いと、長い文法名が「終/わらない」のように語の途中で折れる */
 .bm-word{flex:0 1 auto;min-width:min-content;flex-wrap:wrap;column-gap:8px;row-gap:0}
 .bm-chev{flex:none;display:inline-block;width:1em;text-align:center;color:var(--muted);font-size:17px;line-height:1;transition:transform .15s}
 /* 開くと「›」を90度回す。回した字の外枠が行からはみ出し、右端が約5px出ていた（点検で見つけた）ので切る */
@@ -26840,7 +26847,7 @@ function fmtBmItem(b){
   var open=!!(_bmOpen && _bmOpen[b.id]);
   var h='<div class="bm-ent lv-'+lv+(b.type==='文法'?' bm-g':'')+(open?' open':'')+'" data-bmid="'+esc(b.id)+'">';
   h+='<button type="button" class="bm-row" data-action="bmToggle" data-id="'+esc(b.id)+'" aria-expanded="'+open+'">';
-  h+='<span class="bm-word"><span class="zh">'+esc(title)+'</span>'+(pin?'<span class="pinyin">'+esc(pin)+'</span>':'')+'</span>';
+  h+='<span class="bm-word"><span class="zh">'+wTitleHTML(title)+'</span>'+(pin?'<span class="pinyin">'+esc(pin)+'</span>':'')+'</span>';
   h+='<span class="bm-ja">'+esc(sub)+'</span>'+(state.bookmarks[b.id]?'<span class="bm-star" aria-label="ブックマーク済み">★</span>':'')+'<span class="bm-chev" aria-hidden="true">›</span></button>';
   // 詳しい中身は開いている項目にだけ作る（419語ぶん作ると重い）
   if(open){
@@ -26899,6 +26906,13 @@ function wMatch(e, q){
   var k=q.trim().toLowerCase(); if(!k) return true;
   var kt=vocabStripTone(k), py=String(e.pinyin||'').toLowerCase();
   return String(e.title||'').indexOf(k)>=0 || py.indexOf(k)>=0 || vocabStripTone(py).replace(/\s/g,'').indexOf(kt.replace(/\s/g,''))>=0 || String(e.sub||'').toLowerCase().indexOf(k)>=0;
+}
+// 見出しを「：」の前後で2つに分ける。場所が足りないときは「：」の後ろで折り返す
+// （以前は1行のまま崩さない作りで、長い文法名5つの行が画面の右へはみ出し、意味と「›」が切れていた）
+function wTitleHTML(t){
+  t=String(t||''); var i=t.indexOf('：');
+  if(i<0 || i===t.length-1) return esc(t);
+  return '<span class="zh-a">'+esc(t.slice(0,i+1))+'</span><span class="zh-b">'+esc(t.slice(i+1))+'</span>';
 }
 function wLockedRow(e){
   return '<div class="bm-ent bm-locked"><button type="button" class="bm-row" onclick="vocabGoToDay('+e.day+')">'
@@ -28272,6 +28286,7 @@ function revTodayCount(){
 }
 function updRevBadge(){ var el=$('revN'); if(el){ var n=revTodayCount(); el.textContent=n>0?String(n):''; } }
 function renderTestScreen(){
+  updRevBadge();   // 以前は別のタブへ移るまで件数が減らなかった（revGrade/revEnd はここだけを描き直す）
   var c=$('content'); c.style.display=''; c.className='';
   $('bookmarkPanel').className='bookmark-panel card';
   if(_rev){ _revRender(c); return; }
@@ -28699,8 +28714,8 @@ function renderSettings(){
   // ── 学習 ────────────────────────────────────────────────────────
   var learn='';
   learn+='<div class="set-label">復習の出題範囲</div>'
-   + seg([{v:'all',t:'すべて'},{v:'bm',t:'ブックマークのみ'}], scope, function(v){ return "revSetScope('"+v+"')"; })
-   + note('すべて＝完了分の単語・文法＋ブックマーク＋<span style="white-space:nowrap">マイ単語。</span>');
+   + seg([{v:'all',t:'すべて'},{v:'bm',t:'★のみ'}], scope, function(v){ return "revSetScope('"+v+"')"; })
+   + note('すべて＝完了分の単語・文法＋★＋<span style="white-space:nowrap">マイ単語。</span>');
   learn+='<div class="set-label">1日の新規問数</div>'
    + seg([{v:0,t:'なし'},{v:8,t:'8'},{v:16,t:'16'},{v:-1,t:'制限なし'}], nl, function(v){ return 'srsSetNewLimit('+v+')'; })
    + note('新しく学ぶ語の上限。多いほど復習が増えます。');
@@ -29356,7 +29371,7 @@ function lcStartHtml(){
     + '</ul>'
     + '<div class="lc-nav">'
     + (hasOnboarded()
-        ? '<button class="lc-btn flex" data-lc-action="back">ホームへ戻る</button>'
+        ? '<button class="lc-btn flex" data-lc-action="back">今日へ戻る</button>'
         : '<button class="lc-btn flex" data-lc-action="skip">スキップ</button>')
     + '<button class="lc-btn primary flex" data-lc-action="start">テストを始める</button>'
     + '</div></div>';

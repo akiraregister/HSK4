@@ -590,6 +590,24 @@ ok('読み込み直しても速さを覚えている',
   await p.evaluate(() => { ['d1-v0', 'd1-v1', 'd1-v2', 'd1-v3'].forEach(id => delete window.state.srs[id]); localStorage.setItem('hsk4-word-filter', 'all'); window.showToday(); });
 }
 
+// --- 単語タブの「すべて」で、長い文法名の行が画面の右へはみ出さない（意味と「›」が切れていた） ---
+{
+  await p.evaluate(() => { localStorage.setItem('hsk4-word-filter', 'all'); window.showToday(); });
+  const out = [];
+  for (const [w, fs] of [[440, 'fs-lg'], [375, 'fs-lg']]) {
+    await p.setViewportSize({ width: w, height: 844 });
+    out.push(await p.evaluate((fs) => { document.body.classList.add(fs); window.showVocab();
+      const bad = [...document.querySelectorAll('#bookmarkPanel .bm-row')].filter(r => r.scrollWidth > r.clientWidth + 1).map(r => r.querySelector('.zh').textContent);
+      const b = document.querySelector('#bookmarkPanel .bm-ent[data-bmid="d3-g1"] .zh-b');
+      const lh = parseFloat(getComputedStyle(b).lineHeight);
+      document.body.classList.remove(fs); return { bad, tailOneLine: b.getBoundingClientRect().height < lh * 1.4 }; }, fs));
+  }
+  await p.setViewportSize({ width: 390, height: 844 });
+  ok('単語タブの全行が画面の幅に収まる（440・375、文字サイズ「大」）', out.every(o => o.bad.length === 0), JSON.stringify(out.map(o => o.bad)));
+  ok('長い文法名は「：」の後ろで折れ、語の途中では折れない（幅440）', out[0].tailOneLine, JSON.stringify(out[0]));
+  await p.evaluate(() => window.showToday());
+}
+
 // --- 単語タブから語を開いたら、単語一覧へ戻れる（出口が「今日へ」「次へ」しかなかった） ---
 {
   await p.evaluate(() => window.showVocab()); await p.waitForTimeout(300);
