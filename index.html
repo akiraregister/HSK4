@@ -117,11 +117,12 @@ textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:
 /* 上の余白を広めに取り、ロゴを時計・電池の並ぶ部分から離す。
    sticky をやめたあともホーム画面から開いた実機で「かすむ」と指摘された。
    iOS は画面最上部の下にぼかしを掛けることがあり、20px ではロゴがその中に入っていた（推測。実機で確認待ち） */
-/* ホーム画面から起動したときは、さらにぼかしの外まで下げる。実機の画像（ロゴの上端が64pt、
-   にじみは上から約90ptまで）から、ロゴの上端を104ptに置く。ブラウザで開いたときは
-   ぼかしが無いので下げない。iOS の標準アプリの大見出しもこの高さに来る */
-@media(max-width:430px){html.standalone .top{padding-top:max(calc(36px + env(safe-area-inset-top)),104px)}}
 @media(max-width:430px){.top{padding:calc(36px + env(safe-area-inset-top)) 14px 14px}h1{font-size:21px;margin-bottom:16px;text-align:center}button{padding:10px 11px}.app{padding-top:20px}}@media(min-width:800px){.vocab{grid-template-columns:1fr 1fr}}
+/* ホーム画面から起動したときは、ロゴを iOS が最上部に重ねるぼかしの外まで下げる。
+   実機（幅440ptの大型機）の画像で、にじみは「安全域＋約34pt」まで。ロゴの上端をその10pt下に置く。
+   **幅で絞らないこと。**以前は max-width:430px の中に書いていて、440pt幅の機種では一度も効いていなかった。
+   ブラウザで開いたときはぼかしが無いので下げない */
+html.standalone .top{padding-top:calc(44px + env(safe-area-inset-top))}
 
 .syncbar{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:2px;padding:11px 13px;border:var(--bw) solid var(--stroke);background:var(--card);border-radius:var(--r-lg)}
 .syncbar .sync-status{font-size:13px;color:var(--ink2);font-weight:700}
@@ -455,8 +456,11 @@ h1,h2,h3,.badge,.fc-prompt,.daybtn,.set-label,
    等間隔にすると機械の点滅に見えて、火には見えない。 */
 .splash-core{transform-box:fill-box;animation:splash-coreY 2360ms ease-in-out 640ms both}
 .splash-word{font-family:var(--font-brand);font-size:26px;font-weight:600;
-  letter-spacing:.62em;text-indent:.62em;animation:splash-word 900ms ease 900ms both}
-.splash-sub{font-size:11.5px;color:var(--muted);letter-spacing:.18em;
+  /* 字間は最後の字の後ろにも付くので、同じ量を text-indent で左にも足して中央に置く。
+     **字間を動かすなら text-indent も同じだけ動かすこと。**以前は字間だけ .62→.18em へ詰め、
+     字下げは .62em のまま残り、「加油」が炎より右へ約6ptずれていた（実機で指摘された） */
+  letter-spacing:.18em;text-indent:.18em;animation:splash-word 900ms ease 900ms both}
+.splash-sub{font-size:11.5px;color:var(--muted);letter-spacing:.18em;text-indent:.18em;
   animation:splash-fade 600ms ease 1500ms both}
 @keyframes splash-ground{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
 /* 火が点く → ぐっと立ち上がる（フレア）→ 揺り戻して落ち着く */
@@ -495,8 +499,8 @@ h1,h2,h3,.badge,.fc-prompt,.daybtn,.set-label,
   90%{filter:drop-shadow(0 0 15px rgba(229,165,0,.38))}
   100%{filter:drop-shadow(0 0 0 rgba(229,165,0,0))}}
 @keyframes splash-word{
-  from{opacity:0;letter-spacing:.62em;transform:translateY(5px)}
-  to{opacity:1;letter-spacing:.18em;transform:translateY(0)}}
+  from{opacity:0;letter-spacing:.62em;text-indent:.62em;transform:translateY(5px)}
+  to{opacity:1;letter-spacing:.18em;text-indent:.18em;transform:translateY(0)}}
 @keyframes splash-fade{from{opacity:0}to{opacity:1}}
 @keyframes splash-out{to{opacity:0;transform:scale(.96)}}
 /* 動きを止めている人には動かさない。灯り（drop-shadow）も出さない。

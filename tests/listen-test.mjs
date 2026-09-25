@@ -444,18 +444,41 @@ ok('読み込み直しても速さを覚えている',
   await p.evaluate(() => window.toggleBookmark('d81-g0'));
 }
 
-// --- ホーム画面から起動したときは、ロゴを iOS のぼかし（上から約90pt）の外へ下げる ---
+// --- ホーム画面から起動したときは、ロゴを iOS のぼかし（安全域＋約34pt）の外へ下げる ---
 {
-  const pad = await p.evaluate(() => {
+  const r = await p.evaluate(() => {
     const t = document.querySelector('.top');
     const before = parseFloat(getComputedStyle(t).paddingTop);
     document.documentElement.classList.add('standalone');
     const after = parseFloat(getComputedStyle(t).paddingTop);
     document.documentElement.classList.remove('standalone');
-    return { before, after };
+    // 幅の条件（@media）の中に書くと、幅440ptの大型機で効かなかった（実機で一度も効いていなかった）
+    let inMedia = null, top = false;
+    for (const sh of document.styleSheets) {
+      let rules; try { rules = sh.cssRules; } catch (e) { continue; }
+      for (const ru of rules) {
+        if (ru.selectorText === 'html.standalone .top') top = true;
+        if (ru.media && [...ru.cssRules].some(x => x.selectorText === 'html.standalone .top')) inMedia = ru.media.mediaText;
+      }
+    }
+    return { before, after, top, inMedia };
   });
-  ok('ホーム画面起動ではロゴの上端が104px以上', pad.after >= 104, JSON.stringify(pad));
-  ok('ブラウザで開いたときは下げない', pad.before < 104, JSON.stringify(pad));
+  ok('ホーム画面起動ではロゴを下げる（上余白が安全域＋44px）', r.after === 44 && r.after > r.before, JSON.stringify(r));
+  ok('その規則は画面幅で絞らない', r.top && !r.inMedia, JSON.stringify(r));
+}
+
+// --- 起動画面の「加油」は炎と中心が揃う（字間と字下げを同じだけ動かす） ---
+{
+  const kf = await p.evaluate(() => {
+    for (const sh of document.styleSheets) {
+      let rules; try { rules = sh.cssRules; } catch (e) { continue; }
+      for (const ru of rules) if (ru.name === 'splash-word')
+        return [...ru.cssRules].map(k => [k.style.letterSpacing, k.style.textIndent]);
+    }
+    return null;
+  });
+  ok('起動画面の字間と字下げがどの瞬間も同じ（中心がずれない）',
+    kf && kf.every(([a, b]) => a && a === b), JSON.stringify(kf));
 }
 
 console.log(res.join('\n'));
