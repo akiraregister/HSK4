@@ -170,7 +170,10 @@ html.standalone .top{padding-top:calc(44px + env(safe-area-inset-top))}
 /* ④ 下部ボタン配色：前=淡色 / 完了=グリーン / 次=ブルー */
 #bottomPrev,#bottomNext{background:var(--card);color:var(--ink);border-color:var(--stroke);display:inline-flex;align-items:center;justify-content:center;gap:5px}
 #bottomPrev svg,#bottomNext svg{width:18px;height:18px}
-#bottomComplete{background:var(--brand);color:var(--ink);border-color:var(--stroke);flex:1.4}
+/* 「完了」はこの画面の主役なので墨ベタ（押せるものの3段の「主」）。以前は柿色の塗りだった */
+#bottomComplete{background:var(--ink);color:var(--bg);border-color:var(--ink);flex:1.4}
+.mt-skip{text-align:center;margin:22px 0 4px;font-size:13px}
+.mt-skip a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
 #bottomComplete.active{background:var(--sage);color:var(--ink);border-color:var(--stroke)}
 /* ②③ 学習画面内ツールバー（拼音/和訳トグル・密度・Day選択） */
 .daytools{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
@@ -376,6 +379,14 @@ body.fs-lg #bookmarkPanel{--bm-zh:21px;--bm-py:13px;--bm-ja:14px}
 .ls-opts{display:flex;flex-direction:column;gap:10px}
 .ls-verdict{display:inline-block;border-radius:var(--r-sm);padding:5px 12px;font-weight:600;font-size:14.5px;margin-bottom:14px}
 .ls-transcript{border:1.5px solid var(--stroke);border-radius:var(--r-lg);padding:14px 16px;background:var(--card)}
+/* 答え合わせの「もう一度聞く」。罫囲みのボタンにして（以前は灰色の帯でボタンに見えなかった）、本文の直前に置く */
+.ls-replay{margin:16px 0 18px;padding:14px 0 12px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);text-align:center}
+.ls-replay-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:12em;padding:11px 18px;
+  border:1px solid var(--ink);background:transparent;color:var(--ink);font-size:15px;font-weight:600;letter-spacing:.08em}
+.ls-replay-btn.on{background:var(--ink);color:var(--bg)}
+.ls-replay-hint{font-size:12px;color:var(--muted);margin-top:6px}
+.ls-replay .ls-rate{margin-top:8px}
+.ls-tlabel{font-size:12px;letter-spacing:.2em;color:var(--muted);margin:0 0 6px}
 .ls-tline{display:flex;gap:10px;margin-bottom:12px}.ls-tline:last-child{margin-bottom:0}
 .ls-spk{flex:none;width:26px;height:26px;border-radius:var(--r-pill);background:var(--gray);color:var(--ink2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
 .ls-tline .zh{font-size:16.5px;font-weight:600;font-family:var(--zh-font)}
@@ -708,6 +719,13 @@ body.fs-lg .flashcard{--fc-py:17px;--fc-ex:19px;--fc-expy:14.5px;--fc-exja:16px}
 #content .flashcard .ex{font-size:var(--fc-ex)}
 #content .flashcard .expinyin{font-size:var(--fc-expy)}
 #content .flashcard .exja{font-size:var(--fc-exja)}
+/* 聞きとりの本文（答え合わせ）も同じ。以前は「大」で中国語が24pxにふくらみ、1行が数文字で折れていた */
+.ls-transcript{--lt-zh:17px;--lt-py:13px;--lt-ja:14px}
+body.fs-sm .ls-transcript{--lt-zh:15.5px;--lt-py:12px;--lt-ja:13px}
+body.fs-lg .ls-transcript{--lt-zh:19px;--lt-py:14.5px;--lt-ja:15.5px}
+#content .ls-tline .zh{font-size:var(--lt-zh)}
+#content .ls-tline .py{font-size:var(--lt-py)}
+#content .ls-tline .ja{font-size:var(--lt-ja)}
 .wcard .note{margin-top:12px}
 .wcard .wfoot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
 .wcard .wfoot .lvc{margin-top:0}
@@ -1005,9 +1023,14 @@ async function loadCloudState(){
     // 判定：①空ローカルでクラウドにデータあり→クラウド採用（空で上書きしない） ②それ以外は「最終更新が新しい方」を採用（last-write-wins）
     //   → ローカルが新しい/同時刻ならローカルをアップロード。オフライン編集（ブックマーク削除含む）も保持される。
     const loadFromCloud=(localEmpty && cloudHasData) || (!localEmpty && cloudTs>localTs);
+    // **完了したDayは、どちらが勝っても両方の分を合わせる。**「新しい方が勝つ」だけだと、
+    // 別の端末で終えたDayが消えることがある（完了を取り消す操作はまれなので、合わせるほうを選ぶ）
+    const unionDone=(a,b)=>{ const o=Object.assign({},a||{}); Object.keys(b||{}).forEach(k=>{ if(b[k]) o[k]=true; }); return o; };
+    const unionAt=(a,b)=>{ const o=Object.assign({},a||{}); Object.keys(b||{}).forEach(k=>{ const v=Number(b[k]); if(v && (!o[k] || v<Number(o[k]))) o[k]=v; }); return o; };
+    const mergedDone=unionDone(state.completed, cloud.completed), mergedAt=unionAt(state.completedAt, cloud.completedAt);
     if(loadFromCloud){
       suppressCloudSave=true;
-      state.completed=cloud.completed||{};state.answers=cloud.answers||{};
+      state.completed=mergedDone;state.completedAt=mergedAt;state.answers=cloud.answers||{};
       state.scores=cloud.scores||{};state.bookmarks=cloud.bookmarks||{};
       state.dragOrders=cloud.dragOrders||{};
       state.levels=cloud.levels||state.levels||{};
@@ -1030,6 +1053,8 @@ async function loadCloudState(){
       setSyncStatus('on','クラウドから同期(BM:'+cbm+'件)',cloudUser.email||'');
       if(typeof render==='function') render();
     } else {
+      state.completed=mergedDone; state.completedAt=mergedAt;
+      localStorage.setItem(storageKey,JSON.stringify(state));
       cloudReady=true;await saveCloudState(true);
       setSyncStatus('on','端末→クラウド同期(BM:'+lbm+'件)',cloudUser.email||'');
     }
@@ -26700,6 +26725,11 @@ if(state.dragOrders){
   });
 }
 function save(){localStorage.setItem(storageKey,JSON.stringify(state));localStorage.setItem('hsk4-current-day',current);markLocalUpdated();scheduleCloudSave()}
+// 画面を描くだけのときの保存。**「更新した」扱いにしない（時刻を進めず、クラウドへも送らない）。**
+// 以前は今日画面などを描くたびに save() を呼んでいて、起動しただけで端末の最終更新が「今」になり、
+// 同期で「新しい方が勝つ」判定に勝ってしまっていた。iPhoneとiPadを両方使うと、開いただけの古い端末が
+// クラウドの新しい進み具合（Day 89 の完了など）を上書きして、進んだはずのDayが戻っていた
+function saveView(){ try{ localStorage.setItem(storageKey,JSON.stringify(state)); localStorage.setItem('hsk4-current-day',current); }catch(e){} }
 function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 // プレビュー中はDay8以降を「持っていない」ことにする。render() の day 分岐は
 // lesson() が falsy なら lockedDayHTML() を出す作りなので、ここだけで効く。
@@ -26863,7 +26893,7 @@ var introTimers = [];
 // 起動スプラッシュが消えたか。案内はスプラッシュの裏では始めない（下の introSequence）
 var splashDone = false;
 function renderIntroScreen(){
-  save(); renderBookmarkPanel();
+  saveView(); renderBookmarkPanel();
   $('bookmarkPanel').className='bookmark-panel card';
   var c=$('content'); c.style.display=''; c.className='';
   c.innerHTML=
@@ -26923,7 +26953,7 @@ function introSequence(root){
 // 連続日数・その日の数字3行・次の2択だけを置く。
 // 次のDayへは進ませない（1日1Dayが商品の形、という決定に沿う）。
 function renderDoneScreen(){
-  save(); renderBookmarkPanel();
+  saveView(); renderBookmarkPanel();
   $('bookmarkPanel').className='bookmark-panel card';
   var c=$('content'); c.style.display=''; c.className='';
   var day=current, l=LESSONS[day-1];
@@ -26983,7 +27013,7 @@ function freeEndHTML(day){
 }
 
 function renderHome(){
- save(); renderBookmarkPanel();
+ saveView(); renderBookmarkPanel();
  $('bookmarkPanel').className='bookmark-panel card';
  const c=$('content');
  c.style.display='';
@@ -27121,7 +27151,7 @@ function render(){
  if(currentView==='intro'){ renderIntroScreen(); return; }
  if(currentView==='done'){ renderDoneScreen(); return; }
  if(currentView==='today'){ renderHome(); return; }
- save(); renderBookmarkPanel();
+ saveView(); renderBookmarkPanel();
  const c=$('content');
  // ブックマークはDay画面ではないので下ナビ（前・完了・次）は出さない。
  // 以前はこの手前で display='flex' してから bookmark で早期リターンしていたため、
@@ -27186,6 +27216,7 @@ function render(){
    return `<div class="dstep">
     ${state.scores[l.day]!=null?`<div class="scorebox">前回のミニテスト：<b>${state.scores[l.day]} / 5</b></div>`:''}
     <div id="mtRoot"></div>
+    <div class="mt-skip" id="mtSkip"><a href="#" onclick="toggleComplete();return false">テストをとばして完了する</a></div>
    </div>`;
   }).join('')}`;
  applyDayStep();
@@ -27230,10 +27261,13 @@ function mtPick(day){
   return five.map(function(q){ if(q.opts){ var c=Object.assign({},q); c.opts=mtShuffle(q.opts); return c; } return q; });
 }
 function mtInit(day){
-  if(!BANK[day]){ var r0=$('mtRoot'); if(r0) r0.innerHTML='<div class="small muted">この日のミニテストは準備中です。</div>'; return; }
+  if(!BANK[day]){ _mt=null; var r0=$('mtRoot'); if(r0) r0.innerHTML='<div class="small muted">この日のミニテストは準備中です。</div>'; mtSyncNav(); return; }
   _mt={ day:day, quiz:mtPick(day), idx:0, correct:0, answered:false };
   mtRender();
+  mtSyncNav();
 }
+// 解き始め・やり直しのたびに、下のバーの「完了」を出す／隠すを合わせる
+function mtSyncNav(){ try{ if(currentView==='day' && typeof updateDayNav==='function') updateDayNav(); }catch(e){} }
 function mtRender(){
   var root=$('mtRoot'); if(!root) return;
   var q=_mt.quiz[_mt.idx];
@@ -27359,6 +27393,8 @@ function mtResult(){
   var n=_mt.correct, total=_mt.quiz.length, pct=Math.round(n/total*100);
   state.scores[_mt.day]=n; save();
   track('minitest_finish',{day:_mt.day, correct:n, total:total});
+  // 結果が出たら、下のバーに「完了」を出す（解いている間は隠している）
+  setTimeout(function(){ if(typeof updateDayNav==='function' && currentView==='day') updateDayNav(); },0);
   var msg=pct===100?'満点！':pct>=80?'よくできました。':pct>=60?'あと少し。解説を読み返しましょう。':'復習タブで反復しましょう。';
   var root=$('mtRoot');
   root.innerHTML='<div class="mt-result"><div class="sc">'+n+' / '+total+'</div><div class="sub">'+pct+'％　'+msg+'</div>'+
@@ -27573,37 +27609,49 @@ function lsReveal(right){
   var answerLine = e.type==='tf'
     ? '正しい答え：<b>'+(e.answer?'○ 合っている':'× 違う')+'</b>'
     : '正しい答え：<b><z>'+mtEsc(e.opts[e.answerIdx])+'</z></b>（'+String.fromCharCode(65+e.answerIdx)+'）';
+  // 並びは「結果 → 解説 → もう一度聞く → 本文」。以前は「もう一度聞く」が長い本文と解説の
+  // さらに下にあり、しかも灰色の帯でボタンに見えず、実機で「分かりづらい」と言われた。
+  // 聞き直しは本文の直前に置き、押すたびに再生／一時停止が切り替わる（再生中も止められる）
   root.innerHTML='<div class="ls-verdict" style="'+verdictStyle+'">'+(right?'正解 ✓':'不正解 ✗')+'</div>'+
-    '<div class="small" style="margin-bottom:14px">'+answerLine+'</div>'+
-    '<div class="ls-transcript">'+transcriptHtml+'</div>'+
-    '<div class="note"><span class="label">解説：</span>'+mtEsc(e.explain)+'</div>'+
-    '<button class="mt-btn ghost" id="lsReplayBtn" type="button" style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px">'+lsReplayIcon()+'もう一度聞く（答え合わせ後は文字を見ながらでOK）</button>'+
-    lsRateBarHTML();
+    '<div class="small" style="margin-bottom:10px">'+answerLine+'</div>'+
+    '<div class="note" style="margin-top:0"><span class="label">解説：</span>'+mtEsc(e.explain)+'</div>'+
+    '<div class="ls-replay">'+
+      '<button class="ls-replay-btn" id="lsReplayBtn" type="button">'+lsReplayIcon()+'<span>もう一度聞く</span></button>'+
+      '<div class="ls-replay-hint">下の本文を見ながら聞けます</div>'+
+      lsRateBarHTML()+
+    '</div>'+
+    '<div class="ls-tlabel">本文</div>'+
+    '<div class="ls-transcript">'+transcriptHtml+'</div>';
   $('lsReplayBtn').onclick=lsReplay;
   lsBindRateBar(root);
 }
 function lsReplayIcon(){
   return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"></circle><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"></path></svg>';
 }
+function lsReplayLabel(state){
+  var b=$('lsReplayBtn'); if(!b) return;
+  var pause='<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6.5" y="5" width="4" height="14"></rect><rect x="13.5" y="5" width="4" height="14"></rect></svg>';
+  b.innerHTML = state==='playing' ? pause+'<span>一時停止</span>'
+              : state==='paused'  ? lsReplayIcon()+'<span>続きから聞く</span>'
+              : lsReplayIcon()+'<span>もう一度聞く</span>';
+  b.classList.toggle('on', state==='playing');
+}
 function lsReplay(){
   if(!_ls || _ls.phase!=='answered') return;
+  var a=_ls.audio;
+  // 再生中なら止める。止めてあれば続きから。終わっていれば（または初回は）頭から
+  if(a && a._replay && !a.paused){ a.pause(); return; }
+  if(a && a._replay && a.paused && a.currentTime>0 && a.currentTime<(a.duration||Infinity)){ a.play().catch(function(){}); return; }
   lsStopAudio();
-  var btn=$('lsReplayBtn'); if(!btn) return;
-  btn.setAttribute('disabled','');
-  btn.innerHTML='再生中…';
-  var audio=new Audio(_ls.entry.audio);
-  _ls.audio=audio;
-  lsApplyRate(audio);
-  var restore=function(){
-    var b=$('lsReplayBtn'); if(!b) return;
-    b.removeAttribute('disabled');
-    b.innerHTML=lsReplayIcon()+'もう一度聞く（答え合わせ後は文字を見ながらでOK）';
-  };
-  audio.onended=restore;
-  audio.onerror=restore;
-  // ステップを送って止めた場合も、押せる状態に戻しておく
-  audio.onpause=function(){ if(audio.currentTime<audio.duration) restore(); };
-  audio.play().catch(restore);
+  a=new Audio(_ls.entry.audio);
+  a._replay=true;
+  _ls.audio=a;
+  lsApplyRate(a);
+  a.onplay=function(){ lsReplayLabel('playing'); };
+  a.onpause=function(){ lsReplayLabel(a.currentTime>0 && a.currentTime<(a.duration||Infinity) ? 'paused' : 'idle'); };
+  a.onended=function(){ try{ a.currentTime=0; }catch(e){} lsReplayLabel('idle'); };
+  a.onerror=function(){ lsReplayLabel('idle'); };
+  a.play().catch(function(){ lsReplayLabel('idle'); });
 }
 function setDay(d){lsStopAudio();dayResetSteps();currentView='day';track('day_open',{day:Math.max(1,Math.min(TOTAL_DAYS,d))});current=Math.max(1,Math.min(TOTAL_DAYS,d));showAnswers=false;var _ab=$('answerBtn');if(_ab){_ab.textContent='解答を表示';_ab.className='toggle off';}render();window.scrollTo({top:0,behavior:'smooth'})}
 // ===== Day学習：4ステップ（単語→文法→聞く→解く） =====
@@ -27688,12 +27736,20 @@ function dayPrev(){
   }
 }
 // 下バーは「戻る／次へ」。最後のステップでだけ「完了」に変わる。
+// ミニテストを解いている最中か（最後の問題の「結果を見る」まで）
+function mtInProgress(){ return !!(_mt && _mt.quiz && _mt.idx < _mt.quiz.length); }
 function updateDayNav(){
   var atEnd=dayAtEnd(), atStart=dayAtStart();
   var prev=$('bottomPrev'), next=$('bottomNext'), comp=$('bottomComplete');
+  // **ミニテストを解いている間は「完了」を出さない。**以前は最後のステップに入った時点で
+  // 柿色の大きな「完了」が出ており、問題を1つ答えるたびに押す「次の問題へ」（画面の中）と
+  // 取り違えて、途中で完了してしまうことがあった（実機で指摘された）。
+  // 結果が出たら「完了」を出す。とばしたい人には、テストの下に小さな文字の出口を置く
+  var testing = atEnd && mtInProgress() && !state.completed[current];
   if(prev){ prev.style.display=atStart?'none':''; prev.innerHTML='← 戻る'; }
   if(next){ next.style.display=atEnd?'none':''; next.innerHTML='次へ →'; }
-  if(comp) comp.style.display=atEnd?'':'none';
+  if(comp) comp.style.display=(atEnd && !testing)?'':'none';
+  var sk=$('mtSkip'); if(sk) sk.style.display=testing?'':'none';
   updateCompleteButtons();
 }
 function updateCompleteButtons(){
@@ -28925,6 +28981,10 @@ function loadRecIndex(){
 // 録音を鳴らす。鳴らせたら true。
 // **必ず操作の直後（同じタップの中）で play() を呼ぶこと。**先に索引を待つと
 // iOSが「操作から始まった再生」と見なさなくなり、拒否される。
+// 例文（文）は単語より少しだけ遅く鳴らす（実機で「例文の音声を少し遅く」と頼まれた）。
+// 聞きとりで選んだ速さ（hsk4-ls-rate）に、さらにこの倍率を掛ける。単語はそのまま
+var SENTENCE_RATE=0.85;
+function isSentence(say){ return /[。？！，,.?!]/.test(say) || String(say).replace(/\s/g,'').length>=7; }
 function playWordAudio(say){
   loadRecIndex();
   if(_noRec[say]) return false;
@@ -28934,7 +28994,7 @@ function playWordAudio(say){
     if(_recAudio){ try{ _recAudio.pause(); }catch(e){} }
     var a=new Audio('audio/w/'+key+'.mp3');
     _recAudio=a;
-    a.playbackRate = (typeof lsRate==='function' ? lsRate() : 1);
+    a.playbackRate = (typeof lsRate==='function' ? lsRate() : 1) * (isSentence(say) ? SENTENCE_RATE : 1);
     a.preservesPitch=true; a.webkitPreservesPitch=true;
     // **onerror と play() の拒否は両方来る。**素直に両方から呼ぶと
     // 同じ語を二重に読み上げるので、1回に絞る（実際に二重になった）。
@@ -28977,7 +29037,7 @@ function speakZhFallback(say){
   u.lang = 'zh-CN';
   // 聞きとりで選んだ速さをここにも効かせる。設定が2つあるように見せない
   // （既定の 1 倍なら 0.9 ＝ 元の値そのまま）
-  u.rate = 0.9 * (typeof lsRate==='function' ? lsRate() : 1);
+  u.rate = 0.9 * (typeof lsRate==='function' ? lsRate() : 1) * (isSentence(say) ? SENTENCE_RATE : 1);
   var started=false;
   u.onstart=function(){ started=true; _speakUnlocked=true; };
   u.onerror=function(){ started=true; _speakFailed(); };

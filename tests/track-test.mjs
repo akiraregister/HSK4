@@ -22,7 +22,7 @@ for (let i = 0; i < 12; i++) {
   if (await p.$eval('#bottomNext', e => getComputedStyle(e).display === 'none')) break;
   await p.click('#bottomNext'); await p.waitForTimeout(160);
 }
-await p.click('#bottomComplete'); await p.waitForTimeout(400);
+await p.click('#mtSkip a'); await p.waitForTimeout(400);   // テスト中は下の「完了」を出さないので、とばす出口から
 log = await evs();
 ok('完了で day_complete が入る', log.some(e => e.e === 'day_complete' && e.p && e.p.day === 1));
 

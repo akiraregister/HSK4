@@ -249,6 +249,10 @@ ok('読み込み直しても速さを覚えている',
   const want = samples.map(t => 'audio/w/' + nodeAudioKey(sayText(t)) + '.mp3');
   ok('ファイル名の計算がアプリと生成器で一致する',
     urls.every((u, i) => u.endsWith(want[i])), urls.join(' ') + ' / 期待 ' + want.join(' '));
+  // 例文（文）は単語より少しだけ遅く鳴らす（実機で頼まれた）。単語はそのまま
+  const rates = await p4.evaluate(() => { localStorage.removeItem('hsk4-ls-rate'); window.__played.length = 0;
+    window.speakZh('水平'); window.speakZh('我的中文水平还不够高。'); return window.__played.map(a => a.playbackRate); });
+  ok('例文は単語より少し遅く鳴らす（単語1倍・例文0.85倍）', rates[0] === 1 && Math.abs(rates[1] - 0.85) < 0.001, JSON.stringify(rates));
 
   await p4.evaluate(() => { window.__played.length = 0; window.__spoke.length = 0; });
   await p4.evaluate(() => localStorage.setItem('hsk4-ls-rate', '0.75'));
@@ -600,6 +604,46 @@ ok('読み込み直しても速さを覚えている',
   await p.evaluate(() => { window.showToday(); window.showDay(1); }); await p.waitForTimeout(250);
   const tb = await p.evaluate(() => document.getElementById('topBack').textContent);
   ok('今日画面から開いたDayの出口は「今日へ」のまま', /今日へ/.test(tb), tb);
+  await p.evaluate(() => window.showToday()); await p.waitForTimeout(150);
+}
+
+// --- 同期：画面を描くだけでは「更新した」扱いにしない（Day 89 の完了が戻った件） ---
+{
+  await p.evaluate(() => localStorage.setItem('hsk4-90-v4-state-updatedAtMs', '1000'));
+  await p.evaluate(() => { window.showToday(); window.showVocab(); window.showSettings(); window.showToday(); });
+  await p.waitForTimeout(200);
+  const ts1 = await p.evaluate(() => localStorage.getItem('hsk4-90-v4-state-updatedAtMs'));
+  ok('画面を開くだけでは最終更新が進まない（古い端末がクラウドを上書きしない）', ts1 === '1000', ts1);
+  await p.evaluate(() => { window.toggleBookmark('d1-v0', '単語', '水平', 'レベル'); window.toggleBookmark('d1-v0'); });
+  const ts2 = await p.evaluate(() => Number(localStorage.getItem('hsk4-90-v4-state-updatedAtMs')));
+  ok('学習の操作をしたら最終更新が進む', ts2 > 1000, String(ts2));
+}
+
+// --- 聞きとりの答え合わせ：「もう一度聞く」は本文の前に、押すたびに再生／一時停止 ---
+{
+  await p.evaluate(() => window.showDay(1)); await p.waitForTimeout(250);
+  for (let i = 0; i < 20; i++) {
+    if ((await p.textContent('#content .dstep-label') || '').includes('聞きとる')) break;
+    await p.click('#bottomNext'); await p.waitForTimeout(100);
+  }
+  if (await p.$('#lsPlayBtn')) { await p.click('#lsPlayBtn'); await p.waitForTimeout(150); }
+  await p.evaluate(() => { const a = window.__audios.at(-1); a.paused = true; a.onended && a.onended(); });
+  await p.waitForTimeout(150);
+  await p.evaluate(() => { const b = document.querySelector('#lsRoot .ls-opt, #lsTfOk'); b && b.click(); });
+  await p.waitForTimeout(200);
+  const lay = await p.evaluate(() => {
+    const r = document.getElementById('lsReplayBtn'), t = document.querySelector('#lsRoot .ls-transcript'), n = document.querySelector('#lsRoot .note');
+    return { r: !!r, beforeTranscript: !!(r && t && (r.compareDocumentPosition(t) & Node.DOCUMENT_POSITION_FOLLOWING)),
+      afterNote: !!(r && n && (n.compareDocumentPosition(r) & Node.DOCUMENT_POSITION_FOLLOWING)), label: r ? r.textContent : '' };
+  });
+  ok('答え合わせの「もう一度聞く」は解説のあと・本文の前にある', lay.r && lay.beforeTranscript && lay.afterNote, JSON.stringify(lay));
+  await p.click('#lsReplayBtn'); await p.waitForTimeout(150);
+  const playing = await p.evaluate(() => ({ paused: window.__audios.at(-1).paused, label: document.getElementById('lsReplayBtn').textContent }));
+  await p.evaluate(() => { window.__audios.at(-1).currentTime = 3; });   // 少し聞いたところで止める
+  await p.click('#lsReplayBtn'); await p.waitForTimeout(150);
+  const paused = await p.evaluate(() => ({ paused: window.__audios.at(-1).paused, label: document.getElementById('lsReplayBtn').textContent }));
+  ok('「もう一度聞く」は押すたびに再生と一時停止が切り替わる',
+    !playing.paused && /一時停止/.test(playing.label) && paused.paused && /続きから/.test(paused.label), JSON.stringify({ playing, paused }));
   await p.evaluate(() => window.showToday()); await p.waitForTimeout(150);
 }
 

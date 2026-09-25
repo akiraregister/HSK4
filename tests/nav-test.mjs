@@ -177,7 +177,10 @@ for (let i = 0; i < 12; i++) {
 }
 ok('最後のステップで「次へ」が消える', await page.$eval('#bottomNext', e => getComputedStyle(e).display === 'none'));
 ok('最後のステップはミニテスト', !!(await page.$('#mtRoot .mt-counter')));
-ok('最後のステップで「完了」が出る', await page.$eval('#bottomComplete', e => getComputedStyle(e).display !== 'none'));
+// ミニテストを解いている間は「完了」を出さない（「次の問題へ」と取り違えて途中で完了してしまっていた）。
+// とばしたい人向けに、テストの下に小さな出口「テストをとばして完了する」を置く
+ok('ミニテストの最中は「完了」を出さない', await page.$eval('#bottomComplete', e => getComputedStyle(e).display === 'none'));
+ok('ミニテストの最中は「テストをとばして完了する」が出る', await page.$eval('#mtSkip', e => getComputedStyle(e).display !== 'none'));
 ok('学習画面で下部ナビが出る', await page.$eval('#bottomNav', e => getComputedStyle(e).display === 'flex'));
 // 学習中は下タブを隠し、抜け道はヘッダーの「✕ 今日へ」だけにする（ナビの三重化をやめた）
 ok('学習中は下タブが隠れる', await page.$eval('#tabBar', e => getComputedStyle(e).display === 'none'));
@@ -185,7 +188,7 @@ ok('学習中のヘッダーに出口が出る', await page.$eval('#topBack', e 
 ok('学習中のヘッダーにDay番号が出る', (await page.textContent('#topMeta')).includes('Day'));
 ok('Day選択の重複バーが消えた', !(await page.$('.daybar')) && !(await page.$('#daySelect')));
 
-await page.click('#bottomComplete'); await page.waitForTimeout(400);
+await page.click('#mtSkip a'); await page.waitForTimeout(400);
 
 // --- 完了画面（新設） ---
 ok('完了すると完了画面が出る', !!(await page.$('#content .done')));
