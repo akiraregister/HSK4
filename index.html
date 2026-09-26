@@ -784,6 +784,28 @@ body.fs-lg .ls-transcript{--lt-zh:19px;--lt-py:14.5px;--lt-ja:15.5px}
 .xbtn.ghost .s,.xbtn[disabled] .s{color:var(--muted);opacity:1}
 /* 復習・模試の行 */
 .trows{margin-top:16px;border-top:1px solid var(--hair)}
+/* ===== ホーム画面への追加の案内（2026年9月） ===== */
+.a2hs{display:flex;align-items:center;gap:12px;margin-top:16px;padding:12px 0 12px 12px;border-left:3px solid var(--brand);background:var(--brand-tint)}
+.a2hs .t{flex:1;min-width:0}
+.a2hs b{display:block;font-size:14px;font-weight:600;color:var(--ink)}
+.a2hs span{display:block;font-size:12.5px;line-height:1.6;color:var(--ink2);margin-top:2px}
+.a2hs .go{flex:none;border:1px solid var(--rule);background:var(--bg);padding:7px 11px;font:inherit;font-size:13px;color:var(--ink);cursor:pointer;white-space:nowrap}
+.a2hs .x{flex:none;border:0;background:none;padding:6px 10px;font-size:18px;line-height:1;color:var(--muted);cursor:pointer}
+.buy-note{margin:14px 0 12px;padding:12px 14px;border:1px solid var(--rule);background:var(--brand-tint);text-align:left}
+.buy-note b{display:block;font-size:14px;font-weight:600}
+.buy-note span{display:block;font-size:12.5px;line-height:1.7;color:var(--ink2);margin-top:4px}
+.buy-note button{margin-top:8px;border:0;background:none;padding:4px 0;font:inherit;font-size:13px;color:var(--ink);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+#a2hsSheet{position:fixed;inset:0;z-index:70;background:rgba(20,18,14,.45);display:flex;align-items:flex-end;justify-content:center}
+#a2hsSheet .sh{width:100%;max-width:520px;background:var(--bg);border-top:2px solid var(--ink);padding:20px 20px calc(20px + env(safe-area-inset-bottom));max-height:88vh;overflow:auto}
+#a2hsSheet h3{margin:0 0 4px;font-size:18px;font-weight:600}
+#a2hsSheet .lead{font-size:13px;color:var(--ink2);line-height:1.7;margin:0 0 12px}
+#a2hsSheet ol{margin:0;padding:0;list-style:none;counter-reset:st}
+#a2hsSheet li{counter-increment:st;display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--hair);font-size:14.5px;line-height:1.7}
+#a2hsSheet li::before{content:counter(st);flex:none;width:1.7em;height:1.7em;border:1px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:12.5px;margin-top:1px}
+#a2hsSheet .ic{display:inline-block;width:18px;height:18px;vertical-align:-3px;margin:0 2px}
+#a2hsSheet .note{margin-top:12px;padding-top:10px;border-top:1px solid var(--rule);font-size:12.5px;line-height:1.7;color:var(--ink2)}
+#a2hsSheet .acts{display:flex;gap:8px;margin-top:14px}
+#a2hsSheet .acts button{flex:1}
 .trow{display:flex;align-items:center;gap:12px;padding:12px 2px;border:0;border-bottom:1px solid var(--hair);
   background:transparent;width:100%;text-align:left;cursor:pointer;color:var(--ink);border-radius:0;
   touch-action:manipulation;font-weight:400}
@@ -26657,6 +26679,101 @@ async function startCheckout(){
 // 以前はここが「未購入」の札とクーポン欄と購入ボタンだけで、値段も中身も
 // 一度も出ないまま決済画面へ飛ばしていた（分析のA1・A2）。
 var PRICE_TEXT='¥4,800';
+// ===== ホーム画面への追加の案内（2026年9月） =====
+// このアプリはWebで売るので、買った人の多くは「ブラウザで開いたまま」使い続けてしまう。
+// さらにiPhoneでは、Safariとホーム画面のアプリで保存場所が別になり、Safariで学習・購入してから
+// ホーム画面に追加すると、進み具合も購入も入っていない状態で始まる（iOSの仕様）。
+// なので、スマホのブラウザで開いている人にだけ、今日画面と価格画面で追加を勧める。
+// LINE・Instagram等のアプリ内ブラウザではホーム画面に追加できないので、Safari／Chromeで開き直してもらう。
+function appEnv(){
+  var ua=navigator.userAgent||'';
+  var ios=/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && (navigator.maxTouchPoints||0)>1);
+  var android=/Android/.test(ua);
+  var inApp=/\bLine\/|FBAN|FBAV|Instagram|MicroMessenger|Twitter|TikTok|musical_ly|\bGSA\//i.test(ua);
+  var standalone=document.documentElement.classList.contains('standalone');
+  return { ios:ios, android:android, mobile:ios||android, inApp:inApp, standalone:standalone };
+}
+function needsInstall(){ var e=appEnv(); return e.mobile && !e.standalone; }
+var A2HS_KEY='hsk4-a2hs-hide-until';
+function a2hsHidden(){ try{ return Number(localStorage.getItem(A2HS_KEY)||0) > Date.now(); }catch(e){ return false; } }
+function a2hsHide(){ try{ localStorage.setItem(A2HS_KEY, String(Date.now()+14*86400000)); }catch(e){} var r=document.querySelector('#content .a2hs'); if(r) r.remove(); }
+// Androidの Chrome は「インストール」を自前で出せる。取っておいて案内のボタンから呼ぶ
+var _installEvt=null;
+window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); _installEvt=e; });
+function installRowHTML(){
+  var e=appEnv();
+  if(!e.mobile) return '';
+  if(e.standalone){
+    // ホーム画面から初めて開いた人。Safariで学習していたなら、ログインで引き継げることを知らせる
+    var started=Object.keys(state.completed||{}).some(function(k){ return state.completed[k]; });
+    if(started || cloudUser || a2hsHidden()) return '';
+    return '<div class="a2hs"><div class="t"><b>Safariで学習していましたか？</b>'
+      + '<span>ホーム画面のアプリとSafariでは記録が別になります。同じGoogleアカウントでログインすると、記録と購入を引き継げます。</span></div>'
+      + '<button class="go" onclick="window.hsk4GoogleLogin()">ログイン</button>'
+      + '<button class="x" aria-label="閉じる" onclick="a2hsHide()">×</button></div>';
+  }
+  if(a2hsHidden()) return '';
+  if(e.inApp){
+    return '<div class="a2hs"><div class="t"><b>'+(e.ios?'Safari':'Chrome')+'で開き直してください</b>'
+      + '<span>アプリの中のブラウザでは、ホーム画面に追加できず、記録も消えやすくなります。</span></div>'
+      + '<button class="go" onclick="copyAppLink()">リンクをコピー</button>'
+      + '<button class="x" aria-label="閉じる" onclick="a2hsHide()">×</button></div>';
+  }
+  return '<div class="a2hs"><div class="t"><b>ホーム画面に追加しましょう</b>'
+    + '<span>アプリのように全画面で開けて、電波が無くても学べます。</span></div>'
+    + '<button class="go" onclick="showInstallGuide()">方法を見る</button>'
+    + '<button class="x" aria-label="閉じる" onclick="a2hsHide()">×</button></div>';
+}
+function copyAppLink(){
+  var url=location.origin+location.pathname;
+  try{ navigator.clipboard.writeText(url).then(function(){ _toast('リンクをコピーしました。'+(appEnv().ios?'Safari':'Chrome')+'に貼り付けて開いてください。',6000); },
+    function(){ _toast(url,8000); }); }catch(e){ _toast(url,8000); }
+}
+// 価格画面の案内。購入ボタンは止めない（勧めるだけ）
+function buyNoteHTML(){
+  if(!needsInstall()) return '';
+  var e=appEnv();
+  return '<div class="buy-note"><b>購入はホーム画面のアプリから</b>'
+    + '<span>'+(e.ios?'iPhone・iPadでは、Safariとホーム画面のアプリで記録が別々に保存されます。':'ブラウザとホーム画面のアプリで記録が別になることがあります。')
+    + 'ホーム画面に追加して、そこから購入すると確実です。</span>'
+    + '<button type="button" onclick="showInstallGuide()">追加の方法を見る</button></div>';
+}
+var SHARE_IC='<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M6 11H5v10h14V11h-1"/></svg>';
+function showInstallGuide(){
+  var e=appEnv(), ipad=/iPad/.test(navigator.userAgent||'') || (/Macintosh/.test(navigator.userAgent||'') && (navigator.maxTouchPoints||0)>1);
+  var steps;
+  if(e.ios){
+    steps=['画面の'+(ipad?'右上':'下')+'にある共有ボタン '+SHARE_IC+' を押します（見当たらないときは「…」の中）',
+      '一覧を下へたどって「ホーム画面に追加」を押します',
+      '右上の「追加」を押します',
+      'ホーム画面にできた「加油」から開きます'];
+  } else {
+    steps=['右上の「⋮」を押します',
+      '「ホーム画面に追加」または「アプリをインストール」を押します',
+      'ホーム画面にできた「加油」から開きます'];
+  }
+  var h='<div class="sh" role="dialog" aria-modal="true" aria-label="ホーム画面に追加する方法">'
+    + '<h3>ホーム画面に追加する</h3>'
+    + '<p class="lead">アプリのように全画面で開けて、電波が無くても学べます。</p>'
+    + (e.android && _installEvt ? '<div class="acts" style="margin:0 0 12px"><button class="xbtn" onclick="runInstall()">いまインストールする</button></div>' : '')
+    + '<ol>'+steps.map(function(t){ return '<li><span>'+t+'</span></li>'; }).join('')+'</ol>'
+    + '<div class="note">'+(e.ios?'Safariで学習した記録は、ホーム画面のアプリには引き継がれません（iPhoneの仕様です）。':'')
+    + (cloudUser?'Googleでログイン済みなので、ホーム画面から開いたあとも記録と購入はそのまま使えます。'
+                :'<b>先にGoogleでログインしておく</b>と、ホーム画面から開いたあとに同じアカウントでログインするだけで、記録と購入を引き継げます。')+'</div>'
+    + '<div class="acts">'+(cloudUser?'':'<button class="xbtn ghost" onclick="closeInstallGuide();window.hsk4GoogleLogin()">Googleでログイン</button>')
+    + '<button class="xbtn ghost" onclick="closeInstallGuide()">閉じる</button></div>'
+    + '</div>';
+  closeInstallGuide();
+  var o=document.createElement('div'); o.id='a2hsSheet'; o.innerHTML=h;
+  o.addEventListener('click', function(ev){ if(ev.target===o) closeInstallGuide(); });
+  document.body.appendChild(o);
+  track('a2hs_guide',{ios:e.ios, android:e.android});
+}
+function closeInstallGuide(){ var o=document.getElementById('a2hsSheet'); if(o) o.remove(); }
+function runInstall(){ var ev=_installEvt; if(!ev) return; _installEvt=null; closeInstallGuide(); try{ ev.prompt(); }catch(e){} }
+window.showInstallGuide=showInstallGuide; window.closeInstallGuide=closeInstallGuide; window.a2hsHide=a2hsHide;
+window.copyAppLink=copyAppLink; window.runInstall=runInstall;
+
 function lockedDayHTML(day){
   var paid=TOTAL_DAYS-FREE_DAYS;
   var rows=[
@@ -26685,6 +26802,7 @@ function lockedDayHTML(day){
    +   '<div class="amt">'+PRICE_TEXT+'<small>（税込）</small></div>'
    +   '<div class="pricenote">買い切り・月額なし・追加費用なし</div>'
    + '</div>'
+   + buyNoteHTML()
    + '<button class="xbtn" onclick="startCheckout()">購入して全'+TOTAL_DAYS+'日を開く</button>'
    // クーポン欄は購入ボタンより上に常時出ていると、全員に「割引があるらしい」と
    // 気づかせてコードを探しに離脱させる（分析のA2）。畳んで下に置く。
@@ -27194,7 +27312,7 @@ function renderHome(){
       <span class="hero-eye">あたらしく覚える</span>
       <div class="hero-day"><span class="l">Day</span><span class="n">${nextDay}</span></div>
       <div class="hero-m">ここから先は購入後に解放されます。Day1-7は無料でお試しいただけます。</div>
-      <button class="xbtn" onclick="startCheckout()">購入する</button>
+      <button class="xbtn" onclick="showDay(${nextDay})">購入について見る</button>
      </div>`
   : `<div class="hero">
       <span class="hero-eye">あたらしく覚える</span>
@@ -27252,13 +27370,15 @@ function renderHome(){
 
    <div class="trows">${revRow}${mockRow}</div>
 
+   ${installRowHTML()}
+
    <details class="day-list-details">
      <summary>全90日から選ぶ</summary>
      <div class="dl-body">
        <div class="small" style="margin-bottom:6px">完了済みのDayには ✓ が付きます。</div>
        <div class="day-grid">
          ${(()=>{ let out=''; for(let d=1; d<=TOTAL_DAYS; d++){ const locked=!lessonAvailable(d);
-           out+=`<button class="daybtn ${state.completed[d]?'done':''}${locked?' locked':''}" onclick="${locked?'startCheckout()':`showDay(${d})`}">${locked?'🔒':d+(state.completed[d]?'✓':'')}</button>`; }
+           out+=`<button class="daybtn ${state.completed[d]?'done':''}${locked?' locked':''}" onclick="showDay(${d})">${locked?'🔒':d+(state.completed[d]?'✓':'')}</button>`; }
            return out; })()}
        </div>
      </div>

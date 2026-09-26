@@ -734,6 +734,46 @@ ok('読み込み直しても速さを覚えている',
   ok('移したあとで★を外しても、次の起動で戻ってこない', await p.evaluate(() => !window.state.bookmarks['d3-v0']));
 }
 
+// --- ホーム画面への追加の案内（スマホのブラウザで開いている人にだけ） ---
+// Webで売るので、買った人の多くはブラウザで開いたまま使う。iPhoneではSafariとホーム画面のアプリで
+// 保存場所が別になり、Safariで買ってから追加すると「買ったのに開かない」になる
+{
+  const IOS = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1';
+  const open = async (ua) => {
+    const cx = await br.newContext({ viewport: { width: 390, height: 844 }, userAgent: ua, serviceWorkers: 'block' });
+    const px = await cx.newPage(); await seedFullContent(px);
+    await px.goto(B, { waitUntil: 'load' }); await px.waitForTimeout(700); await passOnboarding(px);
+    await px.evaluate(() => window.showToday()); await px.waitForTimeout(200);
+    return { cx, px };
+  };
+  let { cx, px } = await open(IOS);
+  ok('iPhoneのSafariでは今日画面に「ホーム画面に追加」を出す', ((await px.textContent('#content .a2hs b').catch(() => '')) || '').includes('ホーム画面に追加'));
+  await px.click('#content .a2hs .go'); await px.waitForTimeout(200);
+  const guide = await px.textContent('#a2hsSheet').catch(() => '');
+  ok('「方法を見る」で手順が開き、共有ボタン→ホーム画面に追加→追加の順に書いてある',
+    /共有ボタン/.test(guide) && /ホーム画面に追加/.test(guide) && /Safariで学習した記録/.test(guide), guide.slice(0, 60));
+  await px.evaluate(() => window.closeInstallGuide());
+  await px.evaluate(() => { window.setPaywallPreview(true); window.showDay(8); }); await px.waitForTimeout(300);
+  ok('価格画面では購入ボタンの上に「ホーム画面のアプリから」の案内を出す', await px.evaluate(() => {
+    const n = document.querySelector('#content .buy-note'), b = [...document.querySelectorAll('#content .xbtn')].find(x => /購入して/.test(x.textContent));
+    return !!(n && b && (n.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING)); }));
+  await px.evaluate(() => { window.setPaywallPreview(false); window.showToday(); }); await px.waitForTimeout(200);
+  await px.click('#content .a2hs .x'); await px.waitForTimeout(150);
+  await px.evaluate(() => window.showToday()); await px.waitForTimeout(150);
+  ok('×で閉じたら、描き直しても出さない（2週間）', !(await px.$('#content .a2hs')));
+  // ホーム画面から開いた・まだ何もしていない・未ログイン → ログインで引き継げることを知らせる
+  await px.evaluate(() => { localStorage.removeItem('hsk4-a2hs-hide-until'); document.documentElement.classList.add('standalone'); window.showToday(); });
+  await px.waitForTimeout(150);
+  ok('ホーム画面から初めて開いたときは「ログインで引き継げる」を出す', ((await px.textContent('#content .a2hs b').catch(() => '')) || '').includes('Safariで学習'));
+  await cx.close();
+  ({ cx, px } = await open('Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Line/14.12.0'));
+  ok('LINEの中のブラウザでは「Safariで開き直して」を出す', ((await px.textContent('#content .a2hs b').catch(() => '')) || '').includes('Safariで開き直して'));
+  await cx.close();
+  ({ cx, px } = await open(undefined));
+  ok('PCのブラウザでは案内を出さない', !(await px.$('#content .a2hs')));
+  await cx.close();
+}
+
 console.log(res.join('\n'));
 console.log('\npageerrors:', errs.length ? errs.slice(0, 3) : 'none');
 const f = res.filter(r => r.startsWith('FAIL')).length;
