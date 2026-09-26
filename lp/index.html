@@ -116,25 +116,29 @@ h1 .em{color:var(--bad)}
 .mock-brand{display:flex;align-items:center;gap:7px;margin-bottom:9px}
 .mock-brand .w{font-family:var(--font-display);font-size:16px;font-weight:600;letter-spacing:.04em}
 .mock-brand .s{font-family:var(--font-hand);font-size:9.5px;color:var(--muted);align-self:flex-end;padding-bottom:2px}
-.mock-tabs{display:flex;gap:4px;margin-bottom:12px}
-.mock-tab{flex:1;text-align:center;font-family:var(--font-display);font-size:9.5px;font-weight:700;color:var(--muted);
-  background:rgba(255,255,255,.72);border:var(--bw) solid #CFC6B6;border-radius:0;padding:5px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mock-tab.on{color:var(--bg);background:var(--ink);border-color:var(--stroke);font-weight:600}
-.mock-h{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
-.mock-h b{font-size:14.5px;font-weight:600}
-.mock-h .hand{font-size:10px;color:var(--bad)}
-.mock-card{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:0;padding:9px 11px;margin-top:8px;
-  display:flex;align-items:center;gap:10px}
-.mock-card .t{font-size:10.5px;line-height:1.6;color:var(--ink-2)}
-.mock-two{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}
-.mock-t{background:var(--card);border:var(--bw) solid var(--stroke);border-radius:0;padding:9px 10px}
-.mock-t.accent{background:var(--apricot)}
-.mock-t .e{font-family:var(--font-hand);font-size:9px;color:var(--muted);display:block}
-.mock-t .ti{font-family:var(--font-display);font-size:14px;font-weight:600;display:block;line-height:1.3;margin-top:1px}
-.mock-t .m{font-size:9px;color:var(--ink-2);line-height:1.55;display:block;margin-top:2px;min-height:2.8em}
-.mock-t .b{display:block;text-align:center;font-family:var(--font-display);font-size:9.5px;font-weight:600;
-  border:var(--bw) solid var(--stroke);border-radius:0;padding:5px;margin-top:6px;background:var(--ink);color:var(--bg)}
-.mock-t.rev .b{background:var(--card);color:var(--ink)}
+.mock-brand{padding-bottom:9px;border-bottom:1px solid var(--hair);margin-bottom:12px}
+.mock-hero .e{font-size:9px;letter-spacing:.2em;color:var(--muted);display:block}
+.mock-hero .d{display:flex;align-items:baseline;gap:5px;margin:2px 0}
+.mock-hero .d .l{font-size:11px}.mock-hero .d .n{font-size:30px;line-height:1.1;font-weight:500}
+.mock-hero .m{font-size:9.5px;color:var(--ink-2);display:block}
+.mock-hero .b{display:block;text-align:center;font-family:var(--font-display);font-size:11px;font-weight:600;letter-spacing:.18em;
+  background:var(--ink);color:var(--bg);padding:9px 5px;margin-top:9px}
+.mock-rows{margin-top:10px;border-top:1px solid var(--hair)}
+.mock-row{display:flex;align-items:center;gap:7px;padding:7px 1px;border-bottom:1px solid var(--hair);font-size:10px}
+.mock-row .lab{width:2.6em;flex:none}
+.mock-row .val{font-size:14px;font-weight:500;flex:none}.mock-row .val small{font-size:8.5px;margin-left:1px}
+.mock-row .memo{flex:1;font-size:8.5px;color:var(--muted);min-width:0}
+.mock-row .go{flex:none;border:1px solid var(--rule);font-size:9px;padding:3px 4px;width:6em;text-align:center;white-space:nowrap;letter-spacing:0}
+.mock-prog{display:flex;align-items:baseline;justify-content:space-between;margin-top:14px;padding-top:8px;border-top:1px solid var(--ink)}
+.mock-prog .big{font-size:18px;font-weight:500}.mock-prog .big small{font-size:9px;margin:0 2px}
+.mock-prog .rest{font-size:8.5px;color:var(--muted)}
+.mock-grid{display:grid;grid-template-columns:repeat(15,1fr);gap:2px;margin-top:6px}
+.mock-grid i{display:block;aspect-ratio:1;border:1px solid var(--hair)}
+.mock-grid i.on{background:var(--ink);border-color:var(--ink)}
+.mock-grid i.now{background:var(--brand);border-color:var(--brand)}
+.mock-tabbar{display:flex;margin:14px -12px -14px;border-top:1px solid var(--rule)}
+.mock-tabbar span{flex:1;text-align:center;font-size:8.5px;color:var(--muted);padding:7px 0 8px}
+.mock-tabbar span.on{color:var(--ink);font-weight:600}
 
 /* 数字 */
 .nums{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
@@ -296,34 +300,21 @@ footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46p
         <div class="mock-screen">
           <div class="mock-brand">
             <svg width="19" height="19" viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="lpf2"><path d="M52 8 C 62 31, 79 43, 79 64 A 29 29 0 1 1 21 64 C 21 46, 33 41, 41 29 C 44 41, 50 45, 50 37 C 50 27, 47 17, 52 8 Z"/></clipPath></defs><g clip-path="url(#lpf2)"><rect width="100" height="100" fill="#E5A500"/><path d="M0 52 C 18 64, 34 48, 52 56 C 70 64, 84 50, 100 58 L100 100 L0 100 Z" fill="#DC6011"/></g><rect x="28" y="88" width="44" height="2" fill="#15150F"/></svg>
-            <span class="w">加油</span><span class="s">90日でHSK4合格</span>
+            <span class="w">加油</span>
           </div>
-          <div class="mock-tabs">
-            <span class="mock-tab on">今日</span><span class="mock-tab">ブックマーク</span><span class="mock-tab">単語</span><span class="mock-tab">設定</span>
+          <div class="mock-hero">
+            <span class="e">あたらしく覚える</span>
+            <div class="d"><span class="l">Day</span><span class="n">13</span></div>
+            <span class="m">単語5・文法3・音声1・テスト5</span>
+            <span class="b">学習を始める</span>
           </div>
-          <div class="mock-h"><b>今日やること</b><span class="hand">あと78日！</span></div>
-          <div class="mock-card">
-            <svg width="34" height="34" viewBox="0 0 80 80" style="flex:none">
-              <circle cx="40" cy="40" r="30" fill="#FCF9F2" stroke="#2A2724" stroke-width="4"/>
-              <circle cx="40" cy="40" r="30" fill="none" stroke="#F2A227" stroke-width="8" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="164.0" transform="rotate(-90 40 40)"/>
-              <text x="40" y="41" text-anchor="middle" dominant-baseline="central" style="font-size:19px;font-weight:600;fill:#2A2724">13%</text>
-            </svg>
-            <span class="t">90日のうち <b>12日</b> 完了<br>のこり 78日</span>
+          <div class="mock-rows">
+            <div class="mock-row"><span class="lab">復習</span><span class="val">18<small>問</small></span><span class="memo">期限13・新規5</span><span class="go">復習する</span></div>
+            <div class="mock-row"><span class="lab">模試</span><span class="val">40<small>問</small></span><span class="memo">30分</span><span class="go">受ける</span></div>
           </div>
-          <div class="mock-two">
-            <div class="mock-t accent">
-              <span class="e">あたらしく覚える</span>
-              <span class="ti">Day 13</span>
-              <span class="m">HSK4 基礎強化 · 単語5個・文法3つ</span>
-              <span class="b">学習を始める</span>
-            </div>
-            <div class="mock-t rev">
-              <span class="e">思い出す</span>
-              <span class="ti">18 枚</span>
-              <span class="m">期限 13 ＋ 新しく覚える 5</span>
-              <span class="b">復習する</span>
-            </div>
-          </div>
+          <div class="mock-prog"><span class="big">12<small>/</small>90<small>日</small></span><span class="rest">のこり 78 日</span></div>
+          <div class="mock-grid"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="now"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="mock-tabbar"><span class="on">今日</span><span>単語</span><span>復習</span><span>設定</span></div>
         </div>
       </div>
     </div>
@@ -449,7 +440,7 @@ footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46p
       </div>
       <div class="card">
         <h3>昔かじって、やり直す人</h3>
-        <p>最初の級診断（16問・約5分）で、いまの位置から始められます。スキップも可能です。</p>
+        <p>最初の級診断（20問・約7分）で、いまの位置から始められます。スキップも可能です。</p>
       </div>
     </div>
   </section>
@@ -458,8 +449,8 @@ footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46p
     <p class="eyebrow">先に、正直なところを</p>
     <div class="honest">
       <dl>
-        <dt>リスニングは入っていません</dt>
-        <dd>HSK4は听力45問・阅读40問・书写15問で、听力が約3分の1を占めます。このアプリには音源がないため、その対策はできません。<b>他の教材と併用してください。</b>模試の点数も、本番の目安にはなりません。</dd>
+        <dt>リスニングは1日1問、合成音声です</dt>
+        <dd>HSK4は听力45問・阅读40問・书写15問で、听力が約3分の1を占めます。このアプリの聞きとりは各Dayに1問（全90本）で、何度でも聞き直せますが、<b>音声はすべて合成音声</b>です。本番の話し手や量には及ばないので、<b>听力は他の教材との併用をおすすめします。</b>模試にはリスニングが入っていないため、点数も本番の目安にはなりません。</dd>
 
         <dt>498語は、HSK4の全範囲ではありません</dt>
         <dd>HSK4の出題範囲は累計1200語（HSK3から新たに増えるのが600語）です。このアプリはそのうち<b>頻出の498語</b>を扱います。骨格を作るには足りますが、範囲の全部ではありません。</dd>
@@ -496,7 +487,7 @@ footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46p
 
     <details>
       <summary>本当に90日で受かりますか</summary>
-      <p class="a">保証はできません。このアプリが用意しているのは、90日ぶんに割った頻出498語と文法222項目、その定着のための間隔反復です。<b>听力対策は含まれていない</b>ので、合格を狙うならリスニング教材との併用が要ります。1日15分を90日続けたときに、語彙と文法の骨格ができている——そこまでが役割です。</p>
+      <p class="a">保証はできません。このアプリが用意しているのは、90日ぶんに割った頻出498語と文法222項目、その定着のための間隔反復です。聞きとりは各Dayに1問ありますが、<b>听力対策としては量が足りない</b>ので、合格を狙うならリスニング教材との併用が要ります。1日15分を90日続けたときに、語彙と文法の骨格ができている——そこまでが役割です。</p>
     </details>
 
     <details>
@@ -511,17 +502,17 @@ footer{border-top:var(--bw) solid var(--line);margin-top:34px;padding:24px 0 46p
 
     <details>
       <summary>自分のレベルがHSK4か分かりません</summary>
-      <p class="a">最初に級診断（16問・約5分）が出ます。HSK3相当と出た場合も、HSK4の1200語にはHSK1〜3の語彙が含まれるので、少し背伸びですが同じ教材で進められます。HSK5以上と出た場合は<b>この教材では易しすぎる</b>と正直にお伝えします。診断はスキップもできます。</p>
+      <p class="a">最初に級診断（20問・約7分）が出ます。HSK3相当と出た場合も、HSK4の1200語にはHSK1〜3の語彙が含まれるので、少し背伸びですが同じ教材で進められます。HSK5以上と出た場合は<b>この教材では易しすぎる</b>と正直にお伝えします。診断はスキップもできます。</p>
     </details>
 
     <details>
       <summary>アプリのインストールは必要ですか</summary>
-      <p class="a">不要です。ブラウザで開くだけで使えます。ホーム画面に追加すると、アプリのように起動でき、オフラインでも学習できます。iPhoneなら共有ボタンから「ホーム画面に追加」です。</p>
+      <p class="a">不要です。ブラウザで開くだけで使えます。ホーム画面に追加すると、アプリのように起動でき、オフラインでも学習できます。iPhoneなら共有ボタンから「ホーム画面に追加」です。iPhoneではSafariとホーム画面のアプリで記録が別々に保存されるので、<b>先にホーム画面に追加してから始める</b>のがおすすめです。</p>
     </details>
 
     <details>
       <summary>学習データはどこに保存されますか</summary>
-      <p class="a">既定では使っている端末の中だけです。Googleアカウントでログインすると、進捗・ブックマーク・復習スケジュールを端末間で同期できます。ログインは任意で、しなくても全機能が使えます。</p>
+      <p class="a">既定では使っている端末の中だけです。Googleアカウントでログインすると、進捗・★を付けた語・復習スケジュールを端末間で同期できます。ログインは任意で、しなくても全機能が使えます。</p>
     </details>
 
     <details>

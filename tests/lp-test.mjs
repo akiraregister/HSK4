@@ -83,6 +83,22 @@ ok('LPとアプリのログが1本に繋がる',
    evs.some(e=>e.e==='lp_view') && evs.some(e=>e.e==='lp_cta') && evs.some(e=>e.e==='first_visit'||e.e==='app_open'),
    [...new Set(evs.map(e=>e.e))].join(','));
 
+// --- LPとアプリの食い違い（2026年9月に見つけた。LPの書き換えを忘れると、買う前の人に古い説明を見せる） ---
+{
+  const { readFile } = await import('fs/promises');
+  const root = new URL('../', import.meta.url).pathname;
+  const lp = await readFile(root + 'lp/index.html', 'utf8');
+  const app = await readFile(root + 'index.html', 'utf8');
+  const i = app.indexOf('const PLACEMENT_QUESTIONS'), j = app.indexOf('\n];', i);
+  const n = (app.slice(i, j).match(/\bq:/g) || []).length;
+  const said = [...lp.matchAll(/級診断（(\d+)問/g)].map(m => Number(m[1]));
+  ok('LPの級診断の問数がアプリと同じ', said.length > 0 && said.every(x => x === n), `LP ${said.join(',')} / アプリ ${n}`);
+  const tabs = [...app.matchAll(/class="nav-tab[^"]*" id="\w+">[\s\S]*?<span>([^<]+)/g)].map(m => m[1]);
+  const mockTabs = [...lp.matchAll(/<div class="mock-tabbar">([\s\S]*?)<\/div>/g)].flatMap(m => [...m[1].matchAll(/<span[^>]*>([^<]+)<\/span>/g)].map(x => x[1]));
+  ok('LPの画面見本の下タブがアプリと同じ並び', tabs.length > 0 && tabs.join(',') === mockTabs.join(','), `アプリ ${tabs.join('・')} / LP ${mockTabs.join('・')}`);
+  ok('LPに「リスニングは入っていない」と書いていない（今は全90日に聞きとりがある）', !/音源がない|リスニングは入っていません|听力対策は含まれていない/.test(lp));
+}
+
 console.log(res.join('\n'));
 console.log('\npageerrors:', errs.length?errs.slice(0,3):'none');
 const f=res.filter(r=>r.startsWith('FAIL')).length;
